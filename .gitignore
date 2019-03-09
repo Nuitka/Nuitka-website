@@ -1,0 +1,8 @@
+*.py[co]
+.doit.db*
+*.html
+tmp/
+cache
+nuitka-factory
+nuitka-master
+output
