@@ -6,8 +6,8 @@ terms of contributors and supported platforms.
 Bug Fixes
 ---------
 
-- Fix, the python flag ``-O`` was removing doc strings, but that should only
-  be done with ``-OO`` which was added too.
+- Fix, the Python flag ``--python-flag=-O`` was removing doc strings, but that
+  should only be done with ``--python-flag=-OO`` which was added too.
 
 - Fix, accelerated binaries failed to load packages from the ``virtualenv``
   (not ``venv``) that they were created and ran with, due to not propagating
@@ -26,7 +26,8 @@ New Features
 
 - Added support for MSYS2 based Python on Windows.
 
-- Added support for Python flag ``-OO``, which allows to remove doc strings.
+- Added support for Python flag ``--python flag=-OO``, which allows to remove
+  doc strings.
 
 - Added experimental support for ``pefile`` based dependency scans on Windows,
   thanks to Orsiris for this contribution.

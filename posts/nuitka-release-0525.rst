@@ -69,8 +69,8 @@ New Features
   will check of the ``#!`` portion indicates a different Python version and ask
   the user to clarify with ``--python-version`` in case of a mismatch.
 
-- Added support for Python flag ``-O``, which allows to disable assertions and
-  remove doc strings.
+- Added support for Python flag ``--python-flag=-O``, which allows to disable
+  assertions and remove doc strings.
 
 Optimization
 ------------
