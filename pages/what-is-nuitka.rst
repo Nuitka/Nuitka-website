@@ -81,7 +81,7 @@ milestone 2 will be able to *still* be faster than CPython.
 
 Aiming at milestone 3, the constant folding and propagation is in place. Some
 control flow optimization are applied too. But this only at a start. It will
-give the big gains when types are inferenced.
+give the big gains when types are inferred.
 
 For milestone 4, first steps have been undertaken to achieve "type
 inference". The results are encouraging, but will need a lot more work, before
