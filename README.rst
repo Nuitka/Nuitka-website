@@ -26,6 +26,15 @@ has only be done on Linux, but it ought to also work on Windows:
     # Browse it (Windows)
     explorer output\index.html
 
+Usage of Nikola
+===============
+
+So the site is basically mostly an automation of importing a few files from
+the git repository, splitting up e.g. the ``Changelog.rst`` into pages, with
+otherwise using Nikola to render it. Reference the `Nikola handbook
+<https://getnikola.com/handbook.html>`__ if you have any questions about how
+it does that, but it's easy enough.
+
 Thanks
 ======
 
