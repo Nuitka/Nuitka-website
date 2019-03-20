@@ -12,19 +12,24 @@ has only be done on Linux, but it ought to also work on Windows:
 
 .. code-block:: sh
 
-    # Creates a virtualenv with all that is needed
+    # Creates a virtualenv with all that is needed to develop the
+    # site.
     python3.7 -m pip install pipenv
-    python3.7 -m pipenv install
+    python3.7 -m pipenv install --dev
 
     # Need to do this at least once.
     python3.7 -m pipenv run ./update.py --update-docs
     # Now lets build the site
     python3.7 -m pipenv run ./update.py --build-site
 
+    # Start local web server with the site.
+    python3.7 -m pipenv run nikola auto
+
     # Browse it (Linux)
-    xdg-open output/index.html
+    xdg-open http://localhost:8080
     # Browse it (Windows)
-    explorer output\index.html
+    explorer http://localhost:8080
+
 
 Usage of Nikola
 ===============
