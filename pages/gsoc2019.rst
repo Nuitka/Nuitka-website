@@ -96,8 +96,9 @@ Mentors
 
 * Kay Hayen <kay.hayen@gmail.com>, creator of Nuitka
 * Kamran Ghanaat <kamran.ghanaat@uni-oldenburg.de>, seasoned all around user
-* Jorj X. McKie <jorj.x.mckie@outlook.de>, contributor and create of
+* Jorj X. McKie <jorj.x.mckie@outlook.de>, contributor and creator of
   Nuitka-Utilities repo.
+* Vaibhav Tulsyan <vstulsyan@gmail.com>, expert mentor and Pythonista
 
 Ideas
 =====
@@ -174,7 +175,7 @@ and feel to ask questions and clarifications there.
 
 Difficulty level: *Easy*
 
-Potential mentors: Kay Hayen, Kamran Ghanaat, Jorj X. McKie
+Potential mentors: Vaibhav Tulsyan, Kay Hayen, Kamran Ghanaat, Jorj X. McKie
 
 2. Nuitka one file standalone option
 ------------------------------------
@@ -204,7 +205,7 @@ and feel to ask questions and clarifications there.
 
 Difficulty level: *Easy*
 
-Potential mentors: Kay Hayen, Kamran Ghanaat
+Potential mentors: Jorj X. McKie, Kay Hayen, Kamran Ghanaat
 
 3. Nuitka benchmarks
 --------------------
@@ -237,7 +238,7 @@ and feel to ask questions and clarifications there.
 
 Difficulty level: *Intermediate*
 
-Potential mentors: Kay Hayen, Kamran Ghanaat, Jorj X. McKie
+Potential mentors: Kay Hayen, Vaibhav Tulsyan, Kamran Ghanaat, Jorj X. McKie
 
 4. Nuitka all built-ins
 -----------------------
@@ -289,7 +290,8 @@ and feel to ask questions and clarifications there.
 
 Difficulty level: *Intermediate*
 
-Potential mentors: Kay Hayen, Kamran Ghanaat
+Potential mentors: Kay Hayen, Vaibhav Tulsyan, Kamran Ghanaat, Jorj X. McKie
+
 
 5. Nuitka macOS CI
 ------------------
@@ -312,7 +314,11 @@ Skills: Travis, have macOS platform, XCode tooling
 
 Difficulty level: *Hard*
 
-Potential mentors: Kay Hayen, Kamran Ghanaat
+.. note::
+
+   This idea has been retracted due to lack of interest from
+   students and due to higher than expected interest in ideas
+   that are more valueable.
 
 
 Timeline
