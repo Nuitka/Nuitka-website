@@ -296,40 +296,14 @@ this:
 
       pip install -U 'http://nuitka.net/gitweb/?p=Nuitka.git;a=snapshot;h=refs/heads/develop;sf=tgz'
 
-git
----
-
-Official
-~~~~~~~~
-
-* |GIT_LOGO| Stable: **git clone http://git.nuitka.net/Nuitka.git**
-* |GIT_LOGO| Develop: **git clone --branch develop
-  http://git.nuitka.net/Nuitka.git**
-
-Then do your own modifications, and do git ``pull --rebase`` each time there is
-a new release. To reduce your differences, feel free to send me pull requests or
-the patches you create with ``git format-patch <commit-id>`` and I will likely
-merge it.
-
 Github
-~~~~~~
+------
 
-Visit https://github.com/kayhayen/Nuitka for a mirror of the Nuitka repository
-on Github. Because issue tracking also lives there, PRs there are most logical
-way of interaction.
+* |GIT_LOGO| Stable: **git clone https://github.com/Nuitka/Nuitka**
+* |GIT_LOGO| Develop: **git clone --branch develop https://github.com/Nuitka/Nuitka**
 
+Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
 
-Gitlab
-~~~~~~
-
-Visit https://gitlab.com/kayhayen/Nuitka for a mirror of the Nuitka
-repository on Gitlab.
-
-Bitbucket
-~~~~~~~~~
-
-Visit https://bitbucket.org/kayhayen/nuitka for a mirror of the Nuitka
-repository on Bitbucket.
 
 .. |NUITKA_STABLE_VERSION| replace::
    0.6.2
