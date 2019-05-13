@@ -12,6 +12,9 @@ has only be done on Linux, but it ought to also work on Windows:
 
 .. code-block:: sh
 
+    # On Ubuntu only
+    sudo apt-get install optipng jpegoptim
+
     # Creates a virtualenv with all that is needed to develop the
     # site.
     python3.7 -m pip install pipenv
