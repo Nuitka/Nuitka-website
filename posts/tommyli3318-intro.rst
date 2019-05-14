@@ -1,6 +1,6 @@
 Hi all! :)
 
-My name is Taofeng Li and I go by the nickname of Tommy. I am very excited to announce that I'll be contributing to Nuitka this summer under the Google Summer of Code program!
+My name is Taofeng Li and I go by the nickname of Tommy, gihub handle `tommyli3318 <https://github.com/tommyli3318>`_. I am very excited to announce that I'll be contributing to Nuitka this summer under the Google Summer of Code program!
 
 My project is "Nuitka support for PyPI top 50", it ensures Nuitka’s compatibility with the 50 most popular PyPI packages by setting up automated testing for each package. These automated tests will serve to be very important tools for the development of Nuitka, as they will be used to assure Nuitka’s compatibility with the most used Python packages every time Nuitka receives a new update.
 
