@@ -1,6 +1,5 @@
 Hello everyone!
 
-
 My name is Batakrishna Sahu and I am from India. I'm very grateful to be one of the 2 selected students who will work with Nuitka during
 Google Summer of Code 2019. My project is on `"Optimizing Python 2 and Python 3 built-ins for Nuitka"
 <https://summerofcode.withgoogle.com/projects/#6183147857772544>`__ mentored by Vaibhav Tulsyan, Kamran Ghanaat, Kay Hayen.
