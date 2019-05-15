@@ -6,13 +6,13 @@ verify_ssl = true
 [dev-packages]
 aiohttp = "*"
 watchdog = "*"
-yuicompressor = "2.4.8"
 
 [packages]
 nikola = "*"
 webassets = "*"
 doit = "*"
 unidecode = "*"
+yuicompressor = "*"
 
 [requires]
 python_version = "3.7"
