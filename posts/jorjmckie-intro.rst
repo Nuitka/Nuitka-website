@@ -19,5 +19,5 @@ Short Biography
 * Professional career overview
     - insurance company (4 years): application and systems programming (IBM mainframe, Cobol, Assembler), data center lead
     - book wholesaler (5 years): systems programming and data center lead (IBM mainframe)
-    - consulting company (until 2009): leading and participating in numerous large and **very** large projects around banking applications, banking mergers and data center optimization, quality assurance.
+    - consulting company (until 2009): leading of or participating in numerous large and **very** large projects mostly around banking applications, banking mergers, data center optimization and quality assurance.
     - since 2009: retirement, living on Isla Margarita, Venezuela. Enjoying my beautiful house, pursuing my hobbies: mathematics, science theory, biological evolution theory, science fiction (my pseudonym comes from novels by one of my favorite authors Frank Herbert) and of course programming (maintainer of `PyMuPDF <https://github.com/pymupdf/PyMuPDF>`_, and Nuitka).
