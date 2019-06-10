@@ -204,7 +204,7 @@ Tests
 -----
 
 - Finally the asyncgen tests can be enabled in the CPython 3.6 test suite as
-  the corrupting crasher has been identified.
+  the corrupting crash has been identified.
 
 - Cover ever more cases of spurious permission problems on Windows.
 

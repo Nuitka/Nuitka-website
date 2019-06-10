@@ -20,7 +20,7 @@ Bug Fixes
 
 - Standalone: Added support for OpenGL support with QML in PyQt on Windows.
 
-- Standalone: Added support fot SciPy and extended the ``ǹumpy`` plugin to also
+- Standalone: Added support for SciPy and extended the NumPy plugin to also
   handle it.
 
 - UI: The option ``--plugin-list`` still needed a positional argument to work.
