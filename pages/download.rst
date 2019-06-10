@@ -294,7 +294,7 @@ this:
 
   .. code-block:: sh
 
-      pip install -U 'http://nuitka.net/gitweb/?p=Nuitka.git;a=snapshot;h=refs/heads/develop;sf=tgz'
+    pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
 
 Github
 ------
