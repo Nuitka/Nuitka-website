@@ -1,4 +1,4 @@
-.. title: Urllib3 Pipenv Standalone Pytest Report 
-.. slug: urllib3-pipenv
-.. date: 2019/06/16 16:00
-.. tags: compiler,Python,Nuitka
+.. title: Urllib3 Wheel with Nuitka Pytest Results 
+.. slug: urllib3-wheel
+.. date: 2019/06/17 16:00
+.. tags: compiler,Python,Nuitka,gsoc2019
