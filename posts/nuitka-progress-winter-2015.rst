@@ -39,7 +39,7 @@ Function Inlining
 When doing my talk to EuroPython 2015, I was demoing it that, and indeed, what
 a break through. The circumstances under which it is done are still far too
 limited though. Essentially that ability is there, but will not normally be
-noticable yet due to other optimization, e.g. functions are most often module
+noticeable yet due to other optimization, e.g. functions are most often module
 variables and not local to the using function.
 
 More code generation improvements will be needed to be able to inline functions
@@ -289,7 +289,7 @@ things that are too complex to attack as a side project, and therefore never
 happen although surely possible.
 
 Digging into Python3.5 coroutines and their semantics was hard enough, and the
-structual changes needed to integrate them properly with not too much special
+structural changes needed to integrate them properly with not too much special
 casing, but rather removing existing special cases (generator functions) was
 just too much work to ever happen while also doing other stuff.
 

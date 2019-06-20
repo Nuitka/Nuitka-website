@@ -172,7 +172,7 @@ but kind of follows a similar route maybe. How to compare mixed types we
 know of, or one type only. That kind of things needs ideas and experiments.
 
 Having ``int`` supported should help getting some functions to C speeds, or
-at least much closer to it. That will make noticable effects in many of the
+at least much closer to it. That will make noticeable effects in many of the
 benchmarks. More C types will then follow one by one.
 
 Donations

@@ -54,7 +54,7 @@ was going to be in multiple functions, that ought to not be affected.
 Therefore I made a global registry of locals scopes, and working on those, I
 checked its variables, if they can be forward propagated, and do this not per
 module, but after all the modules have been done. This is kind of a setback for
-the idea of module specific optimization (cachable later on) vs. program
+the idea of module specific optimization (cacheable later on) vs. program
 optimization, but since that is not yet a thing, it can remain this
 way for now.
 

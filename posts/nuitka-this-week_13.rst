@@ -132,7 +132,7 @@ Nuitka Organisation
 Esp. for Google Summer of Code, Nuitka has sought and found mentors,
 some of which are highly experienced for the task. I will let them
 decide and write their own introduction, but I feel really blessed
-by them helping me out in my desparate calls for help. Without them,
+by them helping me out in my desperate calls for help. Without them,
 neither could Nuitka participate, nor could it even overachieve as
 much as it does.
 
@@ -193,4 +193,3 @@ If you want to help, but cannot spend the time, please consider to donate
 to Nuitka, and go here:
 
 `Donate to Nuitka <http://nuitka.net/pages/donations.html>`_
-

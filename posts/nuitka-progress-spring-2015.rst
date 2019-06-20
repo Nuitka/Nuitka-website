@@ -36,7 +36,7 @@ assignments, some of which become dead by being having been forward propagated.
 So we can now finally see that big step, jump really, happening, and Nuitka
 does now do some pretty good static optimization, at least locally.
 
-Still, right now, this trival code assigns to a local variable, then reads
+Still, right now, this trivial code assigns to a local variable, then reads
 from it to return. But not for much longer.
 
 .. code-block:: python
@@ -64,7 +64,7 @@ The scalability of Nuitka also depends much on generated code size. With the
 optimization become more clever, less code needs to be generated, and that
 will help a lot. On some platforms, MSVC most notably, it can be really slow,
 but it's noteworthy that Nuitka works not just with 2008 edition, but with
-the lastest MSVC, which appears to be better.
+the latest MSVC, which appears to be better.
 
 Compatibility
 =============
@@ -150,7 +150,7 @@ see, is that ``develop`` branch is 20 times faster than CPython for that very
 specific bit of code. That is where we want to be, except that with actually
 in-line, this will of course be even better.
 
-It's artifical, but once we can forward propagate local function creations, it
+It's artificial, but once we can forward propagate local function creations, it
 will apply there too. The puzzle completes.
 
 But we also need to put real programs and use cases to test. This may need
@@ -243,7 +243,7 @@ So, there is multiple things going on:
   ready to show off.
 
 When these 2 things come to term, Nuitka will have made really huge steps ahead
-and layed the ground for success.
+and laid the ground for success.
 
 From then on, a boatload of work remains. The infrastructure in place, still
 there is going to be plenty of work to optimize more and more things conretely,

@@ -5,7 +5,7 @@
 .. type: text
 
 A long time has passed again without me speaking about what's going on with
-Nuitka, and that althought definitely a lot has happened. I would contend it's
+Nuitka, and that although definitely a lot has happened. I would contend it's
 even *because* so much is going on.
 
 I also am shy to make public postings about unfinished stuff it seems, but it's

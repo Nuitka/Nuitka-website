@@ -109,7 +109,7 @@ Jython, IronPython, or low and behold, Nuitka.
 I think, this totally makes it obvious, that static compilation of a non-Python language
 has no point to people with Python code.
 
-What I will allways admit, is that Cython is (currently) the best way to create fast
+What I will always admit, is that Cython is (currently) the best way to create fast
 bindings, because Nuitka is not ready yet. But from my point of view, Cython has no point
 long term if a viable replacement that is Pythonic exists.
 

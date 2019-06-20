@@ -4,7 +4,7 @@ This post compares the pytest results of urllib3 to its nuitka-built ``.whl`` co
 
 Urllib3 standalone test have already been covered. Manual testing is now done to compare the pytest results of a nuitka wheel built using ``python setup.py bdist_nuitka`` to the regular pytest of the urllib3 package. Testing is done to ensure that nuitka is building the wheel correctly. If the pytests pass/fail in the same way, that means Nuitka built the wheel properly. Else if the tests differ, then something is wrong. Virtualenv is used to create a clean environment with no outside pollution.
 
-At first, the urllib3 nuitka-wheel pytest was crashing because of the unsafe assumption that imports will always exist (which is not the case if exceptions are thorwn). `Issue 413 <https://github.com/Nuitka/Nuitka/issues/413>`__ was filed to record and fix this bug.
+At first, the urllib3 nuitka-wheel pytest was crashing because of the unsafe assumption that imports will always exist (which is not the case if exceptions are thrown). `Issue 413 <https://github.com/Nuitka/Nuitka/issues/413>`__ was filed to record and fix this bug.
 
 After the fixes, the pytests were ran again and the results were very similar::
 

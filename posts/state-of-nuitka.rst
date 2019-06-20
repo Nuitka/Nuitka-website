@@ -5,11 +5,11 @@
 
 .. contents::
 
-For quite some time, publicly, very little has happend with my Python compiler
+For quite some time, publicly, very little has happened with my Python compiler
 Nuitka. But that doesn't mean, there hasn't been progress. In fact it is
 tremendous. I would like to have a post that kind of summarizes, what happened.
 
-The last release, 0.5.1 was more of a maintainence release than making real
+The last release, 0.5.1 was more of a maintenance release than making real
 changes. It turns out, that the bigger changes got delayed by a feature that I
 have described as "C-ish". Let me outline, what this means.
 

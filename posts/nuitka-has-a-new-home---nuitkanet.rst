@@ -40,7 +40,7 @@ And I took the chance to sanitize the old posts somewhat. Changed the links to
 not use the old domain name anymore, and correct some broken ones too.
 
 Only downside is that I currently haven't got the `"speedcenter"
-<http://speedcenter.nuitka.net>`_ up and running again. After loosing my
+<http://speedcenter.nuitka.net>`_ up and running again. After losing my
 hardware, the old data cannot be compared with new one, and then it doesn't feel
 like a priority right now. I seem to be working instead on XML based regression
 tests of the optimizer: The output of "--dump-xml" should be compared for a

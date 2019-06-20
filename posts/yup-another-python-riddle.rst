@@ -54,7 +54,7 @@ this manually:
 
 See, the dictionary is stable, once it gets reordered, due to hash values, but
 then it stays fixed. Which is pretty OK, and using a fixed hash value, it's
-determinstic. Random hashing is not good for comparison testing, so I disable it
+deterministic. Random hashing is not good for comparison testing, so I disable it
 for tests.
 
 Now things get interesting, repeat with 3.4:
