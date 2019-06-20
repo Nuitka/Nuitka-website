@@ -1,7 +1,7 @@
 .. title: Jorj X. McKie
 .. slug: jorj-x-mckie
-.. date: 2019/05/10 19:00:00
-.. tags: Biography,Portrait
+.. date: 2019/05/18 11:00:00
+.. tags: Nuitka,gsoc2019,portrait
 .. description: Self-Introduction Jorj McKie
 
 Hello everyone,
@@ -11,6 +11,10 @@ I am Jorj X. McKie (this is **not** my real name!) and I am an enthusiastic supp
 Apart from extending Nuitka's support to virtually all Python packages living out there, my driving motivation in this respect is keeping up and improving the usability of Nuitka.
 
 You may want to look into the `Nuitka Utilities <https://github.com/Nuitka/NUITKA-Utilities>`_ repository, which contains many things I am working on.
+
+.. class:: alert alert-primary float-md-right
+
+   .. image:: images/jorjmckie-harald-lieder.jpg
 
 Short Biography
 -----------------

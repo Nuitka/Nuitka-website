@@ -1,7 +1,7 @@
 Nuitka Website
 ~~~~~~~~~~~~~~
 
-.. image:: doc/images/Nuitka-Logo-Symbol.png
+.. image:: posts/images/nuitka-website-logo.png
 
 Usage
 =====

@@ -17,7 +17,7 @@ Bug Fixes
   on some platforms they can also contain code that fails to import without
   error.
 
-- Standalone: Added missing implicit dependency needed for newer numpy versions.
+- Standalone: Added missing implicit dependency needed for newer NumPy versions.
 
 New Features
 ------------

@@ -446,7 +446,7 @@ def updateNuitkaMaster():
         "doc/Logo/Nuitka-Logo-Vertical.svg",
         "doc/images/Nuitka-Logo-Symbol.png",
         "doc/Logo/Nuitka-Logo-Symbol.svg"):
-        command = "curl -s http://nuitka.net/gitweb/?p=Nuitka.git;a=blob_plain;f=%s;hb=refs/heads/factory" % filename
+        command = "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/%s" % filename
         output = subprocess.check_output(command.split())
 
         with open(os.path.join("nuitka-master", filename), "wb") as out_file:
@@ -457,7 +457,7 @@ def updateNuitkaFactory():
     if not os.path.exists("nuitka-factory"):
         os.makedirs("nuitka-factory")
 
-    command = "curl -s http://nuitka.net/gitweb/?p=Nuitka.git;a=blob_plain;f=Changelog.rst;hb=refs/heads/factory"
+    command = "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/Changelog.rst"
     output = subprocess.check_output(command.split())
 
     with open("nuitka-factory/Changelog.rst", "wb") as out_file:
