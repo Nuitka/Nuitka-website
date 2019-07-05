@@ -105,7 +105,7 @@ C++ to Python gaps
 
 I consider all of these more or less solved.
 
-Well maybe except recently arised issues with MSVC for "function calls". It
+Well maybe except recently arose issues with MSVC for "function calls". It
 appears that compiler highlights a weakness in one of my approaches. Nuitka so
 far only changed the order of declaration and call arguments around, which is
 kind of transparent.
@@ -221,7 +221,7 @@ For a strange reason, I devote substantial amounts of time to the project, only
 to put it under the most liberal license. It's probably fair to allow people to
 `make donations </pages/donations.html>`_ if they feel they want to further the
 project, but don't know how. Or if they just consider it too important for me to
-loose interest. That kind of feels unlikley though. Too much fun.
+loose interest. That kind of feels unlikely though. Too much fun.
 
 Final Picture
 =============

@@ -95,7 +95,7 @@ So optimization now also has proper type shape functions for the `<` and
 the warnings when they fail to know what to do for concrete types. This allows
 to actually remove checks, but so far this wasn't exposed for neither `+` or
 for `<`. Doing this eliminates the exception check for the operation part,
-where previosuly it was done if anything in the expression could raise.
+where previously it was done if anything in the expression could raise.
 
 Specializing the rich comparisons helper codes is the next step, but so far
 I didn't quite get to it yet, but it has been started.
@@ -125,7 +125,7 @@ find missing ones, and even bugs in existing ones, that were previously
 hidden. A good thing to notice this regression (was better once), now that
 I am looking at concrete examples.
 
-One noticable sign was that more of my tests failed with warnings about
+One noticeable sign was that more of my tests failed with warnings about
 missing code helpers. And another that in my while loop with `int` increase,
 it now seems as if Python3 is good. For Python2, the "int or long" shape
 will need dedicated helpers. That is because `ìnt + int` becomes either

@@ -17,7 +17,7 @@ Twitter
 =======
 
 Also as part of my communications offensive, I am using my Twitter account
-more regularily. I used to highlight important fixes, or occasionally releases
+more regularly. I used to highlight important fixes, or occasionally releases
 of some importance there. I will continue to do only important stuff there,
 but with more regularity.
 
@@ -39,8 +39,8 @@ restore state in the middle of an expression that involves constructors and
 destructors.
 
 Fast forward some years, and C-ish entered the picture. No objects are used
-anymore, and Nuitka is purely C11 now, which has convinience of C++, but no
-objects. Instead ``goto`` is used a lot already. So everytime an exception
+anymore, and Nuitka is purely C11 now, which has convenience of C++, but no
+objects. Instead ``goto`` is used a lot already. So every time an exception
 occurs, a ``goto`` is done, every time a branch is done, a loop exit or
 continue, you get it, another ``goto``.
 

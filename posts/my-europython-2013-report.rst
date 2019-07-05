@@ -22,7 +22,7 @@ then, and also *much* more excited, at least initially. Background: I was
 surprised then that Guido van Rossum was attending the talk, plus I was kind of
 not in the state of this year, the confidence that people should believe, that
 things will work after that, was not yet there. I knew it, but standing in front
-of a croud and saying, look I am attemting what you consider impossible, or even
+of a croud and saying, look I am attempting what you consider impossible, or even
 have failed at, is not easy:
 
 .. youtube:: ZDHkla5rllg

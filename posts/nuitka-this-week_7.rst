@@ -89,7 +89,7 @@ So the first version of Nuitka already had a use, and when I publicly showed
 it first, was capable of handling most complex programs, and the desire was to
 evolve gradually.
 
-I think I have desribed this elsewhere, but for large parts of the well or bad
+I think I have described this elsewhere, but for large parts of the well or bad
 designed solutions of Nuitka, there is reliable ways of demonstrating it works
 correctly. Far better than I have ever encountered. i believe it's the main
 reason I managed to get this off the ground is that. Having a test "oracle" is
@@ -133,7 +133,7 @@ is a pity these were introduced in previous releases during refactorings
 without noticing.
 
 We should strive to have benchmarks with trends. Right now Nuitka speedcenter
-cannot do it. Focus shoud definitely go to this. Like I said, after 0.6.0
+cannot do it. Focus should definitely go to this. Like I said, after 0.6.0
 release, this will be a priority, to make them more useful.
 
 Twitter

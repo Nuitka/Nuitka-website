@@ -47,7 +47,7 @@ there are way more helpers used for `+`/`+=` and a whole new set of them
 for comparisons, that in these cases of full or partial type knowledge operate
 faster.
 
-And even if e.g. only one type is known, this still alllows to not make a lot
+And even if e.g. only one type is known, this still allows to not make a lot
 of tests about it, and to avoid attempted shortcuts that cannot work. For 0.6.1
 the `+` and `+=` are pretty well covered for these, but some variants are not
 yet tuned to take all type knowledge advantage.
@@ -88,7 +88,7 @@ pkgutil.iter_modules
 
 And another one, which seemed just not done, but turned out to be rather
 complex, this one needs to populate a ``sys.path_importer_cache`` for imported
-modules, and then to report the child modules. There was no obect to carry that
+modules, and then to report the child modules. There was no object to carry that
 information, so now instances of the meta path based importer are associated
 for every import.
 

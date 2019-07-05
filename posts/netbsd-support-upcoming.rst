@@ -100,7 +100,7 @@ clever. But it surely was wrong by me to assume that the provided value would no
 touched.
 
 So, these are 2 bugs it found. The wrong order of calls. And the usage of a pointer, that
-may have been changed. This can only help with other systems, or possibly architecures
+may have been changed. This can only help with other systems, or possibly architectures
 under Linux.
 
 While this is all description of nasty problems, it's also the report of the solution, and

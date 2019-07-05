@@ -24,7 +24,7 @@ pip
 
 .. code-block:: sh
 
-   pip install -U "http://nuitka.net/gitweb/?p=Nuitka.git;a=snapshot;h=refs/heads/factory;sf=tgz"
+   pip install -U "https://github.com/Nuitka/Nuitka/archive/factory.zip"
 
 Word of Warning
 ===============

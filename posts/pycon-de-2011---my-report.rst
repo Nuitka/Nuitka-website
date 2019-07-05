@@ -7,7 +7,7 @@ experience this was.
 
 It was the first German PyCON and clearly it was overdue as it was now the
 merger of many already grown up communities. A huge number of talks over 3 days
-in 3 paralell tracks, with 3 keynotes, was an outstanding program. And very well
+in 3 parallel tracks, with 3 keynotes, was an outstanding program. And very well
 run. Strict time management, every detail was well prepared.
 
 I can only admire the professional preparation and setup. I wanted to say thank
@@ -96,7 +96,7 @@ course Stefan believes, it would be better if I joined Cython. Naturally.
 
 But that's not going to happen. I think i have a cleaner and better
 implementation now, closer to my goals with a realistic chance to succeed. To me
-it would be a step back to fix language parsing issues and incompatabilities of
+it would be a step back to fix language parsing issues and incompatibilities of
 Cython, with the danger that my goals will not be shared.
 
 As an example of these things, I would mention function call errors, where

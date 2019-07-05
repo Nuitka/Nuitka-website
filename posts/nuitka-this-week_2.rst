@@ -55,7 +55,7 @@ and basically that is code shaking hands, executing resuming in one, handing
 back a piece of data back and forth.
 
 In Python, the way of doing this is ``yield`` and more recently ``yield from``
-as a convience way for of doing it in a loop in Python3. I still recall the
+as a convienant way for of doing it in a loop in Python3. I still recall the
 days when that was a statement. Then communication was one way only. Actually
 when I was still privately doing Nuitka based on then Python 2.5 and was then
 puzzled for Python 2.6, when I learned in Nuitka about it becoming an expression.
@@ -91,7 +91,7 @@ one thing now, making for cleaner and easier to understand Nuitka code.
 Python3 Enumerators
 ===================
 
-On interesting thing, is that an incompatiblity related to ``__new__`` will go
+On interesting thing, is that an incompatibility related to ``__new__`` will go
 away now.
 
 The automatic ``staticmethod`` that we had to hack into it, because the

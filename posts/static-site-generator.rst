@@ -25,7 +25,7 @@ to process than static pages of course. I can't right now let anyone fork and ed
 pages in a practical manner. So while for user manual and developer manual of Nuitka I
 will get corrections, for the website it's not happening.
 
-Is Mynth an appropiate intermediate step? Do I really want to learn one of these strange
+Is Mynth an appropriate intermediate step? Do I really want to learn one of these strange
 templating languages or even consider software that has no Debian package. I never
 considered "virtualenv" and "pip" much of options to run software on a website. I guess I
 am more tied to Debian than to Python still.

@@ -156,7 +156,7 @@ that, it's going to be expensive.
 
 In 2014, with donations, I bought a "Cubox i4-Pro", which is an ARM based
 machine with 4 cores, and 2GB RAM. Works from flash, and with the eSATA
-disk attached, it works nice for continous integration, which helps me a
+disk attached, it works nice for continuous integration, which helps me a
 lot to deliver extremely high quality releases. It's pretty nice, except
 that when using all 4 cores, it gets too hot. So "systemd" to the rescue
 and just limited the Buildbot slave's service to use 3 cores of CPU maximum and
