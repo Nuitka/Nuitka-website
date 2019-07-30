@@ -18,8 +18,8 @@ Bug fixes
 - The simple slice operations with 2 values, not extended with 3 values, were
   not applying the correct order for evaluation. Fixed in 0.3.13a already.
 
-- The simple slice operations couldn't handle ``None`` as the value for lower or
-  upper index. Fixed in 0.3.11a already.
+- The simple slice operations couldn't handle ``None`` as the value for lower
+  or upper index. Fixed in 0.3.11a already.
 
 - The in-place simple slice operations evaluated the slice index expressions
   twice, which could cause problems if they had side effects. Fixed in 0.3.11a
@@ -29,12 +29,13 @@ New Features
 ------------
 
 - Run time patching the ``inspect`` module so it accepts compiled functions,
-  compiled methods, and compiled generator objects. The ``test_inspect`` test of
-  CPython is nearly working unchanged with this.
+  compiled methods, and compiled generator objects. The ``test_inspect`` test
+  of CPython is nearly working unchanged with this.
 
-- The generator functions didn't have ``CO_GENERATOR`` set in their code object,
-  setting it made compatible with CPython in this regard too. The inspect module
-  will therefore return correct value for ``inspect.isgeneratorfunction()`` too.
+- The generator functions didn't have ``CO_GENERATOR`` set in their code
+  object, setting it made compatible with CPython in this regard too. The
+  inspect module will therefore return correct value for
+  ``inspect.isgeneratorfunction()`` too.
 
 New Optimization
 ----------------
@@ -73,8 +74,8 @@ Organizational
 - There is a new issue tracker available under http://bugs.nuitka.net
 
   Please register and report issues you encounter with Nuitka. I have put all
-  the known issues there and started to use it recently. It's Roundup based like
-  http://bugs.python.org is, so people will find it familiar.
+  the known issues there and started to use it recently. It's Roundup based
+  like http://bugs.python.org is, so people will find it familiar.
 
 - The ``setup.py`` is now apparently functional. The source releases for
   download are made it with, and it appears the binary distributions work
@@ -92,7 +93,7 @@ The patching of ``inspect`` works wonders for compatibility for those programs
 that insist on checking types, instead of doing duck typing. The function call
 problem, was an issue found by the Mercurial test suite.
 
-For the "hg.exe" to pass all of its test suite, more work may be needed, this is
-the overall goal I am currently striving for. Once real world programs like
+For the "hg.exe" to pass all of its test suite, more work may be needed, this
+is the overall goal I am currently striving for. Once real world programs like
 Mercurial work, we can use these as more meaningful benchmarks and resume work
 on optimization.

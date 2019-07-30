@@ -52,8 +52,8 @@ New Optimization
 - Annotate the ``not`` result to have boolean type shape, allowing for
   more compile time optimization with it.
 
-- Restored previously lost optimization of loop break handling ``StopIteration``
-  which makes loops much faster again.
+- Restored previously lost optimization of loop break handling
+  ``StopIteration`` which makes loops much faster again.
 
 - Restore lost optimization of subscripts with constant integer values making
   them faster again.
@@ -82,9 +82,9 @@ New Optimization
 - The ``del`` of variables is now driven fully by C types and generates more
   compatible code.
 
-- Removed useless double exception exits annotated for expressions of conditions
-  and added code that allows conditions to adapt themselves to the target shape
-  bool during optimization.
+- Removed useless double exception exits annotated for expressions of
+  conditions and added code that allows conditions to adapt themselves to the
+  target shape bool during optimization.
 
 New Features
 ------------
@@ -185,9 +185,9 @@ Summary
 -------
 
 This release marks a point, from which on performance improvements are likely
-in every coming release. The C target types are a major milestone. More C target
-types are in the work, e.g. ``void`` is coming for expressions that are done,
-but not used, that is scheduled for the next release.
+in every coming release. The C target types are a major milestone. More C
+target types are in the work, e.g. ``void`` is coming for expressions that are
+done, but not used, that is scheduled for the next release.
 
 Although there will be a need to also adapt optimization to take full advantage
 of it, progress should be quick from here. There is a lot of ground to cover,

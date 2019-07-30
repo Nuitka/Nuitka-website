@@ -36,9 +36,9 @@ New Features
   imported. This is not yet working perfect yet, but will receive future
   improvements.
 
-- Added support for the ``exec`` built-in of Python3, this enables us to run one
-  more basic test, ``GlobalStatement.py`` with Python3. The test ``ExecEval.py``
-  nearly works now.
+- Added support for the ``exec`` built-in of Python3, this enables us to run
+  one more basic test, ``GlobalStatement.py`` with Python3. The test
+  ``ExecEval.py`` nearly works now.
 
 New Optimization
 ----------------
@@ -65,12 +65,12 @@ Cleanups
   fresh environment.
 
 - The calls to the variadic ``MAKE_TUPLE`` were replaced with calls the
-  ``MAKE_TUPLExx`` (where ``xx`` is the number of arguments), that are generated
-  on a as-needed basis. This gives more readable code, because no
+  ``MAKE_TUPLExx`` (where ``xx`` is the number of arguments), that are
+  generated on a as-needed basis. This gives more readable code, because no
   ``EVAL_ORDERED_xx`` is needed at call site anymore.
 
-- Many node classes have moved to new modules in ``nuitka.nodes`` and grouped by
-  theme. That makes them more accessible.
+- Many node classes have moved to new modules in ``nuitka.nodes`` and grouped
+  by theme. That makes them more accessible.
 
 - The choosing of the debug python has moved from Scons to Nuitka itself. That
   way it can respect the ``sys.abiflags`` and works with Python3.
@@ -121,13 +121,13 @@ New Tests
 
 - Cover no arguments ``range()`` exception as well.
 
-- Added test to demonstrate that ``--recurse-directory`` actually works. This is
-  using an ``__import__`` that cannot be predicted at run time (yet).
+- Added test to demonstrate that ``--recurse-directory`` actually works. This
+  is using an ``__import__`` that cannot be predicted at run time (yet).
 
 - The created source package is now tested on pbuilder chroots to be pass
-  installation and the basic tests, in addition to the full tests during package
-  build time on these chroots. This will make sure, that Nuitka works fine on
-  Ubuntu Natty and doesn't break without notice.
+  installation and the basic tests, in addition to the full tests during
+  package build time on these chroots. This will make sure, that Nuitka works
+  fine on Ubuntu Natty and doesn't break without notice.
 
 Summary
 -------
@@ -135,17 +135,17 @@ Summary
 This releases contains many changes. The "temporary variable ref" and
 "assignment expression" work is ground breaking. I foresee that it will lead to
 even more simplifications of code generation in the future, when e.g. in-place
-assignments can be reduced to assignments to temporary variables and conditional
-statements.
+assignments can be reduced to assignments to temporary variables and
+conditional statements.
 
 While there were many improvements related to Windows support and fixing
 portability bugs, or the Debian package, the real focus is the optimization
 work, which will ultimately end with "value propagation" working.
 
-These are the real focus. The old comparison chain handling was a big
-wart. Working, but no way understood by any form of analysis in Nuitka. Now they
-have a structure which makes their code generation based on semantics and allows
-for future optimization to see through them.
+These are the real focus. The old comparison chain handling was a big wart.
+Working, but no way understood by any form of analysis in Nuitka. Now they have
+a structure which makes their code generation based on semantics and allows for
+future optimization to see through them.
 
 Going down this route is an important preparatory step. And there will be more
 work like this needed. Consider e.g. handling of in-place assignments. With an

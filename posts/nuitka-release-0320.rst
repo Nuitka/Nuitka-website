@@ -48,8 +48,8 @@ New Optimization
 ----------------
 
 - Enhanced all optimization that previously worked on "constants" to work on
-  "compile time constants" instead. A "compile time constant" can currently also
-  be any form of a built-in name or exception reference. It is intended to
+  "compile time constants" instead. A "compile time constant" can currently
+  also be any form of a built-in name or exception reference. It is intended to
   expand this in the future.
 
 - Added support for built-ins ``bin``, ``oct``, and ``hex``, which also can be
@@ -60,12 +60,12 @@ New Optimization
   faster.
 
 - Added support for the ``next`` built-in, also in its both forms, one and two
-  arguments. These also cannot be computed at compile time, but now will execute
-  faster as well.
+  arguments. These also cannot be computed at compile time, but now will
+  execute faster as well.
 
 - Added support for the ``open`` built-in in all its form. We intend for future
-  releases to be able to track file opens for including them into the executable
-  if data files.
+  releases to be able to track file opens for including them into the
+  executable if data files.
 
 - Optimize the ``__debug__`` built-in constant as well. It cannot be assigned,
   yet code can determine a mode of operation from it, and apparently some code
@@ -105,9 +105,9 @@ Organizational
   not to include that in Debian, because it's so easy to generate the PDF on
   that yourself.
 
-- The posting of release announcements is now prepared by a script that converts
-  the ReStructured Text to HTML and adds it to Wordpress as a draft posting or
-  updates it, until it's release time. Simple, sweet and elegant.
+- The posting of release announcements is now prepared by a script that
+  converts the ReStructured Text to HTML and adds it to Wordpress as a draft
+  posting or updates it, until it's release time. Simple, sweet and elegant.
 
 Cleanups
 --------
@@ -147,8 +147,8 @@ Cleanups
   expressions.
 
   Previously they are also kind of assignment statements too, which is not
-  needed. Now they were reduced to only handle the ``bases`` for classes and the
-  ``defaults`` for functions and make optional.
+  needed. Now they were reduced to only handle the ``bases`` for classes and
+  the ``defaults`` for functions and make optional.
 
 - Refactored the decorator handling to the tree building stage, presenting them
   as function calls on "function body expression" or class body expression".
@@ -194,10 +194,10 @@ Cleanups
   in-place operation call and then assignment statement. This allowed to remove
   static templates and will yield even better generated code in the future.
 
-- The for loop used to have has a "source" expression as child, and the iterator
-  over it was only taken at the code generation level, so that step was
-  therefore invisible to optimization. Moved it to tree building stage instead,
-  where optimization can work on it then.
+- The for loop used to have has a "source" expression as child, and the
+  iterator over it was only taken at the code generation level, so that step
+  was therefore invisible to optimization. Moved it to tree building stage
+  instead, where optimization can work on it then.
 
 - Tree building now generally allows statement sequences to be ``None``
   everywhere, and pass statements are immediately eliminated from them
@@ -230,19 +230,19 @@ Summary
 
 The decorator and building changes, the assignment changes, and the node
 cleanups are all very important progress for the type inference work, because
-they remove special casing the that previously would have been required. Lambdas
-and functions now really are the same thing right after tree building. The
-in-place assignments are now merely done using standard assignment code, the
-built functions and classes are now assigned to names in assignment statements,
-much *more* consistency there.
+they remove special casing the that previously would have been required.
+Lambdas and functions now really are the same thing right after tree building.
+The in-place assignments are now merely done using standard assignment code,
+the built functions and classes are now assigned to names in assignment
+statements, much *more* consistency there.
 
-Yet, even more work will be needed in the same direction. There may e.g. be work
-required to cover ``with`` statements as well. And assignments will become no
-more complex than unpacking from a temporary variable.
+Yet, even more work will be needed in the same direction. There may e.g. be
+work required to cover ``with`` statements as well. And assignments will become
+no more complex than unpacking from a temporary variable.
 
 For this release, there is only minimal progress on the Python3 front, despite
-the syntax support, which is only minuscule progress. The remaining tasks appear
-all more or less difficult work that I don't want to touch now.
+the syntax support, which is only minuscule progress. The remaining tasks
+appear all more or less difficult work that I don't want to touch now.
 
 There are still remaining steps, but we can foresee that a release may be done
 that finally actually does type inference and becomes the effective Python

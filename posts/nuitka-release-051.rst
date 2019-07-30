@@ -14,9 +14,9 @@ Bug Fixes
   0.5.0.1 already.
 
 - Name mangling for classes with leading underscores was not removing them from
-  resulting attribute names. This broke at ``__slots__`` with private attributes
-  for such classes. `Issue#119 <http://bugs.nuitka.net/issue119>`__. Fixed in
-  0.5.0.1 already.
+  resulting attribute names. This broke at ``__slots__`` with private
+  attributes for such classes. `Issue#119 <http://bugs.nuitka.net/issue119>`__.
+  Fixed in 0.5.0.1 already.
 
 - Standalone on Windows might need "cp430" encoding. `Issue#120
   <http://bugs.nuitka.net/issue120>`__. Fixed in 0.5.0.2 already.

@@ -14,15 +14,15 @@ improvements, that make the release complete.
 Bug fixes
 ---------
 
-- The built-in ``next`` could causes a program crash when iterating past the end
-  of an iterator. `Issue#34 <http://bugs.nuitka.net/issue34>`__. Fixed in
+- The built-in ``next`` could causes a program crash when iterating past the
+  end of an iterator. `Issue#34 <http://bugs.nuitka.net/issue34>`__. Fixed in
   0.3.20.1 already.
 
 - The ``set`` constants could cause a compiler error, as that type was not
   considered in the "mutable" check yet. Fixed in 0.3.20.2 already.
 
-- Performance regression. Optimize expression for exception types caught as well
-  again, this was lost in last release.
+- Performance regression. Optimize expression for exception types caught as
+  well again, this was lost in last release.
 
 - Functions that contain ``exec``, are supposed to have a writable locals. But
   when removing that ``exec`` statement as part of optimization, this property
@@ -71,12 +71,13 @@ New Optimization
      that to happen with ``long`` from the ``nuitka.__past__`` module.
 
 - Created Python3 variant of quick ``unicode`` string access, there was no such
-  thing in the CPython C/API, but we make the distinction in the source code, so
-  it makes sense to have it.
+  thing in the CPython C/API, but we make the distinction in the source code,
+  so it makes sense to have it.
 
 - Created an optimized implementation for the built-in ``iter`` with 2
-  parameters as well. This allows for slightly more efficient code to be created
-  with regards to reference handling, rather than using the CPython C/API.
+  parameters as well. This allows for slightly more efficient code to be
+  created with regards to reference handling, rather than using the CPython
+  C/API.
 
 - For all types of variable assigned in the generated code, there are now
   methods that accept already taken references or not, and the code generator
@@ -121,8 +122,8 @@ Organizational
   when set, so that checking with ``CXX=g++-4.7 nuitka-python ...`` has become
   supported.
 
-- The ``check-with-pylint`` script now has a real command line option to control
-  the display of ``TODO`` items.
+- The ``check-with-pylint`` script now has a real command line option to
+  control the display of ``TODO`` items.
 
 Cleanups
 --------
@@ -174,7 +175,8 @@ Cleanups
   these ``next`` and ``iter`` calls away where possible. At this time, this is
   not done yet.
 
-- Exception handlers assign caught exception value through assignment statement.
+- Exception handlers assign caught exception value through assignment
+  statement.
 
   Previously the code generated for assigning from the caught exception was not
   considered part of the handler. It now is the first statement of an exception
@@ -196,13 +198,13 @@ Cleanups
 
 - Global is handled during tree building.
 
-  Previously the global statement was its own node, which got removed during the
-  optimization phase in a dedicated early optimization that applied its effect,
-  and then removed the node.
+  Previously the global statement was its own node, which got removed during
+  the optimization phase in a dedicated early optimization that applied its
+  effect, and then removed the node.
 
-  It was determined, that there is no reason to not immediately apply the effect
-  of the global variable and take closure variables and add them to the provider
-  of that ``global`` statement, allowing to remove the node class.
+  It was determined, that there is no reason to not immediately apply the
+  effect of the global variable and take closure variables and add them to the
+  provider of that ``global`` statement, allowing to remove the node class.
 
 - Read only module variable detection integrated to constraint collection.
 
@@ -214,8 +216,8 @@ Cleanups
 New Tests
 ---------
 
-- Added test to cover order of calls for complex assignments that unpack, to see
-  that they make a fresh iterator for each part of a complex assignment.
+- Added test to cover order of calls for complex assignments that unpack, to
+  see that they make a fresh iterator for each part of a complex assignment.
 
 - Added test that unpacks in an exception catch. It worked, due to the generic
   handling of assignment targets by Nuitka, and I didn't even know it can be

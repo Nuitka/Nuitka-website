@@ -15,9 +15,10 @@ New Features
   information is present in the file, otherwise it is not. This will give much
   smaller ".so" and ".exe" files than before.
 
-- Added option ``--no-optimization`` to disable all optimization. It enables C++
-  asserts and compiles with less aggressive C++ compiler optimization, so it can
-  be used for debugging purposes.
+- Added option ``--no-optimization`` to disable all optimization.
+
+  It enables C++ asserts and compiles with less aggressive C++ compiler
+  optimization, so it can be used for debugging purposes.
 
 - Support for Python 2.7 set literals has been added.
 
@@ -35,8 +36,8 @@ Performance Enhancements
   This was very slow and had very bad performance. Now it is checked if this is
   at all necessary and then it's only done for the rare case where a
   ``break``/``continue`` really is inside the tried block. Otherwise it is now
-  translated to a C++ ``break``/``continue`` which the C++ compiler handles more
-  efficiently.
+  translated to a C++ ``break``/``continue`` which the C++ compiler handles
+  more efficiently.
 
 - Added ``unlikely()`` compiler hints to all errors handling cases to allow the
   C++ compiler to generate more efficient branch code.
@@ -45,8 +46,8 @@ Performance Enhancements
   value was released, using ``PyObjectTemporary`` for that instead now, which
   should lead to better generated code.
 
-- Using constant dictionaries and copy from them instead of building them at run
-  time even when contents was constant.
+- Using constant dictionaries and copy from them instead of building them at
+  run time even when contents was constant.
 
 New Tests
 ---------

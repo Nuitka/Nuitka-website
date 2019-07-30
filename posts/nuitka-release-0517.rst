@@ -51,8 +51,8 @@ Optimization
   for each one over and over. This should make things more cache local and also
   results in less generated C code.
 
-- When creating frame codes, avoid working with strings, but use proper emission
-  for less memory churn during code generation.
+- When creating frame codes, avoid working with strings, but use proper
+  emission for less memory churn during code generation.
 
 Organizational
 --------------
@@ -89,8 +89,8 @@ Cleanups
   ever since Python2 list contractions stop using pseudo functions.
 
 - The outline nodes allowed to provide a body when creating them, although
-  creating that body required using the outline node already to create temporary
-  variables. Removed that argument.
+  creating that body required using the outline node already to create
+  temporary variables. Removed that argument.
 
 - Removed PyLint false positive annotations no more needed for PyLint 1.5 and
   solved some TODOs.

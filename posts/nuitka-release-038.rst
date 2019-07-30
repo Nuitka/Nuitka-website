@@ -7,14 +7,15 @@ working executables against either the standard Python distribution or a MinGW
 compiled Python.
 
 There are still some small things to iron out, and clearly documentation needs
-to be created, and esp. the DLL hell problem of ``msvcr90.dll``
-vs. ``msvcrt.dll``, is not yet fully resolved, but appears to be not as harmful,
-at least not on native Windows.
+to be created, and esp. the DLL hell problem of ``msvcr90.dll`` vs.
+``msvcrt.dll``, is not yet fully resolved, but appears to be not as harmful, at
+least not on native Windows.
 
-I am thanking Khalid Abu Bakr for making this possible.  I was surprised to see
+I am thanking Khalid Abu Bakr for making this possible. I was surprised to see
 this happen. I clearly didn't make it easy. He found a good way around
 ``ucontext``, identifier clashes, and a very tricky symbol problems where the
-CPython library under Windows exports less than under Linux. Thanks a whole lot.
+CPython library under Windows exports less than under Linux. Thanks a whole
+lot.
 
 Currently the Windows support is considered experimental and works with MinGW
 4.5 or higher only.
@@ -50,8 +51,8 @@ New Optimization
   directly assigned, if it's to a variable.
 
   In general this would be possible for every assignment target that cannot
-  raise, but the infrastructure cannot tell yet, which these would be. This will
-  improve with more milestone 3 work.
+  raise, but the infrastructure cannot tell yet, which these would be. This
+  will improve with more milestone 3 work.
 
 - Branches with only ``pass`` inside are removed, ``pass`` statements are
   removed before the code generation stage. This makes it easier to achieve and
@@ -129,8 +130,8 @@ Organizational
 - The ``--execute`` option uses wine to execute the binary if it's a
   cross-compile for windows.
 
-- Native windows build is recognized and handled with MinGW 4.5, the VC++ is not
-  supported yet due to missing C++0x support.
+- Native windows build is recognized and handled with MinGW 4.5, the VC++ is
+  not supported yet due to missing C++0x support.
 
 - The basic test suite ran with Windows so far only and some adaptations were
   necessary. Windows new lines are now ignored in difference check, and

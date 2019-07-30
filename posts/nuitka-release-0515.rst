@@ -1,8 +1,8 @@
 This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
-This release enables SSA based optimization, the huge leap, not so much in terms
-of actual performance increase, but for now making the things possible that will
-allow it.
+This release enables SSA based optimization, the huge leap, not so much in
+terms of actual performance increase, but for now making the things possible
+that will allow it.
 
 This has been in the making literally for years. Over and over, there was just
 "one more thing" needed. But now it's there.
@@ -148,8 +148,8 @@ Organizational
 --------------
 
 - Many improvements to the coverage taking. We can hope to see public data from
-  this, some improvements were triggered from this already, but full runs of the
-  test suite with coverage data collection are yet to be done.
+  this, some improvements were triggered from this already, but full runs of
+  the test suite with coverage data collection are yet to be done.
 
 Summary
 -------

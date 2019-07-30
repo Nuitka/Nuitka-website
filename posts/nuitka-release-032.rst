@@ -1,9 +1,9 @@
 This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
-This release of Nuitka continues the focus on performance. But this release also
-revisits the topic of feature parity. Before, feature parity had been reached
-"only" with Python 2.6. This is of course a big thing, but you know there is
-always more, e.g. Python 2.7.
+This release of Nuitka continues the focus on performance. But this release
+also revisits the topic of feature parity. Before, feature parity had been
+reached "only" with Python 2.6. This is of course a big thing, but you know
+there is always more, e.g. Python 2.7.
 
 With the addition of set contractions and dict contractions in this very
 release, Nuitka is approaching Python support for 2.7, and then there are some
@@ -13,8 +13,10 @@ Bug fixes
 ---------
 
 - Calling a function with ``**`` and using a non-dict for it was leading to
-  wrong behavior. Now a mapping is good enough as input for the ``**`` parameter
-  and it's checked.
+  wrong behavior.
+
+  Now a mapping is good enough as input for the ``**`` parameter and it's
+  checked.
 
 - Deeply nested packages "package.subpackage.module" were not found and gave a
   warning from Nuitka, with the consequence that they were not embedded in the
@@ -37,10 +39,11 @@ Bug fixes
   function, these are now correct.
 
 - For ``exec`` the globals argument needs to have "__builtins__" added, but the
-  check was performed with the mapping interface. That is not how CPython does
-  it, and so e.g. the mapping could use a default value for "__builtins__" which
-  could lead to incorrect behavior. Clearly a corner case, but one that works
-  fully compatible now.
+  check was performed with the mapping interface.
+
+  That is not how CPython does it, and so e.g. the mapping could use a default
+  value for "__builtins__" which could lead to incorrect behavior. Clearly a
+  corner case, but one that works fully compatible now.
 
 New Optimization
 ----------------

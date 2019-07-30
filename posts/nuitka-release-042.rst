@@ -18,9 +18,9 @@ New Features
 
 - Basic Python3.3 support.
 
-  The test suite of CPython3.2 passes and fails in a compatible way. New feature
-  ``yield from`` is not yet supported, and the improved argument parsing error
-  messages are not implemented yet.
+  The test suite of CPython3.2 passes and fails in a compatible way. New
+  feature ``yield from`` is not yet supported, and the improved argument
+  parsing error messages are not implemented yet.
 
 Bug Fixes
 ---------
@@ -61,9 +61,10 @@ Bug Fixes
   Effectively these statements can be ignored. Corrects part of `Issue#65
   <http://bugs.nuitka.net/issue65>`__.
 
-- Future imports are only legal when they are at the start of the file. This was
-  not enforced by Nuitka, making it accept code, which CPython would reject. It
-  now properly raises a syntax error. Corrects part of `Issue#65
+- Future imports are only legal when they are at the start of the file.
+
+  This was not enforced by Nuitka, making it accept code, which CPython would
+  reject. It now properly raises a syntax error. Corrects part of `Issue#65
   <http://bugs.nuitka.net/issue65>`__.
 
 - Raising exceptions from context was leaking references.
@@ -146,8 +147,8 @@ Bug Fixes
 - Pressing CTRL-C didn't generate ``KeyboardInterrupt`` in compiled code.
 
   Nuitka never executes "pending calls". It now does, with the upside, that the
-  solution used, appears to be suitable for threading in Nuitka too. Expect more
-  to come out of this.
+  solution used, appears to be suitable for threading in Nuitka too. Expect
+  more to come out of this.
 
 - For ``with`` statements with ``return``, ``break``, or ``continue`` to leave
   their body, the ``__exit__`` was not called.

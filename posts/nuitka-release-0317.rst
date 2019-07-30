@@ -19,8 +19,8 @@ parameter parsing seems to have changed, etc. but it seems that CPython3.2 is
 going to work one day.
 
 And there has been a lot of effort, to address the Debian packaging to be
-cleaner and more complete, addressing issues that prevented it from entering the
-Debian repository.
+cleaner and more complete, addressing issues that prevented it from entering
+the Debian repository.
 
 Bug fixes
 ---------
@@ -29,16 +29,16 @@ Bug fixes
   different casing. Problem showed under Windows only. Released as 0.3.16a
   hot fix already.
 
-- Fixed an error where the command line length of Windows was exceeded when many
-  modules were embedded, Christopher Tott provided a fix for it. Released as
-  0.3.16a hot fix already.
+- Fixed an error where the command line length of Windows was exceeded when
+  many modules were embedded, Christopher Tott provided a fix for it. Released
+  as 0.3.16a hot fix already.
 
 - Fix, avoid to introduce new variables for where built-in exception references
   are sufficient. Released as 0.3.16b hot fix already.
 
 - Fix, add the missing ``staticmethod`` decorator to ``__new__`` methods before
-  resolving the scopes of variables, this avoids the use of that variable before
-  it was assigned a scope. Released as 0.3.16b hot fix already.
+  resolving the scopes of variables, this avoids the use of that variable
+  before it was assigned a scope. Released as 0.3.16b hot fix already.
 
 New Features
 ------------
@@ -76,11 +76,11 @@ Organizational
   to the release. It's incomplete, but it details some of the existing stuff,
   coding rules, plans for "type inference", etc.
 
-- Improved the ``--help`` output to use ``metavar`` where applicable. This makes
-  it more readable for some options.
+- Improved the ``--help`` output to use ``metavar`` where applicable. This
+  makes it more readable for some options.
 
-- Instead of error message, give help output when no module or program file name
-  was given. This makes Nuitka help out more convenient.
+- Instead of error message, give help output when no module or program file
+  name was given. This makes Nuitka help out more convenient.
 
 - Consistently use ``#!/usr/bin/env python`` for all scripts, this was
   previously only done for some of them.
@@ -93,8 +93,8 @@ Organizational
   well. Most useful on Arch Linux, where it's also already the default for
   ``Python``.
 
-- The help output of Nuitka was polished a lot more. It is now more readable and
-  uses option groups to combine related options together.
+- The help output of Nuitka was polished a lot more. It is now more readable
+  and uses option groups to combine related options together.
 
 - Make the tests run without any dependence on ``PATH`` to contain the
   executables of Nuitka. This makes it easier to use.
@@ -104,8 +104,8 @@ Organizational
   statement from in-line copy of Scons, it had been added by accident only.
 
 - Release the tests that I own as well as the Debian packaging I created under
-  "Apache License 2.0" which is very liberal, meaning every project will be able
-  to use it.
+  "Apache License 2.0" which is very liberal, meaning every project will be
+  able to use it.
 
 - Don't require copyright assignment for contributions anymore, instead only
   "Apache License 2.0", the future Nuitka license, so that the code won't be a
@@ -116,9 +116,10 @@ Organizational
   until Nuitka is licensed under "Apache License 2.0" as well.
 
 - Added an ``--experimental`` option which can be used to control experimental
-  features, like the one currently being added on ``feature/ctypes_annotation``,
-  where "type inference" is currently only activated when that option is
-  given. For this stable release, it does nothing.
+  features, like the one currently being added on branch
+  ``feature/ctypes_annotation``, where "type inference" is currently only
+  activated when that option is given. For this stable release, it does
+  nothing.
 
 - Check the static C++ files of Nuitka with ``cppcheck`` as well. Didn't find
   anything.
@@ -129,17 +130,18 @@ Organizational
 Cleanups
 --------
 
-- Changed ``not`` boolean operation to become a normal operator. Changed ``and``
-  and ``or`` boolean operators to a new base class, and making their interface
-  more similar to that of operations.
+- Changed ``not`` boolean operation to become a normal operator. Changed
+  ``and`` and ``or`` boolean operators to a new base class, and making their
+  interface more similar to that of operations.
 
 - Added cumulative ``tags`` to node classes for use in checks. Use it annotate
   which node kinds to visit in e.g. per scope finalization steps. That avoids
   kinds and class checks.
 
 - Enhanced the "visitor" interface to provide more kinds of callbacks, enhanced
-  the way "each scope" visiting is achieved by generalizing is as "child has not
-  tag 'closure_taker'" and that for every "node that has tag 'closure_taker'".
+  the way "each scope" visiting is achieved by generalizing is as "child has
+  not tag 'closure_taker'" and that for every "node that has tag
+  'closure_taker'".
 
 - Moved ``SyntaxHighlighting`` module to ``nuitka.gui`` package where it
   belongs.
@@ -148,8 +150,8 @@ Cleanups
   leads to warnings for non-existent modules, the CPython tests gave a lot of
   good candidates for import errors that were white listed.
 
-- Consistently use ``nuitka`` in test scripts, as there isn't a ``Nuitka.py`` on
-  all platforms. The later is scheduled for removal.
+- Consistently use ``nuitka`` in test scripts, as there isn't a ``Nuitka.py``
+  on all platforms. The later is scheduled for removal.
 
 - Some more PyLint cleanups.
 
@@ -168,8 +170,8 @@ New Tests
 
 - Include the syntax tests in release tests as well.
 
-- Changed many existing tests so that they can run under CPython3 too. Of course
-  this is via ``2to3`` conversion.
+- Changed many existing tests so that they can run under CPython3 too. Of
+  course this is via ``2to3`` conversion.
 
 - Don't fail if the CPython test suites are not there.
 
@@ -187,24 +189,25 @@ New Tests
 
 - Before releasing, test that the created Debian package builds fine in a
   minimal Debian ``unstable`` chroot, and passes all the tests included in the
-  package (``basics``, ``syntax``, ``programs``, ``reflected``). Also many other
-  Debian packaging improvements.
+  package (``basics``, ``syntax``, ``programs``, ``reflected``). Also many
+  other Debian packaging improvements.
 
 Summary
 -------
 
 The "git flow" was used again in this release cycle and proved to be useful not
-only for hot fix, but also for creating the branch ``feature/ctypes_annotation``
-and rebasing it often while things are still flowing.
+only for hot fix, but also for creating the branch
+``feature/ctypes_annotation`` and rebasing it often while things are still
+flowing.
 
 The few hot fixes didn't require a new release, but the many organizational
 improvements and the new features did warrant the new release, because of
 e.g. the much better test handling in this release and the improved recursion
 control.
 
-The work on Python3 support has slowed down a bit. I mostly only added some bits
-for compatibility, but generally it has slowed down. I wanted to make sure it
-doesn't regress by accident, so running with CPython3.2 is now part of the
+The work on Python3 support has slowed down a bit. I mostly only added some
+bits for compatibility, but generally it has slowed down. I wanted to make sure
+it doesn't regress by accident, so running with CPython3.2 is now part of the
 normal release tests.
 
 What's still missing is more "hg" completeness. Only the ``co_varnames`` work
@@ -214,8 +217,8 @@ so that was done first.
 
 And of course, the real excitement is the "type inference" work. It will give a
 huge boost to Nuitka, and I am happy that it seems to go well. With this in
-place, new benchmarks may make sense. I am working on getting it off the ground,
-so other people can work on it too. My idea of ``ctypes`` native calls may
-become true sooner than expected. To support that, I would like to add more
+place, new benchmarks may make sense. I am working on getting it off the
+ground, so other people can work on it too. My idea of ``ctypes`` native calls
+may become true sooner than expected. To support that, I would like to add more
 tools to make sure we discover changes earlier on, checking the XML
 representations of tests to discover improvements and regressions more clearly.

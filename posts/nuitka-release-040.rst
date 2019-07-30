@@ -15,8 +15,8 @@ New Features
 
 - Python3.2 is now fully supported.
 
-  - Fully correct ``metaclass =`` semantics now correctly supported. It had been
-    working somewhat previously, but now all the corner cases are covered too.
+- Fully correct ``metaclass =`` semantics now correctly supported. It had been
+  working somewhat previously, but now all the corner cases are covered too.
 
   - Keyword only parameters.
 
@@ -33,10 +33,10 @@ New Features
 Bug fixes
 ---------
 
-- Checking compiled code with ``instance(some_function, types.FunctionType)`` as
-  "zope.interfaces" does, was causing compatibility problems. Now this kind of
-  check passes for compiled functions too. `Issue#53
-  <http://bugs.nuitka.net/issue53>`__
+- Checking compiled code with ``instance(some_function, types.FunctionType)``
+  as "zope.interfaces" does, was causing compatibility problems. Now this kind
+  of check passes for compiled functions too.
+  `Issue#53 <http://bugs.nuitka.net/issue53>`__
 
 - The frame of modules had an empty locals dictionary, which is not compatible
   to CPython which puts the globals dictionary there too. Also discussed in
@@ -52,8 +52,8 @@ Bug fixes
 - Don't crash on imported modules with syntax errors. Instead, the attempted
   recursion is simply not done.
 
-- Doing a ``del`` on ``__defaults`` and ``__module__`` of compiled functions was
-  crashing. This was noticed by a Python3 test for ``__kwdefaults__`` that
+- Doing a ``del`` on ``__defaults`` and ``__module__`` of compiled functions
+  was crashing. This was noticed by a Python3 test for ``__kwdefaults__`` that
   exposed this compiled functions weakness.
 
 - Wasn't detecting duplicate arguments, if one of them was not a plain
@@ -85,28 +85,28 @@ New Optimization
 - Optimizing attribute access to compile time constants for the first time. The
   old registry had no actual user yet.
 
-- Optimizing subscript and slices for all compile time constants beyond constant
-  values, made easy by using inheritance.
+- Optimizing subscript and slices for all compile time constants beyond
+  constant values, made easy by using inheritance.
 
-- Built-in references now convert to strings directly, e.g. when used in a print
-  statement. Needed for the testing approach "compiled file contains only prints
-  with constant value".
+- Built-in references now convert to strings directly, e.g. when used in a
+  print statement. Needed for the testing approach "compiled file contains only
+  prints with constant value".
 
 - Optimizing calls to constant nodes directly into exceptions.
 
 - Optimizing built-in ``bool`` for arguments with known truth value. This would
   be creations of tuples, lists, and dictionaries.
 
-- Optimizing ``a is b`` and ``a is not b`` based on aliasing interface, which at
-  this time effectively is limited to telling that ``a is a`` is true and ``a is
-  not a`` is false, but this will expand.
+- Optimizing ``a is b`` and ``a is not b`` based on aliasing interface, which
+  at this time effectively is limited to telling that ``a is a`` is true and
+  ``a is not a`` is false, but this will expand.
 
 - Added support for optimizing ``hasattr``, ``getattr``, and ``setattr``
-  built-ins as well. The ``hasattr`` was needed for the ``class`` re-formulation
-  of Python3 anyway.
+  built-ins as well. The ``hasattr`` was needed for the ``class``
+  re-formulation of Python3 anyway.
 
-- Optimizing ``getattr`` with string argument and no default to simple attribute
-  access.
+- Optimizing ``getattr`` with string argument and no default to simple
+  attribute access.
 
 - Added support for optimizing ``isinstance`` built-in.
 
@@ -160,8 +160,8 @@ Cleanups
     generators and one is for functions, allowing to implement their different
     exception behavior there.
 
-- The optimization registries for calls, subscripts, slices, and attributes have
-  been replaced with attaching them to nodes.
+- The optimization registries for calls, subscripts, slices, and attributes
+  have been replaced with attaching them to nodes.
 
   * The ensuing circular dependency has been resolved by more local imports for
     created nodes.
@@ -194,9 +194,9 @@ Cleanups
   StopIteration`` for generators, because that's what they really are. Allowed
   to remove special handling of ``return`` nodes in generators.
 
-- The specialty of CPython2.6 yielding non-None values of lambda generators, was
-  so far implemented in code generation. This was moved to tree building as a
-  re-formulation, making it subject to normal optimization.
+- The specialty of CPython2.6 yielding non-None values of lambda generators,
+  was so far implemented in code generation. This was moved to tree building as
+  a re-formulation, making it subject to normal optimization.
 
 - Mangling of attribute names in functions contained in classes, has been moved
   into the early tree building. So far it was done during code generation,
@@ -223,16 +223,16 @@ New Tests
 ---------
 
 - The complete CPython3.2 test suite was adapted (no ``__code__``, no
-  ``__closure__``, etc.) and is now passing, but only without "--debug", because
-  otherwise some of the generated C++ triggers (harmless) warnings.
+  ``__closure__``, etc.) and is now passing, but only without "--debug",
+  because otherwise some of the generated C++ triggers (harmless) warnings.
 
 - Added new test suite designed to prove that expressions that are known to be
-  compile time constant are indeed so. This works using the XML output done with
-  "--dump-xml" and then searching it to only have print statements with constant
-  values.
+  compile time constant are indeed so. This works using the XML output done
+  with ``--dump-xml`` and then searching it to only have print statements with
+  constant values.
 
-- Added new basic CPython3.2 test "Functions32" and "ParameterErrors32" to cover
-  keyword only parameter handling.
+- Added new basic CPython3.2 test "Functions32" and "ParameterErrors32" to
+  cover keyword only parameter handling.
 
 - Added tests to cover generator object and exception interactions.
 
@@ -254,8 +254,8 @@ Summary
 
 This release marks a milestone. The support of Python3 is here. The
 re-formulation of complex calls, and the code generation improvements are quite
-huge. More re-formulation could be done for argument parsing, but generally this
-is now mostly complete.
+huge. More re-formulation could be done for argument parsing, but generally
+this is now mostly complete.
 
 The 0.3.x series had a lot releases. Many of which brought progress with
 re-formulations that aimed at making optimization easier or possible. Sometimes
@@ -265,10 +265,10 @@ making class creations normal functions, or getting rid of ``or`` and
 doesn't deal with complex stuff.
 
 So, the 0.4.x series begins with this. The focus from now on can be almost
-purely optimization. This release contains already some of it, with frames being
-optimized away, with the assignment keepers from the ``or`` and ``and``
-re-formulation being optimized away. This will be about achieving goals from the
-"ctypes" plan as discussed in the developer manual.
+purely optimization. This release contains already some of it, with frames
+being optimized away, with the assignment keepers from the ``or`` and ``and``
+re-formulation being optimized away. This will be about achieving goals from
+the "ctypes" plan as discussed in the developer manual.
 
 Also the performance page will be expanded with more benchmarks and diagrams as
 I go forward. I have finally given up on "codespeed", and do my own diagrams.

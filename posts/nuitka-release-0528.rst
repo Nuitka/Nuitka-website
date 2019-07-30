@@ -56,8 +56,8 @@ Bug Fixes
   was applied to variable names, and function declarations, but not to classes
   yet.
 
-- Python3.6: Fix, added support for list contractions with ``await`` expressions
-  in async generators.
+- Python3.6: Fix, added support for list contractions with ``await``
+  expressions in async generators.
 
 - Python3.6: Fix, ``async for`` was not working in async generators yet.
 
@@ -181,8 +181,8 @@ Organizational
   recursion into standard library, which is no longer true and even not
   recommended.
 
-- Added option to disable the output of ``.pyi`` file when creating an extension
-  module.
+- Added option to disable the output of ``.pyi`` file when creating an
+  extension module.
 
 - Removed Ubuntu Wily package download, no longer supported by Ubuntu.
 
@@ -206,9 +206,9 @@ Also, documenting how to run tests against compiled code, if that test code
 lives inside of that package, will make a huge difference, as that will make
 it easier for people to torture Nuitka with their own test cases.
 
-And then of course, nested frames now mean that every function could be inlined,
-which was previously not possible due to collisions of frames. This will pave
-the route for better optimization in those cases in future releases.
+And then of course, nested frames now mean that every function could be
+inlined, which was previously not possible due to collisions of frames. This
+will pave the route for better optimization in those cases in future releases.
 
 The experimental features will require more work, but should make it easier to
 use Nuitka for existing projects. Future releases will make integrating Nuitka

@@ -37,8 +37,8 @@ Cleanups
   starts, so that some analysis can be done as late as that. Currently this is
   used for determining which functions should have a dictionary of locals.
 
-- Checking the exported symbols list, fixed all the cases where a ``static`` was
-  missing. This reduces the "module.so" sizes.
+- Checking the exported symbols list, fixed all the cases where a ``static``
+  was missing. This reduces the "module.so" sizes.
 
 - With gcc the "visibility=hidden" is used to avoid exporting the helper
   classes. Also reduces the "module.so" sizes, because classes cannot be made

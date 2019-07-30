@@ -23,10 +23,11 @@ Bug Fixes
 
     iter(Iterable()) # This is suppose to raise, but didn't with Nuitka
 
-- Python3: Errors when creating class dictionaries raised by the ``__prepare__``
-  dictionary (e.g. ``enum`` classes with wrong identifiers) were not immediately
-  raised, but only by the ``type`` call. This was not observable, but might have
-  caused issues potentially.
+- Python3: Errors when creating class dictionaries raised by the
+  ``__prepare__`` dictionary (e.g. ``enum`` classes with wrong identifiers)
+  were not immediately raised, but only by the ``type`` call.
+
+  This was not observable, but might have caused issues potentially.
 
 - Standalone macOS: Shared libraries and extension modules didn't have their
   DLL load paths updated, but only the main binary. This is not sufficient for

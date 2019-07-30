@@ -32,8 +32,8 @@ Bug fixes
   <http://bugs.nuitka.net/issue37>`__. Fixed in 0.3.22.2 already.
 
 - Modules named ``proc`` or ``func`` could not be compiled to modules or
-  embedded due to a collision with identifiers of CPython2.7 includes. `Issue#38
-  <http://bugs.nuitka.net/issue38>`__. Fixed in 0.3.22.2 already.
+  embedded due to a collision with identifiers of CPython2.7 includes.
+  `Issue#38 <http://bugs.nuitka.net/issue38>`__. Fixed in 0.3.22.2 already.
 
 New Features
 ------------
@@ -65,9 +65,9 @@ New Tests
 - Extended in-place assignment tests to cover error cases of `Issue#36
   <http://bugs.nuitka.net/issue36>`__.
 
-- Extended compile library test to also try and compile the path where ``numpy``
-  lives. This is apparently another path, where Debian installs some modules,
-  and compiling this would have revealed `Issue#36
+- Extended compile library test to also try and compile the path where
+  ``numpy`` lives. This is apparently another path, where Debian installs some
+  modules, and compiling this would have revealed `Issue#36
   <http://bugs.nuitka.net/issue36>`__ sooner.
 
 Summary

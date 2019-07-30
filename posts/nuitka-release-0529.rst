@@ -54,9 +54,10 @@ Bug Fixes
 New Features
 ------------
 
-- It is now possible to run Nuitka with ``some_python_you_choose -m nuitka ...``
-  and therefore know exactly which Python installation is going to be used. It
-  does of course need Nuitka installed for this to work. This mechanism is going
+- It is now possible to run Nuitka with
+  ``some_python_you_choose -m nuitka ...`` and therefore know exactly which
+  Python installation is going to be used. It does of course need Nuitka
+  installed for this to work. This mechanism is going
   to replace the ``--python-version`` mechanism in the future.
 
 - There are dedicated runners for Python3, simply use ``nuitka3`` or

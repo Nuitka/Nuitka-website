@@ -9,9 +9,9 @@ Windows system.
 Bug Fixes
 ---------
 
-- Standalone Python3.5: The ``_decimal`` module at least is using a ``__name__``
-  that doesn't match the name at load time, causing programs that use it to
-  crash.
+- Standalone Python3.5: The ``_decimal`` module at least is using a
+  ``__name__`` that doesn't match the name at load time, causing programs that
+  use it to crash.
 
 - Compatibility: For Python3.3 the ``__loader__`` attribute is now set in all
   cases, and it needs to have a ``__module__`` attribute. This makes inspection

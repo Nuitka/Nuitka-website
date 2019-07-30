@@ -19,8 +19,8 @@ Bug fixes
   ``sys.executable`` to know how to start Python scripts.
 
 - There is a bug (fixed in their repository) related to C++ raw strings and C++
-  "trigraphs" that affects Nuitka, added a workaround that makes Nuitka not emit
-  "trigraphs" at all.
+  "trigraphs" that affects Nuitka, added a workaround that makes Nuitka not
+  emit "trigraphs" at all.
 
 - The check for mutable constants was erroneous for tuples, which could lead to
   assuming a tuple with only mutable elements to be not mutable, which is of
@@ -38,14 +38,15 @@ Exceptions
 - The code to add a traceback is now our own, which made it possible to use
   frames that do not contain line numbers and a code object capable of lookups.
 
-- Raising exceptions or adding to tracebacks has been made way faster by reusing
-  a cached frame objects for the task.
+- Raising exceptions or adding to tracebacks has been made way faster by
+  reusing a cached frame objects for the task.
 
 - The class used for saving exceptions temporarily (e.g. used in
-  ``try``/``finally`` code, or with statement) has been improved so it doesn't
-  make a copy of the exception with a C++ ``new`` call, but it simply stores the
-  exception properties itself and creates the exception object only on demand,
-  which is more efficient.
+  ``try``/``finally`` code, or with statement) has been improved.
+
+  It now doesn't make a copy of the exception with a C++ ``new`` call, but it
+  simply stores the exception properties itself and creates the exception
+  object only on demand, which is more efficient.
 
 - When catching exceptions, the addition of tracebacks is now done without
   exporting and re-importing the exception to Python, but directly on the
@@ -58,9 +59,10 @@ Function Calls
   dictionary, which is slightly faster for function calls.
 
 - There are now dedicated variants for complex function calls with ``*`` and
-  ``**`` arguments in all forms. These can take advantage of easier cases. For
-  example, a merge with star arguments is only needed if there actually were any
-  of these.
+  ``**`` arguments in all forms.
+
+  These can take advantage of easier cases. For example, a merge with star
+  arguments is only needed if there actually were any of these.
 
 - The check for non-string values in the ``**`` arguments can now be completely
   short-cut for the case of a dictionary that has never had a string
@@ -73,10 +75,10 @@ Parameter Parsing
 - Reversed the order in which parameters are checked.
 
   Now the keyword dictionary is iterated first and only then the positional
-  arguments after that is done. This iteration is not only much faster (avoiding
-  repeated lookups for each possible parameter), it also can be more correct, in
-  case the keyword argument is derived from a dictionary and its keys mutate it
-  when being compared.
+  arguments after that is done. This iteration is not only much faster
+  (avoiding repeated lookups for each possible parameter), it also can be more
+  correct, in case the keyword argument is derived from a dictionary and its
+  keys mutate it when being compared.
 
 - Comparing parameter names is now done with a fast path, in which the pointer
   values are compare first. This can avoid a call to the comparison at all,
@@ -92,9 +94,9 @@ Parameter Parsing
 Attribute Access
 ~~~~~~~~~~~~~~~~
 
-- The class type (in executables, not yet for extension modules) is changed to a
-  faster variant of our own making that doesn't consider the restricted mode a
-  possibility. This avoids very expensive calls, and makes accessing class
+- The class type (in executables, not yet for extension modules) is changed to
+  a faster variant of our own making that doesn't consider the restricted mode
+  a possibility. This avoids very expensive calls, and makes accessing class
   attributes in compiled code and in non-compiled code faster.
 
 - Access to attributes (but not of instances) got in-lined and therefore much
@@ -110,9 +112,9 @@ Constants
 
 - The constant creation with the g++ bug worked around, can now use raw strings
   to create string constants, without resorting to un-pickling them as a work
-  around. This allows us to use ``PyString_FromStringAndSize`` to create strings
-  again, which is obviously faster, and had not been done, because of the
-  confusion caused by the g++ bug.
+  around. This allows us to use ``PyString_FromStringAndSize`` to create
+  strings again, which is obviously faster, and had not been done, because of
+  the confusion caused by the g++ bug.
 
 - For string constants that are usable as attributes (i.e. match the identifier
   regular expression), these are now interned, directly after creation. With
@@ -124,8 +126,8 @@ Constants
   code and being less ugly.
 
 - For mutable empty constant access (set, dict, list) the values are no longer
-  made by copying the constant, but instead with the API functions to create new
-  ones. This makes code like ``a = []`` a tiny bit faster.
+  made by copying the constant, but instead with the API functions to create
+  new ones. This makes code like ``a = []`` a tiny bit faster.
 
 - For slice indices the code generation now takes advantage of creating a C++
   ``Py_ssize_t`` from constant value if possible. Before it was converting the
@@ -135,9 +137,9 @@ Constants
 Iteration
 ~~~~~~~~~
 
-- The creation of iterators got our own code. This avoids a function call and is
-  otherwise only a small gain for anything but sequence iterators. These may be
-  much faster to create now, as it avoids another call and repeated checks.
+- The creation of iterators got our own code. This avoids a function call and
+  is otherwise only a small gain for anything but sequence iterators. These may
+  be much faster to create now, as it avoids another call and repeated checks.
 
 - The next on iterator got our own code too, which has simpler code flow,
   because it avoids the double check in case of NULL returned.
@@ -157,7 +159,8 @@ Built-ins
   as well.
 
   So, to Nuitka it doesn't matter now it you write ``int(value) ``or ``int(x =
-  value)`` anymore. The ``base`` parameter of these built-ins is also supported.
+  value)`` anymore. The ``base`` parameter of these built-ins is also
+  supported.
 
   The use of this call spec mechanism will the expanded, currently it is not
   applied to the built-ins that take only one parameter. This is a work in
@@ -168,14 +171,14 @@ Cleanups
 ~~~~~~~~
 
 - In 0.3.8 per module global classes were introduced, but the ``IMPORT_MODULE``
-  kept using the old universal class, this got resolved and the old class is now
-  fully gone.
+  kept using the old universal class, this got resolved and the old class is
+  now fully gone.
 
 - Using ``assertObject`` in more cases, and in more places at all, catches
   errors earlier on.
 
-- Moved the addition to tracebacks into the ``_PythonException`` class, where it
-  works directly on the contained traceback. This is cleaner as it no longer
+- Moved the addition to tracebacks into the ``_PythonException`` class, where
+  it works directly on the contained traceback. This is cleaner as it no longer
   requires to export exceptions to Python, just to add a traceback entry.
 
 - Some ``PyLint`` cleanups were done, reducing the number of reports a bit, but
@@ -185,8 +188,9 @@ Cleanups
   default values in the parameter parsing more cleanly.
 
 - The module ``CodeTemplatesListContractions`` was renamed to
-  ``CodeTemplatesContractions`` to reflect the fact that it deals with all kinds
-  of contractions (also set and dict contractions), not just list contractions.
+  ``CodeTemplatesContractions`` to reflect the fact that it deals with all
+  kinds of contractions (also set and dict contractions), not just list
+  contractions.
 
 - Moved the with related template to its own module ``CodeTemplatesWith``, so
   its easier to find.
@@ -220,8 +224,8 @@ New Tests
 
 - Micro benchmarks for the read and write access to class attributes.
 
-- Enhanced ``Printing`` test to cover the trigraphs constant bug case. Output is
-  required to make the error detectable.
+- Enhanced ``Printing`` test to cover the trigraphs constant bug case. Output
+  is required to make the error detectable.
 
 - Enhanced ``Constants`` test to cover repeated mutation of mutable tuple
   constants, this covers the bug mentioned.
@@ -246,8 +250,9 @@ Organizational
   MinGW compilers, plus adequate errors messages are given, if the compiler
   version is too low.
 
-- There is now a ``--unstriped`` option that just keeps the debug information in
-  the file, but doesn't keep the assertions. This will be helpful when looking
-  at generated assembler code from Nuitka to not have the distortions that
-  ``--debug`` causes (reduced optimization level, assertions, etc.) and instead
-  a clear view.
+- There is now a ``--unstriped`` option that just keeps the debug information
+  in the file, but doesn't keep the assertions.
+
+  This will be helpful when looking at generated assembler code from Nuitka to
+  not have the distortions that ``--debug`` causes (reduced optimization level,
+  assertions, etc.) and instead a clear view.

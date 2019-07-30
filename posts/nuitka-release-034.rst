@@ -15,8 +15,8 @@ this was the case, others probably as well. This is of course at the end a
 scalability issue of Nuitka, which now has been addressed.
 
 So the major advancement of this release is to make the ``--deep`` option
-useful. But also there have been a performance improvements, which end up giving
-us another boost for the "PyStone" benchmark.
+useful. But also there have been a performance improvements, which end up
+giving us another boost for the "PyStone" benchmark.
 
 Bug fixes
 ---------
@@ -50,8 +50,8 @@ New Features
 
 - Now caches build results and Scons will only rebuild as needed.
 
-- The direct use of ``__import__()`` with a constant module name as parameter is
-  also followed in "deep" mode. With time, non-constants may still become
+- The direct use of ``__import__()`` with a constant module name as parameter
+  is also followed in "deep" mode. With time, non-constants may still become
   predictable, right now it must be a real CPython constant string.
 
 New Optimization
@@ -105,8 +105,8 @@ New Tests
 Organizational
 --------------
 
-- There is now a new environment variable ``NUITKA_SCONS`` which should point to
-  the directory with the ``SingleExe.scons`` file for Nuitka. The scons file
+- There is now a new environment variable ``NUITKA_SCONS`` which should point
+  to the directory with the ``SingleExe.scons`` file for Nuitka. The scons file
   could be named better, because it is actually one and the same who builds
   extension modules and executables.
 

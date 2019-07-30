@@ -9,9 +9,9 @@ Bug fixes
 
 - Exceptions now correctly stack.
 
-  When you catch an exception, there always was the exception set, but calling a
-  new function, and it catching the exception, the values of ``sys.exc_info()``
-  didn't get reset after the function returned.
+  When you catch an exception, there always was the exception set, but calling
+  a new function, and it catching the exception, the values of
+  ``sys.exc_info()`` didn't get reset after the function returned.
 
   This was a small difference (of which there are nearly none left now) but one
   that might effect existing code, which affects code that calls functions in
@@ -22,12 +22,12 @@ Bug fixes
   have to document anything at all about it.
 
 - Using ``exec`` in generator functions got fixed up. I realized that this
-  wouldn't work while working on other things. It's obscure yes, but it ought to
-  work.
+  wouldn't work while working on other things. It's obscure yes, but it ought
+  to work.
 
-- Lambda generator functions can now be nested and in generator functions. There
-  were some problems here with the allocation of closure variables that got
-  resolved.
+- Lambda generator functions can now be nested and in generator functions.
+  There were some problems here with the allocation of closure variables that
+  got resolved.
 
 - List contractions could not be returned by lambda functions. Also a closure
   issue.
@@ -57,8 +57,8 @@ New Optimization
   e.g. the ``len`` with your own version in the module. Locally it was always
   detected already. So it's now also safe.
 
-- All operations and comparisons are now simulated if possible and replaced with
-  their result.
+- All operations and comparisons are now simulated if possible and replaced
+  with their result.
 
 - In the case of predictable true or false conditions, not taken branches are
   removed.
@@ -107,9 +107,10 @@ New Tests
 - Added to ``ExecEval`` a case where the ``exec`` is inside a generator, to
   cover that too.
 
-- Activated the testing of ``sys.exc_info()`` in ``ExceptionRaising`` test. This
-  was previously commented out, and now I added stuff to illustrate all of the
-  behavior of CPython there.
+- Activated the testing of ``sys.exc_info()`` in ``ExceptionRaising`` test.
+
+  This was previously commented out, and now I added stuff to illustrate all of
+  the behavior of CPython there.
 
 - Enhanced ``ComparisonChains`` test to demonstrate that the order of
   evaluations is done right and that side effects are maintained.
@@ -139,8 +140,8 @@ Organizational
 
 - There is now an option to dump the node tree after optimization as XML. Not
   currently use, but is for regression testing, to identify where new
-  optimization and changes have an impact. This make it more feasible to be sure
-  that Nuitka is only becoming better.
+  optimization and changes have an impact. This make it more feasible to be
+  sure that Nuitka is only becoming better.
 
 - Executable with Python3 again, although it won't do anything, the necessary
   code changes were done.

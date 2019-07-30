@@ -10,8 +10,8 @@ Bug Fixes
 
 - When targeting Python 3.x, Nuitka was using "python" to run Scons to run it
   under Python 2.x, which is not good enough on systems, where that is already
-  Python3. Improved to only do the guessing where necessary (i.e. when using the
-  in-line copy of Scons) and then to prefer "python2". `Issue#95
+  Python3. Improved to only do the guessing where necessary (i.e. when using
+  the in-line copy of Scons) and then to prefer "python2". `Issue#95
   <http://bugs.nuitka.net/issue95>`__. Fixed in 0.4.4.1 already.
 
 - When using Nuitka created binaries inside a "virtualenv", created programs
@@ -28,8 +28,8 @@ Bug Fixes
   <http://bugs.nuitka.net/issue98>`__. Fixed in 0.4.4.2 already.
 
 - Windows: The generated code for ``try``/``return``/``finally`` was working
-  with gcc (and therefore MinGW), but not with MSVC, causing crashes. `Issue#102
-  <http://bugs.nuitka.net/issue102>`__. Fixed in 0.4.4.2 already.
+  with gcc (and therefore MinGW), but not with MSVC, causing crashes.
+  `Issue#102 <http://bugs.nuitka.net/issue102>`__. Fixed in 0.4.4.2 already.
 
 - The option ``--recurse-all`` did not recurse to package ``__init__.py`` files
   in case ``from x.y import z`` syntax was used. `Issue#100
@@ -37,8 +37,8 @@ Bug Fixes
 
 - Python3 on macOS: Corrected link time error. Fixed in 0.4.4.2 already.
 
-- Python3.3 on Windows: Fixed crash with too many arguments to a kwonly argument
-  using function. Fixed in 0.4.4.2 already.
+- Python3.3 on Windows: Fixed crash with too many arguments to a kwonly
+  argument using function. Fixed in 0.4.4.2 already.
 
 - Python3.3 on Windows: Using "yield from" resulted in a link time error. Fixed
   in 0.4.4.2 already.
@@ -68,21 +68,21 @@ New Features
 
   The installation path now is passed on to Scons which then uses it.
 
-- Better error checking for ``--recurse-to`` and ``--recurse-not-to`` arguments,
-  tell the user not to use directory paths.
+- Better error checking for ``--recurse-to`` and ``--recurse-not-to``
+  arguments, tell the user not to use directory paths.
 
-- Added a warning for ``--recurse-to`` arguments that end up having no effect to
-  the final result.
+- Added a warning for ``--recurse-to`` arguments that end up having no effect
+  to the final result.
 
 Cleanups
 --------
 
 - Import mechanism got cleaned up, stopped using "PyImport_ExtendInittab". It
-  does not handle packages, and the ``sys.meta_path`` based importer is now well
-  proven.
+  does not handle packages, and the ``sys.meta_path`` based importer is now
+  well proven.
 
-- Moved some of the constraint collection code mess into proper places. It still
-  remains a mess.
+- Moved some of the constraint collection code mess into proper places. It
+  still remains a mess.
 
 Organizational
 --------------
@@ -110,8 +110,9 @@ Summary
 
 This release is mostly the result of improvements made based on the surge of
 users after Europython 2013. Some people went to extents and reported their
-experience very detailed, and so I could aim at making e.g. their misconceptions
-about how recursion options work, more obvious through warnings and errors.
+experience very detailed, and so I could aim at making e.g. their
+misconceptions about how recursion options work, more obvious through warnings
+and errors.
 
 This release is not addressing performance improvements. The next release will
 be able to focus on that. I am taking my claim of full compatibility very

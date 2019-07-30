@@ -17,11 +17,11 @@ Bug Fixes
 - More accurate exception lines when iterator creation executes compiled code,
   e.g. in a for loop
 
-- The list of base classes of a class was evaluated in the context of the class,
-  now it is done in the context of the containing scope.
+- The list of base classes of a class was evaluated in the context of the
+  class, now it is done in the context of the containing scope.
 
-- The first iterated of a generator expression was evaluated in its own context,
-  now it is done in the context of the containing scope.
+- The first iterated of a generator expression was evaluated in its own
+  context, now it is done in the context of the containing scope.
 
 Reduced Differences
 -------------------
@@ -32,8 +32,8 @@ Reduced Differences
 - Generator expressions (but not yet functions) have a ``throw()``, ``send()``
   and ``close()`` method.
 
-- Exec can now write to local function namespace even if ``None`` is provided at
-  run time.
+- Exec can now write to local function namespace even if ``None`` is provided
+  at run time.
 
 - Relative imports inside packages are now correctly resolved at compile time
   when using ``--deep``.
@@ -49,9 +49,9 @@ Cleanups
 - Cleaned up namespaces, was still using old names, or "Py*" which is reserved
   to core CPython.
 
-- Overhaul of the code responsible for ``eval`` and ``exec``, it has been split,
-  and it pushed the detection defaults to the C++ compiler which means, we can
-  do it at run time or compile time, depending on circumstances.
+- Overhaul of the code responsible for ``eval`` and ``exec``, it has been
+  split, and it pushed the detection defaults to the C++ compiler which means,
+  we can do it at run time or compile time, depending on circumstances.
 
 - Made ``PyTemporaryObject`` safer to use, disabling copy constructor it should
   be also a relief to the C++ compiler if it doesn't have to eliminate all its
@@ -82,27 +82,27 @@ New Tests
 
 - Added test program for packages with relative imports inside the package.
 
-- The built-in ``dir()`` in a function was not having fully deterministic output
-  list, now it does.
+- The built-in ``dir()`` in a function was not having fully deterministic
+  output list, now it does.
 
 Summary
 -------
 
-Overall, the amount of differences between CPython and Nuitka is heading towards
-zero. Also most of the improvements done in this release were very
-straightforward cleanups and not much work was required, mostly things are about
-cleanups and then it becomes easily right. The new type for the compiled
+Overall, the amount of differences between CPython and Nuitka is heading
+towards zero. Also most of the improvements done in this release were very
+straightforward cleanups and not much work was required, mostly things are
+about cleanups and then it becomes easily right. The new type for the compiled
 generator expressions was simple to create, esp. as I could check what CPython
 does in its source code.
 
 For optimization purposes, I decided that generator expressions and generator
-functions will be separate compiled types, as most of their behavior will not be
-shared. I believe optimizing generator expressions to run well is an important
-enough goal to warrant that they have their own implementation. Now that this is
-done, I will repeat it with generator functions.
+functions will be separate compiled types, as most of their behavior will not
+be shared. I believe optimizing generator expressions to run well is an
+important enough goal to warrant that they have their own implementation. Now
+that this is done, I will repeat it with generator functions.
 
 Generator functions already work quite fine, but like generator expressions did
 before this release, they can leak references if not finished , and they don't
-have the ``throw()`` method, which seems very important to the correct operation
-of ``contextlib``. So I will introduce a decicated type for these too, possibly
-in the next release.
+have the ``throw()`` method, which seems very important to the correct
+operation of ``contextlib``. So I will introduce a decicated type for these
+too, possibly in the next release.

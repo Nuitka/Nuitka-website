@@ -23,13 +23,14 @@ Bug fixes
   instances with methods can now be copied too. `Issue#40
   <http://bugs.nuitka.net/issue40>`__. Fixed in 0.3.23.1 already.
 
-- The ``assert`` statement as of Python2.7 creates the ``AssertionError`` object
-  from a given value immediately, instead of delayed as it was with
+- The ``assert`` statement as of Python2.7 creates the ``AssertionError``
+  object from a given value immediately, instead of delayed as it was with
   Python2.6. This makes a difference for the form with 2 arguments, and if the
   value is a tuple. `Issue#41 <http://bugs.nuitka.net/issue41>`__. Fixed in
   0.3.23.1 already.
 
-- Sets written like this didn't work unless they were predicted at compile time:
+- Sets written like this didn't work unless they were predicted at compile
+  time:
 
   .. code-block:: python
 
@@ -39,8 +40,8 @@ Bug fixes
   and crashed the compiler. `Issue#42 <http://bugs.nuitka.net/issue42>`__. Fixed
   in 0.3.23.1 already.
 
-- For Python2, the default encoding for source files is ``ascii``, and it is now
-  enforced by Nuitka as well, with the same ``SyntaxError``.
+- For Python2, the default encoding for source files is ``ascii``, and it is
+  now enforced by Nuitka as well, with the same ``SyntaxError``.
 
 - Corner cases of ``exec`` statements with nested functions now give proper
   ``SyntaxError`` exceptions under Python2.
@@ -68,8 +69,8 @@ New Features
   without any arguments required dedicated code.
 
 - Added support for optimizing the ``unicode`` built-in under Python2. It was
-  already working, but will become the basis for the ``str`` built-in of Python3
-  in future releases.
+  already working, but will become the basis for the ``str`` built-in of
+  Python3 in future releases.
 
 - For Python3, lots of compatibility work has been done. The Unicode issues
   appear to be ironed out now. The ``del`` of closure variables is allowed and
@@ -138,9 +139,9 @@ New Tests
   pass, which is always good news.
 
 - Added CPython2.7 test suite as "tests/CPython27" from 2.7.3, making it public
-  for the first time. Previously a private copy of some age, with many no longer
-  needed changes had been used by me. Now it is up to par with what was done
-  before for "tests/CPython26", so this pending action is finally done.
+  for the first time. Previously a private copy of some age, with many no
+  longer needed changes had been used by me. Now it is up to par with what was
+  done before for "tests/CPython26", so this pending action is finally done.
 
 - Added test to cover Python2 syntax error of having a function with closure
   variables nested inside a function that is an overflow function.
@@ -158,8 +159,8 @@ New Tests
 Summary
 -------
 
-This release brought forward the most important remaining re-formulation changes
-needed for Nuitka. Removing class bodies, makes optimization yet again
+This release brought forward the most important remaining re-formulation
+changes needed for Nuitka. Removing class bodies, makes optimization yet again
 simpler. Still, making function references, so they can be copied, is missing
 for value propagation to progress.
 
@@ -168,9 +169,9 @@ first time, I am release with a known bug though: That is `Issue#39
 <http://bugs.nuitka.net/issue39>`__ which I believe now, may be the root cause
 of the mercurial tests not yet passing.
 
-The solution will be involved and take a bit of time. It will be about "compiled
-frames" and be a (invasive) solution. It likely will make Nuitka faster too. But
-this release includes lots of tiny improvements, for Python3 and also for
-Python2. So I wanted to get this out now.
+The solution will be involved and take a bit of time. It will be about
+"compiled frames" and be a (invasive) solution. It likely will make Nuitka
+faster too. But this release includes lots of tiny improvements, for Python3
+and also for Python2. So I wanted to get this out now.
 
 As usual, please check it out, and let me know how you fare.

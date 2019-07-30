@@ -3,8 +3,8 @@ This is to inform you about the new stable release of `Nuitka <http://nuitka.net
 This release is the first follow-up with a focus on optimization. The major
 highlight is progress towards SSA form in the node tree.
 
-Also a lot of cleanups have been performed, for both the tree building, which is
-now considered mostly finished, and will be only reviewed. And for the
+Also a lot of cleanups have been performed, for both the tree building, which
+is now considered mostly finished, and will be only reviewed. And for the
 optimization part there have been large amounts of changes.
 
 New Features
@@ -12,8 +12,8 @@ New Features
 
 - Python 3.3 experimental support
 
-  * Now compiles many basic tests. Ported the dictionary quick access and update
-    code to a more generic and useful interface.
+  * Now compiles many basic tests. Ported the dictionary quick access and
+    update code to a more generic and useful interface.
 
   * Added support for ``__qualname__`` to classes and functions.
 
@@ -84,9 +84,9 @@ New Optimization
   There is more examples, where the raise propagation is new, but you get the
   idea.
 
-- Conditional expression nodes are now optimized according to the truth value of
-  the condition, and not only for compile time constants. This covers
-  e.g. container creations, and other things.
+- Conditional expression nodes are now optimized according to the truth value
+  of the condition, and not only for compile time constants. This covers e.g.
+  container creations, and other things.
 
   .. code-block:: python
 
@@ -109,9 +109,9 @@ New Optimization
 - Code generation for constants now shares element values used in tuples.
 
   The general case is currently too complex to solve, but we now make sure
-  constant tuples (as e.g. used in the default value for the compiled function),
-  and string constants share the value. This should reduce memory usage and
-  speed up program start-up.
+  constant tuples (as e.g. used in the default value for the compiled
+  function), and string constants share the value. This should reduce memory
+  usage and speed up program start-up.
 
 Cleanups
 --------
@@ -136,8 +136,8 @@ Cleanups
   to locate and review. Helpers for node building are now in a separate module,
   and generally it's much easier to find the content of interest now.
 
-- Added new re-formulation of ``print`` statements. The conversion to strings is
-  now made explicit in the node tree.
+- Added new re-formulation of ``print`` statements. The conversion to strings
+  is now made explicit in the node tree.
 
 New Tests
 ---------
@@ -153,7 +153,7 @@ Organizational
 Summary
 -------
 
-The quicker release is mostly a consolidation effort, without actual performance
-progress. The progress towards SSA form matter a lot on the outlook front. Once
-this is finished, standard compiler algorithms can be added to Nuitka which go
-beyond the current peephole optimization.
+The quicker release is mostly a consolidation effort, without much actual
+performance progress. The progress towards SSA form matter a lot on the outlook
+front. Once this is finished, standard compiler algorithms can be added to
+Nuitka which go beyond the current peephole optimization.

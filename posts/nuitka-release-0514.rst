@@ -76,7 +76,8 @@ Bug Fixes
   not just ``name`` too.
 
 - Python3: Fixed creation of XML representation, now done without ``lxml`` as
-  it doesn't support needed features on that version. Fixed in 0.5.13.5 already.
+  it doesn't support needed features on that version. Fixed in 0.5.13.5
+  already.
 
 - Python2: Fix, when creating code for the largest negative constant to still
   fit into ``int``, that was only working in the main module. `Issue#228
@@ -150,8 +151,8 @@ Optimization
   construct instead of a pseudo function, leading to better analysis and code
   generation.
 
-- Comparison chains are now re-formulated into outlines too, allowing for better
-  analysis of them.
+- Comparison chains are now re-formulated into outlines too, allowing for
+  better analysis of them.
 
 - Exceptions raised in function creations, e.g. in default values, are now
   propagated, eliminating the function's code. This happens most often with
@@ -172,8 +173,8 @@ Organizational
 
 - Removed gitorious mirror of the git repository, they shut down.
 
-- Make it more clear in the documentation that Python2 is needed at compile time
-  to create Python3 executables.
+- Make it more clear in the documentation that Python2 is needed at compile
+  time to create Python3 executables.
 
 Cleanups
 --------
@@ -182,7 +183,8 @@ Cleanups
   for code generation for more expression kinds.
 
 - Unified ``try``/``except`` and ``try``/``finally`` into a single construct
-  that handles both through ``try``/``except``/``break``/``continue``/``return``
+  that handles both through
+  ``try``/``except``/``break``/``continue``/``return``
   semantics. Finally is now solved via duplicating the handler into cases
   necessary.
 

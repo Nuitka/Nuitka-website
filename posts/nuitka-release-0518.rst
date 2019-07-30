@@ -17,10 +17,10 @@ Bug Fixes
 
     someFunction(a = 1, **{".1" : (2,3)})
 
-- Compatibility: Generators with Python3.4 or higher now also have a ``__del__``
-  attribute, and therefore properly participate in finalization. This should
-  improve their interactions with garbage collection reference cycles, although
-  no issues had been observed so far.
+- Compatibility: Generators with Python3.4 or higher now also have a
+  ``__del__`` attribute, and therefore properly participate in finalization.
+  This should improve their interactions with garbage collection reference
+  cycles, although no issues had been observed so far.
 
 - Windows: Was outputting command line arguments debug information at program
   start. `Issue#284 <http://bugs.nuitka.net/issue284>`__. Fixed in 0.5.17.1
@@ -29,10 +29,10 @@ Bug Fixes
 Optimization
 ------------
 
-- Code generated for parameter parsing is now a *lot* less verbose. Python level
-  loops and conditionals to generate code for each variable has been replaced
-  with C level generic code. This will speed up the backend compilation by a
-  lot.
+- Code generated for parameter parsing is now a *lot* less verbose. Python
+  level loops and conditionals to generate code for each variable has been
+  replaced with C level generic code. This will speed up the backend
+  compilation by a lot.
 
 - Function calls with constant arguments were speed up specifically, as their
   call is now fully prepared, and yet using less code. Variable arguments are
@@ -47,20 +47,22 @@ Optimization
   <http://bugs.nuitka.net/issue262>`__.
 
 - Standalone: Avoid inclusion of bytecode of ``unittest.test``,
-  ``sqlite3.test``, ``distutils.test``, and ``ensurepip``. These are not needed,
-  but simply bloat the amount of bytecode used on e.g. macOS. `Issue#272
-  <http://bugs.nuitka.net/issue272>`__.
+  ``sqlite3.test``, ``distutils.test``, and ``ensurepip``. These are not
+  needed, but simply bloat the amount of bytecode used on e.g. macOS.
+  `Issue#272 <http://bugs.nuitka.net/issue272>`__.
 
 - Speed up compilation with Nuitka itself by avoid to copying and constructing
-  variable lists as much as possible using an always accurate variable registry.
+  variable lists as much as possible using an always accurate variable
+  registry.
 
 Cleanups
 --------
 
 - Nested argument functions of Python2 are now re-formulated into a wrapping
   function that directly calls the actual function body with the unpacking of
-  nested arguments done in nodes explicitly. This allows for better optimization
-  and checks of these steps and potential in-lining of these functions too.
+  nested arguments done in nodes explicitly. This allows for better
+  optimization and checks of these steps and potential in-lining of these
+  functions too.
 
 - Unified slice object creation and built-in ``slice`` nodes, these were two
   distinct nodes before.

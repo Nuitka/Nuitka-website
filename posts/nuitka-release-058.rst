@@ -83,12 +83,12 @@ One is that we finally started to have our own import logic, which has the risk
 to cause breakage, but apparently currently rather improved compatibility. The
 case issues were not fixable with standard library code.
 
-The second one is that the ``__file__`` attributes for standalone mode is now no
-longer pointing to the original install and therefore will expose missing stuff
-sooner. This will have to be followed up with code to scan for missing "data"
-files later on.
+The second one is that the ``__file__`` attributes for standalone mode is now
+no longer pointing to the original install and therefore will expose missing
+stuff sooner. This will have to be followed up with code to scan for missing
+"data" files later on.
 
 For SSA based optimization, there are cleanups in here, esp. the one removing
 the name mangling, allowing to remove special code for class variables. This
-makes the SSA tree more reliable. Hope is that the big step (forward propagation
-through variables) can be made in one of the next releases.
+makes the SSA tree more reliable. Hope is that the big step (forward
+propagation through variables) can be made in one of the next releases.

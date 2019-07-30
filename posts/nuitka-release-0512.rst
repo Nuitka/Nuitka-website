@@ -11,9 +11,9 @@ Bug Fixes
 - Fix, the ``__path__`` attribute for packages was still the original filename's
   directory, even in file reference mode was ``runtime``.
 
-- The use of ``runtime`` as default file reference mode for executables, even if
-  not in standalone mode, was making acceleration harder than necessary. Changed
-  to ``original`` for that case. Fixed in 0.5.11.1 already.
+- The use of ``runtime`` as default file reference mode for executables, even
+  if not in standalone mode, was making acceleration harder than necessary.
+  Changed to ``original`` for that case. Fixed in 0.5.11.1 already.
 
 - The constant value for the smallest ``int`` that is not yet a ``long`` is
   created using ``1`` due to C compiler limitations, but ``1`` was not yet
@@ -80,10 +80,10 @@ New Optimization
 New Features
 ------------
 
-- Standalone: On systems, where ``.pth`` files inject Python packages at launch,
-  these are now detected, and taking into account. Previously Nuitka did not
-  recognize them, due to lack of ``__init__.py`` files. These are mostly pip
-  installations of e.g. ``zope.interface``.
+- Standalone: On systems, where ``.pth`` files inject Python packages at
+  launch, these are now detected, and taking into account. Previously Nuitka
+  did not recognize them, due to lack of ``__init__.py`` files. These
+  are mostly pip installations of e.g. ``zope.interface``.
 
 - Added option ``--explain-imports`` to debug the import resolution code of
   Nuitka.

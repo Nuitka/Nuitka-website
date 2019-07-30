@@ -1,7 +1,7 @@
 This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
-This new release of Nuitka is an overall improvement on many fronts, there is no
-real focus this time, likely due to the long time it was in the making.
+This new release of Nuitka is an overall improvement on many fronts, there is
+no real focus this time, likely due to the long time it was in the making.
 
 The major points are more optimization work, largely enhanced import handling
 and another improvement on the performance side. But there are also many bug
@@ -25,14 +25,15 @@ Bug fixes
 - Values ``0.0`` and ``-0.0`` were treated as the same. They are not though,
   they have a different sign that should not get lost.
 
-- Nested contractions didn't work correctly, when the contraction was to iterate
-  over another contraction which needs a closure. The problem was addressing by
-  splitting the building of a contraction from the body of the contraction, so
-  that these are now 2 nodes, making it easy for the closure handling to get
-  things right.
+- Nested contractions didn't work correctly, when the contraction was to
+  iterate over another contraction which needs a closure. The problem was
+  addressing by splitting the building of a contraction from the body of the
+  contraction, so that these are now 2 nodes, making it easy for the closure
+  handling to get things right.
 
 - Global statements in function with local ``exec()`` would still use the value
-  from the locals dictionary. Nuitka is now compatible to CPython with this too.
+  from the locals dictionary. Nuitka is now compatible to CPython with this
+  too.
 
 - Nicolas fixed problems with modules of the same name inside different
   packages. We now use the full name including parent package names for code
@@ -44,7 +45,8 @@ Bug fixes
 - The ``__doc__`` attribute of classes was not set at all. Now it is.
 
 - The relative import inside nested packages now works correctly. With Nicolas
-  moving all of Nuitka to a package, the compile itself exposed many weaknesses.
+  moving all of Nuitka to a package, the compile itself exposed many
+  weaknesses.
 
 - A local re-raise of an exception didn't have the original line attached but
   the re-raise statement line.
@@ -73,8 +75,8 @@ New Features
 - The ``--display-tree`` feature got an overhaul and now displays the node tree
   along with the source code. It puts the cursor on the line of the node you
   selected. Unfortunately I cannot get it to work two-way yet. I will ask for
-  help with this in a separate posting as we can really use a "python-qt" expert
-  it seems.
+  help with this in a separate posting as we can really use a "python-qt"
+  expert it seems.
 
 - Added meaningful error messages in the "file not found" case. Previously I
   just didn't care, but we sort of approach end user usability with this.
@@ -83,9 +85,9 @@ New Optimization
 ----------------
 
 - Added optimization for the built-in ``range()`` which otherwise requires a
-  module and ``builtin`` module lookup, then parameter parsing. Now this is much
-  faster with Nuitka and small ranges (less than 256 values) are converted to
-  constants directly, avoiding run time overhead entirely.
+  module and ``builtin`` module lookup, then parameter parsing. Now this is
+  much faster with Nuitka and small ranges (less than 256 values) are converted
+  to constants directly, avoiding run time overhead entirely.
 
 - Code for re-raise statements now use a simple re-throw of the exception where
   possible, and only do the hard work where the re-throw is not inside an
@@ -96,9 +98,9 @@ New Optimization
 
 - Values of some built-ins are pre-computed if the operands are constants.
 
-- The value of module attribute ``__name__`` is replaced by a constant unless it
-  is assigned to. This is the first sign of upcoming constant propagation, even
-  if only a weak one.
+- The value of module attribute ``__name__`` is replaced by a constant unless
+  it is assigned to. This is the first sign of upcoming constant propagation,
+  even if only a weak one.
 
 - Conditional statement and/or their branches are eliminated where constant
   conditions allow it.
@@ -117,14 +119,16 @@ Cleanups
   and very long lines will vanish from Nuitka with time. Thanks for pushing me
   there.
 
-- Nicolas also did provide many style fixes and general improvements, e.g. using
-  ``PyObjectTemporary`` in more places in the C++ code, or not using
+- Nicolas also did provide many style fixes and general improvements, e.g.
+  using ``PyObjectTemporary`` in more places in the C++ code, or not using
   ``str.find`` where ``x in y`` is a better choice.
 
-- The node structure got cleaned up towards the direction that assignments always
-  have an assignment as a child. A function definition, or a class definition,
-  are effectively assignments, and in order to not have to treat this as special
-  cases everywhere, they need to have assignment targets as child nodes.
+- The node structure got cleaned up towards the direction that assignments
+  always have an assignment as a child.
+
+  A function definition, or a class definition, are effectively assignments,
+  and in order to not have to treat this as special cases everywhere, they need
+  to have assignment targets as child nodes.
 
   Without such changes, optimization will have to take too many things into
   account. This is not yet completed.
@@ -163,9 +167,9 @@ Cleanups
 New Tests
 ---------
 
-- The CPython 2.6 tests are now also run by CPython 2.7 and the other way around
-  and need to report the same test failure reports, which found a couple of
-  issues.
+- The CPython 2.6 tests are now also run by CPython 2.7 and the other way
+  around and need to report the same test failure reports, which found a couple
+  of issues.
 
 - Now the test suite is run with and without ``--debug`` mode.
 
@@ -173,9 +177,9 @@ New Tests
 
 - Program tests got extended to cover code in packages.
 
-- Added more exec scope tests. Currently inlining of exec statements is disabled
-  though, because it requires entirely different rules to be done right, it has
-  been pushed back to the next release.
+- Added more exec scope tests. Currently inlining of exec statements is
+  disabled though, because it requires entirely different rules to be done
+  right, it has been pushed back to the next release.
 
 Organizational
 --------------
@@ -199,16 +203,17 @@ Organizational
   this explains things a bit better now. I hope to expand this more and more
   with time.
 
-- There is now a "misc/clean-up.sh" script that prints the commands to erase all
-  the temporary files sticking around in the source tree. That is for you if you
-  like me, have other directories inside, ignored, that you don't want to
-  delete.
+- There is now a "misc/clean-up.sh" script that prints the commands to erase
+  all the temporary files sticking around in the source tree.
+
+  That is for you if you like me, have other directories inside, ignored, that
+  you don't want to delete.
 
 - Then there is now a script that prints all source filenames, so you can more
   easily open them all in your editor.
 
-- And very important, there is now a "check-release.sh" script that performs all
-  the tests I think should be done before making a release.
+- And very important, there is now a "check-release.sh" script that performs
+  all the tests I think should be done before making a release.
 
 - Pylint got more happy with the current Nuitka source. In some places, I added
   comments where rules should be granted exceptions.
@@ -233,7 +238,7 @@ and contains important bug and feature fixes to the users. The optimization
 framework only makes a first showing of with the framework to organize
 them. There is still work to do to migrate optimization previously present
 
-It will take more time before we will see effect from these. I believe that even
-more cleanups of ``TreeBuilding``, ``Nodes`` and ``CodeGeneration`` will be
-required, before everything is in place for the big jump in performance
+It will take more time before we will see effect from these. I believe that
+even more cleanups of ``TreeBuilding``, ``Nodes`` and ``CodeGeneration`` will
+be required, before everything is in place for the big jump in performance
 numbers. But still, passing 100% feels good. Time to rejoice.

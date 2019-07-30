@@ -6,8 +6,8 @@ improved compatibility and cleanups.
 The release cycle had a focus on fixing the bug reports I received. I have also
 continued to look at CPython3 compatibility, and this is the first version to
 support Python3 somewhat, at least some of the basic tests programs run (of
-course via ``2to3`` conversion) without trouble. I don't know when, but it seems
-that it's going to work one day.
+course via ``2to3`` conversion) without trouble. I don't know when, but it
+seems that it's going to work one day.
 
 Also there has an effort to make the Debian packaging cleaner, addressing all
 kinds of small issues that prevented it from entering the Debian
@@ -27,8 +27,8 @@ Bug fixes
   because when it did, it failed due to not being ported to new internal
   APIs. Released as 0.3.15c hot fix already.
 
-- Fixed ``eval()`` and ``locals()`` to be supported in generator expressions and
-  contractions too. Released as 0.3.15d hot fix already.
+- Fixed ``eval()`` and ``locals()`` to be supported in generator expressions
+  and contractions too. Released as 0.3.15d hot fix already.
 
 - Fixed the Windows batch files ``nuitka.bat`` and ``nuitka-python.bat`` to not
   output the ``rem`` statements with the copyright header. Released as 0.3.15d
@@ -43,9 +43,9 @@ Bug fixes
 - Fix handling of broken new lines in source files. Read the source code in
   "universal line ending mode". Released as 0.3.15f hot fix already.
 
-- Fixed handling of constant module attribute ``__name__`` being replaced. Don't
-  replace local variables of the same name too. Released as 0.3.15g hot fix
-  already.
+- Fixed handling of constant module attribute ``__name__`` being replaced.
+  Don't replace local variables of the same name too. Released as 0.3.15g
+  hot fix already.
 
 - Fixed assigning to ``True``, ``False`` or ``None``. There was this old
   ``TODO``, and some code has compatibility craft that does it. Released as
@@ -57,8 +57,8 @@ Bug fixes
 - Fix generator function objects to not require a return frame to exist. In
   finalize cleanup it may not.
 
-- Fixed non-execution of cleanup codes that e.g. flush ``sys.stdout``, by adding
-  ``Py_Finalize()``.
+- Fixed non-execution of cleanup codes that e.g. flush ``sys.stdout``, by
+  adding ``Py_Finalize()``.
 
 - Fix ``throw()`` method of generator expression objects to not check arguments
   properly.
@@ -84,13 +84,13 @@ New Optimization
 New Features
 ------------
 
-- As a new feature functions now have the ``func_defaults`` and ``__defaults__``
-  attribute. It works only well for non-nested parameters and is not yet fully
-  integrated into the parameter parsing. This improves the compatibility
-  somewhat already though.
+- As a new feature functions now have the ``func_defaults`` and
+  ``__defaults__`` attribute. It works only well for non-nested parameters and
+  is not yet fully integrated into the parameter parsing. This improves the
+  compatibility somewhat already though.
 
-- The names ``True``, ``False`` and ``None`` are now converted to constants only
-  when they are read-only module variables.
+- The names ``True``, ``False`` and ``None`` are now converted to constants
+  only when they are read-only module variables.
 
 - The ``PYTHONPATH`` variable is now cleared when immediately executing a
   compiled binary unless ``--execute-with-pythonpath`` is given, in which case
@@ -100,8 +100,8 @@ New Features
 Organizational
 --------------
 
-- The help output of Nuitka was polished a lot more. It is now more readable and
-  uses option groups to combine related options together.
+- The help output of Nuitka was polished a lot more. It is now more readable
+  and uses option groups to combine related options together.
 
 - The in-line copy of Scons is not checked with PyLint anymore. We of course
   don't care.
@@ -120,7 +120,8 @@ Cleanups
 
 - The Debian package has seen lots of improvements, to make it "lintian clean",
   even in pedantic mode. The homepage of Nuitka is listed, a watch file can
-  check for new releases, the git repository and the gitweb are referenced, etc.
+  check for new releases, the git repository and the gitweb are referenced,
+  etc.
 
 - Use ``os.path.join`` in more of the test code to achieve more Windows
   portability for them.
@@ -136,8 +137,9 @@ New Tests
   sure it really doesn't continue after the ``SystemExit`` exception that
   creates.
 
-- Cover the type of ``__builtins__`` in the main program and in imported modules
-  in tests too. It's funny and differs between module and dict in CPython2.
+- Cover the type of ``__builtins__`` in the main program and in imported
+  modules in tests too. It's funny and differs between module and dict in
+  CPython2.
 
 - Cover a final ``print`` statement without newline in the test. Must still
   receive a newline, which only happens when ``Py_Finalize()`` is called.
@@ -161,9 +163,9 @@ releases being made, so that the bugs could be addressed immediately without
 requiring the overhead of a full release. I believe that this makes Nuitka
 clearly one of the best supported projects.
 
-This quick turn-around also encourages people to report more bugs, which is only
-good. And the structure is there to hold it. Of course, the many bug fixes meant
-that there is not as much new development, but that is not the priority,
+This quick turn-around also encourages people to report more bugs, which is
+only good. And the structure is there to hold it. Of course, the many bug fixes
+meant that there is not as much new development, but that is not the priority,
 correctness is.
 
 The work on Python3 is a bit strange. I don't need Python3 at all. I also
@@ -180,5 +182,5 @@ is likely more things hidden, and the earlier Python3 is supported, the more
 benefit from increased test covered.
 
 What's missing is more "hg" completeness. I think only the ``raise`` without
-exception set and the ``func_defaults`` issue were going into its direction, but
-it won't be enough yet.
+exception set and the ``func_defaults`` issue were going into its direction,
+but it won't be enough yet.

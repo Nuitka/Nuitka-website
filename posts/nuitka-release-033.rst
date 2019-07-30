@@ -1,10 +1,10 @@
 This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This release of Nuitka continues the focus on performance. It also cleans up a
-few open topics. One is "doctests", these are now extracted from the CPython 2.6
-test suite more completely. The other is that the CPython 2.7 test suite is now
-passed completely. There is some more work ahead though, to extract all of the
-"doctests" and to do that for both versions of the tests.
+few open topics. One is "doctests", these are now extracted from the CPython
+2.6 test suite more completely. The other is that the CPython 2.7 test suite is
+now passed completely. There is some more work ahead though, to extract all of
+the "doctests" and to do that for both versions of the tests.
 
 This means an even higher level of compatibility has been achieved, then there
 is performance improvements, and ever cleaner structure.
@@ -19,11 +19,11 @@ Generators
   independently, now the common context is not released before the instance
   contexts are.
 
-- Generator functions didn't check the arguments to ``throw()`` the way they are
-  in CPython, now they are.
+- Generator functions didn't check the arguments to ``throw()`` the way they
+  are in CPython, now they do.
 
-- Generator functions didn't trace exceptions to "stderr" if they occurred while
-  closing unfinished ones in "del".
+- Generator functions didn't trace exceptions to "stderr" if they occurred
+  while closing unfinished ones in "del".
 
 - Generator functions used the slightly different wordings for some error
   messages.
@@ -40,8 +40,9 @@ Function Calls
 - Error message for duplicate keyword arguments or too little arguments now
   describe the duplicate parameter and the callable the same way CPython does.
 
-- Now checks to the keyword argument list first before considering the parameter
-  counts. This is slower in the error case, but more compatible with CPython.
+- Now checks to the keyword argument list first before considering the
+  parameter counts. This is slower in the error case, but more compatible with
+  CPython.
 
 Classes
 ~~~~~~~
@@ -76,9 +77,9 @@ Cleanups
 --------
 
 - The static helper classes, and the prelude code needed have been moved to
-  separate C++ files and are now accessed "#include". This makes the code inside
-  C++ files as opposed to a Python string and therefore easier to read and or
-  change.
+  separate C++ files and are now accessed "#include". This makes the code
+  inside C++ files as opposed to a Python string and therefore easier to read
+  and or change.
 
 New Features
 ------------

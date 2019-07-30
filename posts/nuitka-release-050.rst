@@ -155,9 +155,9 @@ of use. The new optimization do not give all that much in terms of numbers, but
 are all signs of structural improvements, and it is steadily approaching the
 point, where the really interesting stuff will happen.
 
-The progress for standalone mode is of course significant. It is still not quite
-there yet, but it is making quick progress now. This will attract a lot of
-attention hopefully.
+The progress for standalone mode is of course significant. It is still not
+quite there yet, but it is making quick progress now. This will attract a lot
+of attention hopefully.
 
 As for optimization, the focus for it has shifted to making exception handlers
 work optimal by default (publish the exception to sys.exc_info() and create

@@ -1,8 +1,8 @@
 This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This release includes progress on all fronts. The primary focus was to advance
-SSA optimization over older optimization code that was already in place. In this
-domain, there are mostly cleanups.
+SSA optimization over older optimization code that was already in place. In
+this domain, there are mostly cleanups.
 
 Another focus has been to enhance Scons with MSVC on Windows. Nuitka now finds
 an installed MSVC compiler automatically, properly handles architecture of
@@ -42,8 +42,8 @@ Bug Fixes
   already from registry, but it didn't honor the target architecture. `Issue#99
   <http://bugs.nuitka.net/issue99>`__. Fixed in 0.4.5.3 already.
 
-- When creating Python modules, these were marked as executable ("x" bit), which
-  they are of course not. Fixed in 0.4.5.3 already.
+- When creating Python modules, these were marked as executable ("x" bit),
+  which they are of course not. Fixed in 0.4.5.3 already.
 
 - Python3.3: On architectures where ``Py_ssize_t`` is not the same as ``long``
   this could lead to errors. Fixed in 0.4.5.3 already.
@@ -86,10 +86,11 @@ New Features
 New Optimization
 ----------------
 
-- Rich comparisons (``==``, ``<``, and the like) are now faster than ever before
-  due to a full implementation of its own in Nuitka that eliminates a bit of the
-  overhead. In the future, we will aim at giving it type hints to make it even
-  faster. This gives a minor speed boost to PyStone of ca. 0.7% overall.
+- Rich comparisons (``==``, ``<``, and the like) are now faster than ever
+  before due to a full implementation of its own in Nuitka that eliminates a
+  bit of the overhead. In the future, we will aim at giving it type hints to
+  make it even faster. This gives a minor speed boost to PyStone of ca. 0.7%
+  overall.
 
 - Integer comparisons are now treated preferably, as they are in CPython, which
   gives 1.3% speed boost to CPython.
@@ -101,8 +102,8 @@ Cleanups
 --------
 
 - Replaced "value friend" based optimization code with SSA based optimization,
-  which allowed to remove complicated and old code that was still used mainly in
-  optimization of ``or`` and ``and`` expressions.
+  which allowed to remove complicated and old code that was still used mainly
+  in optimization of ``or`` and ``and`` expressions.
 
 - Delayed declaration of temp variables and their reference type is now
   performed based on information from SSA, which may given more accurate

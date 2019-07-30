@@ -88,8 +88,8 @@ Organizational
 --------------
 
 - The movement to pure C got the final big push. All C++ only idoms of C++ were
-  removed, and everything works with C11 compilers. A C++03 compiler can be used
-  as a fallback, in case of MSVC or too old gcc for instance.
+  removed, and everything works with C11 compilers. A C++03 compiler can be
+  used as a fallback, in case of MSVC or too old gcc for instance.
 
 - Using pure C, MinGW64 6x is now working properly. The latest version had
   problems with ``hypot`` related changes in the C++ standard library. Using

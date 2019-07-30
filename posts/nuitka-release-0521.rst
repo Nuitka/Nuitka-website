@@ -30,8 +30,8 @@ New Features
   variant.
 
 - Compile modules in two passes with the option to specify which modules will
-  be considered for a second pass at all (compiled without program optimization)
-  or even become bytecode.
+  be considered for a second pass at all (compiled without program
+  optimization) or even become bytecode.
 
 - The developer mode installation of Nuitka in ``develop`` mode with the
   command ``pip install -e nuitka_git_checkout_dir`` is now supported too.
@@ -39,9 +39,10 @@ New Features
 Optimization
 ------------
 
-- Popular modules known to not be performance relevant are no longer C compiled,
-  e.g. ``numpy.distutils`` and many others frequently imported (from some other
-  module), but mostly not used and definitely not performance relevant.
+- Popular modules known to not be performance relevant are no longer C
+  compiled, e.g. ``numpy.distutils`` and many others frequently imported (from
+  some other module), but mostly not used and definitely not performance
+  relevant.
 
 Cleanups
 --------

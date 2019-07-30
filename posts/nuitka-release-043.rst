@@ -14,8 +14,8 @@ New Features
 
 - Support for NetBSD.
 
-  Nuitka works for at least NetBSD 6.0, older versions may or may not work. This
-  required fixing bugs in the generic "fibers" implementation.
+  Nuitka works for at least NetBSD 6.0, older versions may or may not work.
+  This required fixing bugs in the generic "fibers" implementation.
 
 - Support for Python3 under Windows too.
 
@@ -95,8 +95,8 @@ New Optimization
 
 - For Windows now uses OS "Fibers" for Nuitka "Fibers".
 
-  Using threads for fibers was causing only overhead and with this API, MSVC had
-  less issues too.
+  Using threads for fibers was causing only overhead and with this API, MSVC
+  had less issues too.
 
 Organizational
 --------------
@@ -141,8 +141,8 @@ Cleanups
 - PyLint massive cleanups and annotations bringing down the number of warnings
   by a lot.
 
-- Avoid use of strings and built-ins as run time pre-computed constants that are
-  not needed for specific Python versions, or Nuitka modes.
+- Avoid use of strings and built-ins as run time pre-computed constants that
+  are not needed for specific Python versions, or Nuitka modes.
 
 - Do not track needed tuple, list, and dict creation code variants in context,
   but e.g. in ``nuitka.codegen.TupleCodes`` module instead.
@@ -164,6 +164,6 @@ Summary
 The release is clearly major step ahead. The new platform support triggered a
 whole range of improvements, and means this is truly complete now.
 
-Also there is very much polish in this release, reducing the number of warnings,
-updated documentation, the only thing really missing is visible progress with
-optimization.
+Also there is very much polish in this release, reducing the number of
+warnings, updated documentation, the only thing really missing is visible
+progress with optimization.

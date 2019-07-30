@@ -23,8 +23,8 @@ Bug fixes
 Organizational
 --------------
 
-- I now maintain the "README.txt" in org-mode, and intend to use it as the issue
-  tracker, but I am still a beginner at that.
+- I now maintain the "README.txt" in org-mode, and intend to use it as the
+  issue tracker, but I am still a beginner at that.
 
   .. admonition:: Update
 
@@ -32,8 +32,8 @@ Organizational
 
 - There is a public git repository for you to track Nuitka releases. Make your
   changes and then ``git pull --rebase``. If you encounter conflicts in things
-  you consider useful, please submit the patches and a pull offer. When you make
-  your clones of Nuitka public, use ``nuitka-unofficial`` or not the name
+  you consider useful, please submit the patches and a pull request. When you
+  make your clones of Nuitka public, use ``nuitka-unofficial`` or not the name
   ``Nuitka`` at all.
 
 - There is a now a `mailing list <http://nuitka.net/pages/mailinglist.html>`__
@@ -42,9 +42,9 @@ Organizational
 Reduced Differences
 -------------------
 
-- Did you know you could write ``lambda : (yield something)`` and it gives you a
-  lambda that creates a generator that produces that one value? Well, now Nuitka
-  has support for lambda generator functions.
+- Did you know you could write ``lambda : (yield something)`` and it gives you
+  a lambda that creates a generator that produces that one value? Well, now
+  Nuitka has support for lambda generator functions.
 
 - The ``from __future__ import division`` statement works as expected now,
   leading to some newly passing CPython tests.
@@ -63,8 +63,8 @@ New Features
 - Inlining of ``exec`` statements with constant expressions. These are now
   compiled at compile time, not at run time anymore. I observed that an
   increasing number of CPython tests use exec to do things in isolation or to
-  avoid warnings, and many more these tests will now be more effective. I intend
-  to do the same with eval expressions too, probably in a minor release.
+  avoid warnings, and many more these tests will now be more effective. I
+  intend to do the same with eval expressions too, probably in a minor release.
 
 Summary
 -------

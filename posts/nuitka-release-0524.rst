@@ -8,9 +8,9 @@ for Pure C support.
 Bug Fixes
 ---------
 
-- Windows: The 3.5.2 coroutine new protocol implementation was using the wrapper
-  from CPython, but it's not part of the ABI on Windows. Have our own instead.
-  Fixed in 0.5.23.1 already.
+- Windows: The 3.5.2 coroutine new protocol implementation was using the
+  wrapper from CPython, but it's not part of the ABI on Windows. Have our own
+  instead. Fixed in 0.5.23.1 already.
 
 - Windows: Fixed second compilation with MSVC failing. The files renamed to be
   C++ files already existed, crashing the compilation. Fixed in 0.5.23.1
@@ -48,10 +48,10 @@ Optimization
   objects, avoiding the need to create and delete this kind of objects in a
   loop.
 
-- Added support for the built-in ``sum``, making slight optimizations to be much
-  faster when iterating over lists and tuples, as well as fast ``long`` sum for
-  Python2, and much faster ``bool`` sums too. This is using a prototype version
-  of a "qiter" concept.
+- Added support for the built-in ``sum``, making slight optimizations to be
+  much faster when iterating over lists and tuples, as well as fast ``long``
+  sum for Python2, and much faster ``bool`` sums too. This is using a prototype
+  version of a "qiter" concept.
 
 - Provide type shape for ``xrange`` calls that are not constant too, allowing
   for better optimization related to those.
@@ -71,11 +71,11 @@ Tests
 Summary
 -------
 
-This release improves very heavily on generators in Nuitka. The memory allocator
-is used more cleverly, and free lists all around save a lot of interactions with
-it. More work lies ahead in this field, as these are not yet as fast as they
-should be. However, at least Nuitka should be faster than CPython for these kind
-of usages now.
+This release improves very heavily on generators in Nuitka. The memory
+allocator is used more cleverly, and free lists all around save a lot of
+interactions with it. More work lies ahead in this field, as these are not yet
+as fast as they should be. However, at least Nuitka should be faster than
+CPython for these kind of usages now.
 
 Also, proper pure C in the Scons is relatively important to cover more of the
 rarer use cases, where the C compiler is too old.

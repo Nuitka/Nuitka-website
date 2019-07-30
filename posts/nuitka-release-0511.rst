@@ -2,7 +2,8 @@ This is to inform you about the new stable release of `Nuitka <http://nuitka.net
 
 The last release represented a significant change and introduced a few
 regressions, which got addressed with hot fix releases. But it also had a focus
-on cleaning up open optimization issues that were postponed in the last release.
+on cleaning up open optimization issues that were postponed in the last
+release.
 
 New Features
 ------------

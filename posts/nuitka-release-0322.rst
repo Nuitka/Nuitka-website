@@ -1,13 +1,13 @@
 This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
-This release is a continuation of the trend of previous releases, and added more
-re-formulations of Python that lower the burden on code generation and
+This release is a continuation of the trend of previous releases, and added
+more re-formulations of Python that lower the burden on code generation and
 optimization.
 
 It also improves Python3 support substantially. In fact this is the first
-release to not only run itself under Python3, but for Nuitka to *compile itself*
-with Nuitka under Python3, which previously only worked for Python2. For the
-common language subset, it's quite fine now.
+release to not only run itself under Python3, but for Nuitka to *compile
+itself* with Nuitka under Python3, which previously only worked for Python2.
+For the common language subset, it's quite fine now.
 
 Bug fixes
 ---------
@@ -78,8 +78,8 @@ New Optimization
 - Avoid frame stack entries for functions that cannot raise exceptions,
   i.e. where they would not be used.
 
-  This avoids overhead for the very simple functions. And example of this can be
-  seen here:
+  This avoids overhead for the very simple functions. And example of this can
+  be seen here:
 
   .. code-block:: python
 
@@ -209,9 +209,9 @@ New Tests
 Summary
 -------
 
-This release offers enhanced compatibility with Python3, as well as the solution
-to many structural problems. Calculating lengths of large non-constant values at
-compile time, is technically a break through, as is avoiding lengthy
+This release offers enhanced compatibility with Python3, as well as the
+solution to many structural problems. Calculating lengths of large non-constant
+values at compile time, is technically a break through, as is avoiding lengthy
 calculations. The frame guards as nodes is a huge improvement, making that
 costly operational possible to be optimized away.
 

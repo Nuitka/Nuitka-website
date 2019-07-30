@@ -1,8 +1,8 @@
 This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This release brings about changes on all fronts, bug fixes, new features. Also
-very importantly Nuitka no longer uses C++11 for its code, but mere C++03. There
-is new re-formulation work, and re-factoring of functions.
+very importantly Nuitka no longer uses C++11 for its code, but mere C++03.
+There is new re-formulation work, and re-factoring of functions.
 
 But the most important part is this: Mercurial unit tests are
 working. Nearly. With the usual disclaimer of me being wrong, all remaining
@@ -27,8 +27,8 @@ Bug fixes
   Both tuples had the same name previously, not the end of the tuple is marked
   too. Fixed in 0.3.24.1 already.
 
-- The ``__name__`` when used read-only in modules in packages was optimized to a
-  string value that didn't contain the package name.
+- The ``__name__`` when used read-only in modules in packages was optimized to
+  a string value that didn't contain the package name.
 
 - Exceptions set when entering compiled functions were unset at function exit.
 
@@ -44,8 +44,8 @@ New Features
   local variables attached to exception tracebacks is something we may be able
   to solve now.
 
-- Enhanced Python3 support, added support for ``nonlocal`` declarations and many
-  small corrections for it.
+- Enhanced Python3 support, added support for ``nonlocal`` declarations and
+  many small corrections for it.
 
 - Writable ``__defaults__`` attribute for compiled functions, actually changes
   the default value used at call time. Not supported is changing the amount of
@@ -120,8 +120,8 @@ Organizational
   causing the C++ source code to not be updated, so manual changes will the
   used. This solves `Issue#47 <http://bugs.nuitka.net/issue47>`__.
 
-- Catch exceptions for ``continue``, ``break``, and ``return`` only where needed
-  for ``try``/``finally`` and loop constructs.
+- Catch exceptions for ``continue``, ``break``, and ``return`` only where
+  needed for ``try``/``finally`` and loop constructs.
 
 New Tests
 ---------
@@ -140,9 +140,9 @@ Summary
 
 This release marks an important point. The compiled frames are exciting new
 technology, that will allow even better integration with CPython, while
-improving speed. Lowering the requirements to C++03 means, we will become usable
-on Android and with MSVC, which will make adoption of Nuitka on Windows easier
-for many.
+improving speed. Lowering the requirements to C++03 means, we will become
+usable on Android and with MSVC, which will make adoption of Nuitka on Windows
+easier for many.
 
 Structurally the outstanding part is the function as references cleanup. This
 was a blocker for value propagation, because now functions references can be

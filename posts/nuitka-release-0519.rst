@@ -46,9 +46,10 @@ Optimization
   from assigning ``value["c"]`` anymore and creates more efficient code for the
   typical ``result = {}`` functions.
 
-- The use of "logical" sharing during optimization has been replaced with checks
-  for actual sharing. So closure variables that were written to in dead code no
-  longer inhibit optimization of the then no more shared local variable.
+- The use of "logical" sharing during optimization has been replaced with
+  checks for actual sharing. So closure variables that were written to in dead
+  code no longer inhibit optimization of the then no more shared local
+  variable.
 
 - Global variable traces are now faster to decide definite writes without need
   to check traces for this each time.

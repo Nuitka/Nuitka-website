@@ -6,8 +6,8 @@ portability work.
 This release is generally cleaning up things, and makes Nuitka portable to ARM
 Linux. I used to host the Nuitka homepage on that machine, but now that it's no
 longer so, I can run heavy compile jobs on it. To my surprise, it found many
-portability problems. So I chose to fix that first, the result being that Nuitka
-now works on ARM Linux too.
+portability problems. So I chose to fix that first, the result being that
+Nuitka now works on ARM Linux too.
 
 Bug fixes
 ---------
@@ -16,15 +16,15 @@ Bug fixes
   that with new tests only. So the porting to ARM revealed a bug category, I
   previously didn't consider.
 
-- The use of ``linux2`` in the Scons file is potentially incompatible with Linux
-  3.0, although it seems that at least on Debian the ``sys.platform`` was
+- The use of ``linux2`` in the Scons file is potentially incompatible with
+  Linux 3.0, although it seems that at least on Debian the ``sys.platform`` was
   changed back to ``linux2``. Anyway, it's probably best to allow just anything
   that starts with ``linux`` these days.
 
 - The ``print`` statement worked like a ``print`` function, i.e. it first
   evaluated all printed expressions, and did the output only then. That is
-  incompatible in case of exceptions, where partial outputs need to be done, and
-  so that got fixed.
+  incompatible in case of exceptions, where partial outputs need to be done,
+  and so that got fixed.
 
 New Optimization
 ----------------
@@ -64,8 +64,8 @@ New Tests
   evaluation. These problems were otherwise very hard to detect, and in some
   cases not previously covered at all.
 
-- Executing Nuitka with Python3 (it won't produce correct Python3 C/API code) is
-  now part of the release tests, so non-portable code of Nuitka gets caught.
+- Executing Nuitka with Python3 (it won't produce correct Python3 C/API code)
+  is now part of the release tests, so non-portable code of Nuitka gets caught.
 
 Organizational
 --------------
@@ -83,11 +83,12 @@ Organizational
 
 - Unlike previously, there is ``master`` branch for the stable release.
 
-- There is a script "make-dependency-graph.sh" (Update: meanwhile it was renamed
-  to "make-dependency-graph.py") to produce a dependency graphs of Nuitka. I
-  detected a couple of strange things through this.
+- There is a script "make-dependency-graph.sh" (Update: meanwhile it was
+  renamed to "make-dependency-graph.py") to produce a dependency graphs of
+  Nuitka. I detected a couple of strange things through this.
 
-- The Python3 ``__pycache__`` directories get removed too by the cleanup script.
+- The Python3 ``__pycache__`` directories get removed too by the cleanup
+  script.
 
 Numbers
 -------
@@ -106,9 +107,9 @@ Nuitka 0.3.11 (driven by python 2.6)::
   This machine benchmarks at 263158 pystones/second
 
 So this a speedup factor of 258%, last time on another machine it was 240%. Yet
-it only proves that the generated and compiled are more efficient than bytecode,
-but Nuitka doesn't yet do the relevant optimization. Only once it does, the
-factor will be significantly higher.
+it only proves that the generated and compiled are more efficient than
+bytecode, but Nuitka doesn't yet do the relevant optimization. Only once it
+does, the factor will be significantly higher.
 
 Summary
 -------

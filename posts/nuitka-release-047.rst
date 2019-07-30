@@ -23,8 +23,8 @@ Bug Fixes
 - Python3: Fix, modules and packages didn't add themselves to ``sys.modules``
   which they should, happened only for programs.
 
-- Python3.3: Packages should set ``__package`` to their own name, not the one of
-  their parents.
+- Python3.3: Packages should set ``__package`` to their own name, not the one
+  of their parents.
 
 - Python3.3: The ``__qualname__`` of nested classes was corrected.
 
@@ -60,7 +60,8 @@ New Optimization
   ca. 2.5% overall.
 
 - Python2: Faster attribute getting and setting, handling special cases at
-  compile time. This gives a minor speed boost to "PyStone" of ca. 0.5% overall.
+  compile time. This gives a minor speed boost to "PyStone" of ca. 0.5%
+  overall.
 
 - Python2: Much quicker calls of ``__getattr__`` and ``__setattr__`` as this is
   now using the quicker call method avoiding temporary tuples.
@@ -96,11 +97,12 @@ Organizational
 
 - The "standalone mode" code (formerly known as "portable mode" has been redone
   and activated. This is a feature that a lot of people expect from a compiler
-  naturally. And although the overall goal for Nuitka is of course acceleration,
-  this kind of packaging is one of the areas where CPython needs improvement.
+  naturally. And although the overall goal for Nuitka is of course
+  acceleration, this kind of packaging is one of the areas where CPython needs
+  improvement.
 
-- Added package for Ubuntu 13.10 for download, removed packages for Ubuntu 11.04
-  and 11.10, no more supported.
+- Added package for Ubuntu 13.10 for download, removed packages for Ubuntu
+  11.04 and 11.10, no more supported.
 
 - Added package for openSUSE 13.1 for download.
 
@@ -156,9 +158,9 @@ Cleanups
 - The code generation use variable identifiers and their accesses was cleaned
   up.
 
-- Removed several not-so-special case identifier classes because they now behave
-  more identical and all work the same way, so a parameters can be used to
-  distinguish them.
+- Removed several not-so-special case identifier classes because they now
+  behave more identical and all work the same way, so a parameters can be used
+  to distinguish them.
 
 - Moved main program, function object, set related code generation to dedicated
   modules.
@@ -171,9 +173,9 @@ much sought standalone mode and performance improvements from improved code
 generation.
 
 The major break through for SSA optimization was not yet achieved, but this is
-again making progress in the direction of it. Harmonizing variables of different
-kinds was an important step ahead.
+again making progress in the direction of it. Harmonizing variables of
+different kinds was an important step ahead.
 
 Also very nice is the packaging progress, Nuitka was accepted into Arch after
-being in Debian Testing for a while already. Hope is to see more of this kind of
-integration in the future.
+being in Debian Testing for a while already. Hope is to see more of this kind
+of integration in the future.

@@ -4,7 +4,8 @@ This is to inform you about the new release of Nuitka many bug fixes, and
 substantial improvements especially in the organizational area. There is a new
 "`User Manual <http://nuitka.net/doc/user-manual.html>`__" (`PDF
 <http://nuitka.net/doc/user-manual.pdf>`__), with much improved content, a
-``sys.meta_path`` based import mechanism for ``--deep`` mode, git flow goodness.
+``sys.meta_path`` based import mechanism for ``--deep`` mode, git flow
+goodness.
 
 This release is generally also the result of working towards compilation of a
 real programs (Mercurial) and to get things work more nicely on Windows by
@@ -43,9 +44,10 @@ Bug fixes
   other than appearing twice in the list if frozen modules. Fixed in 0.3.11d
   already.
 
-- When embedding modules from outside current directory, the look-up failed. The
-  embedding only ever worked for the compile itself and programs test cases,
-  because they are all in the current directory then. Fixed in 0.3.11e already.
+- When embedding modules from outside current directory, the look-up failed.
+  The embedding only ever worked for the compile itself and programs test
+  cases, because they are all in the current directory then. Fixed in 0.3.11e
+  already.
 
 - The check for ARM target broke Windows support in the Scons file. Fixed in
   0.3.11f already.
@@ -71,9 +73,9 @@ Bug fixes
 - Cleaning up the build directory from old sources and object files wasn't
   portable to Windows and therefore wasn't effective there.
 
-- From imports where part of the imported were found modules and parts were not,
-  didn't work. Solved by the feature branch ``meta_path_import`` that was merged
-  for this release.
+- From imports where part of the imported were found modules and parts were
+  not, didn't work. Solved by the feature branch ``meta_path_import`` that was
+  merged for this release.
 
 - Newer MinGW gave warnings about the default visibility not being possible to
   apply to class members. Fixed by not setting this default visibility anymore
@@ -95,8 +97,8 @@ Cleanups
   branch allowed the cleanup the way importing is done. It's a lot less code
   now.
 
-- Removed some unused code. We will aim at making Nuitka the tool to detect dead
-  code really.
+- Removed some unused code. We will aim at making Nuitka the tool to detect
+  dead code really.
 
 - Moved ``nuitka.Nodes`` to ``nuitka.nodes.Nodes``, that is what the package is
   intended for, the split will come later.
@@ -108,9 +110,9 @@ New Tests
   imports. Imports from a package one level up. Modules hidden by a package
   variable, etc.
 
-- Added test of function call variant that had no test previously. Only found it
-  when compiling "hg". Amazing how nothing in my tests, CPython tests, etc. used
-  it.
+- Added test of function call variant that had no test previously. Only found
+  it when compiling "hg". Amazing how nothing in my tests, CPython tests, etc.
+  used it.
 
 - Added test to cover the partial success of import statements.
 
@@ -119,8 +121,8 @@ New Tests
 Organizational
 --------------
 
-- Migrated the "README.txt" from org-mode to ReStructured Text, which allows for
-  a more readable document, and to generate a nice "`User Manual
+- Migrated the "README.txt" from org-mode to ReStructured Text, which allows
+  for a more readable document, and to generate a nice "`User Manual
   <http://nuitka.net/doc/user-manual.html>`__" in PDF form.
 
 - The amount of information in "README.txt" was increased, with many more
@@ -131,9 +133,9 @@ Organizational
 - The Nuitka git repository has seen multiple hot fixes.
 
   These allowed to publish bug fixes immediately after they were made, and
-  avoided the need for a new release just to get these out. This really saves me
-  a lot of time too, because I can postpone releasing the new version until it
-  makes sense because of other things.
+  avoided the need for a new release just to get these out. This really saves
+  me a lot of time too, because I can postpone releasing the new version until
+  it makes sense because of other things.
 
 - Then there was a feature branch ``meta_path_import`` that lived until being
   merged to ``develop`` to improve the import code, which is now released on
@@ -145,10 +147,10 @@ Organizational
   a frame stack working there, albeit in too ugly code form.
 
 - The release archives are now built using ``setuptools``. You can now also
-  download a zip file, which is probably more Windows friendly. The intention is
-  to work on that to make ``setup.py`` produce a Nuitka install that won't rely
-  on any environment variables at all. Right now ``setup.py`` won't even allow
-  any other options than ``sdist`` to be given.
+  download a zip file, which is probably more Windows friendly. The intention
+  is to work on that to make ``setup.py`` produce a Nuitka install that won't
+  rely on any environment variables at all. Right now ``setup.py`` won't even
+  allow any other options than ``sdist`` to be given.
 
 - Ported "compile_itself.sh" to "compile_itself.py", i.e. ported it to
   Python. This way, we can execute it easily on Windows too, where it currently
@@ -156,8 +158,8 @@ Organizational
   reduces the dependency on MSYS tools on Windows.
 
 - The compilation of standard library is disabled by default, but ``site`` or
-  ``dist`` packages are now embedded. To include even standard library, there is
-  a ``--really-deep`` option that has to be given in addition to ``--deep``,
+  ``dist`` packages are now embedded. To include even standard library, there
+  is a ``--really-deep`` option that has to be given in addition to ``--deep``,
   which forces this.
 
 Summary

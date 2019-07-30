@@ -100,8 +100,8 @@ Optimization
   replaced by a generic "attach" mechanism which merely stores the values,
   and only takes a reference. When asked for frame locals, it only then builds
   the dictionary. So this is now only done, when that is absolutely necessary,
-  which it normally never is. This of course makes the C code much less verbose,
-  and actual handling of exceptions much more efficient.
+  which it normally never is. This of course makes the C code much less
+  verbose, and actual handling of exceptions much more efficient.
 
 - For imports, we now detect for built-in modules, that their import cannot
   fail, and if name lookups can fail. This leads to less code generated for
@@ -156,9 +156,9 @@ Cleanups
   deletions of directories on e.g. Windows, where locks tend to live for short
   times beyond program ends, requiring second attempts.
 
-- Code generation for existing supported types, ``PyObject *``, ``PyObject **``,
-  and ``struct Nuitka_CellObject *`` is now done via a C type class hierarchy
-  instead of ``elif`` sequences.
+- Code generation for existing supported types, ``PyObject *``,
+  ``PyObject **``, and ``struct Nuitka_CellObject *`` is now done via a C type
+  class hierarchy instead of ``elif`` sequences.
 
 - Closure taking is now always done immediately correctly and references are
   take for closure variables still needed, making sure the tree is correct and

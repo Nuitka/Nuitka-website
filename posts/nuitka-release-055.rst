@@ -67,8 +67,8 @@ Bug Fixes
 - Line numbers for exceptions were corrupted by ``with`` statements due to
   setting line numbers even for statements marked as internal.
 
-- Partial support for ``win32com`` by adding support for its hidden ``__path__``
-  change.
+- Partial support for ``win32com`` by adding support for its hidden
+  ``__path__`` change.
 
 - Python3: Finally figured out proper chaining of exceptions, given proper
   context messages for exception raised during the handling of exceptions.
@@ -90,10 +90,10 @@ Bug Fixes
 - Windows: Added support for different path layout there, so using virtualenv
   should work there too.
 
-- The code object flag "optimized" (fast locals as opposed to locals dictionary)
-  for functions was set wrongly to value for the parent, but for frames inside
-  it, one with the correct value. This lead to more code objects than necessary
-  and false ``co_flags`` values attached to the function.
+- The code object flag "optimized" (fast locals as opposed to locals
+  dictionary) for functions was set wrongly to value for the parent, but for
+  frames inside it, one with the correct value. This lead to more code objects
+  than necessary and false ``co_flags`` values attached to the function.
 
 - Options passed to ``nuitka-python`` could get lost.
 

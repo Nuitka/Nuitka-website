@@ -2,8 +2,8 @@ This is to inform you about the new stable release of `Nuitka <http://nuitka.net
 
 This is a maintenance release, largely intended to put out improved support for
 new platforms and minor corrections. It should improve the speed for standalone
-mode, and compilation in general for some use cases, but this is mostly to clean
-up open ends.
+mode, and compilation in general for some use cases, but this is mostly to
+clean up open ends.
 
 Bug Fixes
 ---------
@@ -71,12 +71,12 @@ Optimization
   for the locals dictionary in modules.
 
 - The ``try`` node was making a description of nodes moved to the outside when
-  shrinking its scope, which was using a lot of time, just to not be output, now
-  these can be postponed.
+  shrinking its scope, which was using a lot of time, just to not be output,
+  now these can be postponed.
 
-- Refactored how freezing of bytecode works. Uncompiled modules are now explicit
-  nodes too, and in the registry. We only have one or the other of it, avoiding
-  to compile both.
+- Refactored how freezing of bytecode works. Uncompiled modules are now
+  explicit nodes too, and in the registry. We only have one or the other of it,
+  avoiding to compile both.
 
 Tests
 -----
@@ -118,8 +118,8 @@ Cleanups
   function body node base class. This allowed removing class specific code from
   that class.
 
-- The use of "win_target" as a scons parameter was useless. Make more consistent
-  use of it as a flag indicator in the scons file.
+- The use of "win_target" as a scons parameter was useless. Make more
+  consistent use of it as a flag indicator in the scons file.
 
 - Compiled types were mixing uses of ``compiled_`` prefixes, something with
   a space, sometimes with an underscore.

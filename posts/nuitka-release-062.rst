@@ -17,7 +17,8 @@ Bug Fixes
   on some platforms they can also contain code that fails to import without
   error.
 
-- Standalone: Added missing implicit dependency needed for newer NumPy versions.
+- Standalone: Added missing implicit dependency needed for newer NumPy
+  versions.
 
 New Features
 ------------
@@ -37,8 +38,8 @@ New Features
 
 - There is now a ``__compiled__`` attribute for each module that Nuitka has
   compiled. Should be like this now, and contains Nuitka version information
-  for you to use, similar to what ``sys.version_info`` gives as a ``namedtuple``
-  for your checks.
+  for you to use, similar to what ``sys.version_info`` gives as a
+  ``namedtuple`` for your checks.
 
   .. code-block:: python
 

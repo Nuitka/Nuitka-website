@@ -44,8 +44,8 @@ New Optimization
 - The ``try``/``finally`` and ``try``/``except`` constructs are now eliminated,
   where that is possible.
 
-- The ``try``/``finally`` part of the re-formulation for ``print`` statements is
-  now only done when printing to a file, avoiding useless node tree bloat.
+- The ``try``/``finally`` part of the re-formulation for ``print`` statements
+  is now only done when printing to a file, avoiding useless node tree bloat.
 
 - Tuples and lists are now generated with faster code.
 
@@ -78,8 +78,8 @@ Bug Fixes
   generation doesn't burden the compiler as much. `Issue#127
   <http://bugs.nuitka.net/issue127>`__.
 
-- Compatibility: The timing deletion of nested call arguments was different from
-  C++. This shortcoming has been addressed in the rewritten code
+- Compatibility: The timing deletion of nested call arguments was different
+  from C++. This shortcoming has been addressed in the rewritten code
   generation. `Issue#62 <http://bugs.nuitka.net/issue62>`__.
 
 - Compatibility: The ``__future__`` flags and ``CO_FREECELL`` were not present
@@ -111,9 +111,9 @@ Bug Fixes
   <http://bugs.nuitka.net/issue5>`__ is finally fixed after all this time thanks
   to C-ish code generation.
 
-- Compatibility: The order or call arguments deletion is now finally compatible.
-  `Issue#62 <http://bugs.nuitka.net/issue62>`__ also is finally fixed. This too
-  is thanks to C-ish code generation.
+- Compatibility: The order or call arguments deletion is now finally
+  compatible. `Issue#62 <http://bugs.nuitka.net/issue62>`__ also is finally
+  fixed. This too is thanks to C-ish code generation.
 
 - Compatibility: Code object flags are now more compatible for Python3.
 
@@ -127,8 +127,8 @@ Bug Fixes
   ``NameError`` exceptions. Fixed in 0.5.1.6 already.
 
 - Compatibility: Many ``exec`` and ``eval`` details have become more correctly,
-  the argument handling is more compatible, and e.g. future flags are now passed
-  along properly.
+  the argument handling is more compatible, and e.g. future flags are now
+  passed along properly.
 
 - Compatibility: Using ``open`` with no arguments is now giving the same error.
 
@@ -190,8 +190,8 @@ Cleanups
 New Tests
 ---------
 
-- Warnings from MSVC are now error exits for ``--debug`` mode too, expanding the
-  coverage of these tests.
+- Warnings from MSVC are now error exits for ``--debug`` mode too, expanding
+  the coverage of these tests.
 
 - The outputs with ``python-dbg`` can now also be compared, allowing to expand
   test coverage for reference counts.
@@ -218,8 +218,9 @@ class of variables, temporary keepers, has been eliminated. This is big news in
 this domain.
 
 For the standalone users, there are lots of refinements. There is esp. a lot of
-work to create code that doesn't show scalability issues. While some remain, the
-most important problems have been dealt with. Others are still in the pipeline.
+work to create code that doesn't show scalability issues. While some remain,
+the most important problems have been dealt with. Others are still in the
+pipeline.
 
 More work will be needed to take full advantage. This has been explained in a
 `separate post <http://nuitka.net/posts/state-of-nuitka.html>`__ in greater

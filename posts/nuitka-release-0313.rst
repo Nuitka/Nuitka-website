@@ -9,8 +9,8 @@ Actually now it's only the "bytecode" objects that won't be there. And not
 attributes of ``func_code`` are meaningful yet, but in theory can be supported.
 
 Due to the use of the "git flow" for Nuitka, most of the bugs listed here were
-already fixed in on the stable release before this release. This time there were
-5 such hot fix releases, sometimes fixing multiple bugs.
+already fixed in on the stable release before this release. This time there
+were 5 such hot fix releases, sometimes fixing multiple bugs.
 
 Bug fixes
 ---------
@@ -56,8 +56,8 @@ Bug fixes
   supported now, solving this ``TODO`` and reducing the difference. Fixed in
   0.3.12e already.
 
-- The order of evaluation for ``in`` and ``not in`` operators wasn't enforced in
-  a portable way. Now it is correct on "ARM" too. Fixed in 0.3.12e already.
+- The order of evaluation for ``in`` and ``not in`` operators wasn't enforced
+  in a portable way. Now it is correct on "ARM" too. Fixed in 0.3.12e already.
 
 New Optimization
 ----------------
@@ -109,9 +109,9 @@ Summary
 
 The frame stack work and the ``func_code`` are big for compatibility.
 
-The ``func_code`` was also needed for "hg" to work. For Mercurial to pass all of
-its test suite, more work will be needed, esp. the ``inspect`` module needs to
-be run-time patched to accept compiled functions and generators too.
+The ``func_code`` was also needed for "hg" to work. For Mercurial to pass all
+of its test suite, more work will be needed, esp. the ``inspect`` module needs
+to be run-time patched to accept compiled functions and generators too.
 
 Once real world programs like Mercurial work, we can use these as more
 meaningful benchmarks and resume work on optimization.

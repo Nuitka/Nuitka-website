@@ -53,12 +53,12 @@ Cleanups
 
   Now much of the generated C++ code is much more readable and white space
   cleaner. For optimization to be done, the humans need to be able to read the
-  generated code too. Mind you, the aim is not to produce usable C++, but on the
-  other hand, it must be possible to understand it.
+  generated code too. Mind you, the aim is not to produce usable C++, but on
+  the other hand, it must be possible to understand it.
 
-- To the same end of readability, the empty ``else {}`` branches are avoided for
-  ``if``, ``while`` and ``for`` loops. While the C++ compiler can be expected to
-  remove these, they seriously cluttered up things.
+- To the same end of readability, the empty ``else {}`` branches are avoided
+  for ``if``, ``while`` and ``for`` loops. While the C++ compiler can be
+  expected to remove these, they seriously cluttered up things.
 
 - The constant management code in ``Context`` was largely simplified. Now the
   code is using the ``Constant`` class to find its way around the problem that

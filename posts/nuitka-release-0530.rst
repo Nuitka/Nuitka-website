@@ -13,8 +13,8 @@ Bug Fixes
   Fixed in 0.5.29.2 already.
 
 - Windows: Make the ``nuitka-run`` not a symlink as these work really bad on
-  that platform, instead make it a full copy just like we did for ``nuitka3-run``
-  already. Fixed in 0.5.29.2 already.
+  that platform, instead make it a full copy just like we did for
+  ``nuitka3-run`` already. Fixed in 0.5.29.2 already.
 
 - Python3.5: In module mode, ``types.coroutine`` was monkey patched into an
   endless recursion if including more than one module, e.g. for a package.
@@ -63,8 +63,8 @@ New Features
   now also work in accelerated mode on Windows.
 
 - It is now possible to specify the Qt plugin directories with e.g.
-  ``--enable-plugin=qt_plugins=imageformats`` and have only those included. This
-  should avoid dependency creep for shared libraries.
+  ``--enable-plugin=qt_plugins=imageformats`` and have only those included.
+  This should avoid dependency creep for shared libraries.
 
 - Plugins can now make the decision about recursing to a module or not.
 
@@ -84,9 +84,9 @@ Optimization
 - Changed the variable tracing to value tracing. This meant to cleanup all the
   places that were using it to find the variable.
 
-- Enable must have / must not value value optimization for all kinds of variables
-  including module and closure variables. This often avoids error exits and leads
-  to smaller and faster generated code.
+- Enable must have / must not value value optimization for all kinds of
+  variables including module and closure variables. This often avoids error
+  exits and leads to smaller and faster generated code.
 
 Tests
 -----

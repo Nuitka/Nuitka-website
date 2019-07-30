@@ -10,8 +10,8 @@ New Features
 - Improved mode ``--improved`` now sets error lines more properly than CPython
   does in many cases.
 
-- The ``-python-flag=-S`` mode now preserves ``PYTHONPATH`` and therefore became
-  usable with virtualenv.
+- The ``-python-flag=-S`` mode now preserves ``PYTHONPATH`` and therefore
+  became usable with virtualenv.
 
 New Optimization
 ----------------
@@ -33,11 +33,11 @@ Bug Fixes
 - Fixed handling of exception tests as side effects. These could be remainders
   of optimization, but didn't have code generation. Fixed in 0.5.2.1 already.
 
-- Previously Nuitka only ever used the statement line as the line number for all
-  the expression, even if it spawned multiple lines. Usually nothing important,
-  and often even more correct, but sometimes not. Now the line number is most
-  often the same as CPython in full compatibility mode, or better, see
-  above. `Issue#9 <http://bugs.nuitka.net/issue9>`__.
+- Previously Nuitka only ever used the statement line as the line number for
+  all the expression, even if it spawned multiple lines. Usually nothing
+  important, and often even more correct, but sometimes not. Now the line
+  number is most often the same as CPython in full compatibility mode, or
+  better, see above. `Issue#9 <http://bugs.nuitka.net/issue9>`__.
 
 - Python3.4: Standalone mode for Windows is working now.
 
@@ -52,8 +52,9 @@ New Tests
 - For our testing approach, the improved line number handling means we can undo
   lots of changes that are no more necessary.
 
-- The compile library test has been extended to cover a third potential location
-  where modules may live, covering the ``matplotlib`` module as a result.
+- The compile library test has been extended to cover a third potential
+  location where modules may live, covering the ``matplotlib`` module as a
+  result.
 
 Cleanups
 --------
@@ -88,5 +89,5 @@ Summary
 
 This release brings about structural simplification that is both a follow-up to
 C-ish, as well as results from a failed attempt to remove static "variable
-references" and be fully SSA based. It incorporates changes aimed at making this
-next step in Nuitka evolution smaller.
+references" and be fully SSA based. It incorporates changes aimed at making
+this next step in Nuitka evolution smaller.

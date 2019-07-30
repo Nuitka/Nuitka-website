@@ -82,8 +82,8 @@ Cleanups
   ``--python-debug`` option and the inline copy of Scons is used.
 
 - Have a factory function for all conditional statement nodes created. This
-  solved a TODO and handles the creation of statement sequences for the branches
-  as necessary.
+  solved a TODO and handles the creation of statement sequences for the
+  branches as necessary.
 
 - Split class reformulation into two files, one for Python2 and one for Python3
   variant. They share no code really, and are too confusing in a single file,

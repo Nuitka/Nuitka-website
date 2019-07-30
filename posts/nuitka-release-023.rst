@@ -36,13 +36,13 @@ Tests Work
   having a correct ``throw()``. Added that test back, so context managers are
   now fully covered.
 
-- Added a basic test for "overflow functions" has been added, these are the ones
-  which have an unknown number of locals due to the use of language constructs
-  ``exec`` or ``from bla import *`` on the function level. This one currently
-  only highlights the failure to support it.
+- Added a basic test for "overflow functions" has been added, these are the
+  ones which have an unknown number of locals due to the use of language
+  constructs ``exec`` or ``from bla import *`` on the function level. This one
+  currently only highlights the failure to support it.
 
-- Reverted removals of extended slice syntax from some parts of the CPython test
-  suite.
+- Reverted removals of extended slice syntax from some parts of the CPython
+  test suite.
 
 Cleanups
 --------

@@ -105,8 +105,8 @@ Optimization
 
 - Much faster handling for functions with a lot of ``eval`` and ``exec`` calls.
 
-- Static optimization of ``type`` with known type shapes, the value is predicted
-  at compile time.
+- Static optimization of ``type`` with known type shapes, the value is
+  predicted at compile time.
 
 - Optimize containers for all compile time constants into constant nodes. This
   also enables further compile time checks using them, e.g. with ``isinstance``

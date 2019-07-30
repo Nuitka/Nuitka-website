@@ -27,8 +27,8 @@ Bug Fixes
   and compiled coroutines. `Issue#341 <http://bugs.nuitka.net/issue341>`__.
   Fixed in 0.5.24.2 already.
 
-- Standalone: On some Linux variants, e.g. Debian Stretch and Gentoo, the linker
-  needs more flags to really compile to a binary with ``RPATH``.
+- Standalone: On some Linux variants, e.g. Debian Stretch and Gentoo, the
+  linker needs more flags to really compile to a binary with ``RPATH``.
 
 - Compatibility: For set literal values, insertion order is wrong on some
   versions of Python, we now detect the bug and emulate it if necessary,
@@ -99,8 +99,8 @@ Optimization
   generic way for all generators, saving code and execution time in the normal
   case.
 
-- Compiled generators were applying checks only useful for manual ``send`` calls
-  even during iteration, slowing them down.
+- Compiled generators were applying checks only useful for manual ``send``
+  calls even during iteration, slowing them down.
 
 - Compiled generators could duplicate code objects due to handling a flag for
   closure variables differently.

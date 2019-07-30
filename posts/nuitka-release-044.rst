@@ -1,9 +1,9 @@
 This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
-This release marks the point, where Nuitka for the first time supports all major
-current Python versions and all major features. It adds Python 3.3 support and
-it adds support for threading. And then there is a massive amount of fixes that
-improve compatibility even further.
+This release marks the point, where Nuitka for the first time supports all
+major current Python versions and all major features. It adds Python 3.3
+support and it adds support for threading. And then there is a massive amount
+of fixes that improve compatibility even further.
 
 Aside of that, there is major performance work. One side is the optimization of
 call performance (to CPython non-compiled functions) and to compiled functions,
@@ -50,9 +50,9 @@ New Optimization
 - Calling non-compiled Python functions from compiled functions was slower than
   in CPython. It is now just as fast.
 
-- Calling compiled functions without keyword arguments has been accelerated with
-  a dedicated entry point that may call the implementation directly and avoid
-  parameter parsing almost entirely.
+- Calling compiled functions without keyword arguments has been accelerated
+  with a dedicated entry point that may call the implementation directly and
+  avoid parameter parsing almost entirely.
 
 - Making calls to compiled and non-compiled Python functions no longer requires
   to build a temporary tuple and therefore is much faster.
@@ -96,8 +96,9 @@ Bug Fixes
 
   Thanks for the patch to James Michael DuPont.
 
-- Super without arguments was not raising the correct ``RuntimeError`` exception
-  in functions that cannot be methods, but ``UnboundLocalError`` instead.
+- Super without arguments was not raising the correct ``RuntimeError``
+  exception in functions that cannot be methods, but ``UnboundLocalError``
+  instead.
 
   .. code-block:: python
 
@@ -114,8 +115,8 @@ Bug Fixes
 - The use of ``return`` with value in generators is a ``SyntaxError`` before
   Python3.3, but that was not raised.
 
-- Variable names of the "__var" style need to be mangled. This was only done for
-  classes, but not for functions contained in classes, there they are now
+- Variable names of the "__var" style need to be mangled. This was only done
+  for classes, but not for functions contained in classes, there they are now
   mangled too.
 
 - Python3: Exceptions raised with causes were not properly chaining.
@@ -146,9 +147,9 @@ Cleanups
   functions. Code generation will now notice this kind of duplication in debug
   mode.
 
-- The complex call helper functions were manually taking variable closure, which
-  made these functions inconsistent to other functions, e.g. no variable version
-  was allocated to assignments.
+- The complex call helper functions were manually taking variable closure,
+  which made these functions inconsistent to other functions, e.g. no variable
+  version was allocated to assignments.
 
   Removing the manual setting of variables allowed a huge reduction of code
   volume, as it became more generic code.
@@ -157,7 +158,8 @@ Cleanups
   immediately, to avoid noise from doing this in optimization.
 
 - The ``site`` module is now imported explicitly in the ``__main__`` module, so
-  it can be handled by the recursion code as well. This will help portable mode.
+  it can be handled by the recursion code as well. This will help portable
+  mode.
 
 - Many line length 80 changes, improved comments.
 
@@ -185,9 +187,9 @@ Organizational
 Summary
 -------
 
-This release is in preparation for Europython 2013. Wanted to get this much out,
-as it changes the status slides quite a bit, and all of that was mostly done in
-my Cyprus holiday a while ago.
+This release is in preparation for Europython 2013. Wanted to get this much
+out, as it changes the status slides quite a bit, and all of that was mostly
+done in my Cyprus holiday a while ago.
 
 The portable code has not seen progress. The idea here is to get this into a
 development version later.

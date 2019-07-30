@@ -34,17 +34,18 @@ Bug Fixes
 
 - Standalone: Added more missing implicit dependencies.
 
-- Standalone: Fix, implicit imports now also can be optional, as e.g. ``_tkinter``
-  if not installed. Only include those if available.
+- Standalone: Fix, implicit imports now also can be optional, as e.g.
+  ``_tkinter`` if not installed. Only include those if available.
 
 - The ``--recompile-c-only`` was only working with C compiler as a backend, but
-  not in the C++ compatibility fallback, where files get renamed. This prevented
-  that edit and test debug approach with at least MSVC.
+  not in the C++ compatibility fallback, where files get renamed. This
+  prevented that edit and test debug approach with at least MSVC.
 
-- Plugins: The PyLint plug-in didn't consider the symbolic name ``import-error``
-  but only the code ``F0401``.
+- Plugins: The PyLint plug-in didn't consider the symbolic name
+  ``import-error`` but only the code ``F0401``.
 
-- Implicit exception raises in conditional expressions would crash the compiler.
+- Implicit exception raises in conditional expressions would crash the
+  compiler.
 
 New Features
 ------------
@@ -174,8 +175,8 @@ Cleanups
 - Variable closure for classes is different from all functions, don't handle
   the difference in the base class, but for class nodes only.
 
-- Make sure ``mayBeNone`` doesn't return ``None`` which means normally "unclear",
-  but ``False`` instead, since it's always clear for those cases.
+- Make sure ``mayBeNone`` doesn't return ``None`` which means normally
+  "unclear", but ``False`` instead, since it's always clear for those cases.
 
 - Comparison nodes were using the general comparison node as a base class,
   but now a proper base class was added instead, allowing for cleaner code.
@@ -202,8 +203,8 @@ Cleanups
   on the future.
 
 - Cleanups and annotations to become Python3 PyLint clean as well. This found
-  e.g. that source code references only had ``__cmp__`` and need rich comparison
-  to be fully portable.
+  e.g. that source code references only had ``__cmp__`` and need rich
+  comparison to be fully portable.
 
 Tests
 -----

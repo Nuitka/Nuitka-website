@@ -22,9 +22,9 @@ New Optimization
 - Faster error checks for many operations, where these errors are expected,
   e.g. instance attribute lookups.
 
-- Do not create traceback and locals dictionary for frame when ``StopIteration``
-  or ``GeneratorExit`` are raised. These tracebacks were wasted, as they were
-  immediately released afterwards.
+- Do not create traceback and locals dictionary for frame when
+  ``StopIteration`` or ``GeneratorExit`` are raised. These tracebacks were
+  wasted, as they were immediately released afterwards.
 
 - Closure variables to functions and parameters of generator functions are now
   attached to the function and generator objects.
