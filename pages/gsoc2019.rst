@@ -74,7 +74,7 @@ For the purpose of GSoC the Nuitka development mailing list can be used, as
 well as private email. We will be reachable via Hangout/Duo calls on a regular
 basis.
 
-We will be able to accomodate all time zones somehow.
+We will be able to accommodate all time zones somehow.
 
 Getting Started
 ===============
@@ -248,9 +248,9 @@ which means dedicated C code, compile time evaluation, type shapes produced (in
 this case an ``int``), but there are some notable exceptions, e.g. ``enumerate``
 where we know types too, that are still missing, but definitely can have high
 performance impact on some loops. Not having that means that ``enumerate``
-using loops are loosing out on many optimization opportunities.
+using loops are losing out on many optimization opportunities.
 
-The students task would be to immitate existing built-in codes to achieve a
+The students task would be to imitate existing built-in codes to achieve a
 complete support for ultimately all C built-ins. The first step would be to
 identify which ones are missing (by means of a warning added), then to find out
 in test runs of the test suites, which ones are warned about, and to resolve as
@@ -318,7 +318,7 @@ Difficulty level: *Hard*
 
    This idea has been retracted due to lack of interest from
    students and due to higher than expected interest in ideas
-   that are more valueable.
+   that are more valuable.
 
 
 Timeline
