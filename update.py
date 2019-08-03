@@ -540,12 +540,12 @@ This is to inform you about the new stable release of `Nuitka <http://nuitka.net
         meta_path = os.path.join(output_path, slug + ".meta")
         txt_path = os.path.join(output_path, slug + ".rst")
 
-        if not os.path.isfile(meta_path):
-            open(meta_path, "w").write(data)
-        elif "draft" in open(meta_path).read():
-            open(meta_path, "w").write(data)
+        if not os.path.isfile(meta_path) or "draft" in open(meta_path).read():
+            with open(meta_path, "wb") as output_file:
+                output_file.write(data.encode("utf8"))
 
-        open(txt_path, "w").write("".join(lines))
+        with open(txt_path, "wb") as output_file:
+            output_file.write("".join(lines).encode("utf8"))
 
 
 def updateDocs():
