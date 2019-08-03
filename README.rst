@@ -21,9 +21,9 @@ has only be done on Linux, but it ought to also work on Windows:
     python3.7 -m pipenv install --dev
 
     # Need to do this at least once.
-    python3.7 -m pipenv run ./update.py --update-docs
+    python3.7 -m pipenv run python update.py --update-docs
     # Now lets build the site
-    python3.7 -m pipenv run ./update.py --build-site
+    python3.7 -m pipenv run python update.py --build-site
 
     # Start local web server with the site.
     python3.7 -m pipenv run nikola auto
