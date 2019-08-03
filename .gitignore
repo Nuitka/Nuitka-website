@@ -6,3 +6,5 @@ cache
 nuitka-factory
 nuitka-master
 output
+.vscode/tags
+state_data.json
