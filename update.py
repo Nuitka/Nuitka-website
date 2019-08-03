@@ -133,6 +133,7 @@ def updateDownloadPage():
 
     print("Max pre-release is", max_pre_release, makePlain(max_pre_release))
     print("Max stable release is", max_stable_release, makePlain(max_stable_release))
+    sys.stdout.flush()
 
 
     output = subprocess.check_output(
