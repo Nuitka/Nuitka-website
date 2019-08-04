@@ -189,6 +189,9 @@ Fedora
 * |FEDORA_LOGO| Stable: Fedora 29: |NUITKA_STABLE_F29| or `repository file
   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/home:kayhayen.repo>`__
 
+* |FEDORA_LOGO| Stable: Fedora 30: |NUITKA_STABLE_F30| or `repository file
+  <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/home:kayhayen.repo>`__
+
 * |FEDORA_LOGO| Develop: Fedora 24: |NUITKA_UNSTABLE_F24| or `repository file
   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/home:kayhayen.repo>`__
 
@@ -206,6 +209,9 @@ Fedora
 
 * |FEDORA_LOGO| Develop: Fedora 29: |NUITKA_UNSTABLE_F29| or `repository file
   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/home:kayhayen.repo>`__
+
+* |FEDORA_LOGO| Develop: Fedora 30: |NUITKA_UNSTABLE_F30| or `repository file
+  <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/home:kayhayen.repo>`__
 
 Suse
 ~~~~
@@ -269,7 +275,7 @@ Suse
   file
   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/home:kayhayen.repo>`__
 
-* |SUSE_LOGO| Develop: openSUSE 15.0: |NUITKA_UNSTABLE_SUSE151| or `repository
+* |SUSE_LOGO| Develop: openSUSE 15.1: |NUITKA_UNSTABLE_SUSE151| or `repository
   file
   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/home:kayhayen.repo>`__
 
