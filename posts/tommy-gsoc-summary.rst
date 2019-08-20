@@ -1,7 +1,7 @@
 Intro
 =====
 
-As Google Summer of Code is coming to an end, I am writing this blog post as a final summary describing all the work I have 
+As Google Summer of Code (GSoC) is coming to an end, I am writing this blog post as a final summary describing all the work I have 
 done as well as my experiences in this program.
 
 
@@ -35,11 +35,11 @@ Summary of My Work
 
 
 - `Urllib3 Wheel with Nuitka Pytest Results <https://nuitka.net/posts/urllib3-wheel-with-nuitka.html>`__
-and `Python-Dateutil Wheel with Nuitka Pytest Results <https://nuitka.net/posts/dateutil-wheel-with-nuitka.html>`__
+  and `Python-Dateutil Wheel with Nuitka Pytest Results <https://nuitka.net/posts/dateutil-wheel-with-nuitka.html>`__
 
   * At the start of GSoC, I performed manual pytest comparison for PyPI packages ``urllib3`` and ``dateutil``.
 
-  * The results were documented in postings above.
+  * The findings of my testing were documented in these postings.
 
   * Manual testing compares the pytest results of an installed nuitka wheel built using 
     ``python setup.py bdist_nuitka`` to the regular pytest of each package. 
@@ -91,6 +91,13 @@ and `Python-Dateutil Wheel with Nuitka Pytest Results <https://nuitka.net/posts/
   * This automation script is meant to be run regularly to inform developers of Nuitka regressions.
 
 
+- `Issue #477 Unable to compile modules listed under unworthy_namespaces <https://github.com/Nuitka/Nuitka/issues/477>`__
+  
+  * Raised due to package ``pycparser`` failing in the automated test suite
+
+  * This issue will be addressed in the future
+
+
 - `Issue #479 bdist_nuitka fails for packages containing py_modules only <https://github.com/Nuitka/Nuitka/issues/479>`__
 
   * While I worked on `#440 <https://github.com/Nuitka/Nuitka/pull/440>`__, I found a bug with ``bdist_nuitka`` failing
@@ -121,30 +128,32 @@ and `Python-Dateutil Wheel with Nuitka Pytest Results <https://nuitka.net/posts/
 
 - `#484 PyPI Standalone Tests <https://github.com/Nuitka/Nuitka/pull/484>`__
 
-  * This pull request adds standalone tests for each top PyPI package.
+  * This pull request adds more standalone tests for each top PyPI package.
 
 
 - `#495 Improve pypi automation <https://github.com/Nuitka/Nuitka/pull/495>`__
 
-  * This pull request was recently started and is still work in progress
+  * This pull request was recently started and is still work in progress.
 
-  * It improves the PyPI test suite created in `#483 <https://github.com/Nuitka/Nuitka/pull/483>`__ with functional improvements,
+  * Improves the PyPI test suite created in `#483 <https://github.com/Nuitka/Nuitka/pull/483>`__ with functional improvements,
     readability improvements, and added documentation.
 
 
-# PICK UP: make sure all PRs are listed, check their links. Also add all issues. (and check PSF posts for things I might have missed)
-# Add on to below
-# Change .meta file time
 
 Things I learned
 ================
 
-Before GSoC, I was far from being even competent with working on a terminal. I was also very unfamiliar with the Git flow, 
-which is evident in the messy commit histories of my first pull requests.
-As I continued throughout my GSoC journey, I became much more comfortable with the terminal as well as ``git``.
-Although I am still no expert, my mentor has helped me go a far way in working with ``git`` on the terminal.
-In addition, I became much more familiar with many of the most popular pypi packages, which I believe will help me go a far way
-in my career as a developer.
+Before GSoC, I very uncomfortable with working inside a terminal. I was unfamiliar with many basic bash commands because I
+simply did not have any prior professional industry experiences. I was also very unfamiliar with the Git flow, which is 
+evident in the messy commit histories of my earliest pull requests.
+
+As I continued throughout my GSoC journey, however, I became much more comfortable with working inside the terminal as well 
+as using ``git`` as a version-control system (shoutout to my mentor Kay Hayen for helping me through all the annoying conflicts).
+
+Although I am still no expert, I can confidently say that I am now far more comfortable working with ``git`` and inside the terminal.
+
+In addition, I became much more familiar with many of the most popular pypi packages as well as the inner workings of ``python``, 
+which I believe will help me go a far way in my career as a software developer.
 
 Overall, the GSoC experience was truly astounding and I am more than thankful to my mentor Kay Hayen as well as Google for making
-this amazing program happen.
+this amazing program possible.
