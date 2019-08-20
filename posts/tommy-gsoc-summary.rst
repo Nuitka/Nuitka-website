@@ -28,7 +28,7 @@ Summary of My Work
 
   * This PR was also created before the start of GSoC.
 
-  * Standlone test ``Boto3Using.py`` was created using ``moto`` to mock AWS calls which did not turn out well (failed)
+  * Standalone test ``Boto3Using.py`` was created using ``moto`` to mock AWS calls which did not turn out well (failed)
 
   * Changed ``Urllib3Using.py`` with the addition of python version checks as a fix to
     `Issue #373 <https://github.com/Nuitka/Nuitka/issues/373>`__.
@@ -42,7 +42,7 @@ Summary of My Work
   * The findings of my testing were documented in these postings.
 
   * Manual testing compares the pytest results of an installed nuitka wheel built using 
-    ``python setup.py bdist_nuitka`` to the regular pytest of each package. 
+    ``python setup.py bdist_nuitka`` to the regular pytest results of each package. 
   
   * Testing is done to ensure that nuitka is building the wheel correctly. 
   
@@ -67,7 +67,7 @@ Summary of My Work
     that package into the local cache.
   
   * The script then uses calls to ``os.system`` to automate the creation of a ``virtualenv`` which is then used to install ``pytest``
-    and ``pip install`` the its requirements (if any) for pytest.
+    and ``pip install`` the package's requirements (if any) for running pytest.
 
   * The script then handles each package depending on different needs before building a regular wheel with ``python setup.py bdist_wheel``.
 
@@ -152,8 +152,12 @@ as using ``git`` as a version-control system (shoutout to my mentor Kay Hayen fo
 
 Although I am still no expert, I can confidently say that I am now far more comfortable working with ``git`` and inside the terminal.
 
-In addition, I became much more familiar with many of the most popular pypi packages as well as the inner workings of ``python``, 
+In addition, I became much more familiar with many of the most popular PyPI packages as well as the inner workings of ``python``, 
 which I believe will help me go a far way in my career as a software developer.
 
 Overall, the GSoC experience was truly astounding and I am more than thankful to my mentor Kay Hayen as well as Google for making
 this amazing program possible.
+
+
+Yours, 
+`Tommy <https://github.com/tommyli3318>`__
