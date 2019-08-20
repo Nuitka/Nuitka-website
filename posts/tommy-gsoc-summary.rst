@@ -28,7 +28,7 @@ Summary of My Work
 
   * This PR was also created before the start of GSoC.
 
-  * Standalone test ``Boto3Using.py`` was created using ``moto`` to mock AWS calls which did not turn out well (failed)
+  * Standalone test ``Boto3Using.py`` was created using ``moto`` to mock AWS calls which did not turn out well.
 
   * Changed ``Urllib3Using.py`` with the addition of python version checks as a fix to
     `Issue #373 <https://github.com/Nuitka/Nuitka/issues/373>`__.
@@ -93,9 +93,9 @@ Summary of My Work
 
 - `Issue #477 Unable to compile modules listed under unworthy_namespaces <https://github.com/Nuitka/Nuitka/issues/477>`__
   
-  * Raised due to package ``pycparser`` failing in the automated test suite
+  * Raised due to package ``pycparser`` failing in the automated test suite.
 
-  * This issue will be addressed in the future
+  * This issue will be addressed in the future.
 
 
 - `Issue #479 bdist_nuitka fails for packages containing py_modules only <https://github.com/Nuitka/Nuitka/issues/479>`__
@@ -143,17 +143,17 @@ Summary of My Work
 Things I learned
 ================
 
-Before GSoC, I very uncomfortable with working inside a terminal. I was unfamiliar with many basic bash commands because I
-simply did not have any prior professional industry experiences. I was also very unfamiliar with the Git flow, which is 
+Before GSoC, I was very uncomfortable with working inside a terminal. I was unfamiliar with many basic bash commands because I
+simply did not have any prior professional industrial experiences. I was also very unfamiliar with the Git flow, which is 
 evident in the messy commit histories of my earliest pull requests.
 
 As I continued throughout my GSoC journey, however, I became much more comfortable with working inside the terminal as well 
 as using ``git`` as a version-control system (shoutout to my mentor Kay Hayen for helping me through all the annoying conflicts).
 
-Although I am still no expert, I can confidently say that I am now far more comfortable working with ``git`` and inside the terminal.
+Although I am still no expert, I can confidently say that I am now far more proficient working with ``git`` and inside the terminal.
 
 In addition, I became much more familiar with many of the most popular PyPI packages as well as the inner workings of ``python``, 
-which I believe will help me go a far way in my career as a software developer.
+which I believe will help me go very far in my career as a software developer.
 
 Overall, the GSoC experience was truly astounding and I am more than thankful to my mentor Kay Hayen as well as Google for making
 this amazing program possible.
