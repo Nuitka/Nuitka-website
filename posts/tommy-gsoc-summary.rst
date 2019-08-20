@@ -16,8 +16,8 @@ Summary of My Work
   * In this pull request, I added a ``checkRequirements`` function for the Nuitka standalone test suite.
 
   * This function checks for special-comments at the top of standalone tests in the format of
-  ``# nuitka-skip-unless-expression: expression to be evaluated`` OR ``# nuitka-skip-unless-imports: module1,module2,...``
-  and will decide whether to skip a test depending on if its specified requirements are met.
+    ``# nuitka-skip-unless-expression: expression to be evaluated`` OR ``# nuitka-skip-unless-imports: module1,module2,...``
+    and will decide whether to skip a test depending on if its specified requirements are met.
 
   * In addition, standalone test ``Urllib3Using.py`` was created.
 
@@ -31,7 +31,7 @@ Summary of My Work
   * Standlone test ``Boto3Using.py`` was created using ``moto`` to mock AWS calls which did not turn out well (failed)
 
   * Changed ``Urllib3Using.py`` with the addition of python version checks as a fix to
-  `Issue #373 <https://github.com/Nuitka/Nuitka/issues/373>`__.
+    `Issue #373 <https://github.com/Nuitka/Nuitka/issues/373>`__.
 
 
 - `Urllib3 Wheel with Nuitka Pytest Results <https://nuitka.net/posts/urllib3-wheel-with-nuitka.html>`__
@@ -42,7 +42,7 @@ and `Python-Dateutil Wheel with Nuitka Pytest Results <https://nuitka.net/posts/
   * The results were documented in postings above.
 
   * Manual testing compares the pytest results of an installed nuitka wheel built using 
-  ``python setup.py bdist_nuitka`` to the regular pytest of each package. 
+    ``python setup.py bdist_nuitka`` to the regular pytest of each package. 
   
   * Testing is done to ensure that nuitka is building the wheel correctly. 
   
@@ -55,36 +55,36 @@ and `Python-Dateutil Wheel with Nuitka Pytest Results <https://nuitka.net/posts/
   * Over the course of performing manual testing, I became familiar with the use of ``virtualenv``, ``wheel``, and ``pytest``.
 
   * A bug was found with the package ``urllib3`` bdist and I created 
-  `Issue #413 <https://github.com/Nuitka/Nuitka/issues/413>`__ to document the bug.
+    `Issue #413 <https://github.com/Nuitka/Nuitka/issues/413>`__ to document the bug.
 
 
 - `#440 Automating PyPI Wheel Pytest <https://github.com/Nuitka/Nuitka/pull/440>`__ 
 
   * After familiarizing myself with how ``virtualenv``, ``wheel``, and ``pytest`` work, I started to work on a script which
-  would automate the pytest comparison for top PyPI packages.
+    would automate the pytest comparison for top PyPI packages.
 
   * The script first uses ``git`` to update each package if it is already existing in the local cache, else it will ``git clone``
-  that package into the local cache.
+    that package into the local cache.
   
   * The script then uses calls to ``os.system`` to automate the creation of a ``virtualenv`` which is then used to install ``pytest``
-  and ``pip install`` the its requirements (if any) for pytest.
+    and ``pip install`` the its requirements (if any) for pytest.
 
   * The script then handles each package depending on different needs before building a regular wheel with ``python setup.py bdist_wheel``.
 
   * This wheel is then installed into the ``virtualenv``, after which ``subprocess.Popen`` is used to run and capture the output
-  of ``python -m pytest --disable-warnings`` into a string.
+    of ``python -m pytest --disable-warnings`` into a string.
 
   * The script then resets the package to its original state and builds a nuitka-compiled wheel using ``python setup.py bdist_nuitka``.
 
   * This compiled wheel is then installed into the ``virtualenv``, after which ``subprocess.Popen`` is used to run and capture the output
-  of ``python -m pytest --disable-warnings`` into another string.
+    of ``python -m pytest --disable-warnings`` into another string.
 
   * The two strings containing pytest outputs are then compared to find differences.
 
   * If no differences are found, this means ``bdist_nuitka`` worked properly. Else Nuitka compilation did something wrong.
 
   * The above process is repeated for each suitable PyPI package from the PyPI top 50. (Some packages are left out if they do not
-  contain a test suite or if they do not need to be tested)
+    contain a test suite or if they do not need to be tested)
 
   * At the end, a colored summary is given for all the packages tested.
 
@@ -94,10 +94,10 @@ and `Python-Dateutil Wheel with Nuitka Pytest Results <https://nuitka.net/posts/
 - `Issue #479 bdist_nuitka fails for packages containing py_modules only <https://github.com/Nuitka/Nuitka/issues/479>`__
 
   * While I worked on `#440 <https://github.com/Nuitka/Nuitka/pull/440>`__, I found a bug with ``bdist_nuitka`` failing
-  on PyPI packages containing py_modules only.
+    on PyPI packages containing py_modules only.
   
   * This bug occurs due to Nuitka making the assumption that a main package always exists for all packages. However,
-  some packages contain only a main module and not a main package.
+    some packages contain only a main module and not a main package.
 
   * Applies to PyPI packages ``decorator``, ``ipaddress``, and ``pyparsing``.
 
@@ -105,18 +105,18 @@ and `Python-Dateutil Wheel with Nuitka Pytest Results <https://nuitka.net/posts/
 - `#483 Add support for py_modules_only compilation <https://github.com/Nuitka/Nuitka/pull/483>`__ 
 
   * This pull request changes ``bdist_nuitka.py`` and various other files to fix 
-  `Issue #479 <https://github.com/Nuitka/Nuitka/issues/479>`__.
+    `Issue #479 <https://github.com/Nuitka/Nuitka/issues/479>`__.
 
   * Checks are added for the ``bdist_nuitka`` command to see if a main package exists. If there is not a main package,
-  it will set its compile target to the main module instead.
+    it will set its compile target to the main module instead.
 
   * This also addressed the case of a package with both a main package and a main module, in which case both are included
-  inside the resulting wheel.
+    inside the resulting wheel.
 
   * In addition, ``distutils`` examples ``py_modules_only`` and ``package_and_module`` were created and added for future testing.
 
   * During this PR, I found an import bug in Nuitka and hotfixed it with 
-  `#487 Fixup_import_module <https://github.com/Nuitka/Nuitka/pull/487>`__.
+    `#487 Fixup_import_module <https://github.com/Nuitka/Nuitka/pull/487>`__.
 
 
 - `#484 PyPI Standalone Tests <https://github.com/Nuitka/Nuitka/pull/484>`__
@@ -129,7 +129,7 @@ and `Python-Dateutil Wheel with Nuitka Pytest Results <https://nuitka.net/posts/
   * This pull request was recently started and is still work in progress
 
   * It improves the PyPI test suite created in `#483 <https://github.com/Nuitka/Nuitka/pull/483>`__ with functional improvements,
-  readability improvements, and added documentation.
+    readability improvements, and added documentation.
 
 
 # PICK UP: make sure all PRs are listed, check their links. Also add all issues. (and check PSF posts for things I might have missed)
