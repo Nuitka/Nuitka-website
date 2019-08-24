@@ -138,7 +138,7 @@ Summary of My Work
 
 
 
-Things I learned
+Things I Learned
 ================
 
 Before GSoC, I was very uncomfortable with working inside a terminal. I was unfamiliar with many basic bash commands because I
