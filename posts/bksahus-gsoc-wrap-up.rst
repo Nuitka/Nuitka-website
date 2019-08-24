@@ -11,14 +11,104 @@ Built-ins Optimizations
 =======================
 
 * "any": `PR #246 <https://github.com/Nuitka/Nuitka/pull/246>`
-  * Issue reported and closed `Issue #349 <https://github.com/Nuitka/Nuitka/issues/349>`
+    * `nuitka.nodes.BuiltinAnyNodes` node added to optimize the "any" built-in.
+    * Developed an algorithm to predict the "any" for arguments having repeative values at compile time. 
+      For example::
+      
+         any([0]*255) -> False
+         any([False, False, True]) -> True
+         
+    * Extended support for `range`, `set` and `dict` built-ins.
+    * Added the optimized C side support too
+    * Added a method `getMetaClassBase` to make Python 2 and Python 3 compatible while working 
+    with metaclasses.
+         
+* Issue reported and closed `Issue #349 <https://github.com/Nuitka/Nuitka/issues/349>`
+    * Created a new module `nuitka.nodes.IterationHandles` to work with iterables.
+    * Added support of Iteration for non-mutable types.
+
 * "all": `PR #407 <https://github.com/Nuitka/Nuitka/pull/407>`
+    * Added `nuitka.nodes.BuiltinAllNodes` to optimize the "all" built-ins.
+    * Developed an algorithm similar to "any" to predict the "all" arguments.
+      For example::
+      
+        all([0, 0, 1]) -> False
+        all([True]*100) -> True
+        
+    * Other similar optimizations done like "any" built-in.
+    * Additionally, added a new testing module `tests.optimizations.CommonOptimizations` to test the built-ins
+    optimizations at the same place.
+      
 * "abs": `PR #419 <https://github.com/Nuitka/Nuitka/pull/419>`
+   * Added new operation node `ExpressionOperationAbs` to optimize the `abs` built-in.
+   * Manually added `shapeSlotAbs` to different shapes.
+   * Finally pre-computed the compile time constant `abs`
 
-The following are in progress:
 * "max" and "min": `PR #442 <https://github.com/Nuitka/Nuitka/pull/442>`
-* "zip": `PR #462 <https://github.com/Nuitka/Nuitka/pull/462>`
+   * This PR is work in progress and is half complete.
+   * This is the first optimizations in which I used reformulations instead of added in a new nodes.
+     Pseudo-code of "min" reformulation::
+     
+       def _min(a, b, c, ...):
+        tmp_arg1 = a
+        tmp_arg2 = b
+        tmp_arg3 = c
+        ...
+         result = tmp_arg1
+        if keyfunc is None: # can be decided during re-formulation
+            tmp_key_result = keyfunc(result)
+            tmp_key_candidate = keyfunc(tmp_arg2)
+            if tmp_key_candidate < tmp_key_result:
+                result = tmp_arg2
+                tmp_key_result = tmp_key_candidate
+            tmp_key_candidate = keyfunc(tmp_arg3)
+            if tmp_key_candidate < tmp_key_result:
+                result = tmp_arg3
+                tmp_key_result = tmp_key_candidate
+            ...
+        else:
+            if tmp_arg2 < result:
+                result = tmp_arg2
+            if tmp_arg3 < result:
+                result = tmp_arg3
+            ...
+         return result
 
+   * Adding support for `keyfunc` is pending
+
+* "zip": `PR #462 <https://github.com/Nuitka/Nuitka/pull/462>`
+   * This built-in uses both type of optimizations that we previous built-ins used.
+   * `zip` for Python 2 uses the reformulations.
+   Pseudo-code of "zip" reformulation::
+     
+       def _zip(a, b, c, ... ):
+       # First assign, to preserve order of execution,
+       # the arguments might be complex expressions.
+       tmp_arg1 = a
+       tmp_arg2 = b
+       tmp_arg3 = c
+       ...
+        tmp_iter_1 = iter(tmp_arg1)
+       tmp_iter_2 = iter(tmp_arg2)
+       tmp_iter_3 = iter(tmp_arg3)
+       ...
+        # could be more
+       tmp_result = []
+       try:
+           while 1:
+               tmp_result.append(
+                   (
+                        next(tmp_iter_1),
+                        next(tmp_iter_2),
+                        next(tmp_iter_3),
+                        ...
+                   )
+                )
+          except StopIteration:
+              pass
+        return tmp_result
+        
+   * `zip` for Python 3 needs a new node that calls the `zip` because unlike `zip` in Python 2, `zip` in Python 3 returns a    `zipobject`.     
 
 Test suite
 ==========
