@@ -114,9 +114,37 @@ Test suite
 ==========
 
 * Search mode "All": `PR #378 <https://github.com/Nuitka/Nuitka/pull/378>`
-* Search mode "Only": `PR #333 <https://github.com/Nuitka/Nuitka/pull/333>`
-* Reported and closed Issue #334: `PR #336 <https://github.com/Nuitka/Nuitka/pull/336>`
+   * In the test suite, I added a new search mode "all" that will test all the modules and return all the results at once.
+   Example::
+      
+      $ ./tests/basics/run_all.py all
+         Using concrete python 2.7.12 on x86_64
+         Comparing output of 'Asserts.py' using '/usr/bin/python' with flags silent, expect_success, remove_output,     recurse_all, original_file, cpython_cache, plugin_enable:pylint-warnings ...
+         .
+         .
+         .
+         .
+         Total 0 error(s) found.
 
+   
+   
+* Search mode "Only": `PR #333 <https://github.com/Nuitka/Nuitka/pull/333>`
+   * Added "only" search mode to test only a single module.
+   Example::
+   
+      $ ./tests/basics/run_all.py only BuiltinsTest.py
+         Using concrete python 2.7.12 on x86_64
+         Skipping Asserts.py
+         Skipping Assignments.py
+         Skipping BigConstants.py
+         Skipping Branching.py
+         Skipping BuiltinOverload.py
+         Skipping BuiltinSuper.py
+         Comparing output of 'BuiltinsTest.py' using '/usr/bin/python' with flags silent, expect_success, remove_output, recurse_all, original_file, cpython_cache, plugin_enable:pylint-warnings ...
+
+   
+* Reported and closed Issue #334: `PR #336 <https://github.com/Nuitka/Nuitka/pull/336>`
+   * Fixed the autoformat bug by reading and writing the files in bytes instead of string.
 
 Documentation
 =============
