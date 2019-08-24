@@ -133,9 +133,7 @@ Summary of My Work
 
 - `#495 Improve pypi automation <https://github.com/Nuitka/Nuitka/pull/495>`__
 
-  * This pull request was recently started and is still work in progress.
-
-  * Improves the PyPI test suite created in `#483 <https://github.com/Nuitka/Nuitka/pull/483>`__ with functional improvements,
+  * Improves the PyPI test suite created in `#440 <https://github.com/Nuitka/Nuitka/pull/440>`__ with functional improvements,
     readability improvements, and added documentation.
 
 
