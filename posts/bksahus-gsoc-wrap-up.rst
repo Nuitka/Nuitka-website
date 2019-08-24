@@ -152,5 +152,15 @@ Documentation
 
 And other minor doc fixes are added with their respective pull requests.
 
+What I learned
+==============
+* Learned the software engineering principles and how to keep my work clean.
+* I also learned how to effectively use to software designing principles like DRY and KISS.
+* Got exposed to Nuikta internals which helped me to better understand how compilers in general work.
+* Explored how CPython works internally.
+* Got some really great advice from Mentor Hayen about starting my profession career in Software engineering.
+
+Overally, it was a great experience to be a part of Nuitka :) 
+
 Yours, :raw-html:`<br />`
 `Batakrishna <https://bksahu.github.io>`__
