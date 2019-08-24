@@ -12,7 +12,7 @@ Built-ins Optimizations
 
 * "any": `PR #246 <https://github.com/Nuitka/Nuitka/pull/246>`
     * `nuitka.nodes.BuiltinAnyNodes` node added to optimize the "any" built-in.
-    * Developed an algorithm to predict the "any" for arguments having repeative values at compile time. 
+    * Developed an algorithm to predict the "any" for arguments having repetitive values at compile time. 
       For example::
       
          any([0]*255) -> False
@@ -35,7 +35,7 @@ Built-ins Optimizations
         all([0, 0, 1]) -> False
         all([True]*100) -> True
         
-    * Other similar optimizations done like "any" built-in.
+    * Other similar optimizations are done like "any" built-in.
     * Additionally, added a new testing module `tests.optimizations.CommonOptimizations` to test the built-ins
     optimizations at the same place.
       
@@ -46,7 +46,7 @@ Built-ins Optimizations
 
 * "max" and "min": `PR #442 <https://github.com/Nuitka/Nuitka/pull/442>`
    * This PR is work in progress and is half complete.
-   * This is the first optimizations in which I used reformulations instead of added in a new nodes.
+   * This is the first optimizations in which I used reformulations instead of added in a new node.
      Pseudo-code of "min" reformulation::
      
        def _min(a, b, c, ...):
@@ -77,7 +77,7 @@ Built-ins Optimizations
    * Adding support for `keyfunc` is pending
 
 * "zip": `PR #462 <https://github.com/Nuitka/Nuitka/pull/462>`
-   * This built-in uses both type of optimizations that we previous built-ins used.
+   * This built-in uses both types of optimizations that the previous built-ins optimizations used.
    * `zip` for Python 2 uses the reformulations.
    Pseudo-code of "zip" reformulation::
      
@@ -155,12 +155,12 @@ And other minor doc fixes are added with their respective pull requests.
 What I learned
 ==============
 * Learned the software engineering principles and how to keep my work clean.
-* I also learned how to effectively use to software designing principles like DRY and KISS.
+* I also learned how to effectively use software designing principles like DRY and KISS.
 * Got exposed to Nuikta internals which helped me to better understand how compilers in general work.
 * Explored how CPython works internally.
-* Got some really great advice from Mentor Hayen about starting my profession career in Software engineering.
+* Got some great advice from Mentor Hayen about starting my professional career in Software engineering.
 
-Overally, it was a great experience to be a part of Nuitka :) 
+Overall, it was a great experience to be a part of Nuitka :) 
 
 Yours, :raw-html:`<br />`
 `Batakrishna <https://bksahu.github.io>`__
