@@ -15,7 +15,7 @@ Built-ins Optimizations
     * Developed an algorithm to predict the "any" for arguments having repetitive values at compile time. 
       For example:
       
-      .. code-block:: sh
+      .. code-block:: python
       
          any([0]*255) -> False
          any([False, False, True]) -> True
@@ -34,7 +34,7 @@ Built-ins Optimizations
     * Developed an algorithm similar to "any" to predict the "all" arguments.
       For example:
       
-      .. code-block:: sh
+      .. code-block:: python
       
         all([0, 0, 1]) -> False
         all([True]*100) -> True
