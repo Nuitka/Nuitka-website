@@ -655,16 +655,18 @@ def filterHTML(filename):
     with open(filename, "wb") as f:
         f.write(contents)
 
-from nikola import filters
+from nikola import filters # false alarm, pylint: disable=import-error
+import os
+
 FILTERS = {
     ".html" : [ filterHTML ],
-    ".css"  : [ filters.yui_compressor ],
+    ".css"  : [ filters.yui_compressor ] if os.name != "nt" else [],
 #    ".js"   : [ filters.closure_compiler ],
-    ".jpg"  : [ filters.jpegoptim ],
-    ".JPG"  : [ filters.jpegoptim ],
-    ".jpeg" : [ filters.jpegoptim ],
-    ".png"  : [ filters.optipng ],
-    ".PNG"  : [ filters.optipng ],
+    ".jpg"  : [ filters.jpegoptim ] if os.name != "nt" else [],
+    ".JPG"  : [ filters.jpegoptim ] if os.name != "nt" else [],
+    ".jpeg" : [ filters.jpegoptim ] if os.name != "nt" else [],
+    ".png"  : [ filters.optipng ] if os.name != "nt" else [],
+    ".PNG"  : [ filters.optipng ] if os.name != "nt" else [],
 }
 
 # Executable for the "yui_compressor" filter (defaults to 'yui-compressor').
