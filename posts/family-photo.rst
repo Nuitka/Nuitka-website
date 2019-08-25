@@ -9,5 +9,5 @@ This is an artwork that I created with GIMP:
 
 It's a good family, and it's mine. :-)
 
-Yours,
-Kay Hayen
+| Yours,
+| Kay Hayen

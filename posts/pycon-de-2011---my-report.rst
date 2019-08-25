@@ -7,15 +7,16 @@ experience this was.
 
 It was the first German PyCON and clearly it was overdue as it was now the
 merger of many already grown up communities. A huge number of talks over 3 days
-in 3 parallel tracks, with 3 keynotes, was an outstanding program. And very well
-run. Strict time management, every detail was well prepared.
+in 3 parallel tracks, with 3 keynotes, was an outstanding program. And very
+well run. Strict time management, every detail was well prepared.
 
 I can only admire the professional preparation and setup. I wanted to say thank
 you deeply. I didn't consider it possible to be this good. Clearly not a first
 time.
 
 I enjoyed the talks, most often in the technical track, but other tracks would
-have been very interesting too. The parallelism was making me do hard decisions.
+have been very interesting too. The parallelism was making me do hard
+decisions.
 
 Food
 ----
@@ -53,20 +54,21 @@ My own Presentation
 -------------------
 
 As to my own presentation, it was well received, although I sort of regret that
-I agreed to have only 30m instead of original plan of 60m. I had so much to say.
+I agreed to have only 30m instead of original plan of 60m. I had so much to
+say.
 
 I ended up with getting my manifesto part out, but that one pretty well. And
 it's OK I guess, because nobody really listens that long anyway. And my major
 points came across that way.
 
 That focus on my Nuitka "manifesto" was probably a good idea. The talk will be
-available online as a video, I will link it then. The `PDF that I presented only
-a small part of </pr/Nuitka-Presentation-PyCON-DE-2011.pdf>`_, is linked here. I
-believe it went pretty well.
+available online as a video, I will link it then. The `PDF that I presented
+only a small part of </pr/Nuitka-Presentation-PyCON-DE-2011.pdf>`_, is linked
+here. I believe it went pretty well.
 
-I will use that content from the PDF in updated documentation (currently ongoing
-in PDF is work to use REST and document a lot more). The presentation was
-created with "rst2pdf", which I find is a fantastic tool.
+I will use that content from the PDF in updated documentation (currently
+ongoing in PDF is work to use REST and document a lot more). The presentation
+was created with "rst2pdf", which I find is a fantastic tool.
 
 Contacts
 --------
@@ -76,10 +78,10 @@ Cython / lxml
 
 Then contacts!
 
-Early on I already made contacts with interesting people, e.g.  with Dr.Stefan
-Behnel, author of lxml and core Cython developer. I him offered a beer for using
-his software in the best of Free Software traditions. He doesn't drink these,
-but a large mango juice counts too or so I assume.
+Early on I already made contacts with interesting people, e.g. with Dr.Stefan
+Behnel, author of lxml and core Cython developer. I him offered a beer for
+using his software in the best of Free Software traditions. He doesn't drink
+these, but a large mango juice counts too or so I assume.
 
 We also talked about Cython and Nuitka, and the common history we had as
 well. For some time, I attempted to change Cython, but that failed to get the
@@ -95,20 +97,20 @@ fact different enough from Cythons. Although I go away with the sense, that of
 course Stefan believes, it would be better if I joined Cython. Naturally.
 
 But that's not going to happen. I think i have a cleaner and better
-implementation now, closer to my goals with a realistic chance to succeed. To me
-it would be a step back to fix language parsing issues and incompatibilities of
-Cython, with the danger that my goals will not be shared.
+implementation now, closer to my goals with a realistic chance to succeed. To
+me it would be a step back to fix language parsing issues and incompatibilities
+of Cython, with the danger that my goals will not be shared.
 
-As an example of these things, I would mention function call errors, where
-e.g. Cython gives different and sometimes worse error messages than CPython, and
-I designed the code so that it does things in that same order than CPython does.
+As an example of these things, I would mention function call errors, where e.g.
+Cython gives different and sometimes worse error messages than CPython, and I
+designed the code so that it does things in that same order than CPython does.
 
 It do not want to give different error messages, and who knows, somebody may
 check for the exception text and expect CPython output. In this case, I will
 rather accept a worse performance, than an incompatibility.
 
-Eliminating function parameter parsing for the whole program as far as possible is going
-to be more worthwhile anyway.
+Eliminating function parameter parsing for the whole program as far as possible
+is going to be more worthwhile anyway.
 
 But in my mind, Cython is something I can and do recommend. For as long as I am
 not able to declare Nuitka "useful" yet. That statement may come within a year
@@ -122,13 +124,13 @@ Bruggemann, who is a really nice and witty guy. He introduced me to how he
 applies graph theory to multi-parameter optimization problems.
 
 We agreed that we will try and work together on this project. Hopefully it will
-come to pass. One thing I personally wanted, was to get into contact with people
-who understand or are part of the scientific community.
+come to pass. One thing I personally wanted, was to get into contact with
+people who understand or are part of the scientific community.
 
-I can see what NumPy is. But I may never know myself what it really is, unless I
-find proxies, and make these kind of contacts. The same thing is true of Django,
-or e.g. Mercurial. I am positive though that with time, and such conferences, my
-knowledge of these will only grow.
+I can see what NumPy is. But I may never know myself what it really is, unless
+I find proxies, and make these kind of contacts. The same thing is true of
+Django, or e.g. Mercurial. I am positive though that with time, and such
+conferences, my knowledge of these will only grow.
 
 We said that we will try and see how far we can go. In the worst case, Nuitka
 will not yet be useful, but I will have a clearer image what is needed.
@@ -137,8 +139,8 @@ Debian
 ~~~~~~~
 
 I saw the presentation from Jan Dittberner and met him later too, asking him
-questions, and generally discussing Debian packaging of Nuitka. He encouraged me
-to contact the Debian Python Team, and so I will.
+questions, and generally discussing Debian packaging of Nuitka. He encouraged
+me to contact the Debian Python Team, and so I will.
 
 I used the chance to make contact with a Debian guy, who made a presentation on
 how to package Python modules for Debian. He gave me hints on how to solve that
@@ -149,8 +151,9 @@ keep up the good work.
 General
 ~~~~~~~
 
-I also made contacts with lots of other people. Python is diverse and it was fun
-to get to know, many people with similar and entirely different backgrounds.
+I also made contacts with lots of other people. Python is diverse and it was
+fun to get to know, many people with similar and entirely different
+backgrounds.
 
 The mood was extremely constructive. Nuitka was well received, but that's not
 why I say it. There is that general sense of respect around that German
@@ -163,10 +166,10 @@ Keynotes
 One keynotes speaker had a part about how trolling and hate is bad for a
 community, but that's not the German Python community.
 
-Another keynote speaker (Paul Everitt) had a part about how Zope, which was kind
-of his project, failed in many ways. He seemed to be quite disappointed about
-that, which triggered me to point out, that he should start his story with
-Apache, and not see the "failure to integrate" as a failure.
+Another keynote speaker (Paul Everitt) had a part about how Zope, which was
+kind of his project, failed in many ways. He seemed to be quite disappointed
+about that, which triggered me to point out, that he should start his story
+with Apache, and not see the "failure to integrate" as a failure.
 
 If there had not been Apache failing, there wouldn't have been Zope, and then
 not Django, etc. that's kind of normal and actually good. He agreed and pointed
@@ -194,5 +197,5 @@ to go in 2011, but need to not put it in my early booked holiday again.
 
 But you know what Murphy says about that.
 
-Yours,
-Kay Hayen
+| Yours,
+| Kay Hayen

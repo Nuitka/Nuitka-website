@@ -15,5 +15,5 @@ So, this is probably as good as it ever gets. So please share, like
 and go ahead and spread it in this social media craziness that you
 use all day.
 
-Yours,
-Kay
+| Yours,
+| Kay

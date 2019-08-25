@@ -1,6 +1,6 @@
 
-That just killed some hope inside of me, breaking code that uses ``str`` ought to be
-forbidden.
+That just killed some hope inside of me, breaking code that uses ``str`` ought
+to be forbidden.
 
 .. admonition:: Update
 
@@ -37,8 +37,9 @@ Python 2::
     >>> str( object = "a" )
     'a'
 
-I do understand that it's in fact just the old ``unicode`` built-in. In fact, I made it
-work like that for Nuitka just now. But there is a difference, for Python2, it was well behaved.
+I do understand that it's in fact just the old ``unicode`` built-in. In fact, I
+made it work like that for Nuitka just now. But there is a difference, for
+Python2, it was well behaved.
 
 
 Python 2::
@@ -54,5 +55,5 @@ Python 2::
 
 Is Python3 supposed to be more clean or what? I think it is not happening.
 
-Yours,
-Kay Hayen
+| Yours,
+| Kay Hayen

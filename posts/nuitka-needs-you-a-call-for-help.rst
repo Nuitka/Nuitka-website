@@ -26,9 +26,9 @@
 Hello everybody,
 
 the Python compiler Nuitka has come an ever longer way, and currently I have
-quite a bunch of issues, that I believe could well need your help. These are all
-issues of some important and significance, yet self contained jobs that you may
-enjoy.
+quite a bunch of issues, that I believe could well need your help. These are
+all issues of some important and significance, yet self contained jobs that you
+may enjoy.
 
 .. note::
 
@@ -38,7 +38,7 @@ enjoy.
 * Python 3.3 - reformulation of ``yield from`` needed.
 
   As you can see, covering all the CPython 2.6, 2.7, and 3.2 language features
-  is already something. Also CPython 3.3 is now working on a basic level.  Other
+  is already something. Also CPython 3.3 is now working on a basic level. Other
   projects are far, far away from that.
 
   Many language constructs, such as the ``with`` statement are re-formulated
@@ -126,8 +126,8 @@ am doing Nuitka in my spare time. If you feel, you cannot help, but still would
 like to support it, you can still `make donations </pages/donations.html>`_ to
 allow me to travel to conferences and spend more time on it myself.
 
-Anyway, it would be great if these 3 things got sorted out. Come and join me for
-this grand vision of the Python compiler.
+Anyway, it would be great if these 3 things got sorted out. Come and join me
+for this grand vision of the Python compiler.
 
-Yours,
-Kay
+| Yours,
+| Kay

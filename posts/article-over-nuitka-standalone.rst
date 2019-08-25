@@ -14,5 +14,5 @@ longer necessary.
 
 Thanks Tom for sharing your information, and good article.
 
-Yours,
-Kay
+| Yours,
+| Kay

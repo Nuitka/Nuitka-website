@@ -22,11 +22,11 @@ some templates made it easy to cover a wide, wide part of the language, and to
 fully integrate with CPython for compatibility.
 
 The main goal was to get it going to work correctly. As time went on, execution
-order demanded to do away with variadic templates, raw strings were not all that
-perfect at all, and so C++-03 was good enough at one point.
+order demanded to do away with variadic templates, raw strings were not all
+that perfect at all, and so C++-03 was good enough at one point.
 
-And then, as Nuitka became less and less template based, and shoving more things
-into the node tree, and re-formulations, making this where the knowledge
+And then, as Nuitka became less and less template based, and shoving more
+things into the node tree, and re-formulations, making this where the knowledge
 resided. It became more and more obvious that C++ has two problems. One in the
 way I used it. One inherent in the language typical implementations:
 
@@ -34,10 +34,10 @@ way I used it. One inherent in the language typical implementations:
 
 * Everything should be a in a single statement.
 
-The later was my choice. Initially it made it easy to pass on references and put
-the releasing C++ class around every expression as necessary. Identifier classes
-were allowing for code generation to avoid taking references where necessary,
-and it was not all that bad. Yet limiting.
+The later was my choice. Initially it made it easy to pass on references and
+put the releasing C++ class around every expression as necessary. Identifier
+classes were allowing for code generation to avoid taking references where
+necessary, and it was not all that bad. Yet limiting.
 
 This led to a couple of issues.
 
@@ -65,8 +65,8 @@ I took a deep dive, and **rewrote** the whole code generation, to be much more
   exception was thrown), now everything needed a return value name, and error
   check.
 
-* Where classes were previously conviently made sure things happened at function
-  or scope exit, manual handling needed to be added.
+* Where classes were previously conviently made sure things happened at
+  function or scope exit, manual handling needed to be added.
 
 * The handling of ``continue``, ``break``, and ``return`` was previously done
   with exceptions being thrown, if they were to pass a ``try``/``finally``
@@ -92,19 +92,20 @@ Current Situation
 
 The current pre-release is release quality. You should try it out, it's great.
 
-* There are many changes to Standalone mode. Due to changes in how constants are
-  now created in the modules that uses them, instead of everything globally, the
-  parallel compilation now works great. What previously took an hour with MSVC
-  (the problem child, gcc was always relatively good), now takes minutes only.
+* There are many changes to Standalone mode. Due to changes in how constants
+  are now created in the modules that uses them, instead of everything
+  globally, the parallel compilation now works great. What previously took an
+  hour with MSVC (the problem child, gcc was always relatively good), now takes
+  minutes only.
 
-* The support for virtualenv's of all kinds seems to work on Windows, Linux, and
-  macOS, which all seem to have different kinds of codes.
+* The support for virtualenv's of all kinds seems to work on Windows, Linux,
+  and macOS, which all seem to have different kinds of codes.
 
 * The support for macOS is now there. Thanks to a virtual server month donated
   to Jarrad Hope, I was able to iron issues out.
 
-* The final release will also work with standalone binaries created on Fedora 20
-  which got hard code rpaths removed on the factory git branch.
+* The final release will also work with standalone binaries created on Fedora
+  20 which got hard code rpaths removed on the factory git branch.
 
 And yet, I am not yet releasing. In fact, I would like to ask you to give it a
 roll, and integrate test feedback.
@@ -139,8 +140,8 @@ unfinished state.
 
   Currently there are variables, closure variables, temp variables, and then
   temp variable references. The way they work is different. One way they work
-  different, prevents a temp variable closure reference to carry a name, in that
-  case ``-_class__``, which would be needed for Python3.4, where that is
+  different, prevents a temp variable closure reference to carry a name, in
+  that case ``-_class__``, which would be needed for Python3.4, where that is
   suddenly necessary.
 
   With this done, the SSA code will be even easier to write, as temp variables
@@ -154,13 +155,13 @@ unfinished state.
 
   Removing these classes may well gain more performance.
 
-* Now that code generation can more easily make a difference, and SSA apparently
-  is becoming reliable, it could be used to *know* that values must be value and
-  to optimize checks away.
+* Now that code generation can more easily make a difference, and SSA
+  apparently is becoming reliable, it could be used to *know* that values must
+  be value and to optimize checks away.
 
-  Currently every variable access checks for "NULL", when it's part of an assign
-  trace. Some optimizations exist for parameter variables without ``del`` on
-  them, that do not use SSA.
+  Currently every variable access checks for "NULL", when it's part of an
+  assign trace. Some optimizations exist for parameter variables without
+  ``del`` on them, that do not use SSA.
 
   This could be expanded and made general, allowing for much less code to be
   generated (specifically avoiding error code, and release code for variables
@@ -174,9 +175,9 @@ unfinished state.
   be there. And "C-ish" now makes this ever more attractive, despite the large
   delay in time it has caused.
 
-* The in-place assignment code for strings, where CPython can be way faster than
-  current Nuitka, it bears a risk of getting it wrong. It is therefore pushed to
-  a future release.
+* The in-place assignment code for strings, where CPython can be way faster
+  than current Nuitka, it bears a risk of getting it wrong. It is therefore
+  pushed to a future release.
 
 Other Things
 ------------
@@ -209,7 +210,8 @@ Final Words
 
 So, there is this "C-ish" release 0.5.2 cooking. You are invited to help. Big,
 improvements are coming to Nuitka. Even after this next huge release, very
-important work is still open, but hope is to have this complete over the summer.
+important work is still open, but hope is to have this complete over the
+summer.
 
-Yours,
-Kay
+| Yours,
+| Kay
