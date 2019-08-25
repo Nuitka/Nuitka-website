@@ -13,7 +13,9 @@ Built-ins Optimizations
 * "any": `PR #246 <https://github.com/Nuitka/Nuitka/pull/246>`
     * `nuitka.nodes.BuiltinAnyNodes` node added to optimize the "any" built-in.
     * Developed an algorithm to predict the "any" for arguments having repetitive values at compile time. 
-      For example::
+      For example:
+      
+      .. code-block:: sh
       
          any([0]*255) -> False
          any([False, False, True]) -> True
@@ -30,7 +32,9 @@ Built-ins Optimizations
 * "all": `PR #407 <https://github.com/Nuitka/Nuitka/pull/407>`
     * Added `nuitka.nodes.BuiltinAllNodes` to optimize the "all" built-ins.
     * Developed an algorithm similar to "any" to predict the "all" arguments.
-      For example::
+      For example:
+      
+      .. code-block:: sh
       
         all([0, 0, 1]) -> False
         all([True]*100) -> True
@@ -47,14 +51,16 @@ Built-ins Optimizations
 * "max" and "min": `PR #442 <https://github.com/Nuitka/Nuitka/pull/442>`
    * This PR is work in progress and is half complete.
    * This is the first optimizations in which I used reformulations instead of added in a new node.
-     Pseudo-code of "min" reformulation::
+     Pseudo-code of "min" reformulation:
+     
+     .. code-block:: python
      
        def _min(a, b, c, ...):
         tmp_arg1 = a
         tmp_arg2 = b
         tmp_arg3 = c
         ...
-         result = tmp_arg1
+        result = tmp_arg1
         if keyfunc is None: # can be decided during re-formulation
             tmp_key_result = keyfunc(result)
             tmp_key_candidate = keyfunc(tmp_arg2)
@@ -79,7 +85,9 @@ Built-ins Optimizations
 * "zip": `PR #462 <https://github.com/Nuitka/Nuitka/pull/462>`
    * This built-in uses both types of optimizations that the previous built-ins optimizations used.
    * `zip` for Python 2 uses the reformulations.
-   Pseudo-code of "zip" reformulation::
+   Pseudo-code of "zip" reformulation:
+   
+   .. code-block:: python
      
        def _zip(a, b, c, ... ):
        # First assign, to preserve order of execution,
@@ -88,11 +96,11 @@ Built-ins Optimizations
        tmp_arg2 = b
        tmp_arg3 = c
        ...
-        tmp_iter_1 = iter(tmp_arg1)
+       tmp_iter_1 = iter(tmp_arg1)
        tmp_iter_2 = iter(tmp_arg2)
        tmp_iter_3 = iter(tmp_arg3)
        ...
-        # could be more
+       # could be more
        tmp_result = []
        try:
            while 1:
@@ -115,7 +123,9 @@ Test suite
 
 * Search mode "All": `PR #378 <https://github.com/Nuitka/Nuitka/pull/378>`
    * In the test suite, I added a new search mode "all" that will test all the modules and return all the results at once.
-   Example::
+   Example:
+   
+   .. code-block:: sh
       
       $ ./tests/basics/run_all.py all
          Using concrete python 2.7.12 on x86_64
@@ -130,7 +140,9 @@ Test suite
    
 * Search mode "Only": `PR #333 <https://github.com/Nuitka/Nuitka/pull/333>`
    * Added "only" search mode to test only a single module.
-   Example::
+   Example:
+   
+   .. code-block:: sh
    
       $ ./tests/basics/run_all.py only BuiltinsTest.py
          Using concrete python 2.7.12 on x86_64
@@ -162,5 +174,5 @@ What I learned
 
 Overall, it was a great experience to be a part of Nuitka :) 
 
-Yours, :raw-html:`<br />`
-`Batakrishna <https://bksahu.github.io>`__
+| Yours,
+| `Batakrishna <https://bksahu.github.io>`__
