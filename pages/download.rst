@@ -453,6 +453,9 @@ Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
 .. |NUITKA_STABLE_F29| replace::
    `Nuitka 0.6.5 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-0.6.5-5.1.noarch.rpm>`__
 
+.. |NUITKA_STABLE_F30| replace::
+   `Nuitka 0.6.5 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-0.6.5-5.1.noarch.rpm>`__
+
 .. |NUITKA_STABLE_SUSE131| replace::
    `Nuitka 0.6.5 RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-0.6.5-5.1.noarch.rpm>`__
 
@@ -505,6 +508,9 @@ Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
    `Nuitka 0.6.6rc1 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-unstable-0.6.6rc1-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_F29| replace::
+   `Nuitka 0.6.6rc1 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-unstable-0.6.6rc1-5.1.noarch.rpm>`__
+
+.. |NUITKA_UNSTABLE_F30| replace::
    `Nuitka 0.6.6rc1 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-unstable-0.6.6rc1-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE131| replace::
