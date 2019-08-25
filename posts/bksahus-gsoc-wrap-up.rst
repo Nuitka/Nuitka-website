@@ -156,7 +156,7 @@ What I learned
 ==============
 * Learned the software engineering principles and how to keep my work clean.
 * I also learned how to effectively use software designing principles like DRY and KISS.
-* Got exposed to Nuikta internals which helped me to better understand how compilers in general work.
+* Got exposed to Nuitka internals which helped me to better understand how compilers in general work.
 * Explored how CPython works internally.
 * Got some great advice from Mentor Hayen about starting my professional career in Software engineering.
 
