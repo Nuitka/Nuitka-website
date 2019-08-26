@@ -154,7 +154,7 @@ Test suite
 
 Documentation
 =============
-* Nuitka git work flow: `PR #485 https://github.com/Nuitka/Nuitka/pull/485`__
+* Nuitka git work flow: `PR #485 <https://github.com/Nuitka/Nuitka/pull/485>`__
 
 And other minor doc fixes are added with their respective pull requests.
 
