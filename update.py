@@ -9,10 +9,11 @@ import sys
 from optparse import OptionParser
 
 import unidecode
+import restructuredtext_lint
 
 def updateDownloadPage():
     output = subprocess.check_output(
-        "ssh nuitka.net -l root ls -1 /var/www/releases/".split()
+        r"ssh nuitka.net -l root ls -1 /var/www/releases/".split()
     )
 
     output = output.decode("utf8")
@@ -557,6 +558,34 @@ def updateDocs():
 def runNikolaCommand(command):
     assert 0 == os.system("nikola " + command)
 
+def checkRstLint(document):
+    print("Checking %r for proper restructed text ..." % document)
+    lint_results = restructuredtext_lint.lint_file(document, encoding="utf8")
+
+    lint_error = False
+    for lint_result in lint_results:
+        # Not an issue.
+        if lint_result.message.startswith("Duplicate implicit target name:"):
+            continue
+
+        print(lint_result)
+        lint_error = True
+
+    if lint_error:
+        sys.exit("Error, no lint clean rest.")
+
+    print("OK.")
+
+
+def checkRestPages():
+    for root, _dirnames, filenames in os.walk("."):
+        for filename in filenames:
+            full_name = os.path.join(root, filename)
+
+            if full_name.endswith(".rst"):
+
+                checkRstLint(full_name)
+
 def main():
     parser = OptionParser()
 
@@ -576,6 +605,15 @@ When given, the download page is updated. Default %default."""
         default = False,
         help    = """\
 When given, the rest files are updated and changelog is split into pages. Default %default."""
+    )
+
+    parser.add_option(
+        "--check-pages",
+        action  = "store_true",
+        dest    = "check_pages",
+        default = False,
+        help    = """\
+When given, the download page is updated. Default %default."""
     )
 
     parser.add_option(
@@ -613,6 +651,7 @@ When given, all is updated. Default %default."""
     if os.path.isdir(submodule):
         shutil.rmtree(submodule)
 
+
     if options.all:
         options.downloads = True
         options.docs = True
@@ -624,6 +663,9 @@ When given, all is updated. Default %default."""
 
     if options.docs:
         updateDocs()
+
+    if options.check_pages:
+        checkRestPages()
 
     if options.build:
         runNikolaCommand("status")
