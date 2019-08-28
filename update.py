@@ -568,6 +568,12 @@ def checkRstLint(document):
         if lint_result.message.startswith("Duplicate implicit target name:"):
             continue
 
+        if lint_result.message.startswith('No directive entry for "youtube"'):
+            continue
+        if lint_result.message.startswith('Unknown directive type "youtube"'):
+            continue
+
+
         print(lint_result)
         lint_error = True
 
@@ -608,12 +614,12 @@ When given, the rest files are updated and changelog is split into pages. Defaul
     )
 
     parser.add_option(
-        "--check-pages",
-        action  = "store_true",
+        "--no-check-pages",
+        action  = "store_false",
         dest    = "check_pages",
-        default = False,
+        default = True,
         help    = """\
-When given, the download page is updated. Default %default."""
+When given, the pages are not checked with rest lint. Default False."""
     )
 
     parser.add_option(
