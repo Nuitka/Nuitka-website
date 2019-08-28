@@ -18,5 +18,5 @@ install:
   - python3.7 -m pipenv install --dev
 # commands to run tests
 script:
-  - python3.7 -m pipenv run python update.py --update-docs
+  - python3.7 -m pipenv run python update.py --update-docs --check-pages
   - python3.7 -m pipenv run python update.py --build-site

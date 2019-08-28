@@ -614,12 +614,12 @@ When given, the rest files are updated and changelog is split into pages. Defaul
     )
 
     parser.add_option(
-        "--no-check-pages",
-        action  = "store_false",
+        "--check-pages",
+        action  = "store_true",
         dest    = "check_pages",
-        default = True,
+        default = False,
         help    = """\
-When given, the pages are not checked with rest lint. Default False."""
+When given, the pages are not checked with rest lint. Default %default."""
     )
 
     parser.add_option(
