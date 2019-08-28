@@ -8,8 +8,8 @@ report. If you have anything to criticize about the package, let me know. There
 is no apt source now, I hope to get it into Debian proper directly.
 
 UPDATE: After Stani's report that Ubuntu has an older Scons, I lowered the
-dependency and updated the package on the `Download </pages/download.html>`_
-page. It may now work on Ubuntu as well.
+dependency and updated the package on the page. It may now work on Ubuntu as
+well.
 
 And then, the Windows installer still requires you to install MinGW and add it
 to your path, but it's clearly a huge step ahead. It's created with distutils,

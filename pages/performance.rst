@@ -15,27 +15,27 @@ ticks with Valgrind. It doesn't matter what "pystones" are output, instead the
 whole benchmark is measured.
 
 The idea of using Valgrind is to get reliable results, without any system
-perturbation. It gives good measurements and makes even tiny effects visible. On
-purpose, the ticks for initialization are not counted, i.e. the tick counter
+perturbation. It gives good measurements and makes even tiny effects visible.
+On purpose, the ticks for initialization are not counted, i.e. the tick counter
 starts only when the main module is entered, not when the compiled types and
 constant values are prepared.
 
 Of course, "pystone" code exercises not a whole lot of Python features, esp. no
-modern ones at all. Still it's a nice indicator. It will benefit most from quick
-module variable access, quick instance attribute access and function call
+modern ones at all. Still it's a nice indicator. It will benefit most from
+quick module variable access, quick instance attribute access and function call
 performance, etc.
 
 .. image:: images/pystone-nuitka.svg
    :target: images/pystone-nuitka.svg
 
-.. include:: pages/tables/pystone-nuitka.inc
+.. include:: tables/pystone-nuitka.inc
 
 PyStone Binary Size
 ===================
 
-The size of the created binary is also an interesting figure of course. While we
-are very willing to trade performance for executable size, there should be some
-gain. More code may also mean worse cache performance.
+The size of the created binary is also an interesting figure of course. While
+we are very willing to trade performance for executable size, there should be
+some gain. More code may also mean worse cache performance.
 
 This is a by-product of the above PyStone valgrind based test. It's a pretty
 automatic result, and an interesting indicator for generated code complexity.
@@ -43,7 +43,7 @@ automatic result, and an interesting indicator for generated code complexity.
 .. image:: images/pystone-binary-nuitka.svg
    :target: images/pystone-binary-nuitka.svg
 
-.. include:: pages/tables/pystone-binary-nuitka.inc
+.. include:: tables/pystone-binary-nuitka.inc
 
 PyStone Peak Memory Usage
 =========================
@@ -61,4 +61,4 @@ objects.
 .. image:: images/pystone-memory-nuitka.svg
    :target: images/pystone-memory-nuitka.svg
 
-.. include:: pages/tables/pystone-memory-nuitka.inc
+.. include:: tables/pystone-memory-nuitka.inc
