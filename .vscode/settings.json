@@ -1,0 +1,12 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.exclude": {
+        "**/*.build": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true,
+        "**/*.orig": true,
+        "**/*.tmp": true,
+        "output" : true,
+    },
+}
