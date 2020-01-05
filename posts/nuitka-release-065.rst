@@ -147,7 +147,7 @@ Cleanups
 Tests
 -----
 
-- Run the tests using Travis on macOS too.
+- Run the tests using Travis on macOS for Python2 too.
 
 - More standalone tests have been properly whitelisting to cover openSSL usage
   from local system.
