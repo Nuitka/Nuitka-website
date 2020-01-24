@@ -208,6 +208,7 @@ def updateDownloadPage():
 
     max_centos6_release, max_centos6_prerelease = checkOBS("CentOS_CentOS-6")
     max_centos7_release, max_centos7_prerelease = checkOBS("CentOS_7")
+    max_centos8_release, max_centos8_prerelease = checkOBS("CentOS_8")
 
     max_f24_release, max_f24_prerelease = checkOBS("Fedora_24")
     max_f25_release, max_f25_prerelease = checkOBS("Fedora_25")
@@ -216,6 +217,7 @@ def updateDownloadPage():
     max_f28_release, max_f28_prerelease = checkOBS("Fedora_28")
     max_f29_release, max_f29_prerelease = checkOBS("Fedora_29")
     max_f30_release, max_f30_prerelease = checkOBS("Fedora_30")
+    max_f31_release, max_f31_prerelease = checkOBS("Fedora_31")
 
     max_suse_131_release, max_suse_131_prerelease = checkOBS("openSUSE_13.1")
     max_suse_132_release, max_suse_132_prerelease = checkOBS("openSUSE_13.2")
@@ -259,6 +261,8 @@ def updateDownloadPage():
         "centos6_stable"       : max_centos6_release.replace("-5.1", ""),
         "max_centos7_release"  : max_centos7_release,
         "centos7_stable"       : max_centos7_release.replace("-5.1", ""),
+        "max_centos8_release"  : max_centos8_release,
+        "centos8_stable"       : max_centos8_release.replace("-5.1", ""),
         "max_f24_release"      : max_f24_release,
         "f24_stable"           : max_f24_release.replace("-5.1", ""),
         "max_f25_release"      : max_f25_release,
@@ -273,6 +277,8 @@ def updateDownloadPage():
         "f29_stable"           : max_f29_release.replace("-5.1", ""),
         "max_f30_release"      : max_f30_release,
         "f30_stable"           : max_f30_release.replace("-5.1", ""),
+        "max_f31_release"      : max_f31_release,
+        "f31_stable"           : max_f31_release.replace("-5.1", ""),
         "max_rhel6_release"    : max_rhel6_release,
         "rhel6_stable"         : max_rhel6_release.replace("-5.1", ""),
         "max_rhel7_release"    : max_rhel7_release,
@@ -299,6 +305,8 @@ def updateDownloadPage():
         "centos6_unstable"        : max_centos6_prerelease.replace("-5.1", ""),
         "max_centos7_prerelease"  : max_centos7_prerelease,
         "centos7_unstable"        : max_centos7_prerelease.replace("-5.1", ""),
+        "max_centos8_prerelease"  : max_centos8_prerelease,
+        "centos8_unstable"        : max_centos8_prerelease.replace("-5.1", ""),
         "max_f24_prerelease"      : max_f24_prerelease,
         "f24_unstable"            : max_f24_prerelease.replace("-5.1", ""),
         "max_f25_prerelease"      : max_f25_prerelease,
@@ -313,6 +321,8 @@ def updateDownloadPage():
         "f29_unstable"            : max_f29_prerelease.replace("-5.1", ""),
         "max_f30_prerelease"      : max_f30_prerelease,
         "f30_unstable"            : max_f30_prerelease.replace("-5.1", ""),
+        "max_f31_prerelease"      : max_f31_prerelease,
+        "f31_unstable"            : max_f31_prerelease.replace("-5.1", ""),
         "max_rhel6_prerelease"    : max_rhel6_prerelease,
         "rhel6_unstable"          : max_rhel6_prerelease.replace("-5.1", ""),
         "max_rhel7_prerelease"    : max_rhel7_prerelease,
@@ -349,6 +359,7 @@ def updateDownloadPage():
         "NUITKA_STABLE_RHEL7" : r'`Nuitka %(rhel7_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-%(max_rhel7_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_CENTOS6" : r'`Nuitka %(centos6_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-%(max_centos6_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_CENTOS7" : r'`Nuitka %(centos7_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-%(max_centos7_release)s.noarch.rpm>`__',
+        "NUITKA_STABLE_CENTOS8" : r'`Nuitka %(centos8_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-%(max_centos8_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_F20" : r'`Nuitka %(f20_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_20/noarch/nuitka-%(max_f20_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_F21" : r'`Nuitka %(f21_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_21/noarch/nuitka-%(max_f21_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_F22" : r'`Nuitka %(f22_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_22/noarch/nuitka-%(max_f22_release)s.noarch.rpm>`__',
@@ -360,6 +371,7 @@ def updateDownloadPage():
         "NUITKA_STABLE_F28" : r'`Nuitka %(f28_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-%(max_f28_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_F29" : r'`Nuitka %(f29_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-%(max_f29_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_F30" : r'`Nuitka %(f30_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-%(max_f30_release)s.noarch.rpm>`__',
+        "NUITKA_STABLE_F31" : r'`Nuitka %(f31_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-%(max_f31_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_SUSE131" : r'`Nuitka %(suse_131_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-%(max_suse_131_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_SUSE132" : r'`Nuitka %(suse_132_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-%(max_suse_132_release)s.noarch.rpm>`__',
         "NUITKA_STABLE_SUSE421" : r'`Nuitka %(suse_421_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.1/noarch/nuitka-%(max_suse_421_release)s.noarch.rpm>`__',
@@ -380,6 +392,7 @@ def updateDownloadPage():
         "NUITKA_UNSTABLE_RHEL7" : r'`Nuitka %(rhel6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-unstable-%(max_rhel7_prerelease)s.noarch.rpm>`__',
         "NUITKA_UNSTABLE_CENTOS6" : r'`Nuitka %(centos6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-unstable-%(max_centos6_prerelease)s.noarch.rpm>`__',
         "NUITKA_UNSTABLE_CENTOS7" : r'`Nuitka %(centos7_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-unstable-%(max_centos7_prerelease)s.noarch.rpm>`__',
+        "NUITKA_UNSTABLE_CENTOS8" : r'`Nuitka %(centos7_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-unstable-%(max_centos8_prerelease)s.noarch.rpm>`__',
         "NUITKA_UNSTABLE_F20" : r'`Nuitka %(f20_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_20/noarch/nuitka-unstable-%(max_f20_prerelease)s.noarch.rpm>`__',
         "NUITKA_UNSTABLE_F21" : r'`Nuitka %(f21_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_21/noarch/nuitka-unstable-%(max_f21_prerelease)s.noarch.rpm>`__',
         "NUITKA_UNSTABLE_F22" : r'`Nuitka %(f22_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_22/noarch/nuitka-unstable-%(max_f22_prerelease)s.noarch.rpm>`__',
@@ -391,6 +404,7 @@ def updateDownloadPage():
         "NUITKA_UNSTABLE_F28" : r'`Nuitka %(f28_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-unstable-%(max_f28_prerelease)s.noarch.rpm>`__',
         "NUITKA_UNSTABLE_F29" : r'`Nuitka %(f29_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-unstable-%(max_f29_prerelease)s.noarch.rpm>`__',
         "NUITKA_UNSTABLE_F30" : r'`Nuitka %(f30_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-unstable-%(max_f30_prerelease)s.noarch.rpm>`__',
+        "NUITKA_UNSTABLE_F31" : r'`Nuitka %(f31_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-unstable-%(max_f31_prerelease)s.noarch.rpm>`__',
         "NUITKA_STABLE_VERSION" : '%(plain_stable)s',
     }
 
