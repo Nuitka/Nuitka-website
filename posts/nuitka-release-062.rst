@@ -48,7 +48,7 @@ New Features
 Optimization
 ------------
 
-- Experimental code  for variant types for ``int`` and ``long`` values,
+- Experimental code for variant types for ``int`` and ``long`` values,
   that can be plain C value, as well as the ``PyObject *``. This is not
   yet completed though.
 

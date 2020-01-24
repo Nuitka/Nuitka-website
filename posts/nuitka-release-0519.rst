@@ -65,7 +65,7 @@ Cleanups
 - Connected variables with their global variable trace statically avoid the
   need to check in variable registry for it.
 
-- Removed old and mostly unused  "assume unclear locals" indications, we use
+- Removed old and mostly unused "assume unclear locals" indications, we use
   global variable traces for this now.
 
 Summary

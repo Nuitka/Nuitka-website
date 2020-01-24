@@ -60,7 +60,7 @@ Bug Fixes
   are files in standard library that are not encoded like that.
 
 - The fiber implementation for Linux amd64 was not working with glibc from
-  RHEL 5. Fixed to use  now multiple ``int`` to pass pointers as necessary.
+  RHEL 5. Fixed to use now multiple ``int`` to pass pointers as necessary.
   Also use ``uintptr_t`` instead of ``intprt_t`` to transport pointers, which
   may be more optimal.
 

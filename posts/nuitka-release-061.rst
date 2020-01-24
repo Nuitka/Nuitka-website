@@ -89,7 +89,7 @@ Bug Fixes
 - Standalone: Added missing implicit dependency for ``zmq`` module.
 
 - Python3.7: Fix, using the ``-X utf8`` flag on the calling interpreter, aka
-  ``--python-flag=utf8_mode`` was not  preserved in the compiled binary in all
+  ``--python-flag=utf8_mode`` was not preserved in the compiled binary in all
   cases.
 
 New Optimization
