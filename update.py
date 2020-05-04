@@ -6,17 +6,22 @@ import re
 import shutil
 import subprocess
 import sys
+from io import StringIO
 from optparse import OptionParser
 
-import unidecode
+import requests
 import restructuredtext_lint
+import unidecode
+
+from lxml import html
+
 
 def updateDownloadPage():
-    output = subprocess.check_output(
-        r"ssh nuitka.net -l root ls -1 /var/www/releases/".split()
-    )
+    page_source = requests.get("http://nuitka.net/releases/").text
 
-    output = output.decode("utf8")
+    tree = html.parse(StringIO(page_source))
+    link_names = tree.xpath("//@href")
+
     max_pre_release = ""
     max_stable_release = ""
 
@@ -24,12 +29,13 @@ def updateDownloadPage():
         if value == "":
             return []
 
-        value = value.\
-          replace("~pre", ".").\
-          replace("pre", ".").\
-          replace("~rc", ".").\
-          replace("rc", ".").\
-          replace("~nd", "")
+        value = (
+            value.replace("~pre", ".")
+            .replace("pre", ".")
+            .replace("~rc", ".")
+            .replace("rc", ".")
+            .replace("~nd", "")
+        )
 
         parts = []
 
@@ -57,7 +63,7 @@ def updateDownloadPage():
         if current != "":
             parts.append(current)
 
-        parts = [ int(part) if part.isdigit() else part for part in parts ]
+        parts = [int(part) if part.isdigit() else part for part in parts]
 
         if "ds" in parts:
             parts.remove("ds")
@@ -68,7 +74,11 @@ def updateDownloadPage():
 
     msi_info = {}
 
-    for filename in output.rstrip().split("\n"):
+    for filename in link_names:
+        # Navigation links
+        if filename.startswith("?C") or filename == "/":
+            continue
+
         if filename.startswith("0.3"):
             continue
         if filename.startswith("0.4"):
@@ -79,9 +89,11 @@ def updateDownloadPage():
         if "CPython" in filename or "shedskin" in filename:
             continue
 
-        if filename.startswith("Nuitka-") and \
-           filename.endswith(".msi") and \
-           "factory" not in filename:
+        if (
+            filename.startswith("Nuitka-")
+            and filename.endswith(".msi")
+            and "factory" not in filename
+        ):
 
             parts = filename.split(".")
 
@@ -104,31 +116,31 @@ def updateDownloadPage():
             if key not in msi_info:
                 msi_info[key] = filename
             else:
-                msi_info[key] = max(
-                    msi_info[key],
-                    filename,
-                    key = numberize
-                )
+                msi_info[key] = max(msi_info[key], filename, key=numberize)
 
             continue
 
-        if not filename.endswith(".deb") or \
-           not filename.endswith("_all.deb"):
+        if not filename.endswith(".deb") or not filename.endswith("_all.deb"):
             continue
 
         # print "FILE", filename
 
-        filename = filename[ len("nuitka_") :-len("_all.deb") ]
+        filename = filename[len("nuitka_") : -len("_all.deb")]
 
         # print "VER", filename
 
         if "pre" in filename or "rc" in filename:
-            max_pre_release = max(max_pre_release, filename, key = numberize)
+            max_pre_release = max(max_pre_release, filename, key=numberize)
         else:
-            max_stable_release = max(max_stable_release, filename, key = numberize)
+            max_stable_release = max(max_stable_release, filename, key=numberize)
 
     def makePlain(value):
-        value = value.replace("+ds", "").replace("~pre", "pre").replace("~rc", "rc").split("-")[0]
+        value = (
+            value.replace("+ds", "")
+            .replace("~pre", "pre")
+            .replace("~rc", "rc")
+            .split("-")[0]
+        )
 
         return value
 
@@ -136,10 +148,9 @@ def updateDownloadPage():
     print("Max stable release is", max_stable_release, makePlain(max_stable_release))
     sys.stdout.flush()
 
-
     output = subprocess.check_output(
         r"ssh -l root nuitka.net cd /var/www && find deb -name \*.deb".split(),
-        shell = False
+        shell=False,
     )
 
     output = output.decode("utf8")
@@ -166,13 +177,16 @@ def updateDownloadPage():
 
         filename = parts[-1]
 
-        deb_info[ category, code_name ] = (
+        deb_info[category, code_name] = (
             extractDebVersion(filename),
-            makeRepositoryUrl(line)
+            makeRepositoryUrl(line),
         )
 
     def checkOBS(repo_name):
-        command = "curl -s download.opensuse.org/repositories/home:/kayhayen/%s/noarch/" % repo_name
+        command = (
+            "curl -s download.opensuse.org/repositories/home:/kayhayen/%s/noarch/"
+            % repo_name
+        )
         output = subprocess.check_output(command.split())
         output = output.decode("utf8").split("\n")
 
@@ -201,7 +215,6 @@ def updateDownloadPage():
             break
 
         return max_release, max_prerelease
-
 
     max_rhel6_release, max_rhel6_prerelease = checkOBS("RedHat_RHEL-6")
     max_rhel7_release, max_rhel7_prerelease = checkOBS("RedHat_RHEL-7")
@@ -236,176 +249,165 @@ def updateDownloadPage():
         m1, m2, m3 = numberize(filename)[1:4]
 
         if not m2:
-            result = "0.%d.%drc%d" % (
-                m1,
-                m3 / 100,
-                (m3 / 10) % 10
-            )
+            result = "0.%d.%drc%d" % (m1, m3 / 100, (m3 / 10) % 10)
         else:
-            result = "0.%d.%d.%d" % (
-                m1,
-                (m3 // 10),
-                m3 % 10,
-            )
+            result = "0.%d.%d.%d" % (m1, (m3 // 10), m3 % 10,)
 
         return result
 
     findings = {
-        "plain_prerelease"   : makePlain(max_pre_release),
-        "deb_prerelease"     : max_pre_release,
-        "plain_stable"       : makePlain(max_stable_release),
-
-        "deb_stable"           : max_stable_release,
-
-        "max_centos6_release"  : max_centos6_release,
-        "centos6_stable"       : max_centos6_release.replace("-5.1", ""),
-        "max_centos7_release"  : max_centos7_release,
-        "centos7_stable"       : max_centos7_release.replace("-5.1", ""),
-        "max_centos8_release"  : max_centos8_release,
-        "centos8_stable"       : max_centos8_release.replace("-5.1", ""),
-        "max_f24_release"      : max_f24_release,
-        "f24_stable"           : max_f24_release.replace("-5.1", ""),
-        "max_f25_release"      : max_f25_release,
-        "f25_stable"           : max_f25_release.replace("-5.1", ""),
-        "max_f26_release"      : max_f26_release,
-        "f26_stable"           : max_f26_release.replace("-5.1", ""),
-        "max_f27_release"      : max_f27_release,
-        "f27_stable"           : max_f27_release.replace("-5.1", ""),
-        "max_f28_release"      : max_f28_release,
-        "f28_stable"           : max_f28_release.replace("-5.1", ""),
-        "max_f29_release"      : max_f29_release,
-        "f29_stable"           : max_f29_release.replace("-5.1", ""),
-        "max_f30_release"      : max_f30_release,
-        "f30_stable"           : max_f30_release.replace("-5.1", ""),
-        "max_f31_release"      : max_f31_release,
-        "f31_stable"           : max_f31_release.replace("-5.1", ""),
-        "max_rhel6_release"    : max_rhel6_release,
-        "rhel6_stable"         : max_rhel6_release.replace("-5.1", ""),
-        "max_rhel7_release"    : max_rhel7_release,
-        "rhel7_stable"         : max_rhel7_release.replace("-5.1", ""),
-        "max_suse_131_release" : max_suse_131_release,
-        "suse_131_stable"      : max_suse_131_release.replace("-5.1", ""),
-        "max_suse_132_release" : max_suse_132_release,
-        "suse_132_stable"      : max_suse_132_release.replace("-5.1", ""),
-        "max_suse_421_release" : max_suse_421_release,
-        "suse_421_stable"      : max_suse_421_release.replace("-5.1", ""),
-        "max_suse_422_release" : max_suse_422_release,
-        "suse_422_stable"      : max_suse_422_release.replace("-5.1", ""),
-        "max_suse_423_release" : max_suse_423_release,
-        "suse_423_stable"      : max_suse_423_release.replace("-5.1", ""),
-        "max_suse_150_release" : max_suse_150_release,
-        "suse_150_stable"      : max_suse_150_release.replace("-5.1", ""),
-        "max_suse_151_release" : max_suse_151_release,
-        "suse_151_stable"      : max_suse_151_release.replace("-5.1", ""),
-        "max_sle_150_release"  : max_sle_150_release,
-        "sle_150_stable"       : max_sle_150_release.replace("-5.1", ""),
-
+        "plain_prerelease": makePlain(max_pre_release),
+        "deb_prerelease": max_pre_release,
+        "plain_stable": makePlain(max_stable_release),
+        "deb_stable": max_stable_release,
+        "max_centos6_release": max_centos6_release,
+        "centos6_stable": max_centos6_release.replace("-5.1", ""),
+        "max_centos7_release": max_centos7_release,
+        "centos7_stable": max_centos7_release.replace("-5.1", ""),
+        "max_centos8_release": max_centos8_release,
+        "centos8_stable": max_centos8_release.replace("-5.1", ""),
+        "max_f24_release": max_f24_release,
+        "f24_stable": max_f24_release.replace("-5.1", ""),
+        "max_f25_release": max_f25_release,
+        "f25_stable": max_f25_release.replace("-5.1", ""),
+        "max_f26_release": max_f26_release,
+        "f26_stable": max_f26_release.replace("-5.1", ""),
+        "max_f27_release": max_f27_release,
+        "f27_stable": max_f27_release.replace("-5.1", ""),
+        "max_f28_release": max_f28_release,
+        "f28_stable": max_f28_release.replace("-5.1", ""),
+        "max_f29_release": max_f29_release,
+        "f29_stable": max_f29_release.replace("-5.1", ""),
+        "max_f30_release": max_f30_release,
+        "f30_stable": max_f30_release.replace("-5.1", ""),
+        "max_f31_release": max_f31_release,
+        "f31_stable": max_f31_release.replace("-5.1", ""),
+        "max_rhel6_release": max_rhel6_release,
+        "rhel6_stable": max_rhel6_release.replace("-5.1", ""),
+        "max_rhel7_release": max_rhel7_release,
+        "rhel7_stable": max_rhel7_release.replace("-5.1", ""),
+        "max_suse_131_release": max_suse_131_release,
+        "suse_131_stable": max_suse_131_release.replace("-5.1", ""),
+        "max_suse_132_release": max_suse_132_release,
+        "suse_132_stable": max_suse_132_release.replace("-5.1", ""),
+        "max_suse_421_release": max_suse_421_release,
+        "suse_421_stable": max_suse_421_release.replace("-5.1", ""),
+        "max_suse_422_release": max_suse_422_release,
+        "suse_422_stable": max_suse_422_release.replace("-5.1", ""),
+        "max_suse_423_release": max_suse_423_release,
+        "suse_423_stable": max_suse_423_release.replace("-5.1", ""),
+        "max_suse_150_release": max_suse_150_release,
+        "suse_150_stable": max_suse_150_release.replace("-5.1", ""),
+        "max_suse_151_release": max_suse_151_release,
+        "suse_151_stable": max_suse_151_release.replace("-5.1", ""),
+        "max_sle_150_release": max_sle_150_release,
+        "sle_150_stable": max_sle_150_release.replace("-5.1", ""),
         # Unstable
-        "max_centos6_prerelease"  : max_centos6_prerelease,
-        "centos6_unstable"        : max_centos6_prerelease.replace("-5.1", ""),
-        "max_centos7_prerelease"  : max_centos7_prerelease,
-        "centos7_unstable"        : max_centos7_prerelease.replace("-5.1", ""),
-        "max_centos8_prerelease"  : max_centos8_prerelease,
-        "centos8_unstable"        : max_centos8_prerelease.replace("-5.1", ""),
-        "max_f24_prerelease"      : max_f24_prerelease,
-        "f24_unstable"            : max_f24_prerelease.replace("-5.1", ""),
-        "max_f25_prerelease"      : max_f25_prerelease,
-        "f25_unstable"            : max_f25_prerelease.replace("-5.1", ""),
-        "max_f26_prerelease"      : max_f26_prerelease,
-        "f26_unstable"            : max_f26_prerelease.replace("-5.1", ""),
-        "max_f27_prerelease"      : max_f27_prerelease,
-        "f27_unstable"            : max_f27_prerelease.replace("-5.1", ""),
-        "max_f28_prerelease"      : max_f28_prerelease,
-        "f28_unstable"            : max_f28_prerelease.replace("-5.1", ""),
-        "max_f29_prerelease"      : max_f29_prerelease,
-        "f29_unstable"            : max_f29_prerelease.replace("-5.1", ""),
-        "max_f30_prerelease"      : max_f30_prerelease,
-        "f30_unstable"            : max_f30_prerelease.replace("-5.1", ""),
-        "max_f31_prerelease"      : max_f31_prerelease,
-        "f31_unstable"            : max_f31_prerelease.replace("-5.1", ""),
-        "max_rhel6_prerelease"    : max_rhel6_prerelease,
-        "rhel6_unstable"          : max_rhel6_prerelease.replace("-5.1", ""),
-        "max_rhel7_prerelease"    : max_rhel7_prerelease,
-        "rhel7_unstable"          : max_rhel7_prerelease.replace("-5.1", ""),
-        "max_suse_131_prerelease" : max_suse_131_prerelease,
-        "suse_131_unstable"       : max_suse_131_prerelease.replace("-5.1", ""),
-        "max_suse_132_prerelease" : max_suse_132_prerelease,
-        "suse_132_unstable"       : max_suse_132_prerelease.replace("-5.1", ""),
-        "max_suse_421_prerelease" : max_suse_421_prerelease,
-        "suse_421_unstable"       : max_suse_421_prerelease.replace("-5.1", ""),
-        "max_suse_422_prerelease" : max_suse_422_prerelease,
-        "suse_422_unstable"       : max_suse_422_prerelease.replace("-5.1", ""),
-        "max_suse_423_prerelease" : max_suse_423_prerelease,
-        "suse_423_unstable"       : max_suse_423_prerelease.replace("-5.1", ""),
-        "max_suse_150_prerelease" : max_suse_150_prerelease,
-        "suse_150_unstable"       : max_suse_150_prerelease.replace("-5.1", ""),
-        "max_suse_151_prerelease" : max_suse_151_prerelease,
-        "suse_151_unstable"       : max_suse_151_prerelease.replace("-5.1", ""),
-        "max_sle_150_prerelease"  : max_sle_150_prerelease,
-        "sle_150_unstable"        : max_sle_150_prerelease.replace("-5.1", ""),
+        "max_centos6_prerelease": max_centos6_prerelease,
+        "centos6_unstable": max_centos6_prerelease.replace("-5.1", ""),
+        "max_centos7_prerelease": max_centos7_prerelease,
+        "centos7_unstable": max_centos7_prerelease.replace("-5.1", ""),
+        "max_centos8_prerelease": max_centos8_prerelease,
+        "centos8_unstable": max_centos8_prerelease.replace("-5.1", ""),
+        "max_f24_prerelease": max_f24_prerelease,
+        "f24_unstable": max_f24_prerelease.replace("-5.1", ""),
+        "max_f25_prerelease": max_f25_prerelease,
+        "f25_unstable": max_f25_prerelease.replace("-5.1", ""),
+        "max_f26_prerelease": max_f26_prerelease,
+        "f26_unstable": max_f26_prerelease.replace("-5.1", ""),
+        "max_f27_prerelease": max_f27_prerelease,
+        "f27_unstable": max_f27_prerelease.replace("-5.1", ""),
+        "max_f28_prerelease": max_f28_prerelease,
+        "f28_unstable": max_f28_prerelease.replace("-5.1", ""),
+        "max_f29_prerelease": max_f29_prerelease,
+        "f29_unstable": max_f29_prerelease.replace("-5.1", ""),
+        "max_f30_prerelease": max_f30_prerelease,
+        "f30_unstable": max_f30_prerelease.replace("-5.1", ""),
+        "max_f31_prerelease": max_f31_prerelease,
+        "f31_unstable": max_f31_prerelease.replace("-5.1", ""),
+        "max_rhel6_prerelease": max_rhel6_prerelease,
+        "rhel6_unstable": max_rhel6_prerelease.replace("-5.1", ""),
+        "max_rhel7_prerelease": max_rhel7_prerelease,
+        "rhel7_unstable": max_rhel7_prerelease.replace("-5.1", ""),
+        "max_suse_131_prerelease": max_suse_131_prerelease,
+        "suse_131_unstable": max_suse_131_prerelease.replace("-5.1", ""),
+        "max_suse_132_prerelease": max_suse_132_prerelease,
+        "suse_132_unstable": max_suse_132_prerelease.replace("-5.1", ""),
+        "max_suse_421_prerelease": max_suse_421_prerelease,
+        "suse_421_unstable": max_suse_421_prerelease.replace("-5.1", ""),
+        "max_suse_422_prerelease": max_suse_422_prerelease,
+        "suse_422_unstable": max_suse_422_prerelease.replace("-5.1", ""),
+        "max_suse_423_prerelease": max_suse_423_prerelease,
+        "suse_423_unstable": max_suse_423_prerelease.replace("-5.1", ""),
+        "max_suse_150_prerelease": max_suse_150_prerelease,
+        "suse_150_unstable": max_suse_150_prerelease.replace("-5.1", ""),
+        "max_suse_151_prerelease": max_suse_151_prerelease,
+        "suse_151_unstable": max_suse_151_prerelease.replace("-5.1", ""),
+        "max_sle_150_prerelease": max_sle_150_prerelease,
+        "sle_150_unstable": max_sle_150_prerelease.replace("-5.1", ""),
     }
 
     templates = {
-        "NUITKA_STABLE_TAR_GZ" : r'`Nuitka %(plain_stable)s (0.6 MB tar.gz) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.gz>`__',
-        "NUITKA_STABLE_TAR_BZ" : r'`Nuitka %(plain_stable)s (0.5 MB tar.bz2) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.bz2>`__',
-        "NUITKA_STABLE_ZIP" : r'`Nuitka %(plain_stable)s (1.1 MB zip) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.zip>`__',
-        "NUITKA_STABLE_WININST" : r'`Nuitka %(plain_stable)s (1.2 MB exe) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.win32.exe>`__',
-        "NUITKA_STABLE_DEBIAN" : r'`Nuitka %(plain_stable)s (0.2 MB deb) <http://nuitka.net/releases/nuitka_%(deb_stable)s_all.deb>`__',
-        "NUITKA_UNSTABLE_TAR_GZ" : r'`Nuitka %(plain_prerelease)s (0.6 MB tar.gz) <http://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.gz>`__',
-        "NUITKA_UNSTABLE_TAR_BZ" : r'`Nuitka %(plain_prerelease)s (0.5 MB tar.bz2) <http://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.bz2>`__',
-        "NUITKA_UNSTABLE_ZIP" : r'`Nuitka %(plain_prerelease)s (1.2 MB zip) <http://nuitka.net/releases/Nuitka-%(plain_prerelease)s.zip>`__',
-        "NUITKA_UNSTABLE_DEBIAN" : r'`Nuitka %(plain_prerelease)s (0.2 MB deb) <http://nuitka.net/releases/nuitka_%(deb_prerelease)s_all.deb>`__',
-        "NUITKA_STABLE_RHEL6" : r'`Nuitka %(rhel6_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-%(max_rhel6_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_RHEL7" : r'`Nuitka %(rhel7_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-%(max_rhel7_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_CENTOS6" : r'`Nuitka %(centos6_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-%(max_centos6_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_CENTOS7" : r'`Nuitka %(centos7_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-%(max_centos7_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_CENTOS8" : r'`Nuitka %(centos8_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-%(max_centos8_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F20" : r'`Nuitka %(f20_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_20/noarch/nuitka-%(max_f20_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F21" : r'`Nuitka %(f21_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_21/noarch/nuitka-%(max_f21_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F22" : r'`Nuitka %(f22_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_22/noarch/nuitka-%(max_f22_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F23" : r'`Nuitka %(f23_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_23/noarch/nuitka-%(max_f23_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F24" : r'`Nuitka %(f24_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-%(max_f24_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F25" : r'`Nuitka %(f25_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-%(max_f25_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F26" : r'`Nuitka %(f26_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/noarch/nuitka-%(max_f26_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F27" : r'`Nuitka %(f27_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/noarch/nuitka-%(max_f27_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F28" : r'`Nuitka %(f28_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-%(max_f28_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F29" : r'`Nuitka %(f29_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-%(max_f29_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F30" : r'`Nuitka %(f30_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-%(max_f30_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_F31" : r'`Nuitka %(f31_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-%(max_f31_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_SUSE131" : r'`Nuitka %(suse_131_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-%(max_suse_131_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_SUSE132" : r'`Nuitka %(suse_132_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-%(max_suse_132_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_SUSE421" : r'`Nuitka %(suse_421_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.1/noarch/nuitka-%(max_suse_421_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_SUSE422" : r'`Nuitka %(suse_422_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.2/noarch/nuitka-%(max_suse_422_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_SUSE423" : r'`Nuitka %(suse_423_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.3/noarch/nuitka-%(max_suse_423_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_SUSE150" : r'`Nuitka %(suse_150_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-%(max_suse_150_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_SUSE151" : r'`Nuitka %(suse_151_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-%(max_suse_151_release)s.noarch.rpm>`__',
-        "NUITKA_STABLE_SLE150" : r'`Nuitka %(sle_150_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-%(max_sle_150_release)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_SUSE131" : r'`Nuitka %(suse_131_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-unstable-%(max_suse_131_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_SUSE132" : r'`Nuitka %(suse_132_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-unstable-%(max_suse_132_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_SUSE421" : r'`Nuitka %(suse_421_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.1/noarch/nuitka-unstable-%(max_suse_421_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_SUSE422" : r'`Nuitka %(suse_422_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.2/noarch/nuitka-unstable-%(max_suse_422_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_SUSE423" : r'`Nuitka %(suse_423_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.3/noarch/nuitka-unstable-%(max_suse_423_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_SUSE150" : r'`Nuitka %(suse_150_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-unstable-%(max_suse_150_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_SUSE151" : r'`Nuitka %(suse_151_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-unstable-%(max_suse_151_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_SLE150"  : r'`Nuitka %(sle_150_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-unstable-%(max_sle_150_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_RHEL6" : r'`Nuitka %(rhel6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-unstable-%(max_rhel6_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_RHEL7" : r'`Nuitka %(rhel6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-unstable-%(max_rhel7_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_CENTOS6" : r'`Nuitka %(centos6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-unstable-%(max_centos6_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_CENTOS7" : r'`Nuitka %(centos7_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-unstable-%(max_centos7_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_CENTOS8" : r'`Nuitka %(centos7_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-unstable-%(max_centos8_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F20" : r'`Nuitka %(f20_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_20/noarch/nuitka-unstable-%(max_f20_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F21" : r'`Nuitka %(f21_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_21/noarch/nuitka-unstable-%(max_f21_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F22" : r'`Nuitka %(f22_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_22/noarch/nuitka-unstable-%(max_f22_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F23" : r'`Nuitka %(f23_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_23/noarch/nuitka-unstable-%(max_f23_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F24" : r'`Nuitka %(f24_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-unstable-%(max_f24_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F25" : r'`Nuitka %(f25_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-unstable-%(max_f25_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F26" : r'`Nuitka %(f26_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/noarch/nuitka-unstable-%(max_f26_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F27" : r'`Nuitka %(f27_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/noarch/nuitka-unstable-%(max_f27_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F28" : r'`Nuitka %(f28_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-unstable-%(max_f28_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F29" : r'`Nuitka %(f29_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-unstable-%(max_f29_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F30" : r'`Nuitka %(f30_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-unstable-%(max_f30_prerelease)s.noarch.rpm>`__',
-        "NUITKA_UNSTABLE_F31" : r'`Nuitka %(f31_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-unstable-%(max_f31_prerelease)s.noarch.rpm>`__',
-        "NUITKA_STABLE_VERSION" : '%(plain_stable)s',
+        "NUITKA_STABLE_TAR_GZ": r"`Nuitka %(plain_stable)s (0.6 MB tar.gz) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.gz>`__",
+        "NUITKA_STABLE_TAR_BZ": r"`Nuitka %(plain_stable)s (0.5 MB tar.bz2) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.bz2>`__",
+        "NUITKA_STABLE_ZIP": r"`Nuitka %(plain_stable)s (1.1 MB zip) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.zip>`__",
+        "NUITKA_STABLE_WININST": r"`Nuitka %(plain_stable)s (1.2 MB exe) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.win32.exe>`__",
+        "NUITKA_STABLE_DEBIAN": r"`Nuitka %(plain_stable)s (0.2 MB deb) <http://nuitka.net/releases/nuitka_%(deb_stable)s_all.deb>`__",
+        "NUITKA_UNSTABLE_TAR_GZ": r"`Nuitka %(plain_prerelease)s (0.6 MB tar.gz) <http://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.gz>`__",
+        "NUITKA_UNSTABLE_TAR_BZ": r"`Nuitka %(plain_prerelease)s (0.5 MB tar.bz2) <http://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.bz2>`__",
+        "NUITKA_UNSTABLE_ZIP": r"`Nuitka %(plain_prerelease)s (1.2 MB zip) <http://nuitka.net/releases/Nuitka-%(plain_prerelease)s.zip>`__",
+        "NUITKA_UNSTABLE_DEBIAN": r"`Nuitka %(plain_prerelease)s (0.2 MB deb) <http://nuitka.net/releases/nuitka_%(deb_prerelease)s_all.deb>`__",
+        "NUITKA_STABLE_RHEL6": r"`Nuitka %(rhel6_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-%(max_rhel6_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_RHEL7": r"`Nuitka %(rhel7_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-%(max_rhel7_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_CENTOS6": r"`Nuitka %(centos6_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-%(max_centos6_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_CENTOS7": r"`Nuitka %(centos7_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-%(max_centos7_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_CENTOS8": r"`Nuitka %(centos8_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-%(max_centos8_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F20": r"`Nuitka %(f20_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_20/noarch/nuitka-%(max_f20_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F21": r"`Nuitka %(f21_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_21/noarch/nuitka-%(max_f21_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F22": r"`Nuitka %(f22_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_22/noarch/nuitka-%(max_f22_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F23": r"`Nuitka %(f23_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_23/noarch/nuitka-%(max_f23_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F24": r"`Nuitka %(f24_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-%(max_f24_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F25": r"`Nuitka %(f25_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-%(max_f25_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F26": r"`Nuitka %(f26_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/noarch/nuitka-%(max_f26_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F27": r"`Nuitka %(f27_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/noarch/nuitka-%(max_f27_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F28": r"`Nuitka %(f28_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-%(max_f28_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F29": r"`Nuitka %(f29_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-%(max_f29_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F30": r"`Nuitka %(f30_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-%(max_f30_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F31": r"`Nuitka %(f31_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-%(max_f31_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_SUSE131": r"`Nuitka %(suse_131_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-%(max_suse_131_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_SUSE132": r"`Nuitka %(suse_132_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-%(max_suse_132_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_SUSE421": r"`Nuitka %(suse_421_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.1/noarch/nuitka-%(max_suse_421_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_SUSE422": r"`Nuitka %(suse_422_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.2/noarch/nuitka-%(max_suse_422_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_SUSE423": r"`Nuitka %(suse_423_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.3/noarch/nuitka-%(max_suse_423_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_SUSE150": r"`Nuitka %(suse_150_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-%(max_suse_150_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_SUSE151": r"`Nuitka %(suse_151_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-%(max_suse_151_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_SLE150": r"`Nuitka %(sle_150_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-%(max_sle_150_release)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_SUSE131": r"`Nuitka %(suse_131_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-unstable-%(max_suse_131_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_SUSE132": r"`Nuitka %(suse_132_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-unstable-%(max_suse_132_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_SUSE421": r"`Nuitka %(suse_421_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.1/noarch/nuitka-unstable-%(max_suse_421_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_SUSE422": r"`Nuitka %(suse_422_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.2/noarch/nuitka-unstable-%(max_suse_422_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_SUSE423": r"`Nuitka %(suse_423_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.3/noarch/nuitka-unstable-%(max_suse_423_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_SUSE150": r"`Nuitka %(suse_150_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-unstable-%(max_suse_150_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_SUSE151": r"`Nuitka %(suse_151_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-unstable-%(max_suse_151_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_SLE150": r"`Nuitka %(sle_150_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-unstable-%(max_sle_150_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_RHEL6": r"`Nuitka %(rhel6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-unstable-%(max_rhel6_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_RHEL7": r"`Nuitka %(rhel6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-unstable-%(max_rhel7_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_CENTOS6": r"`Nuitka %(centos6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-unstable-%(max_centos6_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_CENTOS7": r"`Nuitka %(centos7_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-unstable-%(max_centos7_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_CENTOS8": r"`Nuitka %(centos7_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-unstable-%(max_centos8_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F20": r"`Nuitka %(f20_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_20/noarch/nuitka-unstable-%(max_f20_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F21": r"`Nuitka %(f21_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_21/noarch/nuitka-unstable-%(max_f21_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F22": r"`Nuitka %(f22_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_22/noarch/nuitka-unstable-%(max_f22_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F23": r"`Nuitka %(f23_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_23/noarch/nuitka-unstable-%(max_f23_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F24": r"`Nuitka %(f24_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-unstable-%(max_f24_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F25": r"`Nuitka %(f25_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-unstable-%(max_f25_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F26": r"`Nuitka %(f26_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/noarch/nuitka-unstable-%(max_f26_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F27": r"`Nuitka %(f27_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/noarch/nuitka-unstable-%(max_f27_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F28": r"`Nuitka %(f28_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-unstable-%(max_f28_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F29": r"`Nuitka %(f29_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-unstable-%(max_f29_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F30": r"`Nuitka %(f30_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-unstable-%(max_f30_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F31": r"`Nuitka %(f31_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-unstable-%(max_f31_prerelease)s.noarch.rpm>`__",
+        "NUITKA_STABLE_VERSION": "%(plain_stable)s",
     }
 
     for (category, code_name), (release_number, release_url) in list(deb_info.items()):
@@ -418,27 +420,36 @@ def updateDownloadPage():
         else:
             assert False, category
 
-        findings[ code_name + "_" + release ] = release_number[ : release_number.find("+ds") ]
-        findings[ code_name + "_" + release + "_url" ] = release_url
+        findings[code_name + "_" + release] = release_number[
+            : release_number.find("+ds")
+        ]
+        findings[code_name + "_" + release + "_url"] = release_url
 
-        templates["NUITKA_" + category.upper() + "_" + code_name.upper() ] = """\
+        templates[
+            "NUITKA_" + category.upper() + "_" + code_name.upper()
+        ] = """\
 `Nuitka %%(%(code_name)s_release)s (0.6 MB deb) <%%(%(code_name)s_release_url)s>`__""" % {
-            "code_name" : code_name
+            "code_name": code_name
         }
 
     for (category, version, bits), filename in list(msi_info.items()):
         if category == "develop":
             category = "unstable"
 
-        findings["max_msi_" + category + "_" + version + "_" + bits ] = filename
-        findings["msi_" + category + "_" + version + "_" + bits ] = extractMsiVersion(filename)
+        findings["max_msi_" + category + "_" + version + "_" + bits] = filename
+        findings["msi_" + category + "_" + version + "_" + bits] = extractMsiVersion(
+            filename
+        )
 
-        templates["NUITKA_" + category.upper() + "_MSI_"  + version + "_" + bits ] = r'`Nuitka %%(msi_%(category)s_%(version)s_%(bits)s)s Python%(dot_version)s %(bits)s bit MSI <http://nuitka.net/releases/%%(max_msi_%(category)s_%(version)s_%(bits)s)s>`__' % {
-            "version" : version,
-            "bits" : bits,
-            "category" : category,
-            "dot_version" : version[0] + "." + version[-1]
-        }
+        templates["NUITKA_" + category.upper() + "_MSI_" + version + "_" + bits] = (
+            r"`Nuitka %%(msi_%(category)s_%(version)s_%(bits)s)s Python%(dot_version)s %(bits)s bit MSI <http://nuitka.net/releases/%%(max_msi_%(category)s_%(version)s_%(bits)s)s>`__"
+            % {
+                "version": version,
+                "bits": bits,
+                "category": category,
+                "dot_version": version[0] + "." + version[-1],
+            }
+        )
 
     download_page = open("pages/download.rst").read()
 
@@ -447,7 +458,7 @@ def updateDownloadPage():
 
     for line in download_page.rstrip().split("\n"):
         if variable is not None:
-            output.append("   " + templates[ variable ] % findings)
+            output.append("   " + templates[variable] % findings)
         else:
             output.append(line)
 
@@ -460,6 +471,7 @@ def updateDownloadPage():
             variable = None
 
     open("pages/download.rst", "w").write("\n".join(output) + "\n")
+
 
 def updateNuitkaMaster():
     if not os.path.exists("nuitka-master/doc/images"):
@@ -475,8 +487,12 @@ def updateNuitkaMaster():
         "doc/images/Nuitka-Logo-Vertical.png",
         "doc/Logo/Nuitka-Logo-Vertical.svg",
         "doc/images/Nuitka-Logo-Symbol.png",
-        "doc/Logo/Nuitka-Logo-Symbol.svg"):
-        command = "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/%s" % filename
+        "doc/Logo/Nuitka-Logo-Symbol.svg",
+    ):
+        command = (
+            "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/%s"
+            % filename
+        )
         output = subprocess.check_output(command.split())
 
         with open(os.path.join("nuitka-master", filename), "wb") as out_file:
@@ -487,17 +503,21 @@ def updateNuitkaFactory():
     if not os.path.exists("nuitka-factory"):
         os.makedirs("nuitka-factory")
 
-    command = "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/Changelog.rst"
+    command = (
+        "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/Changelog.rst"
+    )
     output = subprocess.check_output(command.split())
 
     with open("nuitka-factory/Changelog.rst", "wb") as out_file:
         out_file.write(output)
 
+
 # slugify is copied from
 # http://code.activestate.com/recipes/
 # 577257-slugify-make-a-string-usable-in-a-url-or-filename/
-_slugify_strip_re = re.compile(r'[^\w\s-]')
-_slugify_hyphenate_re = re.compile(r'[-\s]+')
+_slugify_strip_re = re.compile(r"[^\w\s-]")
+_slugify_hyphenate_re = re.compile(r"[-\s]+")
+
 
 def slugify(value):
     """
@@ -508,21 +528,22 @@ def slugify(value):
     """
     if type(value) is str:
         value = unidecode.unidecode(value)
-    value = str(_slugify_strip_re.sub('', value).strip().lower())
-    return _slugify_hyphenate_re.sub('-', value)
+    value = str(_slugify_strip_re.sub("", value).strip().lower())
+    return _slugify_hyphenate_re.sub("-", value)
+
 
 def splitRestByChapter(lines, marker):
     for count, line in enumerate(lines):
         line = line.rstrip("\n")
 
         if line.startswith(marker):
-            for count2, line in enumerate(lines[ count + 1: ]):
+            for count2, line in enumerate(lines[count + 1 :]):
                 count2 += count
 
                 if line.startswith(marker):
                     title = lines[count - 1].rstrip("\n")
 
-                    body = lines[ count + 1 : count2 - 2 ]
+                    body = lines[count + 1 : count2 - 2]
 
                     while body and not body[0].rstrip("\n"):
                         del body[0]
@@ -532,23 +553,31 @@ def splitRestByChapter(lines, marker):
 
 
 def updateReleasePosts():
-    for title, lines in splitRestByChapter(open("nuitka-factory/Changelog.rst").readlines(), "==="):
+    for title, lines in splitRestByChapter(
+        open("nuitka-factory/Changelog.rst").readlines(), "==="
+    ):
         # Ignore draft status
         if "Draft" in title:
             continue
 
-        lines = [ """\
-This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.\n""", "\n" ] + lines
+        lines = (
+            [
+                """\
+This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.\n""",
+                "\n",
+            ]
+            + lines
+        )
 
         slug = slugify(title)
 
-        pub_date = datetime.datetime.now() + datetime.timedelta(days = 1)
-        data = '\n'.join(
+        pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
+        data = "\n".join(
             [
                 ".. title: " + title,
                 ".. slug: " + slug,
-                ".. date: " + pub_date.strftime('%Y/%m/%d %H:%M'),
-                ".. tags: compiler,Python,Nuitka"
+                ".. date: " + pub_date.strftime("%Y/%m/%d %H:%M"),
+                ".. tags: compiler,Python,Nuitka",
             ]
         )
 
@@ -569,8 +598,10 @@ def updateDocs():
     updateNuitkaFactory()
     updateReleasePosts()
 
+
 def runNikolaCommand(command):
     assert 0 == os.system("nikola " + command)
+
 
 def checkRstLint(document):
     print("Checking %r for proper restructed text ..." % document)
@@ -586,7 +617,6 @@ def checkRstLint(document):
             continue
         if lint_result.message.startswith('Unknown directive type "youtube"'):
             continue
-
 
         print(lint_result)
         lint_error = True
@@ -606,61 +636,62 @@ def checkRestPages():
 
                 checkRstLint(full_name)
 
+
 def main():
     parser = OptionParser()
 
     parser.add_option(
         "--update-downloads",
-        action  = "store_true",
-        dest    = "downloads",
-        default = False,
-        help    = """\
-When given, the download page is updated. Default %default."""
+        action="store_true",
+        dest="downloads",
+        default=False,
+        help="""\
+When given, the download page is updated. Default %default.""",
     )
 
     parser.add_option(
         "--update-docs",
-        action  = "store_true",
-        dest    = "docs",
-        default = False,
-        help    = """\
-When given, the rest files are updated and changelog is split into pages. Default %default."""
+        action="store_true",
+        dest="docs",
+        default=False,
+        help="""\
+When given, the rest files are updated and changelog is split into pages. Default %default.""",
     )
 
     parser.add_option(
         "--check-pages",
-        action  = "store_true",
-        dest    = "check_pages",
-        default = False,
-        help    = """\
-When given, the pages are not checked with rest lint. Default %default."""
+        action="store_true",
+        dest="check_pages",
+        default=False,
+        help="""\
+When given, the pages are not checked with rest lint. Default %default.""",
     )
 
     parser.add_option(
         "--build-site",
-        action  = "store_true",
-        dest    = "build",
-        default = False,
-        help    = """\
-When given, the site is built. Default %default."""
+        action="store_true",
+        dest="build",
+        default=False,
+        help="""\
+When given, the site is built. Default %default.""",
     )
 
     parser.add_option(
         "--deploy-site",
-        action  = "store_true",
-        dest    = "deploy",
-        default = False,
-        help    = """\
-When given, the site is deployed. Default %default."""
+        action="store_true",
+        dest="deploy",
+        default=False,
+        help="""\
+When given, the site is deployed. Default %default.""",
     )
-#
+    #
     parser.add_option(
         "--update-all",
-        action  = "store_true",
-        dest    = "all",
-        default = False,
-        help    = """\
-When given, all is updated. Default %default."""
+        action="store_true",
+        dest="all",
+        default=False,
+        help="""\
+When given, all is updated. Default %default.""",
     )
 
     options, positional_args = parser.parse_args()
@@ -670,7 +701,6 @@ When given, all is updated. Default %default."""
     submodule = "output"
     if os.path.isdir(submodule):
         shutil.rmtree(submodule)
-
 
     if options.all:
         options.downloads = True
@@ -693,6 +723,7 @@ When given, all is updated. Default %default."""
 
     if options.deploy:
         runNikolaCommand("deploy")
+
 
 if __name__ == "__main__":
     main()
