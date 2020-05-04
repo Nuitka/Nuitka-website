@@ -65,6 +65,8 @@ Windows
        Python 3.6    |NUITKA_STABLE_MSI_36_64|  |NUITKA_STABLE_MSI_36_32|
      --------------  -------------------------  ---------------------------
        Python 3.7    |NUITKA_STABLE_MSI_37_64|  |NUITKA_STABLE_MSI_37_32|
+     --------------  -------------------------  ---------------------------
+       Python 3.8    |NUITKA_STABLE_MSI_38_64|  |NUITKA_STABLE_MSI_38_32|
      ==============  =========================  ===========================
 
 
@@ -427,6 +429,12 @@ Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
    `Nuitka 0.6.7.0 Python3.7 32 bit MSI <http://nuitka.net/releases/Nuitka-6.1.70.win32.py37.msi>`__
 
 .. |NUITKA_STABLE_MSI_37_64| replace::
+   `Nuitka 0.6.7.0 Python3.7 64 bit MSI <http://nuitka.net/releases/Nuitka-6.1.70.win-amd64.py37.msi>`__
+
+.. |NUITKA_STABLE_MSI_38_32| replace::
+   `Nuitka 0.6.7.0 Python3.7 32 bit MSI <http://nuitka.net/releases/Nuitka-6.1.70.win32.py37.msi>`__
+
+.. |NUITKA_STABLE_MSI_38_64| replace::
    `Nuitka 0.6.7.0 Python3.7 64 bit MSI <http://nuitka.net/releases/Nuitka-6.1.70.win-amd64.py37.msi>`__
 
 .. |NUITKA_STABLE_CENTOS6| replace::
