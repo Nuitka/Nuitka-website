@@ -4,7 +4,7 @@ The TL;DR ...
 
 Nuitka is a Python compiler written in Python.
 
-It's fully compatible with Python 2.6, 2.7, 3.3, 3.4, 3.5, 3.6, and 3.7.
+It's fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 .. 3.8).
 
 You feed it your Python app, it does a lot of clever things, and spits out an
 executable or extension module.
@@ -25,7 +25,8 @@ compatible way.
 
 It is somewhat faster than CPython already, but currently it doesn't make all
 the optimizations possible, but a 312% factor on pystone is a good start (number
-is from version 0.6.0 and Python 2.7).
+is from version 0.6.0 and Python 2.7), and many times this is not generally
+achieved yet.
 
 Future
 ------
@@ -69,7 +70,7 @@ Where is it now?
 ----------------
 
 Well milestone 1, feature parity has been reached for Python 2.6, 2.7, and
-3.x up to 3.7 was mastered. There is no way, this could be any better, but
+3.x up to 3.8 was mastered. There is no way, this could be any better, but
 with every new Python release, there is a lot of new things to add.
 
 With milestone 2, it is considered reached. Nuitka is more than 2 times faster
