@@ -144,6 +144,6 @@ To make up for the delay in SSA driven performance improvements, there is more
 traditional code acceleration for rich comparisons, making it significant, and
 the bug fixes make Nuitka more compatible than ever.
 
-So give this a roll, it's worth it. And feel free to `join the mailing list
-<http://nuitka.net/pages/mailinglist.html>`_ or `make a donation
-<http://nuitka.net/pages/donations.html>`__ to support Nuitka.
+So give this a roll, it's worth it. And feel free to join the mailing list
+(since closed) or `make a donation <http://nuitka.net/pages/donations.html>`__
+to support Nuitka.

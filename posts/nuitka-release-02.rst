@@ -36,8 +36,7 @@ Organizational
   make your clones of Nuitka public, use ``nuitka-unofficial`` or not the name
   ``Nuitka`` at all.
 
-- There is a now a `mailing list <http://nuitka.net/pages/mailinglist.html>`__
-  available too.
+- There is a now a mailing list (since closed).
 
 Reduced Differences
 -------------------
