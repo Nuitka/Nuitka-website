@@ -234,11 +234,9 @@ def updateDownloadPage():
 
     max_suse_131_release, max_suse_131_prerelease = checkOBS("openSUSE_13.1")
     max_suse_132_release, max_suse_132_prerelease = checkOBS("openSUSE_13.2")
-    max_suse_421_release, max_suse_421_prerelease = checkOBS("openSUSE_Leap_42.1")
-    max_suse_422_release, max_suse_422_prerelease = checkOBS("openSUSE_Leap_42.2")
-    max_suse_423_release, max_suse_423_prerelease = checkOBS("openSUSE_Leap_42.3")
     max_suse_150_release, max_suse_150_prerelease = checkOBS("openSUSE_Leap_15.0")
     max_suse_151_release, max_suse_151_prerelease = checkOBS("openSUSE_Leap_15.1")
+    max_suse_152_release, max_suse_152_prerelease = checkOBS("openSUSE_Leap_15.2")
 
     max_sle_150_release, max_sle_150_prerelease = checkOBS("SLE_15")
 
@@ -290,16 +288,12 @@ def updateDownloadPage():
         "suse_131_stable": max_suse_131_release.replace("-5.1", ""),
         "max_suse_132_release": max_suse_132_release,
         "suse_132_stable": max_suse_132_release.replace("-5.1", ""),
-        "max_suse_421_release": max_suse_421_release,
-        "suse_421_stable": max_suse_421_release.replace("-5.1", ""),
-        "max_suse_422_release": max_suse_422_release,
-        "suse_422_stable": max_suse_422_release.replace("-5.1", ""),
-        "max_suse_423_release": max_suse_423_release,
-        "suse_423_stable": max_suse_423_release.replace("-5.1", ""),
         "max_suse_150_release": max_suse_150_release,
         "suse_150_stable": max_suse_150_release.replace("-5.1", ""),
         "max_suse_151_release": max_suse_151_release,
         "suse_151_stable": max_suse_151_release.replace("-5.1", ""),
+        "max_suse_152_release": max_suse_152_release,
+        "suse_152_stable": max_suse_152_release.replace("-5.1", ""),
         "max_sle_150_release": max_sle_150_release,
         "sle_150_stable": max_sle_150_release.replace("-5.1", ""),
         # Unstable
@@ -333,16 +327,12 @@ def updateDownloadPage():
         "suse_131_unstable": max_suse_131_prerelease.replace("-5.1", ""),
         "max_suse_132_prerelease": max_suse_132_prerelease,
         "suse_132_unstable": max_suse_132_prerelease.replace("-5.1", ""),
-        "max_suse_421_prerelease": max_suse_421_prerelease,
-        "suse_421_unstable": max_suse_421_prerelease.replace("-5.1", ""),
-        "max_suse_422_prerelease": max_suse_422_prerelease,
-        "suse_422_unstable": max_suse_422_prerelease.replace("-5.1", ""),
-        "max_suse_423_prerelease": max_suse_423_prerelease,
-        "suse_423_unstable": max_suse_423_prerelease.replace("-5.1", ""),
         "max_suse_150_prerelease": max_suse_150_prerelease,
         "suse_150_unstable": max_suse_150_prerelease.replace("-5.1", ""),
         "max_suse_151_prerelease": max_suse_151_prerelease,
         "suse_151_unstable": max_suse_151_prerelease.replace("-5.1", ""),
+        "max_suse_152_prerelease": max_suse_152_prerelease,
+        "suse_152_unstable": max_suse_152_prerelease.replace("-5.1", ""),
         "max_sle_150_prerelease": max_sle_150_prerelease,
         "sle_150_unstable": max_sle_150_prerelease.replace("-5.1", ""),
     }
@@ -376,19 +366,15 @@ def updateDownloadPage():
         "NUITKA_STABLE_F31": r"`Nuitka %(f31_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-%(max_f31_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE131": r"`Nuitka %(suse_131_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-%(max_suse_131_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE132": r"`Nuitka %(suse_132_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-%(max_suse_132_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_SUSE421": r"`Nuitka %(suse_421_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.1/noarch/nuitka-%(max_suse_421_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_SUSE422": r"`Nuitka %(suse_422_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.2/noarch/nuitka-%(max_suse_422_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_SUSE423": r"`Nuitka %(suse_423_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.3/noarch/nuitka-%(max_suse_423_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE150": r"`Nuitka %(suse_150_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-%(max_suse_150_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE151": r"`Nuitka %(suse_151_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-%(max_suse_151_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_SUSE152": r"`Nuitka %(suse_152_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-%(max_suse_152_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SLE150": r"`Nuitka %(sle_150_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-%(max_sle_150_release)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_SUSE131": r"`Nuitka %(suse_131_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-unstable-%(max_suse_131_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_SUSE132": r"`Nuitka %(suse_132_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-unstable-%(max_suse_132_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_SUSE421": r"`Nuitka %(suse_421_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.1/noarch/nuitka-unstable-%(max_suse_421_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_SUSE422": r"`Nuitka %(suse_422_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.2/noarch/nuitka-unstable-%(max_suse_422_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_SUSE423": r"`Nuitka %(suse_423_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_42.3/noarch/nuitka-unstable-%(max_suse_423_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_SUSE150": r"`Nuitka %(suse_150_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-unstable-%(max_suse_150_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_SUSE151": r"`Nuitka %(suse_151_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-unstable-%(max_suse_151_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_SUSE152": r"`Nuitka %(suse_152_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-unstable-%(max_suse_152_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_SLE150": r"`Nuitka %(sle_150_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-unstable-%(max_sle_150_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_RHEL6": r"`Nuitka %(rhel6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-unstable-%(max_rhel6_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_RHEL7": r"`Nuitka %(rhel6_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-unstable-%(max_rhel7_prerelease)s.noarch.rpm>`__",
