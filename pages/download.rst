@@ -197,6 +197,9 @@ Fedora
 * |FEDORA_LOGO| Stable: Fedora 31: |NUITKA_STABLE_F31| or `repository file
   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/home:kayhayen.repo>`__
 
+* |FEDORA_LOGO| Stable: Fedora 32: |NUITKA_STABLE_F32| or `repository file
+  <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/home:kayhayen.repo>`__
+
 * |FEDORA_LOGO| Develop: Fedora 24: |NUITKA_UNSTABLE_F24| or `repository file
   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/home:kayhayen.repo>`__
 
@@ -220,6 +223,9 @@ Fedora
 
 * |FEDORA_LOGO| Develop: Fedora 31: |NUITKA_UNSTABLE_F31| or `repository file
   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/home:kayhayen.repo>`__
+
+* |FEDORA_LOGO| Develop: Fedora 32: |NUITKA_UNSTABLE_F32| or `repository file
+  <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/home:kayhayen.repo>`__
 
 Suse
 ~~~~
@@ -453,6 +459,9 @@ Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
 .. |NUITKA_STABLE_F31| replace::
    `Nuitka 0.6.7 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-0.6.7-5.1.noarch.rpm>`__
 
+.. |NUITKA_STABLE_F32| replace::
+   `Nuitka experimental-0.6.8 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-experimental-0.6.8-5.1.noarch.rpm>`__
+
 .. |NUITKA_STABLE_SUSE131| replace::
    `Nuitka 0.6.7 RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-0.6.7-5.1.noarch.rpm>`__
 
@@ -506,6 +515,9 @@ Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
 
 .. |NUITKA_UNSTABLE_F31| replace::
    `Nuitka 0.6.7rc2 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-unstable-0.6.7rc2-5.1.noarch.rpm>`__
+
+.. |NUITKA_UNSTABLE_F32| replace::
+   `Nuitka 0.6.9rc1 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-unstable-0.6.9rc1-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE131| replace::
    `Nuitka 0.6.9rc1 RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-unstable-0.6.9rc1-5.1.noarch.rpm>`__
