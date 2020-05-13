@@ -162,6 +162,10 @@ CentOS
   `repository file
   <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo>`__
 
+* |CENTOS_LOGO| Stable: CentOS 8.x Packages: |NUITKA_STABLE_CENTOS8| or
+  `repository file
+  <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo>`__
+
 * |CENTOS_LOGO| Develop: CentOS 6.x Packages: |NUITKA_UNSTABLE_CENTOS6| or
   `repository file
   <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo>`__
@@ -169,6 +173,11 @@ CentOS
 * |CENTOS_LOGO| Develop: CentOS 7.x Packages: |NUITKA_UNSTABLE_CENTOS7| or
   `repository file
   <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo>`__
+
+* |CENTOS_LOGO| Develop: CentOS 8.x Packages: |NUITKA_UNSTABLE_CENTOS8| or
+  `repository file
+  <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo>`__
+
 
 Fedora
 ~~~~~~
@@ -429,6 +438,9 @@ Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
 .. |NUITKA_STABLE_CENTOS7| replace::
    `Nuitka 0.6.7-5.2 RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-0.6.7-5.2.noarch.rpm>`__
 
+.. |NUITKA_STABLE_CENTOS8| replace::
+   `Nuitka experimental-0.6.8 RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-experimental-0.6.8-5.1.noarch.rpm>`__
+
 .. |NUITKA_STABLE_RHEL6| replace::
    `Nuitka 0.6.7 RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-0.6.7-5.1.noarch.rpm>`__
 
@@ -485,6 +497,9 @@ Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
 
 .. |NUITKA_UNSTABLE_CENTOS7| replace::
    `Nuitka 0.6.9rc1 RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-unstable-0.6.9rc1-5.1.noarch.rpm>`__
+
+.. |NUITKA_UNSTABLE_CENTOS8| replace::
+   `Nuitka 0.6.9rc1 RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-unstable-0.6.9rc1-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_RHEL6| replace::
    `Nuitka 0.6.9rc1 RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-unstable-0.6.9rc1-5.1.noarch.rpm>`__
