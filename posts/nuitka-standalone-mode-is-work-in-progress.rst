@@ -51,6 +51,5 @@ like I am working to provide both. For standalone, more often, than seeking to
 avoid bugs as far as possible, I am going to rely on your participation.
 
 So join Nuitka. Now. `Download from here
-<http://nuitka.net/pages/download.html>`__. Join `the mailing list
-<http://nuitka.net/pages/mailinglist.html>`__. And help if you can. And yes you
-can.
+<http://nuitka.net/pages/download.html>`__. Join the mailing list (since
+closed). And help if you can. And yes you can.

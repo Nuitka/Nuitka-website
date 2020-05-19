@@ -116,7 +116,7 @@ may enjoy.
 
 So these are 3 different ways you can help Nuitka. Creating the Python compiler
 is a huge effort. And if you help it, we will sooner arrive at its goals. Join
-the `Nuitka mailing list </pages/mailinglist.html>`_ or `contact me
+the Nuitka mailing list (since closed) or `contact me
 <mailto:kay.hayen@gmail.com>`_ directly if you choose to help with any of these
 issues.
 

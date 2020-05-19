@@ -46,9 +46,8 @@ you can help:
   only accuracy work and the CPython test suite is bad at covering it.
 
 All these areas would be significant help, and do not necessarily or at all
-require any Nuitka inside knowledge. You should also subscribe the `mailing list
-</pages/mailinglist.html>`_ if you consider helping, so we can discuss things in
-the open.
+require any Nuitka inside knowledge. You should also subscribe the mailing list
+(since closed) if you consider helping, so we can discuss things in the open.
 
 If you choose to help me, before going even further into optimization, in all
 likelihood it's only going to make things more solid. The more tests we have,

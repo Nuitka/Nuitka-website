@@ -208,12 +208,11 @@ the project is something that I can do on my own if necessary, and that has
 not changed. Things are going slower than necessary though, but that's probably
 very typical.
 
-But you can join and should do so now, just
-`follow this link <http://nuitka.net/doc/user-manual.html#join-nuitka>`_ or
-become part of the `mailing list <http://nuitka.net/pages/mailinglist.html>`_
-and help me there with request I make, e.g. review posts of mine, test out
-things, pick up small jobs, answer questions of newcomers, you know the
-drill probably.
+But you can join and should do so now, just `follow this link
+<http://nuitka.net/doc/user-manual.html#join-nuitka>`_ or become part of the
+mailing list (since closed) and help me there with request I make, e.g. review
+posts of mine, test out things, pick up small jobs, answer questions of
+newcomers, you know the drill probably.
 
 Nuitka is about to make break through progress. And you can be a part of it.
 Now.

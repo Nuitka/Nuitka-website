@@ -9,4 +9,5 @@
         "**/*.tmp": true,
         "output" : true,
     },
+    "restructuredtext.confPath": "",
 }

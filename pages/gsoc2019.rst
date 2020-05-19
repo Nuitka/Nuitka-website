@@ -70,9 +70,9 @@ to say. This is taking Python where it currently cannot be.
 Contacting Nuitka
 =================
 
-For the purpose of GSoC the Nuitka development mailing list can be used, as
-well as private email. We will be reachable via Hangout/Duo calls on a regular
-basis.
+For the purpose of GSoC the Nuitka development mailing list (since closed) can
+be used, as well as private email. We will be reachable via Hangout/Duo calls
+on a regular basis.
 
 We will be able to accommodate all time zones somehow.
 

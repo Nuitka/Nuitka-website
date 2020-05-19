@@ -6,12 +6,6 @@ Github Issue Tracker
 Nuitka uses Github and your best bet is to report the issue on the `issue
 tracker <https://github.com/Nuitka/Nuitka/issues>`_ there.
 
-Mailing List
-============
-
-Report the issue to the Nuitka-dev `mailing list </pages/mailinglist.html>`_,
-esp. if it involves deeper questions.
-
 Chat Room
 =========
 

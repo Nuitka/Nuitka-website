@@ -201,9 +201,9 @@ Call for Help
   would be sweet if it's with all my time spent working on it, at least not a
   financial cost to me.
 
-* Please join the `mailing list <http://nuitka.net/pages/mailinglist.html>`_,
-  and offer your help with tasks. Nuitka can seriously take more people
-  developing, testing, reviewing, and quality checking it.
+* Please join the mailing list (since closed), and offer your help with tasks.
+  Nuitka can seriously take more people developing, testing, reviewing, and
+  quality checking it.
 
 Final Words
 -----------

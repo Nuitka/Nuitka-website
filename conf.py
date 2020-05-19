@@ -286,7 +286,6 @@ NAVIGATION_LINKS = {
         (
             (
                 ('/pages/support.html', "Support" ),
-                ('/pages/mailinglist.html', 'Mailing List'),
                 ('https://github.com/Nuitka/Nuitka/issues', 'Bug Tracker'),
             ),
             'Support'),
