@@ -148,12 +148,14 @@ def updateDownloadPage():
     print("Max stable release is", max_stable_release, makePlain(max_stable_release))
     sys.stdout.flush()
 
-    output = subprocess.check_output(
-        r"ssh -l root nuitka.net cd /var/www && find deb -name \*.deb".split(),
-        shell=False,
-    )
+    if False:
+        output = subprocess.check_output(
+            r"ssh -l root nuitka.net cd /var/www && find deb -name \*.deb".split(),
+            shell=False,
+        )
 
-    output = output.decode("utf8")
+        output = output.decode("utf8")
+    output = ""
 
     def extractDebVersion(path):
         match = re.search(r"nuitka_(.*)_all\.deb", filename)
