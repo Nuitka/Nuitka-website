@@ -159,7 +159,7 @@ Organizational
 - Updated the Nuitka GUI to the latest version, with enhanced features.
 
 - The builds of releases and update of the `downloads page
-  <http://nuitka.net/pages/download.html>`__ is now driven by Buildbot. Page
+  <https://nuitka.net/pages/download.html>`__ is now driven by Buildbot. Page
   will be automatically updated as updated binaries arrive.
 
 Cleanups
@@ -223,5 +223,5 @@ the most important problems have been dealt with. Others are still in the
 pipeline.
 
 More work will be needed to take full advantage. This has been explained in a
-`separate post <http://nuitka.net/posts/state-of-nuitka.html>`__ in greater
+`separate post <https://nuitka.net/posts/state-of-nuitka.html>`__ in greater
 detail.

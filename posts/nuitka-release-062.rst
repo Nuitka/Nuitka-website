@@ -65,10 +65,10 @@ Organisational
 - Nuitka is participating in the GSoC 2019 under the PSF umbrella. We hope to
   grow even further. Thanks to the mentors who volunteered for this important
   task. Check out the
-  `GSoC 2019 page <http://nuitka.net/pages/gsoc2019.html#mentors>`__ and thanks
+  `GSoC 2019 page <https://nuitka.net/pages/gsoc2019.html#mentors>`__ and thanks
   to the students that are already helping out.
 
-- Added Nuitka internal `API documentation <http://nuitka.net/apidoc>`__ that
+- Added Nuitka internal `API documentation <https://nuitka.net/apidoc>`__ that
   will receive more love in the future. It got some for this release, but a
   lot is missing.
 

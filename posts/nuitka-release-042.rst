@@ -2,7 +2,7 @@ This is to inform you about the new stable release of `Nuitka <http://nuitka.net
 
 This release comes with many bug fixes, some of which are severe. It also
 contains new features, like basic Python 3.3 support. And the `performance
-diagrams <http://nuitka.net/pages/performance.html>`__ got expanded.
+diagrams <https://nuitka.net/pages/performance.html>`__ got expanded.
 
 New Features
 ------------
@@ -238,7 +238,7 @@ New Tests
 Organizational
 --------------
 
-- The `Downloads <http://nuitka.net/pages/download.html>`__ page now offers RPMs
+- The `Downloads <https://nuitka.net/pages/download.html>`__ page now offers RPMs
   for RHEL6, CentOS6, F17, F18, and openSUSE 12.1, 12.2, 12.3. This large
   coverage is thanks to openSUSE build service and "ownssh" for contributing an
   RPM spec file.
@@ -247,7 +247,7 @@ Organizational
 
 - Added "ownssh" as contributor.
 
-- Revamped the "`User Manual <http://nuitka.net/doc/user-manual.html>`__" in
+- Revamped the "`User Manual <https://nuitka.net/doc/user-manual.html>`__" in
   terms of layout, structure, and content.
 
 Summary

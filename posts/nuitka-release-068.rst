@@ -225,7 +225,6 @@ Cleanups
 - Removed accessors for lookup sources from nodes, allowing for faster usage and
   making sure, lookups are only done where needed.
 
-
 Summary
 -------
 

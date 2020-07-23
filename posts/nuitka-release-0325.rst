@@ -97,14 +97,14 @@ Organizational
   this.
 
 - Added examples for the typical use cases to the "`User Manual
-  <http://nuitka.net/doc/user-manual.html>`__".
+  <https://nuitka.net/doc/user-manual.html>`__".
 
 - The "compare_with_cpython" script has gained an option to immediately remove
   the Nuitka outputs (build directory and binary) if successful. Also the
   temporary files are now put under "/var/tmp" if available.
 
 - Debian package improvements, registering with "doc-base" the "`User Manual
-  <http://nuitka.net/doc/user-manual.html>`__" so it is easier to discover. Also
+  <https://nuitka.net/doc/user-manual.html>`__" so it is easier to discover. Also
   suggest "mingw32" package which provides the cross compiler to Windows.
 
 - Partial support for MSVC (Visual Studio 2008 to be exact, the version that

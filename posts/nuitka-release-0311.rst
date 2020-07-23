@@ -75,7 +75,7 @@ Organizational
 
 - The Nuitka git repository now uses "git flow". The new git policy will be
   detailed in another `separate posting
-  <http://nuitka.net/posts/nuitka-git-flow.html>`__.
+  <https://nuitka.net/posts/nuitka-git-flow.html>`__.
 
 - There is an unstable ``develop`` branch in which the development occurs. For
   this release ca. 40 commits were done to this branch, before merging it. I am

@@ -88,7 +88,7 @@ Organizational
 --------------
 
 - Added more information to the "`Developer Manual
-  <http://nuitka.net/doc/developer-manual.html>`__", e.g. documenting the tree
+  <https://nuitka.net/doc/developer-manual.html>`__", e.g. documenting the tree
   changes for ``assert`` to become a conditional statement with a raise
   statement, etc.
 

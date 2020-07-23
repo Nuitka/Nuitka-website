@@ -8,7 +8,7 @@ Then lots of work on optimization and infrastructure. The major goal of this
 release was to get in shape for actual optimization. This is also why for the
 first time, it is tested that some things are indeed compile time optimized to
 spot regressions easier. And we are having performance diagrams, `even if weak
-ones <http://nuitka.net/pages/performance.html>`__:
+ones <https://nuitka.net/pages/performance.html>`__:
 
 New Features
 ------------

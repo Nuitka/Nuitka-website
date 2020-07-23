@@ -182,7 +182,7 @@ Organizational
   into shape for Europython still.
 
   Added notes about it being disabled it in the "`User Manual
-  <http://nuitka.net/doc/user-manual.html>`__" documentation.
+  <https://nuitka.net/doc/user-manual.html>`__" documentation.
 
 Summary
 -------

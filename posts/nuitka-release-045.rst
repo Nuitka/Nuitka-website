@@ -91,16 +91,16 @@ Organizational
   immediately obvious which license Nuitka is under.
 
 - Added section about Nuitka license to the "`User Manual
-  <http://nuitka.net/doc/user-manual.html#license>`__".
+  <https://nuitka.net/doc/user-manual.html#license>`__".
 
-- Added `Nuitka Logo <http://nuitka.net/doc/images/Nuitka-Logo-Symbol.png>`__
+- Added `Nuitka Logo <https://nuitka.net/doc/images/Nuitka-Logo-Symbol.png>`__
   to the distribution.
 
 - Use Nuitka Logo as the bitmap in the Windows installer.
 
 - Use Nuitka Logo in the documentation ("`User Manual
-  <http://nuitka.net/doc/user-manual.html>`__" and "`Developer Manual
-  <http://nuitka.net/doc/developer-manual.html>`__").
+  <https://nuitka.net/doc/user-manual.html>`__" and "`Developer Manual
+  <https://nuitka.net/doc/developer-manual.html>`__").
 
 - Enhanced documentation to number page numbers starting after table of
   contents, removed header/footer from cover pages.

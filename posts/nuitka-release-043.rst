@@ -101,10 +101,10 @@ New Optimization
 Organizational
 --------------
 
-- Accepting `Donations <http://nuitka.net/pages/donations.html>`__ via Paypal,
+- Accepting `Donations <https://nuitka.net/pages/donations.html>`__ via Paypal,
   please support funding travels, website, etc.
 
-- The "`User Manual <http://nuitka.net/doc/user-manual.html>`__" has been
+- The "`User Manual <https://nuitka.net/doc/user-manual.html>`__" has been
   updated with new content. We now do support Visual Studio, documented the
   required LLVM version for clang, Win64 and modules may include modules too,
   etc. Lots of information was no longer accurate and has been updated.

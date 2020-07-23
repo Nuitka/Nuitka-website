@@ -97,8 +97,8 @@ Organizational
 
 - Removed the "misc/gist" git sub-module, which was previously used by
   "misc/make-doc.py" to generate HTML from "`User Manual
-  <http://nuitka.net/doc/user-manual.html>`__" and "`Developer Manual
-  <http://nuitka.net/doc/developer-manual.html>`__".
+  <https://nuitka.net/doc/user-manual.html>`__" and "`Developer Manual
+  <https://nuitka.net/doc/developer-manual.html>`__".
 
   These are now done with Nikola, which is much better at it and it integrates
   with the web site.

@@ -13,7 +13,7 @@ for the last release, but a complicated and major issue forced a new release,
 and many other small issues.
 
 And then there is performance. As can be seen in the `performance graph
-<http://nuitka.net/pages/performance.html>`__, this release is the fastest so
+<https://nuitka.net/pages/performance.html>`__, this release is the fastest so
 far. This came mainly from examining the need for comparison slots for compiled
 types.
 
@@ -145,5 +145,5 @@ traditional code acceleration for rich comparisons, making it significant, and
 the bug fixes make Nuitka more compatible than ever.
 
 So give this a roll, it's worth it. And feel free to join the mailing list
-(since closed) or `make a donation <http://nuitka.net/pages/donations.html>`__
+(since closed) or `make a donation <https://nuitka.net/pages/donations.html>`__
 to support Nuitka.

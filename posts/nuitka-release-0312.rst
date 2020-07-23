@@ -2,8 +2,8 @@ This is to inform you about the new stable release of `Nuitka <http://nuitka.net
 
 This is to inform you about the new release of Nuitka many bug fixes, and
 substantial improvements especially in the organizational area. There is a new
-"`User Manual <http://nuitka.net/doc/user-manual.html>`__" (`PDF
-<http://nuitka.net/doc/user-manual.pdf>`__), with much improved content, a
+"`User Manual <https://nuitka.net/doc/user-manual.html>`__" (`PDF
+<https://nuitka.net/doc/user-manual.pdf>`__), with much improved content, a
 ``sys.meta_path`` based import mechanism for ``--deep`` mode, git flow
 goodness.
 
@@ -123,7 +123,7 @@ Organizational
 
 - Migrated the "README.txt" from org-mode to ReStructured Text, which allows
   for a more readable document, and to generate a nice "`User Manual
-  <http://nuitka.net/doc/user-manual.html>`__" in PDF form.
+  <https://nuitka.net/doc/user-manual.html>`__" in PDF form.
 
 - The amount of information in "README.txt" was increased, with many more
   subjects are now covered, e.g. "git flow" and how to join Nuitka
