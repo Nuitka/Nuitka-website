@@ -135,7 +135,7 @@ improve only.
 The major improvements came from handling case collisions between modules
 and packages. One can have ``Module.py`` and ``module/__init__.py`` and
 they both are expected to be different, even on Windows, where filenames
-are case insenstive.
+are case insensitive.
 
 So, giving up on ``implib`` and similar, we finally have our own code to
 scan in a compatible way the file system, and make these determinations,

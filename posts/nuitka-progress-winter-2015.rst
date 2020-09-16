@@ -125,7 +125,7 @@ due anyway. The generators have no more their own function creation stuff
 and that has been helpful with a lot of other stuff.
 
 Another focus driven from Python3, is to get ahead with type shape tracing
-and type inference of dicionary, and value tracing. To fully support Python3
+and type inference of dictionary, and value tracing. To fully support Python3
 classes, we need to work on something that is a dictionary a-like, and that
 will only ever be efficient if we have that. Good news is that the next release
 is making progress there too.

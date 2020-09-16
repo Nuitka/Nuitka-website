@@ -11,7 +11,7 @@ Goto Generators
 
 Finished. Done. Finally.
 
-Bechmarking was exciting. One program benchmark I had run in the past, was twice
+Benchmarking was exciting. One program benchmark I had run in the past, was twice
 as fast than before, showing that the new implementation is indeed much faster,
 which is fantastic news.
 

@@ -63,7 +63,7 @@ results on the machine and to be tool independent.
 
 In principle, I could publish the data in other forms as well, and I likely
 will. Making tables of e.g. PyBench results seems like one application.
-Recently, I have workd with Nikola, and could also imagine to integrate
+Recently, I have worked with Nikola, and could also imagine to integrate
 Codespeed graph functionality (which is apparently all I want) to there.
 
 | Yours,

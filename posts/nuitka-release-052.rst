@@ -184,7 +184,7 @@ Cleanups
 - The ``dir`` built-in with no arguments is now re-formulated to ``locals`` or
   ``globals`` with their ``.keys()`` attribute taken.
 
-- Dramatic amounts of cleanups to code generation specialties, that got done
+- Dramatic amounts of cleanups to code generation specialities, that got done
   right for the new C-ish code generation.
 
 New Tests

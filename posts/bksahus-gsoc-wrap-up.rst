@@ -4,7 +4,7 @@ GSoC 2019 has almost come to an end! It's the time to wrap up this mega event
 started back in May 2019. Under the mentorship of Mentor Hayen, my learning
 experience has undergone a roller-coaster ride and it has not only boosted my
 growth as a developer but also as an individual. Over the last 3 months the
-followings are my major contributions to this project:
+following are my major contributions to this project:
 
 
 Built-ins Optimizations
