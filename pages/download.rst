@@ -294,6 +294,11 @@ Arch
 * |ARCH_LOGO| Develop: Arch Linux `Nuitka from git develop
   <https://aur.archlinux.org/packages/nuitka-git/>`_
 
+Gentoo
+~~~~~~
+
+* |GENTOO_LOGO| Gentoo Linux, execute ``emerge -a dev-python/nuitka``
+
 macOS
 ~~~~~
 
@@ -573,6 +578,8 @@ Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
 .. |WINDOWS_LOGO| image:: images/windows.jpg
 
 .. |ARCH_LOGO| image:: images/arch.jpg
+
+.. |GENTOO_LOGO| image:: images/gentoo-signet.png
 
 .. |MINT_LOGO| image:: images/mint.png
 
