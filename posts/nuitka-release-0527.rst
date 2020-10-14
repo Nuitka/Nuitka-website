@@ -54,7 +54,7 @@ New Features
   <http://bugs.nuitka.net/issue368>`__.
 
 - Added option ``--python2-for-scons`` to specify the Python2 execute to
-  use for calling Scons. This should allow using AnaConda Python for that
+  use for calling Scons. This should allow using Anaconda Python for that
   task.
 
 Optimization

@@ -21,7 +21,7 @@ Bug Fixes
   are found.
 
 - Standalone: Fixup for problem with standard library module in most recent
-  AnaConda versions.
+  Anaconda versions.
 
 - Scons: Fix, was using ``CXXFLAGS`` and ``CPPFLAGS`` even for the C
   compiler, which is wrong, and could lead to compilation errors.

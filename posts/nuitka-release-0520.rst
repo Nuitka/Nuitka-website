@@ -3,7 +3,7 @@ This is to inform you about the new stable release of `Nuitka <http://nuitka.net
 This release is mostly about catching up with issues. Most address standalone
 problems with special modules, but there are also some general compatibility
 corrections, as well as important fixes for Python3.5 and coroutines and to
-improve compatibility with special Python variants like AnaConda under the
+improve compatibility with special Python variants like Anaconda under the
 Windows system.
 
 Bug Fixes
@@ -23,7 +23,7 @@ Bug Fixes
 - Windows: Detecting the Python DLL and EXE used at compile time and preserving
   this information use during backend compilation. This should make sure we use
   the proper ones, and avoids hacks for specific Python variants, enhancing the
-  support for AnaConda, WinPython, and CPython installations.
+  support for Anaconda, WinPython, and CPython installations.
 
 - Windows: The ``--python-debug`` flag now properly detects if the run time
   is supporting things and error exits if it's not available. For a CPython3.5
@@ -49,7 +49,7 @@ Bug Fixes
 New Features
 ------------
 
-- Added support for AnaConda Python on this Linux. Both accelerated and
+- Added support for Anaconda Python on this Linux. Both accelerated and
   standalone mode work now. `Issue#295 <http://bugs.nuitka.net/issue295>`__.
 
 - Added support for standalone mode on FreeBSD. `Issue#294

@@ -30,7 +30,7 @@ Bug Fixes
 - Fix, the PyLint warnings plug-in could crash in some cases, make sure it's
   more robust.
 
-- Windows: Fix, the combination of AnaConda Python, MinGW 64 bits and mere
+- Windows: Fix, the combination of Anaconda Python, MinGW 64 bits and mere
   acceleration was not working. `Issue#254 <http://bugs.nuitka.net/issue254>`__.
 
 - Standalone: Preserve not only namespace packages created by ``.pth`` files,

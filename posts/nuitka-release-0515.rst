@@ -81,7 +81,7 @@ New Features
   ``PyQt5`` plug-in support. Experimental Windows ``multiprocessing`` support.
   Experimental PyLint warnings disable support. More to come.
 
-- Added support for AnaConda accelerated mode on macOS by modifying the rpath
+- Added support for Anaconda accelerated mode on macOS by modifying the rpath
   to the Python DLL.
 
 - Added experimental support for ``multiprocessing`` on Windows, which needs

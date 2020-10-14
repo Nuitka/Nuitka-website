@@ -96,8 +96,8 @@ New Features
 
 - Using a self compiled Python running from the source tree is now supported.
 
-- Added support for ``AnaConda`` Python distribution. As it doesn't install
-  the Python DLL, we copy it along for acceleration mode.
+- Added support for Anaconda Python distribution. As it doesn't install the
+  Python DLL, we copy it along for acceleration mode.
 
 - Added support for Visual Studio 2015. `Issue#222
   <http://bugs.nuitka.net/issue222>`__. Fixed in 0.5.13.3 already.
