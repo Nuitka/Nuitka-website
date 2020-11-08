@@ -466,7 +466,7 @@ def updateDownloadPage():
         else:
             variable = None
 
-    open("pages/download.rst", "w").write("\n".join(output) + "\n")
+    open("pages/download.rst", "wb").write(("\n".join(output) + "\n").encode("utf8"))
 
 
 def updateNuitkaMaster():
