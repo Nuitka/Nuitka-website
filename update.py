@@ -102,7 +102,8 @@ def updateDownloadPage():
             elif parts[-3] == "win-amd64":
                 bits = "64"
             else:
-                assert False, (filename, parts[-3])
+                print("Ignoring broken MSI filename %s" % filename, file=sys.stderr)
+                continue
 
             version = parts[-2][2:]
 
