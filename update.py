@@ -528,29 +528,40 @@ def slugify(value):
     return _slugify_hyphenate_re.sub("-", value)
 
 
-def splitRestByChapter(lines, marker):
+def splitRestByChapter(lines):
+    marker = "###"
+
+    await_title = "outside"
+
     for count, line in enumerate(lines):
         line = line.rstrip("\n")
 
         if line.startswith(marker):
-            for count2, line in enumerate(lines[count + 1 :]):
-                count2 += count
+            if await_title == "outside":
+                await_title = "title"
+            elif await_title == "marker":
+                await_title = "outside"
 
-                if line.startswith(marker):
-                    title = lines[count - 1].rstrip("\n")
+                for count2, line in enumerate(lines[count + 1 :]):
+                    count2 += count
 
-                    body = lines[count + 1 : count2 - 2]
+                    if line.startswith(marker):
+                        title = lines[count - 1].rstrip("\n")
 
-                    while body and not body[0].rstrip("\n"):
-                        del body[0]
+                        body = lines[count + 1 : count2]
 
-                    yield title, body
-                    break
+                        while body and not body[0].rstrip("\n"):
+                            del body[0]
+
+                        yield title, body
+                        break
+        elif await_title == "title":
+            await_title = "marker"
 
 
 def updateReleasePosts():
     for title, lines in splitRestByChapter(
-        open("nuitka-factory/Changelog.rst").readlines(), "==="
+        open("nuitka-factory/Changelog.rst").readlines(),
     ):
         # Ignore draft status
         if "Draft" in title:
