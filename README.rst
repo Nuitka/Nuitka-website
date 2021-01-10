@@ -20,7 +20,7 @@ has only be done on Linux, but it ought to also work on Windows:
     python3.7 -m pip install pipenv
     python3.7 -m pipenv install --dev
 
-    # Need to do this at least once.
+    # Need to do this at least once to copy manuals, logos
     python3.7 -m pipenv run python update.py --update-docs
     # Now lets build the site
     python3.7 -m pipenv run python update.py --build-site
