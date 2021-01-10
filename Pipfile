@@ -14,7 +14,6 @@ nikola = "*"
 webassets = "*"
 doit = "*"
 unidecode = "*"
-yuicompressor = "*"
 restructuredtext-lint = "*"
 
 [requires]

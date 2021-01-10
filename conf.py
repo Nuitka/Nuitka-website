@@ -659,7 +659,6 @@ import os
 
 FILTERS = {
     ".html" : [ filterHTML ],
-    ".css"  : [ filters.yui_compressor ] if os.name != "nt" else [],
 #    ".js"   : [ filters.closure_compiler ],
     ".jpg"  : [ filters.jpegoptim ] if os.name != "nt" else [],
     ".JPG"  : [ filters.jpegoptim ] if os.name != "nt" else [],
