@@ -649,6 +649,14 @@ def filterHTML(filename):
         lxml.etree.fromstring("""<img class="center-block branch" src="/posts/images/nuitka-website-logo.png" width="120" height="24" href="http://nuitka.net" alt="Back to Nuitka Home"></img>""")
     )
 
+    node, = tree.xpath("//head")
+
+    if os.path.basename(filename) == "nuitka-demo.html":
+        node.append(
+            lxml.etree.fromstring(
+            '<link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />'
+            )
+        )
 
     contents = b'<!DOCTYPE html>\n' + lxml.etree.tostring(tree.getroot(), pretty_print=True, method="html")
 
