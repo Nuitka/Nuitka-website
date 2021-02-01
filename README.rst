@@ -17,7 +17,7 @@ has only be done on Linux, but it ought to also work on Windows:
 
     # Creates a virtualenv with all that is needed to develop the
     # site.
-    python3.7 -m pip install pipenv
+    python3.7 -m pip install -U pipenv
     python3.7 -m pipenv install --dev
 
     # Need to do this at least once to copy manuals, logos
