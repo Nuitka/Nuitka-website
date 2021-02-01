@@ -253,7 +253,7 @@ def updateDownloadPage():
         if not m2:
             result = "0.%d.%drc%d" % (m1, m3 / 100, (m3 / 10) % 10)
         else:
-            result = "0.%d.%d.%d" % (m1, (m3 // 10), m3 % 10,)
+            result = "0.%d.%d.%d" % (m1, (m3 // 10), m3 % 10)
 
         return result
 
@@ -561,7 +561,7 @@ def splitRestByChapter(lines):
 
 def updateReleasePosts():
     for title, lines in splitRestByChapter(
-        open("nuitka-factory/Changelog.rst").readlines(),
+        open("nuitka-factory/Changelog.rst").readlines()
     ):
         # Ignore draft status
         if "Draft" in title:
@@ -642,6 +642,32 @@ def checkRestPages():
             if full_name.endswith(".rst"):
 
                 checkRstLint(full_name)
+
+
+def updatePageDates():
+    for root, _dirnames, filenames in os.walk("pages"):
+        for filename in filenames:
+            full_name = os.path.join(root, filename)
+
+            if full_name.endswith(".rst"):
+                output = subprocess.check_output(
+                    ["git", "log", "-1", '--pretty=%ci', full_name], shell=False
+                ).strip()
+
+                meta_filename = full_name[:-3] + "meta"
+
+                if not os.path.exists(meta_filename):
+                    meta_filename = full_name
+
+                with open(meta_filename, "rb") as input_file:
+                    meta_contents = input_file.readlines()
+
+                new_date = b".. date: " + output + b"\n"
+
+                meta_contents = [new_date if m.startswith(b".. date") else m for m in meta_contents]
+
+                with open(meta_filename, "wb") as output_file:
+                    output_file.writelines(meta_contents)
 
 
 def main():
@@ -725,6 +751,7 @@ When given, all is updated. Default %default.""",
         checkRestPages()
 
     if options.build:
+        updatePageDates()
         runNikolaCommand("status")
         runNikolaCommand("build")
 
