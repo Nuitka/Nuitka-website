@@ -70,7 +70,7 @@ Where is it now?
 ----------------
 
 Well milestone 1, feature parity has been reached for Python 2.6, 2.7, and
-3.x up to 3.8 was mastered. There is no way, this could be any better, but
+3.x up to 3.9 was mastered. There is no way, this could be any better, but
 with every new Python release, there is a lot of new things to add.
 
 With milestone 2, it is considered reached. Nuitka is more than 2 times faster
