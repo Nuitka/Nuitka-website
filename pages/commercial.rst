@@ -1,0 +1,118 @@
+
+.. contents::
+
+If you are a commercial user of Nuitka, you fall into one of 4 categories,
+which Nuitka tries to address.
+
+Protection against Reverse Enginneering
+------------------------------------------------------------------------------------
+
+Hiding your source code and contained keys is crucial to your IP protection.
+For this, you need the Nuitka commercial package. It contains plugins to Nuitka
+that will achieve the following:
+
+* Obfuscucate contained constants data
+
+  Your keys, your program texts, your library usages, all expose textual
+  information, that can be valuable input in Reverse Enginneering. Normally
+  these are plain and readable in the created programs (and of course your
+  Python source code). Compiling with Nuitka gives you protection of the code,
+  but with the data being easily readable, it will be less effective.
+
+* Encrypted tracebacks
+
+  When your program is deployed and crashing, you could take potentially
+  successful steps against these tracebacks appearing. But when you need to
+  support your client, you need to be able to to actually tell, why your
+  software is crashing.
+
+  Python tracebacks are good for this, but you cannot want them to be readable
+  to the user. This is very traceback encryption comes in. Nuitka with the
+  commercial plugin will make sure to encrypt all traceback outputs. They can
+  still carry as much information as you want, but only you will be able to
+  decode them.
+
+  Both symmetric and asymmetric encryption are available for you to use there
+  and you can decide which information is part of the encryption, and which
+  part is not, e.g. hostname, client name, etc. could be output without that,
+  while variable names and values would be, depending on your choice!
+
+* Encrypted outputs
+
+  If you need to query information from a machine, or just in general want to
+  have perfect protection, you can use the Nuitka plugin to make sure it can
+  only output encrypted information on standard output and standard error.
+
+  This will allow you to decode outputs as necessary, and will make it not an
+  option to your clients.
+
+
+Special needs (Commercial only use cases)
+-----------------------------------------
+
+In this instance, you have special wishes that only commercial customers will
+have and that are effort to maintain.
+
+* You might e.g. you want to deploy a Windows service
+
+* You might need to support special commercial grade software.
+
+* You might need to support very old OSes, e.g. RHEL 5.
+
+* Automatic download, alerts to, applying updates of deployed software.
+
+Support for these things will also be covered in the Nuitka commercial package,
+and while you might not care necessarily about hiding your source or data, but
+much rather you care about the quality of deployment of your software.
+
+
+Priority Issue Solutions
+------------------------
+
+You might have an issue that blocks you from using Nuitka, which you want to
+use though, because of performance gains, the IP protection, with or without
+the commercial plugins.
+
+The Nuitka Priority package gives you access to elevated priority of your
+issues. If you buy this, reported issues will be solved with highest priority,
+to enable you using Nuitka.
+
+
+Sponsorship
+-----------
+
+You are happy in using Nuitka and you want to benefit it, because it solves a
+crucial part of your workflow in deployment. You may or may not need the
+priority package or the commercial package. You can pay the relatively large
+amount and help Nuitka development in general. And you can know that it remains
+active and supported and pay back to the relatively free service you get on a
+daily basis.
+
+Naturally sponsors will be entitled to all access and treated with highest
+priority.
+
+Pricing
+-------
+
+* Early bird Nuitka commercial subscription
+
+  Currently 250 EUR (or 300 USD), valid for one year, renewal same price.
+
+* Nuitka Priority package
+
+  Currently 250 EUR (or 300 USD), valid for one year, renewal same price.
+
+* Nuitka Full Package
+
+  Contains Nuitka Commercial subscription and priority package. Priced at 400
+  EUR or 500 USD.
+
+* Nuitka Sponsors
+
+  Pick your value.
+
+
+Contact Us
+----------
+
+Please use `this form to contact us <https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_ with intent of buying Nuitka products

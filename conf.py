@@ -286,9 +286,10 @@ NAVIGATION_LINKS = {
         (
             (
                 ('/pages/support.html', "Support" ),
-                ('https://github.com/Nuitka/Nuitka/issues', 'Bug Tracker'),
+                ('/pages/commercial.html', "Commercial" ),
             ),
             'Support'),
+        ('/pages/commercial.html', 'Commercial'),
         ('/pages/donations.html', 'Donations'),
         ('/pages/impressum.html', 'About / Contact'),
         ('/categories/index.html', 'Tags'),
