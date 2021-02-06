@@ -17,7 +17,7 @@ git
 
 .. code-block:: sh
 
-   git clone --branch factory http://git.nuitka.net/Nuitka.git
+   git clone --branch factory https://github.com/Nuitka/Nuitka/Nuitka.git
 
 pip
 ---
@@ -35,7 +35,7 @@ git
 
 .. code-block:: sh
 
-   git clone --branch jorj http://git.nuitka.net/Nuitka.git
+   git clone --branch jorj https://github.com/Nuitka/Nuitka/Nuitka.git
 
 pip
 ---
