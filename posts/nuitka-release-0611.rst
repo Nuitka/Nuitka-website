@@ -284,6 +284,7 @@ fixes and new features.
 *******
 
 -  New option to display executed commands during comparisons.
+
 -  Added test suite for onefile testing.
 
 *********

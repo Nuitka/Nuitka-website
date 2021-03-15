@@ -1,4 +1,4 @@
-.. date: 2020-05-19 13:38:11 +0200
+.. date: 2021-02-01 19:18:15 +0100
 .. title: Nuitka and Google Summer of Nuitka
 .. slug: gsoc2019
 
