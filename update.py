@@ -190,8 +190,11 @@ def updateDownloadPage():
             "curl -s download.opensuse.org/repositories/home:/kayhayen/%s/noarch/"
             % repo_name
         )
+
         output = subprocess.check_output(command.split())
         output = output.decode("utf8").split("\n")
+
+        candidates = []
 
         for line in output:
             if ".rpm" not in line:
@@ -200,10 +203,26 @@ def updateDownloadPage():
             if "unstable" in line:
                 continue
 
-            match = re.search(r"\>nuitka-(.*).noarch\.rpm\<", line)
-            max_release = match.group(1)
+            if "experimental" in line:
+                continue
 
-            break
+            match = re.search(r"\>nuitka-(.*).noarch\.rpm\<", line)
+            candidates.append(match.group(1))
+
+        def numberize(x):
+            if x.startswith("lp"):
+                x = x[2:]
+
+            return int(x)
+
+        def compareVersion(v):
+            v = v.split("-")
+
+            v = tuple(tuple(numberize(x) for x in value.split(".")) for value in v)
+
+            return v
+
+        max_release = max(candidates, key=compareVersion)
 
         for line in output:
             if ".rpm" not in line:

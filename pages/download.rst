@@ -499,7 +499,7 @@ Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on Github.
    `Nuitka 0.6.12.4 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-0.6.12.4-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F30| replace::
-   `Nuitka 0.6.8 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-0.6.8-5.1.noarch.rpm>`__
+   `Nuitka 0.6.12.4 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-0.6.12.4-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F31| replace::
    `Nuitka 0.6.12.4 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-0.6.12.4-5.1.noarch.rpm>`__
