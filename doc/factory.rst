@@ -1,57 +1,63 @@
+###################
+ Factory Rationale
+###################
 
-Factory Rationale
-=================
+Both the ``master`` and ``develop`` branch are supposed to be working
+for people at all times. For experiments in the context of issues and
+generally features not yet ready for prime time, there we have personal
+branches.
 
-Both the ``master`` and ``develop`` branch are supposed to be working for
-people at all times. For experiments in the context of issues and generally
-features not yet ready for prime time, there we have personal branches.
+You have probably come here, because you were asked to checkout a change
+made for you on ``factory`` or ``jorj``.
 
-You have probably come here, because you were asked to checkout a change made
-for you on ``factory`` or ``jorj``.
+########################
+ How to get ``factory``
+########################
 
-How to get ``factory``
-======================
+*****
+ git
+*****
 
-git
----
-
-.. code-block:: sh
+.. code:: sh
 
    git clone --branch factory https://github.com/Nuitka/Nuitka/Nuitka.git
 
-pip
----
+*****
+ pip
+*****
 
-.. code-block:: sh
+.. code:: sh
 
    pip install -U "https://github.com/Nuitka/Nuitka/archive/factory.zip"
 
+#####################
+ How to get ``jorj``
+#####################
 
-How to get ``jorj``
-===================
+*****
+ git
+*****
 
-git
----
-
-.. code-block:: sh
+.. code:: sh
 
    git clone --branch jorj https://github.com/Nuitka/Nuitka/Nuitka.git
 
-pip
----
+*****
+ pip
+*****
 
-.. code-block:: sh
+.. code:: sh
 
    pip install -U "https://github.com/Nuitka/Nuitka/archive/jorj.zip"
 
+#################
+ Word of Warning
+#################
 
-Word of Warning
-===============
+These personal branches may include all kinds of stupid mistakes, e.g.
+not being executable with all versions, crashing, not working at all.
+They also frequently change without notice. So please use it only for
+the issue at hand or even more than usually on your own risk.
 
-These personal branches may include all kinds of stupid mistakes, e.g. not
-being executable with all versions, crashing, not working at all. They also
-frequently change without notice. So please use it only for the issue at hand
-or even more than usually on your own risk.
-
-Once confirmed and found good, fixes will normally appear on develop branch
-relatively shortly, try to use those instead from then on.
+Once confirmed and found good, fixes will normally appear on develop
+branch relatively shortly, try to use those instead from then on.
