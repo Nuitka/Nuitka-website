@@ -20,7 +20,7 @@ made for you on ``factory``.
 
 .. code:: sh
 
-   git clone --branch factory https://github.com/Nuitka/Nuitka/Nuitka.git
+   git clone --branch factory https://github.com/Nuitka/Nuitka.git
 
 *****
  pip
