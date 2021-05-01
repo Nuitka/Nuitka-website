@@ -84,10 +84,10 @@ def updateDownloadPage():
         if filename.startswith("0.4"):
             continue
 
-        assert filename.lower().startswith("nuitka"), filename
-
-        if "CPython" in filename or "shedskin" in filename:
+        if "CPython" in filename or "shedskin" in filename or "PySide" in filename:
             continue
+
+        assert filename.lower().startswith("nuitka"), filename
 
         if (
             filename.startswith("Nuitka-")
