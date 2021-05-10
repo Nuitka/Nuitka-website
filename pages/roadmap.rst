@@ -41,15 +41,13 @@ This is the Nuitka roadmap, broken down by features.
    considered, where we to what this does in an executable to the launch
    an attached binary with that configuration.
 
--  Include data files directly in the standalone binary (commercial)
+-  Windows: Provide builds of CPython that will allow static linking,
+   avoiding the CPython DLL.
 
-   Making them accessible via standard API such as ``pkgutil.get_data``
-   and having them covered by data hiding.
+-  Forcing output and stderr to files should be supported for all OSes.
 
--  Include Qt data files directly in the standalone binary (commercial)
-
-   These cannot be done from constant values, but there is a Qt
-   mechanism that is fed from constant values that we can use.
+-  Dejong Stacks: More robust parser that allows stdout and stderr in same file
+   with mixed outputs.
 
 ######################
  Performance (public)
@@ -63,7 +61,7 @@ This is the Nuitka roadmap, broken down by features.
 
 -  Better Python3 threading on 3.8 or higher.
 
-   There is now a better way to yield the GIL than whatN Nuitka does.
+   There is now a better way to yield the GIL than what Nuitka does.
    Older Python3 versions allowed no interactions, but newer ones do.
 
 -  Better code for ``+= 1`` constructs with lack of type knowledge.
@@ -82,25 +80,13 @@ This is the Nuitka roadmap, broken down by features.
    supported in binary operations and in-place operations, esp. for
    ``int``, ``float`` and ``long`` values.
 
-#################################
- Features to be added for 0.6.14
-#################################
+##############################
+ Container Builds (undecided)
+##############################
 
-[x] Apply lessons learn from in-place operations to binary operations
-
-   -  Move generic algorithm for fallback into separate function force
-      to not inline as they otherwise slow down.
-
-   -  Instead of calling specialized function when checking type to be
-      the same, directly call the binary_operation template and generate
-      code forced inline.
-
-[x] Fix importing issue, where a module after having raises can never be
-   loaded again.
-
-[x] Improve data hiding to cover module names.
-
-[x] Add file inclusion for data files and Qt files.
+Providing containers with old Linux, and optimally compiled CPython with
+podman such that building with Nuitka on Fedora latest and Ubuntu latest
+can be done fully automatically.
 
 #################################
  Features to be added for 0.6.15
