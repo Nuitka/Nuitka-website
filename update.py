@@ -254,6 +254,7 @@ def updateDownloadPage():
     max_f30_release, max_f30_prerelease = checkOBS("Fedora_30")
     max_f31_release, max_f31_prerelease = checkOBS("Fedora_31")
     max_f32_release, max_f32_prerelease = checkOBS("Fedora_32")
+    max_f33_release, max_f33_prerelease = checkOBS("Fedora_33")
 
     max_suse_131_release, max_suse_131_prerelease = checkOBS("openSUSE_13.1")
     max_suse_132_release, max_suse_132_prerelease = checkOBS("openSUSE_13.2")
@@ -305,6 +306,8 @@ def updateDownloadPage():
         "f31_stable": max_f31_release.replace("-5.1", ""),
         "max_f32_release": max_f32_release,
         "f32_stable": max_f32_release.replace("-5.1", ""),
+        "max_f33_release": max_f33_release,
+        "f33_stable": max_f33_release.replace("-5.1", ""),
         "max_rhel6_release": max_rhel6_release,
         "rhel6_stable": max_rhel6_release.replace("-5.1", ""),
         "max_rhel7_release": max_rhel7_release,
@@ -346,6 +349,8 @@ def updateDownloadPage():
         "f31_unstable": max_f31_prerelease.replace("-5.1", ""),
         "max_f32_prerelease": max_f32_prerelease,
         "f32_unstable": max_f32_prerelease.replace("-5.1", ""),
+        "max_f33_prerelease": max_f33_prerelease,
+        "f33_unstable": max_f33_prerelease.replace("-5.1", ""),
         "max_rhel6_prerelease": max_rhel6_prerelease,
         "rhel6_unstable": max_rhel6_prerelease.replace("-5.1", ""),
         "max_rhel7_prerelease": max_rhel7_prerelease,
@@ -392,6 +397,7 @@ def updateDownloadPage():
         "NUITKA_STABLE_F30": r"`Nuitka %(f30_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-%(max_f30_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_F31": r"`Nuitka %(f31_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-%(max_f31_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_F32": r"`Nuitka %(f32_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-%(max_f32_release)s.noarch.rpm>`__",
+        "NUITKA_STABLE_F33": r"`Nuitka %(f33_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-%(max_f33_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE131": r"`Nuitka %(suse_131_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-%(max_suse_131_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE132": r"`Nuitka %(suse_132_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-%(max_suse_132_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE150": r"`Nuitka %(suse_150_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-%(max_suse_150_release)s.noarch.rpm>`__",
@@ -422,6 +428,7 @@ def updateDownloadPage():
         "NUITKA_UNSTABLE_F30": r"`Nuitka %(f30_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-unstable-%(max_f30_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_F31": r"`Nuitka %(f31_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-unstable-%(max_f31_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_F32": r"`Nuitka %(f32_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-unstable-%(max_f32_prerelease)s.noarch.rpm>`__",
+        "NUITKA_UNSTABLE_F33": r"`Nuitka %(f33_unstable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-unstable-%(max_f33_prerelease)s.noarch.rpm>`__",
         "NUITKA_STABLE_VERSION": "%(plain_stable)s",
     }
 
