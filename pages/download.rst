@@ -325,7 +325,7 @@ Stable
 
 The stable version from PyPI can be installed like this:
 
-  .. code-block:: sh
+.. code:: sh
 
       pip install -U nuitka
 
@@ -335,7 +335,7 @@ Develop
 The develop version can be fetched from the Official git repo of Nuitka like
 this:
 
-  .. code-block:: sh
+.. code:: sh
 
     pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
 
