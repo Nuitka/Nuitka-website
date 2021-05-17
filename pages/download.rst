@@ -225,6 +225,14 @@ Develop releases are snapshots of the current development.
    file
    <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/home:kayhayen.repo>`__
 
+-  |FEDORA_LOGO| Stable: Fedora 33: |NUITKA_STABLE_F33| or `repository
+   file
+   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/home:kayhayen.repo>`__
+
+-  |FEDORA_LOGO| Stable: Fedora 34: |NUITKA_STABLE_F34| or `repository
+   file
+   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/home:kayhayen.repo>`__
+
 -  |FEDORA_LOGO| Develop: Fedora 24: |NUITKA_UNSTABLE_F24| or
    `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/home:kayhayen.repo>`__
@@ -264,6 +272,10 @@ Develop releases are snapshots of the current development.
 -  |FEDORA_LOGO| Develop: Fedora 33: |NUITKA_UNSTABLE_F33| or
    `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/home:kayhayen.repo>`__
+
+-  |FEDORA_LOGO| Develop: Fedora 33: |NUITKA_UNSTABLE_F34| or
+   `repository file
+   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/home:kayhayen.repo>`__
 
 ******
  Suse
@@ -596,6 +608,10 @@ Github.
 
    `Nuitka 0.6.14.7 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-0.6.14.7-5.1.noarch.rpm>`__
 
+.. |NUITKA_STABLE_F34| replace::
+
+   `Nuitka 0.6.14.7 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-0.6.14.7-5.1.noarch.rpm>`__
+
 .. |NUITKA_STABLE_SUSE131| replace::
 
    `Nuitka 0.6.14.7 RPM <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-0.6.14.7-5.1.noarch.rpm>`__
@@ -679,6 +695,10 @@ Github.
 .. |NUITKA_UNSTABLE_F33| replace::
 
    `Nuitka 0.6.15rc7 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-unstable-0.6.15rc7-5.1.noarch.rpm>`__
+
+.. |NUITKA_UNSTABLE_F34| replace::
+
+   `Nuitka 0.6.15rc7 RPM <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-unstable-0.6.15rc7-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE131| replace::
 
