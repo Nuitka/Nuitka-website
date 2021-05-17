@@ -479,6 +479,10 @@ def updateDownloadPage():
     output = []
 
     for line in download_page.rstrip().split("\n"):
+        if not line:
+            output.append(line)
+            continue
+
         if variable is not None:
             output.append("   " + templates[variable] % findings)
         else:
