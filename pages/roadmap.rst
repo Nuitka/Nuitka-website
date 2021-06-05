@@ -30,24 +30,68 @@ This is the Nuitka roadmap, broken down by features.
  Standalone
 ############
 
--  The main binary will be separated from the dist folder. (undecided)
+-  "Multidist" support (undecided)
 
-   Allowing a common place for the binary to load from, with some sort
-   of repository to load from.
+   Allow combinining multiple main programs into one, called
+   "multidist". These will work with a dispatcher that decides from the
+   binary name what it is. There will be one big binary with the ability
+   to run each program.
 
--  Windows: Attempt to avoid need to copy the DLL by using a ".cmd" file
-   that sets the PATH to make it find the CPython DLL, which otherwise
-   would have to be exempted. Also a minor bootstrap approach could be
-   considered, where we to what this does in an executable to the launch
-   an attached binary with that configuration.
+   The CMD file which is part of the next release, demonstrates that
+   it's possible to load the CPython DLL from another directory. We can
+   leverage that approach and produce CMD files that will call the
+   binary in the right fashion.
+
+   I believe we can make it so that all the scripts will still think of
+   themselves as ``__main__`` for the ``__name__`` during their execution,
+   so no code changes are needed. It's only that ``sys.argv[0]`` vs.
+   ``__file__`` for location.
+
+   Much like for onefile, you need to distinguish program location and
+   package location in this way. Note shared stuff living near the CMD
+   file will see that CMD file path in ``sys.argv[0]`` there, and shared
+   stuff, e.g. ``xmlschema`` module will find its datafiles directory
+   that is shared.
+
+   And to top it off, the fat binary of "multidist" may be in standalone
+   or onefile mode, at your choice. The disadvantage there being, that
+   onefile will be slower to unpack with a larger binary.
+
+-  "Sharedist" support (undecided)
+
+   In this the programs are not combined, rather standalone compilations
+   are resumed, produced shared and non-shared parts of multiple
+   distributions.
+
+   The plugins in Nuitka are still somewhat wild west when it comes to
+   copying DLLs and data files as they see fit, sometimes, but not
+   always, reporting to the core, so it could scan dependencies. Work
+   has been done to make them yield objects describing tasks and
+   executing them in the core. This way there is a chance to know what
+   the program does and make this kind of change. This transition is
+   almost complete.
+
+   My goal here is to say that e.g. a datafile should be what Nuitka
+   commercial currently calls "trusted" independent of it being a
+   datafile, right now that is not the case, but Nuitka is much closer
+   to that now. This is of course the same with multiple distributions.
+
+   For data files, this plugin could hook the data file copying process
+   in much the same way, and put data files near the executable or in
+   the shared area.
 
 -  Windows: Provide builds of CPython that will allow static linking,
    avoiding the CPython DLL.
 
+   Nuitka-Python is currently under way and not yet described here.
+
 -  Forcing output and stderr to files should be supported for all OSes.
 
--  Dejong Stacks: More robust parser that allows stdout and stderr in same file
-   with mixed outputs.
+-  Dejong Stacks: More robust parser that allows stdout and stderr in
+   same file with mixed outputs.
+
+-  Add ability to inhibit datafiles from the command line, so that
+   things coming from a plugin can be suppressed.
 
 ######################
  Performance (public)
@@ -59,10 +103,12 @@ This is the Nuitka roadmap, broken down by features.
    Python compilation is a separate line of action, but it should start
    with this.
 
--  Better Python3 threading on 3.8 or higher.
+-  Better Python3 threading on 3.8 or lower.
 
    There is now a better way to yield the GIL than what Nuitka does.
    Older Python3 versions allowed no interactions, but newer ones do.
+
+   For 3.9 this has been done already, we are working downwards.
 
 -  Better code for ``+= 1`` constructs with lack of type knowledge.
 
@@ -80,29 +126,42 @@ This is the Nuitka roadmap, broken down by features.
    supported in binary operations and in-place operations, esp. for
    ``int``, ``float`` and ``long`` values.
 
-##############################
- Container Builds (undecided)
-##############################
+###############################
+   macOS enhancements
+###############################
+
+- Once onefile is working, lets add the ability to specify and icon, and
+  unify the icon options.
+
+- There is a problem with downloaded ccache on M1 macs. Either avoid it
+  or produce a new binary.
+
+###############################
+ Container Builds (commercial)
+###############################
 
 Providing containers with old Linux, and optimally compiled CPython with
 podman such that building with Nuitka on Fedora latest and Ubuntu latest
-can be done fully automatically.
-
-#################################
- Features to be added for 0.6.15
-#################################
-
-[ ] Attempt to avoid need to copy the DLL by using a .cmd file that sets
-   the PATH to make it find the CPython DLL.
-
-[ ] Compression of onefile for Windows
-
-[ ] Add onefile for macOS
-
-[ ] Better Python3 threading on 3.8 or higher.
+can be done fully automatically and still run on very old Linux.
 
 #################################
  Features to be added for 0.6.16
 #################################
 
+[x] Attempt to avoid need to copy the DLL by using a .cmd file that sets
+   the PATH to make it find the CPython DLL.
+
+[x] Compression of onefile with bootstrap
+
+[x] Add onefile for macOS
+
+[ ] Better Python3 threading on 3.8 or higher.
+
+#################################
+ Features to be added for 0.6.17
+#################################
+
    [ ] Better scalability
+
+   [ ] Caching for bytecode demoted modules so no optimization needs to
+   be run
