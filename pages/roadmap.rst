@@ -144,8 +144,10 @@ can be done fully automatically and still run on very old Linux.
  Features to be added for 0.6.16
 #################################
 
-[x] Attempt to avoid need to copy the DLL by using a .cmd file that sets
-   the PATH to make it find the CPython DLL.
+List of things, we are aiming for to be included in that release.
+
+[x] Attempt to avoid need to copy the DLL by using a ``.cmd`` file that
+sets the PATH to make it find the CPython DLL.
 
 [x] Compression of onefile with bootstrap
 
@@ -157,9 +159,11 @@ can be done fully automatically and still run on very old Linux.
  Features to be added for 0.6.17
 #################################
 
+List of things, we are aiming for to be included in that release.
+
 [ ] Better scalability
 
 [ ] Caching for bytecode demoted modules so no optimization needs to be
-   run
+run.
 
 [ ] Better Python3 threading on 3.7 or as low as possible for Python3.
