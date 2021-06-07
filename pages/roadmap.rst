@@ -1,5 +1,20 @@
 This is the Nuitka roadmap, broken down by features.
 
+####################
+ User Extensibility
+####################
+
+-  Data files, implicit imports, even DLL inclusion, and plugins
+   location should be specified in yaml format.
+
+   In this way, it becomes easier to extend by third parties. We could
+   imagine even supporting packages that provide their own configuration
+   for compilation with Nuitka through such files.
+
+   This is started with yaml config of the ``anti-bloat`` plugin, and
+   will probably grow from there. The implicit imports is a natural next
+   target to include there.
+
 ############
  Standalone
 ############
