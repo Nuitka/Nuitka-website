@@ -1,31 +1,5 @@
 This is the Nuitka roadmap, broken down by features.
 
-#########
- Onefile
-#########
-
--  Add support for macOS (public feature)
-
-   The initial goal here is to make the temp directory mode work on
-   Linux too, that is going to be largely what it takes. The ``%TEMP%``
-   etc notations might be a bit of research to find out the proper
-   values.
-
--  Add zstd compression (public feature)
-
-   The file reading is already somewhat abstracted. After adding support
-   for Linux with the bootstrap code (Linux works without it, and in a
-   better way), it should be more easy for me to develop this, as
-   Windows is kind of a hostile environment for me in terms of the
-   debugging.
-
--  Add support for upx (public feature)
-
-   The UPX cannot compress payloads, which is why we can't use it.
-   However, a post processing of binaries, even from CPython extension
-   modules, seems to work and reduce the uncompressed sizes of binaries
-   already.
-
 ############
  Standalone
 ############
@@ -43,9 +17,9 @@ This is the Nuitka roadmap, broken down by features.
    binary in the right fashion.
 
    I believe we can make it so that all the scripts will still think of
-   themselves as ``__main__`` for the ``__name__`` during their execution,
-   so no code changes are needed. It's only that ``sys.argv[0]`` vs.
-   ``__file__`` for location.
+   themselves as ``__main__`` for the ``__name__`` during their
+   execution, so no code changes are needed. It's only that
+   ``sys.argv[0]`` vs. ``__file__`` for location.
 
    Much like for onefile, you need to distinguish program location and
    package location in this way. Note shared stuff living near the CMD
@@ -93,6 +67,13 @@ This is the Nuitka roadmap, broken down by features.
 -  Add ability to inhibit datafiles from the command line, so that
    things coming from a plugin can be suppressed.
 
+-  Add support for upx (public feature)
+
+The UPX cannot compress payloads, which is why we can't use it and
+expect it to solve the onefile compression issue. However, a post
+processing of binaries, even from CPython extension modules, seems to
+work and reduce the uncompressed sizes of binaries already.
+
 ######################
  Performance (public)
 ######################
@@ -126,15 +107,15 @@ This is the Nuitka roadmap, broken down by features.
    supported in binary operations and in-place operations, esp. for
    ``int``, ``float`` and ``long`` values.
 
-###############################
-   macOS enhancements
-###############################
+####################
+ macOS enhancements
+####################
 
-- Once onefile is working, lets add the ability to specify and icon, and
-  unify the icon options.
-
-- There is a problem with downloaded ccache on M1 macs. Either avoid it
-  or produce a new binary.
+-  Once onefile is working, lets add the ability to specify and icon,
+   and unify the icon options.
+-  There is a problem with downloaded ccache on M1 macs. Either avoid it
+   or produce a new binary.
+-  Build for old macOS on new macOS needs to be investigated.
 
 ###############################
  Container Builds (commercial)
@@ -161,7 +142,7 @@ can be done fully automatically and still run on very old Linux.
  Features to be added for 0.6.17
 #################################
 
-   [ ] Better scalability
+[ ] Better scalability
 
-   [ ] Caching for bytecode demoted modules so no optimization needs to
-   be run
+[ ] Caching for bytecode demoted modules so no optimization needs to be
+   run
