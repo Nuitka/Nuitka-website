@@ -151,7 +151,7 @@ can be done fully automatically and still run on very old Linux.
 
 [x] Add onefile for macOS
 
-[ ] Better Python3 threading on 3.8 or higher.
+[x] Better Python3 threading on 3.8 or higher.
 
 #################################
  Features to be added for 0.6.17
@@ -161,3 +161,5 @@ can be done fully automatically and still run on very old Linux.
 
 [ ] Caching for bytecode demoted modules so no optimization needs to be
    run
+
+[ ] Better Python3 threading on 3.7 or as low as possible for Python3.
