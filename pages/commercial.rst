@@ -13,12 +13,24 @@ contains plugins to Nuitka that will achieve the following:
 
 -  Obfuscucate contained constants data
 
-   Your keys, your program texts, your library usages, all expose
-   textual information, that can be valuable input in Reverse
-   Enginneering. Normally these are plain and readable in the created
-   programs (and of course your Python source code). Compiling with
-   Nuitka gives you protection of the code, but with the data being
-   easily readable, it will be less effective.
+   Your encryption keys, your program texts, your library usages, all
+   expose textual information, that can be valuable input in Reverse
+   Enginneering.
+
+   Normally these constants are plain and readable in the created
+   programs (and of course your Python source code or bytecode).
+   Compiling with Nuitka gives you protection of the code, but with the
+   data being easily readable, it will be less effective.
+
+   Another facet of the same issue is datafiles. When your program
+   includes data files to work on, these are visible in the file system.
+   Sometimes, e.g. via QML files of Qt, your program behaviour can be
+   changed by changing these files.
+
+   Therefore Nuitka commercial allows you to include data files as part
+   of the program constants and protect it in the same way as other
+   constants. Without these files accessible, the attacker will have no
+   attack vector for Reverse Enginneering.
 
 -  Encrypted tracebacks
 
@@ -30,14 +42,16 @@ contains plugins to Nuitka that will achieve the following:
    Python tracebacks are good for this, but you cannot want them to be
    readable to the user. This is very traceback encryption comes in.
    Nuitka with the commercial plugin will make sure to encrypt all
-   traceback outputs. They can still carry as much information as you
-   want, but only you will be able to decode them.
+   traceback outputs. They still carry the information as you want, but
+   *only you* will be able to decode them.
 
-   Both symmetric and asymmetric encryption are available for you to use
-   there and you can decide which information is part of the encryption,
-   and which part is not, e.g. hostname, client name, etc. could be
-   output without that, while variable names and values would be,
-   depending on your choice!
+   Symmetric encryption (and asymmetric encryption in a future update)
+   are available for you to use there.
+
+   In a future update, you can decide which information is transferred,
+   and what is part of the encryption, and which part is not, e.g.
+   hostname, client name, etc. could be output int plain text, while the
+   variable names and values would not be, depending on your choice!
 
 -  Encrypted outputs
 
@@ -46,8 +60,8 @@ contains plugins to Nuitka that will achieve the following:
    make sure it can only output encrypted information on standard output
    and standard error.
 
-   This will allow you to decode outputs as necessary, and will make it
-   not an option to your clients.
+   This will allow you to decode outputs as necessary, and will make
+   sure it's not readable to your clients.
 
 ###########################################
  Special needs (Commercial only use cases)
@@ -57,14 +71,28 @@ In this instance, you have special wishes that only commercial customers
 will have and that are effort to maintain.
 
 -  You might e.g. you want to deploy a Windows service
+
+   For this, there is a dedicated plugin in Nuitka that makes deployment
+   of a practically unchanged program as a service very easy.
+
 -  You might need to support special commercial grade software.
+
+   This can be done, but you might have to pay for the development time
+   this takes.
+
 -  You might need to support very old OSes, e.g. RHEL 5.
+
+   Again, this can be done, but you might have to pay for the
+   development time this takes.
+
 -  Automatic download, alerts to, applying updates of deployed software.
 
-Support for these things will also be covered in the Nuitka commercial
-package, and while you might not care necessarily about hiding your
-source or data, but much rather you care about the quality of deployment
-of your software.
+   This is not yet implemented, but will be added in a future update.
+
+   Support for these things will also be covered in the Nuitka
+   commercial package, and while you might not care necessarily about
+   hiding your source or data, but much rather you care about the
+   quality of deployment of your software.
 
 ##########################
  Priority Issue Solutions
@@ -96,7 +124,7 @@ highest priority.
  Pricing
 #########
 
--  Early bird Nuitka commercial subscription
+-  Nuitka commercial subscription
 
    Currently 250 EUR (or 300 USD), valid for one year, renewal same
    price.
