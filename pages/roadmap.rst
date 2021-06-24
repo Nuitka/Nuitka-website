@@ -13,7 +13,7 @@ This is the Nuitka roadmap, broken down by features.
 
    This is started with yaml config of the ``anti-bloat`` plugin, and
    will probably grow from there. The implicit imports is a natural next
-   target to include there.
+   target to include there, as are the ``data-files`` plugin.
 
 ############
  Standalone
@@ -26,10 +26,9 @@ This is the Nuitka roadmap, broken down by features.
    binary name what it is. There will be one big binary with the ability
    to run each program.
 
-   The CMD file which is part of the next release, demonstrates that
-   it's possible to load the CPython DLL from another directory. We can
-   leverage that approach and produce CMD files that will call the
-   binary in the right fashion.
+   The CMD file for accelerated mode, demonstrates that it's possible to load
+   the CPython DLL from another directory. We can leverage that approach and
+   produce CMD files that will call the binary in the right fashion.
 
    I believe we can make it so that all the scripts will still think of
    themselves as ``__main__`` for the ``__name__`` during their
@@ -72,8 +71,6 @@ This is the Nuitka roadmap, broken down by features.
 -  Windows: Provide builds of CPython that will allow static linking,
    avoiding the CPython DLL.
 
-   Nuitka-Python is currently under way and not yet described here.
-
 -  Forcing output and stderr to files should be supported for all OSes.
 
 -  Dejong Stacks: More robust parser that allows stdout and stderr in
@@ -88,6 +85,14 @@ The UPX cannot compress payloads, which is why we can't use it and
 expect it to solve the onefile compression issue. However, a post
 processing of binaries, even from CPython extension modules, seems to
 work and reduce the uncompressed sizes of binaries already.
+
+########################
+ Nuitka-Python (public)
+########################
+
+This is currently under way and not yet described here. The current Nuitka
+release has support for using it.
+
 
 ######################
  Performance (public)
@@ -141,21 +146,6 @@ podman such that building with Nuitka on Fedora latest and Ubuntu latest
 can be done fully automatically and still run on very old Linux.
 
 #################################
- Features to be added for 0.6.16
-#################################
-
-List of things, we are aiming for to be included in that release.
-
-[x] Attempt to avoid need to copy the DLL by using a ``.cmd`` file that
-sets the PATH to make it find the CPython DLL.
-
-[x] Compression of onefile with bootstrap
-
-[x] Add onefile for macOS
-
-[x] Better Python3 threading on 3.8 or higher.
-
-#################################
  Features to be added for 0.6.17
 #################################
 
@@ -167,3 +157,8 @@ List of things, we are aiming for to be included in that release.
 run.
 
 [ ] Better Python3 threading on 3.7 or as low as possible for Python3.
+
+[ ] Compression of onefile with bootstrap before Python3.5, so far it's
+    there for 3.5 or higher only.
+
+[ ] Add icons for macOS
