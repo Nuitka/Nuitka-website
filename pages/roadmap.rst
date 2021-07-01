@@ -104,12 +104,12 @@ release has support for using it.
    Python compilation is a separate line of action, but it should start
    with this.
 
--  Better Python3 threading on 3.8 or lower.
+-  Better Python3 threading on 3.7 or lower.
 
    There is now a better way to yield the GIL than what Nuitka does.
    Older Python3 versions allowed no interactions, but newer ones do.
 
-   For 3.9 this has been done already, we are working downwards.
+   For 3.8 and 3.9 this has been done already, we are working downwards.
 
 -  Better code for ``+= 1`` constructs with lack of type knowledge.
 
