@@ -26,9 +26,10 @@ This is the Nuitka roadmap, broken down by features.
    binary name what it is. There will be one big binary with the ability
    to run each program.
 
-   The CMD file for accelerated mode, demonstrates that it's possible to load
-   the CPython DLL from another directory. We can leverage that approach and
-   produce CMD files that will call the binary in the right fashion.
+   The CMD file for accelerated mode, demonstrates that it's possible to
+   load the CPython DLL from another directory. We can leverage that
+   approach and produce CMD files that will call the binary in the right
+   fashion.
 
    I believe we can make it so that all the scripts will still think of
    themselves as ``__main__`` for the ``__name__`` during their
@@ -90,9 +91,8 @@ work and reduce the uncompressed sizes of binaries already.
  Nuitka-Python (public)
 ########################
 
-This is currently under way and not yet described here. The current Nuitka
-release has support for using it.
-
+This is currently under way and not yet described here. The current
+Nuitka release has support for using it.
 
 ######################
  Performance (public)
@@ -145,6 +145,24 @@ Providing containers with old Linux, and optimally compiled CPython with
 podman such that building with Nuitka on Fedora latest and Ubuntu latest
 can be done fully automatically and still run on very old Linux.
 
+########################################
+ Support for Next Python Version (3.10)
+########################################
+
+-  Get it to work for 3.9 test suite.
+
+   This will usually mean it's safe to use for most people over 3.9, but
+   it's not supporting the 3.10 features yet.
+
+-  Add support for new case syntax of 3.10
+
+   This might be relatively simple to do with a reformulation, but it's
+   unclear at this time.
+
+-  Get it to work for 3.10 test suite.
+
+   This will amount to fully compatibility in support.
+
 #################################
  Features to be added for 0.6.17
 #################################
@@ -159,6 +177,6 @@ run.
 [ ] Better Python3 threading on 3.7 or as low as possible for Python3.
 
 [ ] Compression of onefile with bootstrap before Python3.5, so far it's
-    there for 3.5 or higher only.
+   there for 3.5 or higher only.
 
 [ ] Add icons for macOS
