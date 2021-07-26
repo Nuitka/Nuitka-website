@@ -111,6 +111,39 @@ Nuitka release has support for using it.
 
    For 3.8 and 3.9 this has been done already, we are working downwards.
 
+-  Faster attribute setting.
+
+   Attribute setting wasn't optimized so far, but used the generic type
+   value setting code. Having our own variant makes it faster for Python2,
+   but for Python3, we need ``_PyObjectDict_SetItem`` which is very hard
+   to replace, as it's forking shared dictionary as necessary. With static
+   libpython it can linked though.
+
+-  Support for static libpython together with LTO.
+
+   This gives an enormouse speed bump for Python2 with Debian packag Python
+   event, and of course for any properly self compiled Python, and to the
+   Nuitka Python there will be. For Python3, this has not yet been achieved,
+   but ought to be doable too.
+
+-  Support for creation PGO for static libpython.
+
+   We might have to run the test suite for default improvements, and we may
+   offer to run the user application with Nuitka compilation to produce the
+   LTO feedback. This might be huge.
+
+-  Support for keyword argument calls to use faster calling code.
+
+   Esp. for the for the compiled functions, we currently go in these cases
+   through the the ``tp_call`` slot, taking dictionary, and esp. when there
+   is a mixture of dictionary and keyword arguments, this is causing Nuitka
+   to be even slower.
+
+-  Faster Object creation for compiled ``__init__`` and/or ``__new__``
+
+   Right now, these are called through the ``tp_call`` slow, which makes
+   argument passing unnecessarily slow.
+
 -  Better code for ``+= 1`` constructs with lack of type knowledge.
 
    There is a long standing todo, to add the ``CLONG`` support for
