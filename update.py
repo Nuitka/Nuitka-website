@@ -17,7 +17,7 @@ from lxml import html
 
 
 def updateDownloadPage():
-    page_source = requests.get("http://nuitka.net/releases/").text
+    page_source = requests.get("https://nuitka.net/releases/").text
 
     tree = html.parse(StringIO(page_source))
     link_names = tree.xpath("//@href")
@@ -164,7 +164,7 @@ def updateDownloadPage():
         return match.group(1)
 
     def makeRepositoryUrl(path):
-        return "http://nuitka.net/" + path
+        return "https://nuitka.net/" + path
 
     deb_info = {}
 
@@ -375,15 +375,15 @@ def updateDownloadPage():
     }
 
     templates = {
-        "NUITKA_STABLE_TAR_GZ": r"`Nuitka %(plain_stable)s (0.6 MB tar.gz) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.gz>`__",
-        "NUITKA_STABLE_TAR_BZ": r"`Nuitka %(plain_stable)s (0.5 MB tar.bz2) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.bz2>`__",
-        "NUITKA_STABLE_ZIP": r"`Nuitka %(plain_stable)s (1.1 MB zip) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.zip>`__",
-        "NUITKA_STABLE_WININST": r"`Nuitka %(plain_stable)s (1.2 MB exe) <http://nuitka.net/releases/Nuitka-%(plain_stable)s.win32.exe>`__",
-        "NUITKA_STABLE_DEBIAN": r"`Nuitka %(plain_stable)s (0.2 MB deb) <http://nuitka.net/releases/nuitka_%(deb_stable)s_all.deb>`__",
-        "NUITKA_UNSTABLE_TAR_GZ": r"`Nuitka %(plain_prerelease)s (0.6 MB tar.gz) <http://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.gz>`__",
-        "NUITKA_UNSTABLE_TAR_BZ": r"`Nuitka %(plain_prerelease)s (0.5 MB tar.bz2) <http://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.bz2>`__",
-        "NUITKA_UNSTABLE_ZIP": r"`Nuitka %(plain_prerelease)s (1.2 MB zip) <http://nuitka.net/releases/Nuitka-%(plain_prerelease)s.zip>`__",
-        "NUITKA_UNSTABLE_DEBIAN": r"`Nuitka %(plain_prerelease)s (0.2 MB deb) <http://nuitka.net/releases/nuitka_%(deb_prerelease)s_all.deb>`__",
+        "NUITKA_STABLE_TAR_GZ": r"`Nuitka %(plain_stable)s (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.gz>`__",
+        "NUITKA_STABLE_TAR_BZ": r"`Nuitka %(plain_stable)s (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.bz2>`__",
+        "NUITKA_STABLE_ZIP": r"`Nuitka %(plain_stable)s (1.1 MB zip) <https://nuitka.net/releases/Nuitka-%(plain_stable)s.zip>`__",
+        "NUITKA_STABLE_WININST": r"`Nuitka %(plain_stable)s (1.2 MB exe) <https://nuitka.net/releases/Nuitka-%(plain_stable)s.win32.exe>`__",
+        "NUITKA_STABLE_DEBIAN": r"`Nuitka %(plain_stable)s (0.2 MB deb) <https://nuitka.net/releases/nuitka_%(deb_stable)s_all.deb>`__",
+        "NUITKA_UNSTABLE_TAR_GZ": r"`Nuitka %(plain_prerelease)s (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.gz>`__",
+        "NUITKA_UNSTABLE_TAR_BZ": r"`Nuitka %(plain_prerelease)s (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.bz2>`__",
+        "NUITKA_UNSTABLE_ZIP": r"`Nuitka %(plain_prerelease)s (1.2 MB zip) <https://nuitka.net/releases/Nuitka-%(plain_prerelease)s.zip>`__",
+        "NUITKA_UNSTABLE_DEBIAN": r"`Nuitka %(plain_prerelease)s (0.2 MB deb) <https://nuitka.net/releases/nuitka_%(deb_prerelease)s_all.deb>`__",
         "NUITKA_STABLE_RHEL6": r"`Nuitka %(rhel6_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-%(max_rhel6_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_RHEL7": r"`Nuitka %(rhel7_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-%(max_rhel7_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_CENTOS6": r"`Nuitka %(centos6_stable)s RPM <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-%(max_centos6_release)s.noarch.rpm>`__",
@@ -471,7 +471,7 @@ def updateDownloadPage():
         )
 
         templates["NUITKA_" + category.upper() + "_MSI_" + version + "_" + bits] = (
-            r"`Nuitka %%(msi_%(category)s_%(version)s_%(bits)s)s Python%(dot_version)s %(bits)s bit MSI <http://nuitka.net/releases/%%(max_msi_%(category)s_%(version)s_%(bits)s)s>`__"
+            r"`Nuitka %%(msi_%(category)s_%(version)s_%(bits)s)s Python%(dot_version)s %(bits)s bit MSI <https://nuitka.net/releases/%%(max_msi_%(category)s_%(version)s_%(bits)s)s>`__"
             % {
                 "version": version,
                 "bits": bits,
@@ -607,7 +607,7 @@ def updateReleasePosts():
         lines = (
             [
                 """\
-This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.\n""",
+This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.\n""",
                 "\n",
             ]
             + lines
