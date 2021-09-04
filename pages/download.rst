@@ -107,7 +107,7 @@ Develop releases are snapshots of the current development.
    .. code:: sh
 
       CODENAME=`grep UBUNTU_CODENAME /etc/os-release | cut -d= -f2`
-      if ["$CODENAME"] = ""]
+      if [ -z "$CODENAME" ]
       then
          CODENAME=`lsb_release -c -s`
       fi;
@@ -122,7 +122,7 @@ Develop releases are snapshots of the current development.
    .. code:: sh
 
       CODENAME=`grep UBUNTU_CODENAME /etc/os-release | cut -d= -f2`
-      if ["$CODENAME"] = ""]
+      if [ -z "$CODENAME" ]
       then
          CODENAME=`lsb_release -c -s`
       fi;
