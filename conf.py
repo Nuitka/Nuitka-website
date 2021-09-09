@@ -19,7 +19,7 @@ import datetime
 # Data about this site
 BLOG_AUTHOR = "Kay Hayen"
 BLOG_TITLE = "Nuitka Home"
-SITE_URL = "http://nuitka.net/"
+SITE_URL = "https://nuitka.net/"
 BLOG_EMAIL = "Kay.Hayen@gmail.com"
 BLOG_DESCRIPTION = "From the creator of the Python compiler."
 
