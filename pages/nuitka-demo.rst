@@ -1,4 +1,4 @@
-.. date: 2021-03-15 11:04:43 +0100
+.. date: 2021-06-07 14:53:26 +0200
 .. title: Nuitka Demos
 .. slug: nuitka-demo
 
