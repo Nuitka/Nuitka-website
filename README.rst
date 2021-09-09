@@ -3,6 +3,7 @@
 ################
 
 .. image:: posts/images/nuitka-website-logo.png
+   :alt: Nuitka Logo
 
 *******
  Usage
