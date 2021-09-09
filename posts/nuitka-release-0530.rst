@@ -1,4 +1,4 @@
-This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
+This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This release has improvements in all areas. Many bug fixes are
 accompanied with optimization changes towards value tracing.
@@ -38,7 +38,7 @@ accompanied with optimization changes towards value tracing.
       class C:
           for_call = functools.partial
 
-          def m():
+          def m(self):
               self.for_call()  # This leaked a reference to the descriptor.
 
 -  Python3.5: The bases classes should be treated as an unpacking too.

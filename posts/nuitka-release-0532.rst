@@ -1,4 +1,4 @@
-This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
+This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This release contains substantial new optimization, bug fixes, and
 already the full support for Python 3.7. Among the fixes, the enhanced

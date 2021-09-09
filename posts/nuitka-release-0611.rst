@@ -1,4 +1,4 @@
-This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
+This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This release is a massive improvement in many ways with lots of bug
 fixes and new features.
@@ -171,7 +171,7 @@ fixes and new features.
    are in the standard library, typically ``.pth`` files will use e.g.
    ``os`` but that's not needed to be preserved.
 
--  Use ``incbin`` for including binary data through inline assemly of
+-  Use ``incbin`` for including binary data through inline assembly of
    the C compiler. This covers many more platforms than our previous
    linker option hacks, and the fallback to generated C code. In fact
    everything but Windows uses this now.

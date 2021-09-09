@@ -1,4 +1,4 @@
-This is to inform you about the new stable release of `Nuitka <http://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
+This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This release polished previous work with bug fixes, but there are also
 important new things that help make Nuitka more usable, with one
@@ -75,6 +75,12 @@ important performance improvement.
 
 -  UI: Project options didn't properly handle quoting of arguments,
    these are normally removed by the shell.
+
+-  Linux: The default icon for Python in the system is now found with
+   more version specific names and should work on more systems.
+
+-  Standalone: Do not include ``libstdc++`` as it should come from the
+   system rather.
 
 **************
  New Features
