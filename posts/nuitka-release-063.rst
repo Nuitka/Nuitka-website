@@ -14,19 +14,28 @@ optimization was on hold.
 
 -  Windows: Added support for running compiled binaries in unicode path
    names.
+
 -  Standalone: Added support for crytodomex and pycparser packages.
+
 -  Standalone: Added support for OpenSSL support in PyQt on Windows.
+
 -  Standalone: Added support for OpenGL support with QML in PyQt on
    Windows.
+
 -  Standalone: Added support for SciPy and extended the NumPy plugin to
    also handle it.
+
 -  UI: The option ``--plugin-list`` still needed a positional argument
    to work.
+
 -  Make sure ``sys.base_prefix`` is set correctly too.
+
 -  Python3: Also make sure ``sys.exec_prefix`` and
    ``sys.base_exec_prefix`` are set correctly.
+
 -  Standalone: Added platform plugins for PyQt to the default list of
    sensible plugins to include.
+
 -  Fix detection of standard library paths that include ``..`` path
    elements.
 
@@ -42,6 +51,7 @@ optimization was on hold.
 
 -  Plugins: A plugin may now also generate data files on the fly for a
    given module.
+
 -  Added support for FreeBSD/PowerPC arch which still uses ``gcc`` and
    not ``clang``.
 
@@ -118,8 +128,10 @@ optimization was on hold.
 
 -  Detect Windows permission errors for two step execution of Nuitka as
    well, leading to retries should they occur.
+
 -  The salt value for CPython cached results was improved to take more
    things into account.
+
 -  Tests: Added more trick assignments and generally added more tests
    that were so far missing.
 

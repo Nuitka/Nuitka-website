@@ -1,7 +1,7 @@
 This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This is to inform you about the new release of Nuitka many bug fixes,
-and substantial improvements especially in the organizational area.
+and substantial improvements especially in the organisational area.
 There is a new "`User Manual
 <https://nuitka.net/doc/user-manual.html>`__" (`PDF
 <https://nuitka.net/doc/user-manual.pdf>`__), with much improved
@@ -126,7 +126,7 @@ were many of these.
 -  Added test to cover evaluation order of class definitions.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Migrated the "README.txt" from org-mode to ReStructured Text, which

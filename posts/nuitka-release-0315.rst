@@ -1,7 +1,7 @@
 This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This is to inform you about the new stable release of Nuitka. This time
-again many organizational improvements, some bug fixes, much improved
+again many organisational improvements, some bug fixes, much improved
 compatibility and cleanups.
 
 This release cycle had a focus on packaging Nuitka for easier
@@ -63,7 +63,7 @@ with line numbers in the frame object.
    plus that didn't work. It now works perfect.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  You can now download a Windows installer and a Debian package that

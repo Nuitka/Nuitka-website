@@ -5,13 +5,18 @@ release to 0.1, which corrects many of the small things:
 
 -  Updated the CPython test suite to 2.6.6rc and minimized much of
    existing differences in the course.
+
 -  Compiles standalone executable that includes modules (with --deep
    option), but packages are not yet included successfully.
+
 -  Reference leaks with exceptions are no more.
+
 -  sys.exc_info() works now mostly as expected (it's not a stack of
    exceptions).
+
 -  More readable generated code, better organisation of C++ template
    code.
+
 -  Restored debug option ``--g++-only``.
 
 The biggest thing probably is the progress with exception tracebacks

@@ -1,7 +1,7 @@
 This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
 
 This release contains a huge amount of bug fixes, lots of optimization
-gains, and many new features. It also presents many organizational
+gains, and many new features. It also presents many organisational
 improvements, and many cleanups.
 
 ***********
@@ -125,7 +125,7 @@ improvements, and many cleanups.
    too.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  This release also prepares Python 3.6 support, it includes full

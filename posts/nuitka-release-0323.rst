@@ -48,7 +48,7 @@ assignment could be.
    names of module level variables.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Using the Apache License 2.0 for all of Nuitka now.

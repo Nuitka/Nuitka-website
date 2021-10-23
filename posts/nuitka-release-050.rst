@@ -130,7 +130,7 @@ the direction of actual SSA.
    local variables.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  The option ``--exe`` is now ignored and creating an executable is the

@@ -128,7 +128,7 @@ which will have to continue for some time more.
    subject of a later posting.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  There is now a "tests/benchmarks/micro" directory to contain tiny

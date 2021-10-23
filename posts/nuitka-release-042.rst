@@ -247,7 +247,7 @@ expanded.
    and found a few minor issues.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  The `Downloads <https://nuitka.net/pages/download.html>`__ page now

@@ -94,14 +94,19 @@ as well as major cleanups of code base.
 **************
 
 -  Added support for Windows 10.
+
 -  Followed changes for Python 3.5 beta 2. Still only usable as a Python
    3.4 replacement, no new features.
+
 -  Using a self compiled Python running from the source tree is now
    supported.
+
 -  Added support for Anaconda Python distribution. As it doesn't install
    the Python DLL, we copy it along for acceleration mode.
+
 -  Added support for Visual Studio 2015. `Issue#222
    <http://bugs.nuitka.net/issue222>`__. Fixed in 0.5.13.3 already.
+
 -  Added support for self compiled Python versions running from build
    tree, this is intended to help debug things on Windows.
 
@@ -176,10 +181,11 @@ as well as major cleanups of code base.
    e.g. when printed.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Removed gitorious mirror of the git repository, they shut down.
+
 -  Make it more clear in the documentation that Python2 is needed at
    compile time to create Python3 executables.
 

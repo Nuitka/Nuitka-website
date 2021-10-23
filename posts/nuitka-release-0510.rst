@@ -10,6 +10,7 @@ now faster or got looked at and optimized.
 
 -  Compatibility: The variable name in locals for the iterator provided
    to the generator expression should be ``.0``, now it is.
+
 -  Generators could leak frames until program exit, these are now
    properly freed immediately.
 
@@ -99,11 +100,12 @@ now faster or got looked at and optimized.
    uncover bugs.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Speedcenter has been enhanced with better graphing and has more
    benchmarks now. More work will be needed to make it useful.
+
 -  Updates to the Developer Manual, reflecting the current near finished
    state of "C-ish" code generation.
 
@@ -113,8 +115,10 @@ now faster or got looked at and optimized.
 
 -  New reference count tests to cover generator expressions and their
    usage got added.
+
 -  Many new construct based tests got added, these will be used for
    performance graphing, and serve as micro benchmarks now.
+
 -  Again, more basic tests are directly executable with Python3.
 
 *********

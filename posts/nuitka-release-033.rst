@@ -62,6 +62,7 @@ Others
 ======
 
 -  Exceptions didn't always have the correct stack reported.
+
 -  The pickling of some tuples showed that "cPickle" can have
    non-reproducible results, using "pickle" to stream constants now
 
@@ -107,7 +108,7 @@ Others
 -  The Python 2.7 test suite has been added.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  One can now run multiple "compare_with_cpython" instances in

@@ -106,15 +106,18 @@ Debian repository. It's still not there, but it's making progress.
    in fact containing everything required.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  The help output of Nuitka was polished a lot more. It is now more
    readable and uses option groups to combine related options together.
+
 -  The in-line copy of Scons is not checked with PyLint anymore. We of
    course don't care.
+
 -  Program tests are no longer executed in the program directory, so
    failed module inclusions become immediately obvious.
+
 -  The basic tests can now be run with ``PYTHON=python3.2`` and use
    ``2to3`` conversion in that case.
 

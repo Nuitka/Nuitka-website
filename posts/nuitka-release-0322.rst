@@ -177,10 +177,11 @@ for Python2. For the common language subset, it's quite fine now.
       print "1+1= 2"
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Enhanced Python3 support, enabling support for most basic tests.
+
 -  Check files with PyLint in deterministic (alphabetical) order.
 
 **********
@@ -202,8 +203,10 @@ for Python2. For the common language subset, it's quite fine now.
 ***********
 
 -  Expanded and adapted basic tests to work for Python3 as well.
+
 -  Added reference count tests for generator functions ``throw``,
    ``send``, and ``close`` methods.
+
 -  Cover calling a function with ``try``/``except`` in an exception
    handler twice. No test was previously doing that.
 

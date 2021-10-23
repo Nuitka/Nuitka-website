@@ -10,19 +10,27 @@ they are now becoming more common.
 
 -  Compatibility: The value of ``__module__`` for extension modules was
    not dependent into which package the module was loaded, it now is.
+
 -  Anaconda: Enhanced detection of Anaconda for Python 3.6 and higher.
+
 -  CentOS6: Detect gcc version to allow saving on macro memory usage,
    very old gcc didn't have that.
+
 -  Include Python3 for all Fedora versions where it works as well as for
    openSUSE versions 15 and higher.
+
 -  Windows: Using short path names to interact with Scons avoids
    problems with unicode paths in all cases.
+
 -  macOS: The usage of ``install_name_tool`` could sometimes fail due to
    length limits, we now increase it at link time.
+
 -  macOS: Do not link against ``libpython`` for module mode. This
    prevented extension modules from actually being usable.
+
 -  Python3.6: Follow coroutine fixes in our asyncgen implementation as
    well.
+
 -  Fix, our version number handling could overflow with minor versions
    past 10, so we limited it for now.
 
@@ -65,14 +73,20 @@ they are now becoming more common.
 
 -  Added recommended plugins for Visual Code, replacing the list in the
    Developer Manual.
+
 -  Added repository for Fedora 30 for download.
+
 -  Added repository for CentOS 8 for download.
+
 -  Updated inline copy of Scons used for Python3 to 3.1.2, which is said
    to be faster for large compilations.
+
 -  Removed Eclipse setup from the manual, it's only infererior at this
    point and we do not use it ourselves.
+
 -  Debian: Stop recommending PyQt5 in the package, we no longer use it
    for built-in GUI that was removed.
+
 -  Debian: Bumped the standards version and modernized the packaging,
    solving a few warnings during the build.
 
@@ -81,6 +95,7 @@ they are now becoming more common.
 **********
 
 -  Scons: Avoid to add Unix only include paths on Windows.
+
 -  Scons: Have the static source code in a dedicated folder for clarity.
 
 *******

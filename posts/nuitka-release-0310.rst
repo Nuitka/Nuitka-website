@@ -142,7 +142,7 @@ structural optimization enhancements.
       print len(range(9))
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Changed "README.txt" to no longer say that "Scons" is a requirement.

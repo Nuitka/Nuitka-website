@@ -105,13 +105,16 @@ which end up giving us another boost for the "PyStone" benchmark.
 
 -  Added "ExtremeClosure" from my Python quiz, it was not covered by
    existing tests.
+
 -  Added test case for program that imports a module with a dash in its
    name.
+
 -  Added test case for main program that starts with a dash.
+
 -  Extended the built-in tests to cover ``type()`` as well.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  There is now a new environment variable ``NUITKA_SCONS`` which should

@@ -31,10 +31,13 @@ addressed.
 
 -  With the enhanced scope analysis, ``UnboundLocalError`` is now
    correctly supported.
+
 -  Generator expressions (but not yet functions) have a ``throw()``,
    ``send()`` and ``close()`` method.
+
 -  Exec can now write to local function namespace even if ``None`` is
    provided at run time.
+
 -  Relative imports inside packages are now correctly resolved at
    compile time when using ``--deep``.
 
@@ -85,8 +88,10 @@ addressed.
 ***********
 
 -  More complete test of generator expressions.
+
 -  Added test program for packages with relative imports inside the
    package.
+
 -  The built-in ``dir()`` in a function was not having fully
    deterministic output list, now it does.
 

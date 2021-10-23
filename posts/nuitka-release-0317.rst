@@ -77,7 +77,7 @@ entering the Debian repository.
    really necessary anymore.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added a "`Developer Manual
@@ -216,7 +216,7 @@ useful not only for hot fix, but also for creating the branch
 still flowing.
 
 The few hot fixes didn't require a new release, but the many
-organizational improvements and the new features did warrant the new
+organisational improvements and the new features did warrant the new
 release, because of e.g. the much better test handling in this release
 and the improved recursion control.
 

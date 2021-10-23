@@ -74,9 +74,12 @@ going to change soon. However this release improves all aspects.
 **************
 
 -  Support for Python 3.6 with only few corner cases not supported yet.
+
 -  Added options ``--python-arch`` to pick 32 or 64 bits Python target
    of the ``--python-version`` argument.
+
 -  Added support for more kinds of virtualenv configurations.
+
 -  Uninstalled Python versions such as Anaconda will work fine in
    accelerated mode, except on Windows.
 
@@ -220,7 +223,7 @@ going to change soon. However this release improves all aspects.
    the Python binary (some site.py files do that),
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added repository for Ubuntu Zesty (17.04) for download.

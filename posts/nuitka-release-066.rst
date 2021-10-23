@@ -264,15 +264,23 @@ improvements.
 
 -  The donation sponsored machine called ``donatix`` had to be replaced
    due to hardware breakage. It was replaced with a Raspberry-Pi 4.
+
 -  Enhanced plugin documentation.
+
 -  Added description of the git workflow to the Developer Manual.
+
 -  Added checker script ``check-nuitka-with-codespell`` that reports
    typos in the source code for easier use of ``codespell`` with Nuitka.
+
 -  Use newest PyLint and clang-format.
+
 -  Also check plugin documentation files for ReST errors.
+
 -  Much enhanced support for Visual Code configuration.
+
 -  Trigger module code is now written into the build directory in debug
    mode, to aid debugging.
+
 -  Added deep check function that descends into tuples to check their
    elements too.
 

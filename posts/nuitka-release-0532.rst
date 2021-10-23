@@ -72,6 +72,7 @@ coroutine work for compatibility with uncompiled ones is most important.
 *******
 
 -  Adapted 3.5 tests to work with 3.7 coroutine changes.
+
 -  Added CPython 3.7 test suite.
 
 **********
@@ -107,7 +108,7 @@ coroutine work for compatibility with uncompiled ones is most important.
    code that does not require an array of objects as an argument.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  There are now ``requirements-devel.txt`` and ``requirements.txt``

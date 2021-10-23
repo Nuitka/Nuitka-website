@@ -52,6 +52,7 @@ new release.
 
 -  The no arguments ``range()`` call now optimized into the static
    CPython exception it raises.
+
 -  Parts of comparison chains with constant arguments are now optimized
    away.
 
@@ -94,7 +95,7 @@ new release.
 -  As always, some PyLint work, and some minor ``TODO`` were solved.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added more information to the "`Developer Manual

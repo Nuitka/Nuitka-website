@@ -79,10 +79,13 @@ new optimization and many organisational improvements.
 
 -  Python3.8: Followed some of the changes and works with beta2 as a
    Python 3.7, but none of the new features are implemented yet.
+
 -  Added support for Torch, Tensorflow, Gevent, Sklearn, with a new
    Nuitka plugin.
+
 -  Added support for "hinted" compilation, where the used modules are
    determined through a test run.
+
 -  Added support for including TCL on Linux too.
 
 **************
@@ -180,7 +183,7 @@ we might eventually focus on making them better.
 Again, GSoC 2019 is also showing effects, and will definitely continue
 to do soin the next release.
 
-Many use cases have been improved, and on an organizational level, the
+Many use cases have been improved, and on an organisational level, the
 adoption of Visual Studio Code seems an huge improvement to have a well
 configured IDE out of the box too.
 

@@ -64,10 +64,13 @@ there is the usual range of bug fixes.
 
 -  No more using "logical sharing" allowed to remove that function
    entirely.
+
 -  Using "technical sharing" less often for decisions during
    optimization and instead rely more often on proper variable registry.
+
 -  Connected variables with their global variable trace statically avoid
    the need to check in variable registry for it.
+
 -  Removed old and mostly unused "assume unclear locals" indications, we
    use global variable traces for this now.
 

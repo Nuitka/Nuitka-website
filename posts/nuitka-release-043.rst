@@ -107,7 +107,7 @@ form in Nuitka.
    MSVC had less issues too.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Accepting `Donations <https://nuitka.net/pages/donations.html>`__ via
@@ -172,6 +172,7 @@ form in Nuitka.
 
 -  Added basic tests for order evaluation, where there currently were
    None.
+
 -  Added support for "2to3" execution under Windows too, so we can run
    tests for Python3 installations too.
 

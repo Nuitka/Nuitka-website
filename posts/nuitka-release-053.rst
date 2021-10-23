@@ -10,6 +10,7 @@ this is more of a service release.
 
 -  Improved mode ``--improved`` now sets error lines more properly than
    CPython does in many cases.
+
 -  The ``-python-flag=-S`` mode now preserves ``PYTHONPATH`` and
    therefore became usable with virtualenv.
 
@@ -81,12 +82,14 @@ this is more of a service release.
    increasing portability.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Providing own Debian/Ubuntu repositories for all relevant
    distributions.
+
 -  Windows MSI files for Python 3.4 were added.
+
 -  Hosting of the web site was moved to metal server with more RAM and
    performance.
 

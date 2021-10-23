@@ -35,7 +35,7 @@ lots of cleanups.
 -  Added support for ``bytearray`` built-in.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added support for OpenBSD with fiber implementation from library, as

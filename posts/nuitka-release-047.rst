@@ -100,7 +100,7 @@ cleanups, and some important performance improvements as well.
    is only 0.1% and mostly the result of leaner code.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  The "standalone mode" code (formerly known as "portable mode" has
@@ -134,12 +134,16 @@ cleanups, and some important performance improvements as well.
 
 -  The ``programs`` tests cases now fail if module or directory
    recursion is not working, being executed in another directory.
+
 -  Added test runner for packages, with initial test case for package
    with recursion and sub-packages.
+
 -  Made some test cases more strict by reducing ``PYTHONPATH``
    provision.
+
 -  Detect use of extra flags in tests that don't get consumed avoiding
    ineffective flags.
+
 -  Use ``--execute`` on Windows as well, the issue that prevented it has
    been solved after all.
 

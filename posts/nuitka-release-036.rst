@@ -95,7 +95,7 @@ not a performance improvement at all.
 -  Imports of upper level packages are covered now too.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Updated the "README.txt" with the current plan on optimization.

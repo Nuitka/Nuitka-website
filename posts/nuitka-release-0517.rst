@@ -59,12 +59,14 @@ there is the usual range of corrections.
    emission for less memory churn during code generation.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Updated the key for the Debian/Ubuntu repositories to remain valid
    for 2 more years.
+
 -  Added support for Fedora 23.
+
 -  MinGW32 is no more supported, use MinGW64 in the 32 bits variant,
    which has less issues.
 
@@ -110,6 +112,7 @@ there is the usual range of corrections.
 *******
 
 -  Added the CPython3.5 test suite.
+
 -  Updated generated doctests to fix typos and use common code in all
    CPython test suites.
 

@@ -107,7 +107,7 @@ mostly, thanks for the patches from Pete Hunt.
    propagation makes them more frequent.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Created a "change log" from the previous release announcements. It's
@@ -236,9 +236,12 @@ mostly, thanks for the patches from Pete Hunt.
 
 -  Added some more diagnostic tests about complex assignment and ``del``
    statements.
+
 -  Added syntax test for star import on function level, that must fail
    on Python3.
+
 -  Added syntax test for duplicate argument name.
+
 -  Added syntax test for global on a function argument name.
 
 *********

@@ -10,6 +10,7 @@ This new release is marking a closing in on feature parity to CPython
 
 -  Generator functions no longer leak references when started, but not
    finished.
+
 -  Yield can in fact be used as an expression and returns values that
    the generator user ``send()`` to it.
 
@@ -53,5 +54,6 @@ This new release is marking a closing in on feature parity to CPython
 
 -  The compiled generator types are using the new C++0x type safe enums
    feature.
+
 -  Resolved a circular dependency between ``TreeBuilding`` and
    ``TreeTransforming`` modules.

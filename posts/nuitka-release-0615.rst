@@ -124,8 +124,10 @@ important performance improvement.
 
 -  Much enhanced GIL interaction with Python3.9 giving a big speed boost
    and better threading behaviour.
+
 -  Faster conversion of iterables to ``list``, if size can be know,
    allocation ahead saves a lot of effort.
+
 -  Added support for ``GenericAlias`` objects as compile time constants.
 
 ****************
@@ -133,15 +135,21 @@ important performance improvement.
 ****************
 
 -  Enhanced Github issue raising instructions.
+
 -  Apply ``rstfmt`` to all documentation and make it part of the commit
    hook.
+
 -  Make sure to check Scons files as well. This would have caught the
    code used to disable ``clcache`` temporarily.
+
 -  Do not mention Travis in PR template anymore, we have stopped using
    it.
+
 -  Updated requirements to latest versions.
+
 -  Bump requirements for development to 3.7 at least, toosl like black
    do not work with 3.6 anymore.
+
 -  Started work on Nuitka Python, a CPython fork intended for enhanced
    performance and standalone support with Nuitka.
 
@@ -162,9 +170,12 @@ important performance improvement.
 *******
 
 -  Nicer error message if a wrong search mode is given.
+
 -  Windows: Added timeout for determining run time traces with
    dependency walker, sometimes this hangs.
+
 -  Added test to cover the zip importer.
+
 -  Making use of project options in onefile tests, making it easier to
    execute them manually.
 

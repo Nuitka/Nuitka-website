@@ -134,15 +134,19 @@ cases, but this is mostly to clean up open ends.
    with a space, sometimes with an underscore.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Improved support for Python3.5 missing compatibility with new
    language features.
+
 -  Updated the Developer Manual with changes that SSA is now a fact.
+
 -  Added Python3.5 Windows MSI downloads.
+
 -  Added repository for Ubuntu Wily (15.10) for download. Removed Ubuntu
    Utopic package download, no longer supported by Ubuntu.
+
 -  Added repository with RPM packages for Fedora 22.
 
 *********

@@ -254,7 +254,7 @@ This release comes a lot of bug fixes and improvements.
    generally used now.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added inline copy of ``appdirs`` package from PyPI.

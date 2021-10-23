@@ -79,7 +79,7 @@ much else.
    important ``TODO`` item still.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  The `"Download" <../pages/download.html>`__ page is now finally

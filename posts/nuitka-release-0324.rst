@@ -83,7 +83,7 @@ references, is the important and only progress towards type inference.
    monkey patching classes works.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Migrated "bin/benchmark.sh" to Python as "misc/run-valgrind.py" and

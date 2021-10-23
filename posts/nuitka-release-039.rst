@@ -226,19 +226,25 @@ Cleanups
 
 -  Added a improved version of "pybench" that can cope with the "0 ms"
    execution time that Nuitka has for some if its sub-tests.
+
 -  Reference counting test for with statement was added.
+
 -  Micro benchmarks to demonstrate try finally performance when an
    exception travels through it.
+
 -  Micro benchmark for with statement that eats up exceptions raised
    inside the block.
+
 -  Micro benchmarks for the read and write access to class attributes.
+
 -  Enhanced ``Printing`` test to cover the trigraphs constant bug case.
    Output is required to make the error detectable.
+
 -  Enhanced ``Constants`` test to cover repeated mutation of mutable
    tuple constants, this covers the bug mentioned.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added a credits section to the "README.txt" where I give credit to

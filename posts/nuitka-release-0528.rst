@@ -171,12 +171,14 @@ a dedicated structure for that representing an in-lined function.
 *******
 
 -  The search mode with pattern, was not working anymore.
+
 -  Resume hash values now consider the Python version too.
+
 -  Added test that covers using test runners like ``nose`` and
    ``py.test`` with Nuitka compiled extension modules.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added support for Scons 3.0 and running Scons with Python3.5 or

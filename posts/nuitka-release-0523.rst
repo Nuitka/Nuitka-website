@@ -91,7 +91,7 @@ debut of type shapes and value shapes, giving way to "shape tracing".
 -  Python3: Added support for the ``ascii`` built-in.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  The movement to pure C got the final big push. All C++ only idoms of
@@ -115,9 +115,12 @@ debut of type shapes and value shapes, giving way to "shape tracing".
 
 -  The last holdouts of classes in Nuitka were removed, and many idioms
    of C++ were stopped using.
+
 -  Moved range related helper functions to a dedicated include file.
+
 -  Using ``str is not bytes`` to detect Python3 ``str`` handling or
    actual ``bytes`` type existence.
+
 -  Trace collections were using a mix-in that was merged with the base
    class that every user of it was having.
 

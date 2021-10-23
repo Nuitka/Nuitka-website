@@ -101,11 +101,12 @@ more efficient at it.
 
 -  The exit codes of CPython execution and Nuitka compiled programs are
    now compared as well.
+
 -  Errors messages of methods are now covered by the ``ParameterErrors``
    test as well.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  A new script "benchmark.sh" (now called "run-valgrind.py") script now

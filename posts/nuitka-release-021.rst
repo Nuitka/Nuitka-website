@@ -9,6 +9,7 @@ substantial improvements:
 
 -  Packages now also can be embedded with the ``--deep`` option too,
    before they could not be imported from the executable.
+
 -  In-lined exec with their own future statements leaked these to the
    surrounding code.
 

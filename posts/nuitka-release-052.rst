@@ -146,7 +146,7 @@ development period, and therefore contains a huge jump ahead.
    same error.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Replying to email from the `issue tracker <http://bugs.nuitka.net>`__
@@ -209,10 +209,13 @@ development period, and therefore contains a huge jump ahead.
 
 -  Warnings from MSVC are now error exits for ``--debug`` mode too,
    expanding the coverage of these tests.
+
 -  The outputs with ``python-dbg`` can now also be compared, allowing to
    expand test coverage for reference counts.
+
 -  Many of the basic tests are now executable with Python3 directly.
    This allows for easier debug.
+
 -  The library compilation test is now also executed with Python3.
 
 *********

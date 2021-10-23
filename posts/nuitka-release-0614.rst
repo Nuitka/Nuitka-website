@@ -201,6 +201,7 @@ in the main file should prove to be very useful.
 
 -  Remove dead code related to constants marshal, the data composer has
    replaced this.
+
 -  Avoid internal API usage for loading extension modules on Linux,
    there is a function in ``sys`` module to get the ld flags.
 
@@ -209,6 +210,7 @@ in the main file should prove to be very useful.
 *******
 
 -  Fix, the ``only`` mode wasn't working properly.
+
 -  Use new project options feature for specific options in basic tests
    allowing to remove them from the test runner.
 

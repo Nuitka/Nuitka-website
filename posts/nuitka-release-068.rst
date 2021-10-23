@@ -213,7 +213,9 @@ enhance the Python 3.8 compatibility.
 *******
 
 -  Pylint cleanups for some of the tests.
+
 -  Added test for loading of user plugins.
+
 -  Removed useless outputs for ``search`` mode skipping non-matches.
 
 **********

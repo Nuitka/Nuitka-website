@@ -65,8 +65,10 @@ improvements for Pure C support.
 
 -  Added workarounds for locks being held by Virus Scanners on Windows
    to our test runner.
+
 -  Enhanced constructs that test generator expressions to more clearly
    show the actual construct cost.
+
 -  Added construct tests for the ``sum`` built-in on various types of
    ``int`` containers, making sure we can do all of those really fast.
 

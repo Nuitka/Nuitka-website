@@ -46,7 +46,7 @@ options to control the recursion into modules are added.
    to looking at the wrong files.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  The ``getattr`` built-in is now optimized for compile time constants
@@ -73,7 +73,7 @@ options to control the recursion into modules are added.
    measure what would have been used.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Renamed the debug option ``--c++-only`` to ``--recompile-c++-only``
@@ -86,8 +86,10 @@ options to control the recursion into modules are added.
 
 -  Added support for taking coverage of Nuitka in a test run on a given
    input file.
+
 -  Added support for taking coverage for all Nuitka test runners,
    migrating them all to common code for searching.
+
 -  Added uniform way of reporting skipped tests, not generally used yet.
 
 *********

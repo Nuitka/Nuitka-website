@@ -24,7 +24,7 @@ Good day, this is a major step ahead, improvements everywhere.
    loop.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  I now maintain the "README.txt" in org-mode, and intend to use it as

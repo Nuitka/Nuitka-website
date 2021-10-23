@@ -103,17 +103,20 @@ bugs.
 
 -  New tests to cover ``SyntaxError`` and ``IndentationError`` from
    ``--deep`` imports and in main program.
+
 -  New test to cover evaluation order of ``in`` and ``not in``
    comparisons.
+
 -  New test to cover package local imports made by the "__init__.py" of
    the package.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Drop "compile_itself.sh" in favor of the new "compile_itself.py",
    because the later is more portable.
+
 -  The logging output is now nicer, and for failed recursions, outputs
    the line that is having the problem.
 

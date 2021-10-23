@@ -54,19 +54,24 @@ the common case, and covering more standalone use cases.
 
 -  The progress tracing and the memory tracing and now more clearly
    separate and therefore more readable.
+
 -  Moved RPM related files to new ``rpm`` directory.
+
 -  Moved documentation related files to ``doc`` directory.
+
 -  Converted import sorting helper script to Python and made it run
    fast.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  The Buildbot infrastructure for Nuitka was updated to Buildbot 0.8.12
    and is now maintained up to date with Ansible.
+
 -  Upgraded the Nuitka bug tracker to Roundup 1.5.1 to which I had
    previously contributed security fixes already active.
+
 -  Added SSL certificates from Let's Encrypt for the web server.
 
 *********

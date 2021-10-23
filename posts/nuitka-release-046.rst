@@ -130,7 +130,7 @@ platforms, adding Gentoo, and self compiled Python to the mix.
 -  As usual lots of cleanups related to line length issues and PyLint.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added support for Gentoo Linux.

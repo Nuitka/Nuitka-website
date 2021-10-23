@@ -126,14 +126,18 @@ new optimization work, and even more bug fixes.
    the set of possible type shapes allowing optimization for them.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Corrected download link for Arch AUR link of develop package.
+
 -  Added repository for Ubuntu Cosmic (18.10) for download.
+
 -  Added repository for Fedora 29 for download.
+
 -  Describe the exact format used for ``clang-format`` in the Developer
    Manual.
+
 -  Added description how to use CondaCC on Windows to the User Manual.
 
 **********
@@ -159,6 +163,7 @@ new optimization work, and even more bug fixes.
 *******
 
 -  Fixups for the manual Valgrind runner and the UI changes.
+
 -  Test runner detects lock issue of ``clcache`` on Windows and
    considers it a permission problem that causes a retry.
 

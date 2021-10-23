@@ -47,6 +47,7 @@ compiled types by the ``inspect`` module.
 ******************
 
 -  Slice indexes that are ``None`` are now constant propagated as well.
+
 -  Slightly more efficient code generation for dual star arg functions,
    removing useless checks.
 
@@ -56,8 +57,11 @@ compiled types by the ``inspect`` module.
 
 -  Moved the Scons, static C++ files, and assembler files to new package
    ``nuitka.build`` where also now ``SconsInterface`` module lives.
+
 -  Moved the Qt dialog files to ``nuitka.gui``
+
 -  Moved the "unfreezer" code to its own static C++ file.
+
 -  Some PyLint cleanups.
 
 ***********
@@ -65,12 +69,15 @@ compiled types by the ``inspect`` module.
 ***********
 
 -  New test ``Recursion`` to cover recursive functions.
+
 -  New test ``Inspection`` to cover the patching of ``inspect`` module.
+
 -  Cover ``execfile`` on the class level as well in ``ExecEval`` test.
+
 -  Cover evaluation order of simple slices in ``OrderCheck`` too.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  There is a new issue tracker available under http://bugs.nuitka.net

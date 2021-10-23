@@ -201,6 +201,7 @@ of bug fixes and new features.
 *******
 
 -  Adapted for some openSUSE specific path usages in standalone tests.
+
 -  Basic tests for onefile operation and with termination signal sent
    were added.
 

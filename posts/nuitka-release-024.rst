@@ -16,6 +16,7 @@ hopefully we can change that quickly now.
 
 -  The use of exec in a local function now adds local variables to scope
    it is in.
+
 -  The same applies to ``from module_name import *`` which is now
    compiled correctly and adds variables to the local variables.
 
@@ -25,8 +26,10 @@ hopefully we can change that quickly now.
 
 -  Raises ``UnboundLocalError`` when deleting a local variable with
    ``del`` twice.
+
 -  Raises ``NameError`` when deleting a global variable with ``del``
    twice.
+
 -  Read of to uninitialized closure variables gave ``NameError``, but
    ``UnboundLocalError`` is correct and raised now.
 

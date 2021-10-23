@@ -122,7 +122,7 @@ propagation as they still could apply to real code.
    detect.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added repository for Ubuntu Vivid (15.04) for download. Removed
@@ -162,13 +162,18 @@ propagation as they still could apply to real code.
 *******
 
 -  Made ``BuiltinsTest`` directly executable with Python3.
+
 -  Added construct test to demonstrate the speed up of direct lambda
    calls.
+
 -  The deletion of ``@test`` for the CPython test suite is more robust
    now, esp. on Windows, the symbolic links are now handled.
+
 -  Added test to cover ``or`` usage with in-place assignment.
+
 -  Cover local relative ``import from .`` with ``absolute_import``
    future flag enabled.
+
 -  Again, more basic tests are now directly executable with Python3.
 
 *********

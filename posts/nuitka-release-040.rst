@@ -249,11 +249,12 @@ diagrams, `even if weak ones
    exceptions.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Changed my email from GMX over to Gmail, the old one will still
    continue to work. Updated the copyright notices accordingly.
+
 -  Uploaded `Nuitka to PyPI <http://pypi.python.org/pypi/Nuitka/>`__ as
    well.
 

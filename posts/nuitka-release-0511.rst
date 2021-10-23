@@ -189,7 +189,7 @@ the last release.
    attribute, were reactivated.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Since Google Code has shutdown, it has been removed from the Nuitka

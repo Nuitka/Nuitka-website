@@ -105,7 +105,7 @@ changed to become runtime dependent values.
    this domain as well.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Changed default for file reference mode to ``original`` unless

@@ -67,11 +67,12 @@ attacking long standing issues.
    as that code no longer polluting code generation as much.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  No more packages for openSUSE 12.1/12.2/12.3 and Fedora 17/18/19 as
    requested by the openSUSE Build Service.
+
 -  Added RPM packages for Fedora 21 and CentOS 7 on openSUSE Build
    Service.
 

@@ -60,7 +60,7 @@ made to improve the compatibility.
    anymore. Raising an ``MemoryError`` now.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  Added support for MinGW64. Currently needs to be run with ``PATH``
@@ -90,6 +90,7 @@ made to improve the compatibility.
 
 -  Made technical and logical sharing decisions separate functions and
    implement them in a dedicated variable registry.
+
 -  The Scons file has seen a major cleanup.
 
 *********
