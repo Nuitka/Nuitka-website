@@ -27,8 +27,8 @@ like CPython. It is extremely compatible.
 
 Nuitka is already slightly faster than CPython, but there is work to be
 done to include as many C optimizations as possible. We currently get a
-312% speedup in pystone, which is a good start. (source: Nuitka version
-0.6.0 with Python 2.7.)
+335% speedup in pystone, which is a good start. (source: Nuitka version
+0.6.17 with Debian Python 2.7)
 
 ********
  Future
