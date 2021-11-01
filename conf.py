@@ -292,7 +292,15 @@ NAVIGATION_LINKS = {
         ('/pages/commercial.html', 'Commercial'),
         ('/pages/donations.html', 'Donations'),
         ('/pages/impressum.html', 'About / Contact'),
-        ('/categories/index.html', 'Tags'),
+        (
+            (
+                ('https://github.com/Nuitka/Nuitka', '<strong>Source code (GitHub)</strong>'),
+                ('https://github.com/Nuitka/Nuitka/issues', 'Issue Tracker'),
+                ('https://gitter.im/Nuitka-chat', 'Gitter Chat'),
+            ),
+            'Development'
+        ),
+    ),
     ),
 }
 
