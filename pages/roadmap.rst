@@ -158,6 +158,8 @@ now with the aim of getting it capable to statically compile numpy for speed.
    accelerated programs, bundle mode is not usable, so they couldn't be
    GUI programs yet.
 
+-  Apple Python must be detected and rejected for standalone mode.
+
 ###############################
  Container Builds (commercial)
 ###############################
