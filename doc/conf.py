@@ -6,8 +6,10 @@ import sys
 
 # -- Project information
 
-project = 'Nuitka Python Compiler'
-copyright = '2021, Nuitka Contributor'
+import time
+
+project = 'Nuitka the Python Compiler'
+copyright = '%s, Kay Hayen and Nuitka Contributors' % time.gmtime().tm_year
 author = 'Kay Hayen'
 
 release = version = '0.6.17.5'
