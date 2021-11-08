@@ -1,3 +1,5 @@
+import subprocess
+
 # Configuration file for the Sphinx documentation builder.
 
 # -- Project information
@@ -39,3 +41,12 @@ html_theme = 'sphinx_rtd_theme'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
+
+if os.environ.get("READTHEDOCS") == "True":
+    subprocess.call(
+        [
+            "python",
+            "update.py",
+            "--update-docs",
+        ]
+    )

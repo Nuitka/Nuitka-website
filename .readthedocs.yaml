@@ -27,12 +27,3 @@ sphinx:
 python:
   install:
     - requirements: doc/requirements.txt
-
-if os.environ.get("READTHEDOCS") == "True":
-    subprocess.call(
-        [
-            "python",
-            "update.py",
-            "--update-docs",
-        ]
-    )
