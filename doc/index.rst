@@ -17,10 +17,15 @@ used with projects on `Read the Docs`_ but can work with any Sphinx project.
    :hidden:
 
    Developer_Manual
-   factory
-
+   
 .. toctree::
    :caption: User Manual
    :hidden:
 
    README
+
+.. toctree::
+   :caption: Factory Branch
+   :hidden:
+
+   factory
