@@ -10,8 +10,7 @@ project = 'Nuitka Python Compiler'
 copyright = '2021, Nuitka Contributor'
 author = 'Kay Hayen'
 
-release = '0.1'
-version = '0.1.0'
+release = version = '0.6.17.5'
 
 # -- General configuration
 
