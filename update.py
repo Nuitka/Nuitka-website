@@ -797,4 +797,7 @@ When given, all is updated. Default %default.""",
 
 
 if __name__ == "__main__":
+    print("Running with %s" % sys.executable)
+    os.environ["PATH"]=os.path.dirname(sys.executable) + os.pathsep + os.environ["PATH"]
+
     main()
