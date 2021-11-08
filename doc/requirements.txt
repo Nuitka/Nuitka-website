@@ -1,3 +1,4 @@
+unidecode
 restructuredtext_lint
 sphinx_copybutton
 sphinx_design
