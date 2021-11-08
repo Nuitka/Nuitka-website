@@ -26,4 +26,13 @@ sphinx:
 # Optionally declare the Python requirements required to build your docs
 python:
   install:
-    - requirements: requirements.txt
+    - requirements: doc/requirements.txt
+
+if os.environ.get("READTHEDOCS") == "True":
+    subprocess.call(
+        [
+            "python",
+            "update.py",
+            "--update-docs",
+        ]
+    )
