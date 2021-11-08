@@ -12,7 +12,20 @@ project = "Nuitka the Python Compiler"
 copyright = "%s, Kay Hayen and Nuitka Contributors" % time.gmtime().tm_year
 author = "Kay Hayen"
 
-release = version = "0.6.17.5"
+subprocess.call(
+    [
+        "python",
+        "update.py",
+        "--update-docs",
+    ],
+    cwd="..",
+)
+
+sys.path.insert(0, os.path.abspath("../nuitka-master"))
+from nuitka.Version import getNuitkaVersion
+del sys.path[0]
+
+release = version = getNuitkaVersion()
 
 # -- General configuration
 
@@ -44,13 +57,3 @@ html_theme = "sphinx_rtd_theme"
 
 # -- Options for EPUB output
 epub_show_urls = "footnote"
-
-if os.environ.get("READTHEDOCS") == "True":
-    subprocess.call(
-        [
-            "python",
-            "update.py",
-            "--update-docs",
-        ],
-        cwd="..",
-    )
