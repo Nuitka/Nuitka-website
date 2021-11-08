@@ -221,7 +221,7 @@ POSTS = (
 )
 PAGES = (
     ("pages/*.rst", "pages", "page.tmpl"),
-    ("doc/*.rst", "doc", "page.tmpl"),
+#    ("doc/*.rst", "doc", "page.tmpl"),
 )
 
 
