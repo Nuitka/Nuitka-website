@@ -511,10 +511,12 @@ def updateNuitkaMaster():
         os.makedirs("nuitka-master/doc/images")
     if not os.path.exists("nuitka-master/doc/Logo"):
         os.makedirs("nuitka-master/doc/Logo")
+    if not os.path.exists("nuitka-master/nuitka"):
+        os.makedirs("nuitka-master/nuitka")
 
     for filename in (
         "README.rst",
-        "Developer_Manual.rst",
+        "nuitka/Version.py",
         "doc/images/Nuitka-Logo-Horizontal.png",
         "doc/Logo/Nuitka-Logo-Horizontal.svg",
         "doc/images/Nuitka-Logo-Vertical.png",
@@ -523,7 +525,7 @@ def updateNuitkaMaster():
         "doc/Logo/Nuitka-Logo-Symbol.svg",
     ):
         command = (
-            "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/%s"
+            "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/master/%s"
             % filename
         )
         output = subprocess.check_output(command.split())
@@ -536,13 +538,17 @@ def updateNuitkaFactory():
     if not os.path.exists("nuitka-factory"):
         os.makedirs("nuitka-factory")
 
-    command = (
-        "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/Changelog.rst"
-    )
-    output = subprocess.check_output(command.split())
+    for filename in (
+        "Changelog.rst",
+        "Developer_Manual.rst"):
+        command = (
+            "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/%s"
+            % filename
+        )
+        output = subprocess.check_output(command.split())
 
-    with open("nuitka-factory/Changelog.rst", "wb") as out_file:
-        out_file.write(output)
+        with open(os.path.join("nuitka-factory", filename), "wb") as out_file:
+            out_file.write(output)
 
 
 # slugify is copied from
