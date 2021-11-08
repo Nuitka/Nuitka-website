@@ -13,16 +13,16 @@ used with projects on `Read the Docs`_ but can work with any Sphinx project.
    This project is under active development.
 
 .. toctree::
-   :caption: Development
-   :hidden:
-
-   developer-manual
-   
-.. toctree::
    :caption: User Manual
    :hidden:
 
    user-manual
+
+.. toctree::
+   :caption: Development
+   :hidden:
+
+   developer-manual
 
 .. toctree::
    :caption: Factory Branch
