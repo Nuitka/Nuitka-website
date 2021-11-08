@@ -301,7 +301,6 @@ NAVIGATION_LINKS = {
             'Development'
         ),
     ),
-    ),
 }
 
 # Create by default posts in one file format?
