@@ -16,13 +16,13 @@ used with projects on `Read the Docs`_ but can work with any Sphinx project.
    :caption: Development
    :hidden:
 
-   Developer_Manual
+   developer-manual
    
 .. toctree::
    :caption: User Manual
    :hidden:
 
-   README
+   user-manual
 
 .. toctree::
    :caption: Factory Branch
