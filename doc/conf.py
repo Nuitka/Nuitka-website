@@ -50,5 +50,6 @@ if os.environ.get("READTHEDOCS") == "True":
             "python",
             "update.py",
             "--update-docs",
-        ]
+        ],
+        cwd=".."
     )
