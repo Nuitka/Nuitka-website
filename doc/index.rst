@@ -1,5 +1,6 @@
-Nuitka the Python Compiler
-==========================
+############################
+ Nuitka the Python Compiler
+############################
 
 Nuitka is a Python compiler written in Python.
 
@@ -10,13 +11,12 @@ spits out an executable or extension module.
 
 Nuitka is distributed under the Apache license.
 
-################################
+********************************
  Okay I'm hooked! Tell me more!
-################################
+********************************
 
-*****
- Now
-*****
+Now
+===
 
 Right now Nuitka is a good replacement for the Python interpreter. It
 compiles **every** language construct in all relevant CPython versions,
@@ -29,9 +29,8 @@ done to include as many C optimizations as possible. We currently get a
 335% speedup in pystone, which is a good start. (source: Nuitka version
 0.6.17 with Debian Python 2.7)
 
-********
- Future
-********
+Future
+======
 
 In the future Nuitka will be able to use type inferencing based on whole
 program analysis. It will apply that information in order to perform as
@@ -45,9 +44,8 @@ directly, avoiding run-time overhead.
 And finally, you will be able to use a ``hints`` module to inform Nuitka
 about type information.
 
-******************************
- Now vs. Future, or, The Plan
-******************************
+Now vs. Future, or, The Plan
+============================
 
 These are the milestones and priorities for Nuitka's development.
 
@@ -70,9 +68,8 @@ These are the milestones and priorities for Nuitka's development.
 #. Provide a hints module with a useful Python implementation so the
    compiler can learn about intended types directly from the programmer.
 
-*******************
- Where are we now?
-*******************
+Where are we now?
+=================
 
 Milestone 1, feature parity, has been achieved for Python 2.6, 2.7, and
 3.3 up to 3.9. This part of Nuitka is already mature, but every new
@@ -99,7 +96,6 @@ to go until we hit the "future".
 In the meantime you can find its `latest version here
 </pages/download.html>`_.
 
-
 .. note::
 
    This project is under active development.
@@ -122,5 +118,6 @@ In the meantime you can find its `latest version here
 
    factory
 
-.. _Sphinx: http://www.sphinx-doc.org
-.. _Read the Docs: http://www.readthedocs.org
+.. _read the docs: http://www.readthedocs.org
+
+.. _sphinx: http://www.sphinx-doc.org
