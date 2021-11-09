@@ -8,6 +8,7 @@ aiohttp = "*"
 watchdog = "*"
 pylint = "*"
 doc8 = "*"
+sphinx-autobuild = "*"
 
 [packages]
 nikola = "*"
@@ -15,6 +16,11 @@ webassets = "*"
 doit = "*"
 unidecode = "*"
 restructuredtext-lint = "*"
+lxml = "*"
+sphinx-copybutton = "*"
+sphinx-design = "*"
+sphinx-inline-tabs = "*"
+sphinx-rtd-theme = "*"
 
 [requires]
 python_version = "3.9"
