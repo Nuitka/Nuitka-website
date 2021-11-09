@@ -111,13 +111,3 @@ In the meantime you can find its `latest version here
    :hidden:
 
    developer-manual
-
-.. toctree::
-   :caption: Factory Branch
-   :hidden:
-
-   factory
-
-.. _read the docs: http://www.readthedocs.org
-
-.. _sphinx: http://www.sphinx-doc.org
