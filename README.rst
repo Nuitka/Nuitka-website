@@ -28,7 +28,9 @@ this has only be done on Linux, but it ought to also work on Windows:
    # Now lets build the site
    python3.9 -m pipenv run python update.py --build-site
 
-   # Start local web server with the site.
+   # Start local web server with the site, the nikola one
+   # should be used.
+   python3.9 -m pipenv run python -m sphinx_autobuild doc/ doc_generated/ -w doc/ -a
    python3.9 -m pipenv run nikola auto
 
    # Browse it (Linux)

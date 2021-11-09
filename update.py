@@ -671,6 +671,9 @@ def updateDocs():
     updateReleasePosts()
 
 
+def runSphinxBuild():
+    assert 0 == os.system("sphinx-build doc/ doc_generated/ -a")
+
 def runNikolaCommand(command):
     assert 0 == os.system("nikola " + command)
 
@@ -817,6 +820,7 @@ When given, all is updated. Default %default.""",
 
     if options.build:
         updatePageDates()
+        runSphinxBuild()
         runNikolaCommand("status")
         runNikolaCommand("build")
 

@@ -275,7 +275,8 @@ FILES_FOLDERS = {
     "doc/images"   : "doc/images",
     "doc/Logo"     : "doc/images",
     "wp-uploads"   : "wp-uploads",
-    "pr"           : "pr"
+    "pr"           : "pr",
+    "doc_generated" : "doc",
 }
 
 NAVIGATION_LINKS = {
