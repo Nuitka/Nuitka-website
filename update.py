@@ -533,6 +533,14 @@ def updateNuitkaMaster():
         # Sphinx has its own TOC method.
         output = output.replace(b".. contents::\n", b"")
 
+        # Logo inside doc removed.
+        output = output.replace(
+            b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
+        )
+        output = output.replace(
+            b"\n   :alt: Nuitka Logo", b"\n"
+        )
+
         with open(os.path.join("nuitka-master", filename), "wb") as out_file:
             out_file.write(output)
 
@@ -552,6 +560,14 @@ def updateNuitkaFactory():
 
         # Sphinx has its own TOC method.
         output = output.replace(b".. contents::\n", b"")
+
+        # Logo inside doc removed.
+        output = output.replace(
+            b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
+        )
+        output = output.replace(
+            b"\n   :alt: Nuitka Logo", b"\n"
+        )
 
         with open(os.path.join("nuitka-factory", filename), "wb") as out_file:
             out_file.write(output)
