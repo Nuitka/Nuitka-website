@@ -14,7 +14,7 @@ author = "Kay Hayen"
 
 subprocess.call(
     [
-        "python",
+        sys.executable,
         "update.py",
         "--update-docs",
     ],
