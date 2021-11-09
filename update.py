@@ -530,6 +530,9 @@ def updateNuitkaMaster():
         )
         output = subprocess.check_output(command.split())
 
+        # Sphinx has its own TOC method.
+        output = output.replace(b".. contents::\n", b"")
+
         with open(os.path.join("nuitka-master", filename), "wb") as out_file:
             out_file.write(output)
 
@@ -546,6 +549,9 @@ def updateNuitkaFactory():
             % filename
         )
         output = subprocess.check_output(command.split())
+
+        # Sphinx has its own TOC method.
+        output = output.replace(b".. contents::\n", b"")
 
         with open(os.path.join("nuitka-factory", filename), "wb") as out_file:
             out_file.write(output)
