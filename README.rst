@@ -10,7 +10,7 @@
 *******
 
 This is used to build the Nuitka web site. Enhancements of all kinds are
-welcome. You will need python 3.7 and pipenv to build it, and so far
+welcome. You will need python 3.9 and pipenv to build it, and so far
 this has only be done on Linux, but it ought to also work on Windows:
 
 .. code:: sh
@@ -20,16 +20,16 @@ this has only be done on Linux, but it ought to also work on Windows:
 
    # Creates a virtualenv with all that is needed to develop the
    # site.
-   python3.7 -m pip install -U pipenv
-   python3.7 -m pipenv install --dev
+   python3.9 -m pip install -U pipenv
+   python3.9 -m pipenv install --dev
 
    # Need to do this at least once to copy manuals, logos
-   python3.7 -m pipenv run python update.py --update-docs
+   python3.9 -m pipenv run python update.py --update-docs
    # Now lets build the site
-   python3.7 -m pipenv run python update.py --build-site
+   python3.9 -m pipenv run python update.py --build-site
 
    # Start local web server with the site.
-   python3.7 -m pipenv run nikola auto
+   python3.9 -m pipenv run nikola auto
 
    # Browse it (Linux)
    xdg-open http://localhost:8080
