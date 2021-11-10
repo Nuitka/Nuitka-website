@@ -673,6 +673,7 @@ def updateDocs():
 
 def runSphinxBuild():
     assert 0 == os.system("sphinx-build doc/ doc_generated/ -a")
+    assert 0 == os.system("cp doc/*.rst doc_generated/")
 
 def runNikolaCommand(command):
     assert 0 == os.system("nikola " + command)
