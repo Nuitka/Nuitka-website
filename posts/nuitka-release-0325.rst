@@ -108,17 +108,17 @@ the next big Python application can come.
    with standard C++ constructs. This is needed to support MSVC which
    doesn't have this.
 
--  Added examples for the typical use cases to the "`User Manual
-   <https://nuitka.net/doc/user-manual.html>`__".
+-  Added examples for the typical use cases to the `User Manual
+   <https://nuitka.net/doc/user-manual.html>`__.
 
 -  The "compare_with_cpython" script has gained an option to immediately
    remove the Nuitka outputs (build directory and binary) if successful.
    Also the temporary files are now put under "/var/tmp" if available.
 
--  Debian package improvements, registering with "doc-base" the "`User
-   Manual <https://nuitka.net/doc/user-manual.html>`__" so it is easier
-   to discover. Also suggest "mingw32" package which provides the cross
-   compiler to Windows.
+-  Debian package improvements, registering with ``doc-base`` the `User
+   Manual <https://nuitka.net/doc/user-manual.html>`__ so it is easier
+   to discover. Also suggest ``mingw32`` package which provides the
+   cross compiler to Windows.
 
 -  Partial support for MSVC (Visual Studio 2008 to be exact, the version
    that works with CPython2.6 and CPython2.7).

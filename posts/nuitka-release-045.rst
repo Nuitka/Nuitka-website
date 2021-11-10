@@ -102,8 +102,8 @@ recursion options, and so on. So it's mostly a consolidation release.
 -  Added ``LICENSE.txt`` file with Apache License 2.0 text to make it
    more immediately obvious which license Nuitka is under.
 
--  Added section about Nuitka license to the "`User Manual
-   <https://nuitka.net/doc/user-manual.html#license>`__".
+-  Added section about Nuitka license to the `User Manual
+   <https://nuitka.net/doc/user-manual.html#license>`__.
 
 -  Added `Nuitka Logo
    <https://nuitka.net/doc/images/Nuitka-Logo-Symbol.png>`__ to the
@@ -111,9 +111,9 @@ recursion options, and so on. So it's mostly a consolidation release.
 
 -  Use Nuitka Logo as the bitmap in the Windows installer.
 
--  Use Nuitka Logo in the documentation ("`User Manual
-   <https://nuitka.net/doc/user-manual.html>`__" and "`Developer Manual
-   <https://nuitka.net/doc/developer-manual.html>`__").
+-  Use Nuitka Logo in the documentation (`User Manual
+   <https://nuitka.net/doc/user-manual.html>`__ and `Developer Manual
+   <https://nuitka.net/doc/developer-manual.html>`__).
 
 -  Enhanced documentation to number page numbers starting after table of
    contents, removed header/footer from cover pages.

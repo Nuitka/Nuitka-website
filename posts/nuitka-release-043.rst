@@ -48,7 +48,7 @@ form in Nuitka.
    In module mode, Nuitka will optimize it away, and nothing will happen
    on execution. This is because the command
 
-   .. code:: sh
+   .. code:: bash
 
       nuitka --execute module
 
@@ -113,7 +113,7 @@ form in Nuitka.
 -  Accepting `Donations <https://nuitka.net/pages/donations.html>`__ via
    Paypal, please support funding travels, website, etc.
 
--  The "`User Manual <https://nuitka.net/doc/user-manual.html>`__" has
+-  The `User Manual <https://nuitka.net/doc/user-manual.html>`__ has
    been updated with new content. We now do support Visual Studio,
    documented the required LLVM version for clang, Win64 and modules may
    include modules too, etc. Lots of information was no longer accurate

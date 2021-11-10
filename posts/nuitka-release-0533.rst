@@ -91,8 +91,8 @@ generators.
    corrupt data. Fixed in 0.5.32.7 already.
 
 -  Python 3.4: Fix threaded imports by properly handling
-   ``_initializing`` in compiled modules ```spec`` attributes. Before it
-   happen that another thread attempts to use an unfinished module.
+   ``_initializing`` in compiled modules ``__spec__`` attributes. Before
+   it happen that another thread attempts to use an unfinished module.
    Fixed in 0.5.32.8 already.
 
 -  Fix, the options ``--include-module`` and ``--include-package`` were
@@ -152,10 +152,10 @@ generators.
    fast and they no longer use a full C stack of 2MB, but only 1K
    instead.
 
--  Conditional ``a if cond else b``, ``a and b```, ``a or b``
-   expressions of which the result value is are now transformed into
-   conditional statements allowing to apply further optimizations to the
-   right and left side expressions as well.
+-  Conditional ``a if cond else b``, ``a and b``, ``a or b`` expressions
+   of which the result value is are now transformed into conditional
+   statements allowing to apply further optimizations to the right and
+   left side expressions as well.
 
 -  Replace unused function creations with side effects from their
    default values with just those, removing more unused code.

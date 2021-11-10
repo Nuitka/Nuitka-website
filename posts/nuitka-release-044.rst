@@ -197,8 +197,8 @@ structure will hold.
    Support for Python3.3 was a higher priority, but the intention is to
    get it into shape for Europython still.
 
-   Added notes about it being disabled it in the "`User Manual
-   <https://nuitka.net/doc/user-manual.html>`__" documentation.
+   Added notes about it being disabled it in the `User Manual
+   <https://nuitka.net/doc/user-manual.html>`__ documentation.
 
 *********
  Summary

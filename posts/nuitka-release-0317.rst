@@ -80,8 +80,8 @@ entering the Debian repository.
  Organisational
 ****************
 
--  Added a "`Developer Manual
-   <https://nuitka.net/doc/developer-manual.html>`__" to the release.
+-  Added a `Developer Manual
+   <https://nuitka.net/doc/developer-manual.html>`__ to the release.
    It's incomplete, but it details some of the existing stuff, coding
    rules, plans for "type inference", etc.
 
@@ -122,8 +122,8 @@ entering the Debian repository.
    code won't be a problem when changing the license of all of Nuitka to
    that license.
 
--  Give contributors listed in the "`User Manual
-   <https://nuitka.net/doc/user-manual.html>`__" an exception to the GPL
+-  Give contributors listed in the `User Manual
+   <https://nuitka.net/doc/user-manual.html>`__ an exception to the GPL
    terms until Nuitka is licensed under "Apache License 2.0" as well.
 
 -  Added an ``--experimental`` option which can be used to control

@@ -103,9 +103,9 @@ references, is the important and only progress towards type inference.
    more easily rendered these days.
 
 -  Removed the "misc/gist" git sub-module, which was previously used by
-   "misc/make-doc.py" to generate HTML from "`User Manual
-   <https://nuitka.net/doc/user-manual.html>`__" and "`Developer Manual
-   <https://nuitka.net/doc/developer-manual.html>`__".
+   "misc/make-doc.py" to generate HTML from `User Manual
+   <https://nuitka.net/doc/user-manual.html>`__ and `Developer Manual
+   <https://nuitka.net/doc/developer-manual.html>`__.
 
    These are now done with Nikola, which is much better at it and it
    integrates with the web site.

@@ -11,7 +11,7 @@ release to 0.1, which corrects many of the small things:
 
 -  Reference leaks with exceptions are no more.
 
--  sys.exc_info() works now mostly as expected (it's not a stack of
+-  ``sys.exc_info()`` works now mostly as expected (it's not a stack of
    exceptions).
 
 -  More readable generated code, better organisation of C++ template

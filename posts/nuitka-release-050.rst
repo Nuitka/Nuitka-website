@@ -174,7 +174,7 @@ attract a lot of attention hopefully.
 
 As for optimization, the focus for it has shifted to making exception
 handlers work optimal by default (publish the exception to
-sys.exc_info() and create traceback only when necessary) and be based on
-standard branches. Removing special handling of exception handlers, will
-be the next big step. This release includes some correctness fixes
-stemming from that work already.
+``sys.exc_info()`` and create traceback only when necessary) and be
+based on standard branches. Removing special handling of exception
+handlers, will be the next big step. This release includes some
+correctness fixes stemming from that work already.

@@ -61,11 +61,11 @@ accompanied with optimization changes towards value tracing.
 -  Added options ``--include-module`` to force inclusion of a single
    module in a compilation result.
 
--  The ```multiprocessing`` plug-in got adapted to Python 3.4 changes
-   and will now also work in accelerated mode on Windows.
+-  The ``multiprocessing`` plug-in got adapted to Python 3.4 changes and
+   will now also work in accelerated mode on Windows.
 
 -  It is now possible to specify the Qt plugin directories with e.g.
-   ``--plugin-enable-=qt_plugins=imageformats`` and have only those
+   ``--enable-plugin-=qt_plugins=imageformats`` and have only those
    included. This should avoid dependency creep for shared libraries.
 
 -  Plugins can now make the decision about recursing to a module or not.

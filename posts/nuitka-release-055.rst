@@ -104,7 +104,7 @@ but should work now.
 
 -  Options passed to ``nuitka-python`` could get lost.
 
-   .. code:: sh
+   .. code:: bash
 
       nuitka-python program.py argument1 argument2 ...
 

@@ -227,7 +227,7 @@ enhance the Python 3.8 compatibility.
 
 -  Pylint cleanup also foreign code like ``oset`` and ``odict``.
 
--  In preparation of deprecating the alternative, ``--plugin-enable``
+-  In preparation of deprecating the alternative, ``--enable-plugin``
    has become the only form used in documentation and tests.
 
 -  Avoid numeric pylint symbols more often.

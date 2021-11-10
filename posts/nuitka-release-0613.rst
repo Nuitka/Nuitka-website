@@ -96,7 +96,7 @@ with lots of bug fixes and new features.
    feature is limited to Windows, where the need arose first, but it
    will be ported to other supported OSes eventually. These are most
    useful for programs run as ``--windows-disable-console`` or with
-   ``--plugin-enable=windows-service``.
+   ``--enable-plugin=windows-service``.
 
 -  Windows: Added option ``--windows-onefile-tempdir-spec`` to provide
    the temporary directory used with ``--windows-onefile-tempdir`` in

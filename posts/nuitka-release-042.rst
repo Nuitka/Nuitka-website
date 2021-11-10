@@ -33,7 +33,7 @@ expanded.
    directories with a "__main__.py" file inside. The resulting binary
    name was "__main__.exe" though, but now it is "directory.exe"
 
-   .. code:: sh
+   .. code:: bash
 
       # ls directory
       __main__.py
@@ -259,8 +259,8 @@ expanded.
 
 -  Added "ownssh" as contributor.
 
--  Revamped the "`User Manual
-   <https://nuitka.net/doc/user-manual.html>`__" in terms of layout,
+-  Revamped the `User Manual
+   <https://nuitka.net/doc/user-manual.html>`__ in terms of layout,
    structure, and content.
 
 *********

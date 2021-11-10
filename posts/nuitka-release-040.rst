@@ -43,8 +43,8 @@ diagrams, `even if weak ones
    Also discussed in `Issue#53 <http://bugs.nuitka.net/issue53>`__
 
 -  For nested exceptions and interactions with generator objects, the
-   exceptions in "sys.exc_info()" were not always fully compatible. They
-   now are.
+   exceptions in ``sys.exc_info()`` were not always fully compatible.
+   They now are.
 
 -  The ``range`` builtin was not raising exceptions if given arguments
    appeared to not have side effects, but were still illegal, e.g.

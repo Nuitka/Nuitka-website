@@ -25,7 +25,7 @@ a dedicated structure for that representing an in-lined function.
    arguments of a function call.
 
 -  Compatibility: Added support for proper operation of
-   ```pkgutil.get_data`` by implementing ``get_data`` in our meta path
+   ``pkgutil.get_data`` by implementing ``get_data`` in our meta path
    based loader.
 
 -  Compatibility: Added ``__spec__`` module attribute was previously
@@ -110,7 +110,7 @@ a dedicated structure for that representing an in-lined function.
 -  Experimental support for building platform dependent wheel
    distribution.
 
-   .. code:: sh
+   .. code:: bash
 
       python setup.py --command-packages=nuitka.distutils clean -a bdist_nuitka
 

@@ -60,7 +60,7 @@ in the main file should prove to be very useful.
    the commandline, such that it becomes possible to do a complex
    project with only using
 
-   .. code:: sh
+   .. code:: bash
 
       python -m nuitka filename.py
 

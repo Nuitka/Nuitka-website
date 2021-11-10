@@ -52,7 +52,7 @@ made to improve the compatibility.
    to fork binaries.
 
 -  Windows: The caching of Scons was not arch specific, and files could
-   be used again, even if changing the arch from ```x86`` to ``x86_64``
+   be used again, even if changing the arch from ``x86`` to ``x86_64``
    or back.
 
 -  Windows: On 32 bit Python it can happen that with large number of
