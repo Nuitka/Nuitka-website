@@ -1,6 +1,0 @@
-unidecode
-lxml
-restructuredtext_lint
-sphinx_copybutton
-sphinx_design
-sphinx_inline_tabs
