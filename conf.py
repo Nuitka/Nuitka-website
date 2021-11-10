@@ -283,7 +283,7 @@ NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ('/pages/overview.html', 'Overview'),
         ('/pages/download.html', 'Download'),
-        ('/pages/documentation.html', 'Docs'),
+        ('/doc', 'Docs'),
         (
             (
                 ('/pages/support.html', "Support" ),
