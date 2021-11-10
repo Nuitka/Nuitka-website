@@ -111,3 +111,9 @@ In the meantime you can find its `latest version here
    :hidden:
 
    developer-manual
+
+.. toctree::
+   :caption: Changelog
+   :hidden:
+
+   Changelog
