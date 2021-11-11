@@ -279,7 +279,7 @@ almost purely optimization. This release contains already some of it,
 with frames being optimized away, with the assignment keepers from the
 ``or`` and ``and`` re-formulation being optimized away. This will be
 about achieving goals from the "ctypes" plan as discussed in the
-developer manual.
+Developer Manual.
 
 Also the performance page will be expanded with more benchmarks and
 diagrams as I go forward. I have finally given up on "codespeed", and do

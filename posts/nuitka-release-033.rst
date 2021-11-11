@@ -122,12 +122,16 @@ Others
  Numbers
 *********
 
-python 2.6::
+python 2.6:
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.65
    This machine benchmarks at 76923.1 pystones/second
 
-Nuitka 0.3.3::
+Nuitka 0.3.3:
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.36
    This machine benchmarks at 138889 pystones/second

@@ -147,12 +147,16 @@ which end up giving us another boost for the "PyStone" benchmark.
  Numbers
 *********
 
-python 2.6::
+python 2.6:
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.65
    This machine benchmarks at 76923.1 pystones/second
 
-Nuitka 0.3.4::
+Nuitka 0.3.4:
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.34
    This machine benchmarks at 147059 pystones/second

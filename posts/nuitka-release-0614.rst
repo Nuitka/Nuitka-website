@@ -92,7 +92,7 @@ in the main file should prove to be very useful.
       # nuitka-project: --qt-datafile-pattern=*.svg
       # nuitka-project: --qt-datafile-pattern=*.png
 
-   Refer to the user manual for a table of directives and the variables
+   Refer to the User Manual for a table of directives and the variables
    allowed to be used.
 
 -  Added option to include whole data directory structures in

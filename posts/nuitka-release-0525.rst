@@ -145,7 +145,7 @@ improvements, and many cleanups.
    also tags for speedcenter, indicating how well "develop" branch fares
    in comparison to master.
 
--  With a new tool, source code and developer manual contents can be
+-  With a new tool, source code and Developer Manual contents can be
    kept in sync, so that descriptions can be quoted there. Eventually a
    full Sphinx documentation might become available, but for now this
    makes it workable.

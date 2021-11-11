@@ -113,7 +113,7 @@ on all fronts.
 -  Made it more clear in the user documentation that the ``.exe`` suffix
    is used for all platforms, and why.
 
--  Generally updated information in user manual and developer manual
+-  Generally updated information in User Manual and Developer Manual
    about the optimization status.
 
 -  Using Nikola 7.1 with external filters instead of our own, outdated

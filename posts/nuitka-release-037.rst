@@ -123,12 +123,16 @@ more efficient at it.
  Numbers
 *********
 
-python 2.6::
+python 2.6:
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.65
    This machine benchmarks at 76923.1 pystones/second
 
-Nuitka 0.3.7 (driven by python 2.6)::
+Nuitka 0.3.7 (driven by python 2.6):
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.28
    This machine benchmarks at 178571 pystones/second

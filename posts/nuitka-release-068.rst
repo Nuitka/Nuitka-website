@@ -178,7 +178,7 @@ enhance the Python 3.8 compatibility.
  Organisational
 ****************
 
--  Updated developer manual with changes that happened, remvoing the
+-  Updated Developer Manual with changes that happened, remvoing the
    obsolete language choice section.
 
 -  Added 3.8 support mentions is even more places.

@@ -107,12 +107,16 @@ first, the result being that Nuitka now works on ARM Linux too.
 We only have "PyStone" now, and on a new machine, so the numbers cannot
 be compared to previous releases:
 
-python 2.6::
+python 2.6:
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.48
    This machine benchmarks at 104167 pystones/second
 
-Nuitka 0.3.11 (driven by python 2.6)::
+Nuitka 0.3.11 (driven by python 2.6):
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.19
    This machine benchmarks at 263158 pystones/second

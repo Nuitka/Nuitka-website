@@ -71,12 +71,16 @@ important bottlenecks.
  Numbers
 *********
 
-python 2.6::
+python 2.6:
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.65
    This machine benchmarks at 76923.1 pystones/second
 
-Nuitka 0.3.0::
+Nuitka 0.3.0:
+
+.. code::
 
    Pystone(1.1) time for 50000 passes = 0.52
    This machine benchmarks at 96153.8 pystones/second
