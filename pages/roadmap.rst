@@ -158,7 +158,7 @@ now with the aim of getting it capable to statically compile numpy for speed.
 
 Providing docker images like manylinux does with Nuitka installed into
 all of them and ready to use. Might make this a free feature once it's
-done and supports --commercial download of the plugins nicely.
+done and supports ``--commercial`` download of the plugins nicely.
 
 Providing containers with old Linux, and optimally compiled CPython with
 podman such that building with Nuitka on Fedora latest and Ubuntu latest

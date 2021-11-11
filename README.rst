@@ -55,6 +55,5 @@ questions about how it does that, but it's easy enough.
 Please help and improve this in all ways, typos, cooler tech, better
 looks, more information, etc. all is appreciated and necessary.
 
-Right now, this is very rough and the first public release after running
-this in private for the longest time. The code is a hack and ugly, and
+Right now, this is very rough. The code is a hack and ugly, and
 the content could be way more readable. Your turn!
