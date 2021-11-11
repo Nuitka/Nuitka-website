@@ -121,18 +121,6 @@ now with the aim of getting it capable to statically compile numpy for speed.
    but ought to be doable too. And in some cases, it can be known to not
    work and should not be suggested.
 
--  Support for keyword argument calls to use faster calling code.
-
-   Esp. for the for the compiled functions, we currently go in these cases
-   through the the ``tp_call`` slot, taking dictionary, and esp. when there
-   is a mixture of dictionary and keyword arguments, this is causing Nuitka
-   to be even slower.
-
--  Faster Object creation for compiled ``__init__`` and/or ``__new__``
-
-   Right now, these are called through the ``tp_call`` slow, which makes
-   argument passing unnecessarily slow.
-
 -  Better code for ``+= 1`` constructs with lack of type knowledge.
 
    There is a long standing todo, to add the ``CLONG`` support for
@@ -148,6 +136,10 @@ now with the aim of getting it capable to statically compile numpy for speed.
    that is intended for use with local variables later on, could also be
    supported in binary operations and in-place operations, esp. for
    ``int``, ``float`` and ``long`` values.
+
+-  Implement the ``partial`` built-in and make it work with compiled
+   functions. It could prepare calls much better, such that they do
+   not come through keyword arguments unnecessarily.
 
 ####################
  macOS enhancements
