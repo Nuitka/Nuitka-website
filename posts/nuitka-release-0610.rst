@@ -228,11 +228,11 @@ as many new optimization and bug fixes.
    simplify the node for single argument form to avoid checks if an
    argument was given.
 
--  Added iteration handles for xranges, and make them faster to create
-   by being tied to the node type, avoiding shared types, instead using
-   the mixin approach. This is in preparation to using them for standard
-   iterator tracing as well. So far they are only used for ``any`` and
-   ``all`` decision.
+-  Added iteration handles for ``xrange`` values, and make them faster
+   to create by being tied to the node type, avoiding shared types,
+   instead using the mixin approach. This is in preparation to using
+   them for standard iterator tracing as well. So far they are only used
+   for ``any`` and ``all`` decision.
 
 -  Added detection if a iterator next can raise, using existing iterator
    checking which allows to remove needless checks and exception traces.

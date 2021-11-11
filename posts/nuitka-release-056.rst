@@ -85,9 +85,9 @@ on all fronts.
    version check was always failing, because these report a shortened
    version number to Scons.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Local variables that must be assigned also have no side effects,
    making use of SSA. This allows for a host of optimization to be

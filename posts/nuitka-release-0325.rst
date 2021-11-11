@@ -81,9 +81,9 @@ the next big Python application can come.
    modules. These exports cause MinGW and MSVC compilers to create
    export libraries.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  More efficient code for conditional expressions in conditions:
 

@@ -100,9 +100,9 @@ new optimization work, and even more bug fixes.
    interpreter, aka ``--python-flag=utf8_mode`` was not preserved in the
    compiled binary in all cases.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Enabled C target type ``void`` which will catch creating unused stuff
    more immediately and give better code for expression only statements.

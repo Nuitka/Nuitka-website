@@ -68,9 +68,9 @@ bugs.
    enforced in a portable way. Now it is correct on "ARM" too. Fixed in
    0.3.12e already.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  The built-ins ``GeneratorExit`` and ``StopIteration`` are optimized
    to their Python C/API names where possible as well.

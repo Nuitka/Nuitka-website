@@ -67,9 +67,9 @@ changed to become runtime dependent values.
 
       (lambda *args: args)(*args)  # was crashing Nuitka
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Focusing on compile time memory usage, cyclic dependencies of trace
    merges that prevented them from being released, even when replaced

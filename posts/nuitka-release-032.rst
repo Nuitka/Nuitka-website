@@ -48,9 +48,9 @@ are some bug fixes.
    behavior. Clearly a corner case, but one that works fully compatible
    now.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  The local and shared local variable C++ classes have a flag
    "free_value" to indicate if an "PY_DECREF" needs to be done when

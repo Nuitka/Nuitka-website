@@ -39,9 +39,9 @@ organisational improvements, that make the release complete.
    instead the code returned at run time. Fixed to raise a
    ``SyntaxError`` at compile time.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Avoid ``tuple`` objects to be created when catching multiple
    exception types, instead call exception match check function multiple

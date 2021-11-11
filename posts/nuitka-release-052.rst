@@ -26,9 +26,9 @@ development period, and therefore contains a huge jump ahead.
    doesn't affect the validity of other modules object files from caches
    anymore.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  C-ish code generation uses less C++ classes and generates more C-like
    code. Explicit temporary objects are now used for statement temporary

@@ -41,9 +41,9 @@ structure will hold.
    Threading appears to work just fine in the most cases. It's not as
    optimal as I wanted it to be, but that's going to change with time.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Previous corrections for ``==``, ``!=``, and ``<=``, caused a
    performance regression for these operations in case of handling

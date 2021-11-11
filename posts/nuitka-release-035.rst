@@ -89,9 +89,9 @@ resulted in important contributions.
    Previously I just didn't care, but we sort of approach end user
    usability with this.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Added optimization for the built-in ``range()`` which otherwise
    requires a module and ``builtin`` module lookup, then parameter

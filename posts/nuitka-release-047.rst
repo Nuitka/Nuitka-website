@@ -57,9 +57,9 @@ cleanups, and some important performance improvements as well.
    often imports many useless things that often don't apply to target
    systems.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Faster frame stack handling for functions without ``try``/``except``
    (or ``try``/``finally`` in Python3). This gives a speed boost to

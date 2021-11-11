@@ -23,9 +23,9 @@ but should work now.
    statements, tuples as ``yield from`` arguments, improved error
    messages, additional checks, and many more detail changes.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Using SSA knowledge, local variable assignments now no longer need to
    check if they need to release previous values, they know definitely
@@ -175,10 +175,10 @@ but should work now.
 
 -  Major cleanup of Nuitka options.
 
-      -  Windows specific stuff is now in a dedicated option group. This
-         includes options for icon, disabling console, etc.
-      -  There is now a dedicated group for controlling backend compiler
-         choices and options.
+   -  Windows specific stuff is now in a dedicated option group. This
+      includes options for icon, disabling console, etc.
+   -  There is now a dedicated group for controlling backend compiler
+      choices and options.
 
 -  Also pickup ``g++44`` automatically, which makes using Nuitka on
    CentOS5 more automatic.

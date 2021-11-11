@@ -58,8 +58,9 @@ assignment could be.
 
    .. admonition:: Update
 
-      We have given up on speedcenter meanwhile, and generate static
-      pages with graphs instead.
+      We have given up on this version of speedcenter meanwhile, and
+      generate static pages with graphs instead. We can this still
+      speedcenter.
 
 ***********
  New Tests

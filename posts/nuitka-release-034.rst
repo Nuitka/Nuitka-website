@@ -59,9 +59,9 @@ which end up giving us another boost for the "PyStone" benchmark.
    may still become predictable, right now it must be a real CPython
    constant string.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Added optimization for the built-ins ``ord()`` and ``chr()``, these
    require a module and built-in module lookup, then parameter parsing.

@@ -27,9 +27,9 @@ detected and more thoroughly optimizing them.
    lead to assuming a tuple with only mutable elements to be not
    mutable, which is of course wrong.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 This time there are so many new optimization, it makes sense to group
 them by the subject.

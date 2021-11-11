@@ -80,9 +80,9 @@ the last release.
    must not be done though, ``__doc__`` can be any type in Python. This
    corrects `Issue#177 <http://bugs.nuitka.net/issue177>`__.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Variables that need not be shared, because the uses in closure taking
    functions were eliminated, no longer use cell objects.

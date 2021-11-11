@@ -14,9 +14,9 @@ now faster or got looked at and optimized.
 -  Generators could leak frames until program exit, these are now
    properly freed immediately.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Faster exception save and restore functions that might be in-lined by
    the backend C compiler.

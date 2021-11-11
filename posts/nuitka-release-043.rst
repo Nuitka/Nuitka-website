@@ -54,6 +54,8 @@ form in Nuitka.
 
    is behavioral more like
 
+   .. code:: bash
+
       python -c "import module"
 
    and that was a trap for new users.
@@ -90,9 +92,9 @@ form in Nuitka.
 -  Python3: Annotations of function worked only as long as their
    definition was not referring to local variables.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Calls with no positional arguments are now using the faster call
    methods.

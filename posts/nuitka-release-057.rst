@@ -14,9 +14,9 @@ lots of cleanups.
 
       {[]: None}  # This is now a TypeError
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Calls to the ``dict`` built-in with only keyword arguments are now
    optimized to mere dictionary creations. This is new for the case of

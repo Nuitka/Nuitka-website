@@ -40,9 +40,9 @@ which will have to continue for some time more.
 -  There was an ``assert False`` right after warning about not found
    modules in the ``--deep`` mode, which was of course unnecessary.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  When unpacking variables in assignments, the temporary variables are
    now held in a new temporary class that is designed for the task

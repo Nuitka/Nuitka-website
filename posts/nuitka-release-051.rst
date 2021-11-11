@@ -40,9 +40,9 @@ mode performs. Much of it was contributed via patches and bug reports.
 -  Memory usages are now traced with ``--show-progress`` allowing us to
    trace where things go wrong.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Standalone mode now includes standard library as bytecode by default.
    This is workaround scalability issues with many constants from many

@@ -42,9 +42,9 @@ compiled types by the ``inspect`` module.
    too. The inspect module will therefore return correct value for
    ``inspect.isgeneratorfunction()`` too.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Slice indexes that are ``None`` are now constant propagated as well.
 

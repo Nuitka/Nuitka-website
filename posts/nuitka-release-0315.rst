@@ -94,9 +94,9 @@ with line numbers in the frame object.
    with ``valgrind``. It will give better information that way, without
    changing the code.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Implemented ``swapcontext`` alike (``swapFiber``) for x64 to achieve
    8 times speedup for Generators. It doesn't do useless syscalls to

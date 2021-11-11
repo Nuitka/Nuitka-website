@@ -37,9 +37,9 @@ changed.
 -  Standalone: Include certificate file using by ``requests`` module in
    some cases as a data file.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Enabled C target type ``nuitka_bool`` for variables that are stored
    with boolean shape only, and generate C code for those

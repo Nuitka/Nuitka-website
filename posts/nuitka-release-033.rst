@@ -66,9 +66,9 @@ Others
 -  The pickling of some tuples showed that "cPickle" can have
    non-reproducible results, using "pickle" to stream constants now
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Access to instance attributes has become faster by writing specific
    code for the case. This is done in JIT way, attempting at run time to

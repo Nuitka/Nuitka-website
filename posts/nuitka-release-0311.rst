@@ -28,9 +28,9 @@ first, the result being that Nuitka now works on ARM Linux too.
    then. That is incompatible in case of exceptions, where partial
    outputs need to be done, and so that got fixed.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Function calls now each have a dedicated helper function, avoiding in
    some cases unnecessary work. We will may build further on this and

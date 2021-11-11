@@ -75,9 +75,9 @@ addressed.
 -  As I start to consider announcing Nuitka, I moved the version logic
    so that the version can now be queried with ``--version``.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Name lookups for ``None``, ``True`` and ``False`` and now always
    detected as constants, eliminating many useless module variable

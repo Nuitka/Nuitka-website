@@ -33,9 +33,9 @@ much else.
 -  Compatibility Fix: When no defaults are given, CPython uses ``None``
    for ``func.func_defaults``, but Nuitka had been using ``None``.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  If the condition of assert statements can be predicted, these are now
    optimized in a static raise or removed.

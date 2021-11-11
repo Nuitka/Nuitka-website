@@ -46,9 +46,9 @@ new release.
    to run one more basic test, ``GlobalStatement.py`` with Python3. The
    test ``ExecEval.py`` nearly works now.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  The no arguments ``range()`` call now optimized into the static
    CPython exception it raises.

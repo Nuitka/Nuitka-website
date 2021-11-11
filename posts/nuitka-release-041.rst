@@ -52,9 +52,9 @@ for the optimization part there have been large amounts of changes.
 -  Assigning Python3 function annotations could cause a segmentation
    fault.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Improved propagation of exception raise statements, eliminating more
    code. They are now also propagated from all kinds of expressions.

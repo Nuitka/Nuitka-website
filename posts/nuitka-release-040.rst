@@ -81,9 +81,9 @@ diagrams, `even if weak ones
    was not enforced, it now is. This fixes a reference leak when raising
    exceptions, where building the exception was raising an exception.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Optimizing attribute access to compile time constants for the first
    time. The old registry had no actual user yet.

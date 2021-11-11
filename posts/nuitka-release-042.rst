@@ -178,9 +178,9 @@ expanded.
    This was already present for Python3.3, and it turns out that all of
    Python3 does it.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Constants are now much less often created with ``pickle`` module, but
    created directly.

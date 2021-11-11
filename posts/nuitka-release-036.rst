@@ -44,9 +44,9 @@ not a performance improvement at all.
    least creates smaller binaries and may provide more optimization in
    the future.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Exceptions raised by pre-computed built-ins, unpacking, etc. are now
    transformed to raising the exception statically.

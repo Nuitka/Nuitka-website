@@ -25,9 +25,9 @@ more efficient at it.
 -  Exception tracebacks created inside ``with`` statements could contain
    duplicate lines, this was corrected.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Global variable assignments now also use ``assign0`` where no
    reference exists.

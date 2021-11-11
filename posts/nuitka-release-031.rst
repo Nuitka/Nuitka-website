@@ -5,9 +5,9 @@ only cleanups and optimization. Most go into the direction of more
 readable code, some aim at making the basic things faster, with good
 results as to performance as you can see below.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Constants in conditions of conditional expressions (``a if cond else
    d``), ``if``/``elif`` or ``while`` are now evaluated to ``true`` or

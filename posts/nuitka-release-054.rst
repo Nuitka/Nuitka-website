@@ -7,9 +7,9 @@ variables no longer trace their references to themselves.
 Otherwise, MinGW64 support has been added, and lots of bug fixes were
 made to improve the compatibility.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Using new variable registry, now properly detecting actual need for
    sharing variables. Optimization may discover that it is unnecessary

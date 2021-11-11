@@ -59,9 +59,9 @@ entering the Debian repository.
    ``--recurse-to`` (confirm to recurse to those modules)
    ``--recurse-not-to`` (confirm to not recurse to those modules)
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  The optimization of constant conditional expressions was not done
    yet. Added this missing constant propagation case.

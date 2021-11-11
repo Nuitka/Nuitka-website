@@ -89,9 +89,9 @@ platforms, adding Gentoo, and self compiled Python to the mix.
 
 -  Windows: New options ``--mingw64`` to force compilation with MinGW.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Rich comparisons (``==``, ``<``, and the like) are now faster than
    ever before due to a full implementation of its own in Nuitka that

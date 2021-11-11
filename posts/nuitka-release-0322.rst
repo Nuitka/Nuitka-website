@@ -72,9 +72,9 @@ for Python2. For the common language subset, it's quite fine now.
 -  Python3 has gained support for recursive programs and stand alone
    extension modules, these are now both possible as well.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Avoid frame stack entries for functions that cannot raise exceptions,
    i.e. where they would not be used.

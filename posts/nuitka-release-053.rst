@@ -14,9 +14,9 @@ this is more of a service release.
 -  The ``-python-flag=-S`` mode now preserves ``PYTHONPATH`` and
    therefore became usable with virtualenv.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Line numbers of frames no longer get set unless an exception occurs,
    speeding up the normal path of execution.

@@ -37,9 +37,9 @@ structural optimization enhancements.
    side effect on lookup, it was evident that the lookup was made twice.
    Correcting this also improves the performance for the normal case.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Statically raised as well as predicted exceptions are propagated
    upwards, leading to code and block removal where possible, while

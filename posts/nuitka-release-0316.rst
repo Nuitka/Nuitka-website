@@ -77,9 +77,9 @@ Debian repository. It's still not there, but it's making progress.
 -  Fix, the future spec was not properly preserving the future division
    flag.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  The optimization scales now much better, because per-module
    optimization only require the module to be reconsidered, but not all

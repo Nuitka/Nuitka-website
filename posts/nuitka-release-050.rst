@@ -61,9 +61,9 @@ the direction of actual SSA.
    binary, and as a replacement of ``strace`` on Linux when running the
    tests to check that nothing is loaded from the outside.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  When iterating over ``list``, ``set``, this is now automatically
    lowered to ``tuples`` avoiding the mutable container types.

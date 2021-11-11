@@ -49,9 +49,9 @@ mostly, thanks for the patches from Pete Hunt.
    via ``--clang`` option. Currently this option is mainly intended to
    allow testing the "macOS X" support as good as possible under Linux.
 
-******************
- New Optimization
-******************
+**************
+ Optimization
+**************
 
 -  Enhanced all optimization that previously worked on "constants" to
    work on "compile time constants" instead. A "compile time constant"
