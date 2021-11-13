@@ -12,20 +12,18 @@ project = "Nuitka the Python Compiler"
 copyright = "%s, Kay Hayen and Nuitka Contributors" % time.gmtime().tm_year
 author = "Kay Hayen"
 
-subprocess.call(
-    [
-        sys.executable,
-        "update.py",
-        "--update-docs",
-    ],
-    cwd="..",
-)
-
-sys.path.insert(0, os.path.abspath("../nuitka-master"))
+sys.path.insert(0, os.path.abspath("../Nuitka-master"))
 from nuitka.Version import getNuitkaVersion
 del sys.path[0]
 
 release = version = getNuitkaVersion()
+
+del sys.modules["nuitka.Version"]
+del sys.modules["nuitka"]
+
+sys.path.insert(0, os.path.abspath("../Nuitka-develop"))
+import nuitka
+del sys.path[0]
 
 # -- General configuration
 
@@ -37,7 +35,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
-    # External stuff
+    # External extensions
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_inline_tabs",
@@ -57,3 +55,5 @@ html_theme = "sphinx_rtd_theme"
 
 # -- Options for EPUB output
 epub_show_urls = "footnote"
+
+autodoc_member_order = 'bysource'

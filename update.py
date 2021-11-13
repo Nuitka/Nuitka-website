@@ -12,6 +12,8 @@ from optparse import OptionParser
 import requests
 import restructuredtext_lint
 import unidecode
+from urllib.request import urlretrieve
+import zipfile
 
 from lxml import html
 
@@ -506,72 +508,55 @@ def updateDownloadPage():
     open("pages/download.rst", "wb").write(("\n".join(output) + "\n").encode("utf8"))
 
 
-def updateNuitkaMaster():
-    if not os.path.exists("nuitka-master/doc/images"):
-        os.makedirs("nuitka-master/doc/images")
-    if not os.path.exists("nuitka-master/doc/Logo"):
-        os.makedirs("nuitka-master/doc/Logo")
-    if not os.path.exists("nuitka-master/nuitka"):
-        os.makedirs("nuitka-master/nuitka")
+def _updateCheckout(branch):
+    print(f"Updating {branch} checkout...")
+    if os.path.exists(f"Nuitka-{branch}" ):
+        shutil.rmtree(f"Nuitka-{branch}")
+
+    urlretrieve(f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp")
+
+    with zipfile.ZipFile(f"nuitka.zip.tmp") as develop_archive:
+        develop_archive.extractall(".")
+
+    os.unlink("nuitka.zip.tmp")
 
     for filename in (
         "README.rst",
-        "nuitka/Version.py",
-        "doc/images/Nuitka-Logo-Horizontal.png",
-        "doc/Logo/Nuitka-Logo-Horizontal.svg",
-        "doc/images/Nuitka-Logo-Vertical.png",
-        "doc/Logo/Nuitka-Logo-Vertical.svg",
-        "doc/images/Nuitka-Logo-Symbol.png",
-        "doc/Logo/Nuitka-Logo-Symbol.svg",
+        "Developer_Manual.rst",
     ):
-        command = (
-            "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/master/%s"
-            % filename
-        )
-        output = subprocess.check_output(command.split())
+        filename = os.path.join(f"Nuitka-{branch}",filename)
 
-        # Sphinx has its own TOC method.
-        output = output.replace(b".. contents::\n", b"")
+        with open(filename, "rb") as patched_file:
+            old_cotents = new_contents = patched_file.read()
 
-        # Logo inside doc removed.
-        output = output.replace(
-            b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
-        )
-        output = output.replace(
-            b"\n   :alt: Nuitka Logo", b"\n"
-        )
+        if filename.endswith(".rst"):
+            # Sphinx has its own TOC method.
+            new_contents = new_contents.replace(b".. contents::\n", b"")
 
-        with open(os.path.join("nuitka-master", filename), "wb") as out_file:
-            out_file.write(output)
+            # Logo inside doc removed.
+            new_contents = new_contents.replace(
+                b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
+            )
+            new_contents = new_contents.replace(
+                b"\n   :alt: Nuitka Logo", b"\n"
+            )
+
+        if old_cotents != new_contents:
+            with open(filename, "wb") as out_file:
+                out_file.write(new_contents)
+
+
+def updateNuitkaMaster():
+    _updateCheckout("master")
+
+
+def updateNuitkaDevelop():
+    _updateCheckout("develop")
+
 
 
 def updateNuitkaFactory():
-    if not os.path.exists("nuitka-factory"):
-        os.makedirs("nuitka-factory")
-
-    for filename in (
-        "Changelog.rst",
-        "Developer_Manual.rst"):
-        command = (
-            "curl -s https://raw.githubusercontent.com/Nuitka/Nuitka/factory/%s"
-            % filename
-        )
-        output = subprocess.check_output(command.split())
-
-        # Sphinx has its own TOC method.
-        output = output.replace(b".. contents::\n", b"")
-
-        # Logo inside doc removed.
-        output = output.replace(
-            b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
-        )
-        output = output.replace(
-            b"\n   :alt: Nuitka Logo", b"\n"
-        )
-
-        with open(os.path.join("nuitka-factory", filename), "wb") as out_file:
-            out_file.write(output)
-
+    _updateCheckout("factory")
 
 # slugify is copied from
 # http://code.activestate.com/recipes/
@@ -626,7 +611,7 @@ def splitRestByChapter(lines):
 
 def updateReleasePosts():
     for title, lines in splitRestByChapter(
-        open("nuitka-factory/Changelog.rst").readlines()
+        open("Nuitka-factory/Changelog.rst").readlines()
     ):
         # Ignore draft status
         if "Draft" in title:
@@ -667,6 +652,7 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 
 def updateDocs():
     updateNuitkaMaster()
+    updateNuitkaDevelop()
     updateNuitkaFactory()
     updateReleasePosts()
 

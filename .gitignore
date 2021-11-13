@@ -3,8 +3,9 @@
 *.html
 tmp/
 cache
-nuitka-factory
-nuitka-master
+Nuitka-factory
+Nuitka-develop
+Nuitka-master
 output
 .vscode/tags
 state_data.json

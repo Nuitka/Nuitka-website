@@ -96,10 +96,6 @@ to go until we hit the "future".
 In the meantime you can find its `latest version here
 </pages/download.html>`_.
 
-.. note::
-
-   This project is under active development.
-
 .. toctree::
    :caption: User Manual
    :hidden:
@@ -117,3 +113,15 @@ In the meantime you can find its `latest version here
    :hidden:
 
    Changelog
+
+.. toctree::
+   :caption: API doc
+   :hidden:
+
+   api-doc
+
+.. .. toctree::
+..    :caption: Factory Instructions
+..    :hidden:
+
+..    factory

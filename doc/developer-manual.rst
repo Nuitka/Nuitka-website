@@ -1,1 +1,1 @@
-../nuitka-factory/Developer_Manual.rst
+../Nuitka-factory/Developer_Manual.rst

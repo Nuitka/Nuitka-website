@@ -1,1 +1,1 @@
-../nuitka-master/README.rst
+../Nuitka-master/README.rst
