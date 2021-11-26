@@ -610,15 +610,20 @@ def splitRestByChapter(lines):
 
 
 def updateReleasePosts():
-    for title, lines in splitRestByChapter(
-        open("Nuitka-factory/Changelog.rst").readlines()
-    ):
-        # Ignore draft status
-        if "Draft" in title:
-            continue
+    count = 0
+    sep = "#"
 
-        lines = (
-            [
+    with open("doc/Changelog.rst", "w") as changelog_output:
+
+        for title, lines in splitRestByChapter(
+            open("Nuitka-factory/Changelog.rst").readlines()
+        ):
+            # Ignore draft status
+            if "Draft" in title:
+                continue
+
+            lines = (
+                [
                 """\
 This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.\n""",
                 "\n",
@@ -626,28 +631,45 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
             + lines
         )
 
-        slug = slugify(title)
+            if count == 5:
+                older = "Older Releases"
 
-        pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
-        data = "\n".join(
-            [
-                ".. title: " + title,
-                ".. slug: " + slug,
-                ".. date: " + pub_date.strftime("%Y/%m/%d %H:%M"),
-                ".. tags: compiler,Python,Nuitka",
-            ]
-        )
+                changelog_output.write(sep * len(older) + "\n")
+                changelog_output.write(older + "\n")
+                changelog_output.write(sep * len(older) + "\n\n")
 
-        output_path = "posts"
-        meta_path = os.path.join(output_path, slug + ".meta")
-        txt_path = os.path.join(output_path, slug + ".rst")
+                sep = "~"
 
-        if not os.path.isfile(meta_path) or "draft" in open(meta_path).read():
-            with open(meta_path, "wb") as output_file:
-                output_file.write(data.encode("utf8"))
+            changelog_output.write(sep * len(title) + "\n")
+            changelog_output.write(title + "\n")
+            changelog_output.write(sep * len(title) + "\n\n")
 
-        with open(txt_path, "wb") as output_file:
-            output_file.write("".join(lines).encode("utf8"))
+            changelog_output.writelines(lines)
+            count += 1
+
+
+            slug = slugify(title)
+
+            pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
+            data = "\n".join(
+                [
+                    ".. title: " + title,
+                    ".. slug: " + slug,
+                    ".. date: " + pub_date.strftime("%Y/%m/%d %H:%M"),
+                    ".. tags: compiler,Python,Nuitka",
+                ]
+            )
+
+            output_path = "posts"
+            meta_path = os.path.join(output_path, slug + ".meta")
+            txt_path = os.path.join(output_path, slug + ".rst")
+
+            if not os.path.isfile(meta_path) or "draft" in open(meta_path).read():
+                with open(meta_path, "wb") as output_file:
+                    output_file.write(data.encode("utf8"))
+
+            with open(txt_path, "wb") as output_file:
+                output_file.write("".join(lines).encode("utf8"))
 
 
 def updateDocs():
