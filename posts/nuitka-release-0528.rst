@@ -126,7 +126,7 @@ a dedicated structure for that representing an in-lined function.
 -  By setting ``NUITKA_PACKAGE_packagename=/some/path`` the ``__path__``
    of packages can be extended automatically in order to allow and load
    uncompiled sources from another location. This can be e.g. a
-   ``tests`` sub-package or other plug-ins.
+   ``tests`` sub-package or other plugins.
 
 -  By default when creating a module, now also a ``module.pyi`` file is
    created that contains all imported modules. This should be deployed

@@ -48,7 +48,7 @@ attacking long standing issues.
    default ability to copy the source code along in an upcoming release.
 
 -  Added experimental standalone mode support for PyQt5. At least
-   headless mode should be working, plug-ins (needed for anything
+   headless mode should be working, plugins (needed for anything
    graphical) are not yet copied and will need more work.
 
 *********

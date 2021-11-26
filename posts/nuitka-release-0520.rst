@@ -71,7 +71,7 @@ Python variants like Anaconda under the Windows system.
    ``nuitka.utils.MemoryUsage`` as part of an effort to have more
    topical modules.
 
--  Plug-ins how have a dedicated module through which the core accesses
+-  Plugins how have a dedicated module through which the core accesses
    the API, which was partially cleaned up.
 
 -  No more "early" and "late" import detections for standalone mode. We
