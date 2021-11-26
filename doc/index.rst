@@ -115,6 +115,12 @@ In the meantime you can find its `latest version here
    Changelog
 
 .. toctree::
+   :caption: Roadmap
+   :hidden:
+
+   roadmap
+
+.. toctree::
    :caption: API doc
    :hidden:
 
