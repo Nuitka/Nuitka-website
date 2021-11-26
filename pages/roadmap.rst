@@ -4,16 +4,17 @@ This is the Nuitka roadmap, broken down by features.
  User Extensibility
 ####################
 
--  Data files, implicit imports, even DLL inclusion, and plugins
-   location should be specified in yaml format.
+-  Data files, implicit imports are in yaml format as of 0.6.18, but
+   even DLL inclusion, and plugins location should be specified in yaml
+   format.
 
    In this way, it becomes easier to extend by third parties. We could
    imagine even supporting packages that provide their own configuration
    for compilation with Nuitka through such files.
 
-   This is started with yaml config of the ``anti-bloat`` plugin, and
-   will probably grow from there. The implicit imports is a natural next
-   target to include there, as is the ``data-files`` plugin.
+   This is started with yaml config of the ``anti-bloat``,
+   ``data-files``, and ``implicit-imports`` plugin, and will extend from
+   there.
 
 ############
  Standalone
@@ -54,12 +55,12 @@ This is the Nuitka roadmap, broken down by features.
 
    The plugins in Nuitka are still somewhat wild west when it comes to
    copying DLLs and data files as they see fit, sometimes, but not
-   always, reporting to the core, so it could scan dependencies. Work
-   is being done to clean them up. Some, most recently numpy, have been
-   changed to make them yield objects describing tasks and
-   executing them in the core. This way there is a chance to know what
-   the program does and make this kind of change. This transition is
-   almost complete, but the Qt plugins are still missing.
+   always, reporting to the core, so it could scan dependencies. Work is
+   being done to clean them up. Some, most recently numpy, have been
+   changed to make them yield objects describing tasks and executing
+   them in the core. This way there is a chance to know what the program
+   does and make this kind of change. This transition is almost
+   complete, but the Qt plugins are still missing.
 
    My goal here is to say that e.g. a datafile should be what Nuitka
    commercial currently calls "trusted" independent of it being a
@@ -92,9 +93,10 @@ work and reduce the uncompressed sizes of binaries already.
  Nuitka-Python (public)
 ########################
 
-This is currently under way and not yet described here. The current Nuitka
-release has support for using it. Most work is focused on Linux and Python2.7
-now with the aim of getting it capable to statically compile numpy for speed.
+This is currently under way and not yet described here. The current
+Nuitka release has support for using it. Most work is focused on Linux
+and Python2.7 now with the aim of getting it capable to statically
+compile numpy for speed.
 
 ######################
  Performance (public)
@@ -109,17 +111,17 @@ now with the aim of getting it capable to statically compile numpy for speed.
 -  Faster attribute setting.
 
    For Python3 we still use ``_PyObjectDict_SetItem`` which is very hard
-   to replace, as it's forking shared dictionary as necessary. With static
-   libpython it can linked though, but we still might want to make our
-   own replacement.
+   to replace, as it's forking shared dictionary as necessary. With
+   static libpython it can linked though, but we still might want to
+   make our own replacement.
 
 -  Support for static libpython together with LTO for Python3
 
-   This gives an enormouse speed bump for Python2 with Debian package Python
-   and of course for any properly self compiled Python, and to the Nuitka
-   Python there will be. For Python3, this has not yet been achieved,
-   but ought to be doable too. And in some cases, it can be known to not
-   work and should not be suggested.
+   This gives an enormouse speed bump for Python2 with Debian package
+   Python and of course for any properly self compiled Python, and to
+   the Nuitka Python there will be. For Python3, this has not yet been
+   achieved, but ought to be doable too. And in some cases, it can be
+   known to not work and should not be suggested.
 
 -  Better code for ``+= 1`` constructs with lack of type knowledge.
 
@@ -138,8 +140,8 @@ now with the aim of getting it capable to statically compile numpy for speed.
    ``int``, ``float`` and ``long`` values.
 
 -  Implement the ``partial`` built-in and make it work with compiled
-   functions. It could prepare calls much better, such that they do
-   not come through keyword arguments unnecessarily.
+   functions. It could prepare calls much better, such that they do not
+   come through keyword arguments unnecessarily.
 
 ####################
  macOS enhancements
@@ -178,13 +180,20 @@ than it should.
 
 -  Add support for new case syntax of 3.10
 
-   This is partially done, but recursive matching needs more work, guards
-   are missing, it's done with a reformulation, and needs a bunch of new
-   type comparisons, but many use cases ought to work now.
+   This is partially done, but recursive matching needs more work,
+   guards are missing, it's done with a reformulation, and needs a bunch
+   of new type comparisons, but many use cases ought to work now.
 
 -  Get it to work for 3.10 test suite.
 
    This will amount to fully compatibility in support.
+
+##############
+ Wheels Build
+##############
+
+-  Needs documentation and addition of (some) command line options of
+   Nuitka to the ``bdist_nuitka`` target.
 
 #################################
  Features to be added for 0.6.18
@@ -195,10 +204,13 @@ List of things, we are aiming for to be included in that release.
 [ ] Caching for bytecode demoted modules so no optimization needs to be
 run.
 
-[ ] Add version information for macOS bundles.
+[x] Add version information for macOS bundles.
 
 [x] Building on new macOS works for old macOS deployment.
 
+[x] Better scalability, should use less memory and compile time.
+
+[x] Better shape tracing
 
 #################################
  Features to be added for 0.6.19
