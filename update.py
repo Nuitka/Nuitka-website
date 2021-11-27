@@ -618,10 +618,6 @@ def updateReleasePosts():
         for title, lines in splitRestByChapter(
             open("Nuitka-factory/Changelog.rst").readlines()
         ):
-            # Ignore draft status
-            if "Draft" in title:
-                continue
-
             lines = (
                 [
                 """\
@@ -647,6 +643,9 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
             changelog_output.writelines(lines)
             count += 1
 
+            # Ignore draft for pages.
+            if "Draft" in title:
+                continue
 
             slug = slugify(title)
 
