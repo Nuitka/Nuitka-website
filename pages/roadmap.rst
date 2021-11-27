@@ -192,8 +192,8 @@ than it should.
  Wheels Build
 ##############
 
--  Needs documentation and addition of (some) command line options of
-   Nuitka to the ``bdist_nuitka`` target.
+-  Needs more documentation and addition of (some) command line options
+   of Nuitka to the ``bdist_nuitka`` target.
 
 #################################
  Features to be added for 0.6.18
@@ -216,7 +216,9 @@ run.
  Features to be added for 0.6.19
 #################################
 
+List of things, we are aiming for to be included in that release.
+
 [ ] Compression of onefile with bootstrap before Python3.5, so far it's
-   there for 3.5 or higher only.
+there for 3.5 or higher only.
 
 [ ] Better scalability
