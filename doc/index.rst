@@ -109,6 +109,12 @@ In the meantime you can find its `latest version here
    developer-manual
 
 .. toctree::
+   :caption: Commercial Users
+   :hidden:
+
+   commercial
+
+.. toctree::
    :caption: Changelog
    :hidden:
 
