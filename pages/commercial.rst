@@ -127,17 +127,18 @@ highest priority.
 -  Nuitka commercial subscription
 
    Currently 250 EUR (or 300 USD), valid for one year, renewal same
-   price.
+   price. `Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__.
 
 -  Nuitka Priority package
 
    Currently 250 EUR (or 300 USD), valid for one year, renewal same
-   price.
+   price. `Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__.
 
 -  Nuitka Full Package
 
    Contains Nuitka Commercial subscription and priority package. Priced
-   at 400 EUR or 500 USD.
+   at 400 EUR (or 500 USD). `Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__.
+
 
 -  Nuitka Sponsors
 
