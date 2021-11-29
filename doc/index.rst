@@ -138,6 +138,12 @@ In the meantime you can find its `latest version here
 
    Credits
 
+.. toctree::
+   :caption: Impressum
+   :hidden:
+
+   Impressum
+
 .. .. toctree::
 ..    :caption: Factory Instructions
 ..    :hidden:

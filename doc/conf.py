@@ -39,7 +39,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_inline_tabs",
-   # "sphinxcontrib.twitter",
+    # "sphinxcontrib.twitter",
 ]
 
 intersphinx_mapping = {
