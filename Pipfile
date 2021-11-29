@@ -21,6 +21,7 @@ sphinx-copybutton = "*"
 sphinx-design = "*"
 sphinx-inline-tabs = "*"
 sphinx-rtd-theme = "*"
+"sphinxcontrib.twitter" = "*"
 
 [requires]
 python_version = "3.9"
