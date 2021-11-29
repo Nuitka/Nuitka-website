@@ -132,6 +132,12 @@ In the meantime you can find its `latest version here
 
    api-doc
 
+.. toctree::
+   :caption: Credits
+   :hidden:
+
+   Credits
+
 .. .. toctree::
 ..    :caption: Factory Instructions
 ..    :hidden:
