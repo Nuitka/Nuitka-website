@@ -630,13 +630,13 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
             if count == 5:
                 older = "Older Releases"
 
-                changelog_output.write("\n" + sep * len(older) + "\n")
+                changelog_output.write("\n\n" + sep * len(older) + "\n")
                 changelog_output.write(older + "\n")
                 changelog_output.write(sep * len(older) + "\n\n")
 
                 sep = "~"
 
-            changelog_output.write("\n" + sep * len(title) + "\n")
+            changelog_output.write("\n\n" + sep * len(title) + "\n")
             changelog_output.write(title + "\n")
             changelog_output.write(sep * len(title) + "\n\n")
 
