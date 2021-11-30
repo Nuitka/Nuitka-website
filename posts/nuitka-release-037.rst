@@ -10,9 +10,8 @@ in CPython ``instancemethod`` objects. The new ``compiled_method`` is
 specifically designed for wrapping ``compiled_function`` and therefore
 more efficient at it.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  When using ``Python`` or ``Nuitka.py`` to execute some script, the
    exit code in case of "file not found" was not the same as CPython. It
@@ -25,9 +24,8 @@ more efficient at it.
 -  Exception tracebacks created inside ``with`` statements could contain
    duplicate lines, this was corrected.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Global variable assignments now also use ``assign0`` where no
    reference exists.
@@ -62,9 +60,8 @@ more efficient at it.
    avoid function calls e.g. in the ``ITERATOR_NEXT`` case, this gave a
    few percent on "PyStone" as well.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  New package ``nuitka.codegen`` to contain all code generation related
    stuff, moved ``nuitka.templates`` to ``nuitka.codegen.templates`` as
@@ -95,9 +92,8 @@ more efficient at it.
 -  Split variable, exception, built-in helper classes into separate
    header files.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  The exit codes of CPython execution and Nuitka compiled programs are
    now compared as well.
@@ -105,9 +101,8 @@ more efficient at it.
 -  Errors messages of methods are now covered by the ``ParameterErrors``
    test as well.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  A new script "benchmark.sh" (now called "run-valgrind.py") script now
    starts "kcachegrind" to display the valgrind result directly.
@@ -119,9 +114,8 @@ more efficient at it.
 -  The "check-release.sh" script needs to unset ``NUITKA_EXTRA_OPTIONS``
    or else the reflection test will trip over the changed output paths.
 
-*********
- Numbers
-*********
+Numbers
+=======
 
 python 2.6:
 

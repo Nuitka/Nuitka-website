@@ -579,7 +579,7 @@ def slugify(value):
 
 
 def splitRestByChapter(lines):
-    marker = "###"
+    marker = "***"
 
     await_title = "outside"
 
@@ -672,9 +672,9 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 
 
 def updateDocs():
-    updateNuitkaMaster()
-    updateNuitkaDevelop()
-    updateNuitkaFactory()
+    # updateNuitkaMaster()
+    # updateNuitkaDevelop()
+    # updateNuitkaFactory()
     updateReleasePosts()
 
 

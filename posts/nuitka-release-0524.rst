@@ -5,9 +5,8 @@ on the generator performance, which was found to be much slower than
 CPython for some cases. Also there is the usual compatibility work and
 improvements for Pure C support.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Windows: The 3.5.2 coroutine new protocol implementation was using
    the wrapper from CPython, but it's not part of the ABI on Windows.
@@ -27,9 +26,8 @@ improvements for Pure C support.
 -  Pure C: Adapted scons compiler detecting to properly consider C11
    compilers from the environment, and more gracefully report things.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Python2: Generators were saving and restoring exceptions, updating
    the variables ``sys.exc_type`` for every context switch, making it
@@ -59,9 +57,8 @@ improvements for Pure C support.
 -  Provide type shape for ``xrange`` calls that are not constant too,
    allowing for better optimization related to those.
 
-*******
- Tests
-*******
+Tests
+=====
 
 -  Added workarounds for locks being held by Virus Scanners on Windows
    to our test runner.
@@ -72,9 +69,8 @@ improvements for Pure C support.
 -  Added construct tests for the ``sum`` built-in on various types of
    ``int`` containers, making sure we can do all of those really fast.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release improves very heavily on generators in Nuitka. The memory
 allocator is used more cleverly, and free lists all around save a lot of

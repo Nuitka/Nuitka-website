@@ -4,9 +4,8 @@ This release contains a bunch of fixes, most of which were previously
 released as part of hotfixes, and important new optimization for
 generators.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Fix, nested functions with local classes using outside function
    closure variables were not registering their usage, which could lead
@@ -114,9 +113,8 @@ generators.
 -  Python3: Smarter hashing of unicode values avoids increased memory
    usage from cached converted forms in debug mode.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The issue tracker on Github is now the one that should be used with
    Nuitka, winning due to easier issue templating and integration with
@@ -137,15 +135,13 @@ generators.
 -  On PyPI we didn't yet indicated Python 3.7 as supported, which it of
    course is.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Added support for MiniConda Python.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Using goto based generators that return from execution and resume
    based on heap storage. This makes tests using generators twice as
@@ -180,9 +176,8 @@ generators.
 -  Uncompiled generator integration was backported to 3.4 as well,
    improving compatibility and speed there as well.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Frame object and their cache declarations are now handled by the way
    of allocated variable descriptions, avoid special handling for them.
@@ -213,9 +208,8 @@ generators.
 
 -  Removed fiber implementations, no more needed.
 
-*******
- Tests
-*******
+Tests
+=====
 
 -  Finally the asyncgen tests can be enabled in the CPython 3.6 test
    suite as the corrupting crash has been identified.
@@ -226,9 +220,8 @@ generators.
    should recurse to, making some CPython tests follow into modules
    where actual test code lives.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release is huge in many ways.
 

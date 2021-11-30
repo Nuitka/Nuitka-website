@@ -5,9 +5,8 @@ improvements. It also advances standalone support, and a few
 optimization improvements, but it mostly is a maintenance release,
 attacking long standing issues.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Compatibility Windows macOS: Fix importing on case insensitive
    systems.
@@ -36,9 +35,8 @@ attacking long standing issues.
 -  Standalone Python3: Making use of module state in extension modules
    was not working properly.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  The filenames of source files as found in the ``__file__`` attribute
    are now made relative in standalone mode.
@@ -51,9 +49,8 @@ attacking long standing issues.
    headless mode should be working, plugins (needed for anything
    graphical) are not yet copied and will need more work.
 
-*********
- Cleanup
-*********
+Cleanup
+=======
 
 -  No longer using ``imp.find_module`` anymore. To solve the casing
    issues we needed to make our own module finding implementation
@@ -66,9 +63,8 @@ attacking long standing issues.
    attached during tree building and therefore better preserved, as well
    as that code no longer polluting code generation as much.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  No more packages for openSUSE 12.1/12.2/12.3 and Fedora 17/18/19 as
    requested by the openSUSE Build Service.
@@ -76,16 +72,14 @@ attacking long standing issues.
 -  Added RPM packages for Fedora 21 and CentOS 7 on openSUSE Build
    Service.
 
-*******
- Tests
-*******
+Tests
+=====
 
 -  Lots of test refinements for the CPython test suites to be run
    continuously in Buildbot for both Windows and Linux.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release brings about two major changes, each with the risk to break
 things.

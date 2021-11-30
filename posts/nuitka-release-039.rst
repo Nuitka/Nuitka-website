@@ -8,9 +8,8 @@ areas of Nuitka. The main focus was on faster function calls, faster
 class attributes (not instance), faster unpacking, and more built-ins
 detected and more thoroughly optimizing them.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  Exceptions raised inside with statements had references to the
    exception and traceback leaked.
@@ -27,15 +26,14 @@ detected and more thoroughly optimizing them.
    lead to assuming a tuple with only mutable elements to be not
    mutable, which is of course wrong.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 This time there are so many new optimization, it makes sense to group
 them by the subject.
 
 Exceptions
-==========
+----------
 
 -  The code to add a traceback is now our own, which made it possible to
    use frames that do not contain line numbers and a code object capable
@@ -57,7 +55,7 @@ Exceptions
    round trip.
 
 Function Calls
-==============
+--------------
 
 -  Uses of PyObject_Call provide ``NULL`` as the dictionary, instead of
    an empty dictionary, which is slightly faster for function calls.
@@ -74,7 +72,7 @@ Function Calls
    the check, eliminating it as a performance concern.
 
 Parameter Parsing
-=================
+-----------------
 
 -  Reversed the order in which parameters are checked.
 
@@ -96,7 +94,7 @@ Parameter Parsing
    unpacking code instead of rolling out everything themselves.
 
 Attribute Access
-================
+----------------
 
 -  The class type (in executables, not yet for extension modules) is
    changed to a faster variant of our own making that doesn't consider
@@ -111,7 +109,7 @@ Attribute Access
    faster which is big of course.
 
 Constants
-=========
+---------
 
 -  The bug for mutable tuples also caused non-mutable tuples to be
    considered as mutable, which lead to less efficient code.
@@ -144,7 +142,7 @@ Constants
    wasteful even if not (very) slow.
 
 Iteration
-=========
+---------
 
 -  The creation of iterators got our own code. This avoids a function
    call and is otherwise only a small gain for anything but sequence
@@ -158,7 +156,7 @@ Iteration
    simpler code flow now and avoids double checks.
 
 Built-ins
-=========
+---------
 
 -  Added support for the ``list``, ``tuple``, ``dict``, ``str``,
    ``float`` and ``bool`` built-ins along with optimizing their use with
@@ -179,7 +177,7 @@ Built-ins
    built-ins are covered yet.
 
 Cleanups
-========
+--------
 
 -  In 0.3.8 per module global classes were introduced, but the
    ``IMPORT_MODULE`` kept using the old universal class, this got
@@ -220,9 +218,8 @@ Cleanups
 -  Moved the manifest generation to the scons file, which now produces
    ready to use executables.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  Added a improved version of "pybench" that can cope with the "0 ms"
    execution time that Nuitka has for some if its sub-tests.
@@ -243,9 +240,8 @@ Cleanups
 -  Enhanced ``Constants`` test to cover repeated mutation of mutable
    tuple constants, this covers the bug mentioned.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Added a credits section to the "README.txt" where I give credit to
    the people who contributed to Nuitka, and the projects it is using. I

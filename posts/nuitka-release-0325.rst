@@ -11,9 +11,8 @@ errors are errors of the test, or minor things. Hope is that these unit
 tests can be added as release tests to Nuitka. And once that is done,
 the next big Python application can come.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  Local variables were released when an exception was raised that
    escaped the local function. They should only be released, after
@@ -36,9 +35,8 @@ the next big Python application can come.
 -  Exceptions set when entering compiled functions were unset at
    function exit.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Compiled frames support. Before, Nuitka was creating frames with the
    standard CPython C/API functions, and tried its best to cache them.
@@ -57,9 +55,8 @@ the next big Python application can come.
    changes the default value used at call time. Not supported is
    changing the amount of default parameters.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Keep the functions along with the module and added "FunctionRef" node
    kind to point to them.
@@ -81,9 +78,8 @@ the next big Python application can come.
    modules. These exports cause MinGW and MSVC compilers to create
    export libraries.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  More efficient code for conditional expressions in conditions:
 
@@ -95,9 +91,8 @@ the next big Python application can come.
    See above, this code is now the typical pattern for each ``or`` and
    ``and``, so this was much needed now.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The remaining uses of C++11 have been removed. Code generated with
    Nuitka and complementary C++ code now compile with standard C++03
@@ -137,9 +132,8 @@ the next big Python application can come.
 -  Catch exceptions for ``continue``, ``break``, and ``return`` only
    where needed for ``try``/``finally`` and loop constructs.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  Added CPython3.2 test suite as "tests/CPython32" from 3.2.3 and run
    it with CPython2.7 to check that Nuitka gives compatible error
@@ -151,9 +145,8 @@ the next big Python application can come.
 
 -  Enabled tests for default parameters and their reference counts.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release marks an important point. The compiled frames are exciting
 new technology, that will allow even better integration with CPython,

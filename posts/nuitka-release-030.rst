@@ -9,9 +9,8 @@ forward looking to Python 2.7 language constructs. This release is the
 first where I really started to measure things and removed the most
 important bottlenecks.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Added option to control ``--debug``. With this option the C++ debug
    information is present in the file, otherwise it is not. This will
@@ -24,9 +23,8 @@ important bottlenecks.
 
 -  Support for Python 2.7 set literals has been added.
 
-**************************
- Performance Enhancements
-**************************
+Performance Enhancements
+========================
 
 -  Fast global variables: Reads of global variables were fast already.
    This was due to a trick that is now also used to check them and to do
@@ -53,9 +51,8 @@ important bottlenecks.
 -  Using constant dictionaries and copy from them instead of building
    them at run time even when contents was constant.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  Merged some bits from the CPython 2.7 test suite that do not harm
    2.6, but generally it's a lot due to some ``unittest`` module
@@ -67,9 +64,8 @@ important bottlenecks.
 -  Added another benchmark extract from "PyStone" which uses a while
    loop with break.
 
-*********
- Numbers
-*********
+Numbers
+=======
 
 python 2.6:
 

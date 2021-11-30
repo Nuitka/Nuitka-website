@@ -3,9 +3,8 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 This release has a huge focus on organisational things. Nuitka is
 growing in terms of contributors and supported platforms.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Fix, the Python flag ``--python-flag=-O`` was removing doc strings,
    but that should only be done with ``--python-flag=-OO`` which was
@@ -22,9 +21,8 @@ growing in terms of contributors and supported platforms.
 -  Standalone: Added missing implicit dependency needed for newer NumPy
    versions.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Added support for Alpine Linux.
 
@@ -48,9 +46,8 @@ growing in terms of contributors and supported platforms.
 
       __nuitka_version__(major=0, minor=6, micro=2, releaselevel="release")
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Experimental code for variant types for ``int`` and ``long`` values,
    that can be plain C value, as well as the ``PyObject *``. This is not
@@ -59,9 +56,8 @@ growing in terms of contributors and supported platforms.
 -  Minor refinements of specialized code variants reducing them more
    often the actual needed code.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The Nuitka Github Organisation that was created a while ago and owns
    the Nuitka repo now, has gained members. Check out
@@ -92,9 +88,8 @@ growing in terms of contributors and supported platforms.
 -  Updated inline copy of Scons used for Python3 to 3.0.4, which
    hopefully means more bugs are fixed.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release is a sign of increasing adoption of Nuitka. The GSoC 2019
 is showing early effects, as is more developers joining the effort.

@@ -4,9 +4,8 @@ This release mainly has a scalability focus. While there are few
 compatibility improvements, the larger goal has been to make Nuitka
 compilation and the final C compilation faster.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Compatibility: The nested arguments functions can now be called using
    their keyword arguments.
@@ -29,9 +28,8 @@ compilation and the final C compilation faster.
    program start. `Issue#284 <http://bugs.nuitka.net/issue284>`__. Fixed
    in 0.5.17.1 already.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Code generated for parameter parsing is now a *lot* less verbose.
    Python level loops and conditionals to generate code for each
@@ -59,9 +57,8 @@ compilation and the final C compilation faster.
    constructing variable lists as much as possible using an always
    accurate variable registry.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Nested argument functions of Python2 are now re-formulated into a
    wrapping function that directly calls the actual function body with
@@ -81,15 +78,13 @@ compilation and the final C compilation faster.
 -  Parameter specifications got simplified to work without variables
    where it is possible.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Nuitka is now available on the social code platforms gitlab as well.
 
-*********
- Summary
-*********
+Summary
+=======
 
 Long standing weaknesses have been addressed in this release, also quite
 a few structural cleanups have been performed, e.g. strengthening the

@@ -10,9 +10,8 @@ fixes, which were available as hot fixes, and some additional
 optimization and node tree cleanups, as well as source cleanups. But not
 much else.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  Conditional statements with both branches empty were not optimized
    away in all cases, triggering an assertion of code generation.
@@ -33,9 +32,8 @@ much else.
 -  Compatibility Fix: When no defaults are given, CPython uses ``None``
    for ``func.func_defaults``, but Nuitka had been using ``None``.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  If the condition of assert statements can be predicted, these are now
    optimized in a static raise or removed.
@@ -47,9 +45,8 @@ much else.
 -  Cleaner code is generated for the simple case of ``print``
    statements. This is not only faster code, it's also more readable.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Removed the ``CPythonStatementAssert`` node.
 
@@ -78,9 +75,8 @@ much else.
    ``type('a')``, which was unlikely to cause a problem, but an
    important ``TODO`` item still.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The `"Download" <../pages/download.html>`__ page is now finally
    updated for releases automatically.
@@ -96,15 +92,13 @@ much else.
 
 -  Made sure the test runners worth with bare ``python2.6`` as well.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  Added some tests intended for type inference development.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This releases contains not as much changes as others, mostly because
 it's the intended base for a Debian upload.

@@ -9,9 +9,8 @@ With the addition of set contractions and dict contractions in this very
 release, Nuitka is approaching Python support for 2.7, and then there
 are some bug fixes.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  Calling a function with ``**`` and using a non-dict for it was
    leading to wrong behavior.
@@ -48,9 +47,8 @@ are some bug fixes.
    behavior. Clearly a corner case, but one that works fully compatible
    now.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  The local and shared local variable C++ classes have a flag
    "free_value" to indicate if an "PY_DECREF" needs to be done when
@@ -62,9 +60,8 @@ are some bug fixes.
 -  Tuple constants were copied before using them without a point. They
    are immutable anyway.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Improved more of the indentation of the generated C++ which was not
    very good for contractions so far. Now it is. Also assignments should
@@ -77,9 +74,8 @@ are some bug fixes.
 -  The with statement has its own template now and got cleaned up
    regarding indentation.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  There is now a script to extract the "doctests" from the CPython test
    suite and it generates Python source code from them. This can be
@@ -95,9 +91,8 @@ are some bug fixes.
 -  The deep program test case, now also have a module in a sub-package
    to cover this case as well.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The `gitweb interface <https://nuitka.net/gitweb>`__ (since disabled)
    might be considered an alternative to downloading the source if you
@@ -115,9 +110,8 @@ are some bug fixes.
    not a good difference to have. We want these to be empty, right? But
    for the time being, I document the known differences there.
 
-*********
- Numbers
-*********
+Numbers
+=======
 
 python 2.6:
 

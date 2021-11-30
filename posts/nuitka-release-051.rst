@@ -3,9 +3,8 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 This release brings corrections and major improvements to how standalone
 mode performs. Much of it was contributed via patches and bug reports.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  There was a crash when using ``next`` on a non-iterable. Fixed in
    0.5.0.1 already.
@@ -33,16 +32,14 @@ mode performs. Much of it was contributed via patches and bug reports.
 -  On MinGW the constants blob was not properly linked on some
    installations, this is now done differently (see below).
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Memory usages are now traced with ``--show-progress`` allowing us to
    trace where things go wrong.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Standalone mode now includes standard library as bytecode by default.
    This is workaround scalability issues with many constants from many
@@ -52,16 +49,14 @@ mode performs. Much of it was contributed via patches and bug reports.
    compilation via C code for MSVC as well. MinGW was changed to use the
    same code.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  Expanded test coverage for "standalone mode" demonstrating usage of
    "hex" encoding, PySide, and PyGtk packages.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release is mostly an interim maintenance release for standalone.
 Major changes that provide optimization beyond that, termed "C-ish code

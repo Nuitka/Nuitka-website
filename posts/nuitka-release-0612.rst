@@ -3,9 +3,8 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 This release is yet again a massive improvement in many ways with lots
 of bug fixes and new features.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Windows: Icon group entries were not working properly in some cases,
    leading to no icon or too small icons being displayed.
@@ -86,9 +85,8 @@ of bug fixes and new features.
 -  macOS: Added support for Python3 from system and CPython official
    download for latest OS version.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  UI: With ``tqdm`` installed alongside Nuitka, experimental progress
    bars are enabled. Do not use `` --show-progress`` or ``--verbose`` as
@@ -109,9 +107,8 @@ of bug fixes and new features.
 -  Windows: Now can select icons by index from files with multiple
    icons.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Avoid global passes caused by module specific optimization. The
    variable completeness os now traced per module and function scope,
@@ -149,9 +146,8 @@ of bug fixes and new features.
 -  Scons: Enhanced gcc version detection with improved caching behavior,
    this avoids querying the same gcc binary twice.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The description of Nuitka on PyPI was absent for a while. Added back
    by adding long description of the project derived from the README
@@ -176,9 +172,8 @@ of bug fixes and new features.
 -  The commit hook can now be disabled, it's in the Developer Manual how
    to do it.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Moved unary operations to their own module, the operators module was
    getting too crowded.
@@ -196,18 +191,16 @@ of bug fixes and new features.
    error exits and outputs checked to make sure we don't miss anything
    as easily.
 
-*******
- Tests
-*******
+Tests
+=====
 
 -  Adapted for some openSUSE specific path usages in standalone tests.
 
 -  Basic tests for onefile operation and with termination signal sent
    were added.
 
-*********
- Summary
-*********
+Summary
+=======
 
 The big changes in this release are the optimization changes to reduce
 the global passes and the memory savings from other optimization. These

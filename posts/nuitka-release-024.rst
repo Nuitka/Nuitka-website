@@ -10,9 +10,8 @@ right now, frankly, there is not much of a point to use Nuitka yet, with
 only a minor run time speed gain in trade for a long compile time. But
 hopefully we can change that quickly now.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  The use of exec in a local function now adds local variables to scope
    it is in.
@@ -20,9 +19,8 @@ hopefully we can change that quickly now.
 -  The same applies to ``from module_name import *`` which is now
    compiled correctly and adds variables to the local variables.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Raises ``UnboundLocalError`` when deleting a local variable with
    ``del`` twice.
@@ -33,9 +31,8 @@ hopefully we can change that quickly now.
 -  Read of to uninitialized closure variables gave ``NameError``, but
    ``UnboundLocalError`` is correct and raised now.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  There is now a dedicated pass over the node tree right before code
    generation starts, so that some analysis can be done as late as that.
@@ -49,9 +46,8 @@ hopefully we can change that quickly now.
    helper classes. Also reduces the "module.so" sizes, because classes
    cannot be made static otherwise.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  Added "DoubleDeletions" to cover behaviour of ``del``. It seems that
    this is not part of the CPython test suite.

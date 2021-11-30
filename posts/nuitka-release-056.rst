@@ -4,9 +4,8 @@ This release brings bug fixes, important new optimization, newly
 supported platforms, and important compatibility improvements. Progress
 on all fronts.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Closure taking of global variables in member functions of classes
    that had a class variable of the same name was binding to the class
@@ -85,9 +84,8 @@ on all fronts.
    version check was always failing, because these report a shortened
    version number to Scons.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Local variables that must be assigned also have no side effects,
    making use of SSA. This allows for a host of optimization to be
@@ -96,9 +94,8 @@ on all fronts.
 
 -  Micro optimization to ``dict`` built-in for simpler code generation.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Added support for ARM "hard float" architecture.
 
@@ -119,9 +116,8 @@ on all fronts.
 -  Using Nikola 7.1 with external filters instead of our own, outdated
    branch for the web site.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  PyLint clean for the first time ever. We now have a Buildbot driven
    test that this stays that way.
@@ -146,9 +142,8 @@ on all fronts.
 -  Do not use ``replaceWith`` on child nodes, that potentially were
    re-used during their computation.
 
-*********
- Summary
-*********
+Summary
+=======
 
 The release is mainly the result of consolidation work. While the
 previous release contained many important enhancements, this is another

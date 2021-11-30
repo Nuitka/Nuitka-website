@@ -16,9 +16,8 @@ I would like to thank Debian Legal team, for originally bringing to my
 attention, that this license will be better suited, than any copyright
 assignment could be.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  The compiled functions could not be used with ``multiprocessing`` or
    ``copy.copy``. `Issue#19 <http://bugs.nuitka.net/issue19>`__. Fixed
@@ -38,18 +37,16 @@ assignment could be.
    includes. `Issue#38 <http://bugs.nuitka.net/issue38>`__. Fixed in
    0.3.22.2 already.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  The fix for `Issue#19 <http://bugs.nuitka.net/issue19>`__ also makes
    pickling of compiled functions available. As it is the case for
    non-compiled functions in CPython, no code objects are stored, only
    names of module level variables.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Using the Apache License 2.0 for all of Nuitka now.
 
@@ -62,9 +59,8 @@ assignment could be.
       generate static pages with graphs instead. We can this still
       speedcenter.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  Changed the "CPython26" tests to no longer disable the parts that
    relied on copying of functions to work, as `Issue#19
@@ -78,9 +74,8 @@ assignment could be.
    installs some modules, and compiling this would have revealed
    `Issue#36 <http://bugs.nuitka.net/issue36>`__ sooner.
 
-*********
- Summary
-*********
+Summary
+=======
 
 The release contains bug fixes, and the huge step of changing `the
 license <http://www.apache.org/licenses/LICENSE-2.0>`__. It is made in

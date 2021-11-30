@@ -18,9 +18,8 @@ release. It won't link, but there will be later releases.
 And there is a lot of cleanup going on, geared towards compatibility
 with line numbers in the frame object.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  The main module was using ``__main__`` in tracebacks, but it must be
    ``<module>``. Released as 0.3.14a hot fix already.
@@ -49,9 +48,8 @@ with line numbers in the frame object.
 -  Using the frame objects ``f_lineno`` may fix endless amounts bugs
    related to traceback line numbers.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Guesses the location of the MinGW compiler under Windows to default
    install location, so it need not be added to ``PATH`` environment
@@ -62,9 +60,8 @@ with line numbers in the frame object.
    is. Lets just say, it was the last absurd language feature out there,
    plus that didn't work. It now works perfect.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  You can now download a Windows installer and a Debian package that
    works on Debian Testing, current Ubuntu and Mint Linux.
@@ -94,18 +91,16 @@ with line numbers in the frame object.
    with ``valgrind``. It will give better information that way, without
    changing the code.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Implemented ``swapcontext`` alike (``swapFiber``) for x64 to achieve
    8 times speedup for Generators. It doesn't do useless syscalls to
    preserve signal masks. Now Nuitka is faster at frame switching than
    CPython on x64, which is already good by design.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Using the frame objects to store current line of execution avoids the
    need to store it away in helper code at all. It ought to also help a
@@ -132,9 +127,8 @@ with line numbers in the frame object.
 
 -  Some more PyLint cleanups.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  The tests are now executed by Python scripts and cover ``stderr``
    output too. Before we only checked ``stdout``. This unveiled a bunch
@@ -146,9 +140,8 @@ with line numbers in the frame object.
 -  The scripts to run the tests now are all in pure Python. This means,
    no more MinGW shell is needed to execute the tests.
 
-*********
- Summary
-*********
+Summary
+=======
 
 The Debian package, Windows installer, etc. are now automatically
 updated and uploaded. From here on, there can be such packages for the

@@ -6,9 +6,8 @@ distutils. The major improvement is that contractions no longer use
 pseudo functions to achieve their own local scope, but that there is now
 a dedicated structure for that representing an in-lined function.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Python3.6: Fix, ``async for`` was not yet implemented for async
    generators.
@@ -89,9 +88,8 @@ a dedicated structure for that representing an in-lined function.
 -  Compatibility: For ``__future__`` imports the ``__import__`` function
    was called more than once.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Contractions are now all properly inlined and allow for optimization
    as if they were fully local. This should give better code in some
@@ -103,9 +101,8 @@ a dedicated structure for that representing an in-lined function.
 -  The dictionary API was not used in module template code, although it
    helps to generate more compact code.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Experimental support for building platform dependent wheel
    distribution.
@@ -140,9 +137,8 @@ a dedicated structure for that representing an in-lined function.
    status and can be used to test compatibility with regards to import
    behavior.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Rename tree and codegen ``Helper`` modules to unique names, making
    them easier to work with.
@@ -166,9 +162,8 @@ a dedicated structure for that representing an in-lined function.
 -  Proper base classes for functions that are entry points, and
    functions that are merely a local expression using return statements.
 
-*******
- Tests
-*******
+Tests
+=====
 
 -  The search mode with pattern, was not working anymore.
 
@@ -177,9 +172,8 @@ a dedicated structure for that representing an in-lined function.
 -  Added test that covers using test runners like ``nose`` and
    ``py.test`` with Nuitka compiled extension modules.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Added support for Scons 3.0 and running Scons with Python3.5 or
    higher. The option to specify the Python to use for scons has been
@@ -202,9 +196,8 @@ a dedicated structure for that representing an in-lined function.
 
 -  Removed Ubuntu Wily package download, no longer supported by Ubuntu.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release was done to get the fixes and new features out for testing.
 There is work started that should make generators use an explicit extra

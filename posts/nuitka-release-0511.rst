@@ -5,9 +5,8 @@ regressions, which got addressed with hot fix releases. But it also had
 a focus on cleaning up open optimization issues that were postponed in
 the last release.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  The filenames of source files as found in the ``__file__`` attribute
    are now made relative for all modes, not just standalone mode.
@@ -16,9 +15,8 @@ the last release.
    in a deployment. This solves `Issue#170
    <http://bugs.nuitka.net/issue170>`__.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Local functions that reference themselves were not released. They now
    are.
@@ -80,9 +78,8 @@ the last release.
    must not be done though, ``__doc__`` can be any type in Python. This
    corrects `Issue#177 <http://bugs.nuitka.net/issue177>`__.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Variables that need not be shared, because the uses in closure taking
    functions were eliminated, no longer use cell objects.
@@ -154,9 +151,8 @@ the last release.
    lookups to find ``os.path.join`` again and again. These are now
    cached, speeding up the use of many modules as well.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Nuitka used to have "variable usage profiles" and still used them to
    decide if a global variable is written to, in which case, it stays
@@ -173,9 +169,8 @@ the last release.
    framework, which will become an interface to Nuitka internals in the
    future.
 
-*********
- Testing
-*********
+Testing
+=======
 
 -  The use of deep hashing of constants allows us to check if constants
    become mutated during the run-time of a program. This allows to
@@ -188,16 +183,14 @@ the last release.
    cycles involving compiled functions, or usage of ``__closure__``
    attribute, were reactivated.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Since Google Code has shutdown, it has been removed from the Nuitka
    git mirrors.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release brings exciting new optimization with the focus on the
 ``try`` constructs, now being done more optimal. It is also a

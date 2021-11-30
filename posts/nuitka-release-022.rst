@@ -3,9 +3,8 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 This is some significant progress, a lot of important things were
 addressed.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Scope analysis is now done during the tree building instead of
    sometimes during code generation, this fixed a few issues that didn't
@@ -25,9 +24,8 @@ addressed.
 -  The first iterated of a generator expression was evaluated in its own
    context, now it is done in the context of the containing scope.
 
-*********************
- Reduced Differences
-*********************
+Reduced Differences
+===================
 
 -  With the enhanced scope analysis, ``UnboundLocalError`` is now
    correctly supported.
@@ -41,9 +39,8 @@ addressed.
 -  Relative imports inside packages are now correctly resolved at
    compile time when using ``--deep``.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  The compiled function type got further enhanced and cleaned up.
 
@@ -68,24 +65,21 @@ addressed.
 -  Some more code templates have been created, making the code
    generation more readable in some parts. More to come.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  As I start to consider announcing Nuitka, I moved the version logic
    so that the version can now be queried with ``--version``.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Name lookups for ``None``, ``True`` and ``False`` and now always
    detected as constants, eliminating many useless module variable
    lookups.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  More complete test of generator expressions.
 
@@ -95,9 +89,8 @@ addressed.
 -  The built-in ``dir()`` in a function was not having fully
    deterministic output list, now it does.
 
-*********
- Summary
-*********
+Summary
+=======
 
 Overall, the amount of differences between CPython and Nuitka is heading
 towards zero. Also most of the improvements done in this release were

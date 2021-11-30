@@ -18,9 +18,8 @@ And then of course, more re-formulation work, in this case, class
 definitions are now mere simple functions. This and later function
 references, is the important and only progress towards type inference.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  The compiled method type can now be used with ``copy`` module. That
    means, instances with methods can now be copied too. `Issue#40
@@ -54,9 +53,8 @@ references, is the important and only progress towards type inference.
 
 -  For Python2, the ``del`` of a closure variable is a ``SyntaxError``.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Added support creating compiled packages. If you give Nuitka a
    directory with an "__init__.py" file, it will compile that package
@@ -82,9 +80,8 @@ references, is the important and only progress towards type inference.
    more correctly and attributes are now interned strings, so that
    monkey patching classes works.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Migrated "bin/benchmark.sh" to Python as "misc/run-valgrind.py" and
    made it a bit more portable that way. Prefers "/var/tmp" if it exists
@@ -116,9 +113,8 @@ references, is the important and only progress towards type inference.
    -  Added links to the bug tracker all Issues.
    -  Unified wordings, quotation, across the documents.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  The creation of the class dictionaries is now done with normal
    function bodies, that only needed to learn how to throw an exception
@@ -141,9 +137,8 @@ references, is the important and only progress towards type inference.
    buggy and has been removed. The dependence on C++11 is getting less
    and less.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  Updated CPython2.6 test suite "tests/CPython26" to 2.6.8, adding
    tests for recent bug fixes in CPython. No changes to Nuitka were
@@ -170,9 +165,8 @@ references, is the important and only progress towards type inference.
 -  Removed "Unicode" from known error cases for CPython3.2, it's now
    working.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release brought forward the most important remaining re-formulation
 changes needed for Nuitka. Removing class bodies, makes optimization yet

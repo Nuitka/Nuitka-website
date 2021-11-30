@@ -16,9 +16,8 @@ Due to the use of the "git flow", most of the bugs listed here were
 already fixed in on the stable release before this release. And there
 were many of these.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  The order of evaluation for base classes and class dictionaries was
    not enforced.
@@ -89,9 +88,8 @@ were many of these.
 -  The standard library path was hard coded. Changed to run time
    detection.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Version checks on Python runtime now use a new define
    ``PYTHON_VERSION`` that makes it easier. I don't like
@@ -108,9 +106,8 @@ were many of these.
 -  Moved ``nuitka.Nodes`` to ``nuitka.nodes.Nodes``, that is what the
    package is intended for, the split will come later.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  New tests for import variants that previously didn't work: Mixed
    imports. Imports from a package one level up. Modules hidden by a
@@ -124,9 +121,8 @@ were many of these.
 
 -  Added test to cover evaluation order of class definitions.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Migrated the "README.txt" from org-mode to ReStructured Text, which
    allows for a more readable document, and to generate a nice `User
@@ -172,9 +168,8 @@ were many of these.
    standard library, there is a ``--really-deep`` option that has to be
    given in addition to ``--deep``, which forces this.
 
-*********
- Summary
-*********
+Summary
+=======
 
 Again, huge progress. The improved import mechanism is very beautiful.
 It appears that little is missing to compile real world programs like

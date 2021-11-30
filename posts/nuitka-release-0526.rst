@@ -5,9 +5,8 @@ changes in all areas. The driving goal was to prepare generating C
 specific code, which is still not the case, but this is very likely
 going to change soon. However this release improves all aspects.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Compatibility: Fix, for star imports didn't check the values from the
    ``__all__`` iterable, if they were string values which could cause
@@ -69,9 +68,8 @@ going to change soon. However this release improves all aspects.
 
 -  Standalone: Ignore more Windows only encodings on non-Windows.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Support for Python 3.6 with only few corner cases not supported yet.
 
@@ -83,9 +81,8 @@ going to change soon. However this release improves all aspects.
 -  Uninstalled Python versions such as Anaconda will work fine in
    accelerated mode, except on Windows.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  The node tree children are no longer stored in a separate dictionary,
    but in the instance dictionary as attributes, making the tree more
@@ -140,9 +137,8 @@ going to change soon. However this release improves all aspects.
 -  Removed the need for statement context during code generation making
    it less memory intensive and faster.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Now always uses the ``__import__`` built-in node for all kinds of
    imports and directly optimizes and recursion into other modules based
@@ -208,9 +204,8 @@ going to change soon. However this release improves all aspects.
    function was once required before "C-ish" lifted the need to do
    everything in one single function call.
 
-*******
- Tests
-*******
+Tests
+=====
 
 -  More robust deletion of directories, temporary stages used by CPython
    test suites, and standalone directories during test execution.
@@ -222,9 +217,8 @@ going to change soon. However this release improves all aspects.
 -  Made standalone binaries robust against GTK theme access, checking
    the Python binary (some site.py files do that),
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Added repository for Ubuntu Zesty (17.04) for download.
 
@@ -238,9 +232,8 @@ going to change soon. However this release improves all aspects.
    this one with the 64 bits variant. All other versions are provided
    for both bit sizes still.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release marks huge progress. The node tree is now absolutely clean,
 the variable closure taking is fully represented, and code generation is

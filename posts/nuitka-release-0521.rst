@@ -3,9 +3,8 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 This release focused on scalability work. Making Nuitka more usable in
 the common case, and covering more standalone use cases.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Windows: Support for newer MinGW64 was broken by a workaround for
    older MinGW64 versions.
@@ -21,9 +20,8 @@ the common case, and covering more standalone use cases.
 -  Standalone: Wasn't properly ignoring ``Tools`` and other directories
    in the standard library.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Windows: Detect the MinGW compiler arch and compare it to the Python
    arch. In case of a mismatch, the compiler is not used. Otherwise
@@ -39,18 +37,16 @@ the common case, and covering more standalone use cases.
    the command ``pip install -e nuitka_git_checkout_dir`` is now
    supported too.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Popular modules known to not be performance relevant are no longer C
    compiled, e.g. ``numpy.distutils`` and many others frequently
    imported (from some other module), but mostly not used and definitely
    not performance relevant.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  The progress tracing and the memory tracing and now more clearly
    separate and therefore more readable.
@@ -62,9 +58,8 @@ the common case, and covering more standalone use cases.
 -  Converted import sorting helper script to Python and made it run
    fast.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The Buildbot infrastructure for Nuitka was updated to Buildbot 0.8.12
    and is now maintained up to date with Ansible.
@@ -74,9 +69,8 @@ the common case, and covering more standalone use cases.
 
 -  Added SSL certificates from Let's Encrypt for the web server.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release advances the scalability of Nuitka somewhat. The two pass
 approach does not yet carry all possible fruits. Caching of single pass

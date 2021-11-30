@@ -14,9 +14,8 @@ contributed a lot of high quality commits as you can see from the gitweb
 history. He appears to try and compile Mercurial and Nuitka, and this
 resulted in important contributions.
 
-***********
- Bug fixes
-***********
+Bug fixes
+=========
 
 -  Nicolas found a reference counting bug with nested parameter calls.
    Where a function had parameters of the form ``a, (b,c)`` it could
@@ -54,9 +53,8 @@ resulted in important contributions.
 -  A local re-raise of an exception didn't have the original line
    attached but the re-raise statement line.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Modules and packages have been unified. Packages can now also have
    code in "__init__.py" and then it will be executed when the package
@@ -89,9 +87,8 @@ resulted in important contributions.
    Previously I just didn't care, but we sort of approach end user
    usability with this.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Added optimization for the built-in ``range()`` which otherwise
    requires a module and ``builtin`` module lookup, then parameter
@@ -116,9 +113,8 @@ resulted in important contributions.
 -  Conditional statement and/or their branches are eliminated where
    constant conditions allow it.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Nicolas moved the Nuitka source code to its own ``nuitka`` package.
    That is going to make packaging it a lot easier and allows cleaner
@@ -181,9 +177,8 @@ resulted in important contributions.
    trailing/leading new line is more consistent now, and there were some
    assertions added that it doesn't happen.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  The CPython 2.6 tests are now also run by CPython 2.7 and the other
    way around and need to report the same test failure reports, which
@@ -199,9 +194,8 @@ resulted in important contributions.
    disabled though, because it requires entirely different rules to be
    done right, it has been pushed back to the next release.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The ``g++-nuitka`` script is no more. With the help of the Scons
    community, this is now performed inside the scons and only once
@@ -238,9 +232,8 @@ resulted in important contributions.
 -  Pylint got more happy with the current Nuitka source. In some places,
    I added comments where rules should be granted exceptions.
 
-*********
- Numbers
-*********
+Numbers
+=======
 
 python 2.6:
 

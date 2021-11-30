@@ -5,9 +5,8 @@ already part of hot fixes, usability improvements, documentation
 improvements, new logo, simpler Python3 on Windows, warnings for
 recursion options, and so on. So it's mostly a consolidation release.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  When targeting Python 3.x, Nuitka was using "python" to run Scons to
    run it under Python 2.x, which is not good enough on systems, where
@@ -59,9 +58,8 @@ recursion options, and so on. So it's mostly a consolidation release.
 -  Using ``sys.prefix`` to find the Python installation instead of hard
    coded paths. `Issue#103 <http://bugs.nuitka.net/issue103>`__.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Windows: Python3 finds Python2 installation to run Scons
    automatically now.
@@ -84,9 +82,8 @@ recursion options, and so on. So it's mostly a consolidation release.
 -  Added a warning for ``--recurse-to`` arguments that end up having no
    effect to the final result.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Import mechanism got cleaned up, stopped using
    "PyImport_ExtendInittab". It does not handle packages, and the
@@ -95,9 +92,8 @@ recursion options, and so on. So it's mostly a consolidation release.
 -  Moved some of the constraint collection code mess into proper places.
    It still remains a mess.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Added ``LICENSE.txt`` file with Apache License 2.0 text to make it
    more immediately obvious which license Nuitka is under.
@@ -118,9 +114,8 @@ recursion options, and so on. So it's mostly a consolidation release.
 -  Enhanced documentation to number page numbers starting after table of
    contents, removed header/footer from cover pages.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release is mostly the result of improvements made based on the
 surge of users after Europython 2013. Some people went to extents and

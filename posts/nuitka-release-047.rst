@@ -3,9 +3,8 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 This release includes important new features, lots of polishing
 cleanups, and some important performance improvements as well.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  The RPM packages didn't build due to missing in-line copy of Scons.
    Fixed in 0.4.6.1 already.
@@ -35,9 +34,8 @@ cleanups, and some important performance improvements as well.
    triggered when comparing types with rich comparisons. `Issue#115
    <http://bugs.nuitka.net/issue115>`__.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  The "standalone" mode allows to compile standalone binaries for
    programs and run them without Python installation. The DLLs loaded by
@@ -57,9 +55,8 @@ cleanups, and some important performance improvements as well.
    often imports many useless things that often don't apply to target
    systems.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Faster frame stack handling for functions without ``try``/``except``
    (or ``try``/``finally`` in Python3). This gives a speed boost to
@@ -99,9 +96,8 @@ cleanups, and some important performance improvements as well.
 -  Module variables are now accessed even faster, the gain for "PyStone"
    is only 0.1% and mostly the result of leaner code.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The "standalone mode" code (formerly known as "portable mode" has
    been redone and activated. This is a feature that a lot of people
@@ -128,9 +124,8 @@ cleanups, and some important performance improvements as well.
    constants will not change around. This makes the build results
    possible to cache for ``ccache`` and Scons as well.
 
-*******
- Tests
-*******
+Tests
+=====
 
 -  The ``programs`` tests cases now fail if module or directory
    recursion is not working, being executed in another directory.
@@ -147,9 +142,8 @@ cleanups, and some important performance improvements as well.
 -  Use ``--execute`` on Windows as well, the issue that prevented it has
    been solved after all.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  The generated code uses ``const_``, ``var_``, ``par_`` prefixes in
    the generated code and centralized the decision about these into
@@ -180,9 +174,8 @@ cleanups, and some important performance improvements as well.
 -  Moved main program, function object, set related code generation to
    dedicated modules.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release marks major technological progress with the introduction of
 the much sought standalone mode and performance improvements from

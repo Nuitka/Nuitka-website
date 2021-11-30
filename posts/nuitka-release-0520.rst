@@ -6,9 +6,8 @@ general compatibility corrections, as well as important fixes for
 Python3.5 and coroutines and to improve compatibility with special
 Python variants like Anaconda under the Windows system.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Standalone Python3.5: The ``_decimal`` module at least is using a
    ``__name__`` that doesn't match the name at load time, causing
@@ -49,9 +48,8 @@ Python variants like Anaconda under the Windows system.
 -  Standalone: Added missing DLL dependency of the ``uuid`` module at
    run time, which uses ctypes to load it.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Added support for Anaconda Python on this Linux. Both accelerated and
    standalone mode work now. `Issue#295
@@ -63,9 +61,8 @@ Python variants like Anaconda under the Windows system.
 -  The plug-in framework was expanded with new features to allow
    addressing some specific issues.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Moved memory related stuff to dedicated utils package
    ``nuitka.utils.MemoryUsage`` as part of an effort to have more
@@ -77,9 +74,8 @@ Python variants like Anaconda under the Windows system.
 -  No more "early" and "late" import detections for standalone mode. We
    now scan everything at the start.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release focused on expanding plugins. These were then used to
 enhance the success of standalone compatibility. Eventually this should

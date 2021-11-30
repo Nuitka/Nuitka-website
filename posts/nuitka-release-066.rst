@@ -4,9 +4,8 @@ This release contains huge amounts of crucial bug fixes all across the
 board. There is also new optimization and many organisational
 improvements.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Fix, the top level module must not be bytecode. Otherwise we end up
    violating the requirement for an entry point on the C level.
@@ -95,9 +94,8 @@ improvements.
 -  Fix, ``--python-flags=no_docstrings`` no longer implies disabling the
    assertions.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Added experimental support for Python 3.8, there is only very few
    things missing for full support.
@@ -120,9 +118,8 @@ improvements.
    it if requested via ``--clang`` option. This is only the 32 bits
    variant, but currently the easy way to use it on Windows with Nuitka.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Loop variables were analysed, but results were only available on the
    inside of the loop, preventing many optimization in these cases.
@@ -187,9 +184,8 @@ improvements.
 -  Restored Python2 fast path for ``int`` with unknown object types,
    restoring performance for these.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Use dedicated ``ModuleName`` type that makes the tests that check if
    a given module name is inside a namespace as methods. This was hard
@@ -231,9 +227,8 @@ improvements.
    checks by pre-processor, hiding new stuff behind macros, that ignore
    things on older Python versions.
 
-*******
- Tests
-*******
+Tests
+=====
 
 -  Added many more built-in tests for increased coverage of the newly
    covered ones, some of them being generic tests that allow to test all
@@ -258,9 +253,8 @@ improvements.
 
 -  Execute the Python3 tests for macOS on Travis too.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The donation sponsored machine called ``donatix`` had to be replaced
    due to hardware breakage. It was replaced with a Raspberry-Pi 4.
@@ -284,9 +278,8 @@ improvements.
 -  Added deep check function that descends into tuples to check their
    elements too.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release comes after a long time of 4 months without a release, and
 has accumulated massive amounts of changes. The work on CPython 3.8 is

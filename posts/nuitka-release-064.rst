@@ -3,9 +3,8 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 This release contains many bug fixes all across the board. There is also
 new optimization and many organisational improvements.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  When linking very large programs or packages, with gcc compiler,
    Scons can produce commands that are too large for the OS. This
@@ -59,9 +58,8 @@ new optimization and many organisational improvements.
 -  Python3: Proper C identifiers for names that fit into ``latin-1``,
    but are not ``ascii`` encodings.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Windows: Catch most common user error of using compiler from one
    architecture against Python from another. We now check those and
@@ -77,9 +75,8 @@ new optimization and many organisational improvements.
 
 -  Python3.8: Initial compatibility changes to get basic tests to work.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  Nuitka is participating in the GSoC 2019 with 2 students, Batakrishna
    and Tommy.
@@ -103,9 +100,8 @@ new optimization and many organisational improvements.
 -  Added support for Ubuntu Disco, removed support for Ubuntu Artful
    packages.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Windows: Attach data blobs as Windows resource files directly for
    programs and avoid using C data files for modules or MinGW64, which
@@ -130,9 +126,8 @@ new optimization and many organisational improvements.
 
 -  Better static analysis for even more type operations.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  Fixed many kinds of typos in the code base with ``codespell``.
 
@@ -143,9 +138,8 @@ new optimization and many organisational improvements.
    already exists, instead provide
    ``nuitka.util.FileOperations.copyTree`` and use that exclusively.
 
-*******
- Tests
-*******
+Tests
+=====
 
 -  Added new mode of operation to test runners, ``only`` that executes
    just one test and stops, useful during development.
@@ -168,9 +162,8 @@ new optimization and many organisational improvements.
 
 -  Added standalone test for passlib.
 
-*********
- Summary
-*********
+Summary
+=======
 
 Again this release is a sign of increasing adoption of Nuitka. The GSoC
 2019 is also showing effects, definitely will in the next release.

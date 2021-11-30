@@ -15,9 +15,8 @@ in "--experimental" mode, the SSA code starts to optimize unused code
 away. That code is not yet ready for prime time yet, but the trace
 structure will hold.
 
-**************
- New Features
-**************
+New Features
+============
 
 -  Python3.3 support.
 
@@ -41,9 +40,8 @@ structure will hold.
    Threading appears to work just fine in the most cases. It's not as
    optimal as I wanted it to be, but that's going to change with time.
 
-**************
- Optimization
-**************
+Optimization
+============
 
 -  Previous corrections for ``==``, ``!=``, and ``<=``, caused a
    performance regression for these operations in case of handling
@@ -67,9 +65,8 @@ structure will hold.
    or creates them on the fly, instead of hard coding it. Saves binary
    size and should be more cache friendly.
 
-***********
- Bug Fixes
-***********
+Bug Fixes
+=========
 
 -  Corrected false optimization of ``a >= a`` on C++ level.
 
@@ -134,9 +131,8 @@ structure will hold.
 -  Python3: Specifying the file encoding corrupted line numbers, making
    them all of by one.
 
-**********
- Cleanups
-**********
+Cleanups
+========
 
 -  For containers (``tuple``, ``list``, ``set``, ``dict``) defined on
    the source code level, Nuitka immediately created constant references
@@ -176,9 +172,8 @@ structure will hold.
 
 -  Many line length 80 changes, improved comments.
 
-***********
- New Tests
-***********
+New Tests
+=========
 
 -  The CPython3.3 test suite was added, and run with both Python3.2 and
    Python3.3, finding new bugs.
@@ -188,9 +183,8 @@ structure will hold.
    ``SyntaxError`` and therefore not actually active. Correcting that
    improved the coverage of generator testing.
 
-****************
- Organisational
-****************
+Organisational
+==============
 
 -  The portable code is still delayed.
 
@@ -200,9 +194,8 @@ structure will hold.
    Added notes about it being disabled it in the `User Manual
    <https://nuitka.net/doc/user-manual.html>`__ documentation.
 
-*********
- Summary
-*********
+Summary
+=======
 
 This release is in preparation for Europython 2013. Wanted to get this
 much out, as it changes the status slides quite a bit, and all of that
