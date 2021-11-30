@@ -10,4 +10,5 @@
         "output" : true,
     },
     "restructuredtext.confPath": "",
+    "python.formatting.provider": "black",
 }

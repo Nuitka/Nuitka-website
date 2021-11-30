@@ -472,15 +472,14 @@ def updateDownloadPage():
             filename
         )
 
-        templates["NUITKA_" + category.upper() + "_MSI_" + version + "_" + bits] = (
-            r"`Nuitka %%(msi_%(category)s_%(version)s_%(bits)s)s Python%(dot_version)s %(bits)s bit MSI <https://nuitka.net/releases/%%(max_msi_%(category)s_%(version)s_%(bits)s)s>`__"
-            % {
-                "version": version,
-                "bits": bits,
-                "category": category,
-                "dot_version": version[0] + "." + version[-1],
-            }
-        )
+        templates[
+            "NUITKA_" + category.upper() + "_MSI_" + version + "_" + bits
+        ] = r"`Nuitka %%(msi_%(category)s_%(version)s_%(bits)s)s Python%(dot_version)s %(bits)s bit MSI <https://nuitka.net/releases/%%(max_msi_%(category)s_%(version)s_%(bits)s)s>`__" % {
+            "version": version,
+            "bits": bits,
+            "category": category,
+            "dot_version": version[0] + "." + version[-1],
+        }
 
     download_page = open("pages/download.rst").read()
 
@@ -510,10 +509,12 @@ def updateDownloadPage():
 
 def _updateCheckout(branch):
     print(f"Updating {branch} checkout...")
-    if os.path.exists(f"Nuitka-{branch}" ):
+    if os.path.exists(f"Nuitka-{branch}"):
         shutil.rmtree(f"Nuitka-{branch}")
 
-    urlretrieve(f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp")
+    urlretrieve(
+        f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
+    )
 
     with zipfile.ZipFile(f"nuitka.zip.tmp") as develop_archive:
         develop_archive.extractall(".")
@@ -524,7 +525,7 @@ def _updateCheckout(branch):
         "README.rst",
         "Developer_Manual.rst",
     ):
-        filename = os.path.join(f"Nuitka-{branch}",filename)
+        filename = os.path.join(f"Nuitka-{branch}", filename)
 
         with open(filename, "rb") as patched_file:
             old_cotents = new_contents = patched_file.read()
@@ -537,9 +538,7 @@ def _updateCheckout(branch):
             new_contents = new_contents.replace(
                 b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
             )
-            new_contents = new_contents.replace(
-                b"\n   :alt: Nuitka Logo", b"\n"
-            )
+            new_contents = new_contents.replace(b"\n   :alt: Nuitka Logo", b"\n")
 
         if old_cotents != new_contents:
             with open(filename, "wb") as out_file:
@@ -554,9 +553,9 @@ def updateNuitkaDevelop():
     _updateCheckout("develop")
 
 
-
 def updateNuitkaFactory():
     _updateCheckout("factory")
+
 
 # slugify is copied from
 # http://code.activestate.com/recipes/
@@ -620,12 +619,12 @@ def updateReleasePosts():
         ):
             lines = (
                 [
-                """\
+                    """\
 This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.\n""",
-                "\n",
-            ]
-            + lines
-        )
+                    "\n",
+                ]
+                + lines
+            )
 
             if count == 5:
                 older = "Older Releases"
@@ -672,15 +671,16 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
 
 
 def updateDocs():
-    # updateNuitkaMaster()
-    # updateNuitkaDevelop()
-    # updateNuitkaFactory()
+    updateNuitkaMaster()
+    updateNuitkaDevelop()
+    updateNuitkaFactory()
     updateReleasePosts()
 
 
 def runSphinxBuild():
     assert 0 == os.system("sphinx-build doc/ doc_generated/ -a")
     assert 0 == os.system("cp doc/*.rst doc_generated/")
+
 
 def runNikolaCommand(command):
     assert 0 == os.system("nikola " + command)
@@ -727,7 +727,7 @@ def updatePageDates():
 
             if full_name.endswith(".rst"):
                 output = subprocess.check_output(
-                    ["git", "log", "-1", '--pretty=%ci', full_name], shell=False
+                    ["git", "log", "-1", "--pretty=%ci", full_name], shell=False
                 ).strip()
 
                 meta_filename = full_name[:-3] + "meta"
@@ -740,7 +740,9 @@ def updatePageDates():
 
                 new_date = b".. date: " + output + b"\n"
 
-                meta_contents = [new_date if m.startswith(b".. date") else m for m in meta_contents]
+                meta_contents = [
+                    new_date if m.startswith(b".. date") else m for m in meta_contents
+                ]
 
                 with open(meta_filename, "wb") as output_file:
                     output_file.writelines(meta_contents)
@@ -838,6 +840,8 @@ When given, all is updated. Default %default.""",
 
 if __name__ == "__main__":
     print("Running with %s" % sys.executable)
-    os.environ["PATH"]=os.path.dirname(sys.executable) + os.pathsep + os.environ["PATH"]
+    os.environ["PATH"] = (
+        os.path.dirname(sys.executable) + os.pathsep + os.environ["PATH"]
+    )
 
     main()
