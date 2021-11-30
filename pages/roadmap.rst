@@ -201,9 +201,6 @@ than it should.
 
 List of things, we are aiming for to be included in that release.
 
-[ ] Caching for bytecode demoted modules so no optimization needs to be
-run.
-
 [x] Add version information for macOS bundles.
 
 [x] Building on new macOS works for old macOS deployment.
@@ -217,6 +214,11 @@ run.
 #################################
 
 List of things, we are aiming for to be included in that release.
+
+[ ] Support for Kivy 2.x to work out of the box.
+
+[ ] Caching for bytecode demoted modules so no optimization needs to be
+run.
 
 [ ] Compression of onefile with bootstrap before Python3.5, so far it's
 there for 3.5 or higher only.
