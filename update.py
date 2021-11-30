@@ -617,15 +617,6 @@ def updateReleasePosts():
         for title, lines in splitRestByChapter(
             open("Nuitka-factory/Changelog.rst").readlines()
         ):
-            lines = (
-                [
-                    """\
-This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.\n""",
-                    "\n",
-                ]
-                + lines
-            )
-
             if count == 5:
                 older = "Older Releases"
 
@@ -645,6 +636,16 @@ This is to inform you about the new stable release of `Nuitka <https://nuitka.ne
             # Ignore draft for pages.
             if "Draft" in title:
                 continue
+
+            # For the pages, use a leading sentence.
+            lines = (
+                [
+                    """\
+This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.\n""",
+                    "\n",
+                ]
+                + lines
+            )
 
             slug = slugify(title)
 
