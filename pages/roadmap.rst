@@ -139,9 +139,24 @@ compile numpy for speed.
    supported in binary operations and in-place operations, esp. for
    ``int``, ``float`` and ``long`` values.
 
+-  Make module variable traces available to functions. This will be
+   needed to optimize import of ``sys`` on module level and then
+   attribute access on function level at compile time.
+
 -  Implement the ``partial`` built-in and make it work with compiled
    functions. It could prepare calls much better, such that they do not
    come through keyword arguments unnecessarily.
+
+-  Take advantage of ``list.append`` representing nodes that these are
+   in fact compile time constants and generate more efficient code for
+   them, which some of the C implementations could use, examples would
+   be ``str.upper`` where we only call that cached attribute value.
+
+-  Complete ``str`` built-in methods for enhanced results, esp. for
+   compile time optimization.
+
+-  Add support for ``list`` methods, things like ``append`` really
+   should be optimized as well in the mostly existing operation nodes.
 
 ####################
  macOS enhancements
