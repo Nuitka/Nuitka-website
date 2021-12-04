@@ -214,6 +214,8 @@ def updateDownloadPage():
         def numberize(x):
             if x.startswith("lp"):
                 x = x[2:]
+            if x.startswith("bp"):
+                x = x[2:]
 
             return int(x)
 
