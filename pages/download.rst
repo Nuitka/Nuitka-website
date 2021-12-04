@@ -273,7 +273,7 @@ Develop releases are snapshots of the current development.
    `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/home:kayhayen.repo>`__
 
--  |FEDORA_LOGO| Develop: Fedora 33: |NUITKA_UNSTABLE_F34| or
+-  |FEDORA_LOGO| Develop: Fedora 34: |NUITKA_UNSTABLE_F34| or
    `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/home:kayhayen.repo>`__
 
