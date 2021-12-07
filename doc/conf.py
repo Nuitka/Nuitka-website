@@ -64,3 +64,7 @@ def setup(app):
     app.add_css_file('my_theme.css')
 
 html_static_path = ['_static']
+
+# Configure theme
+ html_theme_options = {
+     "prev_next_buttons_location" : 'none'
