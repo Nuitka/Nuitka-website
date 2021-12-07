@@ -39,7 +39,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_inline_tabs",
-    # "sphinxcontrib.twitter",
+    "sphinxcontrib.twitter",
 ]
 
 intersphinx_mapping = {
@@ -58,3 +58,9 @@ html_logo = "Nuitka-Logo-Symbol.png"
 epub_show_urls = "footnote"
 
 autodoc_member_order = 'bysource'
+
+# Enable our own CSS to be used.
+def setup(app):
+    app.add_css_file('my_theme.css')
+
+html_static_path = ['_static']
