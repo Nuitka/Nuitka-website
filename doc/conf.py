@@ -34,12 +34,11 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
-    "sphinx.ext.viewcode",
+    # "sphinx.ext.viewcode",
     # External extensions
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_inline_tabs",
-    "sphinxcontrib.twitter",
 ]
 
 intersphinx_mapping = {
@@ -53,6 +52,8 @@ templates_path = ["_templates"]
 # -- Options for HTML output
 html_theme = "sphinx_rtd_theme"
 html_logo = "Nuitka-Logo-Symbol.png"
+html_copy_source = False
+html_show_sourcelink = False
 
 # -- Options for EPUB output
 epub_show_urls = "footnote"
@@ -66,5 +67,6 @@ def setup(app):
 html_static_path = ['_static']
 
 # Configure theme
- html_theme_options = {
-     "prev_next_buttons_location" : 'none'
+html_theme_options = {
+    "prev_next_buttons_location" : 'none'
+}
