@@ -54,6 +54,7 @@ html_theme = "sphinx_rtd_theme"
 html_logo = "Nuitka-Logo-Symbol.png"
 html_copy_source = False
 html_show_sourcelink = False
+html_show_sphinx = False
 
 # -- Options for EPUB output
 epub_show_urls = "footnote"
