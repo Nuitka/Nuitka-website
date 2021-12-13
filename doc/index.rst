@@ -117,6 +117,12 @@ In the meantime you can find its `latest version here
    Roadmap <roadmap>
 
 .. toctree::
+   :caption: Downloads
+   :hidden:
+
+   Downloads <download>
+
+.. toctree::
    :caption: API doc
    :hidden:
 

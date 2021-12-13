@@ -281,18 +281,18 @@ FILES_FOLDERS = {
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ('/pages/overview.html', 'Overview'),
-        ('/pages/download.html', 'Download'),
+        ('/doc/index.html', 'Overview'),
+        ('/doc/download.html', 'Download'),
         ('/doc', 'Docs'),
         (
             (
                 ('/pages/support.html', "Support" ),
-                ('/pages/commercial.html', "Commercial" ),
+                ('/doc/commercial.html', "Commercial" ),
             ),
             'Support'),
-        ('/pages/commercial.html', 'Commercial'),
+        ('/doc/commercial.html', 'Commercial'),
         ('/pages/donations.html', 'Donations'),
-        ('/pages/impressum.html', 'About / Contact'),
+        ('/doc/impressum.html', 'About / Contact'),
         (
             (
                 ('https://github.com/Nuitka/Nuitka', '<strong>Source code (GitHub)</strong>'),

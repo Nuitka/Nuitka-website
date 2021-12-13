@@ -8,7 +8,7 @@ options:
 While Nuitka is Free Software, your software is not, and you want to get
 help with the tool, somebody to do it for you, or a quick solution, or
 even better IP protection with more advanced techniques. You are best
-served here in the `Nuitka Commercial area. </pages/commercial.html>`_.
+served here in the `Nuitka Commercial area. </doc/commercial.html>`_.
 
 ###########
  Donations

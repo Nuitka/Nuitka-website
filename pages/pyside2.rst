@@ -20,7 +20,7 @@ This is very understandable, now that Qt6 is out.
 
 The patched PySide2 source code and binary wheels for some platforms are
 available as part of the the `Nuitka Commercial
-</pages/commercial.html>`__ offering.
+</doc/commercial.html>`__ offering.
 
 #############
  Alternative

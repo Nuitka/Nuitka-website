@@ -1,46 +1,76 @@
+##################
+ Nuitka Downloads
+##################
 
-.. contents::
+*****************
+ General
+*****************
 
-The current release is Nuitka |NUITKA_STABLE_VERSION|, which is a good
-replacement of CPython with somewhat better performance. A 312% speed
-factor for the PyStone benchmark. The project didn't focus much on the
-performance side of things so far, therefore more improvements are
-expected in the future.
+Thank you for downloading Nuitka. Please consider becoming a subscriber. Downloads are
+available below in various formats.
 
-These archives are source and can be used directly, simply start with
-``bin/nuitka --help`` and read README.pdf to get started.
+.. raw:: html
 
-#################
+    <style>
+        .responsive-google-slides {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .responsive-google-slides iframe {
+            border: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+
+    <div class="responsive-google-slides">
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQ8gKXjTPukmeULWnjqSWWOKzopxEQ-LqfPYbvHE4wEPuYTnj3JmYFc8fm-EriAYgXzEbI-kWwaaQN/embed?rm=minimal&start=true&loop=true&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    </div>
+
+The current release is Nuitka |NUITKA_STABLE_VERSION|, during releases,
+it might happen that this information lags behind or that there is a new
+release not yet announced.
+
+*****************
  Source Archives
-#################
+*****************
 
-****************
- Stable Sources
-****************
+These archives are source and can be used directly after unpacking, simply start with
+``bin/nuitka --help`` and read ``README.pdf`` or ``README.rst`` to get started.
+
+Stable Sources
+==============
 
 Stable releases are supported with hot fixes.
 
 -  Stable: |NUITKA_STABLE_TAR_GZ|
+
 -  Stable: |NUITKA_STABLE_TAR_BZ|
+
 -  Stable: |NUITKA_STABLE_ZIP|
 
-*********************
- Development Sources
-*********************
+Development Sources
+===================
 
-Develop releases are snapshots of the current development.
+Develop releases are snapshots of the current ``develop`` branch in git, usually also relatively stable.
 
 -  Develop: |NUITKA_UNSTABLE_TAR_GZ|
+
 -  Develop: |NUITKA_UNSTABLE_TAR_BZ|
+
 -  Develop: |NUITKA_UNSTABLE_ZIP|
 
-##########
+**********
  Packages
-##########
+**********
 
-*********
- Windows
-*********
+Windows
+=======
 
 -  |WINDOWS_LOGO| Stable MSI Installer:
 
@@ -97,14 +127,13 @@ Develop releases are snapshots of the current development.
    | Python 3.9   | |NUITKA_UNSTABLE_MSI_39_64| | |NUITKA_UNSTABLE_MSI_39_32| |
    +--------------+-----------------------------+-----------------------------+
 
-********************
- Debian/Ubuntu/Mint
-********************
+Debian/Ubuntu/Mint
+==================
 
 -  |DEBIAN_LOGO| |UBUNTU_LOGO| |MINT_LOGO| Stable: Debian/Ubuntu/Mint
    repositories
 
-   .. code:: sh
+   .. code:: bash
 
       CODENAME=`grep UBUNTU_CODENAME /etc/os-release | cut -d= -f2`
       if [ -z "$CODENAME" ]
@@ -119,7 +148,7 @@ Develop releases are snapshots of the current development.
 -  |DEBIAN_LOGO| |UBUNTU_LOGO| |MINT_LOGO| Develop: Debian/Ubuntu/Mint
    repositories
 
-   .. code:: sh
+   .. code:: bash
 
       CODENAME=`grep UBUNTU_CODENAME /etc/os-release | cut -d= -f2`
       if [ -z "$CODENAME" ]
@@ -137,9 +166,8 @@ Develop releases are snapshots of the current development.
       version is already in the standard repository. This is the only
       way to access the develop version of Nuitka though.
 
-******
- RHEL
-******
+RHEL
+====
 
 -  |RHEL_LOGO| Stable: RHEL 6.x Packages: |NUITKA_STABLE_RHEL6| or
    `repository file
@@ -157,9 +185,8 @@ Develop releases are snapshots of the current development.
    `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/home:kayhayen.repo>`__
 
-********
- CentOS
-********
+CentOS
+======
 
 -  |CENTOS_LOGO| Stable: CentOS 6.x Packages: |NUITKA_STABLE_CENTOS6| or
    `repository file
@@ -185,9 +212,8 @@ Develop releases are snapshots of the current development.
    or `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo>`__
 
-********
- Fedora
-********
+Fedora
+======
 
 -  |FEDORA_LOGO| Stable: Fedora 24: |NUITKA_STABLE_F24| or `repository
    file
@@ -277,9 +303,8 @@ Develop releases are snapshots of the current development.
    `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/home:kayhayen.repo>`__
 
-******
- Suse
-******
+Suse
+====
 
 -  |SLE_LOGO| Stable: SLE 15: |NUITKA_STABLE_SLE150| or `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/SLE_15/home:kayhayen.repo>`__
@@ -328,60 +353,57 @@ Develop releases are snapshots of the current development.
    `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/home:kayhayen.repo>`__
 
-******
- Arch
-******
+Arch
+====
 
 -  |ARCH_LOGO| Stable: Arch Linux, execute ``pacman -S nuitka``
+
 -  |ARCH_LOGO| Develop: Arch Linux `Nuitka from git develop
    <https://aur.archlinux.org/packages/nuitka-git/>`_
 
-********
- Gentoo
-********
+Gentoo
+======
 
 -  |GENTOO_LOGO| Gentoo Linux, execute ``emerge -a dev-python/nuitka``
 
-*******
- macOS
-*******
+macOS
+=====
 
 No installer is available for macOS. Use the source packages, clone from
 git, or use PyPI.
 
-############
+************
  PyPI / pip
-############
+************
 
 There is `Nuitka on PyPI <http://pypi.python.org/pypi/Nuitka/>`_ as
 well. So you can install with ``pip`` as follows.
 
-********
- Stable
-********
+Stable
+======
 
 The stable version from PyPI can be installed like this:
 
-.. code:: sh
+.. code:: bash
 
    pip install -U nuitka
 
-*********
- Develop
-*********
+Develop
+=======
 
 The develop version can be fetched from the Official git repo of Nuitka
 like this:
 
-.. code:: sh
+.. code:: bash
 
    pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
 
-########
+********
  Github
-########
+********
 
 -  |GIT_LOGO| Stable: **git clone https://github.com/Nuitka/Nuitka**
+
 -  |GIT_LOGO| Develop: **git clone --branch develop
    https://github.com/Nuitka/Nuitka**
 
@@ -740,7 +762,7 @@ Github.
 
 .. |SLE_LOGO| image:: images/opensuse.png
 
-.. |WINDOWS_LOGO| image:: images/windows.jpg
+.. |WINDOWS_LOGO| image:: /images/windows.jpg
 
 .. |ARCH_LOGO| image:: images/arch.jpg
 
