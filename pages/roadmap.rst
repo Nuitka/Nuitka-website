@@ -1,8 +1,12 @@
+################
+ Nuitka Roadmap
+################
+
 This is the Nuitka roadmap, broken down by features.
 
-####################
+********************
  User Extensibility
-####################
+********************
 
 -  Data files, implicit imports are in yaml format as of 0.6.18, but
    even DLL inclusion, and plugins location should be specified in yaml
@@ -16,9 +20,9 @@ This is the Nuitka roadmap, broken down by features.
    ``data-files``, and ``implicit-imports`` plugin, and will extend from
    there.
 
-############
+************
  Standalone
-############
+************
 
 -  "Multidist" support (undecided)
 
@@ -89,18 +93,18 @@ expect it to solve the onefile compression issue. However, a post
 processing of binaries, even from CPython extension modules, seems to
 work and reduce the uncompressed sizes of binaries already.
 
-########################
+************************
  Nuitka-Python (public)
-########################
+************************
 
 This is currently under way and not yet described here. The current
 Nuitka release has support for using it. Most work is focused on Linux
 and Python2.7 now with the aim of getting it capable to statically
 compile numpy for speed.
 
-######################
+**********************
  Performance (public)
-######################
+**********************
 
 -  Caching of demoted to bytecode modules. Some of these, e.g.
    ``pkg_resources`` take very long to analyse in Nuitka, just to find
@@ -158,9 +162,9 @@ compile numpy for speed.
 -  Add support for ``list`` methods, things like ``append`` really
    should be optimized as well in the mostly existing operation nodes.
 
-####################
+********************
  macOS enhancements
-####################
+********************
 
 -  The macOS bundle mode and onefile are not yet working together, which
    needs mainly just internal changes for where to put files. Also for
@@ -169,9 +173,9 @@ compile numpy for speed.
 
 -  Apple Python must be detected and rejected for standalone mode.
 
-###############################
+*******************************
  Container Builds (commercial)
-###############################
+*******************************
 
 Providing docker images like manylinux does with Nuitka installed into
 all of them and ready to use. Might make this a free feature once it's
@@ -183,9 +187,9 @@ can be done fully automatically and still run on very old Linux. Right
 now this is implemented, but works mostly locally and needs more work
 than it should.
 
-########################################
+****************************************
  Support for Next Python Version (3.10)
-########################################
+****************************************
 
 -  Get it to work for 3.9 test suite.
 
@@ -203,30 +207,16 @@ than it should.
 
    This will amount to fully compatibility in support.
 
-##############
+**************
  Wheels Build
-##############
+**************
 
 -  Needs more documentation and addition of (some) command line options
    of Nuitka to the ``bdist_nuitka`` target.
 
-#################################
- Features to be added for 0.6.18
-#################################
-
-List of things, we are aiming for to be included in that release.
-
-[x] Add version information for macOS bundles.
-
-[x] Building on new macOS works for old macOS deployment.
-
-[x] Better scalability, should use less memory and compile time.
-
-[x] Better shape tracing
-
-#################################
+*********************************
  Features to be added for 0.6.19
-#################################
+*********************************
 
 List of things, we are aiming for to be included in that release.
 

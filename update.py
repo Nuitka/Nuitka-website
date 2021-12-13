@@ -625,14 +625,25 @@ def updateReleasePosts():
                 changelog_output.write("\n\n" + sep * len(older) + "\n")
                 changelog_output.write(older + "\n")
                 changelog_output.write(sep * len(older) + "\n\n")
+                changelog_output.write("These are older releases of Nuitka.")
 
-                sep = "~"
+                sep = "="
 
-            changelog_output.write("\n\n" + sep * len(title) + "\n")
+            changelog_output.write("\n\n")
+            if sep != "=":
+                 changelog_output.write(sep * len(title) + "\n")
+            else:
+                title = title.lstrip()
+
             changelog_output.write(title + "\n")
             changelog_output.write(sep * len(title) + "\n\n")
 
-            changelog_output.writelines(lines)
+            if sep == "=":
+                changelog_lines = [line.replace("=", "-") if line.startswith("===") else line for line in lines]
+            else:
+                changelog_lines = lines
+
+            changelog_output.writelines(changelog_lines)
             count += 1
 
             # Ignore draft for pages.

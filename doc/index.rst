@@ -97,16 +97,11 @@ In the meantime you can find its `latest version here
 </pages/download.html>`_.
 
 .. toctree::
-   :caption: User Manual
+   :caption: Manuals
    :hidden:
 
-   user-manual
-
-.. toctree::
-   :caption: Development
-   :hidden:
-
-   developer-manual
+   User Manual <user-manual>
+   Developer Manual <developer-manual>
 
 .. toctree::
    :caption: Commercial Users
@@ -119,12 +114,7 @@ In the meantime you can find its `latest version here
    :hidden:
 
    Changelog
-
-.. toctree::
-   :caption: Roadmap
-   :hidden:
-
-   roadmap
+   Roadmap <roadmap>
 
 .. toctree::
    :caption: API doc
