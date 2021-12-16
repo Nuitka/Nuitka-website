@@ -1,4 +1,6 @@
-This is to inform you about the new stable release of `Nuitka <https://nuitka.net>`_. It is the extremely compatible Python compiler. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for an overview.
+This is to inform you about the new stable release
+of `Nuitka <https://nuitka.net>`_. It is the extremely
+compatible Python compiler,  `"download now" </doc/download.html>`_.
 
 This is a major release, with huge changes to code generation that
 improve performance in a significant way. It is a the result of a long
