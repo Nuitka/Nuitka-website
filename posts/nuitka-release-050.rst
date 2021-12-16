@@ -140,7 +140,7 @@ Organisational
 -  Using dedicated `Buildbot <http://buildbot.net>`__ for continuous
    integration testing and release creation as well.
 
--  The `Downloads <https://nuitka.net/pages/download.html>`__ now offers
+-  The `Downloads <https://nuitka.net/doc/download.html>`__ now offers
    MSI files for Win64 as well.
 
 -  Discontinued the support for cross compilation to Win32. That was too

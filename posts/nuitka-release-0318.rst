@@ -78,8 +78,8 @@ Cleanups
 Organisational
 ==============
 
--  The `"Download" <../pages/download.html>`__ page is now finally
-   updated for releases automatically.
+-  The `"Download" <https://nuitka.net/doc/download.html>`__ page is now
+   finally updated for releases automatically.
 
    This closes `Issue#7 <http://bugs.nuitka.net/issue7>`__ completely.
    Up to this release, I had to manually edit that page, but now

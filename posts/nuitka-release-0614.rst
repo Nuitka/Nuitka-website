@@ -233,5 +233,5 @@ more about loop variables, etc. so we can achieve the near C speed we
 are looking for, at least in the field of ``int`` performance.
 
 This release has largely been driven by the `Nuitka Commercial
-</pages/commercial.html>`__ offering and needs for compatibility with
-more code, which is of course always a good thing.
+</doc/commercial.html>`__ offering and needs for compatibility with more
+code, which is of course always a good thing.

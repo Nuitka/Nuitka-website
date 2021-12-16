@@ -245,7 +245,7 @@ New Tests
 Organisational
 ==============
 
--  The `Downloads <https://nuitka.net/pages/download.html>`__ page now
+-  The `Downloads <https://nuitka.net/doc/download.html>`__ page now
    offers RPMs for RHEL6, CentOS6, F17, F18, and openSUSE 12.1, 12.2,
    12.3. This large coverage is thanks to openSUSE build service and
    "ownssh" for contributing an RPM spec file.
