@@ -28,7 +28,7 @@ made for you on ``factory``.
 
 .. code:: sh
 
-   pip install -U "https://github.com/Nuitka/Nuitka/archive/factory.zip"
+   pip install -U --force-reinstall "https://github.com/Nuitka/Nuitka/archive/factory.zip"
 
 
 #################
