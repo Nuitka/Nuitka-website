@@ -14,6 +14,8 @@ made for you on ``factory``.
  How to get ``factory``
 ########################
 
+|Factory Status|
+
 *****
  git
 *****
@@ -30,7 +32,6 @@ made for you on ``factory``.
 
    pip install -U --force-reinstall "https://github.com/Nuitka/Nuitka/archive/factory.zip"
 
-
 #################
  Word of Warning
 #################
@@ -43,3 +44,6 @@ the issue at hand or even more than usually on your own risk.
 Once confirmed and found good, fixes will normally appear on develop
 branch relatively shortly, try to use those instead from then on, and
 wait for the change to appear there.
+
+.. |Factory Status| image:: https://github.com/Nuitka/Nuitka/actions/workflows/testing.yml/badge.svg?branch=factory
+   :target: https://github.com/Nuitka/Nuitka/actions/workflows/testing.yml?query=branch%3Afactory
