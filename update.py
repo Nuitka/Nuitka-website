@@ -255,7 +255,7 @@ def updateDownloadPage():
     max_centos7_release, max_centos7_prerelease = checkOBS("CentOS_7")
     max_centos8_release, max_centos8_prerelease = checkOBS("CentOS_8")
 
-    min_fedora = 24
+    min_fedora = 28
     max_fedora = 35
 
     fedora_rpm = {}

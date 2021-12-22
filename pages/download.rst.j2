@@ -215,7 +215,7 @@ CentOS
 Fedora
 ======
 
-{% for fedora_number in range(min_fedora,max_fedora+1) %}
+{% for fedora_number in range(max_fedora,min_fedora-1,-1) %}
 -  |FEDORA_LOGO| Stable: Fedora {{fedora_number}}: `Nuitka {{fedora_rpm["stable", fedora_number].split("-", 1)[0]}} RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/noarch/nuitka-{{fedora_rpm["stable", fedora_number]}}.noarch.rpm>`__
    or `repository
    file
@@ -223,7 +223,7 @@ Fedora
 
 {% endfor %}
 
-{% for fedora_number in range(min_fedora,max_fedora+1) %}
+{% for fedora_number in range(max_fedora,min_fedora-1,-1) %}
 -  |FEDORA_LOGO| Develop: Fedora {{fedora_number}}: `Nuitka {{fedora_rpm["develop", fedora_number].split("-", 1)[0]}} RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/noarch/nuitka-unstable-{{fedora_rpm["develop", fedora_number]}}.noarch.rpm>`__
    or `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/home:kayhayen.repo>`__
