@@ -135,11 +135,11 @@ Debian/Ubuntu/Mint
 
    .. code:: bash
 
-      CODENAME=`grep UBUNTU_CODENAME /etc/os-release | cut -d= -f2`
+      CODENAME=`egrep 'UBUNTU_CODENAME|VERSION_CODENAME' /etc/os-release | cut -d= -f2`
       if [ -z "$CODENAME" ]
       then
          CODENAME=`lsb_release -c -s`
-      fi;
+      fi
       wget -O - http://nuitka.net/deb/archive.key.gpg | apt-key add -
       echo >/etc/apt/sources.list.d/nuitka.list "deb http://nuitka.net/deb/stable/$CODENAME $CODENAME main"
       apt-get update
@@ -150,11 +150,11 @@ Debian/Ubuntu/Mint
 
    .. code:: bash
 
-      CODENAME=`grep UBUNTU_CODENAME /etc/os-release | cut -d= -f2`
+      CODENAME=`egrep 'UBUNTU_CODENAME|VERSION_CODENAME' /etc/os-release | cut -d= -f2`
       if [ -z "$CODENAME" ]
       then
          CODENAME=`lsb_release -c -s`
-      fi;
+      fi
       wget -O - http://nuitka.net/deb/archive.key.gpg | apt-key add -
       echo >/etc/apt/sources.list.d/nuitka.list "deb http://nuitka.net/deb/develop/$CODENAME $CODENAME main"
       apt-get update
