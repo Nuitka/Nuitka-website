@@ -116,15 +116,15 @@ Bug Fixes
 
 -  Fix, for module mode filenames are used, and for packages, you can
    specify a directory, however, a trailing slash was not working. Fixed
-   in 0.6.16.7 already.
+   in 0.6.17.7 already.
 
 -  Compatibility: Fix, when locating modules, a package directory and an
    extension module of the same name were not used according to
-   priority. Fixed in 0.6.16.7 already.
+   priority. Fixed in 0.6.17.7 already.
 
 -  Standalone: Added workaround ``importlib_resources`` insisting on
    Python source files to exist to be able to load datafiles. Fixed in
-   0.6.16.7 already.
+   0.6.17.7 already.
 
 -  Standalone: Properly detect usage of hard imports from standard
    library in ``--follow-stdlib`` mode.
@@ -135,9 +135,6 @@ Bug Fixes
 
 -  Anaconda: For accelerated binaries, the created ``.cmd`` file wasn't
    containing all needed environment.
-
--  Standalone: Added support for ``bottle.ext`` loading extensions to
-   resolve at compile time.
 
 -  macOS: Set minimum OS version derived from the Python executable
    used, this should make it work on all supported platforms (of that

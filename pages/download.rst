@@ -412,43 +412,43 @@ Github.
 
 .. |NUITKA_STABLE_VERSION| replace::
 
-   0.6.18
+   0.6.18.5
 
 .. |NUITKA_STABLE_TAR_GZ| replace::
 
-   `Nuitka 0.6.18 (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-0.6.18.tar.gz>`__
+   `Nuitka 0.6.18.5 (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-0.6.18.5.tar.gz>`__
 
 .. |NUITKA_STABLE_TAR_BZ| replace::
 
-   `Nuitka 0.6.18 (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-0.6.18.tar.bz2>`__
+   `Nuitka 0.6.18.5 (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-0.6.18.5.tar.bz2>`__
 
 .. |NUITKA_STABLE_ZIP| replace::
 
-   `Nuitka 0.6.18 (1.1 MB zip) <https://nuitka.net/releases/Nuitka-0.6.18.zip>`__
+   `Nuitka 0.6.18.5 (1.1 MB zip) <https://nuitka.net/releases/Nuitka-0.6.18.5.zip>`__
 
 .. |NUITKA_UNSTABLE_TAR_GZ| replace::
 
-   `Nuitka 0.6.19rc1 (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-0.6.19rc1.tar.gz>`__
+   `Nuitka 0.6.19rc6 (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-0.6.19rc6.tar.gz>`__
 
 .. |NUITKA_UNSTABLE_TAR_BZ| replace::
 
-   `Nuitka 0.6.19rc1 (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-0.6.19rc1.tar.bz2>`__
+   `Nuitka 0.6.19rc6 (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-0.6.19rc6.tar.bz2>`__
 
 .. |NUITKA_UNSTABLE_ZIP| replace::
 
-   `Nuitka 0.6.19rc1 (1.2 MB zip) <https://nuitka.net/releases/Nuitka-0.6.19rc1.zip>`__
+   `Nuitka 0.6.19rc6 (1.2 MB zip) <https://nuitka.net/releases/Nuitka-0.6.19rc6.zip>`__
 
 .. |NUITKA_STABLE_WININST| replace::
 
-   `Nuitka 0.6.18 (1.2 MB exe) <https://nuitka.net/releases/Nuitka-0.6.18.win32.exe>`__
+   `Nuitka 0.6.18.5 (1.2 MB exe) <https://nuitka.net/releases/Nuitka-0.6.18.5.win32.exe>`__
 
 .. |NUITKA_UNSTABLE_MSI_27_32| replace::
 
-   `Nuitka 0.6.19rc1 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win32.py27.msi>`__
+   `Nuitka 0.6.19rc6 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win32.py27.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_27_64| replace::
 
-   `Nuitka 0.6.19rc1 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win-amd64.py27.msi>`__
+   `Nuitka 0.6.19rc6 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win-amd64.py27.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_33_32| replace::
 
@@ -456,7 +456,7 @@ Github.
 
 .. |NUITKA_UNSTABLE_MSI_33_64| replace::
 
-   `Nuitka 0.6.19rc1 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win-amd64.py33.msi>`__
+   `Nuitka 0.6.19rc6 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win-amd64.py33.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_34_32| replace::
 
@@ -464,55 +464,55 @@ Github.
 
 .. |NUITKA_UNSTABLE_MSI_34_64| replace::
 
-   `Nuitka 0.6.19rc1 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win-amd64.py34.msi>`__
+   `Nuitka 0.6.19rc6 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win-amd64.py34.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_35_32| replace::
 
-   `Nuitka 0.6.19rc1 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win32.py35.msi>`__
+   `Nuitka 0.6.19rc6 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win32.py35.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_35_64| replace::
 
-   `Nuitka 0.6.19rc1 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win-amd64.py35.msi>`__
+   `Nuitka 0.6.19rc6 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win-amd64.py35.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_36_32| replace::
 
-   `Nuitka 0.6.19rc1 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win32.py36.msi>`__
+   `Nuitka 0.6.19rc6 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win32.py36.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_36_64| replace::
 
-   `Nuitka 0.6.19rc1 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win-amd64.py36.msi>`__
+   `Nuitka 0.6.19rc6 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win-amd64.py36.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_37_32| replace::
 
-   `Nuitka 0.6.19rc1 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win32.py37.msi>`__
+   `Nuitka 0.6.19rc6 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win32.py37.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_37_64| replace::
 
-   `Nuitka 0.6.19rc1 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win-amd64.py37.msi>`__
+   `Nuitka 0.6.19rc6 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win-amd64.py37.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_38_32| replace::
 
-   `Nuitka 0.6.19rc1 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win32.py38.msi>`__
+   `Nuitka 0.6.19rc6 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win32.py38.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_38_64| replace::
 
-   `Nuitka 0.6.19rc1 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win-amd64.py38.msi>`__
+   `Nuitka 0.6.19rc6 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win-amd64.py38.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_39_32| replace::
 
-   `Nuitka 0.6.19rc1 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win32.py39.msi>`__
+   `Nuitka 0.6.19rc6 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win32.py39.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_39_64| replace::
 
-   `Nuitka 0.6.19rc1 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1910.win-amd64.py39.msi>`__
+   `Nuitka 0.6.19rc6 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-6.0.1960.win-amd64.py39.msi>`__
 
 .. |NUITKA_STABLE_MSI_27_32| replace::
 
-   `Nuitka 0.6.18.0 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win32.py27.msi>`__
+   `Nuitka 0.6.18.4 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win32.py27.msi>`__
 
 .. |NUITKA_STABLE_MSI_27_64| replace::
 
-   `Nuitka 0.6.18.0 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win-amd64.py27.msi>`__
+   `Nuitka 0.6.18.4 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py27.msi>`__
 
 .. |NUITKA_STABLE_MSI_33_32| replace::
 
@@ -520,7 +520,7 @@ Github.
 
 .. |NUITKA_STABLE_MSI_33_64| replace::
 
-   `Nuitka 0.6.18.0 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win-amd64.py33.msi>`__
+   `Nuitka 0.6.18.4 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py33.msi>`__
 
 .. |NUITKA_STABLE_MSI_34_32| replace::
 
@@ -528,75 +528,75 @@ Github.
 
 .. |NUITKA_STABLE_MSI_34_64| replace::
 
-   `Nuitka 0.6.18.0 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win-amd64.py34.msi>`__
+   `Nuitka 0.6.18.4 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py34.msi>`__
 
 .. |NUITKA_STABLE_MSI_35_32| replace::
 
-   `Nuitka 0.6.18.0 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win32.py35.msi>`__
+   `Nuitka 0.6.18.4 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win32.py35.msi>`__
 
 .. |NUITKA_STABLE_MSI_35_64| replace::
 
-   `Nuitka 0.6.18.0 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win-amd64.py35.msi>`__
+   `Nuitka 0.6.18.4 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py35.msi>`__
 
 .. |NUITKA_STABLE_MSI_36_32| replace::
 
-   `Nuitka 0.6.18.0 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win32.py36.msi>`__
+   `Nuitka 0.6.18.4 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win32.py36.msi>`__
 
 .. |NUITKA_STABLE_MSI_36_64| replace::
 
-   `Nuitka 0.6.18.0 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win-amd64.py36.msi>`__
+   `Nuitka 0.6.18.4 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py36.msi>`__
 
 .. |NUITKA_STABLE_MSI_37_32| replace::
 
-   `Nuitka 0.6.18.0 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win32.py37.msi>`__
+   `Nuitka 0.6.18.4 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win32.py37.msi>`__
 
 .. |NUITKA_STABLE_MSI_37_64| replace::
 
-   `Nuitka 0.6.18.0 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win-amd64.py37.msi>`__
+   `Nuitka 0.6.18.4 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py37.msi>`__
 
 .. |NUITKA_STABLE_MSI_38_32| replace::
 
-   `Nuitka 0.6.18.0 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win32.py38.msi>`__
+   `Nuitka 0.6.18.4 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win32.py38.msi>`__
 
 .. |NUITKA_STABLE_MSI_38_64| replace::
 
-   `Nuitka 0.6.18.0 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win-amd64.py38.msi>`__
+   `Nuitka 0.6.18.4 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py38.msi>`__
 
 .. |NUITKA_STABLE_MSI_39_32| replace::
 
-   `Nuitka 0.6.18.0 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win32.py39.msi>`__
+   `Nuitka 0.6.18.4 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win32.py39.msi>`__
 
 .. |NUITKA_STABLE_MSI_39_64| replace::
 
-   `Nuitka 0.6.18.0 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.180.win-amd64.py39.msi>`__
+   `Nuitka 0.6.18.4 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py39.msi>`__
 
 .. |NUITKA_STABLE_CENTOS6| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_CENTOS7| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_CENTOS8| replace::
 
-   `Nuitka 0.6.18-7.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-0.6.18-7.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5-5.2 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-0.6.18.5-5.2.noarch.rpm>`__
 
 .. |NUITKA_STABLE_RHEL6| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_RHEL7| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F24| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F25| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F26| replace::
 
@@ -608,55 +608,55 @@ Github.
 
 .. |NUITKA_STABLE_F28| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F29| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F30| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F31| replace::
 
-   `Nuitka 0.6.18-7.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-0.6.18-7.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F32| replace::
 
-   `Nuitka 0.6.18-7.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-0.6.18-7.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F33| replace::
 
-   `Nuitka 0.6.18-7.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-0.6.18-7.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_F34| replace::
 
-   `Nuitka 0.6.18-7.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-0.6.18-7.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_SUSE131| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_SUSE132| replace::
 
-   `Nuitka 0.6.18-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-0.6.18-6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_SUSE150| replace::
 
-   `Nuitka 0.6.18-lp150.6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-0.6.18-lp150.6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5-lp150.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-0.6.18.5-lp150.5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_SUSE151| replace::
 
-   `Nuitka 0.6.18-lp151.6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-0.6.18-lp151.6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5-lp151.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-0.6.18.5-lp151.5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_SUSE152| replace::
 
-   `Nuitka 0.6.18-lp152.6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-0.6.18-lp152.6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5-lp152.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-0.6.18.5-lp152.5.1.noarch.rpm>`__
 
 .. |NUITKA_STABLE_SLE150| replace::
 
-   `Nuitka 0.6.18-bp150.6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-0.6.18-bp150.6.1.noarch.rpm>`__
+   `Nuitka 0.6.18.5-bp150.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-0.6.18.5-bp150.5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_CENTOS6| replace::
 
@@ -664,11 +664,11 @@ Github.
 
 .. |NUITKA_UNSTABLE_CENTOS7| replace::
 
-   `Nuitka 0.6.18rc9-9.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-unstable-0.6.18rc9-9.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_CENTOS8| replace::
 
-   `Nuitka 0.6.18rc9-9.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-unstable-0.6.19rc1-5.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-unstable-0.6.19rc5-5.2.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_RHEL6| replace::
 
@@ -676,11 +676,11 @@ Github.
 
 .. |NUITKA_UNSTABLE_RHEL7| replace::
 
-   `Nuitka 0.6.18rc8-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-unstable-0.6.18rc9-8.1.noarch.rpm>`__
+   `Nuitka 0.6.18rc8-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_F24| replace::
 
-   `Nuitka 0.6.18rc9-8.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-unstable-0.6.18rc9-8.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_F25| replace::
 
@@ -696,11 +696,11 @@ Github.
 
 .. |NUITKA_UNSTABLE_F28| replace::
 
-   `Nuitka 0.6.18rc9-8.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-unstable-0.6.18rc9-8.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_F29| replace::
 
-   `Nuitka 0.6.18rc9-8.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-unstable-0.6.18rc9-8.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_F30| replace::
 
@@ -712,39 +712,39 @@ Github.
 
 .. |NUITKA_UNSTABLE_F32| replace::
 
-   `Nuitka 0.6.19rc1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-unstable-0.6.19rc1-5.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_F33| replace::
 
-   `Nuitka 0.6.19rc1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-unstable-0.6.19rc1-5.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_F34| replace::
 
-   `Nuitka 0.6.19rc1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-unstable-0.6.19rc1-5.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE131| replace::
 
-   `Nuitka 0.6.18rc9-9.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-unstable-0.6.18rc9-9.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE132| replace::
 
-   `Nuitka 0.6.18rc9-9.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-unstable-0.6.18rc9-9.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE150| replace::
 
-   `Nuitka 0.6.18rc9-lp150.8.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-unstable-0.6.18rc9-lp150.8.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5-lp150.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-unstable-0.6.19rc5-lp150.5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE151| replace::
 
-   `Nuitka 0.6.18rc9-lp151.8.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-unstable-0.6.18rc9-lp151.8.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5-lp151.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-unstable-0.6.19rc5-lp151.5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE152| replace::
 
-   `Nuitka 0.6.18rc9-lp152.8.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-unstable-0.6.18rc9-lp152.8.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5-lp152.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-unstable-0.6.19rc5-lp152.5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SLE150| replace::
 
-   `Nuitka 0.6.18rc9-bp150.8.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-unstable-0.6.18rc9-bp150.8.1.noarch.rpm>`__
+   `Nuitka 0.6.19rc5-bp150.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-unstable-0.6.19rc5-bp150.5.1.noarch.rpm>`__
 
 .. |DEBIAN_LOGO| image:: images/debian.png
 
