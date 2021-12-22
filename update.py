@@ -255,18 +255,15 @@ def updateDownloadPage():
     max_centos7_release, max_centos7_prerelease = checkOBS("CentOS_7")
     max_centos8_release, max_centos8_prerelease = checkOBS("CentOS_8")
 
-    max_f24_release, max_f24_prerelease = checkOBS("Fedora_24")
-    max_f25_release, max_f25_prerelease = checkOBS("Fedora_25")
-    max_f26_release, max_f26_prerelease = checkOBS("Fedora_26")
-    max_f27_release, max_f27_prerelease = checkOBS("Fedora_27")
-    max_f28_release, max_f28_prerelease = checkOBS("Fedora_28")
-    max_f29_release, max_f29_prerelease = checkOBS("Fedora_29")
-    max_f30_release, max_f30_prerelease = checkOBS("Fedora_30")
-    max_f31_release, max_f31_prerelease = checkOBS("Fedora_31")
-    max_f32_release, max_f32_prerelease = checkOBS("Fedora_32")
-    max_f33_release, max_f33_prerelease = checkOBS("Fedora_33")
-    max_f34_release, max_f34_prerelease = checkOBS("Fedora_34")
-    max_f34_release, max_f34_prerelease = checkOBS("Fedora_35")
+    min_fedora = 24
+    max_fedora = 35
+
+    fedora_rpm = {}
+    for fedora_number in range(min_fedora,max_fedora+1):
+        stable, develop = checkOBS("Fedora_%d" % fedora_number)
+
+        fedora_rpm["stable", fedora_number] = stable
+        fedora_rpm["develop", fedora_number] = develop
 
     max_suse_131_release, max_suse_131_prerelease = checkOBS("openSUSE_13.1")
     max_suse_132_release, max_suse_132_prerelease = checkOBS("openSUSE_13.2")
@@ -300,28 +297,6 @@ def updateDownloadPage():
         "centos7_stable": max_centos7_release.replace("-5.1", ""),
         "max_centos8_release": max_centos8_release,
         "centos8_stable": max_centos8_release.replace("-5.1", ""),
-        "max_f24_release": max_f24_release,
-        "f24_stable": max_f24_release.replace("-5.1", ""),
-        "max_f25_release": max_f25_release,
-        "f25_stable": max_f25_release.replace("-5.1", ""),
-        "max_f26_release": max_f26_release,
-        "f26_stable": max_f26_release.replace("-5.1", ""),
-        "max_f27_release": max_f27_release,
-        "f27_stable": max_f27_release.replace("-5.1", ""),
-        "max_f28_release": max_f28_release,
-        "f28_stable": max_f28_release.replace("-5.1", ""),
-        "max_f29_release": max_f29_release,
-        "f29_stable": max_f29_release.replace("-5.1", ""),
-        "max_f30_release": max_f30_release,
-        "f30_stable": max_f30_release.replace("-5.1", ""),
-        "max_f31_release": max_f31_release,
-        "f31_stable": max_f31_release.replace("-5.1", ""),
-        "max_f32_release": max_f32_release,
-        "f32_stable": max_f32_release.replace("-5.1", ""),
-        "max_f33_release": max_f33_release,
-        "f33_stable": max_f33_release.replace("-5.1", ""),
-        "max_f34_release": max_f34_release,
-        "f34_stable": max_f34_release.replace("-5.1", ""),
         "max_rhel6_release": max_rhel6_release,
         "rhel6_stable": max_rhel6_release.replace("-5.1", ""),
         "max_rhel7_release": max_rhel7_release,
@@ -345,28 +320,6 @@ def updateDownloadPage():
         "centos7_unstable": max_centos7_prerelease.replace("-5.1", ""),
         "max_centos8_prerelease": max_centos8_prerelease,
         "centos8_unstable": max_centos8_prerelease.replace("-5.1", ""),
-        "max_f24_prerelease": max_f24_prerelease,
-        "f24_unstable": max_f24_prerelease.replace("-5.1", ""),
-        "max_f25_prerelease": max_f25_prerelease,
-        "f25_unstable": max_f25_prerelease.replace("-5.1", ""),
-        "max_f26_prerelease": max_f26_prerelease,
-        "f26_unstable": max_f26_prerelease.replace("-5.1", ""),
-        "max_f27_prerelease": max_f27_prerelease,
-        "f27_unstable": max_f27_prerelease.replace("-5.1", ""),
-        "max_f28_prerelease": max_f28_prerelease,
-        "f28_unstable": max_f28_prerelease.replace("-5.1", ""),
-        "max_f29_prerelease": max_f29_prerelease,
-        "f29_unstable": max_f29_prerelease.replace("-5.1", ""),
-        "max_f30_prerelease": max_f30_prerelease,
-        "f30_unstable": max_f30_prerelease.replace("-5.1", ""),
-        "max_f31_prerelease": max_f31_prerelease,
-        "f31_unstable": max_f31_prerelease.replace("-5.1", ""),
-        "max_f32_prerelease": max_f32_prerelease,
-        "f32_unstable": max_f32_prerelease.replace("-5.1", ""),
-        "max_f33_prerelease": max_f33_prerelease,
-        "f33_unstable": max_f33_prerelease.replace("-5.1", ""),
-        "max_f34_prerelease": max_f34_prerelease,
-        "f34_unstable": max_f34_prerelease.replace("-5.1", ""),
         "max_rhel6_prerelease": max_rhel6_prerelease,
         "rhel6_unstable": max_rhel6_prerelease.replace("-5.1", ""),
         "max_rhel7_prerelease": max_rhel7_prerelease,
@@ -400,10 +353,6 @@ def updateDownloadPage():
         "NUITKA_STABLE_CENTOS6": r"`Nuitka %(centos6_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-%(max_centos6_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_CENTOS7": r"`Nuitka %(centos7_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-%(max_centos7_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_CENTOS8": r"`Nuitka %(centos8_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-%(max_centos8_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F20": r"`Nuitka %(f20_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_20/noarch/nuitka-%(max_f20_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F21": r"`Nuitka %(f21_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_21/noarch/nuitka-%(max_f21_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F22": r"`Nuitka %(f22_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_22/noarch/nuitka-%(max_f22_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F23": r"`Nuitka %(f23_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_23/noarch/nuitka-%(max_f23_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_F24": r"`Nuitka %(f24_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-%(max_f24_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_F25": r"`Nuitka %(f25_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-%(max_f25_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_F26": r"`Nuitka %(f26_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/noarch/nuitka-%(max_f26_release)s.noarch.rpm>`__",
@@ -491,7 +440,8 @@ def updateDownloadPage():
         }
 
 
-    template_context = {"max_fedora" : 35, "min_fedora" : 24}
+    template_context = {"max_fedora" : max_fedora, "min_fedora" : min_fedora, "fedora_rpm" : fedora_rpm}
+
 
     download_page = page_template.render(name=page_template.name, **template_context)
 

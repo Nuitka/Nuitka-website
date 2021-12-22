@@ -216,15 +216,16 @@ Fedora
 ======
 
 {% for fedora_number in range(min_fedora,max_fedora+1) %}
--  |FEDORA_LOGO| Stable: Fedora {{fedora_number}}: |NUITKA_STABLE_F{{fedora_number}}| or `repository
+-  |FEDORA_LOGO| Stable: Fedora {{fedora_number}}: `Nuitka {{fedora_rpm["stable", fedora_number].split("-", 1)[0]}} RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/noarch/nuitka-{{fedora_rpm["stable", fedora_number]}}.noarch.rpm>`__
+   or `repository
    file
    <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/home:kayhayen.repo>`__
 
 {% endfor %}
 
 {% for fedora_number in range(min_fedora,max_fedora+1) %}
--  |FEDORA_LOGO| Develop: Fedora {{fedora_number}}: |NUITKA_UNSTABLE_F{{fedora_number}}| or
-   `repository file
+-  |FEDORA_LOGO| Develop: Fedora {{fedora_number}}: `Nuitka {{fedora_rpm["develop", fedora_number].split("-", 1)[0]}} RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/noarch/nuitka-unstable-{{fedora_rpm["develop", fedora_number]}}.noarch.rpm>`__
+   or `repository file
    <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/home:kayhayen.repo>`__
 
 {% endfor %}
@@ -516,50 +517,6 @@ Github.
 
    `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
 
-.. |NUITKA_STABLE_F24| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F25| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F26| replace::
-
-   `Nuitka 0.6.17.7 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/noarch/nuitka-0.6.17.7-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F27| replace::
-
-   `Nuitka 0.6.17.7 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/noarch/nuitka-0.6.17.7-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F28| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F29| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F30| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F31| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F32| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F33| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_F34| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
 .. |NUITKA_STABLE_SUSE131| replace::
 
    `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
@@ -603,50 +560,6 @@ Github.
 .. |NUITKA_UNSTABLE_RHEL7| replace::
 
    `Nuitka 0.6.18rc8-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F24| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F25| replace::
-
-   `Nuitka 0.6.18rc8-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-unstable-0.6.18rc8-6.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F26| replace::
-
-   `Nuitka 0.6.18rc8-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/noarch/nuitka-unstable-0.6.18rc8-6.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F27| replace::
-
-   `Nuitka 0.6.18rc8-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/noarch/nuitka-unstable-0.6.18rc8-6.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F28| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F29| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F30| replace::
-
-   `Nuitka 0.6.9rc1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-unstable-0.6.9rc1-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F31| replace::
-
-   `Nuitka 0.6.7rc2 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-unstable-0.6.7rc2-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F32| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F33| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_F34| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE131| replace::
 
