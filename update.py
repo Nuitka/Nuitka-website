@@ -19,6 +19,12 @@ from lxml import html
 
 
 def updateDownloadPage():
+    sys.path.insert(0, os.path.abspath("Nuitka-master"))
+    from nuitka.utils.Jinja2 import getTemplate
+    del sys.path[0]
+
+    page_template = getTemplate(package_name=None, template_name="download.rst.j2", template_subdir="pages")
+
     page_source = requests.get("https://nuitka.net/releases/").text
 
     tree = html.parse(StringIO(page_source))
@@ -260,6 +266,7 @@ def updateDownloadPage():
     max_f32_release, max_f32_prerelease = checkOBS("Fedora_32")
     max_f33_release, max_f33_prerelease = checkOBS("Fedora_33")
     max_f34_release, max_f34_prerelease = checkOBS("Fedora_34")
+    max_f34_release, max_f34_prerelease = checkOBS("Fedora_35")
 
     max_suse_131_release, max_suse_131_prerelease = checkOBS("openSUSE_13.1")
     max_suse_132_release, max_suse_132_prerelease = checkOBS("openSUSE_13.2")
@@ -483,7 +490,10 @@ def updateDownloadPage():
             "dot_version": version[0] + "." + version[-1],
         }
 
-    download_page = open("pages/download.rst").read()
+
+    template_context = {"max_fedora" : 35, "min_fedora" : 24}
+
+    download_page = page_template.render(name=page_template.name, **template_context)
 
     variable = None
     output = []

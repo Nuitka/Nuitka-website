@@ -215,103 +215,19 @@ CentOS
 Fedora
 ======
 
--  |FEDORA_LOGO| Stable: Fedora 24: |NUITKA_STABLE_F24| or `repository
+{% for fedora_number in range(min_fedora,max_fedora+1) %}
+-  |FEDORA_LOGO| Stable: Fedora {{fedora_number}}: |NUITKA_STABLE_F{{fedora_number}}| or `repository
    file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/home:kayhayen.repo>`__
+   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/home:kayhayen.repo>`__
 
--  |FEDORA_LOGO| Stable: Fedora 25: |NUITKA_STABLE_F25| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/home:kayhayen.repo>`__
+{% endfor %}
 
--  |FEDORA_LOGO| Stable: Fedora 26: |NUITKA_STABLE_F26| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Stable: Fedora 27: |NUITKA_STABLE_F27| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Stable: Fedora 28: |NUITKA_STABLE_F28| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Stable: Fedora 29: |NUITKA_STABLE_F29| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Stable: Fedora 30: |NUITKA_STABLE_F30| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Stable: Fedora 31: |NUITKA_STABLE_F31| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Stable: Fedora 32: |NUITKA_STABLE_F32| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Stable: Fedora 33: |NUITKA_STABLE_F33| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Stable: Fedora 34: |NUITKA_STABLE_F34| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Stable: Fedora 35: |NUITKA_STABLE_F35| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_35/home:kayhayen.repo>`__
-
-
--  |FEDORA_LOGO| Develop: Fedora 24: |NUITKA_UNSTABLE_F24| or
+{% for fedora_number in range(min_fedora,max_fedora+1) %}
+-  |FEDORA_LOGO| Develop: Fedora {{fedora_number}}: |NUITKA_UNSTABLE_F{{fedora_number}}| or
    `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/home:kayhayen.repo>`__
+   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/home:kayhayen.repo>`__
 
--  |FEDORA_LOGO| Develop: Fedora 25: |NUITKA_UNSTABLE_F25| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 26: |NUITKA_UNSTABLE_F26| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 27: |NUITKA_UNSTABLE_F27| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 28: |NUITKA_UNSTABLE_F28| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 29: |NUITKA_UNSTABLE_F29| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 30: |NUITKA_UNSTABLE_F30| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 31: |NUITKA_UNSTABLE_F31| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 32: |NUITKA_UNSTABLE_F32| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 33: |NUITKA_UNSTABLE_F33| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 34: |NUITKA_UNSTABLE_F34| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/home:kayhayen.repo>`__
-
--  |FEDORA_LOGO| Develop: Fedora 35: |NUITKA_UNSTABLE_F35| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_35/home:kayhayen.repo>`__
-
+{% endfor %}
 
 Suse
 ====
