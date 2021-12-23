@@ -19,8 +19,10 @@ from lxml import html
 
 
 def updateDownloadPage():
-    sys.path.insert(0, os.path.abspath("Nuitka-master"))
+    # TODO: Move to at least develop, after next releease.
+    sys.path.insert(0, os.path.abspath("Nuitka-factory"))
     from nuitka.utils.Jinja2 import getTemplate
+    from nuitka.utils.Rest import makeTable
     del sys.path[0]
 
     page_template = getTemplate(package_name=None, template_name="download.rst.j2", template_subdir="pages")
@@ -353,17 +355,6 @@ def updateDownloadPage():
         "NUITKA_STABLE_CENTOS6": r"`Nuitka %(centos6_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-%(max_centos6_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_CENTOS7": r"`Nuitka %(centos7_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-%(max_centos7_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_CENTOS8": r"`Nuitka %(centos8_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-%(max_centos8_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F24": r"`Nuitka %(f24_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-%(max_f24_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F25": r"`Nuitka %(f25_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-%(max_f25_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F26": r"`Nuitka %(f26_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/noarch/nuitka-%(max_f26_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F27": r"`Nuitka %(f27_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/noarch/nuitka-%(max_f27_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F28": r"`Nuitka %(f28_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-%(max_f28_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F29": r"`Nuitka %(f29_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-%(max_f29_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F30": r"`Nuitka %(f30_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-%(max_f30_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F31": r"`Nuitka %(f31_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-%(max_f31_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F32": r"`Nuitka %(f32_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-%(max_f32_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F33": r"`Nuitka %(f33_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-%(max_f33_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_F34": r"`Nuitka %(f34_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-%(max_f34_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE131": r"`Nuitka %(suse_131_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-%(max_suse_131_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE132": r"`Nuitka %(suse_132_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-%(max_suse_132_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE150": r"`Nuitka %(suse_150_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-%(max_suse_150_release)s.noarch.rpm>`__",
@@ -381,21 +372,6 @@ def updateDownloadPage():
         "NUITKA_UNSTABLE_CENTOS6": r"`Nuitka %(centos6_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-unstable-%(max_centos6_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_CENTOS7": r"`Nuitka %(centos7_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-unstable-%(max_centos7_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_CENTOS8": r"`Nuitka %(centos7_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-unstable-%(max_centos8_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F20": r"`Nuitka %(f20_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_20/noarch/nuitka-unstable-%(max_f20_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F21": r"`Nuitka %(f21_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_21/noarch/nuitka-unstable-%(max_f21_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F22": r"`Nuitka %(f22_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_22/noarch/nuitka-unstable-%(max_f22_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F23": r"`Nuitka %(f23_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_23/noarch/nuitka-unstable-%(max_f23_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F24": r"`Nuitka %(f24_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_24/noarch/nuitka-unstable-%(max_f24_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F25": r"`Nuitka %(f25_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_25/noarch/nuitka-unstable-%(max_f25_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F26": r"`Nuitka %(f26_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_26/noarch/nuitka-unstable-%(max_f26_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F27": r"`Nuitka %(f27_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_27/noarch/nuitka-unstable-%(max_f27_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F28": r"`Nuitka %(f28_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/noarch/nuitka-unstable-%(max_f28_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F29": r"`Nuitka %(f29_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/noarch/nuitka-unstable-%(max_f29_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F30": r"`Nuitka %(f30_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/noarch/nuitka-unstable-%(max_f30_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F31": r"`Nuitka %(f31_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/noarch/nuitka-unstable-%(max_f31_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F32": r"`Nuitka %(f32_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/noarch/nuitka-unstable-%(max_f32_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F33": r"`Nuitka %(f33_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/noarch/nuitka-unstable-%(max_f33_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_F34": r"`Nuitka %(f34_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/noarch/nuitka-unstable-%(max_f34_prerelease)s.noarch.rpm>`__",
         "NUITKA_STABLE_VERSION": "%(plain_stable)s",
     }
 
@@ -440,7 +416,22 @@ def updateDownloadPage():
         }
 
 
-    template_context = {"max_fedora" : max_fedora, "min_fedora" : min_fedora, "fedora_rpm" : fedora_rpm}
+    def makeFedoraText(fedora_number, release):
+        version = fedora_rpm[release, fedora_number]
+        rpm_basename = "nuitka" if release == "stable" else "nuitka-unstable"
+
+        return f"""\
+`Nuitka {version.split("-", 1)[0]} RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_{fedora_number}/noarch/{rpm_basename}-{version}.noarch.rpm>`__"""
+
+    def makeRepoLinkText(repo_name):
+        return f"""`repository file <http://download.opensuse.org/repositories/home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"""
+
+
+    fedora_data = [(f"Fedora {fedora_number}", makeRepoLinkText(f"Fedora {fedora_number}"), makeFedoraText(fedora_number, "stable"), makeFedoraText(fedora_number, "develop")) for fedora_number in range(max_fedora,min_fedora-1,-1)]
+
+    fedora_table = makeTable([["Fedora Version", "RPM Repository", "Stable", "Develop"]] + fedora_data)
+
+    template_context = {"max_fedora" : max_fedora, "min_fedora" : min_fedora, "fedora_rpm" : fedora_rpm, "fedora_table": fedora_table}
 
 
     download_page = page_template.render(name=page_template.name, **template_context)

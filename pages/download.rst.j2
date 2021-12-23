@@ -215,20 +215,18 @@ CentOS
 Fedora
 ======
 
-{% for fedora_number in range(max_fedora,min_fedora-1,-1) %}
--  |FEDORA_LOGO| Stable: Fedora {{fedora_number}}: `Nuitka {{fedora_rpm["stable", fedora_number].split("-", 1)[0]}} RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/noarch/nuitka-{{fedora_rpm["stable", fedora_number]}}.noarch.rpm>`__
-   or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/home:kayhayen.repo>`__
+|FEDORA_LOGO| You can install a repository for automatic updates (repo file) or download
+the RPM directory and install it. The repo contains both stable and develop versions, just
+the RPM names are different.
 
-{% endfor %}
+.. code:: bash
 
-{% for fedora_number in range(max_fedora,min_fedora-1,-1) %}
--  |FEDORA_LOGO| Develop: Fedora {{fedora_number}}: `Nuitka {{fedora_rpm["develop", fedora_number].split("-", 1)[0]}} RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/noarch/nuitka-unstable-{{fedora_rpm["develop", fedora_number]}}.noarch.rpm>`__
-   or `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/Fedora_{{fedora_number}}/home:kayhayen.repo>`__
+   # Install either the these, but not both: (and use yum on older versions)
+   dnf install nuitka
+   dnf install nuitka-unstable
 
-{% endfor %}
+{{ fedora_table }}
+
 
 Suse
 ====
