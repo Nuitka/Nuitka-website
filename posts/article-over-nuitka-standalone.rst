@@ -2,8 +2,12 @@
 .. date: 2015/01/06 12:46:50
 .. tags: Python,Nuitka,compiler
 
-There is a really well `written article about Nuitka written
-by Tom Sheffler <http://www.tsheffler.com/blog/?p=849>`__.
+There is a really well written article about Nuitka written
+by Tom Sheffler.
+
+.. note::
+
+    The article has since become unvailable unfortunately.
 
 It inspired me to finally become clean with ``__file__`` attributes
 in standalone mode. Currently it points to where your source was
