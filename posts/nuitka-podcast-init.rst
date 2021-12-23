@@ -5,7 +5,7 @@
 So, if you want to get to know Nuitka or me, there is a really good
 interview from the popular podcast "__init__" online.
 
-`Kay Hayen on Nuitka <http://pythonpodcast.com/kay-hayen-nuitka.html>`__
+`Kay Hayen on Nuitka <https://www.pythonpodcast.com/episode-28-kay-hayen-on-nuitka/>`__
 
 I think it's very good at explaining things, putting it into
 perspective, history, future, and generally getting to know what
