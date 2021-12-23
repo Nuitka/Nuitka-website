@@ -227,16 +227,25 @@ def updateDownloadPage():
 
             return int(x)
 
+        def splitVersion(v):
+            for w in v.split("."):
+                for x in w.split("rc"):
+                    yield x
+
         def compareVersion(v):
             v = v.split("-")
 
-            v = tuple(tuple(numberize(x) for x in value.split(".")) for value in v)
+            v = tuple(tuple(numberize(x) for x in splitVersion(value)) for value in v)
 
             return v
 
         max_release = max(candidates, key=compareVersion)
 
+        candidates = []
+
         for line in output:
+            print(line)
+
             if ".rpm" not in line:
                 continue
 
@@ -244,9 +253,13 @@ def updateDownloadPage():
                 continue
 
             match = re.search(r"\>nuitka-unstable-(.*).noarch\.rpm\<", line)
-            max_prerelease = match.group(1)
+            candidates.append(match.group(1))
 
-            break
+        max_prerelease = max(candidates, key=compareVersion)
+
+        assert "6.7" not in max_prerelease, command
+
+        print(repo_name, max_prerelease)
 
         return max_release, max_prerelease
 
