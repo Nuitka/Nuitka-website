@@ -3,12 +3,12 @@
 .. date: 2013/03/16 18:44:45
 .. tags: Python, Nuitka, compiler
 
-Thanks to contributor, Nuitka now has a proper RPM spec file. And using `openSUSE Build
+Thanks to a contribution, Nuitka now has a proper RPM spec file. And using `openSUSE Build
 Service
-<https://build.opensuse.org/package/show?package=Nuitka&project=home%3Akayhayen>`__, we
+<https://build.opensuse.org/package/show/home:kayhayen/Nuitka>`__, we
 can now enjoy RPMs for all major distributions.
 
-Check out the revamped `download page </pages/download.html>`_.
+Check out the revamped `download page </pages/download.html>`_ as well.
 
 .. note::
 
