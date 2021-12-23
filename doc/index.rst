@@ -140,8 +140,9 @@ In the meantime you can find its `latest version here
 
    Impressum
 
-.. .. toctree::
-..    :caption: Factory Instructions
-..    :hidden:
+.. toctree::
+   :caption: Factory Instructions
+   :hidden:
 
-..    factory
+   factory
+   welcome

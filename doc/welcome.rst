@@ -1,6 +1,52 @@
 Welcome
 =======
 
+
+.. grid:: 4
+
+    .. grid-item-card::  Nuitka Commercial
+
+        € 250
+
+        - Nuitka commercial Features
+        - For all your applications
+        - Standard Support
+
+
+    .. grid-item-card::  Nuitka Priority
+
+        € 250
+
+        - Best Support
+
+        - Your Issues have Priority
+
+        - Does not include Commercial
+
+
+    .. grid-item-card::  Full Package
+
+        € 400
+
+        - Nuitka Commercial
+
+        - Nuitka Priority combined
+
+    .. grid-item-card::  Sponsor
+
+        € 1000
+
+        - Best Support
+
+        - Nuitka Commercial Access
+
+        - Roadmap Influence
+
+        - Use Cases Considered
+
+
+
+
 .. raw:: html
 
     <style>
