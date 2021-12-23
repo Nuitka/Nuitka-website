@@ -19,7 +19,8 @@ from lxml import html
 
 
 def updateDownloadPage():
-    # TODO: Move to at least develop, after next releease.
+    # TODO: Move to at least develop, after next releease, or even pip install as a requirement
+    # after release with an option to use other branches.
     sys.path.insert(0, os.path.abspath("Nuitka-factory"))
     from nuitka.utils.Jinja2 import getTemplate
     from nuitka.utils.Rest import makeTable
