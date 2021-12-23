@@ -797,11 +797,11 @@ When given, all is updated. Default %default.""",
         options.build = True
         options.deploy = True
 
+    if options.docs or options.downloads:
+        updateDocs()
+
     if options.downloads:
         updateDownloadPage()
-
-    if options.docs:
-        updateDocs()
 
     if options.check_pages:
         checkRestPages()
