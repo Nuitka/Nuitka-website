@@ -1,5 +1,3 @@
-.. contents::
-
 If you are a commercial user of Nuitka, you fall into one of 4
 categories, which Nuitka tries to address.
 
