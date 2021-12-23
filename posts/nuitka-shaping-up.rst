@@ -242,7 +242,7 @@ Graphs and Benchmarks
 ---------------------
 
 I had been working on automated performance graphs, and they are supposed
-to show up on `Nuitka Speedcenter <http://http://speedcenter.nuitka.net>`_
+to show up on `Nuitka Speedcenter <https://speedcenter.nuitka.net>`_
 already, but currently it's broken and outdated.
 
 Sad state of affairs. Reasons include that I found it too ugly to publish

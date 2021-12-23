@@ -115,7 +115,7 @@ Graphs and Benchmarks
 +++++++++++++++++++++
 
 The work on automated performance graphs has made progress, and they are
-supposed to show up on `Nuitka Speedcenter <http://speedcenter.nuitka.net>`_
+supposed to show up on `Nuitka Speedcenter <https://speedcenter.nuitka.net>`_
 each time, ``master``, ``develop`` or ``factory`` git branches change.
 
 There currently is no structure to these graphs. There is no explanations or

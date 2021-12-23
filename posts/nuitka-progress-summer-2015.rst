@@ -172,7 +172,7 @@ So that is already progressing, but I could need help with that definitely.
 
 Nuitka really has to catch up with benchmarks generally.. The work on automated
 performance graphs has made more progress, and they are supposed to show up on
-`Nuitka Speedcenter <http://speedcenter.nuitka.net>`__ each time, ``master``,
+`Nuitka Speedcenter <https://speedcenter.nuitka.net>`__ each time, ``master``,
 ``develop``, or ``factory`` git branches change.
 
 .. note::
@@ -184,7 +184,7 @@ performance graphs has made more progress, and they are supposed to show up on
 
 As a glimpse of what is possible with in-lined functions, look at this:
 
-`Lambda call construct case <http://speedcenter.nuitka.net/constructs/construct-calllambdaexpressiondirectly.html>`__
+`Lambda call construct case <https://speedcenter.nuitka.net/constructs/construct-calllambdaexpressiondirectly.html>`__
 
 But we also need to put real programs and use cases to test. This may need
 your help. Let me know if you want to. It takes work on taking the data, and

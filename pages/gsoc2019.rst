@@ -210,7 +210,7 @@ Project description: Nuitka has too little in the way of measuring the actual
 performance gains one has. You would change that.
 
 In a first stage, you would enhance the existing
-`speedcenter <http://speedcenter.nuitka.net>`__ to provide a more
+`speedcenter <https://speedcenter.nuitka.net>`__ to provide a more
 complete set of micro-benchmarks, for the different levels of optimization,
 with more or less type knowledge. You would then as a second step add a history
 of commits in some form of graphs that extend over a longer perioud of time,

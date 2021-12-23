@@ -59,7 +59,7 @@ The Interesting Parts
 - Note also that -90% is in fact much worse that +90%, the "diff" numbers from
   pybench make improvements look much better than regressions do. You can also
   checkout the comparison on the new [benchmark
-  pages](http://speedcenter.nuitka.net) that I am just creating, they are based
+  pages](https://speedcenter.nuitka.net) that I am just creating, they are based
   on codespeed, which I will blog upon separately.
 
 Look at this table of results as produced by pybench:

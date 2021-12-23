@@ -129,7 +129,7 @@ for someone to try.
 
 Nuitka really has to catch up here. The work on automated performance graphs
 has some made progress, and they are supposed to show up on `Nuitka Speedcenter
-<http://speedcenter.nuitka.net>`__ each time, ``master``, ``develop`` or
+<https://speedcenter.nuitka.net>`__ each time, ``master``, ``develop`` or
 ``factory`` git branches change.
 
 .. note::
@@ -143,7 +143,7 @@ However, as a glimpse of what will happen when we in-line functions, take a
 look at the case, where we already eliminate parameter parsing only, and make
 tremendous speedups:
 
-`Lambda call construct case <http://speedcenter.nuitka.net/constructs/construct-calllambdaexpressiondirectly.html>`__
+`Lambda call construct case <https://speedcenter.nuitka.net/constructs/construct-calllambdaexpressiondirectly.html>`__
 
 Right now (the graph gets automatic updates with each change), what you should
 see, is that ``develop`` branch is 20 times faster than CPython for that very

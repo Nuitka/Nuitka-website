@@ -32,7 +32,7 @@ Benchmarks
 
 Posted this one Twitter already:
 
-`Nuitka Speedcenter Builtin sum with generator <http://speedcenter.nuitka.net/constructs/construct-builtinsumwithgenerator.html>`_
+`Nuitka Speedcenter Builtin sum with generator <https://speedcenter.nuitka.net/constructs/construct-builtinsumwithgenerator.html>`_
 
 That one construct test has been a problem child, where Nuitka was slower than
 CPython 2.x, and very little faster than 3.x, and now with goto generators
@@ -51,7 +51,7 @@ The alternative line uses the generator expression, to make sure the constructio
 time is not counted. To measure that, there is another construct test, that just
 creates it.
 
-`Nuitka Speedcenter Generator Expression Creation <http://speedcenter.nuitka.net/constructs/construct-generatorexpressioncreation.html>`_
+`Nuitka Speedcenter Generator Expression Creation <https://speedcenter.nuitka.net/constructs/construct-generatorexpressioncreation.html>`_
 
 This one shows that stable Nuitka was already faster at creating them, but that
 the develop version got even faster again. As creating generator objects became
@@ -169,4 +169,3 @@ As I have been asked this, yes, you can donate to Nuitka if you wish to
 further its development. Go here:
 
 `Donate to Nuitka <http://nuitka.net/pages/donations.html>`_
-

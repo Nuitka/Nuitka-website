@@ -119,7 +119,7 @@ The changes I made are the most intense ever, and definitely have potential for
 regressions. I am used to providing very high quality releases.
 
 Also, I am working on the Buildbot instances to automate the production of
-`performance graphs <http://speedcenter.nuitka.net>`__, which get updated fully
+`performance graphs <https://speedcenter.nuitka.net>`__, which get updated fully
 automatically. I am working on updating the downloads page automatically for
 each release that gets made.
 

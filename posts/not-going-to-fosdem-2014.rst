@@ -5,7 +5,7 @@
 
 So I submitted a talk for FOSDEM "Python has a compiler now". And it didn't get
 accepted. Quite a surprise to me, but likely mostly logical. These are the
-`accepted talks <http://wirtel.be/tag/devroom.html>`__ and well, it surely
+accepted talks (link since became unavailable) and well, it surely
 didn't fit in, right.
 
 My intent was to introduce `Nuitka </pages/overview.html>`__ to the larger
