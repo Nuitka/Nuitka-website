@@ -292,7 +292,7 @@ NAVIGATION_LINKS = {
             'Support'),
         ('/doc/commercial.html', 'Commercial'),
         ('/pages/donations.html', 'Donations'),
-        ('/doc/impressum.html', 'About / Contact'),
+        ('/doc/Impressum.html', 'About / Contact'),
         (
             (
                 ('https://github.com/Nuitka/Nuitka', '<strong>Source code (GitHub)</strong>'),
