@@ -169,4 +169,4 @@ What I learned
 Overall, it was a great experience to be a part of Nuitka :)
 
 | Yours,
-| `Batakrishna <https://bksahu.github.io>`__
+| Batakrishna

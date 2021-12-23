@@ -15,4 +15,4 @@ I'm really excited to gain new experience while working on this project this
 summer.
 
 | Yours,
-| `Batakrishna <https://bksahu.github.io>`__
+| Batakrishna
