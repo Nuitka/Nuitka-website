@@ -13,7 +13,7 @@ to get more contributions.
 
 So these are the landing pages:
 
-* `Bitbucket <https://bitbucket.org/kayhayen/nuitka>`_
+* Bitbucket (since deleted)
 
   I kind of like the looks of it the most. Also it's very popular for Python people due to
   its Mercurial ties. I also liked that it imported my Nuitka repository easily.
@@ -23,7 +23,7 @@ So these are the landing pages:
   Is not being on Github allowed these days? Anyway, from ease of use, the interface looks
   more powerful.
 
-* `Gitorious <https://gitorious.org/nuitka/nuitka>`_
+* Gitorious (since discontinued)
 
   The interface and looks definitely are worst. But it's Free Software, and an open
   platform, so it has to be in the list.
