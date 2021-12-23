@@ -244,8 +244,6 @@ def updateDownloadPage():
         candidates = []
 
         for line in output:
-            print(line)
-
             if ".rpm" not in line:
                 continue
 
@@ -437,10 +435,10 @@ def updateDownloadPage():
 `Nuitka {version.split("-", 1)[0]} RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_{fedora_number}/noarch/{rpm_basename}-{version}.noarch.rpm>`__"""
 
     def makeRepoLinkText(repo_name):
-        return f"""`repository file <http://download.opensuse.org/repositories/home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"""
+        return f"""`repository file <https://download.opensuse.org/repositories/home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"""
 
 
-    fedora_data = [(f"Fedora {fedora_number}", makeRepoLinkText(f"Fedora {fedora_number}"), makeFedoraText(fedora_number, "stable"), makeFedoraText(fedora_number, "develop")) for fedora_number in range(max_fedora,min_fedora-1,-1)]
+    fedora_data = [(f"Fedora {fedora_number}", makeRepoLinkText(f"Fedora_{fedora_number}"), makeFedoraText(fedora_number, "stable"), makeFedoraText(fedora_number, "develop")) for fedora_number in range(max_fedora,min_fedora-1,-1)]
 
     fedora_table = makeTable([["Fedora Version", "RPM Repository", "Stable", "Develop"]] + fedora_data)
 
