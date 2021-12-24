@@ -9,9 +9,10 @@ Welcome
         € 250
 
         - Nuitka commercial Features
-        - For all your applications
-        - Standard Support
 
+        - For all your applications
+
+        - Standard Support
 
     .. grid-item-card::  Nuitka Priority
 
@@ -25,6 +26,7 @@ Welcome
 
 
     .. grid-item-card::  Full Package
+       :class-item: nuitka-grid-offer nuitka-offer-full-package
 
         € 400
 
