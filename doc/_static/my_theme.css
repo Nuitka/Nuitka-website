@@ -1,3 +1,62 @@
 .wy-nav-content {
     max-width: 1000px !important;
 }
+
+.nuitka-offer-full-package .sd-card {
+    background-color: #403472;
+}
+
+.nuitka-offer-commercial .sd-card {
+    background-color: #78c933;
+}
+
+.nuitka-offer-priority .sd-card {
+    background-color: #007dd6;
+}
+
+.nuitka-offer-sponsor .sd-card {
+    background-color: #b45f06;
+}
+
+
+.nuitka-grid-offer .sd-card {
+    color: white;
+}
+
+.nuitka-grid-offer .sd-card-title {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+.nuitka-grid-offer ul li {
+    list-style: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.nuitka-price p {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px !important;
+}
+
+.nuitka-price p::first-letter {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: 20px
+
+}
+
+.nuitka-price p::after {
+    content: "/ yr";
+    font-size: 14px;
+    vertical-align: -20px
+}
+
+.nuitka-grid-offer .sd-card-text {
+    color: white;
+    text-align: left;
+}

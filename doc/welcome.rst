@@ -5,8 +5,11 @@ Welcome
 .. grid:: 4
 
     .. grid-item-card::  Nuitka Commercial
+       :class-item: nuitka-grid-offer nuitka-offer-commercial
 
-        € 250
+        .. container:: nuitka-price
+
+            € 250
 
         - Nuitka commercial Features
 
@@ -15,8 +18,11 @@ Welcome
         - Standard Support
 
     .. grid-item-card::  Nuitka Priority
+       :class-item: nuitka-grid-offer nuitka-offer-priority
 
-        € 250
+        .. container:: nuitka-price
+
+            € 250
 
         - Best Support
 
@@ -28,15 +34,20 @@ Welcome
     .. grid-item-card::  Full Package
        :class-item: nuitka-grid-offer nuitka-offer-full-package
 
-        € 400
+        .. container:: nuitka-price
+
+            € 400
 
         - Nuitka Commercial
 
         - Nuitka Priority combined
 
     .. grid-item-card::  Sponsor
+       :class-item: nuitka-grid-offer nuitka-offer-sponsor
 
-        € 1000
+        .. container:: nuitka-price
+
+            € 1000
 
         - Best Support
 
