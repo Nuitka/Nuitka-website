@@ -193,19 +193,11 @@ than it should.
 
 -  Get it to work for 3.9 test suite.
 
-   This will usually mean it's safe to use for most people over 3.9, but
-   it's not supporting the 3.10 features yet. Currently stuck at some
-   changes for asyncgen.
+   The suite still needs a bit of help to run through, should be good though.
 
 -  Add support for new case syntax of 3.10
 
-   This is partially done, but recursive matching needs more work,
-   guards are missing, it's done with a reformulation, and needs a bunch
-   of new type comparisons, but many use cases ought to work now.
-
--  Get it to work for 3.10 test suite.
-
-   This will amount to fully compatibility in support.
+   This is partially done, but assignments in or matches do not work yet.
 
 **************
  Wheels Build
@@ -222,10 +214,16 @@ List of things, we are aiming for to be included in that release.
 
 [ ] Support for Kivy 2.x to work out of the box.
 
+[x] Better scalability
+
+*********************************
+ Features to be added for 0.6.20
+*********************************
+
+[ ] Better scalability
+
 [ ] Caching for bytecode demoted modules so no optimization needs to be
 run.
 
 [ ] Compression of onefile with bootstrap before Python3.5, so far it's
 there for 3.5 or higher only.
-
-[ ] Better scalability
