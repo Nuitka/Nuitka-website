@@ -29,8 +29,7 @@ Bug Fixes
 =========
 
 -  Corrected an issue for frames being optimized away where in fact they
-   are still necessary. `Issue#140 <http://bugs.nuitka.net/issue140>`__.
-   Fixed in 0.5.2.1 already.
+   are still necessary. Fixed in 0.5.2.1 already.
 
 -  Fixed handling of exception tests as side effects. These could be
    remainders of optimization, but didn't have code generation. Fixed in
@@ -40,8 +39,7 @@ Bug Fixes
    number for all the expression, even if it spawned multiple lines.
    Usually nothing important, and often even more correct, but sometimes
    not. Now the line number is most often the same as CPython in full
-   compatibility mode, or better, see above. `Issue#9
-   <http://bugs.nuitka.net/issue9>`__.
+   compatibility mode, or better, see above.
 
 -  Python3.4: Standalone mode for Windows is working now.
 

@@ -49,8 +49,7 @@ Bug Fixes
 -  Fix, the C11 via C++ compatibility uses symlinks tp C++ filenames
    where possible instead of making a copy from the C source. However,
    even on Linux that may not be allowed, e.g. on a DOS file system.
-   Added fallback to using full copy in that case. `Issue#353
-   <http://bugs.nuitka.net/issue353>`__.
+   Added fallback to using full copy in that case.
 
 -  Python3.5: Fix coroutines to close the "yield from" where an
    exception is thrown into them.

@@ -39,8 +39,7 @@ Optimization
    faster doing so.
 
 -  In-place operations of ``str`` were always copying the string, even
-   if was not necessary. This corrects `Issue#124
-   <http://bugs.nuitka.net/issue124>`__.
+   if was not necessary.
 
    .. code:: python
 

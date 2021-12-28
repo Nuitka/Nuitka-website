@@ -22,30 +22,25 @@ Bug fixes
 =========
 
 -  The compiled functions could not be used with ``multiprocessing`` or
-   ``copy.copy``. `Issue#19 <http://bugs.nuitka.net/issue19>`__. Fixed
-   in 0.3.22.1 already.
+   ``copy.copy``. Fixed in 0.3.22.1 already.
 
 -  In-place operations for slices with not both bounds specified crashed
-   the compiler. `Issue#36 <http://bugs.nuitka.net/issue36>`__. Fixed in
-   0.3.22.1 already.
+   the compiler. Fixed in 0.3.22.1 already.
 
 -  Cyclic imports could trigger an endless loop, because module import
-   expressions became the parent of the imported module object.
-   `Issue#37 <http://bugs.nuitka.net/issue37>`__. Fixed in 0.3.22.2
-   already.
+   expressions became the parent of the imported module object. Fixed in
+   0.3.22.2 already.
 
 -  Modules named ``proc`` or ``func`` could not be compiled to modules
    or embedded due to a collision with identifiers of CPython2.7
-   includes. `Issue#38 <http://bugs.nuitka.net/issue38>`__. Fixed in
-   0.3.22.2 already.
+   includes. Fixed in 0.3.22.2 already.
 
 New Features
 ============
 
--  The fix for `Issue#19 <http://bugs.nuitka.net/issue19>`__ also makes
-   pickling of compiled functions available. As it is the case for
-   non-compiled functions in CPython, no code objects are stored, only
-   names of module level variables.
+-  The function copying fix also makes pickling of compiled functions
+   available. As it is the case for non-compiled functions in CPython,
+   no code objects are stored, only names of module level variables.
 
 Organisational
 ==============
@@ -65,16 +60,15 @@ New Tests
 =========
 
 -  Changed the "CPython26" tests to no longer disable the parts that
-   relied on copying of functions to work, as `Issue#19
-   <http://bugs.nuitka.net/issue19>`__ is now supported.
+   relied on copying of functions to work as that is now supported.
 
--  Extended in-place assignment tests to cover error cases of `Issue#36
-   <http://bugs.nuitka.net/issue36>`__.
+-  Extended in-place assignment tests to cover error cases of we had
+   issues with.
 
 -  Extended compile library test to also try and compile the path where
    ``numpy`` lives. This is apparently another path, where Debian
-   installs some modules, and compiling this would have revealed
-   `Issue#36 <http://bugs.nuitka.net/issue36>`__ sooner.
+   installs some modules, and compiling this would have revealed issues
+   sooner.
 
 Summary
 =======

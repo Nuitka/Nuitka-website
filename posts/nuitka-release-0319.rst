@@ -22,17 +22,14 @@ Bug fixes
    using a ``joinpath`` call. Released as 0.3.18.3 already.
 
 -  A call to the range built-in with no arguments would crash the
-   compiler, see `Issue#29 <http://bugs.nuitka.net/issue29>`__. Released
-   as 0.3.18.4 already.
+   compiler, see Released as 0.3.18.4 already.
 
 -  Compatibility Fix: When rich comparison operators returned false
    value other ``False``, for comparison chains, these would not be
    used, but ``False`` instead, see .
 
 -  The support for ``__import__`` didn't cover keyword arguments, these
-   were simply ignored. See `Issue#28
-   <http://bugs.nuitka.net/issue28>`__. Fixed, but no warning is given
-   yet.
+   were simply ignored. Fixed, but no warning is given yet.
 
 New Features
 ============
@@ -109,8 +106,7 @@ Organisational
 
 -  Made sure the test runners work under Windows as well. Required
    making them more portable. And a workaround for ``os.execl`` not
-   propagating exit codes under Windows. See `Issue#26
-   <http://bugs.nuitka.net/issue26>`__ for more information.
+   propagating exit codes under Windows.
 
 -  For windows target the MinGW library is now linked statically. That
    means there is no requirement for MinGW to be in the ``PATH`` or even

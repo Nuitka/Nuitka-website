@@ -36,11 +36,10 @@ Bug fixes
 -  Checking compiled code with ``instance(some_function,
    types.FunctionType)`` as "zope.interfaces" does, was causing
    compatibility problems. Now this kind of check passes for compiled
-   functions too. `Issue#53 <http://bugs.nuitka.net/issue53>`__
+   functions too.
 
 -  The frame of modules had an empty locals dictionary, which is not
    compatible to CPython which puts the globals dictionary there too.
-   Also discussed in `Issue#53 <http://bugs.nuitka.net/issue53>`__
 
 -  For nested exceptions and interactions with generator objects, the
    exceptions in ``sys.exc_info()`` were not always fully compatible.

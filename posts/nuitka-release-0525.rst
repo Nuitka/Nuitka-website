@@ -10,8 +10,7 @@ Bug Fixes
 =========
 
 -  Python3.5: Coroutine methods using ``super`` were crashing the
-   compiler. `Issue#340 <http://bugs.nuitka.net/issue340>`__. Fixed in
-   0.5.24.2 already.
+   compiler. Fixed in 0.5.24.2 already.
 
 -  Python3.3: Generator return values were not properly transmitted in
    case of ``tuple`` or ``StopIteration`` values.
@@ -28,8 +27,7 @@ Bug Fixes
 
 -  Python3.5: The duplicate code objects for generators with arguments
    lead to interoperability issues with between such compiled generator
-   coroutines and compiled coroutines. `Issue#341
-   <http://bugs.nuitka.net/issue341>`__. Fixed in 0.5.24.2 already.
+   coroutines and compiled coroutines. Fixed in 0.5.24.2 already.
 
 -  Standalone: On some Linux variants, e.g. Debian Stretch and Gentoo,
    the linker needs more flags to really compile to a binary with

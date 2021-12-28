@@ -32,8 +32,7 @@ New Features
 -  Line numbers of expressions are now updates as evaluation progresses.
    This almost corrects.
 
-   Finally improves `Issue#9 <http://bugs.nuitka.net/issue9>`__. Now
-   only expression parts that cannot raise, do not update, which can
+   Now only expression parts that cannot raise, do not update, which can
    still cause difference, but much less often, and then definitely
    useless.
 
@@ -100,7 +99,7 @@ Bug Fixes
 -  When re-cursing to modules at compile time, script directory and
    current directory were used last, while at run time, it was the other
    way around, which caused overloaded standard library modules to not
-   be embedded. Corrects `Issue#94 <http://bugs.nuitka.net/issue94>`__.
+   be embedded.
 
    Thanks for the patch to James Michael DuPont.
 

@@ -18,8 +18,7 @@ Bug fixes
 =========
 
 -  The built-in ``next`` could causes a program crash when iterating
-   past the end of an iterator. `Issue#34
-   <http://bugs.nuitka.net/issue34>`__. Fixed in 0.3.20.1 already.
+   past the end of an iterator. Fixed in 0.3.20.1 already.
 
 -  The ``set`` constants could cause a compiler error, as that type was
    not considered in the "mutable" check yet. Fixed in 0.3.20.2 already.

@@ -14,33 +14,27 @@ Bug Fixes
    run it under Python 2.x, which is not good enough on systems, where
    that is already Python3. Improved to only do the guessing where
    necessary (i.e. when using the in-line copy of Scons) and then to
-   prefer "python2". `Issue#95 <http://bugs.nuitka.net/issue95>`__.
-   Fixed in 0.4.4.1 already.
+   prefer "python2". Fixed in 0.4.4.1 already.
 
 -  When using Nuitka created binaries inside a "virtualenv", created
    programs would instantly crash. The attempt to load and patch
    ``inspect`` module was not making sure that ``site`` module was
    already imported, but inside the "virtualenv", it cannot be found
-   unless. `Issue#96 <http://bugs.nuitka.net/issue96>`__. Fixed in
-   0.4.4.1 already.
+   unless. Fixed in 0.4.4.1 already.
 
 -  The option ``--recurse-directory`` to include plugin directories was
-   broken. `Issue#97 <http://bugs.nuitka.net/issue97>`__. Fixed in
-   0.4.4.2 already.
+   broken. Fixed in 0.4.4.2 already.
 
--  Python3: Files with "BOM" marker causes the compiler to crash.
-   `Issue#98 <http://bugs.nuitka.net/issue98>`__. Fixed in 0.4.4.2
-   already.
+-  Python3: Files with "BOM" marker causes the compiler to crash. Fixed
+   in 0.4.4.2 already.
 
 -  Windows: The generated code for ``try``/``return``/``finally`` was
    working with gcc (and therefore MinGW), but not with MSVC, causing
-   crashes. `Issue#102 <http://bugs.nuitka.net/issue102>`__. Fixed in
-   0.4.4.2 already.
+   crashes. Fixed in 0.4.4.2 already.
 
 -  The option ``--recurse-all`` did not recurse to package
    ``__init__.py`` files in case ``from x.y import z`` syntax was used.
-   `Issue#100 <http://bugs.nuitka.net/issue100>`__. Fixed in 0.4.4.2
-   already.
+   Fixed in 0.4.4.2 already.
 
 -  Python3 on macOS: Corrected link time error. Fixed in 0.4.4.2
    already.
@@ -58,7 +52,7 @@ Bug Fixes
    unusual threading modules therefore failed.
 
 -  Using ``sys.prefix`` to find the Python installation instead of hard
-   coded paths. `Issue#103 <http://bugs.nuitka.net/issue103>`__.
+   coded paths.
 
 New Features
 ============

@@ -129,7 +129,7 @@ Organisational
    -  Gitorious (since discontinued)
    -  Google Code (since discontinued)
 
--  Removed "clean-up.sh", which is practically useless, as tests now
+-  Removed ``clean-up.sh``, which is practically useless, as tests now
    clean up after themselves reasonably, and with ``git clean -dfx``
    working better.
 

@@ -26,25 +26,21 @@ Bug Fixes
 =========
 
 -  Support Nuitka being installed to a path that contains spaces and
-   handle main programs with spaces in their paths. `Issue#106
-   <http://bugs.nuitka.net/issue106>`__. Fixed in 0.4.5.1 already.
-
--  Support Python being installed to a path that contains spaces.
-   `Issue#106 <http://bugs.nuitka.net/issue106>`__. Fixed in 0.4.5.2
+   handle main programs with spaces in their paths. Fixed in 0.4.5.1
    already.
 
+-  Support Python being installed to a path that contains spaces. Fixed
+   in 0.4.5.2 already.
+
 -  Windows: User provided constants larger than 65k didn't work with
-   MSVC. `Issue#108 <http://bugs.nuitka.net/issue108>`__. Fixed in
-   0.4.5.3 already.
+   MSVC. Fixed in 0.4.5.3 already.
 
 -  Windows: The option ``--windows-disable-console`` was not effective
-   with MSVC. `Issue#107 <http://bugs.nuitka.net/issue107>`__. Fixed in
-   0.4.5.3 already.
+   with MSVC. Fixed in 0.4.5.3 already.
 
 -  Windows: For some users, Scons was detecting their MSVC installation
    properly already from registry, but it didn't honor the target
-   architecture. `Issue#99 <http://bugs.nuitka.net/issue99>`__. Fixed in
-   0.4.5.3 already.
+   architecture. Fixed in 0.4.5.3 already.
 
 -  When creating Python modules, these were marked as executable ("x"
    bit), which they are of course not. Fixed in 0.4.5.3 already.
@@ -53,12 +49,10 @@ Bug Fixes
    ``long`` this could lead to errors. Fixed in 0.4.5.3 already.
 
 -  Code that was using nested mutable constants and changed the nested
-   ones was not executing correctly. `Issue#112
-   <http://bugs.nuitka.net/issue112>`__.
+   ones was not executing correctly.
 
 -  Python2: Due to list contractions being re-formulated as functions,
    ``del`` was rejected for the variables assigned in the contraction.
-   `Issue#111 <http://bugs.nuitka.net/issue111>`__.
 
    .. code:: python
 
@@ -133,7 +127,7 @@ Organisational
 -  Added support for Gentoo Linux.
 
 -  Added support for self compiled Python versions with and without
-   debug enabled. `Issue#110 <http://bugs.nuitka.net/issue110>`__
+   debug enabled.
 
 -  Added use of Nuitka fonts for headers in manuals.
 

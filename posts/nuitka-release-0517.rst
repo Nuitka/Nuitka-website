@@ -17,8 +17,7 @@ Bug Fixes
    contained all variable names, but not the one of the function object.
 
 -  Python3: Support for virtualenv on Windows was using non-portable
-   code and therefore failing. `Issue#266
-   <http://bugs.nuitka.net/issue266>`__.
+   code and therefore failing.
 
 -  The tree displayed with ``--display-tree`` duplicated all functions
    and did not resolve source lines for functions. It also displayed

@@ -22,13 +22,11 @@ Bug Fixes
    due to early releases for compatibility. Fixed in 0.5.12.1 already.
 
 -  Fix, optimizion of calls of constant objects (always an exception),
-   crashed the compiler. This corrects `Issue#202
-   <http://bugs.nuitka.net/issue202>`__. Fixed in 0.5.12.2 already.
+   crashed the compiler.Fixed in 0.5.12.2 already.
 
 -  Standalone: Added support for ``site.py`` installations with a
    leading ``def`` or ``class`` statement, which is defeating our
-   attempt to patch ``__file__`` for it. This corrects `Issue#189
-   <http://bugs.nuitka.net/issue189>`__.
+   attempt to patch ``__file__`` for it.
 
 -  Compatibility: In full compatibility mode, the tracebacks of ``or``
    and ``and`` expressions are now as wrong as they are in CPython. Does

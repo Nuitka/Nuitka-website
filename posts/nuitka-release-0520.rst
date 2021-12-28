@@ -38,10 +38,9 @@ Bug Fixes
 
 -  Standalone: Packages from standard library, e.g. ``xml`` now have
    proper ``__path__`` as a list and not as a string value, which breaks
-   code of e.g. PyXML. `Issue#183 <http://bugs.nuitka.net/issue183>`__.
+   code of e.g. PyXML.
 
 -  Standalone: Added missing dependency of ``twisted.protocols.tls``.
-   `Issue#288 <http://bugs.nuitka.net/issue288>`__.
 
 -  Python3.5: When finalizing coroutines that were not finished, a
    corruption of its reference count could happen under some
@@ -54,11 +53,9 @@ New Features
 ============
 
 -  Added support for Anaconda Python on this Linux. Both accelerated and
-   standalone mode work now. `Issue#295
-   <http://bugs.nuitka.net/issue295>`__.
+   standalone mode work now.
 
--  Added support for standalone mode on FreeBSD. `Issue#294
-   <http://bugs.nuitka.net/issue294>`__.
+-  Added support for standalone mode on FreeBSD.
 
 -  The plug-in framework was expanded with new features to allow
    addressing some specific issues.

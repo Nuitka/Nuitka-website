@@ -14,8 +14,8 @@ Bug Fixes
    variable as opposed to the module variable.
 
 -  Overwriting compiled function's ``__doc__`` attribute more than once
-   could corrupt the old value, leading to crashes. `Issue#156
-   <http://bugs.nuitka.net/issue156>`__. Fixed in 0.5.5.2 already.
+   could corrupt the old value, leading to crashes. Fixed in 0.5.5.2
+   already.
 
 -  Compatibility Python2: The ``exec`` statement ``execfile`` were
    changing ``locals()`` was given as an argument.
@@ -58,8 +58,8 @@ Bug Fixes
    all cases. Fixed in 0.5.5.1 already.
 
 -  During installation from PyPI with Python3 versions, there were
-   errors given for the Python2 only scons files. `Issue#153
-   <http://bugs.nuitka.net/issue153>`__. Fixed in 0.5.5.3 already.
+   errors given for the Python2 only scons files. Fixed in 0.5.5.3
+   already.
 
 -  Fix, the arguments of ``yield from`` expressions could be leaked.
 

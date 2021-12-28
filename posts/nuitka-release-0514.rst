@@ -51,8 +51,7 @@ Bug Fixes
 
 -  Fix, when re-executing itself to drop the ``site`` module, make sure
    we find the same file again, and not according to the ``PYTHONPATH``
-   changes coming from it. `Issue#223
-   <http://bugs.nuitka.net/issue223>`__. Fixed in 0.5.13.4 already.
+   changes coming from it. Fixed in 0.5.13.4 already.
 
 -  Enhanced code generation for ``del variable`` statements, where it's
    clear that the value must be assigned.
@@ -64,13 +63,10 @@ Bug Fixes
    become unused during analysis.
 
 -  Standalone: Creating or running programs from inside unicode paths
-   was not working on Windows. `Issue#231
-   <http://bugs.nuitka.net/issue231>`__ `Issue#229
-   <http://bugs.nuitka.net/issue229>`__ and. Fixed in 0.5.13.7 already.
+   was not working on Windows. Fixed in 0.5.13.7 already.
 
 -  Namespace package support was not yet complete, importing the parent
-   of a package was still failing. `Issue#230
-   <http://bugs.nuitka.net/issue231>`__. Fixed in 0.5.13.7 already.
+   of a package was still failing. Fixed in 0.5.13.7 already.
 
 -  Python2.6: Compatibility for exception check messages enhanced with
    newest minor releases.
@@ -84,8 +80,7 @@ Bug Fixes
 
 -  Python2: Fix, when creating code for the largest negative constant to
    still fit into ``int``, that was only working in the main module.
-   `Issue#228 <http://bugs.nuitka.net/issue228>`__. Fixed in 0.5.13.5
-   already.
+   Fixed in 0.5.13.5 already.
 
 -  Compatibility: The ``print`` statement raised an assertion on unicode
    objects that could not be encoded with ``ascii`` codec.
@@ -104,8 +99,7 @@ New Features
 -  Added support for Anaconda Python distribution. As it doesn't install
    the Python DLL, we copy it along for acceleration mode.
 
--  Added support for Visual Studio 2015. `Issue#222
-   <http://bugs.nuitka.net/issue222>`__. Fixed in 0.5.13.3 already.
+-  Added support for Visual Studio 2015. Fixed in 0.5.13.3 already.
 
 -  Added support for self compiled Python versions running from build
    tree, this is intended to help debug things on Windows.

@@ -12,18 +12,15 @@ Bug fixes
 
 -  The use of a local variable name as an expression was not covered and
    lead to a compiler crash. Totally amazing, but true, nothing in the
-   test suite of CPython covered this. `Issue#30
-   <http://bugs.nuitka.net/issue30>`__. Fixed in release 0.3.19.1
+   test suite of CPython covered this. Fixed in release 0.3.19.1
    already.
 
 -  The use of a closure variable name as an expression was not covered
-   as well. And in this case corrupted the reference count. `Issue#31
-   <http://bugs.nuitka.net/issue31>`__. Fixed in release 0.3.19.1
-   already.
+   as well. And in this case corrupted the reference count. Fixed in
+   release 0.3.19.1 already.
 
 -  The ``from x import *`` attempted to respect ``__all__`` but failed
-   to do so. `Issue#32 <http://bugs.nuitka.net/issue32>`__. Fixed in
-   release 0.3.19.2 already.
+   to do so. Fixed in release 0.3.19.2 already.
 
 -  The ``from x import *`` didn't give a ``SyntaxError`` when used on
    Python3. Fixed in release 0.3.19.2 already.

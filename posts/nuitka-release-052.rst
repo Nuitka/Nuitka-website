@@ -77,18 +77,15 @@ Bug Fixes
 
 -  Windows: The resource files were cached by Scons and re-used, even if
    the input changed. The could lead to corrupted incremental builds.
-   `Issue#129 <http://bugs.nuitka.net/issue129>`__. Fixed in 0.5.1.1
-   already.
+   Fixed in 0.5.1.1 already.
 
 -  Windows: For functions with too many local variables, the MSVC failed
    with an error "C1026: parser stack overflow, program too complex".
    The rewritten code generation doesn't burden the compiler as much.
-   `Issue#127 <http://bugs.nuitka.net/issue127>`__.
 
 -  Compatibility: The timing deletion of nested call arguments was
    different from C++. This shortcoming has been addressed in the
-   rewritten code generation. `Issue#62
-   <http://bugs.nuitka.net/issue62>`__.
+   rewritten code generation.
 
 -  Compatibility: The ``__future__`` flags and ``CO_FREECELL`` were not
    present in frame flags. These were then not always properly inherited
@@ -106,24 +103,21 @@ Bug Fixes
 -  Python2: Having the ASCII encoding declared in a module wasn't
    working.
 
--  Standalone: Included the ``idna`` encoding as well. `Issue#135
-   <http://bugs.nuitka.net/issue135>`__.
+-  Standalone: Included the ``idna`` encoding as well.
 
 -  Standalone: For virtualenv, the file ``orig-prefix.txt`` needs to be
-   present, now it's copied into the "dist" directory as well.
-   `Issue#126 <http://bugs.nuitka.net/issue126>`__. Fixed in 0.5.1.1
-   already.
+   present, now it's copied into the "dist" directory as well. Fixed in
+   0.5.1.1 already.
 
 -  Windows: Handle cases, where Python and user program are installed on
    different volumes.
 
--  Compatibility: Can now finally use ``execfile`` as an expression.
-   `Issue#5 <http://bugs.nuitka.net/issue5>`__ is finally fixed after
-   all this time thanks to C-ish code generation.
+-  Compatibility: Can now finally use ``execfile`` as an expression. One
+   of our oldest issues, no 5, is finally fixed after all this time
+   thanks to C-ish code generation.
 
 -  Compatibility: The order or call arguments deletion is now finally
-   compatible. `Issue#62 <http://bugs.nuitka.net/issue62>`__ also is
-   finally fixed. This too is thanks to C-ish code generation.
+   compatible. This too is thanks to C-ish code generation.
 
 -  Compatibility: Code object flags are now more compatible for Python3.
 

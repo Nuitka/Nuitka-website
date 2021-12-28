@@ -40,8 +40,7 @@ Bug fixes
       defaultKeepsIdentity()
 
    This now prints "True" as it does with CPython. The solution is
-   actually a general code optimization, see below. `Issue#55
-   <http://bugs.nuitka.net/issue55>`__
+   actually a general code optimization, see below.
 
 -  Usage of ``unicode`` built-in with more than one argument could
    corrupt the encoding argument string.

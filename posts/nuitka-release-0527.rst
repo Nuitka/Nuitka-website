@@ -54,8 +54,7 @@ Bug Fixes
 New Features
 ============
 
--  Added support for Visual Studio 2017. `Issue#368
-   <http://bugs.nuitka.net/issue368>`__.
+-  Added support for Visual Studio 2017.
 
 -  Added option ``--python2-for-scons`` to specify the Python2 execute
    to use for calling Scons. This should allow using Anaconda Python for

@@ -18,8 +18,7 @@ Bug fixes
 
 -  Local variables were released when an exception was raised that
    escaped the local function. They should only be released, after
-   another exception was raised somewhere. `Issue#39
-   <http://bugs.nuitka.net/issue39>`__.
+   another exception was raised somewhere.
 
 -  Identifiers of nested tuples and lists could collide.
 
@@ -128,8 +127,7 @@ Organisational
    The old name is no longer correct after clang and MSVC have gained
    support, and it could be misunderstood to influence compiler
    selection, rather than causing the C++ source code to not be updated,
-   so manual changes will the used. This solves `Issue#47
-   <http://bugs.nuitka.net/issue47>`__.
+   so manual changes will the used.
 
 -  Catch exceptions for ``continue``, ``break``, and ``return`` only
    where needed for ``try``/``finally`` and loop constructs.

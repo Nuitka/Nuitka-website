@@ -21,9 +21,8 @@ Bug Fixes
    openSUSE platforms and gave warnings with older compilers. Fixed in
    0.4.7.1 already.
 
--  The "standalone mode" was not including all useful encodings.
-   `Issue#116 <http://bugs.nuitka.net/issue116>`__. Fixed in 0.4.7.2
-   already.
+-  The "standalone mode" was not including all useful encodings. Fixed
+   in 0.4.7.2 already.
 
 -  The "standalone mode" was defaulting to ``--python-flag=-S`` which
    disables the parsing of "site" module. That unfortunately made it

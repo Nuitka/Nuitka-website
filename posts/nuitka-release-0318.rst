@@ -17,8 +17,7 @@ Bug fixes
 
 -  Conditional statements with both branches empty were not optimized
    away in all cases, triggering an assertion of code generation.
-   `Issue#16 <http://bugs.nuitka.net/issue16>`__. Released as 0.3.17a
-   hot fix already.
+   Released as 0.3.17a hot fix already.
 
 -  Nuitka was considering directories to contain packages that had no
    "__init__.py" which could lead to errors when it couldn't find the
@@ -83,7 +82,6 @@ Organisational
 -  The `"Download" <https://nuitka.net/doc/download.html>`__ page is now
    finally updated for releases automatically.
 
-   This closes `Issue#7 <http://bugs.nuitka.net/issue7>`__ completely.
    Up to this release, I had to manually edit that page, but now
    mastered the art of upload via XMLRCP and a Python script, so that
    don't loose as much time with editing, checking it, etc.

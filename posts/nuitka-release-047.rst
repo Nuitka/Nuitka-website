@@ -18,8 +18,7 @@ Bug Fixes
    already.
 
 -  Windows: The immediate execution as performed by ``nuitka --execute``
-   was not preserving the exit code. `Issue#26
-   <http://bugs.nuitka.net/issue26>`__.
+   was not preserving the exit code.
 
 -  Python3.3: Packages without ``__init.py__`` were not properly
    embedding the name-space package as well.
@@ -33,8 +32,7 @@ Bug Fixes
 -  Python3.3: The ``__qualname__`` of nested classes was corrected.
 
 -  For modules that recursed to other modules, an infinite loop could be
-   triggered when comparing types with rich comparisons. `Issue#115
-   <http://bugs.nuitka.net/issue115>`__.
+   triggered when comparing types with rich comparisons.
 
 New Features
 ============

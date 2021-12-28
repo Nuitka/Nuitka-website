@@ -31,7 +31,6 @@ Bug Fixes
    inside a package falsely assumed these were the built-ins which need
    not exist, and then didn't recurse into them. This affected
    standalone mode the most, as the module was then missing entirely.
-   This corrects `Issue#178 <http://bugs.nuitka.net/issue178>`__.
 
    .. code:: python
 
@@ -39,8 +38,7 @@ Bug Fixes
       import x.y.exceptions
 
 -  Similarly, the importing of modules with the same name as standard
-   library modules could go wrong. This corrects `Issue#184
-   <http://bugs.nuitka.net/issue184>`__.
+   library modules could go wrong.
 
    .. code:: python
 
@@ -49,12 +47,10 @@ Bug Fixes
 
 -  Importing modules on Windows and macOS was not properly checking the
    checking the case, making it associate wrong modules from files with
-   mismatching case. This corrects `Issue#188
-   <http://bugs.nuitka.net/issue188>`__.
+   mismatching case.
 
 -  Standalone: Importing with ``from __future__ import absolute_import``
-   would prefer relative imports still. This corrects `Issue#187
-   <http://bugs.nuitka.net/issue188>`__.
+   would prefer relative imports still.
 
 -  Python3: Code generation for ``try``/``return expr``/``finally``
    could loose exceptions when ``expr`` raised an exception, leading to

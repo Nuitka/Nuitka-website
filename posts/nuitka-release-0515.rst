@@ -21,17 +21,15 @@ Bug Fixes
 -  Standalone: Fix, compilation of the ``ctypes`` module could happen
    for some import patterns, and then prevented the distribution to
    contain all necessary libraries. Now it is made sure to not include
-   compiled and frozen form both. `Issue#241
-   <http://bugs.nuitka.net/issue241>`__. Fixed in 0.5.14.1 already.
+   compiled and frozen form both. Fixed in 0.5.14.1 already.
 
 -  Fix, compilation for conditional statements where the boolean check
-   on the condition cannot raise, could fail compilation. `Issue#240
-   <http://bugs.nuitka.net/issue240>`__. Fixed in 0.5.14.2 already.
+   on the condition cannot raise, could fail compilation. Fixed in
+   0.5.14.2 already.
 
 -  Fix, the ``__import__`` built-in was making static optimization
    assuming compile time constants to be strings, which in the error
-   case they are not, which was crashing the compiler. `Issue#240
-   <http://bugs.nuitka.net/issue245>`__.
+   case they are not, which was crashing the compiler.
 
    .. code:: python
 
@@ -48,20 +46,17 @@ Bug Fixes
 
 -  Some modules have extremely complex expressions requiring too deep
    recursion to work on all platforms. These modules are now included
-   entirely as bytecode fallback. `Issue#240
-   <http://bugs.nuitka.net/issue240>`__.
+   entirely as bytecode fallback.
 
 -  The standard library may contain broken code due to installation
-   mistakes. We have to ignore their ``SyntaxError``. `Issue#244
-   <http://bugs.nuitka.net/issue244>`__.
+   mistakes. We have to ignore their ``SyntaxError``.
 
 -  Fix, pickling compiled methods was failing with the wrong kind of
    error, because they should not implement ``__reduce__``, but only
-   ``__deepcopy__``. `Issue#219 <http://bugs.nuitka.net/issue219>`__.
+   ``__deepcopy__``.
 
 -  Fix, when running under ``wine``, the check for scons binary was
-   fooled by existence of ``/usr/bin/scons``. `Issue#251
-   <http://bugs.nuitka.net/issue251>`__.
+   fooled by existence of ``/usr/bin/scons``.
 
 New Features
 ============

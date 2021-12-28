@@ -33,8 +33,7 @@ Bug Fixes
    it's more robust.
 
 -  Windows: Fix, the combination of Anaconda Python, MinGW 64 bits and
-   mere acceleration was not working. `Issue#254
-   <http://bugs.nuitka.net/issue254>`__.
+   mere acceleration was not working.
 
 -  Standalone: Preserve not only namespace packages created by ``.pth``
    files, but also make the imports done by them. This makes it more

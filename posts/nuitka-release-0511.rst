@@ -14,8 +14,7 @@ New Features
    are now made relative for all modes, not just standalone mode.
 
    This makes it possible to put data files along side compiled modules
-   in a deployment. This solves `Issue#170
-   <http://bugs.nuitka.net/issue170>`__.
+   in a deployment.
 
 Bug Fixes
 =========
@@ -30,8 +29,7 @@ Bug Fixes
               f()  # referencing 'f' in 'f' caused the garbage collection to fail.
 
    Recent changes to code generation attached closure variable values to
-   the function object, so now they can be properly visited. This
-   corrects `Issue#45 <http://bugs.nuitka.net/issue45>`__. Fixed in
+   the function object, so now they can be properly visited. Fixed in
    0.5.10.1 already.
 
 -  Python2.6: The complex constants with real or imaginary parts
@@ -69,16 +67,14 @@ Bug Fixes
 
 -  Compatibility: The ``__closure__`` attributes of functions was so far
    not supported, and rarely missing. Recent changes made it easy to
-   expose, so now it was added. This corrects `Issue#45
-   <http://bugs.nuitka.net/issue45>`__.
+   expose, so now it was added.
 
 -  macOS: A linker warning about deprecated linker option ``-s`` was
    solved by removing the option.
 
 -  Compatibility: Nuitka was enforcing that the ``__doc__`` attribute to
    be a string object, and gave a misleading error message. This check
-   must not be done though, ``__doc__`` can be any type in Python. This
-   corrects `Issue#177 <http://bugs.nuitka.net/issue177>`__.
+   must not be done though, ``__doc__`` can be any type in Python.
 
 Optimization
 ============

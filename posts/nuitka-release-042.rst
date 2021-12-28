@@ -42,14 +42,13 @@ Bug Fixes
       # ls
       directory directory.exe
 
-   This makes this usage more obvious, and fixes the older issue
-   `Issue#49 <http://bugs.nuitka.net/issue49>`__ for this feature.
+   This makes this usage more obvious, and fixes an older issue for this
+   feature.
 
 -  Evaluation order of binary operators was not enforced.
 
    Nuitka already enforces evaluation order for just about everything.
-   But not for binary operators it seems. Corrects `Issue#61
-   <http://bugs.nuitka.net/issue61>`__.
+   But not for binary operators it seems.
 
 -  Providing an ``# coding: no-exist`` was crashing under Python2, and
    ignored under Python3, now it does the compatible thing for both.
@@ -62,14 +61,12 @@ Bug Fixes
       global a  # Not in a function, but on module level. Pointless but legal!
       a = 1
 
-   Effectively these statements can be ignored. Corrects part of
-   `Issue#65 <http://bugs.nuitka.net/issue65>`__.
+   Effectively these statements can be ignored.
 
 -  Future imports are only legal when they are at the start of the file.
 
    This was not enforced by Nuitka, making it accept code, which CPython
-   would reject. It now properly raises a syntax error. Corrects part of
-   `Issue#65 <http://bugs.nuitka.net/issue65>`__.
+   would reject. It now properly raises a syntax error.
 
 -  Raising exceptions from context was leaking references.
 
@@ -79,7 +76,6 @@ Bug Fixes
 
    Under CPython3.2 the above is not allowed (it is acceptable starting
    CPython3.3), and was also leaking references to its arguments.
-   Corrects `Issue#76 <http://bugs.nuitka.net/issue76>`__.
 
 -  Importing the module that became ``__main__`` through the module
    name, didn't recurse to it.
@@ -87,23 +83,20 @@ Bug Fixes
    This also gives a warning. PyBench does it, and then stumbles over
    the non-found "pybench" module. Of course, programmers should use
    ``sys.modules[ "__main__" ]`` to access main module code. Not only
-   because the duplicated modules don't share data. Corrects `Issue#68
-   <http://bugs.nuitka.net/issue68>`__.
+   because the duplicated modules don't share data.
 
 -  Compiled method ``repr`` leaked references when printed.
 
    When printing them, they would not be freed, and subsequently hold
    references to the object (and class) they belong to. This could
    trigger bugs for code that expects ``__del__`` to run at some point.
-   Corrects `Issue#81 <http://bugs.nuitka.net/issue81>`__.
 
 -  The ``super`` built-in leaked references to given object.
 
    This was added, because Python3 needs it. It supplies the arguments
    to ``super`` automatically, whereas for Python2 the programmer had to
    do it. And now it turns out that the object lost a reference, causing
-   similar issues as above, preventing ``__del__`` to run. Corrects
-   `Issue#81 <http://bugs.nuitka.net/issue81>`__.
+   similar issues as above, preventing ``__del__`` to run.
 
 -  The ``raise`` statement didn't enforce type of third argument.
 
@@ -114,14 +107,13 @@ Bug Fixes
 -  Python3 built-in exceptions were strings instead of exceptions.
 
    A gross mistake that went uncaught by test suites. I wonder how. Them
-   being strings doesn't help their usage of course, fixed. Corrects
-   `Issue#82 <http://bugs.nuitka.net/issue82>`__.
+   being strings doesn't help their usage of course, fixed.
 
 -  The ``-nan`` and ``nan`` both exist and make a difference.
 
    A older story continued. There is a sign to ``nan``, which can be
    copied away and should be present. This is now also supported by
-   Nuitka. Corrects `Issue#75 <http://bugs.nuitka.net/issue75>`__.
+   Nuitka.
 
 -  Wrong optimization of ``a == a``, ``a != a``, ``a <= a`` on C++
    level.
@@ -170,8 +162,7 @@ Bug Fixes
    test suite so far. Turns out, the re-formulation of ``with``
    statements, was wrongly using ``try/except/else``, but these ignore
    the problematic statements. Only ``try/finally`` does. The enhanced
-   re-formulation now does the correct thing. Corrects `Issue#59
-   <http://bugs.nuitka.net/issue59>`__.
+   re-formulation now does the correct thing.
 
 -  Starting with Python3, absolute imports are now the default.
 

@@ -18,8 +18,7 @@ Bug Fixes
    ``Something/__init__.py`` and ``something.py``.
 
 -  Standalone: The search path was preferring system directories and
-   therefore could have conflicting DLLs. `Issue#144
-   <http://bugs.nuitka.net/issue144>`__.
+   therefore could have conflicting DLLs.
 
 -  Fix, the optimization of ``getattr`` with predictable result was
    crashing the compilation. This was a regression, fixed in 0.5.7.1

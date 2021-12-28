@@ -24,14 +24,14 @@ Bug fixes
 =========
 
 -  The compiled method type can now be used with ``copy`` module. That
-   means, instances with methods can now be copied too. `Issue#40
-   <http://bugs.nuitka.net/issue40>`__. Fixed in 0.3.23.1 already.
+   means, instances with methods can now be copied too. Fixed in
+   0.3.23.1 already.
 
 -  The ``assert`` statement as of Python2.7 creates the
    ``AssertionError`` object from a given value immediately, instead of
    delayed as it was with Python2.6. This makes a difference for the
-   form with 2 arguments, and if the value is a tuple. `Issue#41
-   <http://bugs.nuitka.net/issue41>`__. Fixed in 0.3.23.1 already.
+   form with 2 arguments, and if the value is a tuple. Fixed in 0.3.23.1
+   already.
 
 -  Sets written like this didn't work unless they were predicted at
    compile time:
@@ -41,8 +41,7 @@ Bug fixes
       {value}
 
    This apparently rarely used Python2.7 syntax didn't have code
-   generation yet and crashed the compiler. `Issue#42
-   <http://bugs.nuitka.net/issue42>`__. Fixed in 0.3.23.1 already.
+   generation yet and crashed the compiler. Fixed in 0.3.23.1 already.
 
 -  For Python2, the default encoding for source files is ``ascii``, and
    it is now enforced by Nuitka as well, with the same ``SyntaxError``.
@@ -176,9 +175,9 @@ again simpler. Still, making function references, so they can be copied,
 is missing for value propagation to progress.
 
 Generally, as usual, a focus has been laid on correctness. This is also
-the first time, I am release with a known bug though: That is `Issue#39
-<http://bugs.nuitka.net/issue39>`__ which I believe now, may be the root
-cause of the mercurial tests not yet passing.
+the first time, I am release with a known bug though, one which I
+believe now, may be the root cause of the mercurial tests not yet
+passing.
 
 The solution will be involved and take a bit of time. It will be about
 "compiled frames" and be a (invasive) solution. It likely will make

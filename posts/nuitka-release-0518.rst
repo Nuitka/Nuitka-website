@@ -27,8 +27,7 @@ Bug Fixes
    far.
 
 -  Windows: Was outputting command line arguments debug information at
-   program start. `Issue#284 <http://bugs.nuitka.net/issue284>`__. Fixed
-   in 0.5.17.1 already.
+   program start. Fixed in 0.5.17.1 already.
 
 Optimization
 ============
@@ -48,12 +47,11 @@ Optimization
 
 -  The ``slice`` built-in, and internal creation of slices (e.g. in
    re-formulations of Python3 slices as subscripts) cannot raise.
-   `Issue#262 <http://bugs.nuitka.net/issue262>`__.
 
 -  Standalone: Avoid inclusion of bytecode of ``unittest.test``,
    ``sqlite3.test``, ``distutils.test``, and ``ensurepip``. These are
    not needed, but simply bloat the amount of bytecode used on e.g.
-   macOS. `Issue#272 <http://bugs.nuitka.net/issue272>`__.
+   macOS.
 
 -  Speed up compilation with Nuitka itself by avoid to copying and
    constructing variable lists as much as possible using an always

@@ -12,24 +12,21 @@ Bug Fixes
    0.5.0.1 already.
 
 -  Module names with special characters not allowed in C identifiers
-   were not fully supported. `Issue#118
-   <http://bugs.nuitka.net/issue118>`__. Fixed in 0.5.0.1 already.
+   were not fully supported. Fixed in 0.5.0.1 already.
 
 -  Name mangling for classes with leading underscores was not removing
    them from resulting attribute names. This broke at ``__slots__`` with
-   private attributes for such classes. `Issue#119
-   <http://bugs.nuitka.net/issue119>`__. Fixed in 0.5.0.1 already.
+   private attributes for such classes. Fixed in 0.5.0.1 already.
 
--  Standalone on Windows might need "cp430" encoding. `Issue#120
-   <http://bugs.nuitka.net/issue120>`__. Fixed in 0.5.0.2 already.
+-  Standalone on Windows might need "cp430" encoding. Fixed in 0.5.0.2
+   already.
 
 -  Standalone mode didn't work with ``lxml.etree`` due to lack of hard
    coded dependencies. When a shared library imports things, Nuitka
    cannot detect it easily.
 
 -  Wasn't working on macOS 64 bits due to using Linux 64 bits specific
-   code. `Issue#123 <http://bugs.nuitka.net/issue123>`__. Fixed in
-   0.5.0.2 already.
+   code. Fixed in 0.5.0.2 already.
 
 -  On MinGW the constants blob was not properly linked on some
    installations, this is now done differently (see below).
