@@ -19,7 +19,7 @@ from lxml import html
 
 
 def importNuitka():
-    sys.path.insert(0, os.path.abspath("Nuitka-develop"))
+    sys.path.insert(0, os.path.abspath("Nuitka-factory"))
     import nuitka
     del sys.path[0]
 
@@ -29,6 +29,10 @@ def migratePosts():
     importNuitka()
     from nuitka.utils.FileOperations import getFileList, changeFilenameExtension, getFileContents, putTextFileContents
     from nuitka.tools.quality.autoformat.Autoformat import autoformat
+
+    # Already migrated potentially.
+    if not os.path.exists("posts/article-over-nuitka-standalone.meta"):
+        return
 
     for rst_filename in getFileList(
         "posts",
@@ -138,34 +142,53 @@ def migratePosts():
         del values["tags"]
         title = values.pop("title")
         date = values.pop("date")
+
+        date = date.split(" ")[0]
+        if date.count("/") == 2:
+            year, month, day = date.split("/")
+        else:
+            year, month, day = date.split("-")
+
+
+        month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        date = "%s %s, %s" % (
+            day,
+            month_names[int(month)-1],
+            year
+        )
+
         author = values.pop("author", "Kay Hayen")
         description = values.pop("description", None)
         values.pop("type", None)
 
         assert not values, values
 
+        has_title = rst_contents.startswith("####")
+
         if description:
             rst_contents = description + "\n\n" + rst_contents
 
-        if not rst_contents.startswith("####"):
+        if not has_title:
             rst_contents = f"""\
 {title}
 ~~~~~~
 """ + rst_contents
 
         rst_contents = f"""\
-.. post: {date}
+.. post:: {date}
     :tags: {tags}
     :author: {author}
-    :language: en
 
 """ + rst_contents
 
         putTextFileContents(rst_filename, rst_contents)
 
 
+        # TODO: Make it like .. post:: blocks
         if ".. youtube" not in rst_contents:
             autoformat(rst_filename, git_stage=False)
+
+        os.unlink(meta_filename)
 
 def updateDownloadPage():
     # TODO: Move to at least develop, after next releease, or even pip install as a requirement
@@ -809,8 +832,11 @@ def updateDocs():
 
 
 def runSphinxBuild():
-    assert 0 == os.system("sphinx-build doc/ doc_generated/ -a")
-    assert 0 == os.system("cp doc/*.rst doc_generated/")
+    assert 0 == os.system("sphinx-build doc output/ -a")
+
+
+def runAblogBuild():
+    assert 0 == os.system("ablog build -s blog -a")
 
 
 def runNikolaCommand(command):
@@ -849,34 +875,6 @@ def checkRestPages():
             if full_name.endswith(".rst"):
 
                 checkRstLint(full_name)
-
-
-def updatePageDates():
-    for root, _dirnames, filenames in os.walk("pages"):
-        for filename in filenames:
-            full_name = os.path.join(root, filename)
-
-            if full_name.endswith(".rst"):
-                output = subprocess.check_output(
-                    ["git", "log", "-1", "--pretty=%ci", full_name], shell=False
-                ).strip()
-
-                meta_filename = full_name[:-3] + "meta"
-
-                if not os.path.exists(meta_filename):
-                    meta_filename = full_name
-
-                with open(meta_filename, "rb") as input_file:
-                    meta_contents = input_file.readlines()
-
-                new_date = b".. date: " + output + b"\n"
-
-                meta_contents = [
-                    new_date if m.startswith(b".. date") else m for m in meta_contents
-                ]
-
-                with open(meta_filename, "wb") as output_file:
-                    output_file.writelines(meta_contents)
 
 
 def main():
@@ -962,12 +960,12 @@ When given, all is updated. Default %default.""",
         checkRestPages()
 
     if options.build:
-        updatePageDates()
         runSphinxBuild()
-        runNikolaCommand("status")
-        runNikolaCommand("build")
+        runAblogBuild()
 
     if options.deploy:
+        assert False
+
         runNikolaCommand("deploy")
 
 

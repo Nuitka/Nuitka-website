@@ -35,7 +35,6 @@ extensions = [
     "sphinx.ext.todo",
     # "sphinx.ext.viewcode",
     # External extensions
-    'ablog',
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_inline_tabs",
