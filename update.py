@@ -182,11 +182,7 @@ def migratePosts():
 """ + rst_contents
 
         putTextFileContents(rst_filename, rst_contents)
-
-
-        # TODO: Make it like .. post:: blocks
-        if ".. youtube" not in rst_contents:
-            autoformat(rst_filename, git_stage=False)
+        autoformat(rst_filename, git_stage=False)
 
         os.unlink(meta_filename)
 
@@ -198,7 +194,7 @@ def updateDownloadPage():
     from nuitka.utils.Jinja2 import getTemplate
     from nuitka.utils.Rest import makeTable
 
-    page_template = getTemplate(package_name=None, template_name="download.rst.j2", template_subdir="pages")
+    page_template = getTemplate(package_name=None, template_name="download.rst.j2", template_subdir="doc/doc")
 
     page_source = requests.get("https://nuitka.net/releases/").text
 
@@ -634,7 +630,7 @@ def updateDownloadPage():
         else:
             variable = None
 
-    open("pages/download.rst", "wb").write(("\n".join(output) + "\n").encode("utf8"))
+    open("doc/doc/download.rst", "wb").write(("\n".join(output) + "\n").encode("utf8"))
 
 
 def _updateCheckout(branch):
@@ -742,12 +738,12 @@ def updateReleasePosts():
     count = 0
     sep = "#"
 
-    with open("doc/Changelog.rst", "w") as changelog_output:
+    with open("doc/doc/Changelog.rst", "w") as changelog_output:
 
         for title, lines in splitRestByChapter(
             open("Nuitka-factory/Changelog.rst").readlines()
         ):
-            if count == 5:
+            if count == 3:
                 older = "Older Releases"
 
                 changelog_output.write("\n\n" + sep * len(older) + "\n")
@@ -834,10 +830,8 @@ def updateDocs():
 def runSphinxBuild():
     assert 0 == os.system("sphinx-build doc output/ -a")
 
-
-def runAblogBuild():
-    assert 0 == os.system("ablog build -s blog -a")
-
+def runSphinxAutoBuild():
+    os.system("python -m sphinx_autobuild doc output/ -a --watch doc --watch pages")
 
 def runNikolaCommand(command):
     assert 0 == os.system("nikola " + command)
@@ -917,6 +911,16 @@ When given, the site is built. Default %default.""",
     )
 
     parser.add_option(
+        "--serve-site",
+        action="store_true",
+        dest="serve",
+        default=False,
+        help="""\
+When given, the site is re-built on changes and served locally. Default %default.""",
+    )
+
+
+    parser.add_option(
         "--deploy-site",
         action="store_true",
         dest="deploy",
@@ -961,7 +965,10 @@ When given, all is updated. Default %default.""",
 
     if options.build:
         runSphinxBuild()
-        runAblogBuild()
+
+    if options.serve:
+        runSphinxAutoBuild()
+
 
     if options.deploy:
         assert False

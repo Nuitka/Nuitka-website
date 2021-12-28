@@ -2,9 +2,20 @@
  Nuitka the Python Compiler
 ############################
 
+****************
+ Nuitka Blog
+****************
+
+.. postlist:: 5
+   :excerpts:
+
+*****************
+What is Nuitka
+*****************
+
 Nuitka is a Python compiler written in Python.
 
-It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.9).
+It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10).
 
 You feed Nuitka your Python app, it does a lot of clever things, and
 spits out an executable or extension module.
@@ -100,49 +111,49 @@ In the meantime you can find its `latest version here
    :caption: Manuals
    :hidden:
 
-   User Manual <user-manual>
-   Developer Manual <developer-manual>
+   User Manual <doc/user-manual>
+   Developer Manual <doc/developer-manual>
 
 .. toctree::
    :caption: Commercial Users
    :hidden:
 
-   commercial
+   doc/commercial
 
 .. toctree::
    :caption: Changelog
    :hidden:
 
-   Changelog
-   Roadmap <roadmap>
+   doc/Changelog
+   Roadmap <doc/roadmap>
 
 .. toctree::
    :caption: Downloads
    :hidden:
 
-   Downloads <download>
+   Download <doc/download>
 
 .. toctree::
    :caption: API doc
    :hidden:
 
-   api-doc
+   doc/api-doc
 
 .. toctree::
    :caption: Credits
    :hidden:
 
-   Credits
+   doc/Credits
 
 .. toctree::
    :caption: Impressum
    :hidden:
 
-   Impressum
+   doc/Impressum
 
 .. toctree::
    :caption: Factory Instructions
    :hidden:
 
-   factory
-   welcome
+   doc/factory
+   doc/welcome

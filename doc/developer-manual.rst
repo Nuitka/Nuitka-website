@@ -1,1 +1,0 @@
-../Nuitka-factory/Developer_Manual.rst

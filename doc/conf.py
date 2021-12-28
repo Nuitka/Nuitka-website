@@ -5,8 +5,6 @@ import time
 # Configuration file for the Sphinx documentation builder.
 
 # -- Project information
-
-
 project = "Nuitka the Python Compiler"
 copyright = "%s, Kay Hayen and Nuitka Contributors" % time.gmtime().tm_year
 author = "Kay Hayen"
@@ -39,6 +37,9 @@ extensions = [
     "sphinx_design",
     "sphinx_inline_tabs",
     "sphinxcontrib.youtube",
+    # Blog extension
+    "ablog",
+
 ]
 
 intersphinx_mapping = {
@@ -48,6 +49,15 @@ intersphinx_mapping = {
 intersphinx_disabled_domains = ["std"]
 
 templates_path = ["_templates"]
+
+# Options for ABlog
+
+# The "title" for the blog, used in active pages.  Default is ``'Blog'``.
+blog_title = "Nuitka Blog"
+
+# Base URL for the website, required for generating feeds.
+# e.g. blog_baseurl = "http://example.com/"
+blog_baseurl = "http//nuitka.net"
 
 # -- Options for HTML output
 html_theme = "sphinx_rtd_theme"
@@ -65,7 +75,7 @@ autodoc_member_order = 'bysource'
 def setup(app):
     app.add_css_file('my_theme.css')
 
-html_static_path = ['_static']
+html_static_path = ['_static', 'pr']
 
 # Configure theme
 html_theme_options = {
@@ -73,3 +83,5 @@ html_theme_options = {
     'analytics_id': 'G-V73VK1T804',
     'analytics_anonymize_ip': True,
 }
+
+html_extra_path = ["../files"]

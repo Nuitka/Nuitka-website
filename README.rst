@@ -11,7 +11,8 @@
 
 This is used to build the Nuitka web site. Enhancements of all kinds are
 welcome. You will need python 3.9 and pipenv to build it, and so far
-this has only be done on Linux, but it ought to also work on Windows:
+this has only be done on Linux, but it might also work on Windows, you
+can make that work as a contribution.
 
 .. code:: sh
 
@@ -25,13 +26,12 @@ this has only be done on Linux, but it ought to also work on Windows:
 
    # Need to do this at least once to copy manuals, logos
    python3.9 -m pipenv run python update.py --update-docs
-   # Now lets build the site
+   # Now lets build the site, to see if it's all correct.
    python3.9 -m pipenv run python update.py --build-site
 
-   # Start local web server with the site, the nikola one
-   # should be used.
-   python3.9 -m pipenv run python -m sphinx_autobuild doc/ doc_generated/ -w doc/ -a
-   python3.9 -m pipenv run nikola auto
+   # Start local web server with the site, and do automatic
+   # rebuilds
+   python3.9 -m pipenv run python update.py --serve-site
 
    # Browse it (Linux)
    xdg-open http://localhost:8080
@@ -39,14 +39,13 @@ this has only be done on Linux, but it ought to also work on Windows:
    explorer http://localhost:8080
 
 *****************
- Usage of Nikola
+ Usage of Sphinx
 *****************
 
 So the site is basically mostly an automation of importing a few files
-from the git repository, splitting up e.g. the ``Changelog.rst`` into
-pages, with otherwise using Nikola to render it. Reference the `Nikola
-handbook <https://getnikola.com/handbook.html>`__ if you have any
-questions about how it does that, but it's easy enough.
+from the Nuitka git repository, splitting up e.g. the ``Changelog.rst`` into
+pages, with otherwise using Sphinx to render it. Reference the Sphinx documentation
+and esp. the one for read the docs theme and ABlog.
 
 ********
  Thanks
