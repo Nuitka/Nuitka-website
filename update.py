@@ -38,10 +38,11 @@ def migratePosts():
 
         rst_contents = getFileContents(rst_filename)
 
-        if not rst_contents.startswith(".."):
-            assert os.path.exists(meta_filename)
+        if not rst_contents.startswith("..") or rst_contents.startswith(".. figure"):
+            assert os.path.exists(meta_filename), meta_filename
 
             continue
+
 
         assert not os.path.exists(meta_filename), meta_filename
 
@@ -75,8 +76,6 @@ def migratePosts():
 
         putTextFileContents(meta_filename, meta_contents)
         putTextFileContents(rst_filename, new_contents)
-
-    return
 
     for meta_filename in getFileList(
         "posts",
