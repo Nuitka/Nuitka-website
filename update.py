@@ -63,7 +63,7 @@ def migratePosts():
                 key=key[3:].strip()
                 value = value.strip()
 
-                if key == "title":
+                if key == "title" and not rst_contents.startswith("###"):
                     new_contents.append(value)
                     new_contents.append("~"*5)
 
@@ -139,16 +139,25 @@ def migratePosts():
         title = values.pop("title")
         date = values.pop("date")
         author = values.pop("author", "Kay Hayen")
+        description = values.pop("description", None)
+        values.pop("type", None)
 
         assert not values, values
+
+        if description:
+            rst_contents = description + "\n\n" + rst_contents
+
+        if not rst_contents.startswith("####"):
+            rst_contents = f"""\
+{title}
+~~~~~~
+""" + rst_contents
+
         rst_contents = f"""\
 .. post: {date}
     :tags: {tags}
     :author: {author}
     :language: en
-
-{title}
-~~~~~~
 
 """ + rst_contents
 
