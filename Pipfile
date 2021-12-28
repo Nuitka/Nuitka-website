@@ -23,6 +23,7 @@ sphinx-inline-tabs = "*"
 sphinx-rtd-theme = "*"
 "sphinxcontrib.twitter" = "*"
 ablog = "*"
+sphinxcontrib-youtube = "*"
 
 [requires]
 python_version = "3.9"

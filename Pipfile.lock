@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "073784325d7a5f9b598889f140e32861cc158309b7557a6ed180a27121ac69bf"
+            "sha256": "e7462b8716e824d682b74bad712872c65a0dd2f67a2a93315d5b0c1679b04ddc"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -536,6 +536,14 @@
             "markers": "python_version >= '3.5'",
             "version": "==1.1.5"
         },
+        "sphinxcontrib-youtube": {
+            "hashes": [
+                "sha256:8946236bcf0b4b786ea3e3002f499c5f1a3298ab368fc56109dceeb0531b3cef",
+                "sha256:ddf996279eb93cb1c3ab965812a109c30292915f8737afddb6be1ce6134dfcaf"
+            ],
+            "index": "pypi",
+            "version": "==1.0.1"
+        },
         "sphinxcontrib.twitter": {
             "hashes": [
                 "sha256:74c41bb54f8a05528ca419abae1ad8548ec960b51aef5edd4989b9893ed4761b"
@@ -876,7 +884,7 @@
                 "sha256:6f62d78e2f89b4500b080fe3a81690850cd254227f27f75c3a0c491a1f351ba7",
                 "sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951"
             ],
-            "markers": "python_version < '4' and python_full_version >= '3.6.1'",
+            "markers": "python_version < '4.0' and python_full_version >= '3.6.1'",
             "version": "==5.10.1"
         },
         "jinja2": {
