@@ -1,13 +1,14 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release has a focus on code generation optimization. Doing major
 changes away from "C++-ish" code to "C-ish" code, many constructs are
 now faster or got looked at and optimized.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Compatibility: The variable name in locals for the iterator provided
    to the generator expression should be ``.0``, now it is.
@@ -15,8 +16,9 @@ Bug Fixes
 -  Generators could leak frames until program exit, these are now
    properly freed immediately.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Faster exception save and restore functions that might be in-lined by
    the backend C compiler.
@@ -55,8 +57,9 @@ Optimization
 -  Removing unused temporary and local variables as a result of
    optimization, these previously still allocated storage.
 
-Cleanup
-=======
+#########
+ Cleanup
+#########
 
 -  The use of C++ classes for variable objects was removed. Closure
    variables are now attached as ``PyCellObject`` to the function
@@ -97,8 +100,9 @@ Cleanup
    These are checked at program exit for corruption. This may help
    uncover bugs.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Speedcenter has been enhanced with better graphing and has more
    benchmarks now. More work will be needed to make it useful.
@@ -106,8 +110,9 @@ Organisational
 -  Updates to the Developer Manual, reflecting the current near finished
    state of "C-ish" code generation.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  New reference count tests to cover generator expressions and their
    usage got added.
@@ -117,8 +122,9 @@ Tests
 
 -  Again, more basic tests are directly executable with Python3.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This is the next evolution of "C-ish" coming to pass. The use of C++ has
 for all practical purposes vanished. It will remain an ongoing activity

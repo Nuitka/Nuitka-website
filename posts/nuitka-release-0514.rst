@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release is an intermediate step towards value propagation, which is
 not considered ready for stable release yet. The major point is the
@@ -10,8 +10,9 @@ to SSA. The ``try``/``finally`` statement change is delayed.
 There are also a lot of bug fixes, and enhancements to code generation,
 as well as major cleanups of code base.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Python3: Added support assignments trailing star assignment.
 
@@ -85,8 +86,9 @@ Bug Fixes
 -  Compatibility: The ``print`` statement raised an assertion on unicode
    objects that could not be encoded with ``ascii`` codec.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Added support for Windows 10.
 
@@ -104,8 +106,9 @@ New Features
 -  Added support for self compiled Python versions running from build
    tree, this is intended to help debug things on Windows.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Function in-lining is now present in the code, but still disabled,
    because it needs more changes in other areas, before we can generally
@@ -173,16 +176,18 @@ Optimization
 -  Built-in references can now be converted to strings at compile time,
    e.g. when printed.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Removed gitorious mirror of the git repository, they shut down.
 
 -  Make it more clear in the documentation that Python2 is needed at
    compile time to create Python3 executables.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Moved more parts of code generation to their own modules, and used
    registry for code generation for more expression kinds.
@@ -239,8 +244,9 @@ Cleanups
    helpful and avoid tracebacks from scons, also remove more unused
    tools like ``rpm`` from out in-line copy.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Added the CPython3.4 test suite.
 
@@ -267,8 +273,9 @@ Tests
 -  Refined more tests to be directly executable with Python3, this is an
    ongoing effort.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release is clearly major. It represents a huge step forward for
 Nuitka as it improves nearly every aspect of code generation and

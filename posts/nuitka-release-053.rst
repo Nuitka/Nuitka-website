@@ -1,13 +1,14 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release is mostly a follow up, resolving points that have become
 possible to resolve after completing the C-ish evolution of Nuitka. So
 this is more of a service release.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Improved mode ``--improved`` now sets error lines more properly than
    CPython does in many cases.
@@ -15,8 +16,9 @@ New Features
 -  The ``-python-flag=-S`` mode now preserves ``PYTHONPATH`` and
    therefore became usable with virtualenv.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Line numbers of frames no longer get set unless an exception occurs,
    speeding up the normal path of execution.
@@ -25,8 +27,9 @@ Optimization
    and yields less module usage, resulting in smaller binaries and
    faster compilation.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Corrected an issue for frames being optimized away where in fact they
    are still necessary. Fixed in 0.5.2.1 already.
@@ -48,8 +51,9 @@ Bug Fixes
 
 -  Standalone: Fixed import error when using PyQt and Python3.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  For our testing approach, the improved line number handling means we
    can undo lots of changes that are no more necessary.
@@ -58,8 +62,9 @@ New Tests
    location where modules may live, covering the ``matplotlib`` module
    as a result.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  In Python2, the list contractions used to be re-formulated to be
    function calls that have no frame stack entry of their own right.
@@ -76,8 +81,9 @@ Cleanups
 -  Use ``intptr_t`` over ``unsigned long`` to store fiber code pointers,
    increasing portability.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Providing own Debian/Ubuntu repositories for all relevant
    distributions.
@@ -87,8 +93,9 @@ Organisational
 -  Hosting of the web site was moved to metal server with more RAM and
    performance.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release brings about structural simplification that is both a
 follow-up to C-ish, as well as results from a failed attempt to remove

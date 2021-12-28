@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This is about the new release with focus on performance and cleanups. It
 indicates significant progress with the milestone this release series
@@ -12,8 +12,9 @@ in CPython ``instancemethod`` objects. The new ``compiled_method`` is
 specifically designed for wrapping ``compiled_function`` and therefore
 more efficient at it.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  When using ``Python`` or ``Nuitka.py`` to execute some script, the
    exit code in case of "file not found" was not the same as CPython. It
@@ -26,8 +27,9 @@ Bug fixes
 -  Exception tracebacks created inside ``with`` statements could contain
    duplicate lines, this was corrected.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Global variable assignments now also use ``assign0`` where no
    reference exists.
@@ -62,8 +64,9 @@ Optimization
    avoid function calls e.g. in the ``ITERATOR_NEXT`` case, this gave a
    few percent on "PyStone" as well.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  New package ``nuitka.codegen`` to contain all code generation related
    stuff, moved ``nuitka.templates`` to ``nuitka.codegen.templates`` as
@@ -94,8 +97,9 @@ Cleanups
 -  Split variable, exception, built-in helper classes into separate
    header files.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  The exit codes of CPython execution and Nuitka compiled programs are
    now compared as well.
@@ -103,8 +107,9 @@ New Tests
 -  Errors messages of methods are now covered by the ``ParameterErrors``
    test as well.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  A new script "benchmark.sh" (now called "run-valgrind.py") script now
    starts "kcachegrind" to display the valgrind result directly.
@@ -116,8 +121,9 @@ Organisational
 -  The "check-release.sh" script needs to unset ``NUITKA_EXTRA_OPTIONS``
    or else the reflection test will trip over the changed output paths.
 
-Numbers
-=======
+#########
+ Numbers
+#########
 
 python 2.6:
 

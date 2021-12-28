@@ -1,14 +1,15 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release of Nuitka continues the focus on performance and contains
 only cleanups and optimization. Most go into the direction of more
 readable code, some aim at making the basic things faster, with good
 results as to performance as you can see below.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Constants in conditions of conditional expressions (``a if cond else
    d``), ``if``/``elif`` or ``while`` are now evaluated to ``true`` or
@@ -47,8 +48,9 @@ Optimization
    ``while`` and ``for`` loop code generation. And I started work on
    having a template for assignments.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Do not generate code for the else of ``while`` and ``for`` loops if
    there is no such branch. This uncluttered the generated code
@@ -85,8 +87,9 @@ Cleanups
    in the C++ exception handling before exit to CPython to add to the
    traceback object. This was now in-lined, as it won't be shared ever.
 
-Numbers
-=======
+#########
+ Numbers
+#########
 
 python 2.6:
 

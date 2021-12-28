@@ -1,12 +1,13 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release includes important new features, lots of polishing
 cleanups, and some important performance improvements as well.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  The RPM packages didn't build due to missing in-line copy of Scons.
    Fixed in 0.4.6.1 already.
@@ -34,8 +35,9 @@ Bug Fixes
 -  For modules that recursed to other modules, an infinite loop could be
    triggered when comparing types with rich comparisons.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  The "standalone" mode allows to compile standalone binaries for
    programs and run them without Python installation. The DLLs loaded by
@@ -55,8 +57,9 @@ New Features
    often imports many useless things that often don't apply to target
    systems.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Faster frame stack handling for functions without ``try``/``except``
    (or ``try``/``finally`` in Python3). This gives a speed boost to
@@ -96,8 +99,9 @@ Optimization
 -  Module variables are now accessed even faster, the gain for "PyStone"
    is only 0.1% and mostly the result of leaner code.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  The "standalone mode" code (formerly known as "portable mode" has
    been redone and activated. This is a feature that a lot of people
@@ -124,8 +128,9 @@ Organisational
    constants will not change around. This makes the build results
    possible to cache for ``ccache`` and Scons as well.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  The ``programs`` tests cases now fail if module or directory
    recursion is not working, being executed in another directory.
@@ -142,8 +147,9 @@ Tests
 -  Use ``--execute`` on Windows as well, the issue that prevented it has
    been solved after all.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  The generated code uses ``const_``, ``var_``, ``par_`` prefixes in
    the generated code and centralized the decision about these into
@@ -174,8 +180,9 @@ Cleanups
 -  Moved main program, function object, set related code generation to
    dedicated modules.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release marks major technological progress with the introduction of
 the much sought standalone mode and performance improvements from

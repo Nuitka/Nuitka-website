@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This is to inform you about the new stable release of Nuitka. This time
 it contains mostly organisational improvements, some bug fixes, improved
@@ -10,8 +10,9 @@ It is again the result of working towards compilation of a real program
 (Mercurial). This time, I have added support for proper handling of
 compiled types by the ``inspect`` module.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  Fix for "Missing checks in parameter parsing with star list, star
    dict and positional arguments". There was whole in the checks for
@@ -29,8 +30,9 @@ Bug fixes
    expressions twice, which could cause problems if they had side
    effects. Fixed in 0.3.11a already.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Run time patching the ``inspect`` module so it accepts compiled
    functions, compiled methods, and compiled generator objects. The
@@ -42,16 +44,18 @@ New Features
    too. The inspect module will therefore return correct value for
    ``inspect.isgeneratorfunction()`` too.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Slice indexes that are ``None`` are now constant propagated as well.
 
 -  Slightly more efficient code generation for dual star arg functions,
    removing useless checks.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Moved the Scons, static C++ files, and assembler files to new package
    ``nuitka.build`` where also now ``SconsInterface`` module lives.
@@ -62,8 +66,9 @@ Cleanups
 
 -  Some PyLint cleanups.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  New test ``Recursion`` to cover recursive functions.
 
@@ -73,8 +78,9 @@ New Tests
 
 -  Cover evaluation order of simple slices in ``OrderCheck`` too.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  There is a new issue tracker available under http://bugs.nuitka.net
 
@@ -88,8 +94,9 @@ Organisational
    distributions work too. We may now build a windows installer. It's
    currently in testing, we will make it available when finished.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 The new source organisation makes packaging Nuitka really easy now. From
 here, we can likely provide "binary" package of Nuitka soon. A windows

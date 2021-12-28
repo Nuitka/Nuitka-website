@@ -1,14 +1,15 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This is a maintenance release, largely intended to put out improved
 support for new platforms and minor corrections. It should improve the
 speed for standalone mode, and compilation in general for some use
 cases, but this is mostly to clean up open ends.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Fix, the ``len`` built-in could give false values for dictionary and
    set creations with the same element.
@@ -69,8 +70,9 @@ Bug Fixes
 -  Windows: Fixed harmless warnings for Visual Studio 2015 in
    ``--debug`` mode.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Re-formulate ``exec`` and ``eval`` to default to ``globals()`` as the
    default for the locals dictionary in modules.
@@ -83,8 +85,9 @@ Optimization
    explicit nodes too, and in the registry. We only have one or the
    other of it, avoiding to compile both.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  When ``strace`` or ``dtruss`` are not found, given proper error
    message, so people know what to do.
@@ -114,8 +117,9 @@ Tests
 
 -  Added Python3.5 only test for unpacking variants.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Prepare plug-in interface to allow suppression of import warnings to
    access the node doing it, making the import node is accessible.
@@ -130,8 +134,9 @@ Cleanups
 -  Compiled types were mixing uses of ``compiled_`` prefixes, something
    with a space, sometimes with an underscore.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Improved support for Python3.5 missing compatibility with new
    language features.
@@ -145,8 +150,9 @@ Organisational
 
 -  Added repository with RPM packages for Fedora 22.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 So this release is mostly to lower the technical debt incurred that
 holds it back from supporting making more interesting changes. Upcoming

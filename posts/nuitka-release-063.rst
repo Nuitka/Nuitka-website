@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This has a focus on organisational improvements. With more and more
 people joining Nuitka, normal developers as well as many GSoC 2019
@@ -10,8 +10,9 @@ processes, and to improve documentation.
 That said, an impressive amount of bug fixes was contributed, but
 optimization was on hold.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Windows: Added support for running compiled binaries in unicode path
    names.
@@ -40,13 +41,15 @@ Bug Fixes
 -  Fix detection of standard library paths that include ``..`` path
    elements.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Avoid static C++ runtime library when using MinGW64.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Plugins: A plugin may now also generate data files on the fly for a
    given module.
@@ -54,8 +57,9 @@ New Features
 -  Added support for FreeBSD/PowerPC arch which still uses ``gcc`` and
    not ``clang``.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Nuitka is participating in the GSoC 2019.
 
@@ -95,8 +99,9 @@ Organisational
 
 -  Added short installation guide for Nuitka on Windows.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Moved commandline parsing helper functions from common code helpers
    to the main program where of course their only usage is.
@@ -119,8 +124,9 @@ Cleanups
 -  The runners in ``bin`` directory are now formatted with ``black``
    too.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Detect Windows permission errors for two step execution of Nuitka as
    well, leading to retries should they occur.
@@ -131,8 +137,9 @@ Tests
 -  Tests: Added more trick assignments and generally added more tests
    that were so far missing.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 With the many organisational changes in place, my normal work is
 expected to resume for after and yield quicker improvements now.

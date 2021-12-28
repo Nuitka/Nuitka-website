@@ -1,13 +1,14 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release is mostly a maintenance release, bringing out minor
 compatibility improvements, and some standalone improvements. Also new
 options to control the recursion into modules are added.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Compatibility: Checks for iterators were using ``PyIter_Check`` which
    is buggy when running outside of Python core, because it's comparing
@@ -46,8 +47,9 @@ Bug Fixes
    the current directory remained in the search path, which could lead
    to looking at the wrong files.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  The ``getattr`` built-in is now optimized for compile time constants
    if possible, even in the presence of a ``default`` argument. This is
@@ -57,8 +59,9 @@ Organisational
    got accelerated, especially for the no or single argument cases where
    Nuitka now avoids building the tuple.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Added the option ``--recurse-pattern`` to include modules per
    filename, which for Python3 is the only way to not have them in a
@@ -71,15 +74,17 @@ New Features
    do not want the C++ compiler to create any binary, but only to
    measure what would have been used.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Renamed the debug option ``--c++-only`` to ``--recompile-c++-only``
    to make its purpose more clear and there now is
    ``--generate-c++-only`` too.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Added support for taking coverage of Nuitka in a test run on a given
    input file.
@@ -89,8 +94,9 @@ Tests
 
 -  Added uniform way of reporting skipped tests, not generally used yet.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release marks progress towards having coverage testing. Recent
 releases had made it clear that not all code of Nuitka is actually used

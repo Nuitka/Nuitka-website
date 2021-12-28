@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release has few, but important bug fixes. The main focus was on
 expanding standalone support, esp. for PySide2, but also and in general
@@ -10,8 +10,9 @@ information.
 Also an important new features was added, e.g. the project configuration
 in the main file should prove to be very useful.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Compatibility: Fix, modules that failed to import, should be retried
    on next import.
@@ -51,8 +52,9 @@ Bug Fixes
 -  Standalone: Matching for package names to not suggest recompile for
    was broken and didn't match. Fixed in 0.6.13.1 already.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Added support for project options.
 
@@ -116,8 +118,9 @@ New Features
    Otherwise plugins cannot work on standard library modules. This makes
    it possible to handle them as well.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Faster binary operations.
 
@@ -165,8 +168,9 @@ Optimization
 -  Make ``pkgutil`` a hard import too, this is in preparation of more
    optimization for its functions.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Upstream patches for ``PySide6`` have been contributed and merged
    into the development branch ``dev``. Full support should be available
@@ -193,8 +197,9 @@ Organisational
    It was still using obsolete "recursion" language rather than talking
    about "following imports", which is the new one.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Remove dead code related to constants marshal, the data composer has
    replaced this.
@@ -202,16 +207,18 @@ Cleanups
 -  Avoid internal API usage for loading extension modules on Linux,
    there is a function in ``sys`` module to get the ld flags.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Fix, the ``only`` mode wasn't working properly.
 
 -  Use new project options feature for specific options in basic tests
    allowing to remove them from the test runner.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 For PySide2 things became more perfect, but it takes upstream patches
 unfortunately such that only PySide6.1 will be working out of the box

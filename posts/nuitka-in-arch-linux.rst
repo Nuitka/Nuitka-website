@@ -1,15 +1,18 @@
-Nuitka in Arch Linux
-~~~~~
+######################
+ Nuitka in Arch Linux
+######################
 
-Got this message::
+Got this message:
+
+.. code::
 
    Just thought you wanted to know that Nuitka is now also an official
    Arch Linux package and can be installed simply with:
 
    pacman -S nuitka
 
-So, that is another sign of Nuitka getting more external recognition. It is
-showing that the eco system around Nuitka is indeed warming up.
+So, that is another sign of Nuitka getting more external recognition. It
+is showing that the eco system around Nuitka is indeed warming up.
 
-Many thanks to Alexander Rødseth and Panagiotis Mavrogiorgos for maintaining the
-Nuitka packages inside Arch and on AUR.
+Many thanks to Alexander Rødseth and Panagiotis Mavrogiorgos for
+maintaining the Nuitka packages inside Arch and on AUR.

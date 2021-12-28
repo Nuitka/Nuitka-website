@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This releases contains some really major enhancements, all heading
 towards enabling value propagation inside Nuitka. Assignments of all
@@ -14,8 +14,9 @@ simple ones, etc.
 Also there are the usual few small bug fixes, and a bunch of
 organisational improvements, that make the release complete.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  The built-in ``next`` could causes a program crash when iterating
    past the end of an iterator. Fixed in 0.3.20.1 already.
@@ -39,8 +40,9 @@ Bug fixes
    instead the code returned at run time. Fixed to raise a
    ``SyntaxError`` at compile time.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Avoid ``tuple`` objects to be created when catching multiple
    exception types, instead call exception match check function multiple
@@ -94,8 +96,9 @@ Optimization
    is no closure taken. This avoids useless ``malloc`` calls and speeds
    up repeated generator object creation.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Changed the Scons build file database to reside in the build
    directory as opposed to the current directory, not polluting it
@@ -132,8 +135,9 @@ Organisational
 -  The ``check-with-pylint`` script now has a real command line option
    to control the display of ``TODO`` items.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Changed complex assignments, i.e. assignments with multiple targets
    to such using a temporary variable and multiple simple assignments
@@ -227,8 +231,9 @@ Cleanups
    collection tracks the usages of module variables anyway, so this
    separate and slow step could be removed.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  Added test to cover order of calls for complex assignments that
    unpack, to see that they make a fresh iterator for each part of a
@@ -257,8 +262,9 @@ New Tests
 
 -  Python3 is now also running the compile itself test successfully.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 The progress made towards value propagation and type inference is *very*
 significant, and makes those appears as if they are achievable.

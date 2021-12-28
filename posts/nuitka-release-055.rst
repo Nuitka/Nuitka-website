@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release is finally making full use of SSA analysis knowledge for
 code generation, leading to many enhancements over previous releases.
@@ -14,8 +14,9 @@ And then there is much improved support for using standalone mode
 together with virtualenv. This combination was not previously supported,
 but should work now.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Added support for Python3.4
 
@@ -24,8 +25,9 @@ New Features
    statements, tuples as ``yield from`` arguments, improved error
    messages, additional checks, and many more detail changes.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Using SSA knowledge, local variable assignments now no longer need to
    check if they need to release previous values, they know definitely
@@ -55,8 +57,9 @@ Optimization
 
 -  Also using less memory for constant nodes.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  The standalone freezing code was reading Python source as UTF-8 and
    not using the code that handles the Python encoding properly. On some
@@ -115,8 +118,9 @@ Bug Fixes
 -  Raising tuples exception as exceptions was not compatible (Python2)
    or reference leaking (Python3).
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Running ``2to3`` is now avoided for tests that are already running on
    both Python2 and Python3.
@@ -138,8 +142,9 @@ Tests
    can be executed with Python3 directly, making debugging them less
    tedious.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Really important removal of "variable references". They didn't solve
    any problem anymore, but their complexity was not helpful either.
@@ -162,8 +167,9 @@ Cleanups
 -  The ``locals`` built-in code now uses code generation for accessing
    local variable values instead having its own stuff.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  The Python version 3.4 is now officially supported. There are a few
    problems open, that will be addressed in future releases, none of
@@ -179,8 +185,9 @@ Organisational
 -  Also pickup ``g++44`` automatically, which makes using Nuitka on
    CentOS5 more automatic.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release represents a very important step ahead. Using SSA for real
 stuff will allow us to build the trust necessary to take the next steps.

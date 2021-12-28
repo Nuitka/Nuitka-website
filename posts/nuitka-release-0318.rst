@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This is to inform you about the new stable release of Nuitka. This time
 there are a few bug fixes, and the important step that triggered the
@@ -12,8 +12,9 @@ fixes, which were available as hot fixes, and some additional
 optimization and node tree cleanups, as well as source cleanups. But not
 much else.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  Conditional statements with both branches empty were not optimized
    away in all cases, triggering an assertion of code generation.
@@ -33,8 +34,9 @@ Bug fixes
 -  Compatibility Fix: When no defaults are given, CPython uses ``None``
    for ``func.func_defaults``, but Nuitka had been using ``None``.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  If the condition of assert statements can be predicted, these are now
    optimized in a static raise or removed.
@@ -46,8 +48,9 @@ Optimization
 -  Cleaner code is generated for the simple case of ``print``
    statements. This is not only faster code, it's also more readable.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Removed the ``CPythonStatementAssert`` node.
 
@@ -76,8 +79,9 @@ Cleanups
    ``type('a')``, which was unlikely to cause a problem, but an
    important ``TODO`` item still.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  The `"Download" <https://nuitka.net/doc/download.html>`__ page is now
    finally updated for releases automatically.
@@ -92,13 +96,15 @@ Organisational
 
 -  Made sure the test runners worth with bare ``python2.6`` as well.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  Added some tests intended for type inference development.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This releases contains not as much changes as others, mostly because
 it's the intended base for a Debian upload.

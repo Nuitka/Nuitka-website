@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release includes progress on all fronts. The primary focus was to
 advance SSA optimization over older optimization code that was already
@@ -22,8 +22,9 @@ slots for compiled types.
 And last, but not least, this also expands the base of supported
 platforms, adding Gentoo, and self compiled Python to the mix.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Support Nuitka being installed to a path that contains spaces and
    handle main programs with spaces in their paths. Fixed in 0.4.5.1
@@ -60,8 +61,9 @@ Bug Fixes
 
       del x  # Should work, was gave an unjustified SyntaxError.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Compiled types when used in Python comparison now work. Code like
    this will work:
@@ -83,8 +85,9 @@ New Features
 
 -  Windows: New options ``--mingw64`` to force compilation with MinGW.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Rich comparisons (``==``, ``<``, and the like) are now faster than
    ever before due to a full implementation of its own in Nuitka that
@@ -98,8 +101,9 @@ Optimization
 -  The SSA based analysis is now used to provide variable scopes for
    temporary variables as well as reference count needs.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Replaced "value friend" based optimization code with SSA based
    optimization, which allowed to remove complicated and old code that
@@ -121,8 +125,9 @@ Cleanups
 
 -  As usual lots of cleanups related to line length issues and PyLint.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Added support for Gentoo Linux.
 
@@ -135,8 +140,9 @@ Organisational
    not going to be used, that is mostly non-Windows, and Linux where it
    is not already present. This makes for cleaner RPM packages.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 While the SSA stuff is not yet bearing performance fruits, it starts to
 carry weight. Taking over the temporary variable handling now also means

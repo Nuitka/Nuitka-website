@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release is aiming at preparatory changes to enable optimization
 based on SSA analysis, introducing a variable registry, so that
@@ -9,8 +9,9 @@ variables no longer trace their references to themselves.
 Otherwise, MinGW64 support has been added, and lots of bug fixes were
 made to improve the compatibility.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Using new variable registry, now properly detecting actual need for
    sharing variables. Optimization may discover that it is unnecessary
@@ -20,8 +21,9 @@ Optimization
 -  Scons startup has been accelerated, removing scans for unused tools,
    and avoiding making more than one gcc version check.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Compatibility: In case of unknown encodings, Nuitka was not giving
    the name of the problematic encoding in the error message. Fixed in
@@ -59,8 +61,9 @@ Bug Fixes
    generators running concurrently (>1500), one cannot be started
    anymore. Raising an ``MemoryError`` now.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Added support for MinGW64. Currently needs to be run with ``PATH``
    environment properly set up.
@@ -83,16 +86,18 @@ Organisational
 -  Repository for Ubuntu Raring was removed, no more supported by
    Ubuntu.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Made technical and logical sharing decisions separate functions and
    implement them in a dedicated variable registry.
 
 -  The Scons file has seen a major cleanup.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release is mostly a maintenance release. The Scons integrations has
 been heavily visited, as has been Python3 and esp. Python3.4

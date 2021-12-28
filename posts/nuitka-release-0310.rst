@@ -1,13 +1,14 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This new release is major milestone 2 work, enhancing practically all
 areas of Nuitka. The focus was roundup and breaking new grounds with
 structural optimization enhancements.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  Exceptions now correctly stack.
 
@@ -38,8 +39,9 @@ Bug fixes
    side effect on lookup, it was evident that the lookup was made twice.
    Correcting this also improves the performance for the normal case.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Statically raised as well as predicted exceptions are propagated
    upwards, leading to code and block removal where possible, while
@@ -69,8 +71,9 @@ Optimization
 -  Empty branches are now removed from most constructs, leading to
    sometimes cleaner code generated.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Removed the lambda body node and replaced it with function body. This
    is a great win for the split into body and builder. Regular functions
@@ -88,8 +91,9 @@ Cleanups
 
 -  PyLint is happier than ever.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  Enhanced ``OverflowFunctions`` test to cover even deeper nesting of
    overflow functions taking closure from each level. While it's not yet
@@ -139,8 +143,9 @@ New Tests
 
       print len(range(9))
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Changed "README.txt" to no longer say that "Scons" is a requirement.
    Now that it's included (patched up to work with ``ctypes`` on
@@ -156,8 +161,9 @@ Organisational
 -  Executable with Python3 again, although it won't do anything, the
    necessary code changes were done.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 It's nice to see, that I some long standing issues were resolved, and
 that structural optimization has become almost a reality.

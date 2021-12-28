@@ -1,12 +1,13 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release has improvements in all areas. Many bug fixes are
 accompanied with optimization changes towards value tracing.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Fix, the new setuptools runners were not used by ``pip`` breaking the
    use of Nuitka from PyPI.
@@ -52,8 +53,9 @@ Bug Fixes
 -  Windows: Added back batch files to run Nuitka from the command line.
    Fixed in 0.5.29.5 already.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Added option ``--include-package`` to force inclusion of a whole
    package with the submodules in a compilation result.
@@ -72,8 +74,9 @@ New Features
 
 -  Plugins now can get their own options passed.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  The re-raising of exceptions has gotten its own special node type.
    This aims at more readability (XML output) and avoiding the overhead
@@ -90,8 +93,9 @@ Optimization
    variables including module and closure variables. This often avoids
    error exits and leads to smaller and faster generated code.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Added burn test with local install of pip distribution to virtualenv
    before making any PyPI upload. It seems pip got its specific error
@@ -122,8 +126,9 @@ Tests
 -  Generating more code tests out of doctests for increased coverage of
    Nuitka.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Stop using ``--python-version`` in tests where they still remained.
 
@@ -143,8 +148,9 @@ Cleanups
 -  Have a dedicated node for reraise statements instead of checking for
    all the arguments to be non-present.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  There is now a pull request template for Github when used.
 
@@ -158,8 +164,9 @@ Organisational
 -  The documentation was updated to prefer the call method with ``-m
    nuitka`` and manually providing the Python binary to use.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release continued the distutils integration adding first tests, but
 more features and documentation will be needed.

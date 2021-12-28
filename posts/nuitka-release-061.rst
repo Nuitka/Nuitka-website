@@ -1,12 +1,13 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release comes after a relatively long time, and contains important
 new optimization work, and even more bug fixes.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Fix, the options ``--[no]follow-import-to=package_name`` was supposed
    to not follow into the given package, but the check was executed too
@@ -101,8 +102,9 @@ Bug Fixes
    interpreter, aka ``--python-flag=utf8_mode`` was not preserved in the
    compiled binary in all cases.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Enabled C target type ``void`` which will catch creating unused stuff
    more immediately and give better code for expression only statements.
@@ -125,8 +127,9 @@ Optimization
 -  Loop variables no longer loose type information, but instead collect
    the set of possible type shapes allowing optimization for them.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Corrected download link for Arch AUR link of develop package.
 
@@ -139,8 +142,9 @@ Organisational
 
 -  Added description how to use CondaCC on Windows to the User Manual.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  The operations used for ``async for``, ``async with``, and ``await``
    were all doing a look-up of an awaitable, and then executing the
@@ -156,16 +160,18 @@ Cleanups
    because there are no local C variables declared, and properly indent
    them.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Fixups for the manual Valgrind runner and the UI changes.
 
 -  Test runner detects lock issue of ``clcache`` on Windows and
    considers it a permission problem that causes a retry.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This addresses even more corner cases not working correctly, the out of
 the box experience should be even better now.

@@ -1,11 +1,12 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 Good day, this is a major step ahead, improvements everywhere.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  Migrated the Python parser from the deprecated and problematic
    ``compiler`` module to the ``ast`` module which fixes the ``d[a,] =
@@ -24,8 +25,9 @@ Bug fixes
    loops do no longer prevent the execution of finally blocks inside the
    loop.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  I now maintain the "README.txt" in org-mode, and intend to use it as
    the issue tracker, but I am still a beginner at that.
@@ -42,8 +44,9 @@ Organisational
 
 -  There is a now a mailing list (since closed).
 
-Reduced Differences
-===================
+#####################
+ Reduced Differences
+#####################
 
 -  Did you know you could write ``lambda : (yield something)`` and it
    gives you a lambda that creates a generator that produces that one
@@ -56,8 +59,9 @@ Reduced Differences
    work as expected now, removing many differences in the CPython tests
    that use this already.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  The ``Python`` binary provided and ``Nuitka.py`` are now capable of
    accepting parameters for the program executed, in order to make it
@@ -70,8 +74,9 @@ New Features
    more effective. I intend to do the same with eval expressions too,
    probably in a minor release.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 So give it a whirl. I consider it to be substantially better than
 before, and the list of differences to CPython is getting small enough,

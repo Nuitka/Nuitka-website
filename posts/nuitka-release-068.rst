@@ -1,13 +1,14 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This releases contains important general improvements and performance
 improvements and enhanced optimization as well as many bug fixes that
 enhance the Python 3.8 compatibility.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Python3.5+: Fix, coroutines and asyncgen could continue iteration of
    awaited functions, even after their return, leading to wrong
@@ -94,8 +95,9 @@ Bug Fixes
 -  Fix, frames need to traverse their attached locals to be released in
    some cases.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Plugin command line handling now allows for proper ``optparse``
    options to be used, doing away with special parameter code for
@@ -119,8 +121,9 @@ New Features
 -  Fix, the ``setattr`` built-in was leaking a reference to the ``None``
    value.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Proper loop SSA capable of detecting shapes with an incremental
    initial phase and a final result of alternatives for variables
@@ -173,8 +176,9 @@ Optimization
 -  Added shortcuts for interactions between compiled generator variants,
    to avoid calls to their C methods with argument passing, etc.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Updated Developer Manual with changes that happened, removing the
    obsolete language choice section.
@@ -206,8 +210,9 @@ Organisational
 
 -  Enhanced gcc version check, properly works with gcc 10 and higher.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Pylint cleanups for some of the tests.
 
@@ -215,8 +220,9 @@ Tests
 
 -  Removed useless outputs for ``search`` mode skipping non-matches.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Limit command line handling for multiprocessing module to when the
    plugin is actually used, avoiding useless code of Windows binaries.
@@ -239,8 +245,9 @@ Cleanups
 -  Removed accessors for lookup sources from nodes, allowing for faster
    usage and making sure, lookups are only done where needed.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release is huge in terms of bugs fixed, but also extremely
 important, because the new loop SSA and type tracing, allows for many

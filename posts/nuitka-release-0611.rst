@@ -1,12 +1,13 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release is a massive improvement in many ways with lots of bug
 fixes and new features.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Fix, the ``.pyi`` file parser didn't handle relative imports. Fixed
    in 0.6.10.1 already.
@@ -92,8 +93,9 @@ Bug Fixes
 -  Windows: Fix, only export required symbols when using MinGW64 in
    module mode.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Python3.9: Added official support for this version.
 
@@ -140,8 +142,9 @@ New Features
    first one, it will mean ``clangcl.exe`` which uses the MSVC compiler
    as a host.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Some modules had very slow load times, e.g. if they used many list
    objects due to linear searches for memory deduplication of objects.
@@ -175,8 +178,9 @@ Optimization
    linker option hacks, and the fallback to generated C code. In fact
    everything but Windows uses this now.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Windows: For Scons we now require a Python 3.5 or higher to be
    installed to use it.
@@ -241,8 +245,9 @@ Organisational
 -  Added onefile and standalone as a use case to the manual and put also
    the DLL and data files problems as typically issues.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Avoid decimal and string comparisons for Python versions checks,
    these were lazy and are going to break once 3.10 surfaces. In testing
@@ -276,15 +281,17 @@ Cleanups
 -  Use ``pkgutil`` in plugins to scan for modules rather than listing
    directories.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  New option to display executed commands during comparisons.
 
 -  Added test suite for onefile testing.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release has seen Python3.9 and Onefile both being completed. The
 later needs compression added on Windows, but that can be added in a

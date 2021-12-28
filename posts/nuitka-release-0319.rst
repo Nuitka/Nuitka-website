@@ -1,13 +1,14 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This time there are a few bug fixes, major cleanups, more Python3
 support, and even new features. A lot things in this are justifying a
 new release.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  The man pages of ``nuitka`` and ``nuitka-python`` had no special
    layout for the option groups and broken whitespace for
@@ -31,8 +32,9 @@ Bug fixes
 -  The support for ``__import__`` didn't cover keyword arguments, these
    were simply ignored. Fixed, but no warning is given yet.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  A new option has been added, one can now specify
    ``--recurse-directory`` and Nuitka will attempt to embed these
@@ -43,8 +45,9 @@ New Features
    to run one more basic test, ``GlobalStatement.py`` with Python3. The
    test ``ExecEval.py`` nearly works now.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  The no arguments ``range()`` call now optimized into the static
    CPython exception it raises.
@@ -52,8 +55,9 @@ Optimization
 -  Parts of comparison chains with constant arguments are now optimized
    away.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Simplified the ``CPythonExpressionComparison`` node, it now always
    has only 2 operands.
@@ -89,8 +93,9 @@ Cleanups
 
 -  As always, some PyLint work, and some minor ``TODO`` were solved.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Added more information to the `Developer Manual
    <https://nuitka.net/doc/developer-manual.html>`__, e.g. documenting
@@ -112,8 +117,9 @@ Organisational
    means there is no requirement for MinGW to be in the ``PATH`` or even
    installed to execute the binary.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  The ``basic``, ``programs``, ``syntax``, and ``reflected`` were made
    executable under Windows. Occasionally this meant to make the test
@@ -135,8 +141,9 @@ New Tests
    during package build time on these chroots. This will make sure, that
    Nuitka works fine on Ubuntu Natty and doesn't break without notice.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This releases contains many changes. The "temporary variable ref" and
 "assignment expression" work is ground breaking. I foresee that it will

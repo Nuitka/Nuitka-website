@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This is to inform you about the new release of Nuitka with some real
 news and a slight performance increase. The significant news is added
@@ -26,8 +26,9 @@ Otherwise there have been the usual round of performance improvements
 and more cleanups. This release is otherwise milestone 2 work only,
 which will have to continue for some time more.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  Lambda generators were not fully compatible, their simple form could
    yield an extra value. The behavior for Python 2.6 and 2.7 is also
@@ -41,8 +42,9 @@ Bug fixes
 -  There was an ``assert False`` right after warning about not found
    modules in the ``--deep`` mode, which was of course unnecessary.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  When unpacking variables in assignments, the temporary variables are
    now held in a new temporary class that is designed for the task
@@ -92,8 +94,9 @@ Optimization
    cannot be raised. This avoids temporary references completely for the
    common case.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  The ``if``, ``for``, and ``while`` statements had always empty
    ``else`` nodes which were then also in the generated C++ code as
@@ -101,8 +104,9 @@ Cleanups
 
 -  Some more generated code white space fixes.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  The CPython 2.7 test suite now also has the ``doctests`` extracted to
    static tests, which improves test coverage for Nuitka again.
@@ -125,8 +129,9 @@ New Tests
    version needed changes to stand the speed of Nuitka. These will be
    subject of a later posting.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  There is now a "tests/benchmarks/micro" directory to contain tiny
    benchmarks that just look at a single aspect, but have no other
@@ -149,8 +154,9 @@ Organisational
    difference check, and addresses under Windows are upper case, small
    things.
 
-Numbers
-=======
+#########
+ Numbers
+#########
 
 python 2.6:
 

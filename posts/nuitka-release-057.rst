@@ -1,12 +1,13 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release is brings a newly supported platform, bug fixes, and again
 lots of cleanups.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Fix, creation of dictionary and set literals with non-hashable
    indexes did not raise an exception.
@@ -15,8 +16,9 @@ Bug Fixes
 
       {[]: None}  # This is now a TypeError
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Calls to the ``dict`` built-in with only keyword arguments are now
    optimized to mere dictionary creations. This is new for the case of
@@ -34,14 +36,16 @@ Optimization
 
 -  Added support for ``bytearray`` built-in.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Added support for OpenBSD with fiber implementation from library, as
    it has no context support.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Moved slicing solutions for Python3 to the re-formulation stage. So
    far the slice nodes were used, but only at code generation time,
@@ -49,8 +53,9 @@ Cleanups
    Now these nodes are purely Python2 and slice objects are used
    universally for Python3.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  The test runners now have common code to scan for the first file to
    compile, an implementation of the ``search`` mode. This will allow to
@@ -61,8 +66,9 @@ Tests
 -  Added ``recurse_none`` mode to test comparison, making using extra
    options for that purpose unnecessary.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This solves long standing issues with slicing and subscript not being
 properly distinguished in the Nuitka code. It also contains major bug

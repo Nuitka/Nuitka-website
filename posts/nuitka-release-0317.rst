@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This is to inform you about the new stable release of Nuitka. This time
 there are a few bug fixes, lots of very important organisational work,
@@ -25,8 +25,9 @@ And there has been a lot of effort, to address the Debian packaging to
 be cleaner and more complete, addressing issues that prevented it from
 entering the Debian repository.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  Fixed the handling of modules and packages of the same name, but with
    different casing. Problem showed under Windows only. Released as
@@ -44,8 +45,9 @@ Bug fixes
    of that variable before it was assigned a scope. Released as 0.3.16b
    hot fix already.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Enhanced compatibility again, provide enough ``co_varnames`` in the
    code objects, so that slicing them up to ``code_object.co_argcount``
@@ -59,8 +61,9 @@ New Features
    ``--recurse-to`` (confirm to recurse to those modules)
    ``--recurse-not-to`` (confirm to not recurse to those modules)
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  The optimization of constant conditional expressions was not done
    yet. Added this missing constant propagation case.
@@ -75,8 +78,9 @@ Optimization
    as well. Also use the cPickle protocol, the use of ``pickle`` was not
    really necessary anymore.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Added a `Developer Manual
    <https://nuitka.net/doc/developer-manual.html>`__ to the release.
@@ -136,8 +140,9 @@ Organisational
 -  Arch Linux packages have been contributed, these are linked for
    download, but the stable package may lag behind a bit.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Changed ``not`` boolean operation to become a normal operator.
    Changed ``and`` and ``or`` boolean operators to a new base class, and
@@ -165,8 +170,9 @@ Cleanups
 
 -  Some more PyLint cleanups.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  Make sure the basic tests pass with CPython or else fail the test.
    This is to prevent false positives, where a test passes, but only
@@ -202,8 +208,9 @@ New Tests
    included in the package (``basics``, ``syntax``, ``programs``,
    ``reflected``). Also many other Debian packaging improvements.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 The "git flow" was used again in this release cycle and proved to be
 useful not only for hot fix, but also for creating the branch

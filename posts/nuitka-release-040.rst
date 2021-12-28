@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release brings massive progress on all fronts. The big highlight is
 of course: Full Python3.2 support. With this release, the test suite of
@@ -13,8 +13,9 @@ time optimized to spot regressions easier. And we are having performance
 diagrams, `even if weak ones
 <https://nuitka.net/pages/performance.html>`__:
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Python3.2 is now fully supported.
 
@@ -30,8 +31,9 @@ New Features
    -  Unicode variable names are also supported, although it's of course
       ugly, to find a way to translate these to C++ ones.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  Checking compiled code with ``instance(some_function,
    types.FunctionType)`` as "zope.interfaces" does, was causing
@@ -80,8 +82,9 @@ Bug fixes
    was not enforced, it now is. This fixes a reference leak when raising
    exceptions, where building the exception was raising an exception.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Optimizing attribute access to compile time constants for the first
    time. The old registry had no actual user yet.
@@ -118,8 +121,9 @@ Optimization
    a normal return was sufficient. Raising them now only where needed,
    which also means, function need not catch them ever.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  The handling of classes for Python2 and Python3 have been
    re-formulated in Python more completely.
@@ -220,8 +224,9 @@ Cleanups
 -  Split out helper code for exception raising from the handling of
    exception objects.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  The complete CPython3.2 test suite was adapted (no ``__code__``, no
    ``__closure__``, etc.) and is now passing, but only without
@@ -244,8 +249,9 @@ New Tests
 -  Added tests to cover evaluation order of arguments when raising
    exceptions.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Changed my email from GMX over to Gmail, the old one will still
    continue to work. Updated the copyright notices accordingly.
@@ -253,8 +259,9 @@ Organisational
 -  Uploaded `Nuitka to PyPI <http://pypi.python.org/pypi/Nuitka/>`__ as
    well.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release marks a milestone. The support of Python3 is here. The
 re-formulation of complex calls, and the code generation improvements

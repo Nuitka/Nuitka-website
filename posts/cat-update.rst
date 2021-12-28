@@ -1,15 +1,14 @@
-The new cat has become indispensable for just about anything. She follows
-throughout the hous, and is just too lovely, here two photos of her in typical
-spots.
+The new cat has become indispensable for just about anything. She
+follows throughout the hous, and is just too lovely, here two photos of
+her in typical spots.
 
-When I code for Nuitka, she often lays between keyboard and monitors, sleeping,
-getting caressed by me.
+When I code for Nuitka, she often lays between keyboard and monitors,
+sleeping, getting caressed by me.
 
 .. figure:: images/IMG_3837-768x1024.jpg
    :target: images/IMG_3837-768x1024.jpg
    :width: 80%
    :alt: Cat Muska laying in her usual place between monitor and keyboard.
-
 
 And here is another one, hiding in her cat tree.
 

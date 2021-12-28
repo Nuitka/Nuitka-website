@@ -1,13 +1,15 @@
-Try Finally Python Quiz
-~~~~~
+#########################
+ Try Finally Python Quiz
+#########################
 
-When working on my Python compiler Nuitka, I often come across ridiculous
-language details of the Python language, and turn these into quizzes, for which
-I finally added a `dedicated quiz tag </categories/quiz.html>`__.
+When working on my Python compiler Nuitka, I often come across
+ridiculous language details of the Python language, and turn these into
+quizzes, for which I finally added a `dedicated quiz tag
+</categories/quiz.html>`__.
 
 Anyway, who can predict, what these will do to you:
 
-.. code-block:: python
+.. code:: python
 
    def f():
        try:
@@ -17,17 +19,17 @@ Anyway, who can predict, what these will do to you:
 
 Will it return ``1`` or ``2`` ?
 
-.. code-block:: python
+.. code:: python
 
    def f():
        try:
-           1/0
+           1 / 0
        finally:
            return 2
 
 Will this raise an ``ZeroDivisionError`` or return ``2`` ?
 
-.. code-block:: python
+.. code:: python
 
    def f():
        while 1:
@@ -38,7 +40,7 @@ Will this raise an ``ZeroDivisionError`` or return ``2`` ?
 
 Is this an endless loop or does it return?
 
-.. code-block:: python
+.. code:: python
 
    def f():
        while 1:

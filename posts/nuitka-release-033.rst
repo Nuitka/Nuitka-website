@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release of Nuitka continues the focus on performance. It also
 cleans up a few open topics. One is "doctests", these are now extracted
@@ -12,11 +12,13 @@ versions of the tests.
 This means an even higher level of compatibility has been achieved, then
 there is performance improvements, and ever cleaner structure.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
-Generators
-----------
+************
+ Generators
+************
 
 -  Generator functions tracked references to the common and the instance
    context independently, now the common context is not released before
@@ -31,8 +33,9 @@ Generators
 -  Generator functions used the slightly different wordings for some
    error messages.
 
-Function Calls
---------------
+****************
+ Function Calls
+****************
 
 -  Extended call syntax with ``**`` allows that to use a mapping, and it
    is now checked if it really is a mapping and if the contents has
@@ -49,8 +52,9 @@ Function Calls
    parameter counts. This is slower in the error case, but more
    compatible with CPython.
 
-Classes
--------
+*********
+ Classes
+*********
 
 -  The "locals()" built-in when used in the class scope (not in a
    method) now is correctly writable and writes to it change the
@@ -59,16 +63,18 @@ Classes
 -  Name mangling for private identifiers was not always done entirely
    correct.
 
-Others
-------
+********
+ Others
+********
 
 -  Exceptions didn't always have the correct stack reported.
 
 -  The pickling of some tuples showed that "cPickle" can have
    non-reproducible results, using "pickle" to stream constants now
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Access to instance attributes has become faster by writing specific
    code for the case. This is done in JIT way, attempting at run time to
@@ -81,22 +87,25 @@ Optimization
 -  The function call code built argument tuples and dictionaries as
    constants, now that is true for every tuple usage.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  The static helper classes, and the prelude code needed have been
    moved to separate C++ files and are now accessed "#include". This
    makes the code inside C++ files as opposed to a Python string and
    therefore easier to read and or change.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  The generator functions and generator expressions have the attribute
    "gi_running" now. These indicate if they are currently running.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  The script to extract the "doctests" from the CPython test suite has
    been rewritten entirely and works with more doctests now. Running
@@ -104,8 +113,9 @@ New Tests
 
 -  The Python 2.7 test suite has been added.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  One can now run multiple "compare_with_cpython" instances in
    parallel, which enables background test runs.
@@ -114,8 +124,9 @@ Organisational
    to point to the directory Nuitka's C++ includes live in. Of course
    the "create-environment.sh" script generates that for you easily.
 
-Numbers
-=======
+#########
+ Numbers
+#########
 
 python 2.6:
 

@@ -1,14 +1,15 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release is massive in terms of fixes, but also adds a lot of
 refinement to code generation, and more importantly adds experimental
 support for Python 3.7, while enhancing support for Pyt5 in standalone
 mode by a lot.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Standalone: Added missing dependencies for ``PyQt5.Qt`` module.
 
@@ -68,8 +69,9 @@ Bug Fixes
 -  Standalone: Fix, the ``_socket`` module was insisted on to be found,
    but can be compiled in.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Added experimental support for Python 3.7, more work will be needed
    though for full support. Basic tests are working, but there are are
@@ -95,8 +97,9 @@ New Features
 -  Python3: Remove frame preservation and restoration of exceptions.
    This is not needed, but leaked over from Python2 code.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Apply value tracing to local dict variables too, enhancing the
    optimization for class bodies and function with ``exec`` statements
@@ -149,8 +152,9 @@ Optimization
 -  Also remove unused assignments in case the value is a mutable
    constant.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Don't store "version" numbers of variable traces for code generation,
    instead directly use the references to the value traces instead,
@@ -163,8 +167,9 @@ Cleanups
 
 -  Removed some Python 3.2 only codes.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  For better bug reports, the ``--version`` output now contains also
    the Python version information and the binary path being used.
@@ -183,8 +188,9 @@ Organisational
 
 -  Renovated the graphing code and made it more useful.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release marks important progress, as the locals dictionary tracing
 is a huge step ahead in terms of correctness and proper optimization.

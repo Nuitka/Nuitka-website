@@ -2,5 +2,4 @@
 .. slug: letting-go-of-c11
 .. date: 2012/10/27 08:59:07
 .. tags: Nuitka,compiler,Python,Windows,Android
-.. link:
 .. description: How Nuitka came to use C++11 and then stop it.

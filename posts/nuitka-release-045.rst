@@ -1,14 +1,15 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release incorporates very many bug fixes, most of which were
 already part of hot fixes, usability improvements, documentation
 improvements, new logo, simpler Python3 on Windows, warnings for
 recursion options, and so on. So it's mostly a consolidation release.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  When targeting Python 3.x, Nuitka was using "python" to run Scons to
    run it under Python 2.x, which is not good enough on systems, where
@@ -54,8 +55,9 @@ Bug Fixes
 -  Using ``sys.prefix`` to find the Python installation instead of hard
    coded paths.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Windows: Python3 finds Python2 installation to run Scons
    automatically now.
@@ -78,8 +80,9 @@ New Features
 -  Added a warning for ``--recurse-to`` arguments that end up having no
    effect to the final result.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Import mechanism got cleaned up, stopped using
    "PyImport_ExtendInittab". It does not handle packages, and the
@@ -88,8 +91,9 @@ Cleanups
 -  Moved some of the constraint collection code mess into proper places.
    It still remains a mess.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Added ``LICENSE.txt`` file with Apache License 2.0 text to make it
    more immediately obvious which license Nuitka is under.
@@ -110,8 +114,9 @@ Organisational
 -  Enhanced documentation to number page numbers starting after table of
    contents, removed header/footer from cover pages.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release is mostly the result of improvements made based on the
 surge of users after Europython 2013. Some people went to extents and

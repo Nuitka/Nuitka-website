@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 The major point this for this release is cleanup work, and generally bug
 fixes, esp. in the field of importing. This release cleans up many small
@@ -9,8 +9,9 @@ items, and then aims at cleaner structures internally, so optimization
 analysis shall become "easy". It is a correctness and framework release,
 not a performance improvement at all.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  Imports were not respecting the ``level`` yet. Code like this was not
    working, now it is:
@@ -36,22 +37,25 @@ Bug fixes
    successfully using nested packages (e.g.
    ``nuitka.transform.optimizations``)
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  The ``--lto`` option becomes usable. It's not measurably faster
    immediately, and it requires g++ 4.6 to be available, but then it at
    least creates smaller binaries and may provide more optimization in
    the future.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Exceptions raised by pre-computed built-ins, unpacking, etc. are now
    transformed to raising the exception statically.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  There is now a ``getVariableForClosure`` that a variable provider can
    use. Before that it guessed from ``getVariableForReference`` or
@@ -79,8 +83,9 @@ Cleanups
 -  Variables now avoid building duplicated instances, but instead share
    one. Better for analysis of them.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  The Python 2.7 test suite is no longer run with Python 2.6 as it will
    just crash with the same exception all the time, there is no
@@ -91,13 +96,15 @@ New Tests
 
 -  Imports of upper level packages are covered now too.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Updated the "README.txt" with the current plan on optimization.
 
-Numbers
-=======
+#########
+ Numbers
+#########
 
 python 2.6:
 

@@ -1,14 +1,15 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release brings optimization improvements for dictionary using code.
 This is now lowering subscripts to dictionary accesses where possible
 and adds new code generation for known dictionary values. Besides this
 there is the usual range of bug fixes.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Fix, attribute assignments or deletions where the assigned value or
    the attribute source was statically raising crashed the compiler.
@@ -28,8 +29,9 @@ Bug Fixes
 -  Python3.5: The finalize of compiled coroutines could corrupt
    reference counts for shared generator objects.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  When a variable is known to have dictionary shape (assigned from a
    constant value, result of ``dict`` built-in, or a general dictionary
@@ -58,8 +60,9 @@ Optimization
 -  Global variable traces are now faster to decide definite writes
    without need to check traces for this each time.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  No more using "logical sharing" allowed to remove that function
    entirely.
@@ -73,8 +76,9 @@ Cleanups
 -  Removed old and mostly unused "assume unclear locals" indications, we
    use global variable traces for this now.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release aimed at dictionary tracing. As a first step, the value
 assign is now traced to have a dictionary shape, and this this then used

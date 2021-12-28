@@ -1,4 +1,5 @@
-This is the latest addition to the family, our beautiful, young and lovely cat:
+This is the latest addition to the family, our beautiful, young and
+lovely cat:
 
 .. figure:: images/IMG_3530-1.jpg
    :target: images/IMG_3530-1.jpg
@@ -7,5 +8,5 @@ This is the latest addition to the family, our beautiful, young and lovely cat:
 
    Muska on her first day with us.
 
-Her name is Muska, and she is with us for a week now. This is an image from her first day
-in our house.
+Her name is Muska, and she is with us for a week now. This is an image
+from her first day in our house.

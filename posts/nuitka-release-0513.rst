@@ -1,14 +1,15 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release contains the first use of SSA for value propagation and
 massive amounts of bug fixes and optimization. Some of the bugs that
 were delivered as hotfixes, were only revealed when doing the value
 propagation as they still could apply to real code.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Fix, relative imports in packages were not working with absolute
    imports enabled via future flags. Fixed in 0.5.12.1 already.
@@ -61,8 +62,9 @@ Bug Fixes
    uses an API that is WinXP only, and MinGW failed to find it without
    guidance.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Make direct calls out of called function creations. Initially this
    applies to lambda functions only, but it's expected to become common
@@ -106,8 +108,9 @@ Optimization
    making decision in assignment and reference nodes based on forward
    looking statements using the last trace collection.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Added experimental support for Python 3.5, which seems to be passing
    the test suites just fine. The new ``@`` matrix multiplicator
@@ -118,8 +121,9 @@ New Features
    checks with the ``is`` operation, about the only thing we cannot
    detect.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Added repository for Ubuntu Vivid (15.04) for download. Removed
    Ubuntu Saucy and Ubuntu Raring package downloads, these are no longer
@@ -134,8 +138,9 @@ Organisational
 -  The PyLint checker tool now can operate on directories given on the
    command line, and whitelists an error that is Windows only.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Split up standalone code further, moving ``depends.exe`` handling to
    a separate module.
@@ -152,8 +157,9 @@ Cleanups
 -  Moved code to fetch ``depends.exe`` to dedicated module, so it's not
    as much in the way of standalone code.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Made ``BuiltinsTest`` directly executable with Python3.
 
@@ -170,8 +176,9 @@ Tests
 
 -  Again, more basic tests are now directly executable with Python3.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release is major due to amount of ground covered. The reduction in
 memory usage of Nuitka itself (the C++ compiler will still use much

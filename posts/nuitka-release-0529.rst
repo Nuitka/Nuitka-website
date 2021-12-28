@@ -1,13 +1,14 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release comes with a lot of improvements across the board. A lot of
 focus has been givevn to the packaging side of Nuitka, but also there is
 a lot of compatibility work.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Windows: When using Scons for Python3 and Scons for Python2 on the
    same build directory, a warning would be given about the need to
@@ -56,8 +57,9 @@ Bug Fixes
 -  Python3.4: Fix, ``__spec__`` is a package attribute and not a
    built-in value.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  It is now possible to run Nuitka with ``some_python_you_choose -m
    nuitka ...`` and therefore know exactly which Python installation is
@@ -89,8 +91,9 @@ New Features
    ``bdist_wheel`` directly, but this lacks documentation and tests.
    Many improvements in the distutils build.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Forward propagate compile time constants even if they are only
    potential usages. This is actually the case where this makes the most
@@ -122,8 +125,9 @@ Optimization
 -  Fix, removed obsolete ``--nofreeze-stdlib`` which only complicated
    using the ``--recurse-stdlib`` which should be used instead.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  The ``nuitka`` Python package is now installed into the public
    namespace and used from there. There are distinct copies to be
@@ -159,8 +163,9 @@ Organisational
 
 -  There is now a issue template for Github when used.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Windows: Standalone tests were referencing an old path to
    ``depends.exe`` that wasn't populated on new installs.
@@ -176,8 +181,9 @@ Tests
 -  Travis: Do not test development versions of CPython, even for stable
    release, they break too often.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release consolidates a lot of what we already had, adding hopeful
 stuff for distutils integration. This will need tests and documentation

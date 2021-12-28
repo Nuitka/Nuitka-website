@@ -1,14 +1,15 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release expands the reach of Nuitka substantially, as new platforms
 and compilers are now supported. A lot of polish has been applied. Under
 the hood there is the continued and in-progress effort to implement SSA
 form in Nuitka.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Support for new compiler: Microsoft Visual C++.
 
@@ -65,8 +66,9 @@ New Features
    evaluation order is enforced, we don't have to implement for specific
    architectures anymore.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Dictionary creation was not fully compatible.
 
@@ -92,8 +94,9 @@ Bug Fixes
 -  Python3: Annotations of function worked only as long as their
    definition was not referring to local variables.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Calls with no positional arguments are now using the faster call
    methods.
@@ -107,8 +110,9 @@ Optimization
    Using threads for fibers was causing only overhead and with this API,
    MSVC had less issues too.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Accepting `Donations <https://nuitka.net/pages/donations.html>`__ via
    Paypal, please support funding travels, website, etc.
@@ -144,8 +148,9 @@ Organisational
    gradually aim at it too. So far 90 columns were used, and up to 100
    tolerated.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Removed useless manifest and resource file creation under Windows.
 
@@ -165,8 +170,9 @@ Cleanups
    functions, instead of just adding it to any module that first uses
    it.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  Added basic tests for order evaluation, where there currently were
    None.
@@ -174,8 +180,9 @@ New Tests
 -  Added support for "2to3" execution under Windows too, so we can run
    tests for Python3 installations too.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 The release is clearly major step ahead. The new platform support
 triggered a whole range of improvements, and means this is truly

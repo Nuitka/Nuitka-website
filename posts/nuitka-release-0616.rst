@@ -1,12 +1,13 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release is mostly polishing and new features. Optimization looked
 only at threading performance, and LTO improvements on Windows.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Fix, the ``pkg-resources`` failed to resolve versions for
    ``importlib.metadata`` from its standard library at compile time.
@@ -33,8 +34,9 @@ Bug Fixes
 -  Standalone: The ``numpy`` plugin now automatically includes Qt
    backend if any of the Qt binding plugins is active.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Pyton3.5+: Added support for onefile compression. This is using
    ``zstd`` which is known to give very good compression with very high
@@ -82,8 +84,9 @@ New Features
 -  Plugins: Give nicer error message in case of colliding command line
    options.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Faster threading code is now using for Python3.8 or higher and not
    only 3.9, giving a performance boost, esp. on Windows.
@@ -92,8 +95,9 @@ Optimization
    will given smaller and faster binaries. It has been available for
    some time, but not been the default yet.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Using different progress bar titles for C compilation of Python code
    and C compilation of onefile bootstrap.
@@ -107,8 +111,9 @@ Cleanups
 
 -  More cleanup of the scons files, sharing more common code.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Under the name Nuitka-Python we are now also developing a fork of
    CPython with enhancements, you can follow and joint it at
@@ -129,8 +134,9 @@ Organisational
 
 -  Use MSVC in Github actions.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 This release had a massive focus on expanding existing features, esp.
 for onefile, and plugins API, such that we can now configure

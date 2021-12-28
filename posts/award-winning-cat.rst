@@ -1,4 +1,3 @@
-
 .. figure:: images/Katze_Medaille.jpg
    :target: images/Katze_Medaille.jpg
    :width: 80%

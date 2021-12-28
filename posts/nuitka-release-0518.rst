@@ -1,13 +1,14 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release mainly has a scalability focus. While there are few
 compatibility improvements, the larger goal has been to make Nuitka
 compilation and the final C compilation faster.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Compatibility: The nested arguments functions can now be called using
    their keyword arguments.
@@ -29,8 +30,9 @@ Bug Fixes
 -  Windows: Was outputting command line arguments debug information at
    program start. Fixed in 0.5.17.1 already.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Code generated for parameter parsing is now a *lot* less verbose.
    Python level loops and conditionals to generate code for each
@@ -57,8 +59,9 @@ Optimization
    constructing variable lists as much as possible using an always
    accurate variable registry.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Nested argument functions of Python2 are now re-formulated into a
    wrapping function that directly calls the actual function body with
@@ -78,13 +81,15 @@ Cleanups
 -  Parameter specifications got simplified to work without variables
    where it is possible.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Nuitka is now available on the social code platforms gitlab as well.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 Long standing weaknesses have been addressed in this release, also quite
 a few structural cleanups have been performed, e.g. strengthening the

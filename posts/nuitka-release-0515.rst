@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This release enables SSA based optimization, the huge leap, not so much
 in terms of actual performance increase, but for now making the things
@@ -12,8 +12,9 @@ was just "one more thing" needed. But now it's there.
 The release includes much stuff, and there is a perspective on the open
 tasks in the summary, but first out to the many details.
 
-Bug Fixes
-=========
+###########
+ Bug Fixes
+###########
 
 -  Standalone: Added implicit import for ``reportlab`` package
    configuration dynamic import. Fixed in 0.5.14.1 already.
@@ -58,8 +59,9 @@ Bug Fixes
 -  Fix, when running under ``wine``, the check for scons binary was
    fooled by existence of ``/usr/bin/scons``.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Added experimental support for Python3.5, coroutines don't work yet,
    but it works perfectly as a 3.4 replacement.
@@ -89,8 +91,9 @@ New Features
 -  Added experimental support for ``multiprocessing`` on Windows, which
    needs monkey patching of the module to support compiled methods.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  The SSA analysis is now enabled by default, eliminating variables
    that are not shared, and can be forward propagated. This is currently
@@ -134,8 +137,9 @@ Optimization
 -  Speed improvement for in-place float operations for ``+=`` and
    ``*=``, as these will be common cases.
 
-Tests
-=====
+#######
+ Tests
+#######
 
 -  Made the construct based testing executable with Python3.
 
@@ -149,16 +153,18 @@ Tests
 
 -  Checked more in-place operations for speed.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  Many improvements to the coverage taking. We can hope to see public
    data from this, some improvements were triggered from this already,
    but full runs of the test suite with coverage data collection are yet
    to be done.
 
-Summary
-=======
+#########
+ Summary
+#########
 
 The release includes many important new directions. Coverage analysis
 will be important to remain certain of test coverage of Nuitka itself.

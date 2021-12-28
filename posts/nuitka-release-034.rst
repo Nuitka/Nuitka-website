@@ -1,6 +1,6 @@
-This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.
+This is to inform you about the new stable release of `Nuitka
+<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+`"download now" </doc/download.html>`_.
 
 This new release of Nuitka has a focus on re-organizing the Nuitka
 generated source code and a modest improvement on the performance side.
@@ -21,8 +21,9 @@ So the major advancement of this release is to make the ``--deep``
 option useful. But also there have been a performance improvements,
 which end up giving us another boost for the "PyStone" benchmark.
 
-Bug fixes
-=========
+###########
+ Bug fixes
+###########
 
 -  Imports of modules local to packages now work correctly, closing the
    small compatibility gap that was there.
@@ -46,8 +47,9 @@ Bug fixes
 -  Using the ``type()`` built-in to create a new class could attribute
    it to the wrong module, this is now corrected.
 
-New Features
-============
+##############
+ New Features
+##############
 
 -  Uses Scons to execute the actual C++ build, giving some immediate
    improvements.
@@ -59,8 +61,9 @@ New Features
    may still become predictable, right now it must be a real CPython
    constant string.
 
-Optimization
-============
+##############
+ Optimization
+##############
 
 -  Added optimization for the built-ins ``ord()`` and ``chr()``, these
    require a module and built-in module lookup, then parameter parsing.
@@ -74,8 +77,9 @@ Optimization
    It's rarely used, but providing our own variant, allowed to fix the
    bug mentioned above.
 
-Cleanups
-========
+##########
+ Cleanups
+##########
 
 -  Using scons is a big cleanup for the way how C++ compiler related
    options are applied. It also makes it easier to re-build without
@@ -97,8 +101,9 @@ Cleanups
    and are unique, this is to make optimization of these feasible. This
    is a pre-step to module variable optimization.
 
-New Tests
-=========
+###########
+ New Tests
+###########
 
 -  Added "ExtremeClosure" from my Python quiz, it was not covered by
    existing tests.
@@ -110,8 +115,9 @@ New Tests
 
 -  Extended the built-in tests to cover ``type()`` as well.
 
-Organisational
-==============
+################
+ Organisational
+################
 
 -  There is now a new environment variable ``NUITKA_SCONS`` which should
    point to the directory with the ``SingleExe.scons`` file for Nuitka.
@@ -139,8 +145,9 @@ Organisational
       The script has become obsolete now, as Nuitka test executions now
       by default delete the build results.
 
-Numbers
-=======
+#########
+ Numbers
+#########
 
 python 2.6:
 
