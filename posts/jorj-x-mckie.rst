@@ -1,9 +1,5 @@
-.. title: Jorj X. McKie
-.. slug: jorj-x-mckie
-.. date: 2019/05/18 11:00:00
-.. tags: Nuitka,gsoc2019,portrait
-.. description: Self-Introduction Jorj McKie
-.. author: Jorj X. McKie
+Jorj X. McKie
+~~~~~
 
 Hello everyone,
 

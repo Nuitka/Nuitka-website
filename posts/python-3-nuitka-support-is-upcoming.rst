@@ -1,7 +1,5 @@
-.. title: Python3 support by Nuitka is upcoming
-.. slug: python-3-nuitka-support-is-upcoming
-.. date: 2013/02/09 08:38:37
-.. tags: Python,Nuitka
+Python3 support by Nuitka is upcoming
+~~~~~
 
 This is kind of semi-interesting news for you Python3 lovers. My `"Python compiler Nuitka"
 </pages/overview.html>`_ has been supporting the language somewhat, but in the next

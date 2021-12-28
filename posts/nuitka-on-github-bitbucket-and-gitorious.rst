@@ -1,7 +1,5 @@
-.. tags: Python,Nuitka,git
-.. date: 2013/04/26 07:17:16
-.. title: Nuitka on Github, Bitbucket and Gitorious
-.. slug: nuitka-on-github-bitbucket-and-gitorious
+Nuitka on Github, Bitbucket and Gitorious
+~~~~~
 
 This is to let you know, that I have *finally* carved in and created accounts on all those
 "social" platforms, that deal with code. So far I had resisted their terms (you pay us

@@ -1,7 +1,5 @@
-.. title: Not going to FOSDEM 2014
-.. slug: not-going-to-fosdem-2014
-.. date: 2014/01/18 20:48:53
-.. tags: Python,Nuitka
+Not going to FOSDEM 2014
+~~~~~
 
 So I submitted a talk for FOSDEM "Python has a compiler now". And it didn't get
 accepted. Quite a surprise to me, but likely mostly logical. These are the

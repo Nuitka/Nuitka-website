@@ -1,8 +1,5 @@
-.. title: Nuitka shaping up
-.. slug: nuitka-shaping-up
-.. date: 2014/10/02 07:08:54
-.. tags: Python,compiler,Nuitka
-.. type: text
+Nuitka shaping up
+~~~~~
 
 Not much has happened publicly to Nuitka, so it's time to make a kind of
 status post, about the exciting news there is.

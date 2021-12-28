@@ -1,7 +1,5 @@
-.. tags: Python,Nuitka
-.. date: 2013/08/15 08:15:17
-.. title: Changes in Python FAQ
-.. slug: changing-python-faq
+Changes in Python FAQ
+~~~~~
 
 The Python FAQ changed a while ago:
 

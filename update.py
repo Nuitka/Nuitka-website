@@ -627,6 +627,16 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
 
             slug = slugify(title)
 
+            if "release-038" in slug:
+                slug += "---windows-support"
+
+            if "release-02" in slug:
+                slug = slug.replace("nuitka-release", "release-nuitka")
+
+            if "release-011" in slug:
+                slug = "minor-" + slug.replace("nuitka-release", "release-nuitka")
+
+
             pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
             data = "\n".join(
                 [

@@ -1,7 +1,5 @@
-.. tags: Python, Nuitka, physics
-.. date: 2013/10/04 09:54:45
-.. title: Nuitka, Python research and Physics
-.. slug: nuitka-python-research-and-physics
+Nuitka, Python research and Physics
+~~~~~
 
 Once upon a time ago physics had multiple forces. Each with very distinct
 traits. These were the early days. Then as time went on people started to

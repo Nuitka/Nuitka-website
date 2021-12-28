@@ -1,7 +1,5 @@
-.. date: 2013/08/15 08:15:17
-.. title: My Europython 2013 report
-.. slug: my-europython-2013-report
-.. tags: Python,Nuitka,compiler
+My Europython 2013 report
+~~~~~
 
 Back from Europython 2013 in Florence for a while now. I had a presentation
 about my `Python compiler Nuitka </pages/overview.html>`_. You can watch the

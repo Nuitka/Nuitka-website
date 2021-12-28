@@ -1,7 +1,5 @@
-.. title: Nuitka needs you - a call for help
-.. slug: nuitka-needs-you-a-call-for-help
-.. date: 2013/04/10 07:51:13
-.. tags: Nuitka,Python,compiler
+Nuitka needs you - a call for help
+~~~~~
 
 .. admonition:: Update 3
 

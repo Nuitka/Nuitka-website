@@ -1,6 +1,5 @@
-.. title: Article about Nuitka Standalone Mode
-.. date: 2015/01/06 12:46:50
-.. tags: Python,Nuitka,compiler
+Article about Nuitka Standalone Mode
+~~~~~
 
 There is a really well written article about Nuitka written
 by Tom Sheffler.

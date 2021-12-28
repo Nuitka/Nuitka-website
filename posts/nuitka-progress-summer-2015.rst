@@ -1,8 +1,5 @@
-.. title: Nuitka Progress in Summer 2015
-.. slug: nuitka-progress-summer-2015
-.. date: 2015/10/05 08:08:54
-.. tags: Python,compiler,Nuitka
-.. type: text
+Nuitka Progress in Summer 2015
+~~~~~
 
 A long time has passed again without me speaking about what's going on with
 Nuitka, and that although definitely a lot has happened. I would contend it's

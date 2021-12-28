@@ -1,6 +1,5 @@
-.. title: Nuitka on Podcast __init__
-.. date: 2015/10/25 11:02:56
-.. tags: Python,Nuitka,compiler
+Nuitka on Podcast __init__
+~~~~~
 
 So, if you want to get to know Nuitka or me, there is a really good
 interview from the popular podcast "__init__" online.

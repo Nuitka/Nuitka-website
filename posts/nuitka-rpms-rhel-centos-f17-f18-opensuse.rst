@@ -1,7 +1,5 @@
-.. title: Nuitka RPMs (RHEL, CentOS, F17, F18, openSUSE)
-.. slug: nuitka-rpms-rhel-centos-f17-f18-opensuse
-.. date: 2013/03/16 18:44:45
-.. tags: Python, Nuitka, compiler
+Nuitka RPMs (RHEL, CentOS, F17, F18, openSUSE)
+~~~~~
 
 Thanks to a contribution, Nuitka now has a proper RPM spec file. And using `openSUSE Build
 Service

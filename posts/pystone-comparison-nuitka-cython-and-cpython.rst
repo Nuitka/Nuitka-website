@@ -1,7 +1,5 @@
-.. title: PyStone Comparison Nuitka, Cython, and CPython
-.. slug: pystone-comparison-nuitka-cython-and-cpython
-.. date: 2013/03/04 08:57:10
-.. tags: Nuitka,Python
+PyStone Comparison Nuitka, Cython, and CPython
+~~~~~
 
 As you all know, Nuitka (see `"what is Nuitka?" </pages/overview.html>`_ ) has recently
 completed a milestone. Always short on time, I am not doing a whole lot of benchmarking

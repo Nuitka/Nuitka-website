@@ -1,7 +1,5 @@
-.. title: Try Finally Python Quiz
-.. slug: try-finally-python-quiz
-.. date: 2014/04/24 22:08:56
-.. tags: Python,quiz
+Try Finally Python Quiz
+~~~~~
 
 When working on my Python compiler Nuitka, I often come across ridiculous
 language details of the Python language, and turn these into quizzes, for which

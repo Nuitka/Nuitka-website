@@ -1,8 +1,5 @@
-.. title: Nuitka Progress in 2015
-.. slug: nuitka-progress-winter-2015
-.. date: 2016/01/29 08:08:54
-.. tags: Python,compiler,Nuitka
-.. type: text
+Nuitka Progress in 2015
+~~~~~
 
 For quite a bit, there have been no status posts, not for lack of news, but a
 lot has happened indeed. I just seem to post a *lot* more to the mailing list

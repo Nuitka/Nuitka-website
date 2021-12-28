@@ -1,8 +1,5 @@
-.. title: Nuitka this week #4
-.. slug: nuitka-this-week-4
-.. date: 2018/08/17 14:55:00
-.. tags: Python,compiler,Nuitka,NTW
-.. type: text
+Nuitka this week #4
+~~~~~
 
 .. contents::
 

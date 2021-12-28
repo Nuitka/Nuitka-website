@@ -1,8 +1,5 @@
-.. title: Nuitka Progress in Spring 2015
-.. slug: nuitka-progress-spring-2015
-.. date: 2015/04/30 16:08:54
-.. tags: Python,compiler,Nuitka
-.. type: text
+Nuitka Progress in Spring 2015
+~~~~~
 
 It's absolutely time to speak about what's going on with Nuitka, there
 have been a few releases, and big things are going to happen now. The

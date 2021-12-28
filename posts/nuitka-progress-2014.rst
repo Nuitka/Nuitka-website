@@ -1,8 +1,5 @@
-.. title: Nuitka progress 2014
-.. slug: nuitka-progress-2014
-.. date: 2015/03/02 07:08:54
-.. tags: Python,compiler,Nuitka
-.. type: text
+Nuitka progress 2014
+~~~~~
 
 Again, not much has happened publicly to Nuitka, except for some releases,
 so it's time to make a kind of status post, about the really exciting news

@@ -1,9 +1,5 @@
-.. title: Letting go of C++11
-.. slug: letting-go-of-c11
-.. date: 2012/10/27 08:59:07
-.. tags: Nuitka,compiler,Python,Windows,Android
-.. link:
-.. description: How Nuitka came to use C++11 and then stop it.
+Letting go of C++11
+~~~~~
 
 This post is about Nuitka the Python compiler started out using C++0x which is now C++11,
 and then chose to stop it.

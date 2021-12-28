@@ -1,7 +1,5 @@
-.. title: Support for portable (standalone) programs
-.. slug: support-for-portable-standalone-programs
-.. date: 2013/04/07 13:52:44
-.. tags: Python,Nuitka,compiler,Windows
+Support for portable (standalone) programs
+~~~~~
 
 This post is about a feature often requested, but so far not available feature of
 Nuitka. Please see the page `"What is Nuitka?" </pages/overview.html>`_ for clarification

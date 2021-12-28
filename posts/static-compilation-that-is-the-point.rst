@@ -1,7 +1,5 @@
-.. title: Static Compilation - That is the point
-.. slug: static-compilation-that-is-the-point
-.. date: 2012/12/02 12:23:32
-.. tags: Python,Nuitka,compiler
+Static Compilation - That is the point
+~~~~~
 
 In a recent post, Stefan Behnel questioned the point of static compilation and
 suggests that in order to be useful, a static compiler **needs** to add

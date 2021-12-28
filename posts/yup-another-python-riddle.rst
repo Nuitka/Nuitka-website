@@ -1,7 +1,5 @@
-.. title: Yup, another Python Quiz
-.. slug: yup-another-python-riddle
-.. date: 2014/06/18 07:46:50
-.. tags: Python,quiz
+Yup, another Python Quiz
+~~~~~
 
 Using the following source code as a test happily in my `Python compiler Nuitka
 </pages/overview.html>`__ for some years now.

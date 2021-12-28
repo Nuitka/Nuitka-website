@@ -1,7 +1,5 @@
-.. slug: nuitka-and-guis
-.. date: 2013/11/26 09:35:53
-.. title: Nuitka and GUIs
-.. tags: Python,Nuitka,compiler
+Nuitka and GUIs
+~~~~~
 
 Please see the page `"What is Nuitka?" </pages/overview.html>`_ for
 clarification of what it is now and what it wants to be.

@@ -1,7 +1,5 @@
-.. title: Nuitka Standalone Mode is Work in Progress
-.. slug: nuitka-standalone-mode-is-work-in-progress
-.. date: 2013/12/27 10:48:22
-.. tags: Python,compiler,Nuitka,Windows
+Nuitka Standalone Mode is Work in Progress
+~~~~~
 
 Many of you who turn to my easy to use, highly compatible Python compiler
 `Nuitka <http://nuitka.net>`__, do this mostly because they seek to solve the

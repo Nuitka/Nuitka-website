@@ -1,7 +1,5 @@
-.. title: Re: About Python 3
-.. slug: re-about-python-3
-.. date: 2013/12/30 20:56:32
-.. tags: Python
+Re: About Python 3
+~~~~~
 
 In `Alex Gaynor's post <http://alexgaynor.net/2013/dec/30/about-python-3/>`__
 there is just about everything right. I still want to add my take on it.

@@ -1,7 +1,5 @@
-.. title: State of Nuitka
-.. slug: state-of-nuitka
-.. date: 2014/06/17 05:35:48
-.. tags: Python, Nuitka, compiler
+State of Nuitka
+~~~~~
 
 .. contents::
 

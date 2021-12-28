@@ -1,7 +1,5 @@
-.. date: 2013/04/16 09:58:34
-.. title: Going to Europython 2013
-.. slug: going-to-europython-2013
-.. tags: Python,Nuitka,compiler
+Going to Europython 2013
+~~~~~
 
 I am going to the wonderful city of Florence, and `Europython 2013
 <https://ep2013.europython.eu/>`_ and make a presentation there. This time, I am

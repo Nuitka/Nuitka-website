@@ -1,7 +1,5 @@
-.. title: NetBSD support upcoming
-.. slug: netbsd-support-upcoming
-.. date: 2013/04/06 12:58:37
-.. tags: Python,Nuitka
+NetBSD support upcoming
+~~~~~
 
 My first real UNIX ever was a NetBSD. That was now about 22 years ago. I am still
 sentimental about it. I had installed it last about 8 years ago. And I still like it. Back

@@ -1,7 +1,5 @@
-.. title: Support for MSVC upcoming
-.. slug: support-for-msvc-upcoming
-.. date: 2013/04/10 20:30:11
-.. tags: Python,Nuitka,Windows
+Support for MSVC upcoming
+~~~~~
 
 The good news are lately coming in high density, although I barely have the opportunity to
 work on Nuitka. Check the page `What is Nuitka? </pages/overview.html>`_ for
