@@ -27,8 +27,8 @@ def importNuitka():
 def migratePosts():
     # Convert from Nikola to ABlog format.
     importNuitka()
-    from nuitka.utils.FileOperations import getFileList, changeFilenameExtension, getFileContents
-
+    from nuitka.utils.FileOperations import getFileList, changeFilenameExtension, getFileContents, putTextFileContents
+    from nuitka.tools.quality.autoformat.Autoformat import autoformat
     for meta_filename in getFileList(
         "posts",
         only_suffixes=(".meta")
@@ -60,7 +60,55 @@ def migratePosts():
 
                 sys.exit(1)
 
+    for meta_filename in getFileList(
+        "posts",
+        only_suffixes=(".meta")
+    ):
+        rst_filename = changeFilenameExtension(meta_filename, ".rst")
 
+        if not os.path.exists(rst_filename):
+            assert False, rst_filename
+
+        rst_contents = getFileContents(rst_filename)
+
+        values = {}
+        for line in getFileContents(meta_filename).splitlines():
+            try:
+                key, value = line.split(":", 1)
+            except ValueError:
+                sys.exit("error, %s has %s" % (meta_filename, line))
+
+            assert key[:3] == ".. ", line
+            key=key[3:].strip()
+
+            if key == "slug":
+                continue
+
+            values[key] = value.strip()
+
+        tags = ", ".join(values["tags"].replace(" ", "").split(","))
+        del values["tags"]
+        title = values.pop("title")
+        date = values.pop("date")
+        author = values.pop("author", "Kay Hayen")
+
+        assert not values, values
+        rst_contents = f"""\
+.. post: {date}
+    :tags: {tags}
+    :author: {author}
+    :language: en
+
+{title}
+~~~~~~
+
+""" + rst_contents
+
+        putTextFileContents(rst_filename, rst_contents)
+
+
+        if ".. youtube" not in rst_contents:
+            autoformat(rst_filename, git_stage=False)
 
 def updateDownloadPage():
     # TODO: Move to at least develop, after next releease, or even pip install as a requirement
