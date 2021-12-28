@@ -18,13 +18,57 @@ import zipfile
 from lxml import html
 
 
+def importNuitka():
+    sys.path.insert(0, os.path.abspath("Nuitka-develop"))
+    import nuitka
+    del sys.path[0]
+
+
+def migratePosts():
+    # Convert from Nikola to ABlog format.
+    importNuitka()
+    from nuitka.utils.FileOperations import getFileList, changeFilenameExtension, getFileContents
+
+    for meta_filename in getFileList(
+        "posts",
+        only_suffixes=(".meta")
+    ):
+        rst_filename = changeFilenameExtension(meta_filename, ".rst")
+
+        if not os.path.exists(rst_filename):
+            assert False, rst_filename
+
+        values = {}
+        for line in getFileContents(meta_filename).splitlines():
+            try:
+                key, value = line.split(":", 1)
+            except ValueError:
+                sys.exit("error, %s has %s" % (meta_filename, line))
+
+            assert key[:3] == ".. ", line
+            key=key[3:].strip()
+
+            values[key] = value.strip()
+
+        slug = values.get("slug")
+        if slug:
+            expected = os.path.basename(meta_filename)[:-5]
+
+            if not expected == slug:
+                print("git mv %s posts/%s.meta" % (meta_filename, slug))
+                print("git mv %s posts/%s.rst" % (rst_filename, slug))
+
+                sys.exit(1)
+
+
+
 def updateDownloadPage():
     # TODO: Move to at least develop, after next releease, or even pip install as a requirement
     # after release with an option to use other branches.
-    sys.path.insert(0, os.path.abspath("Nuitka-factory"))
+    importNuitka()
+
     from nuitka.utils.Jinja2 import getTemplate
     from nuitka.utils.Rest import makeTable
-    del sys.path[0]
 
     page_template = getTemplate(package_name=None, template_name="download.rst.j2", template_subdir="pages")
 
@@ -160,13 +204,6 @@ def updateDownloadPage():
     print("Max stable release is", max_stable_release, makePlain(max_stable_release))
     sys.stdout.flush()
 
-    if False:
-        output = subprocess.check_output(
-            r"ssh -l root nuitka.net cd /var/www && find deb -name \*.deb".split(),
-            shell=False,
-        )
-
-        output = output.decode("utf8")
     output = ""
 
     def extractDebVersion(path):
@@ -813,6 +850,8 @@ When given, all is updated. Default %default.""",
 
     if options.downloads:
         updateDownloadPage()
+
+    migratePosts()
 
     if options.check_pages:
         checkRestPages()

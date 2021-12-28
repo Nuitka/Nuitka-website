@@ -1,5 +1,4 @@
 import os
-import subprocess
 import sys
 import time
 
@@ -36,6 +35,7 @@ extensions = [
     "sphinx.ext.todo",
     # "sphinx.ext.viewcode",
     # External extensions
+    'ablog',
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_inline_tabs",
