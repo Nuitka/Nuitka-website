@@ -22,6 +22,7 @@ sphinx-design = "*"
 sphinx-inline-tabs = "*"
 sphinx-rtd-theme = "*"
 "sphinxcontrib.twitter" = "*"
+ablog = "*"
 
 [requires]
 python_version = "3.9"
