@@ -29,6 +29,55 @@ def migratePosts():
     importNuitka()
     from nuitka.utils.FileOperations import getFileList, changeFilenameExtension, getFileContents, putTextFileContents
     from nuitka.tools.quality.autoformat.Autoformat import autoformat
+
+    for rst_filename in getFileList(
+        "posts",
+        only_suffixes=(".rst")
+    ):
+        meta_filename = changeFilenameExtension(rst_filename, ".meta")
+
+        rst_contents = getFileContents(rst_filename)
+
+        if not rst_contents.startswith(".."):
+            assert os.path.exists(meta_filename)
+
+            continue
+
+        assert not os.path.exists(meta_filename), meta_filename
+
+        new_contents = []
+        meta_contents = []
+
+        start = True
+        for line in rst_contents.splitlines():
+            if start and line.startswith(".."):
+                meta_contents.append(line)
+
+                try:
+                    key, value = line.split(":", 1)
+                except ValueError:
+                    sys.exit("error, %s has %s" % (rst_filename, line))
+
+                assert key[:3] == ".. ", line
+                key=key[3:].strip()
+                value = value.strip()
+
+                if key == "title":
+                    new_contents.append(value)
+                    new_contents.append("~"*5)
+
+                if key == "slug" and rst_filename != "posts/%s.rst" % value:
+                    print("git mv %s posts/%s.rst" % (rst_filename, value))
+
+            else:
+                start = False
+                new_contents.append(line)
+
+        putTextFileContents(meta_filename, meta_contents)
+        putTextFileContents(rst_filename, new_contents)
+
+    return
+
     for meta_filename in getFileList(
         "posts",
         only_suffixes=(".meta")
