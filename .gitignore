@@ -8,6 +8,7 @@ Nuitka-factory
 Nuitka-develop
 Nuitka-master
 output
+output.*
 .vscode/tags
 state_data.json
 doc_generated
