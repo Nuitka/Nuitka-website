@@ -21,23 +21,26 @@ from lxml import html
 def importNuitka():
     sys.path.insert(0, os.path.abspath("Nuitka-factory"))
     import nuitka
+
     del sys.path[0]
 
 
 def migratePosts():
     # Convert from Nikola to ABlog format.
     importNuitka()
-    from nuitka.utils.FileOperations import getFileList, changeFilenameExtension, getFileContents, putTextFileContents
+    from nuitka.utils.FileOperations import (
+        getFileList,
+        changeFilenameExtension,
+        getFileContents,
+        putTextFileContents,
+    )
     from nuitka.tools.quality.autoformat.Autoformat import autoformat
 
     # Already migrated potentially.
     if not os.path.exists("posts/article-over-nuitka-standalone.meta"):
         return
 
-    for rst_filename in getFileList(
-        "posts",
-        only_suffixes=(".rst")
-    ):
+    for rst_filename in getFileList("posts", only_suffixes=(".rst")):
         meta_filename = changeFilenameExtension(rst_filename, ".meta")
 
         rst_contents = getFileContents(rst_filename)
@@ -46,7 +49,6 @@ def migratePosts():
             assert os.path.exists(meta_filename), meta_filename
 
             continue
-
 
         assert not os.path.exists(meta_filename), meta_filename
 
@@ -64,12 +66,12 @@ def migratePosts():
                     sys.exit("error, %s has %s" % (rst_filename, line))
 
                 assert key[:3] == ".. ", line
-                key=key[3:].strip()
+                key = key[3:].strip()
                 value = value.strip()
 
                 if key == "title" and not rst_contents.startswith("###"):
                     new_contents.append(value)
-                    new_contents.append("~"*5)
+                    new_contents.append("~" * 5)
 
                 if key == "slug" and rst_filename != "posts/%s.rst" % value:
                     print("git mv %s posts/%s.rst" % (rst_filename, value))
@@ -81,10 +83,7 @@ def migratePosts():
         putTextFileContents(meta_filename, meta_contents)
         putTextFileContents(rst_filename, new_contents)
 
-    for meta_filename in getFileList(
-        "posts",
-        only_suffixes=(".meta")
-    ):
+    for meta_filename in getFileList("posts", only_suffixes=(".meta")):
         rst_filename = changeFilenameExtension(meta_filename, ".rst")
 
         if not os.path.exists(rst_filename):
@@ -98,7 +97,7 @@ def migratePosts():
                 sys.exit("error, %s has %s" % (meta_filename, line))
 
             assert key[:3] == ".. ", line
-            key=key[3:].strip()
+            key = key[3:].strip()
 
             values[key] = value.strip()
 
@@ -112,10 +111,7 @@ def migratePosts():
 
                 sys.exit(1)
 
-    for meta_filename in getFileList(
-        "posts",
-        only_suffixes=(".meta")
-    ):
+    for meta_filename in getFileList("posts", only_suffixes=(".meta")):
         rst_filename = changeFilenameExtension(meta_filename, ".rst")
 
         if not os.path.exists(rst_filename):
@@ -131,7 +127,7 @@ def migratePosts():
                 sys.exit("error, %s has %s" % (meta_filename, line))
 
             assert key[:3] == ".. ", line
-            key=key[3:].strip()
+            key = key[3:].strip()
 
             if key == "slug":
                 continue
@@ -150,13 +146,21 @@ def migratePosts():
             else:
                 year, month, day = date.split("-")
 
-
-            month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-            date = "%s %s, %s" % (
-                day,
-                month_names[int(month)-1],
-                year
-            )
+            month_names = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ]
+            date = "%s %s, %s" % (day, month_names[int(month) - 1], year)
 
         author = values.pop("author", "Kay Hayen")
         description = values.pop("description", None)
@@ -170,22 +174,29 @@ def migratePosts():
             rst_contents = description + "\n\n" + rst_contents
 
         if not has_title:
-            rst_contents = f"""\
+            rst_contents = (
+                f"""\
 {title}
 ~~~~~~
-""" + rst_contents
+"""
+                + rst_contents
+            )
 
-        rst_contents = f"""\
+        rst_contents = (
+            f"""\
 .. post:: {date}
     :tags: {tags}
     :author: {author}
 
-""" + rst_contents
+"""
+            + rst_contents
+        )
 
         putTextFileContents(rst_filename, rst_contents)
         autoformat(rst_filename, git_stage=False)
 
         os.unlink(meta_filename)
+
 
 def updateDownloadPage():
     # TODO: Move to at least develop, after next releease, or even pip install as a requirement
@@ -195,7 +206,9 @@ def updateDownloadPage():
     from nuitka.utils.Jinja2 import getTemplate
     from nuitka.utils.Rest import makeTable
 
-    page_template = getTemplate(package_name=None, template_name="download.rst.j2", template_subdir="doc/doc")
+    page_template = getTemplate(
+        package_name=None, template_name="download.rst.j2", template_subdir="doc/doc"
+    )
 
     page_source = requests.get("https://nuitka.net/releases/").text
 
@@ -435,7 +448,7 @@ def updateDownloadPage():
     max_fedora = 35
 
     fedora_rpm = {}
-    for fedora_number in range(min_fedora,max_fedora+1):
+    for fedora_number in range(min_fedora, max_fedora + 1):
         stable, develop = checkOBS("Fedora_%d" % fedora_number)
 
         fedora_rpm["stable", fedora_number] = stable
@@ -589,7 +602,6 @@ def updateDownloadPage():
             "dot_version": version[0] + "." + version[-1],
         }
 
-
     def makeFedoraText(fedora_number, release):
         version = fedora_rpm[release, fedora_number]
         rpm_basename = "nuitka" if release == "stable" else "nuitka-unstable"
@@ -600,13 +612,26 @@ def updateDownloadPage():
     def makeRepoLinkText(repo_name):
         return f"""`repository file <https://download.opensuse.org/repositories/home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"""
 
+    fedora_data = [
+        (
+            f"Fedora {fedora_number}",
+            makeRepoLinkText(f"Fedora_{fedora_number}"),
+            makeFedoraText(fedora_number, "stable"),
+            makeFedoraText(fedora_number, "develop"),
+        )
+        for fedora_number in range(max_fedora, min_fedora - 1, -1)
+    ]
 
-    fedora_data = [(f"Fedora {fedora_number}", makeRepoLinkText(f"Fedora_{fedora_number}"), makeFedoraText(fedora_number, "stable"), makeFedoraText(fedora_number, "develop")) for fedora_number in range(max_fedora,min_fedora-1,-1)]
+    fedora_table = makeTable(
+        [["Fedora Version", "RPM Repository", "Stable", "Develop"]] + fedora_data
+    )
 
-    fedora_table = makeTable([["Fedora Version", "RPM Repository", "Stable", "Develop"]] + fedora_data)
-
-    template_context = {"max_fedora" : max_fedora, "min_fedora" : min_fedora, "fedora_rpm" : fedora_rpm, "fedora_table": fedora_table}
-
+    template_context = {
+        "max_fedora": max_fedora,
+        "min_fedora": min_fedora,
+        "fedora_rpm": fedora_rpm,
+        "fedora_table": fedora_table,
+    }
 
     download_page = page_template.render(name=page_template.name, **template_context)
 
@@ -756,7 +781,7 @@ def updateReleasePosts():
 
             changelog_output.write("\n\n")
             if sep != "=":
-                 changelog_output.write(sep * len(title) + "\n")
+                changelog_output.write(sep * len(title) + "\n")
             else:
                 title = title.lstrip()
 
@@ -764,7 +789,10 @@ def updateReleasePosts():
             changelog_output.write(sep * len(title) + "\n\n")
 
             if sep == "=":
-                changelog_lines = [line.replace("=", "-") if line.startswith("===") else line for line in lines]
+                changelog_lines = [
+                    line.replace("=", "-") if line.startswith("===") else line
+                    for line in lines
+                ]
             else:
                 changelog_lines = lines
 
@@ -798,7 +826,6 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
             if "release-011" in slug:
                 slug = "minor-" + slug.replace("nuitka-release", "release-nuitka")
 
-
             pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
             data = "\n".join(
                 [
@@ -831,8 +858,11 @@ def updateDocs():
 def runSphinxBuild():
     assert 0 == os.system("sphinx-build doc output/ -a")
 
+
 def runSphinxAutoBuild():
-    os.system("python -m sphinx_autobuild doc output/ -a --watch doc --watch pages --watch Pipenv.lock")
+    os.system(
+        "python -m sphinx_autobuild doc output/ -a --watch doc --watch pages --watch Pipenv.lock"
+    )
 
 
 def checkRstLint(document):
@@ -860,7 +890,16 @@ def checkRstLint(document):
 
 
 def runDeploymentCommand():
-    assert 0 == os.system("rsync -ravz --exclude=.git --chown www-data:git --chmod Dg+x output/ root@nuitka.net:/var/www/")
+    excluded = [".buildinfo", ".doctrees", "apidoc", "releases"]
+
+    command = (
+        "rsync -n -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@nuitka.net:/var/www/"
+        % (" ".join("--exclude=%s" % exclude for exclude in excluded))
+    )
+
+    print(command)
+    assert 0 == os.system(command)
+
 
 def checkRestPages():
     for root, _dirnames, filenames in os.walk("."):
@@ -920,7 +959,6 @@ When given, the site is built. Default %default.""",
 When given, the site is re-built on changes and served locally. Default %default.""",
     )
 
-
     parser.add_option(
         "--deploy-site",
         action="store_true",
@@ -943,10 +981,6 @@ When given, all is updated. Default %default.""",
 
     assert not positional_args, positional_args
 
-    submodule = "output"
-    if os.path.isdir(submodule):
-        shutil.rmtree(submodule)
-
     if options.all:
         options.downloads = True
         options.docs = True
@@ -965,11 +999,15 @@ When given, all is updated. Default %default.""",
         checkRestPages()
 
     if options.build:
+        # Avoid left over files.
+        output_dir = "output"
+        if os.path.isdir(output_dir):
+            shutil.rmtree(output_dir)
+
         runSphinxBuild()
 
     if options.serve:
         runSphinxAutoBuild()
-
 
     if options.deploy:
         runDeploymentCommand()
