@@ -1,3 +1,11 @@
+.. post:: 2013/03/05 22:13
+   :tags: Python, Nuitka, compiler
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.4.1
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -9,9 +17,9 @@ Also a lot of cleanups have been performed, for both the tree building,
 which is now considered mostly finished, and will be only reviewed. And
 for the optimization part there have been large amounts of changes.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Python 3.3 experimental support
 
@@ -27,9 +35,9 @@ for the optimization part there have been large amounts of changes.
    The Python 3.2 on Ubuntu is not providing a helper function that was
    used by Nuitka, replaced it with out own code.
 
-###########
+***********
  Bug fixes
-###########
+***********
 
 -  Default values were not "is" identical.
 
@@ -53,9 +61,9 @@ for the optimization part there have been large amounts of changes.
 -  Assigning Python3 function annotations could cause a segmentation
    fault.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Improved propagation of exception raise statements, eliminating more
    code. They are now also propagated from all kinds of expressions.
@@ -117,9 +125,9 @@ for the optimization part there have been large amounts of changes.
    compiled function), and string constants share the value. This should
    reduce memory usage and speed up program start-up.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Optimization was initially designed around visitors that each did one
    thing, and did it well. It turns out though, that this approach is
@@ -146,23 +154,23 @@ for the optimization part there have been large amounts of changes.
 -  Added new re-formulation of ``print`` statements. The conversion to
    strings is now made explicit in the node tree.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  Added test to cover default value identity.
 
-################
+****************
  Organisational
-################
+****************
 
 -  The upload of `Nuitka to PyPI
    <http://pypi.python.org/pypi/Nuitka/>`__ has been repaired and now
    properly displays project information again.
 
-#########
+*********
  Summary
-#########
+*********
 
 The quicker release is mostly a consolidation effort, without much
 actual performance progress. The progress towards SSA form matter a lot

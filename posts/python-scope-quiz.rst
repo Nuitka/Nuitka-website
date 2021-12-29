@@ -1,3 +1,7 @@
+.. post:: 2010/09/12 16:01
+   :tags: Python, Nuitka, quiz
+   :author: Kay Hayen
+
 ###############
  Quiz Question
 ###############

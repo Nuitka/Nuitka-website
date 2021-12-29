@@ -1,3 +1,7 @@
+.. post:: 2013/03/16 18:44:45
+   :tags: Python, Nuitka, compiler
+   :author: Kay Hayen
+
 ################################################
  Nuitka RPMs (RHEL, CentOS, F17, F18, openSUSE)
 ################################################

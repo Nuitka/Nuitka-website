@@ -1,3 +1,11 @@
+.. post:: 2010/08/05 22:06
+   :tags: Nuitka, Python
+   :author: Kay Hayen
+
+################################
+ Starting to blog, who and why?
+################################
+
 My name is Kay Hayen, I was born in 1972 in the very northern part of
 Germany very close to the North Sea.
 

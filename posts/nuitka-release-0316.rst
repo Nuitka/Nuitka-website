@@ -1,3 +1,11 @@
+.. post:: 2011/12/18 17:24
+   :tags: compiler, Nuitka, Python
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.3.16
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -15,9 +23,9 @@ Also there has an effort to make the Debian packaging cleaner,
 addressing all kinds of small issues that prevented it from entering the
 Debian repository. It's still not there, but it's making progress.
 
-###########
+***********
  Bug fixes
-###########
+***********
 
 -  Fixed a packaging problem for Linux and x64 platform, the new
    ``swapFiber.S`` file for the fiber management was not included.
@@ -79,9 +87,9 @@ Debian repository. It's still not there, but it's making progress.
 -  Fix, the future spec was not properly preserving the future division
    flag.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  The optimization scales now much better, because per-module
    optimization only require the module to be reconsidered, but not all
@@ -90,9 +98,9 @@ Debian repository. It's still not there, but it's making progress.
 
 -  The creation of dictionaries from constants is now also optimized.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  As a new feature functions now have the ``func_defaults`` and
    ``__defaults__`` attribute. It works only well for non-nested
@@ -107,9 +115,9 @@ Debian repository. It's still not there, but it's making progress.
    which case it is preserved. This allows to make sure that a binary is
    in fact containing everything required.
 
-################
+****************
  Organisational
-################
+****************
 
 -  The help output of Nuitka was polished a lot more. It is now more
    readable and uses option groups to combine related options together.
@@ -123,9 +131,9 @@ Debian repository. It's still not there, but it's making progress.
 -  The basic tests can now be run with ``PYTHON=python3.2`` and use
    ``2to3`` conversion in that case.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Moved ``tags`` to a separate module, make optimization emit only
    documented tags, checked against the list of allowed ones.
@@ -140,9 +148,9 @@ Debian repository. It's still not there, but it's making progress.
 
 -  Some more PyLint cleanups.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  There is now a ``Crasher`` test, for tests that crashed Nuitka
    previously.
@@ -172,9 +180,9 @@ Debian repository. It's still not there, but it's making progress.
 -  Added test function with two ``raise`` in an exception handler, so
    that one becomes dead code and removed without the crash.
 
-#########
+*********
  Summary
-#########
+*********
 
 The "git flow" was really great in this release cycle. There were many
 hot fix releases being made, so that the bugs could be addressed

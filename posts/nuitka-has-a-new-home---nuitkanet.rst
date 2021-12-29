@@ -1,3 +1,11 @@
+.. post:: 2011/08/16 18:21
+   :tags: git, Nuitka, Python
+   :author: Kay Hayen
+
+####################################
+ Nuitka has a new home - nuitka.net
+####################################
+
 Hello everybody,
 
 my new vServer is now online, the old site blog redirects to it now, and

@@ -1,3 +1,11 @@
+.. post:: 2011/10/18 17:36
+   :tags: family, Nuitka
+   :author: Kay Hayen
+
+############
+ Cat update
+############
+
 The new cat has become indispensable for just about anything. She
 follows throughout the hous, and is just too lovely, here two photos of
 her in typical spots.

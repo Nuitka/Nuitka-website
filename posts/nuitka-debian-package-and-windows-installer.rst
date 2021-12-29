@@ -1,3 +1,11 @@
+.. post:: 2011/11/13 22:20
+   :tags: Nuitka, Python
+   :author: Kay Hayen
+
+#############################################
+ Nuitka Debian Package and Windows Installer
+#############################################
+
 There is now a Windows installer and a Debian package of `Nuitka
 </pages/overview.html>`_ available on the `Download
 </pages/download.html>`_ page. Please try it out and give me feedback.

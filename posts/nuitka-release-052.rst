@@ -1,3 +1,11 @@
+.. post:: 2014/06/23 08:49
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.5.2
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -6,9 +14,9 @@ This is a major release, with huge changes to code generation that
 improve performance in a significant way. It is a the result of a long
 development period, and therefore contains a huge jump ahead.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added experimental support for Python 3.4, which is still work in
    progress.
@@ -28,9 +36,9 @@ development period, and therefore contains a huge jump ahead.
    doesn't affect the validity of other modules object files from caches
    anymore.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  C-ish code generation uses less C++ classes and generates more C-like
    code. Explicit temporary objects are now used for statement temporary
@@ -74,9 +82,9 @@ development period, and therefore contains a huge jump ahead.
    created for them. This avoids useless code size bloat because of
    them. Previously the frame stack entry was mandatory.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Windows: The resource files were cached by Scons and re-used, even if
    the input changed. The could lead to corrupted incremental builds.
@@ -141,9 +149,9 @@ development period, and therefore contains a huge jump ahead.
 -  Compatibility: Using ``open`` with no arguments is now giving the
    same error.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Replying to email from the `issue tracker <http://bugs.nuitka.net>`__
    works now.
@@ -172,9 +180,9 @@ development period, and therefore contains a huge jump ahead.
    <https://nuitka.net/doc/download.html>`__ is now driven by Buildbot.
    Page will be automatically updated as updated binaries arrive.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Temporary keeper variables and the nodes to handle them are now
    unified with normal temporary variables, greatly simplifying variable
@@ -198,9 +206,9 @@ development period, and therefore contains a huge jump ahead.
 -  Dramatic amounts of cleanups to code generation specialities, that
    got done right for the new C-ish code generation.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  Warnings from MSVC are now error exits for ``--debug`` mode too,
    expanding the coverage of these tests.
@@ -213,9 +221,9 @@ development period, and therefore contains a huge jump ahead.
 
 -  The library compilation test is now also executed with Python3.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release would deserve more than a minor number increase. The C-ish
 code generation, is a huge body of work. In many ways, it lays ground to

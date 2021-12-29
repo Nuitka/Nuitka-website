@@ -1,3 +1,11 @@
+.. post:: 2020/10/15 10:34
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.6.9
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -11,9 +19,9 @@ There are also many general improvements and performance work for
 tracing and loops, but the full potential of this will not be unlocked
 with this release yet.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Fix, loop optimization sometimes didn't determinate, effectively
    making Nuitka run forever, with no indication why. This has been
@@ -80,9 +88,9 @@ with this release yet.
    defaults, making it include more code than necessary, and to crash if
    it was not there.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Windows: Added support for using Python 2.7 through a symlink too.
    This was already working for Python3, but a scons problem prevented
@@ -103,9 +111,9 @@ with this release yet.
 -  Windows: The ``ccache`` from Anaconda is now supported as well as the
    one from msys64.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  The value tracing has become more correct with loops and in general
    less often inhibits optimization. Escaping of value traces is now a
@@ -123,9 +131,9 @@ with this release yet.
    smaller binaries to be created, that don't have to include unused
    helper functions.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  The scons file now uses Nuitka utils functions and is itself split up
    into several modules for enhanced readability.
@@ -134,9 +142,9 @@ with this release yet.
    up and now named tuples are used. Backward compatibility is
    maintained though.
 
-################
+****************
  Organisational
-################
+****************
 
 -  The use of the logging module was replaced with more of our custom
    tracing and we now have the ability to write the optimization log to
@@ -154,9 +162,9 @@ with this release yet.
 
 -  Added repository for Ubuntu focal.
 
-#########
+*********
  Summary
-#########
+*********
 
 The main focus of this release has been bug fixes with only a little
 performance work due to the large amount of regressions and other

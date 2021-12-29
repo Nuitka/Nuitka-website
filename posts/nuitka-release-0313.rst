@@ -1,3 +1,11 @@
+.. post:: 2011/11/01 15:07
+   :tags: compiler, Nuitka, Python
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.3.13
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -17,9 +25,9 @@ here were already fixed in on the stable release before this release.
 This time there were 5 such hot fix releases, sometimes fixing multiple
 bugs.
 
-###########
+***********
  Bug fixes
-###########
+***********
 
 -  In case of syntax errors in the main program, an exception stack was
    giving that included Nuitka code. Changed to make the same output as
@@ -70,16 +78,16 @@ bugs.
    enforced in a portable way. Now it is correct on "ARM" too. Fixed in
    0.3.12e already.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  The built-ins ``GeneratorExit`` and ``StopIteration`` are optimized
    to their Python C/API names where possible as well.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  The ``__file__`` attribute of modules was the relative filename, but
    for absolute filenames these become a horrible mess at least on
@@ -99,9 +107,9 @@ bugs.
 -  Some PyLint cleanups removing dead code, unused variables, useless
    pass statement, etc.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  New tests to cover ``SyntaxError`` and ``IndentationError`` from
    ``--deep`` imports and in main program.
@@ -112,9 +120,9 @@ bugs.
 -  New test to cover package local imports made by the "__init__.py" of
    the package.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Drop "compile_itself.sh" in favor of the new "compile_itself.py",
    because the later is more portable.
@@ -122,9 +130,9 @@ bugs.
 -  The logging output is now nicer, and for failed recursions, outputs
    the line that is having the problem.
 
-#########
+*********
  Summary
-#########
+*********
 
 The frame stack work and the ``func_code`` are big for compatibility.
 

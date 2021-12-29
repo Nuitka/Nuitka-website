@@ -1,3 +1,7 @@
+.. post:: 2015/10/25 11:02:56
+   :tags: Python, Nuitka, compiler
+   :author: Kay Hayen
+
 ############################
  Nuitka on Podcast __init__
 ############################

@@ -1,3 +1,7 @@
+.. post:: 2014/06/18 07:46:50
+   :tags: Python, quiz
+   :author: Kay Hayen
+
 ##########################
  Yup, another Python Quiz
 ##########################

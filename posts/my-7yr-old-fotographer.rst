@@ -1,3 +1,11 @@
+.. post:: 2011/10/18 17:24
+   :tags: family
+   :author: Kay Hayen
+
+########################
+ My 7yr old fotographer
+########################
+
 This photo was shot by my 7yr old son. It's truly artful, if not
 perfect. I have not applied any correction. He has my old camera, and
 knows how to use it, more and more.

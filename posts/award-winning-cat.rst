@@ -1,3 +1,11 @@
+.. post:: 2012/02/20 12:51
+   :tags: family
+   :author: Kay Hayen
+
+###################
+ Award winning cat
+###################
+
 .. figure:: images/Katze_Medaille.jpg
    :target: images/Katze_Medaille.jpg
    :width: 80%

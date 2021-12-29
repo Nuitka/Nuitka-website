@@ -1,3 +1,11 @@
+.. post:: 2019/04/07 08:21
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.6.3
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -10,9 +18,9 @@ processes, and to improve documentation.
 That said, an impressive amount of bug fixes was contributed, but
 optimization was on hold.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Windows: Added support for running compiled binaries in unicode path
    names.
@@ -41,15 +49,15 @@ optimization was on hold.
 -  Fix detection of standard library paths that include ``..`` path
    elements.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Avoid static C++ runtime library when using MinGW64.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Plugins: A plugin may now also generate data files on the fly for a
    given module.
@@ -57,9 +65,9 @@ optimization was on hold.
 -  Added support for FreeBSD/PowerPC arch which still uses ``gcc`` and
    not ``clang``.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Nuitka is participating in the GSoC 2019.
 
@@ -99,9 +107,9 @@ optimization was on hold.
 
 -  Added short installation guide for Nuitka on Windows.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Moved commandline parsing helper functions from common code helpers
    to the main program where of course their only usage is.
@@ -124,9 +132,9 @@ optimization was on hold.
 -  The runners in ``bin`` directory are now formatted with ``black``
    too.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Detect Windows permission errors for two step execution of Nuitka as
    well, leading to retries should they occur.
@@ -137,9 +145,9 @@ optimization was on hold.
 -  Tests: Added more trick assignments and generally added more tests
    that were so far missing.
 
-#########
+*********
  Summary
-#########
+*********
 
 With the many organisational changes in place, my normal work is
 expected to resume for after and yield quicker improvements now.

@@ -1,3 +1,7 @@
+.. post:: 2012/12/02 12:23:32
+   :tags: Python, Nuitka, compiler
+   :author: Kay Hayen
+
 ########################################
  Static Compilation - That is the point
 ########################################

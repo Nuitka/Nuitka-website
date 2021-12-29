@@ -1,3 +1,11 @@
+.. post:: 2012/01/14 11:34
+   :tags: compiler, Nuitka, Python
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.3.18
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -12,9 +20,9 @@ fixes, which were available as hot fixes, and some additional
 optimization and node tree cleanups, as well as source cleanups. But not
 much else.
 
-###########
+***********
  Bug fixes
-###########
+***********
 
 -  Conditional statements with both branches empty were not optimized
    away in all cases, triggering an assertion of code generation.
@@ -34,9 +42,9 @@ much else.
 -  Compatibility Fix: When no defaults are given, CPython uses ``None``
    for ``func.func_defaults``, but Nuitka had been using ``None``.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  If the condition of assert statements can be predicted, these are now
    optimized in a static raise or removed.
@@ -48,9 +56,9 @@ much else.
 -  Cleaner code is generated for the simple case of ``print``
    statements. This is not only faster code, it's also more readable.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Removed the ``CPythonStatementAssert`` node.
 
@@ -79,9 +87,9 @@ much else.
    ``type('a')``, which was unlikely to cause a problem, but an
    important ``TODO`` item still.
 
-################
+****************
  Organisational
-################
+****************
 
 -  The `"Download" <https://nuitka.net/doc/download.html>`__ page is now
    finally updated for releases automatically.
@@ -96,15 +104,15 @@ much else.
 
 -  Made sure the test runners worth with bare ``python2.6`` as well.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  Added some tests intended for type inference development.
 
-#########
+*********
  Summary
-#########
+*********
 
 This releases contains not as much changes as others, mostly because
 it's the intended base for a Debian upload.

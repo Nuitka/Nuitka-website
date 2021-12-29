@@ -1,12 +1,20 @@
+.. post:: 2017/07/23 17:42
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.5.27
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
 
 This release comes a lot of bug fixes and improvements.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Fix, need to add recursed modules immediately to the working set, or
    else they might first be processed in second pass, where global names
@@ -52,9 +60,9 @@ This release comes a lot of bug fixes and improvements.
 -  Implicit exception raises in conditional expressions would crash the
    compiler.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added support for Visual Studio 2017.
 
@@ -62,9 +70,9 @@ This release comes a lot of bug fixes and improvements.
    to use for calling Scons. This should allow using Anaconda Python for
    that task.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  References to known unassigned variables are now statically optimized
    to exception raises and warned about if the according option is
@@ -179,9 +187,9 @@ This release comes a lot of bug fixes and improvements.
 -  Detect the linker arch for all Linux platforms using ``objdump``
    instead of only a hand few hard coded ones.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  The use of ``INCREASE_REFCOUNT`` got fully eliminated.
 
@@ -224,9 +232,9 @@ This release comes a lot of bug fixes and improvements.
    found e.g. that source code references only had ``__cmp__`` and need
    rich comparison to be fully portable.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  The test runner for construct tests got cleaned up and the constructs
    now avoid using ``xrange`` so as to not need conversion for Python3
@@ -254,9 +262,9 @@ This release comes a lot of bug fixes and improvements.
 -  Rebased Python 3.6 test suite to 3.6.1 as that is the Python
    generally used now.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Added inline copy of ``appdirs`` package from PyPI.
 
@@ -275,9 +283,9 @@ This release comes a lot of bug fixes and improvements.
    not depend on me booting Windows. Getting these artifacts as
    downloads will be the next step.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release improves many areas. The variable closure taking is now
 fully transparent due to different node types, the memory usage dropped

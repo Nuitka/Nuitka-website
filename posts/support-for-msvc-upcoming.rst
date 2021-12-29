@@ -1,3 +1,7 @@
+.. post:: 2013/04/10 20:30:11
+   :tags: Python, Nuitka, Windows
+   :author: Kay Hayen
+
 ###########################
  Support for MSVC upcoming
 ###########################

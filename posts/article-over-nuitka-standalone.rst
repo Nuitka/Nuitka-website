@@ -1,3 +1,7 @@
+.. post:: 2015/01/06 12:46:50
+   :tags: Python, Nuitka, compiler
+   :author: Kay Hayen
+
 ######################################
  Article about Nuitka Standalone Mode
 ######################################

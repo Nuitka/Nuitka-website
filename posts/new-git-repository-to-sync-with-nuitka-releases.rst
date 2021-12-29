@@ -1,3 +1,11 @@
+.. post:: 2010/08/26 23:06
+   :tags: git, Nuitka
+   :author: Kay Hayen
+
+#################################################
+ New git repository to sync with Nuitka releases
+#################################################
+
 For you git fans out there I have just added a new method to download
 Nuitka from something I call the release git repository:
 

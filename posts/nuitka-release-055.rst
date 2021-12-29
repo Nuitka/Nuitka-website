@@ -1,3 +1,11 @@
+.. post:: 2014/10/05 23:15
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.5.5
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -14,9 +22,9 @@ And then there is much improved support for using standalone mode
 together with virtualenv. This combination was not previously supported,
 but should work now.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added support for Python3.4
 
@@ -25,9 +33,9 @@ but should work now.
    statements, tuples as ``yield from`` arguments, improved error
    messages, additional checks, and many more detail changes.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Using SSA knowledge, local variable assignments now no longer need to
    check if they need to release previous values, they know definitely
@@ -57,9 +65,9 @@ but should work now.
 
 -  Also using less memory for constant nodes.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  The standalone freezing code was reading Python source as UTF-8 and
    not using the code that handles the Python encoding properly. On some
@@ -118,9 +126,9 @@ but should work now.
 -  Raising tuples exception as exceptions was not compatible (Python2)
    or reference leaking (Python3).
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Running ``2to3`` is now avoided for tests that are already running on
    both Python2 and Python3.
@@ -142,9 +150,9 @@ but should work now.
    can be executed with Python3 directly, making debugging them less
    tedious.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Really important removal of "variable references". They didn't solve
    any problem anymore, but their complexity was not helpful either.
@@ -167,9 +175,9 @@ but should work now.
 -  The ``locals`` built-in code now uses code generation for accessing
    local variable values instead having its own stuff.
 
-################
+****************
  Organisational
-################
+****************
 
 -  The Python version 3.4 is now officially supported. There are a few
    problems open, that will be addressed in future releases, none of
@@ -185,9 +193,9 @@ but should work now.
 -  Also pickup ``g++44`` automatically, which makes using Nuitka on
    CentOS5 more automatic.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release represents a very important step ahead. Using SSA for real
 stuff will allow us to build the trust necessary to take the next steps.

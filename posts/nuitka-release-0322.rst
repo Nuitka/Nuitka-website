@@ -1,3 +1,11 @@
+.. post:: 2012/05/13 13:17
+   :tags: compiler, Nuitka, Python
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.3.22
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -11,9 +19,9 @@ first release to not only run itself under Python3, but for Nuitka to
 *compile itself* with Nuitka under Python3, which previously only worked
 for Python2. For the common language subset, it's quite fine now.
 
-###########
+***********
  Bug fixes
-###########
+***********
 
 -  List contractions produced extra entries on the call stack, after
    they became functions, these are no more existent. That was made
@@ -29,9 +37,9 @@ for Python2. For the common language subset, it's quite fine now.
 -  A module "builtins" conflicted with the handling of the Python
    ``builtins`` module. Those now use different identifiers.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  New ``metaclass`` syntax for the ``class`` statement works, and the
    old ``__metaclass__`` attribute is properly ignored.
@@ -74,9 +82,9 @@ for Python2. For the common language subset, it's quite fine now.
 -  Python3 has gained support for recursive programs and stand alone
    extension modules, these are now both possible as well.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Avoid frame stack entries for functions that cannot raise exceptions,
    i.e. where they would not be used.
@@ -178,17 +186,17 @@ for Python2. For the common language subset, it's quite fine now.
 
       print "1+1= 2"
 
-################
+****************
  Organisational
-################
+****************
 
 -  Enhanced Python3 support, enabling support for most basic tests.
 
 -  Check files with PyLint in deterministic (alphabetical) order.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Frame stack entries are now part of the node tree instead of part of
    the template for every function, generator, class or module.
@@ -200,9 +208,9 @@ for Python2. For the common language subset, it's quite fine now.
 -  Side effects are now a dedicated node, used in several optimization
    to maintain the effect of an expression with known value.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  Expanded and adapted basic tests to work for Python3 as well.
 
@@ -212,9 +220,9 @@ for Python2. For the common language subset, it's quite fine now.
 -  Cover calling a function with ``try``/``except`` in an exception
    handler twice. No test was previously doing that.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release offers enhanced compatibility with Python3, as well as the
 solution to many structural problems. Calculating lengths of large

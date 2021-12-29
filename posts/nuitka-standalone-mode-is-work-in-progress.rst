@@ -1,3 +1,7 @@
+.. post:: 2013/12/27 10:48:22
+   :tags: Python, compiler, Nuitka, Windows
+   :author: Kay Hayen
+
 ############################################
  Nuitka Standalone Mode is Work in Progress
 ############################################

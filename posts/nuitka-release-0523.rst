@@ -1,3 +1,11 @@
+.. post:: 2016/10/03 16:55
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.5.23
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -7,9 +15,9 @@ the users being enhanced scalability due to memory usage, but also break
 through structural improvements for static analysis of iterators and the
 debut of type shapes and value shapes, giving way to "shape tracing".
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Fix support Python 3.5.2 coroutine changes. The checks got added for
    improved mode for older 3.5.x, the new protocol is only supported
@@ -36,9 +44,9 @@ debut of type shapes and value shapes, giving way to "shape tracing".
 -  Compatibility: The ``from x import x, y`` re-formulation was doing
    two ``__import__`` calls instead of re-using the module value.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Uses only about 66% of the memory compared to last release, which is
    very important step for scalability independent of re-loading. This
@@ -92,9 +100,9 @@ debut of type shapes and value shapes, giving way to "shape tracing".
 
 -  Python3: Added support for the ``ascii`` built-in.
 
-################
+****************
  Organisational
-################
+****************
 
 -  The movement to pure C got the final big push. All C++ only idoms of
    C++ were removed, and everything works with C11 compilers. A C++03
@@ -111,9 +119,9 @@ debut of type shapes and value shapes, giving way to "shape tracing".
 -  The CPython 3.6 test suite was run with Python 3.5 to ensure bug
    level compatibility, and had a few findings of incompatibilities.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  The last holdouts of classes in Nuitka were removed, and many idioms
    of C++ were stopped using.
@@ -126,9 +134,9 @@ debut of type shapes and value shapes, giving way to "shape tracing".
 -  Trace collections were using a mix-in that was merged with the base
    class that every user of it was having.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Added more static optimization tests, a lot more has become feasible
    to decide at run time, and is now done. These are to detect
@@ -137,9 +145,9 @@ debut of type shapes and value shapes, giving way to "shape tracing".
 -  The CPython 3.6 test suite is now also run with CPython 3.5 which
    found some incompatibilities.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release marks a huge step forward. We are having the structure for
 type inference now. This will expand in coming releases to cover more

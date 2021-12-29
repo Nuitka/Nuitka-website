@@ -1,3 +1,7 @@
+.. post:: 2014/04/24 22:08:56
+   :tags: Python, quiz
+   :author: Kay Hayen
+
 #########################
  Try Finally Python Quiz
 #########################

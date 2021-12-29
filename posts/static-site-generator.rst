@@ -1,3 +1,11 @@
+.. post:: 2012/01/26 07:32
+   :tags: Python
+   :author: Kay Hayen
+
+#######################
+ Static Site Generator
+#######################
+
 Hello,
 
 somehow triggered by reading about Mynth, and the re-post of the last

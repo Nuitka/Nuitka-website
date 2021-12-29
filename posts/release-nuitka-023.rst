@@ -1,3 +1,11 @@
+.. post:: 2010/09/17 19:42
+   :tags: compiler, Nuitka, Python
+   :author: Kay Hayen
+
+######################
+ Release Nuitka 0.2.3
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -6,9 +14,9 @@ This new release is marking a closing in on feature parity to CPython
 2.6 which is an important mile stone. Once this is reached, a "Nuitka
 0.3.x" series will strive for performance.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Generator functions no longer leak references when started, but not
    finished.
@@ -16,9 +24,9 @@ This new release is marking a closing in on feature parity to CPython
 -  Yield can in fact be used as an expression and returns values that
    the generator user ``send()`` to it.
 
-####################################
+************************************
  Reduced Differences / New Features
-####################################
+************************************
 
 -  Generator functions already worked quite fine, but now they have the
    ``throw()``, ``send()`` and ``close()`` methods.
@@ -34,9 +42,9 @@ This new release is marking a closing in on feature parity to CPython
       d[:42, ..., :24:, 24, 100] = "Strange"
       del d[:42, ..., :24:, 24, 100]
 
-############
+************
  Tests Work
-############
+************
 
 -  The "test_contextlib" is now working perfectly due to the generator
    functions having a correct ``throw()``. Added that test back, so
@@ -50,9 +58,9 @@ This new release is marking a closing in on feature parity to CPython
 -  Reverted removals of extended slice syntax from some parts of the
    CPython test suite.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  The compiled generator types are using the new C++0x type safe enums
    feature.

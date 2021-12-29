@@ -1,3 +1,11 @@
+.. post:: 2018/07/29 22:46
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.5.32
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -6,9 +14,9 @@ This release contains substantial new optimization, bug fixes, and
 already the full support for Python 3.7. Among the fixes, the enhanced
 coroutine work for compatibility with uncompiled ones is most important.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Fix, was optimizing write backs of attribute in-place assignments
    falsely.
@@ -41,15 +49,15 @@ coroutine work for compatibility with uncompiled ones is most important.
    optimization. They are now optimized in-place, avoiding an extra step
    later on.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Support for Python 3.7 with only some corner cases not supported yet.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Delay creation of ``StopIteration`` exception in generator code for
    as long as possible. This gives more compact code for generations,
@@ -69,17 +77,17 @@ coroutine work for compatibility with uncompiled ones is most important.
    unused, has been added, allowing for breaking of cyclic dependencies
    that prevented memory release.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Adapted 3.5 tests to work with 3.7 coroutine changes.
 
 -  Added CPython 3.7 test suite.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Removed remaining code that was there for 3.2 support. All uses of
    version comparisons with 3.2 have been adapted. For us, Python3 now
@@ -109,17 +117,17 @@ coroutine work for compatibility with uncompiled ones is most important.
 -  Have a dedicated helper function for single argument calls in static
    code that does not require an array of objects as an argument.
 
-################
+****************
  Organisational
-################
+****************
 
 -  There are now ``requirements-devel.txt`` and ``requirements.txt``
    files aimed at usage with scons and by users, but they are not used
    in installation.
 
-#########
+*********
  Summary
-#########
+*********
 
 This releases has this important step to add conversion of locals
 dictionary usages to temporary variables. It is not yet done everywhere

@@ -1,3 +1,7 @@
+.. post:: 2013/04/26 07:17:16
+   :tags: Python, Nuitka, git
+   :author: Kay Hayen
+
 ###########################################
  Nuitka on Github, Bitbucket and Gitorious
 ###########################################

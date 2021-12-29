@@ -1,3 +1,11 @@
+.. post:: 2010/09/07 08:56
+   :tags: family
+   :author: Kay Hayen
+
+##############
+ Family Photo
+##############
+
 As promised I will post some photos of the family occasionally.
 
 This is an artwork that I created with GIMP:

@@ -1,3 +1,7 @@
+.. post:: 2013/10/04 09:54:45
+   :tags: Python, Nuitka, physics
+   :author: Kay Hayen
+
 #####################################
  Nuitka, Python research and Physics
 #####################################

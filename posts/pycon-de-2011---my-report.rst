@@ -1,3 +1,11 @@
+.. post:: 2011/10/08 21:24
+   :tags: Nuitka, Python
+   :author: Kay Hayen
+
+###########################
+ PyCON DE 2011 - My Report
+###########################
+
 The PyCON DE 2011 is just over, sprints are still happening over the
 weekend, but my wife wouldn't allow me to stay away for that long, so
 it's not for me this time. Maybe next time.
@@ -19,18 +27,18 @@ I enjoyed the talks, most often in the technical track, but other tracks
 would have been very interesting too. The parallelism was making me do
 hard decisions.
 
-######
+******
  Food
-######
+******
 
 The food was great too. I esp. liked the Asian day, but there was also
 Italian and French, and what many liked very much is that there was a
 Vegan food offer too. I do not live vegan style, but I appreciate good
 food and the vegan food often is that.
 
-##############
+**************
  Social Event
-##############
+**************
 
 The social event was a visit to a "Variete" (music hall, French origin),
 where I am sure, there will be images posted, I currently `found this
@@ -38,27 +46,27 @@ one
 <https://secure.flickr.com/photos/onyame/6222954609/in/pool-1775853@N21/>`_
 , that my wife will find interesting too.
 
-#########
+*********
  Leipzig
-#########
+*********
 
 The quality of the organization team, the city "Leipzig", where we also
 got to have a guided city tour of fantastic enthusiasms, was very high.
 I knew Leipzig from earlier visits and liked it before, but this time it
 seemed everybody was even friendlier.
 
-######
+******
  Site
-######
+******
 
 The convention place "Kubus" was very well chosen, absolutely ideal.
 It's got good equipment, and that large room setup, where you can make a
 split with movable walls, and have 3 big screens. The acoustics were
 pretty damn good there.
 
-#####################
+*********************
  My own Presentation
-#####################
+*********************
 
 As to my own presentation, it was well received, although I sort of
 regret that I agreed to have only 30m instead of original plan of 60m. I
@@ -79,13 +87,12 @@ ongoing in PDF is work to use REST and document a lot more). The
 presentation was created with "rst2pdf", which I find is a fantastic
 tool.
 
-##########
+**********
  Contacts
-##########
+**********
 
-***************
- Cython / lxml
-***************
+Cython / lxml
+=============
 
 Then contacts!
 
@@ -132,9 +139,8 @@ as I am not able to declare Nuitka "useful" yet. That statement may come
 within a year though. In my mind, in many fields Nuitka is already
 superior.
 
-*********
- PyHasse
-*********
+PyHasse
+=======
 
 Another interesting contact I made, was with the author of PyHasse. It's
 Rainer Bruggemann, who is a really nice and witty guy. He introduced me
@@ -154,9 +160,8 @@ We said that we will try and see how far we can go. In the worst case,
 Nuitka will not yet be useful, but I will have a clearer image what is
 needed.
 
-********
- Debian
-********
+Debian
+======
 
 I saw the presentation from Jan Dittberner and met him later too, asking
 him questions, and generally discussing Debian packaging of Nuitka. He
@@ -168,9 +173,8 @@ hints on how to solve that "find files near me" issue that plagues
 Nuitka just as much as other software. Really kind and helpful guy and
 clearly I admire Debian Developers, keep up the good work.
 
-*********
- General
-*********
+General
+=======
 
 I also made contacts with lots of other people. Python is diverse and it
 was fun to get to know, many people with similar and entirely different
@@ -181,9 +185,9 @@ that's not why I say it. There is that general sense of respect around
 that German community, you can feel how pretty much everybody is well
 established and doesn't have to disprove the others.
 
-##########
+**********
  Keynotes
-##########
+**********
 
 One keynotes speaker had a part about how trolling and hate is bad for a
 community, but that's not the German Python community.
@@ -210,9 +214,9 @@ So not integrating me is not necessarily a failure. If it were not for
 Cython, there would not be Nuitka. The original projects will regret the
 fork/remake, but they probably shouldn't. Competition is good.
 
-##################
+******************
  Lets repeat that
-##################
+******************
 
 I believe the PyCON DE 2011 was a huge success. I will most likely go
 again to update people on Nuitka. It's already clear there will be a

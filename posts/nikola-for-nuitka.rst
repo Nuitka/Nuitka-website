@@ -1,3 +1,11 @@
+.. post:: 2012/05/26 13:06
+   :tags: Python, Nikola
+   :author: Kay Hayen
+
+#######################
+ Nikola for nuitka.net
+#######################
+
 Some time ago, I `asked about static site generators
 </posts/static-site-generator.html>`_ and tried a few, but nothing was
 as ReST friendly as I would like to. To me, ReST is to text publishing,

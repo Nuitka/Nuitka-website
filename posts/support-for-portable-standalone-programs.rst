@@ -1,3 +1,7 @@
+.. post:: 2013/04/07 13:52:44
+   :tags: Python, Nuitka, compiler, Windows
+   :author: Kay Hayen
+
 ############################################
  Support for portable (standalone) programs
 ############################################

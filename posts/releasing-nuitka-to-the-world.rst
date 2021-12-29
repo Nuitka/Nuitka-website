@@ -1,3 +1,11 @@
+.. post:: 2010/08/18 07:49
+   :tags: compiler, Nuitka, Python
+   :author: Kay Hayen
+
+###############################
+ Releasing Nuitka to the World
+###############################
+
 Obviously this is very exciting step for me. I am releasing Nuitka
 today. Finally. For a long time I knew I would, but actually doing it,
 is a different beast. Reaching my goals for release turned out to be

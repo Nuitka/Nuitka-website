@@ -1,3 +1,11 @@
+.. post:: 2012/01/31 08:25
+   :tags: Nuitka, Python
+   :author: Kay Hayen
+
+############################
+ Ubuntu Packages for Nuitka
+############################
+
 Hello there,
 
 as I previously said, I will make these a separate announcement. Thanks

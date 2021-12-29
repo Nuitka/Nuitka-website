@@ -1,3 +1,11 @@
+.. post:: 2011/10/01 08:37
+   :tags: git, Nuitka, Python
+   :author: Kay Hayen
+
+#################
+ Nuitka git-flow
+#################
+
 Hello there,
 
 this is to let you know that I have switched `Nuitka
@@ -6,9 +14,9 @@ this is to let you know that I have switched `Nuitka
 there is a supported stable version, and a develop branch, together with
 feature branches.
 
-#########
+*********
  Example
-#########
+*********
 
 .. figure:: images/Nuitka-git-flow.png
    :target: images/Nuitka-git-flow.png
@@ -42,9 +50,9 @@ These will only have certain life, until they are completed, then they
 are merge into "develop" and become part of the next release. This may
 or may not happen, depending on how things go.
 
-###########################
+***************************
  Benefits of the new model
-###########################
+***************************
 
 -  Hotfixes, typically bug fixes, can be made simultaneously on stable
    and develop branch. The git-flow package takes care of the merging to
@@ -58,9 +66,9 @@ or may not happen, depending on how things go.
    People can have a look at them, or start their own and make me
    integrate them.
 
-########################
+************************
  Uses of Feature Branch
-########################
+************************
 
 For example, in the new feature branch, a couple of boring things are
 happening. Support for frame stack will reduce the diff, as will some
@@ -68,9 +76,9 @@ work to match CPython's choices for exception line numbers. Completing
 will take a while, but should not block a release. So this is best done
 in the feature branch, esp. as nothing is going to really depend on it.
 
-#################
+*****************
  General Picture
-#################
+*****************
 
 As you can see from this diagram, I am working mostly on documentation
 things. The new and improved README on develop, which is closer to a

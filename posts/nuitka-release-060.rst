@@ -1,3 +1,11 @@
+.. post:: 2018/09/27 18:24
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.6.0
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -13,9 +21,9 @@ options to control recursion into modules have all been renamed, some
 now have different defaults, and finally the filenames output have
 changed.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Python3.5: Fix, the awaiting flag was not removed for exceptions
    thrown into a coroutine, so next time it appeared to be awaiting
@@ -39,9 +47,9 @@ changed.
 -  Standalone: Include certificate file using by ``requests`` module in
    some cases as a data file.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Enabled C target type ``nuitka_bool`` for variables that are stored
    with boolean shape only, and generate C code for those
@@ -93,9 +101,9 @@ changed.
    conditions and added code that allows conditions to adapt themselves
    to the target shape bool during optimization.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added support for using ``.egg`` files in ``PYTHONPATH``, one of the
    more rare uses, where Nuitka wasn't yet compatible.
@@ -117,9 +125,9 @@ changed.
    missed optimization chances in Nuitka. This features is still in its
    infancy. Subsequent releases will add more like these.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Disabled comments on the web site, we are going to use Twitter
    instead, once the site is migrated to an updated Nikola.
@@ -160,9 +168,9 @@ changed.
    would never gain all that much, while causing a lot of
    incompatibilty.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Moved command line arguments to dedicated module, adding checks was
    becoming too difficult.
@@ -188,9 +196,9 @@ changed.
    not very portable constructs, and is now written in a way that PyPy
    would also like.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Avoid using ``2to3`` for basic operators test, removing test of some
    Python2 only stuff, that is covered elsewhere.
@@ -199,9 +207,9 @@ changed.
    is to allow CI tests to not execute the same code over and over, just
    to get the same value to compare with. This is not enabled yet.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release marks a point, from which on performance improvements are
 likely in every coming release. The C target types are a major

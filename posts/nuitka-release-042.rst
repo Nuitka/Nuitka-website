@@ -1,3 +1,11 @@
+.. post:: 2013/03/29 14:32
+   :tags: Python, Nuitka, compiler
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.4.2
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -7,9 +15,9 @@ also contains new features, like basic Python 3.3 support. And the
 `performance diagrams <https://nuitka.net/pages/performance.html>`__ got
 expanded.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Support for FreeBSD.
 
@@ -27,9 +35,9 @@ expanded.
    New feature ``yield from`` is not yet supported, and the improved
    argument parsing error messages are not implemented yet.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Nuitka already supported compilation of "main directories", i.e.
    directories with a "__main__.py" file inside. The resulting binary
@@ -171,9 +179,9 @@ expanded.
    This was already present for Python3.3, and it turns out that all of
    Python3 does it.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Constants are now much less often created with ``pickle`` module, but
    created directly.
@@ -226,9 +234,9 @@ expanded.
    this means that loops with conditions detected to be always false to
    see the loop entirely removed.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  Added tests for the found issues.
 
@@ -239,9 +247,9 @@ expanded.
 -  Running the "CPython3.2" test suite with Python3.3 based Nuitka works
    and found a few minor issues.
 
-################
+****************
  Organisational
-################
+****************
 
 -  The `Downloads <https://nuitka.net/doc/download.html>`__ page now
    offers RPMs for RHEL6, CentOS6, F17, F18, and openSUSE 12.1, 12.2,
@@ -256,9 +264,9 @@ expanded.
    <https://nuitka.net/doc/user-manual.html>`__ in terms of layout,
    structure, and content.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release is the result of much validation work. The amount of fixes
 the largest of any release so far. New platforms, basic Python3.3

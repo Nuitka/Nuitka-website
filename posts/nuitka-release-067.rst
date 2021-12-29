@@ -1,3 +1,11 @@
+.. post:: 2020/01/25 08:42
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.6.7
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -6,9 +14,9 @@ This release contains bug fixes and improvements to the packaging, for
 the RPM side as well as for Debian, to cover Python3 only systems as
 they are now becoming more common.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Compatibility: The value of ``__module__`` for extension modules was
    not dependent into which package the module was loaded, it now is.
@@ -36,9 +44,9 @@ they are now becoming more common.
 -  Fix, our version number handling could overflow with minor versions
    past 10, so we limited it for now.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added support for Python 3.8, the experimental was already there and
    pretty good, but now added the last obscure features too.
@@ -52,9 +60,9 @@ they are now becoming more common.
 -  Added support for ``lldb`` the Clang debugger with the ``--debugger``
    mode.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Make the file prefix map actually work for gcc and clang, and compile
    files inside the build folder, unless we are running in debugger
@@ -69,9 +77,9 @@ they are now becoming more common.
    Debian packages, since there we consider it forbidden to include
    software as a duplicate.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Added recommended plugins for Visual Code, replacing the list in the
    Developer Manual.
@@ -92,17 +100,17 @@ they are now becoming more common.
 -  Debian: Bumped the standards version and modernized the packaging,
    solving a few warnings during the build.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Scons: Avoid to add Unix only include paths on Windows.
 
 -  Scons: Have the static source code in a dedicated folder for clarity.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Added tests to Github Actions, for the supported Python versions for
    all of Linux, macOS and Windows, covering the later publicly for the
@@ -115,9 +123,9 @@ they are now becoming more common.
 -  Comparing module outputs now handles segfaults by running in the
    debugger too.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release adds full support for Python 3.8 finally, which took us a
 while, and it cleans up a lot on the packaging side. There aren't that

@@ -1,3 +1,9 @@
+.. post:: 2012/10/27 08:59:07
+   :tags: Nuitka, compiler, Python, Windows, Android
+   :author: Kay Hayen
+
+How Nuitka came to use C++11 and then stop it.
+
 #####################
  Letting go of C++11
 #####################

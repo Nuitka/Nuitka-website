@@ -1,3 +1,11 @@
+.. post:: 2021/11/11 13:40
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.6.17
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -5,9 +13,9 @@ This is to inform you about the new stable release of `Nuitka
 This release has a focus on performance improvements, while also
 polishing plugins and adding many new features.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Fix, plugins were not catching being used on packages not installed.
    Fixed in 0.6.16.2 already.
@@ -118,9 +126,9 @@ polishing plugins and adding many new features.
 
 -  Fix, standard library detection could fail for relative paths.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added experimental support for C level PGO (Profile Guided
    Optimization), which runs your program and then uses feedback from
@@ -190,9 +198,9 @@ polishing plugins and adding many new features.
 -  Colorized output for error outputs encountered in Scons, these are
    now yellow for better recognition.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Faster threading code was used for Python3.8 or higher, and this has
    been extended to 3.7 on Windows, but we won't be able to have it
@@ -259,9 +267,9 @@ polishing plugins and adding many new features.
 -  Enable LTO automatically for Anaconda with CondaCC on non-Windows,
    also allowing more optimization.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Added section in the User Manual on how to deal with memory issues
    and C compiler bugs. This is a frequent topic and should serve as a
@@ -303,9 +311,9 @@ polishing plugins and adding many new features.
    they are just very noisy. Also not annotate where Nuitka was in
    optimization when a plugin is asking to ``sysexit``.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Encoding names for UTF8 in calls to ``.encode()`` were used
    inconsistent with and without dashes in the source code, added
@@ -335,9 +343,9 @@ polishing plugins and adding many new features.
 -  Moved icon conversion functionality to separate module, so it can be
    reused for other platforms more easily.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Removed ``reflected`` test, because of Nuitka special needs to
    restart with variable Python flags. This could be reverted though,
@@ -357,9 +365,9 @@ polishing plugins and adding many new features.
 -  Verify constants integrity at program end in debug mode again, so we
    catch corruption of them in tests.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release is one of the most important ones in a long time. The PGO
 and LTO, and static libpython work make a big different for performance

@@ -1,3 +1,11 @@
+.. post:: 2019/08/25 19:55:00
+   :tags: gsoc2019, Nuitka
+   :author: Batakrishna Sahu
+
+#######################
+ bksahu's GSoC warp up
+#######################
+
 Hello everyone!
 
 GSoC 2019 has almost come to an end! It's the time to wrap up this mega
@@ -7,9 +15,9 @@ only boosted my growth as a developer but also as an individual. Over
 the last 3 months the following are my major contributions to this
 project:
 
-#########################
+*************************
  Built-ins Optimizations
-#########################
+*************************
 
 -  "any": `PR #246 <https://github.com/Nuitka/Nuitka/pull/246>`__
       -  `nuitka.nodes.BuiltinAnyNodes` node added to optimize the "any"
@@ -133,9 +141,9 @@ project:
          because unlike `zip` in Python 2, `zip` in Python 3 returns a
          `zipobject`.
 
-############
+************
  Test suite
-############
+************
 
 -  Search mode "All": `PR #378 <https://github.com/Nuitka/Nuitka/pull/378>`__
       -  In the test suite, I added a new search mode "all" that will
@@ -173,18 +181,18 @@ project:
       -  Fixed the autoformat bug by reading and writing the files in
          bytes instead of string.
 
-###############
+***************
  Documentation
-###############
+***************
 
 -  Nuitka git work flow: `PR #485
    <https://github.com/Nuitka/Nuitka/pull/485>`__
 
 And other minor doc fixes are added with their respective pull requests.
 
-################
+****************
  What I learned
-################
+****************
 
 -  Learned the software engineering principles and how to keep my work
    clean.

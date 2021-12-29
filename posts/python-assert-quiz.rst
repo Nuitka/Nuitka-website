@@ -1,3 +1,11 @@
+.. post:: 2012/07/15 17:07
+   :tags: Python, Nuitka, quiz
+   :author: Kay Hayen
+
+####################
+ Python Assert Quiz
+####################
+
 At Europython conference, in my presentation, I talked about
 re-formulations of Python into simpler Python. It is my intention to
 turn this into a series of Python quiz questions that you will hopefully
@@ -12,9 +20,9 @@ enjoy.
 
    And I thought this one was easy. :-)
 
-#################
+*****************
  Quiz Question 1
-#################
+*****************
 
 Say you have the following code:
 
@@ -28,9 +36,9 @@ statement at all. The behavior is required to be absolutely the same.
 The answer is in the next paragraph, so stop reading if you want to find
 out yourself.
 
-############
+************
  Solution 1
-############
+************
 
 The correct answer is that assertions are the same as a raise exception
 in a conditional statement.
@@ -49,9 +57,9 @@ that, it should be:
    if __debug__ and not x == y:
        raise AssertionError
 
-#################
+*****************
  Quiz Question 2
-#################
+*****************
 
 But wait, there is slightly more to it. Say you have the following code:
 
@@ -65,9 +73,9 @@ statement at all. The behavior is required to be absolutely the same.
 The answer is in the next paragraph, so stop reading if you want to find
 out yourself.
 
-############
+************
  Solution 2
-############
+************
 
 This is actually version dependent, due to recent optimizations of
 CPython.

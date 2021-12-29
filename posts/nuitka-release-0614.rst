@@ -1,3 +1,11 @@
+.. post:: 2021/05/01 09:19
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.6.14
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -10,9 +18,9 @@ information.
 Also an important new features was added, e.g. the project configuration
 in the main file should prove to be very useful.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Compatibility: Fix, modules that failed to import, should be retried
    on next import.
@@ -52,9 +60,9 @@ in the main file should prove to be very useful.
 -  Standalone: Matching for package names to not suggest recompile for
    was broken and didn't match. Fixed in 0.6.13.1 already.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added support for project options.
 
@@ -118,9 +126,9 @@ in the main file should prove to be very useful.
    Otherwise plugins cannot work on standard library modules. This makes
    it possible to handle them as well.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Faster binary operations.
 
@@ -168,9 +176,9 @@ in the main file should prove to be very useful.
 -  Make ``pkgutil`` a hard import too, this is in preparation of more
    optimization for its functions.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Upstream patches for ``PySide6`` have been contributed and merged
    into the development branch ``dev``. Full support should be available
@@ -197,9 +205,9 @@ in the main file should prove to be very useful.
    It was still using obsolete "recursion" language rather than talking
    about "following imports", which is the new one.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Remove dead code related to constants marshal, the data composer has
    replaced this.
@@ -207,18 +215,18 @@ in the main file should prove to be very useful.
 -  Avoid internal API usage for loading extension modules on Linux,
    there is a function in ``sys`` module to get the ld flags.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Fix, the ``only`` mode wasn't working properly.
 
 -  Use new project options feature for specific options in basic tests
    allowing to remove them from the test runner.
 
-#########
+*********
  Summary
-#########
+*********
 
 For PySide2 things became more perfect, but it takes upstream patches
 unfortunately such that only PySide6.1 will be working out of the box

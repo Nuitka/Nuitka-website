@@ -1,3 +1,11 @@
+.. post:: 2019/07/30 21:52
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.6.5
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -5,9 +13,9 @@ This is to inform you about the new stable release of `Nuitka
 This release contains many bug fixes all across the board. There is also
 new optimization and many organisational improvements.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Python3.4+: Fixed issues with modules that exited with an exception,
    that could lead to a crash, dealing with their ``__spec__`` value.
@@ -75,9 +83,9 @@ new optimization and many organisational improvements.
 
 -  Fix, ``pkgutil.iter_packages`` is now working for loaded packages.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Python3.8: Followed some of the changes and works with beta2 as a
    Python 3.7, but none of the new features are implemented yet.
@@ -90,9 +98,9 @@ new optimization and many organisational improvements.
 
 -  Added support for including TCL on Linux too.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Added support for the ``any`` built-in. This handles a wide range of
    type shapes and constant values at compile time, while also having
@@ -108,9 +116,9 @@ new optimization and many organisational improvements.
 -  Packages: Do not export entry points for all included packages, only
    for the main package name it is importable as.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Added support for Visual Studio 2019 as a C compiler backend.
 
@@ -139,9 +147,9 @@ new optimization and many organisational improvements.
 -  Changed wordings for optimization to use "lowering" as the only term
    to describe an optimization that simplifies.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Plugins: Major refactoring of Nuitka plugin API.
 
@@ -157,9 +165,9 @@ new optimization and many organisational improvements.
    only used in the main program part. This makes C linter hate us much
    less for using a non-existent file.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Run the tests using Travis on macOS for Python2 too.
 
@@ -174,9 +182,9 @@ new optimization and many organisational improvements.
    reflected tests as it only exposes ``marshal`` not being
    deterministic.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release is huge again. Main points are compatibility fixes, esp. on
 the coroutine side. These have become apparently very compatible now and

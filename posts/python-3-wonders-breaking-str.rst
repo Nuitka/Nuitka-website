@@ -1,3 +1,11 @@
+.. post:: 2012/08/15 21:42:28
+   :tags: Python
+   :author: Kay Hayen
+
+#################################
+ Python 3 wonders - Breaking str
+#################################
+
 That just killed some hope inside of me, breaking code that uses ``str``
 ought to be forbidden.
 

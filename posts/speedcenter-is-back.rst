@@ -1,10 +1,18 @@
+.. post:: 2012/06/30 16:39
+   :tags: compiler, Nuitka, Nikola, Python, benchmark
+   :author: Kay Hayen
+
+############################
+ Nuitka Speedcenter is back
+############################
+
 Once a long time ago, I was benchmarking Nuitka more often. Check `"What
 is Nuitka?" <../pages/overview.html>`_ in case you don't know what it
 is.
 
-#########
+*********
  Problem
-#########
+*********
 
 And I was considering the use of codespeed, and had some data online.
 But ultimately, it got discontinued. This has 3 reasons:
@@ -40,9 +48,9 @@ But ultimately, it got discontinued. This has 3 reasons:
       often degrading performance even if only temporary. Seeing it
       wouldn't have been too motivating.
 
-##########
+**********
  Solution
-##########
+**********
 
 I have simply created a small wrapper:
 

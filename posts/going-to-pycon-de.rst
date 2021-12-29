@@ -1,3 +1,11 @@
+.. post:: 2011/08/18 13:02
+   :tags: compiler, Nuitka, Python
+   :author: Kay Hayen
+
+###################
+ Going to PyCon DE
+###################
+
 Hello everybody,
 
 I am going to the German Python conference in Leipzip and I am going to

@@ -1,3 +1,11 @@
+.. post:: 2011/04/16 11:48
+   :tags: family
+   :author: Kay Hayen
+
+####################
+ She's a doctor now
+####################
+
 My wife has passed the final exams here in Germany finally. I am very
 proud of her for managing that. It's with 2 kids born, a new house
 built, and lots of difficulties, like not living in a city with a

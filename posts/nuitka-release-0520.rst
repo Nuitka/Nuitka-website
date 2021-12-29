@@ -1,3 +1,11 @@
+.. post:: 2016/03/21 09:34
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.5.20
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -8,9 +16,9 @@ general compatibility corrections, as well as important fixes for
 Python3.5 and coroutines and to improve compatibility with special
 Python variants like Anaconda under the Windows system.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Standalone Python3.5: The ``_decimal`` module at least is using a
    ``__name__`` that doesn't match the name at load time, causing
@@ -50,9 +58,9 @@ Python variants like Anaconda under the Windows system.
 -  Standalone: Added missing DLL dependency of the ``uuid`` module at
    run time, which uses ctypes to load it.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added support for Anaconda Python on this Linux. Both accelerated and
    standalone mode work now.
@@ -62,9 +70,9 @@ Python variants like Anaconda under the Windows system.
 -  The plug-in framework was expanded with new features to allow
    addressing some specific issues.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Moved memory related stuff to dedicated utils package
    ``nuitka.utils.MemoryUsage`` as part of an effort to have more
@@ -76,9 +84,9 @@ Python variants like Anaconda under the Windows system.
 -  No more "early" and "late" import detections for standalone mode. We
    now scan everything at the start.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release focused on expanding plugins. These were then used to
 enhance the success of standalone compatibility. Eventually this should

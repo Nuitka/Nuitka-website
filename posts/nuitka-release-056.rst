@@ -1,3 +1,11 @@
+.. post:: 2014/12/19 07:54
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.5.6
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -6,9 +14,9 @@ This release brings bug fixes, important new optimization, newly
 supported platforms, and important compatibility improvements. Progress
 on all fronts.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Closure taking of global variables in member functions of classes
    that had a class variable of the same name was binding to the class
@@ -87,9 +95,9 @@ on all fronts.
    version check was always failing, because these report a shortened
    version number to Scons.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Local variables that must be assigned also have no side effects,
    making use of SSA. This allows for a host of optimization to be
@@ -98,9 +106,9 @@ on all fronts.
 
 -  Micro optimization to ``dict`` built-in for simpler code generation.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Added support for ARM "hard float" architecture.
 
@@ -121,9 +129,9 @@ on all fronts.
 -  Using Nikola 7.1 with external filters instead of our own, outdated
    branch for the web site.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  PyLint clean for the first time ever. We now have a Buildbot driven
    test that this stays that way.
@@ -148,9 +156,9 @@ on all fronts.
 -  Do not use ``replaceWith`` on child nodes, that potentially were
    re-used during their computation.
 
-#########
+*********
  Summary
-#########
+*********
 
 The release is mainly the result of consolidation work. While the
 previous release contained many important enhancements, this is another

@@ -1,3 +1,11 @@
+.. post:: 2021/06/05 17:18
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.6.15
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -6,9 +14,9 @@ This release polished previous work with bug fixes, but there are also
 important new things that help make Nuitka more usable, with one
 important performance improvement.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Fix, hard imports were not automatically used in code generation
    leading to errors when used. Fixed in 0.6.14.2 already.
@@ -84,9 +92,9 @@ important performance improvement.
 -  Standalone: Do not include ``libstdc++`` as it should come from the
    system rather.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added plugin ``anti-bloat`` plugin, intended to fight bloat. For now
    it can make including certain modules an error, a warning, or force
@@ -120,9 +128,9 @@ important performance improvement.
 -  UI: Added ``--no-onefile`` to disable ``--onefile`` from project
    options.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Much enhanced GIL interaction with Python3.9 giving a big speed boost
    and better threading behaviour.
@@ -132,9 +140,9 @@ important performance improvement.
 
 -  Added support for ``GenericAlias`` objects as compile time constants.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Enhanced Github issue raising instructions.
 
@@ -155,9 +163,9 @@ important performance improvement.
 -  Started work on Nuitka Python, a CPython fork intended for enhanced
    performance and standalone support with Nuitka.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Determine system prefix without virtualenv outside of Scons, such
    that plugins can share the code. There was duplication with the
@@ -167,9 +175,9 @@ important performance improvement.
 
 -  The Qt plugins now collect QML files with cleaner code.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Nicer error message if a wrong search mode is given.
 
@@ -181,9 +189,9 @@ important performance improvement.
 -  Making use of project options in onefile tests, making it easier to
    execute them manually.
 
-#########
+*********
  Summary
-#########
+*********
 
 For Windows, it's now easier than ever to create an icon for your
 deployment, because you can use PNG files, and need not produce ICO

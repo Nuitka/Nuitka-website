@@ -1,3 +1,11 @@
+.. post:: 2020/12/22 15:38
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.6.10
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -5,9 +13,9 @@ This is to inform you about the new stable release of `Nuitka
 This release comes with many new features, e.g. onefile support, as well
 as many new optimization and bug fixes.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Fix, was memory leaking arguments of all complex call helper
    functions. Fixed in 0.6.9.6 already.
@@ -59,9 +67,9 @@ as many new optimization and bug fixes.
    mode, they need a ``sys.stdin`` or else e.g. ``input`` will not be
    compatible and raise ``RuntimeError``.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added experimental support for Python 3.9, in such a way that the
    CPython3.8 test suite passes now, the 3.9 suite needs investigation
@@ -110,9 +118,9 @@ as many new optimization and bug fixes.
 -  Plugins: The numpy plugin now handles matplotlib3 config files
    correctly.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Use less C variables in dictionary created, not one per key/value
    pair. This improved scalability of C compilation.
@@ -258,9 +266,9 @@ as many new optimization and bug fixes.
    that task, slightly reducing file size and avoiding to use the
    ``Shlapi`` link library.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Made reflected test use common cleanup of test folder, which is more
    robust against Windows locking issues.
@@ -280,9 +288,9 @@ as many new optimization and bug fixes.
    is faster, because it avoids creating exceptions in the first place,
    instead of removing them afterwards.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Make sure that code generation always go through the C type objects
    rather than local ``elif`` casing of the type. This required cleaning
@@ -329,9 +337,9 @@ as many new optimization and bug fixes.
    appropriate, e.g. when counting source code lines, rather than adding
    ``count+1`` on every usage, making code more readable.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Do not recommend Anaconda on Windows anymore, it seems barely
    possible to get anything installed on it with a fresh download, due
@@ -357,9 +365,9 @@ as many new optimization and bug fixes.
 -  Make it more clear in the documentation that Microsoft Appstore
    Python is not supported.
 
-#########
+*********
  Summary
-#########
+*********
 
 This is the big release in terms of scalability. The optimization in
 this release mostly focused on getting things that cause increased

@@ -1,3 +1,11 @@
+.. post:: 2017/01/25 06:27
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.5.25
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -6,9 +14,9 @@ This release contains a huge amount of bug fixes, lots of optimization
 gains, and many new features. It also presents many organisational
 improvements, and many cleanups.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Python3.5: Coroutine methods using ``super`` were crashing the
    compiler. Fixed in 0.5.24.2 already.
@@ -69,9 +77,9 @@ improvements, and many cleanups.
    have both variants, it is now possible to switch to the right
    variant.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added parsing for shebang to Nuitka. When compiling an executable,
    now Nuitka will check of the ``#!`` portion indicates a different
@@ -81,9 +89,9 @@ improvements, and many cleanups.
 -  Added support for Python flag ``--python-flag=-O``, which allows to
    disable assertions and remove doc strings.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Faster method calls, combining attribute lookup and method call into
    one, where order of evaluation with arguments doesn't matter. This
@@ -124,9 +132,9 @@ improvements, and many cleanups.
 -  Not passing ``locals`` to import calls make it less code and faster
    too.
 
-################
+****************
  Organisational
-################
+****************
 
 -  This release also prepares Python 3.6 support, it includes full
    language support on the level of CPython 3.6.0 with the sole
@@ -154,9 +162,9 @@ improvements, and many cleanups.
 
 -  Added repository for Fedora 25 for download.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Moved the tools to compare CPython output, to sort import statements
    (isort) to autoformat the source code (Redbaron usage), and to check
@@ -187,9 +195,9 @@ improvements, and many cleanups.
 -  The ABI flags are no longer passed to Scons together with the
    version.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Windows: Added support to detect and to switch debug Python where
    available to also be able to execute reference counting tests.
@@ -207,9 +215,9 @@ improvements, and many cleanups.
 
 -  It is now possible to run a test program with Python3 and Valgrind.
 
-#########
+*********
  Summary
-#########
+*********
 
 The quick iteration is a precursor to generally faster iteration over
 unknown object iterables. Expanding this to general code generation, and

@@ -1,3 +1,11 @@
+.. post:: 2012/07/05 14:52
+   :tags: Debian, Nuitka
+   :author: Kay Hayen
+
+###########################
+ Nuitka and Debian changes
+###########################
+
 Hello everybody,
 
 this is just a quick note to Nuitka users that are Debian users. For

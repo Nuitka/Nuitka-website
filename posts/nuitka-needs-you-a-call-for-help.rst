@@ -1,3 +1,7 @@
+.. post:: 2013/04/10 07:51:13
+   :tags: Nuitka, Python, compiler
+   :author: Kay Hayen
+
 ####################################
  Nuitka needs you - a call for help
 ####################################

@@ -1,3 +1,7 @@
+.. post:: 2018/08/24 12:55:00
+   :tags: Python, compiler, Nuitka, NTW
+   :author: Kay Hayen
+
 #####################
  Nuitka this week #5
 #####################

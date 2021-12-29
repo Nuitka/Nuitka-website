@@ -1,3 +1,11 @@
+.. post:: 2011/07/31 12:49
+   :tags: family
+   :author: Kay Hayen
+
+#############
+ The new cat
+#############
+
 This is the latest addition to the family, our beautiful, young and
 lovely cat:
 

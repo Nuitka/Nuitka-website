@@ -1,3 +1,11 @@
+.. post:: 2021/04/03 10:05
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.6.13
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -5,9 +13,9 @@ This is to inform you about the new stable release of `Nuitka
 This release follows up with yet again massive improvement in many ways
 with lots of bug fixes and new features.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Windows: Icon group entries were not still not working properly in
    some cases, leading to no icon or too small icons being displayed.
@@ -86,9 +94,9 @@ with lots of bug fixes and new features.
 -  Python3: Fixed a few Python debug mode warnings about unclosed files
    that have sneaked into the codebase.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added new options ``--windows-force-stdout-spec`` and
    ``--windows-force-stderr-spec`` to force output to files. The paths
@@ -111,9 +119,9 @@ with lots of bug fixes and new features.
    now. Upstream patches will have to be created to remove the need for
    workarounds and full support.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Use binary operation code for their in-place variants too, giving
    substantial performance improvements in all cases that were not dealt
@@ -174,9 +182,9 @@ with lots of bug fixes and new features.
    ``pkgutil`` rather than filesystem, with much cleaner code in the
    plugin.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Removed support for ``pefile`` dependency walker choice and inline
    copy of the code. It was never as good giving incomplete results, and
@@ -236,9 +244,9 @@ with lots of bug fixes and new features.
 
 -  Updated PyLint to latest versions, and our requirements in general.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Started removal of PyLint annotations used for old Python2 only. This
    will be a continuous action to remove these.
@@ -291,9 +299,9 @@ with lots of bug fixes and new features.
    module no longer emits a dependency on the module itself. Also from
    plugins, these are now filtered away.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Detect if onefile mode has required downloads and if there is user
    consent, otherwise skip onefile tests in the test runner.
@@ -311,9 +319,9 @@ with lots of bug fixes and new features.
    in-place usage, so we are sure we measure correctly if that's
    happening.
 
-#########
+*********
  Summary
-#########
+*********
 
 Where the big change of the last release were optimization changes to
 reduce the global passes, this release addresses remaining causes for

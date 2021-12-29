@@ -1,3 +1,7 @@
+.. post:: 2013/03/04 08:57:10
+   :tags: Nuitka, Python
+   :author: Kay Hayen
+
 ################################################
  PyStone Comparison Nuitka, Cython, and CPython
 ################################################

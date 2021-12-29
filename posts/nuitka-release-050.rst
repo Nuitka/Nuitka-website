@@ -1,3 +1,11 @@
+.. post:: 2014/01/04 10:05
+   :tags: Python, compiler, Nuitka
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.5.0
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -14,9 +22,9 @@ nearby.
 There is also many new optimization based on structural improvements in
 the direction of actual SSA.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  The "standalone mode" was not working on all Redhat, Fedora, and
    openSUSE platforms and gave warnings with older compilers. Fixed in
@@ -50,9 +58,9 @@ the direction of actual SSA.
    ``malloc`` this was potentially causing an endless loop when using it
    for output.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Windows: The "standalone" mode now properly detects used DLLs using
    `Dependency Walker <http://www.dependencywalker.com/>`__ which it
@@ -62,9 +70,9 @@ the direction of actual SSA.
    binary, and as a replacement of ``strace`` on Linux when running the
    tests to check that nothing is loaded from the outside.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  When iterating over ``list``, ``set``, this is now automatically
    lowered to ``tuples`` avoiding the mutable container types.
@@ -130,9 +138,9 @@ the direction of actual SSA.
    not other variable types. This is preparatory for introducing SSA for
    local variables.
 
-################
+****************
  Organisational
-################
+****************
 
 -  The option ``--exe`` is now ignored and creating an executable is the
    default behavior of ``nuitka``, a new option ``--module`` allows to
@@ -152,16 +160,16 @@ the direction of actual SSA.
    limited and the design choice is to have a running CPython instance
    of matching architecture at Nuitka compile time.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  Expanded test coverage for "standalone mode" demonstrating usage of
    "hex" encoding, and PySide package.
 
-#########
+*********
  Summary
-#########
+*********
 
 The "executable by default" interface change improves on the already
 high ease of use. The new optimization do not give all that much in

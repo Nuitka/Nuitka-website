@@ -1,3 +1,11 @@
+.. post:: 2011/09/17 02:41
+   :tags: compiler, git, Nuitka, Python
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.3.11
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -11,9 +19,9 @@ now that it's no longer so, I can run heavy compile jobs on it. To my
 surprise, it found many portability problems. So I chose to fix that
 first, the result being that Nuitka now works on ARM Linux too.
 
-###########
+***********
  Bug fixes
-###########
+***********
 
 -  The order of slice expressions was not correct on x86 as well, and I
    found that with new tests only. So the porting to ARM revealed a bug
@@ -30,17 +38,17 @@ first, the result being that Nuitka now works on ARM Linux too.
    then. That is incompatible in case of exceptions, where partial
    outputs need to be done, and so that got fixed.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Function calls now each have a dedicated helper function, avoiding in
    some cases unnecessary work. We will may build further on this and
    in-line ``PyObject_Call`` differently for the special cases.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Moved many C++ helper declarations and in-line implementations to
    dedicated header files for better organisation.
@@ -65,9 +73,9 @@ first, the result being that Nuitka now works on ARM Linux too.
 
 -  PyLint is again happier than ever.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  There is a new basic test ``OrderChecks`` that covers the order of
    expression evaluation. These problems were otherwise very hard to
@@ -77,9 +85,9 @@ first, the result being that Nuitka now works on ARM Linux too.
    code) is now part of the release tests, so non-portable code of
    Nuitka gets caught.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Support for ARM Linux. I will make a separate posting on the
    challenges of this. Suffice to say now, that C++ leaves way too much
@@ -102,9 +110,9 @@ first, the result being that Nuitka now works on ARM Linux too.
 -  The Python3 ``__pycache__`` directories get removed too by the
    cleanup script.
 
-#########
+*********
  Numbers
-#########
+*********
 
 We only have "PyStone" now, and on a new machine, so the numbers cannot
 be compared to previous releases:
@@ -129,9 +137,9 @@ efficient than bytecode, but Nuitka doesn't yet do the relevant
 optimization. Only once it does, the factor will be significantly
 higher.
 
-#########
+*********
  Summary
-#########
+*********
 
 Overall, there is quite some progress. Nuitka is a lot cleaner now,
 which will help us later only. I wanted to get this out, mostly because

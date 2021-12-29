@@ -1,3 +1,11 @@
+.. post:: 2016/08/17 14:35
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.5.22
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -10,9 +18,9 @@ required many changes that are in this release, more will be needed.
 It also contains a bunch of bug fixes and enhancements that are worth to
 be released, and the next changes are going to be more invasive.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Compatibility: Classes with decorated ``__new__`` functions could
    miss out on the ``staticmethod`` decorator that is implicit. It's now
@@ -36,9 +44,9 @@ be released, and the next changes are going to be more invasive.
    mechanisms for module inclusion, making it impossible to avoid some
    things.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Introduced specialized constant classes for empty dictionaries and
    other special constants, e.g. "True" and "False", so that they can
@@ -53,9 +61,9 @@ be released, and the next changes are going to be more invasive.
    at about 1%. That is not as much as the reloading will mean, but
    still helpful to use less overall.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  The global variable registry was removed. It was in the way of
    unloading and reloading modules easily. Instead variables are now
@@ -84,9 +92,9 @@ be released, and the next changes are going to be more invasive.
 -  Have a dedicated function for building frame nodes, making it easier
    to see where they are created.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release is the result of a couple of months work, and somewhat
 means that proper re-loading of cached results is becoming in sight. The

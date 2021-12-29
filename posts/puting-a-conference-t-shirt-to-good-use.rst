@@ -1,3 +1,11 @@
+.. post:: 2011/11/01 09:11
+   :tags: family, Python
+   :author: Kay Hayen
+
+##########################################
+ Putting a conference T-shirt to good use
+##########################################
+
 This is my 7rd old son in his "Halloween" outfit. It is the first time,
 he was allowed to do it and so he was very excited.
 

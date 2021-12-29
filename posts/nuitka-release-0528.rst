@@ -1,3 +1,11 @@
+.. post:: 2017/10/18 11:00
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.5.28
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -8,9 +16,9 @@ distutils. The major improvement is that contractions no longer use
 pseudo functions to achieve their own local scope, but that there is now
 a dedicated structure for that representing an in-lined function.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Python3.6: Fix, ``async for`` was not yet implemented for async
    generators.
@@ -91,9 +99,9 @@ a dedicated structure for that representing an in-lined function.
 -  Compatibility: For ``__future__`` imports the ``__import__`` function
    was called more than once.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Contractions are now all properly inlined and allow for optimization
    as if they were fully local. This should give better code in some
@@ -105,9 +113,9 @@ a dedicated structure for that representing an in-lined function.
 -  The dictionary API was not used in module template code, although it
    helps to generate more compact code.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Experimental support for building platform dependent wheel
    distribution.
@@ -142,9 +150,9 @@ a dedicated structure for that representing an in-lined function.
    status and can be used to test compatibility with regards to import
    behavior.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Rename tree and codegen ``Helper`` modules to unique names, making
    them easier to work with.
@@ -168,9 +176,9 @@ a dedicated structure for that representing an in-lined function.
 -  Proper base classes for functions that are entry points, and
    functions that are merely a local expression using return statements.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  The search mode with pattern, was not working anymore.
 
@@ -179,9 +187,9 @@ a dedicated structure for that representing an in-lined function.
 -  Added test that covers using test runners like ``nose`` and
    ``py.test`` with Nuitka compiled extension modules.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Added support for Scons 3.0 and running Scons with Python3.5 or
    higher. The option to specify the Python to use for scons has been
@@ -204,9 +212,9 @@ a dedicated structure for that representing an in-lined function.
 
 -  Removed Ubuntu Wily package download, no longer supported by Ubuntu.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release was done to get the fixes and new features out for testing.
 There is work started that should make generators use an explicit extra

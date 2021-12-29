@@ -1,3 +1,7 @@
+.. post:: 2011/04/16 11:52
+   :tags: benchmark, compiler, Nuitka, Python
+   :author: Kay Hayen
+
 #############################
  Looking where Nuitka stands
 #############################

@@ -1,3 +1,11 @@
+.. post:: 2013/05/18 10:17
+   :tags: compiler, Nuitka, Python, Windows
+   :author: Kay Hayen
+
+######################
+ Nuitka Release 0.4.3
+######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -7,9 +15,9 @@ and compilers are now supported. A lot of polish has been applied. Under
 the hood there is the continued and in-progress effort to implement SSA
 form in Nuitka.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Support for new compiler: Microsoft Visual C++.
 
@@ -66,9 +74,9 @@ form in Nuitka.
    evaluation order is enforced, we don't have to implement for specific
    architectures anymore.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Dictionary creation was not fully compatible.
 
@@ -94,9 +102,9 @@ form in Nuitka.
 -  Python3: Annotations of function worked only as long as their
    definition was not referring to local variables.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Calls with no positional arguments are now using the faster call
    methods.
@@ -110,9 +118,9 @@ form in Nuitka.
    Using threads for fibers was causing only overhead and with this API,
    MSVC had less issues too.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Accepting `Donations <https://nuitka.net/pages/donations.html>`__ via
    Paypal, please support funding travels, website, etc.
@@ -148,9 +156,9 @@ form in Nuitka.
    gradually aim at it too. So far 90 columns were used, and up to 100
    tolerated.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Removed useless manifest and resource file creation under Windows.
 
@@ -170,9 +178,9 @@ form in Nuitka.
    functions, instead of just adding it to any module that first uses
    it.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  Added basic tests for order evaluation, where there currently were
    None.
@@ -180,9 +188,9 @@ form in Nuitka.
 -  Added support for "2to3" execution under Windows too, so we can run
    tests for Python3 installations too.
 
-#########
+*********
  Summary
-#########
+*********
 
 The release is clearly major step ahead. The new platform support
 triggered a whole range of improvements, and means this is truly

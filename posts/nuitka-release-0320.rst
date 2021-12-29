@@ -1,3 +1,11 @@
+.. post:: 2012/02/27 22:48
+   :tags: compiler, Nuitka, Python
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.3.20
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -7,9 +15,9 @@ of new optimization and preparations for more. And then there is a new
 compiler clang and a new platform supported. macOS X appears to work
 mostly, thanks for the patches from Pete Hunt.
 
-###########
+***********
  Bug fixes
-###########
+***********
 
 -  The use of a local variable name as an expression was not covered and
    lead to a compiler crash. Totally amazing, but true, nothing in the
@@ -32,9 +40,9 @@ mostly, thanks for the patches from Pete Hunt.
 -  Parameter values of generator function could cause compilation errors
    when used in the closure of list contractions. Fixed.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Added support for disabling the console for Windows binaries. Thanks
    for the patch go to Michael H Kent.
@@ -48,9 +56,9 @@ mostly, thanks for the patches from Pete Hunt.
    via ``--clang`` option. Currently this option is mainly intended to
    allow testing the "macOS X" support as good as possible under Linux.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Enhanced all optimization that previously worked on "constants" to
    work on "compile time constants" instead. A "compile time constant"
@@ -105,9 +113,9 @@ mostly, thanks for the patches from Pete Hunt.
    constant" values. These will play a more important role, once value
    propagation makes them more frequent.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Created a "change log" from the previous release announcements. It's
    as ReStructured Text and converted to PDF for the release as well,
@@ -119,9 +127,9 @@ mostly, thanks for the patches from Pete Hunt.
    draft posting or updates it, until it's release time. Simple, sweet
    and elegant.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  Split out the ``nuitka.nodes.Nodes`` module into many topic nodes, so
    that there are now ``nuitka.nodes.BoolNodes`` or
@@ -229,9 +237,9 @@ mostly, thanks for the patches from Pete Hunt.
 
 -  Made the built-in code more reusable.
 
-###########
+***********
  New Tests
-###########
+***********
 
 -  Added some more diagnostic tests about complex assignment and ``del``
    statements.
@@ -243,9 +251,9 @@ mostly, thanks for the patches from Pete Hunt.
 
 -  Added syntax test for global on a function argument name.
 
-#########
+*********
  Summary
-#########
+*********
 
 The decorator and building changes, the assignment changes, and the node
 cleanups are all very important progress for the type inference work,

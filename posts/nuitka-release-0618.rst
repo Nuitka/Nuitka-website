@@ -1,3 +1,11 @@
+.. post:: 2021/12/11 17:21
+   :tags: compiler, Python, Nuitka
+   :author: Kay Hayen
+
+#######################
+ Nuitka Release 0.6.18
+#######################
+
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
@@ -8,9 +16,9 @@ optimization of what normally would be dynamic imports, while also
 polishing plugins and adding also many new features and a huge amount of
 organisational changes.
 
-###########
+***********
  Bug Fixes
-###########
+***********
 
 -  Python3.6+: Fixes to asyncgen, need to raise ``StopAsyncInteration``
    rather than ``StopIteration`` in some situations to be fully
@@ -181,9 +189,9 @@ organisational changes.
 -  Windows: The ``python setup.py install`` was installing binaries for
    no good reason.
 
-##############
+**************
  New Features
-##############
+**************
 
 -  Setuptools support. Documented ``bdist_nuitka`` and ``bdist_wheel``
    integration and added support for Nuitka as a ``build`` package
@@ -252,9 +260,9 @@ organisational changes.
    this increases compile times, but might enable compilation on some
    weaker machines.
 
-##############
+**************
  Optimization
-##############
+**************
 
 -  Added dedicated attribute nodes for attribute values that match names
    of dictionary operations. These are optimized into dedicate nodes for
@@ -358,9 +366,9 @@ organisational changes.
 -  Faster calls of uncompiled code with Python3.9 or higher avoiding DLL
    call overhead.
 
-################
+****************
  Organisational
-################
+****************
 
 -  Commercial: There are ``Buy Now`` buttons available now for the
    direct purchase of the `Nuitka Commercial </pages/commercial.html>`__
@@ -440,9 +448,9 @@ organisational changes.
 
 -  Added support for Fedora 34 and Fedora 35.
 
-##########
+**********
  Cleanups
-##########
+**********
 
 -  In a change of mind ``--enable-plugin`` has become the only form to
    enable a plugin used in documentation and tests.
@@ -503,9 +511,9 @@ organisational changes.
    of detector class names to the names of detected plugins. The new
    naming consistency is now enforced.
 
-#######
+*******
  Tests
-#######
+*******
 
 -  Added CPython 3.10 test suite, it needs more work though.
 
@@ -514,9 +522,9 @@ organisational changes.
 
 -  Test suite names were specified wrongly in a few of them.
 
-#########
+*********
  Summary
-#########
+*********
 
 This release is again a huge step forward. It refines on PGO and LTO for
 C level to work with all relevant compilers. Internally Python level PGO

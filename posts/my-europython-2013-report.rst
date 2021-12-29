@@ -1,3 +1,7 @@
+.. post:: 2013/08/15 08:15:17
+   :tags: Python, Nuitka, compiler
+   :author: Kay Hayen
+
 ###########################
  My Europython 2013 report
 ###########################

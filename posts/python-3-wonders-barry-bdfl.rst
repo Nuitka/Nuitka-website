@@ -1,3 +1,11 @@
+.. post:: 2012/07/23 06:56:41
+   :tags: Python, Nuitka
+   :author: Kay Hayen
+
+###############################
+ Python 3 wonders - Barry BDFL
+###############################
+
 While writing `Nuitka </pages/overview.html>`_ I get to see an absurd
 amount of CPython code. For a while now, it's also CPython3.2 that I
 look at. Checking out ``__future__`` handling, I was surprised the other
