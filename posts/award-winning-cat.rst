@@ -7,7 +7,7 @@
 ###################
 
 .. figure:: images/Katze_Medaille.jpg
-   :target: images/Katze_Medaille.jpg
+   :target: _images/Katze_Medaille.jpg
    :width: 80%
    :alt: Image of cat Muska with a medaille.
 
