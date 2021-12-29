@@ -1,7 +1,11 @@
+###########
+ Donations
+###########
 
-Nuitka is an effort, driven in my spare time. For travels to Python conferences, web site
-costs, and generally to get rich, I am accepting donations via PayPal. The money received
-will be used to sponsor Nuitka development.
+Nuitka is an effort, mainly driven in my spare time. For travels to
+Python conferences, web site costs, and generally to get rich, I am
+accepting donations via PayPal. The money received will be used to
+sponsor Nuitka development.
 
 .. raw:: html
 
@@ -11,7 +15,3 @@ will be used to sponsor Nuitka development.
    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG_global.gif" border="0" name="submit" alt="PayPal — The safer, easier way to pay online.">
    <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
    </form>
-
-.. note::
-
-   You are not expected to donate though.

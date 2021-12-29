@@ -1,6 +1,0 @@
-Demos showing Nuitka in action:
-
-.. raw:: html
-
-    <asciinema-player src="/asciinema/basic-demo.cast"></asciinema-player>
-    <script src="/asciinema/asciinema-player.js"></script>

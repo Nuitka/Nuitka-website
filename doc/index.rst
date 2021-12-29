@@ -149,7 +149,7 @@ In the meantime you can find its `latest version here
    :caption: Impressum
    :hidden:
 
-   doc/Impressum
+   pages/impressum
 
 .. toctree::
    :caption: Factory Instructions
@@ -157,3 +157,8 @@ In the meantime you can find its `latest version here
 
    doc/factory
    doc/welcome
+   pages/pyside2
+   pages/donations
+   pages/gsoc2019
+   pages/support
+   pages/nuitka-demo

@@ -1,0 +1,371 @@
+.. contents::
+
+############################
+ Google Summer of Code 2019
+############################
+
+Nuitka team is happy to see your interest in helping out by applying for
+`Google Summer of Code 2019 <https://summerofcode.withgoogle.com/>`__
+and helping develop it.
+
+This is the first time Nuitka project participates, and we are excited
+to be joined by the students in this. We are experienced coders and have
+mentored during day jobs. And definitely we look forward to having fun
+with this.
+
+##############
+ About Nuitka
+##############
+
+Nuitka is a project to write a Python compiler in Python. Unlike PyPy,
+it is about static compilation, and aims to be less complex, but fully
+compatible with gradual degradation of performance, up to C level.
+
+See our `introduction <http://nuitka.net/pages/overview.html>`__ for a
+full summary and consider reading the `user manual
+<http://nuitka.net/doc/user-manual.html>`__ and the `developer manual
+<http://nuitka.net/doc/developer-manual.html>`__ for further
+clarification.
+
+************
+ What we do
+************
+
+The software created is a compiler that is a drop-in replacement for
+CPython and derivatives like Anaconda.
+
+It aims at accelerating Python closer to C level while maintaining the
+full compatibility, while also delivering an option for deployment of
+applications in a standalone fashion.
+
+************************
+ Why is it interesting?
+************************
+
+Python is used in a lot of places, but when it comes to performance,
+other languages are used, have to be used. Nuitka aims at changing it.
+Making Python even more of a choice for high performance computing will
+make us famous, rich, or loved. Maybe even all of that.
+
+**************
+ Who uses it?
+**************
+
+Nuitka already has a lot of users. Many of these are most interested in
+the packaging side, but also some care about even tiny performance
+improvements, like the roughly 2x-3x speed up achieved in most cases.
+
+**********************************
+ What languages is it written in?
+**********************************
+
+Nuitka is written in Python. It has a C run time, that for some ideas
+you would have to touch, for some you absolutely do not. There is a lot
+to be done in pure Python, esp. static optimization.
+
+**************************************
+ How is it going to change the world?
+**************************************
+
+Being able to write C speed code in a language as simple as Python. What
+else to say. This is taking Python where it currently cannot be.
+
+###################
+ Contacting Nuitka
+###################
+
+For the purpose of GSoC the Nuitka development mailing list (since
+closed) can be used, as well as private email. We will be reachable via
+Hangout/Duo calls on a regular basis.
+
+We will be able to accommodate all time zones somehow.
+
+#################
+ Getting Started
+#################
+
+Nuitka setup is trivial and explained in the `User Manual
+<http://nuitka.net/doc/user-manual.html>`_. Using Anaconda Python on
+Windows, or a normal Linux system, and you are good to go with a git
+clone of Nuitka in a minute. See `Download page
+<http://nuitka.net/pages/download.html>`_ how to do that.
+
+Bug fixes and features are expected to be done via PRs on Github. We can
+guide you through that, it's easy. We are not very formal, but helpful.
+
+Remember, Nuitka must be the title of your application or else Google
+will not know what it is about.
+
+#########
+ Mentors
+#########
+
+-  Kay Hayen <kay.hayen@gmail.com>, creator of Nuitka
+
+-  Kamran Ghanaat <kamran.ghanaat@uni-oldenburg.de>, seasoned all around
+   user
+
+-  Jorj X. McKie <jorj.x.mckie@outlook.de>, contributor and creator of
+   Nuitka-Utilities repo.
+
+-  Vaibhav Tulsyan <vstulsyan@gmail.com>, expert mentor and Pythonista
+
+#######
+ Ideas
+#######
+
+***********************************
+ 1. Nuitka support for PyPI top 50
+***********************************
+
+Project description: Nuitka works with most software. The aim of this
+project is to make sure it's true for the top 50 packages on PyPI, by
+compiling and using their example codes.
+
+So, first of all, we need to define what we mean by top 50 PyPI
+packages. For Python downloading the packages via pip is very
+widespread. So the first task would be to look at the top 100 and
+identify 50 packages that are even relevant to Nuitka. There is a list
+of `Top 100 PyPI <https://hugovk.github.io/top-pypi-packages/>`__.
+
+Of course pip itself, leading the list, we will skip that, nobody needs
+that compiled or uses it as a library in their software. But `urllib3`
+is currently top 2, and a very important piece of software that people
+rely on, so breaking it in Nuitka compilation would be bad.
+
+What the student would be expected to do, is to go and read its
+documentation in search for a tutorial, small examples, that make it
+work. Distill a minimal test out of that and add it to the existing pool
+of tests in `tests/standalone
+<https://github.com/Nuitka/Nuitka/tree/develop/tests/standalone>`__ say
+as `tests/standalone/Urllib3Using.py` and get it to work in standalone
+mode, using the Nuitka argument ``--standalone``.
+
+Then, if possible and easy enough, the tests should be made to work. For
+hard cases, where the tests are difficult to get to work, we can skip
+them. For the widespread ``py.test`` and ``nose2`` there is a very good
+chance to get them working against a compiled package. For that you
+would be using the Nuitka argument ``--package``, throw in magic
+environment variables if necessary (this secret will be revealed, eh
+documented in the course of our work), if the tests live below the
+package name space, say urllib3.tests and then run the tests.
+
+Looking at the test results, which hopefully pass and fail equally well
+(pro tip, never assume a released software passes all the tests when not
+compiled in your environment or any), you then try to identify the
+issue, or report it as a Nuitka issue, or sometimes as an issue of the
+software we are testing.
+
+When those work, we should try and turn this into a re-usable test as
+well, so we can apply them in an automated fashion.
+
+Then on to next package on the list. The main benefit to the student
+will be to get to know the 50 most important software packages of Python
+on at least a cursory level. Something the mentors won't even do. And
+that will teach you a lot and the mentors too. And it will prevent
+people using Nuitka from then encountering things that our testing will
+then find before our releases.
+
+In a first stage, you would identify and report the issues to the bug
+tracker, in a second stage develop tools that help to narrow down
+issues, e.g. what extension module fails to load precisely, even with a
+segfault happening, and put them to use and try to fix a few of the
+simpler issues.
+
+Setting up these as automated tests would be the ultimate goal, so we
+can follow these top 50 packages with Nuitka over time and make sure
+they continue to work. We can definitely help with that part though, the
+student may or may not have the ability to do that part himself, would
+be OK.
+
+In the past it has happened e.g. that Jinja2 was breaking for Python
+3.7, and it would be cool to discover this immediately.
+
+Skills: Python programming, pip installation, virtualenv. Also need a
+Linux and/or Windows installs of Python, one platform is good, both
+would be great. Ideally learn about ``pipenv`` and apply it for defining
+environments to test in.
+
+Main platform for this would be the `Github issue
+<https://github.com/Nuitka/Nuitka/issues/229>`__ and feel to ask
+questions and clarifications there.
+
+Difficulty level: *Easy*
+
+Potential mentors: Vaibhav Tulsyan, Kay Hayen, Kamran Ghanaat, Jorj X.
+McKie
+
+**************************************
+ 2. Nuitka one file standalone option
+**************************************
+
+Project description: Nuitka has a mode meant for distribution to another
+system that puts everything needed in a single folder with a ``.dist``
+suffix. This folder is then essentially the distribution.
+
+One complaint often raised about that solution is that it's a folder
+rather than a single file, for alternative packaging methods, e.g.
+``py2exe`` and ``pyinstaller``, these do actually exist, and this
+project would be about integrating with that.
+
+In a first stage, the student would identify the code of these tools
+that is doing it subsequently and try to port it to Nuitka for one or
+more platforms.
+
+The main job here to analyse the competing projects code and to transfer
+the ability to Nuitka.
+
+Skills: Python programming, having Linux and/or Windows installs of
+Python, both would be great. Likely some C knowledge may be required,
+but that is uncertain.
+
+Main platform for this would be the `Github issue
+<https://github.com/Nuitka/Nuitka/issues/230>`__ and feel to ask
+questions and clarifications there.
+
+Difficulty level: *Easy*
+
+Potential mentors: Jorj X. McKie, Kay Hayen, Kamran Ghanaat
+
+**********************
+ 3. Nuitka benchmarks
+**********************
+
+Project description: Nuitka has too little in the way of measuring the
+actual performance gains one has. You would change that.
+
+In a first stage, you would enhance the existing `speedcenter
+<https://speedcenter.nuitka.net>`__ to provide a more complete set of
+micro-benchmarks, for the different levels of optimization, with more or
+less type knowledge. You would then as a second step add a history of
+commits in some form of graphs that extend over a longer perioud of
+time, and automatically identify changes that e.g. produce equivalent C
+code.
+
+As Nuitka is both about high level compile time optimization as well as
+low level runtime optimization, your task would be to enhance coverage
+and to make the information used to input decision making for Nuitka
+optimization more readable.
+
+But also users should get a better grasp of what can be expected to be
+accelerated and what not, and by how much. The student will be
+relatively free in inventing ways to present this information.
+
+Skills: Python programming, Linux installs of Python, C tooling would be
+nice, but can be mentored.
+
+Main platform for this would be the `Github issue
+<https://github.com/Nuitka/Nuitka/issues/231>`__ and feel to ask
+questions and clarifications there.
+
+Difficulty level: *Intermediate*
+
+Potential mentors: Kay Hayen, Vaibhav Tulsyan, Kamran Ghanaat, Jorj X.
+McKie
+
+*************************
+ 4. Nuitka all built-ins
+*************************
+
+Project description: Nuitka has support for many built-ins, e.g. ``len``
+already, which means dedicated C code, compile time evaluation, type
+shapes produced (in this case an ``int``), but there are some notable
+exceptions, e.g. ``enumerate`` where we know types too, that are still
+missing, but definitely can have high performance impact on some loops.
+Not having that means that ``enumerate`` using loops are losing out on
+many optimization opportunities.
+
+The students task would be to imitate existing built-in codes to achieve
+a complete support for ultimately all C built-ins. The first step would
+be to identify which ones are missing (by means of a warning added),
+then to find out in test runs of the test suites, which ones are warned
+about, and to resolve as many of those as possible. It is assumed that
+achieving this for all built-ins can be done with your help.
+
+This would be great getting your feet wet with optimization in Nuitka
+and one that has actual impact, as well as seeing many corner cases of
+built-ins in Python that will the student will become knowledgable of.
+
+Further reading:
+
+-  `Nuitka len node code
+   <https://github.com/Nuitka/Nuitka/blob/cb0e0beb72041adeab1065306d5413a6bd868611/nuitka/nodes/BuiltinLenNodes.py#L52>`__
+
+-  Runtime C code example:
+
+   .. code:: C
+
+      PyObject *BUILTIN_LEN(PyObject *value) {
+          CHECK_OBJECT(value);
+
+          Py_ssize_t res = PyObject_Size(value);
+
+          if (unlikely(res < 0 && ERROR_OCCURRED())) {
+              return NULL;
+          }
+
+          return PyInt_FromSsize_t(res);
+      }
+
+-  Many more links and examples in the Github issue below.
+
+Skills: Python and C programming, platform wouldn't matter
+
+Main platform for this would be the `Github issue
+<https://github.com/Nuitka/Nuitka/issues/232>`__ and feel to ask
+questions and clarifications there.
+
+Difficulty level: *Intermediate*
+
+Potential mentors: Kay Hayen, Vaibhav Tulsyan, Kamran Ghanaat, Jorj X.
+McKie
+
+********************
+ 5. Nuitka macOS CI
+********************
+
+Project description: Nuitka has currently no CI for macOS, which means
+it can be broken in any release.
+
+Your task would be to enhance the Travis configuration to introduce that
+the tests are run on macOS too. Ideally you would also manage to get
+Anaconda on that platform used, but that is not expected.
+
+Your mentors will not be able to help with macOS specifics. Nuitka is
+known to work on the platform, but Travis might expose differences that
+need some addressing.
+
+Main platform for this would be the `Github issue
+<https://github.com/Nuitka/Nuitka/issues/233>`__ and feel to ask
+questions and clarifications there.
+
+Skills: Travis, have macOS platform, XCode tooling
+
+Difficulty level: *Hard*
+
+.. note::
+
+   This idea has been retracted due to lack of interest from students
+   and due to higher than expected interest in ideas that are more
+   valuable.
+
+##########
+ Timeline
+##########
+
+This is time line as relevant for the students:
+
+-  February 26 - organizations announced (PSF is going to be part of it)
+
+-  Up to March 20 students discuss applications with mentoring
+   organizations
+
+-  March 25 - April 9th Student application period
+
+-  May 6 Accepted student proposals announced
+
+-  May 6 - May 27 community bonding
+
+-  May 27 - Aug 26 coding
+
+-  August September 3 results announced
