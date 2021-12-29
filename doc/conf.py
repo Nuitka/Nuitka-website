@@ -60,7 +60,7 @@ blog_title = "Nuitka Blog"
 # Base URL for the website, required for generating feeds.
 # e.g. blog_baseurl = "http://example.com/"
 blog_baseurl = "http//nuitka.net"
-blog_path = "."
+blog_path = "blog"
 blog_feed_fulltext = True
 
 blog_feed_templates = {
