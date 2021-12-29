@@ -834,9 +834,6 @@ def runSphinxBuild():
 def runSphinxAutoBuild():
     os.system("python -m sphinx_autobuild doc output/ -a --watch doc --watch pages --watch Pipenv.lock")
 
-def runNikolaCommand(command):
-    assert 0 == os.system("nikola " + command)
-
 
 def checkRstLint(document):
     print("Checking %r for proper restructed text ..." % document)
@@ -861,6 +858,9 @@ def checkRstLint(document):
 
     print("OK.")
 
+
+def runDeploymentCommand():
+    assert 0 == os.system("rsync -ravz --exclude=.git --chown www-data:git --chmod Dg+x output/ root@nuitka.net:/var/www/")
 
 def checkRestPages():
     for root, _dirnames, filenames in os.walk("."):
@@ -972,9 +972,7 @@ When given, all is updated. Default %default.""",
 
 
     if options.deploy:
-        assert False
-
-        runNikolaCommand("deploy")
+        runDeploymentCommand()
 
 
 if __name__ == "__main__":
