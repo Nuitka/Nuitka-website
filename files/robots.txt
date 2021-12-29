@@ -1,5 +1,5 @@
 User-agent: *
-Sitemap: http://nuitka.net/sitemapindex.xml
+Sitemap: http://nuitka.net/sitemap.xml
 Disallow: /cgi-bin/
 Disallow: /gitweb
 Disallow: /volatile

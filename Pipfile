@@ -25,6 +25,7 @@ sphinx-rtd-theme = "*"
 ablog = "*"
 sphinxcontrib-youtube = "*"
 sphinx-favicon = "*"
+sphinx-sitemap = "*"
 
 [requires]
 python_version = "3.9"

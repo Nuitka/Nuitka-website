@@ -38,6 +38,7 @@ extensions = [
     "sphinx_inline_tabs",
     "sphinxcontrib.youtube",
     "sphinx-favicon",
+    "sphinx_sitemap",
     # Blog extension
     "ablog",
 
@@ -59,6 +60,11 @@ blog_title = "Nuitka Blog"
 # Base URL for the website, required for generating feeds.
 # e.g. blog_baseurl = "http://example.com/"
 blog_baseurl = "http//nuitka.net"
+
+# Sitemap configuration
+html_baseurl = blog_baseurl
+sitemap_locales = [None]
+sitemap_url_scheme = "{link}"
 
 # -- Options for HTML output
 html_theme = "sphinx_rtd_theme"
