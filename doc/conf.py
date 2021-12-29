@@ -60,7 +60,22 @@ blog_title = "Nuitka Blog"
 # Base URL for the website, required for generating feeds.
 # e.g. blog_baseurl = "http://example.com/"
 blog_baseurl = "http//nuitka.net"
+blog_path = "."
+blog_feed_fulltext = True
 
+blog_feed_templates = {
+      # Use defaults, no templates
+      "atom": {},
+      "rss": {},
+
+      # Create content text suitable posting to social media
+      "social": {
+         # Format tags as hashtags and append to the content
+         "content": "{{ title }}{% for tag in post.tags %}"
+         " #{{ tag.name|trim()|replace(' ', '') }}"
+         "{% endfor %}",
+      },
+}
 # Sitemap configuration
 html_baseurl = blog_baseurl
 sitemap_locales = [None]
