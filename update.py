@@ -740,7 +740,7 @@ def runDeploymentCommand():
     ]
 
     command = (
-        "rsync -n -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@nuitka.net:/var/www/"
+        "rsync -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@nuitka.net:/var/www/"
         % (" ".join("--exclude=%s" % exclude for exclude in excluded))
     )
 
