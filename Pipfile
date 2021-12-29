@@ -9,6 +9,7 @@ watchdog = "*"
 pylint = "*"
 doc8 = "*"
 sphinx-autobuild = "*"
+black = "*"
 
 [packages]
 nikola = "*"
@@ -29,3 +30,6 @@ sphinx-sitemap = "*"
 
 [requires]
 python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
