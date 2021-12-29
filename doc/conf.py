@@ -63,11 +63,13 @@ blog_title = "Nuitka Blog"
 blog_baseurl = "http//nuitka.net"
 blog_path = "blog"
 blog_feed_fulltext = True
+blog_feed_archives = True
+blog_feed_length = None
 
-blog_feed_templates = {
+# TODO: Optimized feeds one day?
+x_blog_feed_templates = {
     # Use defaults, no templates
     "atom": {},
-    "rss": {},
     # Create content text suitable posting to social media
     "social": {
         # Format tags as hashtags and append to the content

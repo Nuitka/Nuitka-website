@@ -139,29 +139,6 @@ def migratePosts():
         title = values.pop("title")
         date = values.pop("date")
 
-        if False:
-            date = date.split(" ")[0]
-            if date.count("/") == 2:
-                year, month, day = date.split("/")
-            else:
-                year, month, day = date.split("-")
-
-            month_names = [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ]
-            date = "%s %s, %s" % (day, month_names[int(month) - 1], year)
-
         author = values.pop("author", "Kay Hayen")
         description = values.pop("description", None)
         values.pop("type", None)
@@ -890,7 +867,27 @@ def checkRstLint(document):
 
 
 def runDeploymentCommand():
-    excluded = [".buildinfo", ".doctrees", "apidoc", "releases"]
+    excluded = [
+        # Build information from Sphinx
+        ".buildinfo",
+        ".doctrees",
+        "objects.inv",
+        # API doc is provided separately. TODO: That should be Sphinx too.
+        "apidoc",
+        # Debian repository, do not touch.
+        "deb",
+        # Download files, do not touch.
+        "releases",
+        # For user download
+        "ccache",
+        "volatile",
+        # PDF documentation for current release
+        "'doc/*.pdf'",
+        # Google ownership marker, do not touch.
+        "googlee5244704183a9a15.html",
+        # Link into blog, for compatibility with old blog subscriptions.
+        "rss.xml",
+    ]
 
     command = (
         "rsync -n -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@nuitka.net:/var/www/"
