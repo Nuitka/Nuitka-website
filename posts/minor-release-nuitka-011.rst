@@ -1,10 +1,10 @@
 .. post:: 2010/08/22 15:45
-   :tags: compiler, Nuitka, Python
+   :tags: compiler, Python, Nuitka
    :author: Kay Hayen
 
-############################
- Minor Release Nuitka 0.1.1
-############################
+######################
+ Nuitka Release 0.1.1
+######################
 
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,

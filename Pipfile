@@ -27,6 +27,7 @@ ablog = "*"
 sphinxcontrib-youtube = "*"
 sphinx-favicon = "*"
 sphinx-sitemap = "*"
+rstfmt = "*"
 
 [requires]
 python_version = "3.9"

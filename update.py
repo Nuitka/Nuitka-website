@@ -653,26 +653,33 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
             if "release-011" in slug:
                 slug = "minor-" + slug.replace("nuitka-release", "release-nuitka")
 
-            pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
-            data = "\n".join(
-                [
-                    ".. title: " + title,
-                    ".. slug: " + slug,
-                    ".. date: " + pub_date.strftime("%Y/%m/%d %H:%M"),
-                    ".. tags: compiler,Python,Nuitka",
-                ]
-            )
-
             output_path = "posts"
-            meta_path = os.path.join(output_path, slug + ".meta")
             txt_path = os.path.join(output_path, slug + ".rst")
 
-            if not os.path.isfile(meta_path) or "draft" in open(meta_path).read():
-                with open(meta_path, "wb") as output_file:
-                    output_file.write(data.encode("utf8"))
+            if os.path.exists(txt_path):
+                pub_date = open(txt_path).readline().split(maxsplit=2)[2].strip()
+            else:
+                pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
+                pub_date = pub_date.strftime("%Y/%m/%d %H:%M")
+
+            lines = [
+                ".. post:: %s\n" % pub_date,
+                "   :tags: compiler, Python, Nuitka\n",
+                "   :author: Kay Hayen\n",
+                "\n",
+                title.strip() + "\n",
+                "~~~~~\n",
+                "\n",
+            ] + lines
 
             with open(txt_path, "wb") as output_file:
                 output_file.write("".join(lines).encode("utf8"))
+
+            # TODO: Integrate nicer.
+            os.system(
+                "python Nuitka-factory/bin/autoformat-nuitka-source --no-progressbar %s"
+                % txt_path
+            )
 
 
 def updateDocs():

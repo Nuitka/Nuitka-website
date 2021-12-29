@@ -1,10 +1,10 @@
 .. post:: 2011/04/03 00:30
-   :tags: compiler, Nuitka, Python
+   :tags: compiler, Python, Nuitka
    :author: Kay Hayen
 
-########################################
- Nuitka Release 0.3.8 - Windows Support
-########################################
+######################
+ Nuitka Release 0.3.8
+######################
 
 This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`_. It is the extremely compatible Python compiler,

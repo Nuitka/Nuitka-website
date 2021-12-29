@@ -1,5 +1,5 @@
 .. post:: 2011/01/22 14:52
-   :tags: compiler, Nuitka, Python
+   :tags: compiler, Python, Nuitka
    :author: Kay Hayen
 
 ######################

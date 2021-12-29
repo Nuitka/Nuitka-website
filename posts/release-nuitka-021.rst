@@ -1,9 +1,9 @@
 .. post:: 2010/09/05 14:00
-   :tags: compiler, Nuitka
+   :tags: compiler, Python, Nuitka
    :author: Kay Hayen
 
 ######################
- Release Nuitka 0.2.1
+ Nuitka Release 0.2.1
 ######################
 
 This is to inform you about the new stable release of `Nuitka
