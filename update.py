@@ -143,19 +143,20 @@ def migratePosts():
         title = values.pop("title")
         date = values.pop("date")
 
-        date = date.split(" ")[0]
-        if date.count("/") == 2:
-            year, month, day = date.split("/")
-        else:
-            year, month, day = date.split("-")
+        if False:
+            date = date.split(" ")[0]
+            if date.count("/") == 2:
+                year, month, day = date.split("/")
+            else:
+                year, month, day = date.split("-")
 
 
-        month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        date = "%s %s, %s" % (
-            day,
-            month_names[int(month)-1],
-            year
-        )
+            month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            date = "%s %s, %s" % (
+                day,
+                month_names[int(month)-1],
+                year
+            )
 
         author = values.pop("author", "Kay Hayen")
         description = values.pop("description", None)
@@ -831,7 +832,7 @@ def runSphinxBuild():
     assert 0 == os.system("sphinx-build doc output/ -a")
 
 def runSphinxAutoBuild():
-    os.system("python -m sphinx_autobuild doc output/ -a --watch doc --watch pages")
+    os.system("python -m sphinx_autobuild doc output/ -a --watch doc --watch pages --watch Pipenv.lock")
 
 def runNikolaCommand(command):
     assert 0 == os.system("nikola " + command)

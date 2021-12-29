@@ -37,6 +37,7 @@ extensions = [
     "sphinx_design",
     "sphinx_inline_tabs",
     "sphinxcontrib.youtube",
+    "sphinx-favicon",
     # Blog extension
     "ablog",
 
@@ -65,6 +66,50 @@ html_logo = "Nuitka-Logo-Symbol.png"
 html_copy_source = False
 html_show_sourcelink = False
 html_show_sphinx = False
+
+
+favicons = favicons = [
+    {
+        "rel": "icon",
+        "static-file": "favicon.svg",
+        "type": "image/svg+xml",
+    },
+    {
+        "rel": "icon",
+        "sizes": "32x32",
+        "static-file": "favicon.png",
+    },
+    {
+        "rel": "icon",
+        "sizes": "32x32",
+        "static-file": "favicon.ico",
+    },
+    {
+        "rel": "icon",
+        "sizes": "57x57",
+        "static-file": "apple-touch-icon-iphone.png",
+    },
+    {
+        "rel": "icon",
+        "sizes": "72x72",
+        "static-file": "apple-touch-icon-ipad.png",
+    },
+    {
+        "rel": "icon",
+        "sizes": "114x114",
+        "static-file": "apple-touch-icon-iphone4.png",
+    },
+    {
+        "rel": "icon",
+        "sizes": "144x144",
+        "static-file": "apple-touch-icon-ipad3.png",
+    },
+    {
+        "rel": "apple-touch-icon",
+        "sizes": "180x180",
+        "static-file": "apple-touch-icon-180x180.png",
+    },
+]
 
 # -- Options for EPUB output
 epub_show_urls = "footnote"
