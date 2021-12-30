@@ -499,10 +499,8 @@ def updateDownloadPage():
 
     def makeFedoraText(fedora_number, release):
         version = fedora_rpm[release, fedora_number]
-        rpm_basename = "nuitka" if release == "stable" else "nuitka-unstable"
 
-        return f"""\
-`Nuitka {version.split("-", 1)[0]} RPM <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_{fedora_number}/noarch/{rpm_basename}-{version}.noarch.rpm>`__"""
+        return f"""Nuitka {version.split("-", 1)[0]}"""
 
     def makeRepoLinkText(repo_name):
         return f"""`repository file <https://download.opensuse.org/repositories/home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"""
