@@ -83,7 +83,7 @@ Where are we now?
 =================
 
 Milestone 1, feature parity, has been achieved for Python 2.6, 2.7, and
-3.3 up to 3.9. This part of Nuitka is already mature, but every new
+3.3 up to 3.10. This part of Nuitka is already mature, but every new
 Python release has lots of new features to add!
 
 Milestone 2 is always a work in progress, but it has been quite
@@ -162,3 +162,4 @@ In the meantime you can find its `latest version here
    pages/gsoc2019
    pages/support
    pages/nuitka-demo
+   doc/streaming
