@@ -18,15 +18,39 @@
     background-color: #b45f06;
 }
 
-
 .nuitka-grid-offer .sd-card {
+    display: flex;
     color: white;
+}
+
+.nuitka-buy .sd-card-text:last-child {
+    margin-bottom: 1.25rem;
+}
+
+/* Stripe links should be forced to color standing out */
+.nuitka-buy a {
+    vertical-align: bottom;
+    font: bold 1rem Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    white-space: nowrap;
 }
 
 .nuitka-grid-offer .sd-card-title {
     color: white;
     text-align: center;
-    font-size: 25px;
+    font-size: 1.2rem;
+}
+
+.nuitka-grid-offer blockquote {
+    margin-left: 6px;
+    margin-right: 6px;
 }
 
 .nuitka-grid-offer ul li {
@@ -35,10 +59,13 @@
     margin-right: 0 !important;
 }
 
+
 .nuitka-price p {
+    white-space: nowrap;
     color: white;
-    text-align: center;
-    font-size: 40px;
+    text-align: center !important;
+    font-size: 2.5rem;
+    font-weight: bold;
     margin-bottom: 20px !important;
 }
 

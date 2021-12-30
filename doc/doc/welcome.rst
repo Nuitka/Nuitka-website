@@ -12,13 +12,15 @@ This page is used for experiments in web design with Sphinx.
 
             € 250
 
-        - Nuitka commercial Features
+        .. container:: nuitka-buy
 
-        - For all your applications
+            `Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__
+
+        - Commercial only Features
+
+        - All your applications
 
         - Standard Support
-
-        - `Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__.
 
     .. grid-item-card::  Nuitka Priority
        :class-item: nuitka-grid-offer nuitka-offer-priority
@@ -27,13 +29,16 @@ This page is used for experiments in web design with Sphinx.
 
             € 250
 
+        .. container:: nuitka-buy
+
+            `Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__
+
         - Best Support
 
-        - Your Issues have Priority
+        - Issues have **Priority**
 
-        - Does not include Commercial
+        - **No** Commercial features
 
-        - `Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__.
 
     .. grid-item-card::  Full Package
        :class-item: nuitka-grid-offer nuitka-offer-full-package
@@ -42,11 +47,14 @@ This page is used for experiments in web design with Sphinx.
 
             € 400
 
-        - Nuitka Commercial
+        .. container:: nuitka-buy
 
-        - Nuitka Priority combined
+            `Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__
 
-        - `Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__.
+        - Nuitka Commercial **plus**
+
+        - Nuitka Priority
+
 
     .. grid-item-card::  Sponsor
        :class-item: nuitka-grid-offer nuitka-offer-sponsor
@@ -55,15 +63,18 @@ This page is used for experiments in web design with Sphinx.
 
             € 1000
 
+        .. container:: nuitka-buy
+
+            `Buy Now <https://buy.stripe.com/9AQ3eUb2maQs7rG28c>`__
+
         - Best Support
 
-        - Nuitka Commercial Access
+        - Nuitka Commercial
 
         - Roadmap Influence
 
-        - Use Cases Considered
+        - Use Cases Priority
 
-        - `Buy Now <https://buy.stripe.com/9AQ3eUb2maQs7rG28c>`__.
 
 
 .. raw:: html
