@@ -18,20 +18,85 @@ import zipfile
 from lxml import html
 
 
+def _updateCheckout(branch, update):
+    if os.path.exists(f"Nuitka-{branch}") and not update:
+        return
+
+    if os.path.exists(f"Nuitka-{branch}"):
+        shutil.rmtree(f"Nuitka-{branch}")
+
+    print(f"Updating {branch} checkout...")
+    sys.stdout.flush()
+
+    urlretrieve(
+        f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
+    )
+
+    with zipfile.ZipFile(f"nuitka.zip.tmp") as archive:
+        archive.extractall(".")
+
+    os.unlink("nuitka.zip.tmp")
+
+    for filename in (
+        "README.rst",
+        "Developer_Manual.rst",
+    ):
+        filename = os.path.join(f"Nuitka-{branch}", filename)
+
+        with open(filename, "rb") as patched_file:
+            old_contents = new_contents = patched_file.read()
+
+        if filename.endswith(".rst"):
+            # Sphinx has its own TOC method.
+            new_contents = new_contents.replace(b".. contents::\n", b"")
+
+            # Logo inside doc removed.
+            new_contents = new_contents.replace(
+                b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
+            )
+            new_contents = new_contents.replace(b"\n   :alt: Nuitka Logo", b"\n")
+
+        if old_contents != new_contents:
+            with open(filename, "wb") as out_file:
+                out_file.write(new_contents)
+
+
+def updateNuitkaMaster(update):
+    _updateCheckout("master", update=update)
+
+
+def updateNuitkaDevelop(update):
+    _updateCheckout("develop", update=update)
+
+
+def updateNuitkaFactory(update):
+    _updateCheckout("factory", update=update)
+
+
 def importNuitka():
+    updateNuitkaFactory(update=False)
+
     sys.path.insert(0, os.path.abspath("Nuitka-factory"))
     import nuitka
 
     del sys.path[0]
 
 
+importNuitka()
+
+# isort:start
+
+from nuitka.tools.quality.autoformat.Autoformat import (
+    withFileOpenedAndAutoformatted,
+)
+from nuitka.Tracing import my_print
+from nuitka.utils.Jinja2 import getTemplate
+from nuitka.utils.Rest import makeTable
+
+
 def updateDownloadPage():
     # TODO: Move to at least develop, after next releease, or even pip install as a requirement
     # after release with an option to use other branches.
-    importNuitka()
-
-    from nuitka.utils.Jinja2 import getTemplate
-    from nuitka.utils.Rest import makeTable
 
     page_template = getTemplate(
         package_name=None, template_name="download.rst.j2", template_subdir="doc/doc"
@@ -122,7 +187,7 @@ def updateDownloadPage():
             elif parts[-3] == "win-amd64":
                 bits = "64"
             else:
-                print("Ignoring broken MSI filename %s" % filename, file=sys.stderr)
+                my_print("Ignoring broken MSI filename %s" % filename, file=sys.stderr)
                 continue
 
             version = parts[-2][2:]
@@ -165,9 +230,12 @@ def updateDownloadPage():
 
         return value
 
-    print("Max pre-release is", max_pre_release, makePlain(max_pre_release))
-    print("Max stable release is", max_stable_release, makePlain(max_stable_release))
-    sys.stdout.flush()
+    my_print(
+        "Max pre-release is %s %s " % (max_pre_release, makePlain(max_pre_release))
+    )
+    my_print(
+        "Max stable release is" % (max_stable_release, makePlain(max_stable_release))
+    )
 
     output = ""
 
@@ -260,7 +328,7 @@ def updateDownloadPage():
 
         assert "6.7" not in max_prerelease, command
 
-        print(repo_name, max_prerelease)
+        my_print("Repo %s %s" % (repo_name, max_prerelease))
 
         return max_release, max_prerelease
 
@@ -486,56 +554,6 @@ def updateDownloadPage():
     open("doc/doc/download.rst", "wb").write(("\n".join(output) + "\n").encode("utf8"))
 
 
-def _updateCheckout(branch):
-    print(f"Updating {branch} checkout...")
-    if os.path.exists(f"Nuitka-{branch}"):
-        shutil.rmtree(f"Nuitka-{branch}")
-
-    urlretrieve(
-        f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
-    )
-
-    with zipfile.ZipFile(f"nuitka.zip.tmp") as develop_archive:
-        develop_archive.extractall(".")
-
-    os.unlink("nuitka.zip.tmp")
-
-    for filename in (
-        "README.rst",
-        "Developer_Manual.rst",
-    ):
-        filename = os.path.join(f"Nuitka-{branch}", filename)
-
-        with open(filename, "rb") as patched_file:
-            old_cotents = new_contents = patched_file.read()
-
-        if filename.endswith(".rst"):
-            # Sphinx has its own TOC method.
-            new_contents = new_contents.replace(b".. contents::\n", b"")
-
-            # Logo inside doc removed.
-            new_contents = new_contents.replace(
-                b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
-            )
-            new_contents = new_contents.replace(b"\n   :alt: Nuitka Logo", b"\n")
-
-        if old_cotents != new_contents:
-            with open(filename, "wb") as out_file:
-                out_file.write(new_contents)
-
-
-def updateNuitkaMaster():
-    _updateCheckout("master")
-
-
-def updateNuitkaDevelop():
-    _updateCheckout("develop")
-
-
-def updateNuitkaFactory():
-    _updateCheckout("factory")
-
-
 # slugify is copied from
 # http://code.activestate.com/recipes/
 # 577257-slugify-make-a-string-usable-in-a-url-or-filename/
@@ -672,20 +690,14 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
                 "\n",
             ] + lines
 
-            with open(txt_path, "wb") as output_file:
-                output_file.write("".join(lines).encode("utf8"))
-
-            # TODO: Integrate nicer.
-            os.system(
-                "python Nuitka-factory/bin/autoformat-nuitka-source --no-progressbar %s"
-                % txt_path
-            )
+            with withFileOpenedAndAutoformatted(txt_path) as output_file:
+                output_file.write("".join(lines))
 
 
 def updateDocs():
-    updateNuitkaMaster()
-    updateNuitkaDevelop()
-    updateNuitkaFactory()
+    updateNuitkaMaster(update=True)
+    updateNuitkaDevelop(update=True)
+    updateNuitkaFactory(update=True)
     updateReleasePosts()
 
 
@@ -700,7 +712,7 @@ def runSphinxAutoBuild():
 
 
 def checkRstLint(document):
-    print("Checking %r for proper restructed text ..." % document)
+    my_print("Checking %r for proper restructed text ..." % document)
     lint_results = restructuredtext_lint.lint_file(document, encoding="utf8")
 
     lint_error = False
@@ -714,13 +726,13 @@ def checkRstLint(document):
         if lint_result.message.startswith('Unknown directive type "youtube"'):
             continue
 
-        print(lint_result)
+        my_print(lint_result)
         lint_error = True
 
     if lint_error:
         sys.exit("Error, no lint clean rest.")
 
-    print("OK.")
+    my_print("OK.")
 
 
 def runDeploymentCommand():
@@ -751,7 +763,7 @@ def runDeploymentCommand():
         % (" ".join("--exclude=%s" % exclude for exclude in excluded))
     )
 
-    print(command)
+    my_print(command)
     assert 0 == os.system(command)
 
 
@@ -866,7 +878,8 @@ When given, all is updated. Default %default.""",
 
 
 if __name__ == "__main__":
-    print("Running with %s" % sys.executable)
+    importNuitka()
+
     os.environ["PATH"] = (
         os.path.dirname(sys.executable) + os.pathsep + os.environ["PATH"]
     )
