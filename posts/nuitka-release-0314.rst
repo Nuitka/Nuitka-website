@@ -90,11 +90,11 @@ compiled types by the ``inspect`` module.
  Organisational
 ****************
 
--  There is a new issue tracker available under http://bugs.nuitka.net
+-  There is a new issue tracker available (since migrated and removed)
 
    Please register and report issues you encounter with Nuitka. I have
    put all the known issues there and started to use it recently. It's
-   Roundup based like http://bugs.python.org is, so people will find it
+   Roundup based like https://bugs.python.org is, so people will find it
    familiar.
 
 -  The ``setup.py`` is now apparently functional. The source releases

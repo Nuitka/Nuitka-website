@@ -153,8 +153,7 @@ development period, and therefore contains a huge jump ahead.
  Organisational
 ****************
 
--  Replying to email from the `issue tracker <http://bugs.nuitka.net>`__
-   works now.
+-  Replying to email from the issue tracker works now.
 
 -  Added option name alias ``--xml`` for ``--dump-xml``.
 
