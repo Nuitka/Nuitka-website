@@ -162,4 +162,4 @@ In the meantime you can find its `latest version here
    pages/gsoc2019
    pages/support
    pages/nuitka-demo
-   doc/streaming
+   doc/Streaming

@@ -1,6 +1,7 @@
 Welcome
 =======
 
+This page is used for experiments in web design with Sphinx.
 
 .. grid:: 4
 
@@ -17,6 +18,8 @@ Welcome
 
         - Standard Support
 
+        - `Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__.
+
     .. grid-item-card::  Nuitka Priority
        :class-item: nuitka-grid-offer nuitka-offer-priority
 
@@ -30,6 +33,7 @@ Welcome
 
         - Does not include Commercial
 
+        - `Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__.
 
     .. grid-item-card::  Full Package
        :class-item: nuitka-grid-offer nuitka-offer-full-package
@@ -41,6 +45,8 @@ Welcome
         - Nuitka Commercial
 
         - Nuitka Priority combined
+
+        - `Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__.
 
     .. grid-item-card::  Sponsor
        :class-item: nuitka-grid-offer nuitka-offer-sponsor
@@ -57,7 +63,7 @@ Welcome
 
         - Use Cases Considered
 
-
+        - `Buy Now <https://buy.stripe.com/9AQ3eUb2maQs7rG28c>`__.
 
 
 .. raw:: html
