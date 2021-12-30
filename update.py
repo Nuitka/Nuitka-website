@@ -234,7 +234,7 @@ def updateDownloadPage():
         "Max pre-release is %s %s " % (max_pre_release, makePlain(max_pre_release))
     )
     my_print(
-        "Max stable release is" % (max_stable_release, makePlain(max_stable_release))
+        "Max stable release is %s %s " % (max_stable_release, makePlain(max_stable_release))
     )
 
     output = ""
@@ -695,9 +695,6 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
 
 
 def updateDocs():
-    updateNuitkaMaster(update=True)
-    updateNuitkaDevelop(update=True)
-    updateNuitkaFactory(update=True)
     updateReleasePosts()
 
 
@@ -854,6 +851,11 @@ When given, all is updated. Default %default.""",
         options.deploy = True
 
     if options.docs or options.downloads:
+        updateNuitkaMaster(update=True)
+        updateNuitkaDevelop(update=True)
+        updateNuitkaFactory(update=True)
+
+    if options.docs:
         updateDocs()
 
     if options.downloads:

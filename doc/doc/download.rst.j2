@@ -223,7 +223,13 @@ the RPM names are different.
 
 .. code:: bash
 
-   # Install either the these, but not both: (and use yum on older versions)
+   # Detect the Fedora version
+   eval `grep VERSION_ID= /etc/os-release`
+
+   # Use yum on older versions
+   dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/kayhayen/Fedora_${VERSION_ID}/home:kayhayen.repo
+
+   # Install either the these, but not both
    dnf install nuitka
    dnf install nuitka-unstable
 
