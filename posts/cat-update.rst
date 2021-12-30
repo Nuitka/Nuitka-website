@@ -14,13 +14,13 @@ When I code for Nuitka, she often lays between keyboard and monitors,
 sleeping, getting caressed by me.
 
 .. figure:: images/IMG_3837-768x1024.jpg
-   :target: _imagess/IMG_3837-768x1024.jpg
+   :target: /_images/IMG_3837-768x1024.jpg
    :width: 80%
    :alt: Cat Muska laying in her usual place between monitor and keyboard.
 
 And here is another one, hiding in her cat tree.
 
 .. figure:: images/IMG_3767.jpg
-   :target: _imagess/IMG_3767.jpg
+   :target: /_images/IMG_3767.jpg
    :width: 80%
    :alt: Cat muska in her cat tree box.

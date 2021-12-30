@@ -10,7 +10,7 @@ This is the latest addition to the family, our beautiful, young and
 lovely cat:
 
 .. figure:: images/IMG_3530-1.jpg
-   :target: _images/IMG_3530-1.jpg
+   :target: /_images/IMG_3530-1.jpg
    :width: 80%
    :alt: Image of Muska on her first day with us.
 

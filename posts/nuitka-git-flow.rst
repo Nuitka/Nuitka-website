@@ -19,7 +19,7 @@ feature branches.
 *********
 
 .. figure:: images/Nuitka-git-flow.png
-   :target: _images/Nuitka-git-flow.png
+   :target: /_images/Nuitka-git-flow.png
    :width: 60%
    :alt: Git flow example for Nuitka release 0.3.12
 
