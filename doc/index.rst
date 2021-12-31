@@ -152,7 +152,7 @@ In the meantime you can find its `latest version here
    pages/impressum
 
 .. toctree::
-   :caption: Factory Instructions
+   :caption: Under construction
    :hidden:
 
    doc/factory

@@ -366,7 +366,7 @@ def updateDownloadPage():
 
     opensuse_rpm = {}
 
-    max_leap_minor = 3
+    max_leap_minor = 4
     for leap_minor in range(0,max_leap_minor+1):
         stable, develop = checkOBS(f"openSUSE_Leap_15.{leap_minor}")
 
