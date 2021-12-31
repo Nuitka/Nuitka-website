@@ -159,4 +159,3 @@ In the meantime you can find its `latest version here
    pages/donations
    pages/gsoc2019
    pages/nuitka-demo
-   doc/Streaming

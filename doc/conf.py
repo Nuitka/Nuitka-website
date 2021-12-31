@@ -42,6 +42,7 @@ extensions = [
     "sphinx-favicon",
     "sphinx_sitemap",
     # Blog extension
+    "sphinxcontrib.asciinema",
     "ablog",
 ]
 
@@ -155,3 +156,10 @@ html_theme_options = {
 }
 
 html_extra_path = ["../files"]
+
+sphinxcontrib_asciinema_defaults = {
+    'theme': 'asciinema',
+    'preload': 0,
+    'font-size': '1rem',
+    'path': 'pages/demos'
+}

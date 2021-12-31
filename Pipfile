@@ -28,6 +28,7 @@ sphinxcontrib-youtube = "*"
 sphinx-favicon = "*"
 sphinx-sitemap = "*"
 rstfmt = "*"
+"sphinxcontrib.asciinema" = "*"
 
 [requires]
 python_version = "3.9"

@@ -718,7 +718,7 @@ def updateDocs():
 
 
 def runSphinxBuild():
-    assert 0 == os.system("sphinx-build doc output/ -a")
+    assert 0 == os.system("cd doc && sphinx-build . ../output/ -a")
 
 
 def runSphinxAutoBuild():
