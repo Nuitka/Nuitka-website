@@ -1,5 +1,5 @@
 .. post:: 2013/08/15 08:15:17
-   :tags: Python, Nuitka, compiler
+   :tags: Python, Nuitka, compiler, conference, presentation, video, europython
    :author: Kay Hayen
 
 ###########################

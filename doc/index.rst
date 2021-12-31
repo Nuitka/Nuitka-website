@@ -17,10 +17,11 @@ Nuitka is a Python compiler written in Python.
 
 It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10).
 
-You feed Nuitka your Python app, it does a lot of clever things, and
-spits out an executable or extension module.
+You feed Nuitka your Python app, it does a lot of clever things, and then
+creates an executable or extension module, or even a Python wheel.
 
-Nuitka is distributed under the Apache license.
+Nuitka is distributed under the Apache license. Nuitka commercial is a private
+repository that you pay to access and get plugins for commercial usage.
 
 ********************************
  Okay I'm hooked! Tell me more!
@@ -108,11 +109,12 @@ In the meantime you can find its `latest version here
 </pages/download.html>`_.
 
 .. toctree::
-   :caption: Manuals
+   :caption: Main
    :hidden:
 
+   Download <doc/download>
    User Manual <doc/user-manual>
-   Developer Manual <doc/developer-manual>
+   pages/support
 
 .. toctree::
    :caption: Commercial Users
@@ -121,45 +123,40 @@ In the meantime you can find its `latest version here
    doc/commercial
 
 .. toctree::
-   :caption: Changelog
+   :caption: Release Information
    :hidden:
 
    doc/Changelog
    Roadmap <doc/roadmap>
 
-.. toctree::
-   :caption: Downloads
-   :hidden:
-
-   Download <doc/download>
 
 .. toctree::
-   :caption: API doc
-   :hidden:
+   :caption: More documentation
 
-   doc/api-doc
+   Developer Manual <doc/developer-manual>
+   API doc <doc/api-doc>
+   doc/factory
 
 .. toctree::
-   :caption: Credits
+   :caption: Media
+
+   Presentations <pages/Presentations>
+   Streaming <pages/Streaming>
+
+.. toctree::
+   :caption: Other
    :hidden:
 
    doc/Credits
-
-.. toctree::
-   :caption: Impressum
-   :hidden:
-
    pages/impressum
 
 .. toctree::
    :caption: Under construction
    :hidden:
 
-   doc/factory
    doc/welcome
    pages/pyside2
    pages/donations
    pages/gsoc2019
-   pages/support
    pages/nuitka-demo
    doc/Streaming

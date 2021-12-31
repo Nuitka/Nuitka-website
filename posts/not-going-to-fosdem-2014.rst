@@ -1,5 +1,5 @@
 .. post:: 2014/01/18 20:48:53
-   :tags: Python, Nuitka
+   :tags: Python, Nuitka, europython, conference
    :author: Kay Hayen
 
 ##########################

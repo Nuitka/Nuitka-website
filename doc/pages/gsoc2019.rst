@@ -13,9 +13,9 @@ to be joined by the students in this. We are experienced coders and have
 mentored during day jobs. And definitely we look forward to having fun
 with this.
 
-##############
+**************
  About Nuitka
-##############
+**************
 
 Nuitka is a project to write a Python compiler in Python. Unlike PyPy,
 it is about static compilation, and aims to be less complex, but fully
@@ -27,9 +27,8 @@ full summary and consider reading the `user manual
 <http://nuitka.net/doc/developer-manual.html>`__ for further
 clarification.
 
-************
- What we do
-************
+What we do
+==========
 
 The software created is a compiler that is a drop-in replacement for
 CPython and derivatives like Anaconda.
@@ -38,41 +37,37 @@ It aims at accelerating Python closer to C level while maintaining the
 full compatibility, while also delivering an option for deployment of
 applications in a standalone fashion.
 
-************************
- Why is it interesting?
-************************
+Why is it interesting?
+======================
 
 Python is used in a lot of places, but when it comes to performance,
 other languages are used, have to be used. Nuitka aims at changing it.
 Making Python even more of a choice for high performance computing will
 make us famous, rich, or loved. Maybe even all of that.
 
-**************
- Who uses it?
-**************
+Who uses it?
+============
 
 Nuitka already has a lot of users. Many of these are most interested in
 the packaging side, but also some care about even tiny performance
 improvements, like the roughly 2x-3x speed up achieved in most cases.
 
-**********************************
- What languages is it written in?
-**********************************
+What languages is it written in?
+================================
 
 Nuitka is written in Python. It has a C run time, that for some ideas
 you would have to touch, for some you absolutely do not. There is a lot
 to be done in pure Python, esp. static optimization.
 
-**************************************
- How is it going to change the world?
-**************************************
+How is it going to change the world?
+====================================
 
 Being able to write C speed code in a language as simple as Python. What
 else to say. This is taking Python where it currently cannot be.
 
-###################
+*******************
  Contacting Nuitka
-###################
+*******************
 
 For the purpose of GSoC the Nuitka development mailing list (since
 closed) can be used, as well as private email. We will be reachable via
@@ -80,9 +75,9 @@ Hangout/Duo calls on a regular basis.
 
 We will be able to accommodate all time zones somehow.
 
-#################
+*****************
  Getting Started
-#################
+*****************
 
 Nuitka setup is trivial and explained in the `User Manual
 <http://nuitka.net/doc/user-manual.html>`_. Using Anaconda Python on
@@ -96,9 +91,9 @@ guide you through that, it's easy. We are not very formal, but helpful.
 Remember, Nuitka must be the title of your application or else Google
 will not know what it is about.
 
-#########
+*********
  Mentors
-#########
+*********
 
 -  Kay Hayen <kay.hayen@gmail.com>, creator of Nuitka
 
@@ -110,13 +105,12 @@ will not know what it is about.
 
 -  Vaibhav Tulsyan <vstulsyan@gmail.com>, expert mentor and Pythonista
 
-#######
+*******
  Ideas
-#######
+*******
 
-***********************************
- 1. Nuitka support for PyPI top 50
-***********************************
+1. Nuitka support for PyPI top 50
+=================================
 
 Project description: Nuitka works with most software. The aim of this
 project is to make sure it's true for the top 50 packages on PyPI, by
@@ -195,9 +189,8 @@ Difficulty level: *Easy*
 Potential mentors: Vaibhav Tulsyan, Kay Hayen, Kamran Ghanaat, Jorj X.
 McKie
 
-**************************************
- 2. Nuitka one file standalone option
-**************************************
+2. Nuitka one file standalone option
+====================================
 
 Project description: Nuitka has a mode meant for distribution to another
 system that puts everything needed in a single folder with a ``.dist``
@@ -227,9 +220,8 @@ Difficulty level: *Easy*
 
 Potential mentors: Jorj X. McKie, Kay Hayen, Kamran Ghanaat
 
-**********************
- 3. Nuitka benchmarks
-**********************
+3. Nuitka benchmarks
+====================
 
 Project description: Nuitka has too little in the way of measuring the
 actual performance gains one has. You would change that.
@@ -263,9 +255,8 @@ Difficulty level: *Intermediate*
 Potential mentors: Kay Hayen, Vaibhav Tulsyan, Kamran Ghanaat, Jorj X.
 McKie
 
-*************************
- 4. Nuitka all built-ins
-*************************
+4. Nuitka all built-ins
+=======================
 
 Project description: Nuitka has support for many built-ins, e.g. ``len``
 already, which means dedicated C code, compile time evaluation, type
@@ -320,9 +311,8 @@ Difficulty level: *Intermediate*
 Potential mentors: Kay Hayen, Vaibhav Tulsyan, Kamran Ghanaat, Jorj X.
 McKie
 
-********************
- 5. Nuitka macOS CI
-********************
+5. Nuitka macOS CI
+==================
 
 Project description: Nuitka has currently no CI for macOS, which means
 it can be broken in any release.
@@ -349,9 +339,9 @@ Difficulty level: *Hard*
    and due to higher than expected interest in ideas that are more
    valuable.
 
-##########
+**********
  Timeline
-##########
+**********
 
 This is time line as relevant for the students:
 
