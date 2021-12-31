@@ -9,7 +9,7 @@
 When working on my Python compiler Nuitka, I often come across
 ridiculous language details of the Python language, and turn these into
 quizzes, for which I finally added a `dedicated quiz tag
-</categories/quiz.html>`__.
+</blog/tag/quiz.html>`__.
 
 Anyway, who can predict, what these will do to you:
 
