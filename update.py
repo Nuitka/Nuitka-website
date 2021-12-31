@@ -332,15 +332,29 @@ def updateDownloadPage():
 
         return max_release, max_prerelease
 
-    max_rhel6_release, max_rhel6_prerelease = checkOBS("RedHat_RHEL-6")
-    max_rhel7_release, max_rhel7_prerelease = checkOBS("RedHat_RHEL-7")
+    min_rhel = 6
+    max_rhel = 7
+    min_fedora = 28
+    max_fedora = 35
+
+    rhel_rpm = {}
+    for rhel_number in range(min_rhel,max_rhel+1):
+        stable, develop = checkOBS("RedHat_RHEL-%d" % rhel_number)
+
+        rhel_rpm["stable", rhel_number] = stable
+        rhel_rpm["develop", rhel_number] = develop
 
     max_centos6_release, max_centos6_prerelease = checkOBS("CentOS_CentOS-6")
     max_centos7_release, max_centos7_prerelease = checkOBS("CentOS_7")
     max_centos8_release, max_centos8_prerelease = checkOBS("CentOS_8")
 
-    min_fedora = 28
-    max_fedora = 35
+    centos_rpm = {}
+    centos_rpm["stable", 6] = max_centos6_release
+    centos_rpm["develop", 6] = max_centos6_prerelease
+    centos_rpm["stable", 7] = max_centos7_release
+    centos_rpm["develop", 7] = max_centos7_prerelease
+    centos_rpm["stable", 8] = max_centos8_release
+    centos_rpm["develop", 8] = max_centos8_prerelease
 
     fedora_rpm = {}
     for fedora_number in range(min_fedora, max_fedora + 1):
@@ -375,16 +389,6 @@ def updateDownloadPage():
         "deb_prerelease": max_pre_release,
         "plain_stable": makePlain(max_stable_release),
         "deb_stable": max_stable_release,
-        "max_centos6_release": max_centos6_release,
-        "centos6_stable": max_centos6_release.replace("-5.1", ""),
-        "max_centos7_release": max_centos7_release,
-        "centos7_stable": max_centos7_release.replace("-5.1", ""),
-        "max_centos8_release": max_centos8_release,
-        "centos8_stable": max_centos8_release.replace("-5.1", ""),
-        "max_rhel6_release": max_rhel6_release,
-        "rhel6_stable": max_rhel6_release.replace("-5.1", ""),
-        "max_rhel7_release": max_rhel7_release,
-        "rhel7_stable": max_rhel7_release.replace("-5.1", ""),
         "max_suse_131_release": max_suse_131_release,
         "suse_131_stable": max_suse_131_release.replace("-5.1", ""),
         "max_suse_132_release": max_suse_132_release,
@@ -398,16 +402,6 @@ def updateDownloadPage():
         "max_sle_150_release": max_sle_150_release,
         "sle_150_stable": max_sle_150_release.replace("-5.1", ""),
         # Unstable
-        "max_centos6_prerelease": max_centos6_prerelease,
-        "centos6_unstable": max_centos6_prerelease.replace("-5.1", ""),
-        "max_centos7_prerelease": max_centos7_prerelease,
-        "centos7_unstable": max_centos7_prerelease.replace("-5.1", ""),
-        "max_centos8_prerelease": max_centos8_prerelease,
-        "centos8_unstable": max_centos8_prerelease.replace("-5.1", ""),
-        "max_rhel6_prerelease": max_rhel6_prerelease,
-        "rhel6_unstable": max_rhel6_prerelease.replace("-5.1", ""),
-        "max_rhel7_prerelease": max_rhel7_prerelease,
-        "rhel7_unstable": max_rhel7_prerelease.replace("-5.1", ""),
         "max_suse_131_prerelease": max_suse_131_prerelease,
         "suse_131_unstable": max_suse_131_prerelease.replace("-5.1", ""),
         "max_suse_132_prerelease": max_suse_132_prerelease,
@@ -432,11 +426,6 @@ def updateDownloadPage():
         "NUITKA_UNSTABLE_TAR_BZ": r"`Nuitka %(plain_prerelease)s (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.bz2>`__",
         "NUITKA_UNSTABLE_ZIP": r"`Nuitka %(plain_prerelease)s (1.2 MB zip) <https://nuitka.net/releases/Nuitka-%(plain_prerelease)s.zip>`__",
         "NUITKA_UNSTABLE_DEBIAN": r"`Nuitka %(plain_prerelease)s (0.2 MB deb) <https://nuitka.net/releases/nuitka_%(deb_prerelease)s_all.deb>`__",
-        "NUITKA_STABLE_RHEL6": r"`Nuitka %(rhel6_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-%(max_rhel6_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_RHEL7": r"`Nuitka %(rhel7_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-%(max_rhel7_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_CENTOS6": r"`Nuitka %(centos6_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-%(max_centos6_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_CENTOS7": r"`Nuitka %(centos7_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-%(max_centos7_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_CENTOS8": r"`Nuitka %(centos8_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-%(max_centos8_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE131": r"`Nuitka %(suse_131_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-%(max_suse_131_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE132": r"`Nuitka %(suse_132_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-%(max_suse_132_release)s.noarch.rpm>`__",
         "NUITKA_STABLE_SUSE150": r"`Nuitka %(suse_150_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-%(max_suse_150_release)s.noarch.rpm>`__",
@@ -449,11 +438,6 @@ def updateDownloadPage():
         "NUITKA_UNSTABLE_SUSE151": r"`Nuitka %(suse_151_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-unstable-%(max_suse_151_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_SUSE152": r"`Nuitka %(suse_152_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-unstable-%(max_suse_152_prerelease)s.noarch.rpm>`__",
         "NUITKA_UNSTABLE_SLE150": r"`Nuitka %(sle_150_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-unstable-%(max_sle_150_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_RHEL6": r"`Nuitka %(rhel6_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-unstable-%(max_rhel6_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_RHEL7": r"`Nuitka %(rhel6_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-unstable-%(max_rhel7_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_CENTOS6": r"`Nuitka %(centos6_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-unstable-%(max_centos6_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_CENTOS7": r"`Nuitka %(centos7_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-unstable-%(max_centos7_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_CENTOS8": r"`Nuitka %(centos7_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-unstable-%(max_centos8_prerelease)s.noarch.rpm>`__",
         "NUITKA_STABLE_VERSION": "%(plain_stable)s",
     }
 
@@ -502,6 +486,18 @@ def updateDownloadPage():
 
         return f"""Nuitka {version.split("-", 1)[0]}"""
 
+    def makeCentOSText(centos_number, release):
+        version = centos_rpm[release, centos_number]
+
+        return f"""Nuitka {version.split("-", 1)[0]}"""
+
+
+    def makeRHELText(rhel_number, release):
+        version = rhel_rpm[release, rhel_number]
+
+        return f"""Nuitka {version.split("-", 1)[0]}"""
+
+
     def makeRepoLinkText(repo_name):
         return f"""`repository file <https://download.opensuse.org/repositories/home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"""
 
@@ -519,11 +515,41 @@ def updateDownloadPage():
         [["Fedora Version", "RPM Repository", "Stable", "Develop"]] + fedora_data
     )
 
+    centos_data = [
+        ("CentOS 8", makeRepoLinkText(f"CentOS_8"), makeCentOSText(8, "stable"),
+            makeCentOSText(8, "develop"),
+        ),
+        ("CentOS 7", makeRepoLinkText(f"CentOS_7"), makeCentOSText(7, "stable"),
+            makeCentOSText(7, "develop"),
+        ),
+        ("CentOS 6", makeRepoLinkText(f"CentOS_CentOS-6"), makeCentOSText(6, "stable"),
+            makeCentOSText(6, "develop"),
+        )
+    ]
+
+    centos_table = makeTable(
+        [["CentOS Version", "RPM Repository", "Stable", "Develop"]] + centos_data
+    )
+
+    rhel_data = [
+        (
+            f"RHEL {rhel_number}",
+            makeRepoLinkText(f"RedHat_RHEL-%d" % rhel_number),
+            makeRHELText(rhel_number, "stable"),
+            makeRHELText(rhel_number, "develop"),
+        )
+        for rhel_number in range(max_rhel, min_rhel - 1, -1)
+    ]
+
+    rhel_table = makeTable(
+        [["RHEL Version", "RPM Repository", "Stable", "Develop"]] + rhel_data
+    )
+
+
     template_context = {
-        "max_fedora": max_fedora,
-        "min_fedora": min_fedora,
-        "fedora_rpm": fedora_rpm,
         "fedora_table": fedora_table,
+        "centos_table": centos_table,
+        "rhel_table": rhel_table,
     }
 
     download_page = page_template.render(name=page_template.name, **template_context)
@@ -848,7 +874,7 @@ When given, all is updated. Default %default.""",
         options.build = True
         options.deploy = True
 
-    if options.docs or options.downloads:
+    if options.docs or options.build:
         updateNuitkaMaster(update=True)
         updateNuitkaDevelop(update=True)
         updateNuitkaFactory(update=True)

@@ -169,57 +169,41 @@ Debian/Ubuntu/Mint
 RHEL
 ====
 
--  |RHEL_LOGO| Stable: RHEL 6.x Packages: |NUITKA_STABLE_RHEL6| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/home:kayhayen.repo>`__
+.. code:: bash
 
--  |RHEL_LOGO| Stable: RHEL 7.x Packages: |NUITKA_STABLE_RHEL7| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/home:kayhayen.repo>`__
+   # Detect the RHEL version
+   eval `grep VERSION_ID= /etc/os-release`
 
--  |RHEL_LOGO| Develop: RHEL 6.x Packages: |NUITKA_UNSTABLE_RHEL6| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/home:kayhayen.repo>`__
+   yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-${VERSION_ID}/home:kayhayen.repo
 
--  |RHEL_LOGO| Develop: RHEL 7.x Packages: |NUITKA_UNSTABLE_RHEL7| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/home:kayhayen.repo>`__
+   # Install either the these, but not both
+   yum install nuitka
+   yum install nuitka-unstable
+
+{{ rhel_table }}
 
 CentOS
 ======
 
--  |CENTOS_LOGO| Stable: CentOS 6.x Packages: |NUITKA_STABLE_CENTOS6| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo>`__
+.. code:: bash
 
--  |CENTOS_LOGO| Stable: CentOS 7.x Packages: |NUITKA_STABLE_CENTOS7| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo>`__
+   # CentOS 6:
+   yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo
+   # CentOS 7
+   yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo
+   # CentOS 8
+   yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo
 
--  |CENTOS_LOGO| Stable: CentOS 8.x Packages: |NUITKA_STABLE_CENTOS8| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo>`__
+   # Install either the these, but not both
+   yum install nuitka
+   yum install nuitka-unstable
 
--  |CENTOS_LOGO| Develop: CentOS 6.x Packages: |NUITKA_UNSTABLE_CENTOS6|
-   or `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo>`__
-
--  |CENTOS_LOGO| Develop: CentOS 7.x Packages: |NUITKA_UNSTABLE_CENTOS7|
-   or `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo>`__
-
--  |CENTOS_LOGO| Develop: CentOS 8.x Packages: |NUITKA_UNSTABLE_CENTOS8|
-   or `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo>`__
+{{ centos_table }}
 
 Fedora
 ======
 
 |FEDORA_LOGO| repositories
-
-You can install a repository for automatic updates (repo file) or download
-the RPM directory and install it. The repo contains both stable and develop versions, just
-the RPM names are different.
 
 .. code:: bash
 
@@ -234,7 +218,6 @@ the RPM names are different.
    dnf install nuitka-unstable
 
 {{ fedora_table }}
-
 
 Suse
 ====
@@ -503,26 +486,6 @@ Github.
 
    `Nuitka 0.6.18.4 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py39.msi>`__
 
-.. |NUITKA_STABLE_CENTOS6| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_CENTOS7| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_CENTOS8| replace::
-
-   `Nuitka 0.6.18.5-5.2 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-0.6.18.5-5.2.noarch.rpm>`__
-
-.. |NUITKA_STABLE_RHEL6| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_RHEL7| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
 .. |NUITKA_STABLE_SUSE131| replace::
 
    `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
@@ -546,26 +509,6 @@ Github.
 .. |NUITKA_STABLE_SLE150| replace::
 
    `Nuitka 0.6.18.5-bp150.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-0.6.18.5-bp150.5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_CENTOS6| replace::
-
-   `Nuitka 0.6.18rc8-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/noarch/nuitka-unstable-0.6.18rc8-6.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_CENTOS7| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_CENTOS8| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/noarch/nuitka-unstable-0.6.19rc5-5.2.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_RHEL6| replace::
-
-   `Nuitka 0.6.18rc8-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/noarch/nuitka-unstable-0.6.18rc8-6.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_RHEL7| replace::
-
-   `Nuitka 0.6.18rc8-6.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
 
 .. |NUITKA_UNSTABLE_SUSE131| replace::
 
