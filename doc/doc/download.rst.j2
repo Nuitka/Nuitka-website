@@ -6,8 +6,7 @@
  General
 *****************
 
-Thank you for downloading Nuitka. Please consider becoming a subscriber. Downloads are
-available below in various formats.
+Thank you for downloading Nuitka. Please consider becoming a Nuitka commercial subscriber.
 
 .. raw:: html
 
@@ -32,38 +31,59 @@ available below in various formats.
         <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQ8gKXjTPukmeULWnjqSWWOKzopxEQ-LqfPYbvHE4wEPuYTnj3JmYFc8fm-EriAYgXzEbI-kWwaaQN/embed?rm=minimal&start=true&loop=true&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
     </div>
 
-The current release is Nuitka |NUITKA_STABLE_VERSION|, during releases,
-it might happen that this information lags behind or that there is a new
-release not yet announced.
+You may also learn more about `Nuitka Commercial </doc/commercial.html>`__ offering.
 
-*****************
- Source Archives
-*****************
+The current release is Nuitka {{stable_version}}. Stable releases are supported with hot fixes, indicated by the last
+of the 4 digits.
 
-These archives are source and can be used directly after unpacking, simply start with
-``bin/nuitka --help`` and read ``README.pdf`` or ``README.rst`` to get started.
+.. note::
 
-Stable Sources
-==============
+   Stable releases are supposed to work for you. Develop releases are snapshots of
+   the current ``develop`` branch in git, usually also relatively stable, but also
+   rarely break.
 
-Stable releases are supported with hot fixes.
+.. note::
 
--  Stable: |NUITKA_STABLE_TAR_GZ|
+   During releases package builds can lag behind for a couple of days.
 
--  Stable: |NUITKA_STABLE_TAR_BZ|
 
--  Stable: |NUITKA_STABLE_ZIP|
+******
+ PyPI
+******
 
-Development Sources
-===================
+There is `Nuitka on PyPI <http://pypi.python.org/pypi/Nuitka/>`_ as
+well. So you can install with ``pip`` as follows.
 
-Develop releases are snapshots of the current ``develop`` branch in git, usually also relatively stable.
 
--  Develop: |NUITKA_UNSTABLE_TAR_GZ|
+.. note::
 
--  Develop: |NUITKA_UNSTABLE_TAR_BZ|
+   The stable version from PyPI can be installed via pip, and has no dependencies on
+   any package, and is a source package, so you will have an easy time, even on e.g. Windows
+   to use it.
 
--  Develop: |NUITKA_UNSTABLE_ZIP|
+.. code:: bash
+
+   # Stable version
+   python -m pip install -U nuitka
+
+   # Develop version
+   pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
+
+.. note::
+
+   Do this this the python binary, you want to be compiled against.
+
+*********
+ Sources
+*********
+
+{{source_table}}
+
+.. note::
+
+   The source archives can be used directly after unpacking, simply start with
+   ``python bin/nuitka --help`` and read ``README.pdf`` or ``README.rst`` to get started. Take
+   especially care to read the User Manual, such that you don't go on a wrong track.
 
 **********
  Packages
@@ -78,6 +98,10 @@ Windows
 
       The versions of the MSI have a different numbering scheme in their
       filenames, explained in the user manual.
+
+      Also, it's recommended to use PyPI and pip based installation on
+      Windows, as MSI cannot be used e.g. with ``virtualenv`` and other
+      clever dependency management tools.
 
    +---------------+---------------------------+---------------------------+
    | Python        | MSI 64 Bits               | MSI 32 Bits               |
@@ -169,6 +193,8 @@ Debian/Ubuntu/Mint
 RHEL
 ====
 
+|RHEL_LOGO| repositories
+
 .. code:: bash
 
    # Detect the RHEL version
@@ -184,6 +210,8 @@ RHEL
 
 CentOS
 ======
+
+|CENTOS_LOGO| repositories
 
 .. code:: bash
 
@@ -222,52 +250,22 @@ Fedora
 Suse
 ====
 
--  |SLE_LOGO| Stable: SLE 15: |NUITKA_STABLE_SLE150| or `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/SLE_15/home:kayhayen.repo>`__
+|SUSE_LOGO| repositories
 
--  |SUSE_LOGO| Stable: openSUSE 13.1: |NUITKA_STABLE_SUSE131| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/home:kayhayen.repo>`__
+.. code:: bash
 
--  |SUSE_LOGO| Stable: openSUSE 13.2: |NUITKA_STABLE_SUSE132| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/home:kayhayen.repo>`__
+   # Detect the OpenSUSE leap version
+   eval `grep VERSION_ID= /etc/os-release`
 
--  |SUSE_LOGO| Stable: openSUSE 15.0: |NUITKA_STABLE_SUSE150| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/home:kayhayen.repo>`__
+   # Add Nuitka repo
+   zypper ar -f https://download.opensuse.org/repositories/home:/kayhayen/Open_${VERSION_ID}/home:kayhayen.repo
 
--  |SUSE_LOGO| Stable: openSUSE 15.1: |NUITKA_STABLE_SUSE151| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/home:kayhayen.repo>`__
+   # Install either the these, but not both
+   zypper install nuitka
+   zypper install nuitka-unstable
 
--  |SUSE_LOGO| Stable: openSUSE 15.2: |NUITKA_STABLE_SUSE152| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/home:kayhayen.repo>`__
+{{ suse_table }}
 
--  |SLE_LOGO| Develop: SLE 15: |NUITKA_UNSTABLE_SLE150| or `repository
-   file
-   <http://download.opensuse.org/repositories/home:/kayhayen/SLE_15/home:kayhayen.repo>`__
-
--  |SUSE_LOGO| Develop: openSUSE 13.1: |NUITKA_UNSTABLE_SUSE131| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/home:kayhayen.repo>`__
-
--  |SUSE_LOGO| Develop: openSUSE 13.2: |NUITKA_UNSTABLE_SUSE132| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/home:kayhayen.repo>`__
-
--  |SUSE_LOGO| Develop: openSUSE 15.0: |NUITKA_UNSTABLE_SUSE150| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/home:kayhayen.repo>`__
-
--  |SUSE_LOGO| Develop: openSUSE 15.1: |NUITKA_UNSTABLE_SUSE151| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/home:kayhayen.repo>`__
-
--  |SUSE_LOGO| Develop: openSUSE 15.2: |NUITKA_UNSTABLE_SUSE152| or
-   `repository file
-   <http://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/home:kayhayen.repo>`__
 
 Arch
 ====
@@ -288,32 +286,6 @@ macOS
 No installer is available for macOS. Use the source packages, clone from
 git, or use PyPI.
 
-************
- PyPI / pip
-************
-
-There is `Nuitka on PyPI <http://pypi.python.org/pypi/Nuitka/>`_ as
-well. So you can install with ``pip`` as follows.
-
-Stable
-======
-
-The stable version from PyPI can be installed like this:
-
-.. code:: bash
-
-   pip install -U nuitka
-
-Develop
-=======
-
-The develop version can be fetched from the Official git repo of Nuitka
-like this:
-
-.. code:: bash
-
-   pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
-
 ********
  Github
 ********
@@ -326,37 +298,6 @@ like this:
 Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on
 Github.
 
-.. |NUITKA_STABLE_VERSION| replace::
-
-   0.6.18.5
-
-.. |NUITKA_STABLE_TAR_GZ| replace::
-
-   `Nuitka 0.6.18.5 (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-0.6.18.5.tar.gz>`__
-
-.. |NUITKA_STABLE_TAR_BZ| replace::
-
-   `Nuitka 0.6.18.5 (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-0.6.18.5.tar.bz2>`__
-
-.. |NUITKA_STABLE_ZIP| replace::
-
-   `Nuitka 0.6.18.5 (1.1 MB zip) <https://nuitka.net/releases/Nuitka-0.6.18.5.zip>`__
-
-.. |NUITKA_UNSTABLE_TAR_GZ| replace::
-
-   `Nuitka 0.6.19rc6 (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-0.6.19rc6.tar.gz>`__
-
-.. |NUITKA_UNSTABLE_TAR_BZ| replace::
-
-   `Nuitka 0.6.19rc6 (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-0.6.19rc6.tar.bz2>`__
-
-.. |NUITKA_UNSTABLE_ZIP| replace::
-
-   `Nuitka 0.6.19rc6 (1.2 MB zip) <https://nuitka.net/releases/Nuitka-0.6.19rc6.zip>`__
-
-.. |NUITKA_STABLE_WININST| replace::
-
-   `Nuitka 0.6.18.5 (1.2 MB exe) <https://nuitka.net/releases/Nuitka-0.6.18.5.win32.exe>`__
 
 .. |NUITKA_UNSTABLE_MSI_27_32| replace::
 
@@ -486,54 +427,6 @@ Github.
 
    `Nuitka 0.6.18.4 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-6.1.184.win-amd64.py39.msi>`__
 
-.. |NUITKA_STABLE_SUSE131| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_SUSE132| replace::
-
-   `Nuitka 0.6.18.5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-0.6.18.5-5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_SUSE150| replace::
-
-   `Nuitka 0.6.18.5-lp150.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-0.6.18.5-lp150.5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_SUSE151| replace::
-
-   `Nuitka 0.6.18.5-lp151.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-0.6.18.5-lp151.5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_SUSE152| replace::
-
-   `Nuitka 0.6.18.5-lp152.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-0.6.18.5-lp152.5.1.noarch.rpm>`__
-
-.. |NUITKA_STABLE_SLE150| replace::
-
-   `Nuitka 0.6.18.5-bp150.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-0.6.18.5-bp150.5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_SUSE131| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_SUSE132| replace::
-
-   `Nuitka 0.6.19rc5 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-unstable-0.6.19rc5-5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_SUSE150| replace::
-
-   `Nuitka 0.6.19rc5-lp150.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-unstable-0.6.19rc5-lp150.5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_SUSE151| replace::
-
-   `Nuitka 0.6.19rc5-lp151.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-unstable-0.6.19rc5-lp151.5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_SUSE152| replace::
-
-   `Nuitka 0.6.19rc5-lp152.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-unstable-0.6.19rc5-lp152.5.1.noarch.rpm>`__
-
-.. |NUITKA_UNSTABLE_SLE150| replace::
-
-   `Nuitka 0.6.19rc5-bp150.5.1 RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-unstable-0.6.19rc5-bp150.5.1.noarch.rpm>`__
-
 .. |DEBIAN_LOGO| image:: images/debian.png
 
 .. |UBUNTU_LOGO| image:: images/ubuntu.png
@@ -547,8 +440,6 @@ Github.
 .. |FEDORA_LOGO| image:: images/fedora.png
 
 .. |SUSE_LOGO| image:: images/opensuse.png
-
-.. |SLE_LOGO| image:: images/opensuse.png
 
 .. |WINDOWS_LOGO| image:: images/windows.jpg
 

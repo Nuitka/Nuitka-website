@@ -234,7 +234,8 @@ def updateDownloadPage():
         "Max pre-release is %s %s " % (max_pre_release, makePlain(max_pre_release))
     )
     my_print(
-        "Max stable release is %s %s " % (max_stable_release, makePlain(max_stable_release))
+        "Max stable release is %s %s "
+        % (max_stable_release, makePlain(max_stable_release))
     )
 
     output = ""
@@ -338,7 +339,7 @@ def updateDownloadPage():
     max_fedora = 35
 
     rhel_rpm = {}
-    for rhel_number in range(min_rhel,max_rhel+1):
+    for rhel_number in range(min_rhel, max_rhel + 1):
         stable, develop = checkOBS("RedHat_RHEL-%d" % rhel_number)
 
         rhel_rpm["stable", rhel_number] = stable
@@ -363,11 +364,14 @@ def updateDownloadPage():
         fedora_rpm["stable", fedora_number] = stable
         fedora_rpm["develop", fedora_number] = develop
 
-    max_suse_131_release, max_suse_131_prerelease = checkOBS("openSUSE_13.1")
-    max_suse_132_release, max_suse_132_prerelease = checkOBS("openSUSE_13.2")
-    max_suse_150_release, max_suse_150_prerelease = checkOBS("openSUSE_Leap_15.0")
-    max_suse_151_release, max_suse_151_prerelease = checkOBS("openSUSE_Leap_15.1")
-    max_suse_152_release, max_suse_152_prerelease = checkOBS("openSUSE_Leap_15.2")
+    opensuse_rpm = {}
+
+    max_leap_minor = 3
+    for leap_minor in range(0,max_leap_minor+1):
+        stable, develop = checkOBS(f"openSUSE_Leap_15.{leap_minor}")
+
+        opensuse_rpm["stable", leap_minor] = stable
+        opensuse_rpm["develop", leap_minor] = develop
 
     max_sle_150_release, max_sle_150_prerelease = checkOBS("SLE_15")
 
@@ -389,79 +393,9 @@ def updateDownloadPage():
         "deb_prerelease": max_pre_release,
         "plain_stable": makePlain(max_stable_release),
         "deb_stable": max_stable_release,
-        "max_suse_131_release": max_suse_131_release,
-        "suse_131_stable": max_suse_131_release.replace("-5.1", ""),
-        "max_suse_132_release": max_suse_132_release,
-        "suse_132_stable": max_suse_132_release.replace("-5.1", ""),
-        "max_suse_150_release": max_suse_150_release,
-        "suse_150_stable": max_suse_150_release.replace("-5.1", ""),
-        "max_suse_151_release": max_suse_151_release,
-        "suse_151_stable": max_suse_151_release.replace("-5.1", ""),
-        "max_suse_152_release": max_suse_152_release,
-        "suse_152_stable": max_suse_152_release.replace("-5.1", ""),
-        "max_sle_150_release": max_sle_150_release,
-        "sle_150_stable": max_sle_150_release.replace("-5.1", ""),
-        # Unstable
-        "max_suse_131_prerelease": max_suse_131_prerelease,
-        "suse_131_unstable": max_suse_131_prerelease.replace("-5.1", ""),
-        "max_suse_132_prerelease": max_suse_132_prerelease,
-        "suse_132_unstable": max_suse_132_prerelease.replace("-5.1", ""),
-        "max_suse_150_prerelease": max_suse_150_prerelease,
-        "suse_150_unstable": max_suse_150_prerelease.replace("-5.1", ""),
-        "max_suse_151_prerelease": max_suse_151_prerelease,
-        "suse_151_unstable": max_suse_151_prerelease.replace("-5.1", ""),
-        "max_suse_152_prerelease": max_suse_152_prerelease,
-        "suse_152_unstable": max_suse_152_prerelease.replace("-5.1", ""),
-        "max_sle_150_prerelease": max_sle_150_prerelease,
-        "sle_150_unstable": max_sle_150_prerelease.replace("-5.1", ""),
     }
 
-    templates = {
-        "NUITKA_STABLE_TAR_GZ": r"`Nuitka %(plain_stable)s (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.gz>`__",
-        "NUITKA_STABLE_TAR_BZ": r"`Nuitka %(plain_stable)s (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-%(plain_stable)s.tar.bz2>`__",
-        "NUITKA_STABLE_ZIP": r"`Nuitka %(plain_stable)s (1.1 MB zip) <https://nuitka.net/releases/Nuitka-%(plain_stable)s.zip>`__",
-        "NUITKA_STABLE_WININST": r"`Nuitka %(plain_stable)s (1.2 MB exe) <https://nuitka.net/releases/Nuitka-%(plain_stable)s.win32.exe>`__",
-        "NUITKA_STABLE_DEBIAN": r"`Nuitka %(plain_stable)s (0.2 MB deb) <https://nuitka.net/releases/nuitka_%(deb_stable)s_all.deb>`__",
-        "NUITKA_UNSTABLE_TAR_GZ": r"`Nuitka %(plain_prerelease)s (0.6 MB tar.gz) <https://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.gz>`__",
-        "NUITKA_UNSTABLE_TAR_BZ": r"`Nuitka %(plain_prerelease)s (0.5 MB tar.bz2) <https://nuitka.net/releases/Nuitka-%(plain_prerelease)s.tar.bz2>`__",
-        "NUITKA_UNSTABLE_ZIP": r"`Nuitka %(plain_prerelease)s (1.2 MB zip) <https://nuitka.net/releases/Nuitka-%(plain_prerelease)s.zip>`__",
-        "NUITKA_UNSTABLE_DEBIAN": r"`Nuitka %(plain_prerelease)s (0.2 MB deb) <https://nuitka.net/releases/nuitka_%(deb_prerelease)s_all.deb>`__",
-        "NUITKA_STABLE_SUSE131": r"`Nuitka %(suse_131_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-%(max_suse_131_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_SUSE132": r"`Nuitka %(suse_132_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-%(max_suse_132_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_SUSE150": r"`Nuitka %(suse_150_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-%(max_suse_150_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_SUSE151": r"`Nuitka %(suse_151_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-%(max_suse_151_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_SUSE152": r"`Nuitka %(suse_152_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-%(max_suse_152_release)s.noarch.rpm>`__",
-        "NUITKA_STABLE_SLE150": r"`Nuitka %(sle_150_stable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-%(max_sle_150_release)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_SUSE131": r"`Nuitka %(suse_131_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.1/noarch/nuitka-unstable-%(max_suse_131_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_SUSE132": r"`Nuitka %(suse_132_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_13.2/noarch/nuitka-unstable-%(max_suse_132_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_SUSE150": r"`Nuitka %(suse_150_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/noarch/nuitka-unstable-%(max_suse_150_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_SUSE151": r"`Nuitka %(suse_151_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/noarch/nuitka-unstable-%(max_suse_151_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_SUSE152": r"`Nuitka %(suse_152_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/noarch/nuitka-unstable-%(max_suse_152_prerelease)s.noarch.rpm>`__",
-        "NUITKA_UNSTABLE_SLE150": r"`Nuitka %(sle_150_unstable)s RPM <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/noarch/nuitka-unstable-%(max_sle_150_prerelease)s.noarch.rpm>`__",
-        "NUITKA_STABLE_VERSION": "%(plain_stable)s",
-    }
-
-    for (category, code_name), (release_number, release_url) in list(deb_info.items()):
-        if category == "stable":
-            release = "release"
-        elif category == "develop":
-            release = "prerelease"
-        elif category == "factory":
-            release = "factory"
-        else:
-            assert False, category
-
-        findings[code_name + "_" + release] = release_number[
-            : release_number.find("+ds")
-        ]
-        findings[code_name + "_" + release + "_url"] = release_url
-
-        templates[
-            "NUITKA_" + category.upper() + "_" + code_name.upper()
-        ] = """\
-`Nuitka %%(%(code_name)s_release)s (0.6 MB deb) <%%(%(code_name)s_release_url)s>`__""" % {
-            "code_name": code_name
-        }
+    templates = {}
 
     for (category, version, bits), filename in list(msi_info.items()):
         if category == "develop":
@@ -491,10 +425,17 @@ def updateDownloadPage():
 
         return f"""Nuitka {version.split("-", 1)[0]}"""
 
-
     def makeRHELText(rhel_number, release):
         version = rhel_rpm[release, rhel_number]
 
+        return f"""Nuitka {version.split("-", 1)[0]}"""
+
+    def makeLeapText(rhel_number, release):
+        version = opensuse_rpm[release, rhel_number]
+
+        return f"""Nuitka {version.split("-", 1)[0]}"""
+
+    def makeVersionText(version):
         return f"""Nuitka {version.split("-", 1)[0]}"""
 
 
@@ -516,15 +457,24 @@ def updateDownloadPage():
     )
 
     centos_data = [
-        ("CentOS 8", makeRepoLinkText(f"CentOS_8"), makeCentOSText(8, "stable"),
+        (
+            "CentOS 8",
+            makeRepoLinkText(f"CentOS_8"),
+            makeCentOSText(8, "stable"),
             makeCentOSText(8, "develop"),
         ),
-        ("CentOS 7", makeRepoLinkText(f"CentOS_7"), makeCentOSText(7, "stable"),
+        (
+            "CentOS 7",
+            makeRepoLinkText(f"CentOS_7"),
+            makeCentOSText(7, "stable"),
             makeCentOSText(7, "develop"),
         ),
-        ("CentOS 6", makeRepoLinkText(f"CentOS_CentOS-6"), makeCentOSText(6, "stable"),
+        (
+            "CentOS 6",
+            makeRepoLinkText(f"CentOS_CentOS-6"),
+            makeCentOSText(6, "stable"),
             makeCentOSText(6, "develop"),
-        )
+        ),
     ]
 
     centos_table = makeTable(
@@ -545,11 +495,55 @@ def updateDownloadPage():
         [["RHEL Version", "RPM Repository", "Stable", "Develop"]] + rhel_data
     )
 
+    suse_data = [
+        (
+            f"openSUSE Leap 15.{leap_minor}",
+            makeRepoLinkText(f"openSUSE_Leap_15.{leap_minor}"),
+            makeLeapText(leap_minor, "stable"),
+            makeLeapText(leap_minor, "develop"),
+        )
+        for leap_minor in range(0,max_leap_minor+1)
+    ]
+
+
+    suse_data.insert(0, (
+        "SLE 15",
+        makeRepoLinkText(f"SLE_15"),
+        makeVersionText(max_sle_150_release), makeVersionText(max_sle_150_prerelease))
+    )
+
+    suse_table = makeTable(
+        [["SUSE Version", "RPM Repository", "Stable", "Develop"]] + suse_data
+    )
+
+    plain_prerelease = makePlain(max_pre_release)
+    plain_stable = makePlain(max_stable_release)
+
+    source_table = makeTable(
+        [["Branch", "zip", "tar.gz", "tar.bz2"]]
+        + [
+            (
+                "Stable",
+                f"`Nuitka {plain_stable}.zip <https://nuitka.net/releases/Nuitka-{plain_stable}.zip>`__",
+                f"`Nuitka {plain_stable}.tar.gz <https://nuitka.net/releases/Nuitka-{plain_stable}.tar.gz>`__",
+                f"`Nuitka {plain_stable}.tar.bz2 <https://nuitka.net/releases/Nuitka-{plain_stable}.tar.bz2>`__",
+            ),
+            (
+                "Develop",
+                f"`Nuitka {plain_prerelease}.zip <https://nuitka.net/releases/Nuitka-{plain_prerelease}.zip>`__",
+                f"`Nuitka {plain_prerelease}.tar.gz <https://nuitka.net/releases/Nuitka-{plain_prerelease}.tar.gz>`__",
+                f"`Nuitka {plain_prerelease}.tar.bz2 <https://nuitka.net/releases/Nuitka-{plain_prerelease}.tar.bz2>`__",
+            ),
+        ]
+    )
 
     template_context = {
+        "stable_version" : plain_stable,
         "fedora_table": fedora_table,
         "centos_table": centos_table,
         "rhel_table": rhel_table,
+        "suse_table" : suse_table,
+        "source_table": source_table,
     }
 
     download_page = page_template.render(name=page_template.name, **template_context)
@@ -575,7 +569,8 @@ def updateDownloadPage():
         else:
             variable = None
 
-    open("doc/doc/download.rst", "wb").write(("\n".join(output) + "\n").encode("utf8"))
+    with withFileOpenedAndAutoformatted("doc/doc/download.rst") as output_file:
+        output_file.write("\n".join(output) + "\n")
 
 
 # slugify is copied from
@@ -727,9 +722,7 @@ def runSphinxBuild():
 
 
 def runSphinxAutoBuild():
-    os.system(
-        "python -m sphinx_autobuild doc output/ -a --watch doc --watch pages --watch Pipenv.lock"
-    )
+    os.system("python -m sphinx_autobuild doc output/ --watch doc --watch Pipenv.lock")
 
 
 def checkRstLint(document):
