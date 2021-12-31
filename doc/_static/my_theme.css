@@ -87,3 +87,77 @@
     color: white;
     text-align: left;
 }
+
+.socialbutton-wrapper {
+    height: 70px;
+    text-align:center;
+}
+
+.socialbutton-wrapper a {
+    text-decoration: none;
+}
+
+.share-button-container{
+    text-align: center;
+    margin: 0 0;
+    padding: 10px 0;
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+
+/* For share buttons to position into them absolute, this needs to be marked relative. */
+.rst-content {
+    position: relative;
+}
+
+.socialbutton {
+    width: 80px;
+    height: 45px;
+    margin-bottom: 0;
+    display: inline-block;
+
+    transition: all 500ms;
+    -webkit-transition: all 500ms;
+
+}
+
+.socialbutton:hover {
+    height: 70px;
+    margin-bottom: 0;
+}
+
+.socialbutton .shares {
+    opacity: 0;
+    transition: opacity 500ms;
+    -webkit-transition: opacity 500ms;
+    color: #fff;
+    text-align: center;
+    margin-top: 7px;
+}
+
+.socialbutton:hover .shares {
+    opacity: 1;
+}
+
+.socialbutton p {
+    margin: 0;
+    padding: 0;
+}
+
+.socialbutton p.icon {
+    text-align: center;
+    padding-top: 13px;
+}
+
+.socialbutton.twitter {
+    background-color: #5BC2F0;
+}
+
+.socialbutton.reddit {
+    background-color: #333333;
+}
+
+.socialbutton.facebook {
+    background-color: #435D96;
+}

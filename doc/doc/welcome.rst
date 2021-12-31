@@ -79,24 +79,37 @@ This page is used for experiments in web design with Sphinx.
 
 .. raw:: html
 
-    <style>
-        .responsive-google-slides {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Ratio */
-            height: 0;
-            overflow: hidden;
-        }
-        .responsive-google-slides iframe {
-            border: 0;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100% !important;
-            height: 100% !important;
-        }
-    </style>
+       <div class='share-button-container'>
+        <div class="socialbutton-wrapper">
+            <a href="https://twitter.com/share?url=https://www.nuitka.net&hashtags=nuitka" target="_blank">
+                <div class="socialbutton twitter" data-share-url="https://www.nuitka.net">
+                    <p class="icon">
+                        <img src="/_static/icon-twitter.png">
+                    </p>
 
-    <div class="responsive-google-slides">
-        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQ8gKXjTPukmeULWnjqSWWOKzopxEQ-LqfPYbvHE4wEPuYTnj3JmYFc8fm-EriAYgXzEbI-kWwaaQN/embed?rm=minimal&start=true&loop=true&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                    <p class="shares">share...</p>
+                </div>
+            </a>
+
+            <a href="https://www.facebook.com/sharer.php?u=https://www.nuitka.net&hashtag=%23nuitka"  target="_blank">
+                <div class="socialbutton facebook" data-share-url="https://www.nuitka.net">
+                    <p class="icon">
+                        <img src="/_static/icon-facebook.png">
+                    </p>
+
+                    <p class="shares">share...</p>
+                </div>
+            </a>
+
+
+            <a href="http://www.reddit.com/submit?url=https://www.nuitka.net" target="_blank">
+                <div class="socialbutton reddit">
+                    <p class="icon">
+                        <img src="/_static/icon-reddit.png">
+                    </p>
+
+                    <p class="shares">share...</p>
+                </div>
+            </a>
+        </div>
     </div>
-    <a href="/doc/commercial.html">Read more about it here...</a>

@@ -163,6 +163,3 @@ sphinxcontrib_asciinema_defaults = {
     'font-size': '1rem',
     'path': 'pages/demos'
 }
-
-# TODO: social buttons
-html_js_files = []

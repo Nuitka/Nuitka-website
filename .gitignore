@@ -1,15 +1,9 @@
 *.py[co]
-.doit.db*
-*.html
 *.tmp
-tmp/
-cache
 Nuitka-factory
 Nuitka-develop
 Nuitka-master
 output
 output.*
 .vscode/tags
-state_data.json
-doc_generated
 doc/Changelog.rst

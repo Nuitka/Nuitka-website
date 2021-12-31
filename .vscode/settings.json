@@ -11,4 +11,5 @@
     },
     "restructuredtext.confPath": "",
     "python.formatting.provider": "black",
+    "python.analysis.extraPaths": ["Nuitka-factory"]
 }
