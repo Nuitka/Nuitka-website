@@ -168,7 +168,7 @@ Funding
 =======
 
 Nuitka receives some, bit not quite enough `donations
-<http://nuitka.net/pages/donations.html>`_. There is no support from
+</pages/donations.html>`_. There is no support from
 organizations like e.g. the PSF, and it seems I better not hold my
 breath for it. I will travel to Europython 2015, and would ask you to
 support me with that, it's going to be expensive.
@@ -198,7 +198,7 @@ that has not changed. Things are going slower than necessary though, but
 that's probably very typical.
 
 But you can join and should do so now, just `follow this link
-<http://nuitka.net/doc/user-manual.html#join-nuitka>`_ or become part of
+</doc/user-manual.html#join-nuitka>`_ or become part of
 the mailing list (since closed) and help me there with request I make,
 e.g. review posts of mine, test out things, pick up small jobs, answer
 questions of newcomers, you know the drill probably.

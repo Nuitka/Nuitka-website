@@ -7,7 +7,7 @@
 ############################################
 
 Many of you who turn to my easy to use, highly compatible Python
-compiler `Nuitka <http://nuitka.net>`__, do this mostly because they
+compiler `Nuitka <https://nuitka.net>`__, do this mostly because they
 seek to solve the deployment problem that Python suffers from.
 
 Be this, because you want to use a newer Python2.7 on RHEL5 without
@@ -27,7 +27,7 @@ parts of it seemed to work, I did so. But truth to be sad, that feature
 is not nearly as polished in that release as you would like it to.
 
 In current `development releases
-<http://nuitka.net/pages/download.html>`__, of what is going to become
+</pages/download.html>`__, of what is going to become
 0.5.0 really soon now, it's much better already. More things actually
 work. But it appears, there will be more ground to cover, and this is a
 lot of stuff to sort out.
@@ -58,5 +58,5 @@ than seeking to avoid bugs as far as possible, I am going to rely on
 your participation.
 
 So join Nuitka. Now. `Download from here
-<http://nuitka.net/pages/download.html>`__. Join the mailing list (since
+</pages/download.html>`__. Join the mailing list (since
 closed). And help if you can. And yes you can.

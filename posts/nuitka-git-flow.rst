@@ -36,15 +36,15 @@ feature branches.
 So there is now always at least these 2 branches:
 
 -  Stable `(master branch)
-   <http://nuitka.net/gitweb/?p=Nuitka.git;a=shortlog;h=refs/heads/master>`_
+   <https://nuitka.net/gitweb/?p=Nuitka.git;a=shortlog;h=refs/heads/master>`_
 
 -  Unstable `(develop branch)
-   <http://nuitka.net/gitweb/?p=Nuitka.git;a=shortlog;h=refs/heads/develop>`_
+   <https://nuitka.net/gitweb/?p=Nuitka.git;a=shortlog;h=refs/heads/develop>`_
 
 and then there may be feature branches, like this one currently:
 
 -  Feature branch `minimize_CPython26_tests_diff
-   <http://nuitka.net/gitweb/?p=Nuitka.git;a=shortlog;h=refs/heads/feature/minimize_CPython26_tests_diff>`_
+   <https://nuitka.net/gitweb/?p=Nuitka.git;a=shortlog;h=refs/heads/feature/minimize_CPython26_tests_diff>`_
 
 These will only have certain life, until they are completed, then they
 are merge into "develop" and become part of the next release. This may

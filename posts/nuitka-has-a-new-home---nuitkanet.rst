@@ -15,7 +15,7 @@ a migration. It felt smooth from here, clearly, and the new site is much
 faster of course, because it's not throttled through my poor DSL
 upstream.
 
-I also registered it a domain name `"nuitka.net" <http://nuitka.net>`_
+I also registered it a domain name `"nuitka.net" <https://nuitka.net>`_
 for it finally. Originally I wanted to give it a DynDNS name, but I
 already have 2, and the third was supposed to cost money, and I didn't
 feel like using another service, or cheating them if you consider that

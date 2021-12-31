@@ -183,7 +183,7 @@ Funding
 =======
 
 Nuitka receives the occasional `donation
-<http://nuitka.net/pages/donations.html>`_ and those make me very happy.
+</pages/donations.html>`_ and those make me very happy.
 As there is no support from organization like the PSF, I am all on my
 own there.
 
@@ -198,7 +198,7 @@ Nuitka is making more and more break through progress. And you can be a
 part of it. Now.
 
 You can join and should do so now, just `follow this link
-<http://nuitka.net/doc/user-manual.html#join-nuitka>`_ or become part of
+</doc/user-manual.html#join-nuitka>`_ or become part of
 the mailing list (since closed) and help me there with request I make,
 e.g. review posts of mine, test out things, pick up small jobs, answer
 questions of newcomers, you know the drill probably.

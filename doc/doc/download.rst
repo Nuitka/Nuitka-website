@@ -171,8 +171,8 @@ Debian/Ubuntu/Mint
       then
          CODENAME=`lsb_release -c -s`
       fi
-      wget -O - http://nuitka.net/deb/archive.key.gpg | apt-key add -
-      echo >/etc/apt/sources.list.d/nuitka.list "deb http://nuitka.net/deb/stable/$CODENAME $CODENAME main"
+      wget -O - https://nuitka.net/deb/archive.key.gpg | apt-key add -
+      echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/stable/$CODENAME $CODENAME main"
       apt-get update
       apt-get install nuitka
 
@@ -186,8 +186,8 @@ Debian/Ubuntu/Mint
       then
          CODENAME=`lsb_release -c -s`
       fi
-      wget -O - http://nuitka.net/deb/archive.key.gpg | apt-key add -
-      echo >/etc/apt/sources.list.d/nuitka.list "deb http://nuitka.net/deb/develop/$CODENAME $CODENAME main"
+      wget -O - https://nuitka.net/deb/archive.key.gpg | apt-key add -
+      echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/develop/$CODENAME $CODENAME main"
       apt-get update
       apt-get install nuitka
 

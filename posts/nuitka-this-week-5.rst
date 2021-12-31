@@ -186,4 +186,4 @@ immediately, but I don't want to spend too much quality time on it.
 As I have been asked this, yes, you can donate to Nuitka if you wish to
 further its development. Go here:
 
-`Donate to Nuitka <http://nuitka.net/pages/donations.html>`_
+`Donate to Nuitka </pages/donations.html>`_

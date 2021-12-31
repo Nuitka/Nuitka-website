@@ -304,4 +304,4 @@ weekend for release.
 If you want to help, but cannot spend the time, please consider to
 donate to Nuitka, and go here:
 
-`Donate to Nuitka <http://nuitka.net/pages/donations.html>`_
+`Donate to Nuitka </pages/donations.html>`_

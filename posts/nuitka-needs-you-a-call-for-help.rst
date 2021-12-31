@@ -53,7 +53,7 @@ contained jobs that you may enjoy.
    a few temporary variables. Check the Nuitka source of it:
 
    `ReformulationWithStatements.py
-   <http://www.nuitka.net/gitweb/?p=Nuitka.git;a=blob;f=nuitka/tree/ReformulationWithStatements.py;h=2a2d5821e5a511201454e5ae8a7c979d48f04c4a;hb=HEAD>`_
+   <https://nuitka.net/gitweb/?p=Nuitka.git;a=blob;f=nuitka/tree/ReformulationWithStatements.py;h=2a2d5821e5a511201454e5ae8a7c979d48f04c4a;hb=HEAD>`_
 
    There is also `descriptions of all these re-formulations in the
    developer manual
@@ -121,7 +121,7 @@ contained jobs that you may enjoy.
 
    Doing that, you would mostly only have to play around with
    `SingleExe.scons
-   <http://www.nuitka.net/gitweb/?p=Nuitka.git;a=blob;f=nuitka/build/SingleExe.scons;h=f32dd2f61293ee6dca3b5b828b30769ea4d00902;hb=HEAD>`_,
+   <https://nuitka.net/gitweb/?p=Nuitka.git;a=blob;f=nuitka/build/SingleExe.scons;h=f32dd2f61293ee6dca3b5b828b30769ea4d00902;hb=HEAD>`_,
    which abstracts the details of it all. One issue you will encounter
    is that Scons needs a Python2, and other small things. This is mostly
    only about porting Nuitka, and could be done by anybody with access

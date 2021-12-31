@@ -37,7 +37,7 @@ to another with incompatible types (new ``bytes``/``unicode`` to old
 ``str``).
 
 Due to my work on that `Python compiler
-<http://nuitka.net/pages/overview.html>`__ that should have existed 20
+</pages/overview.html>`__ that should have existed 20
 years ago, I am familiar enough, to actually be able and create that
 kind of CPython2/CPython3 hybrid.
 

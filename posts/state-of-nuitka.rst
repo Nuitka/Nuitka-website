@@ -221,7 +221,7 @@ there next year again.
 -  Please test the latest release of Nuitka.
 
 -  Please consider `making a donation
-   <http://nuitka.net/pages/donations.html>`_ to support my work on
+   </pages/donations.html>`_ to support my work on
    Nuitka. I have continuous monthly costs of it, so it would be sweet
    if it's with all my time spent working on it, at least not a
    financial cost to me.
