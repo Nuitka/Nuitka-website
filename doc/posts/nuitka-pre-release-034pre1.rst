@@ -74,7 +74,7 @@ using the link time optimization feature of the g++ compiler, so
 potentially it should be worse than before at max.
 
 This release will be inside the "git" repository only. Check out `latest
-version here <../pages/download.html>`_ to get it.
+version here </pages/download.html>`_ to get it.
 
 |  Yours,
 |  Kay Hayen

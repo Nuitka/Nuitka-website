@@ -7,7 +7,7 @@
 ############################
 
 Once a long time ago, I was benchmarking Nuitka more often. Check `"What
-is Nuitka?" <../pages/overview.html>`_ in case you don't know what it
+is Nuitka?" </pages/overview.html>`_ in case you don't know what it
 is.
 
 *********
