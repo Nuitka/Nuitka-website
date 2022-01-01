@@ -19,9 +19,9 @@ Right now, this is very much possible to improve. Your turn!
 *******
 
 This is used to build the Nuitka web site. Enhancements of all kinds are
-welcome. You will need python 3.9 and pipenv to build it, and so far
-this has only be done on Linux, but it might also work on Windows, you
-can make that work as a contribution.
+welcome. You will need python 3.9 and ``pipenv`` to build it, and so far
+this has only be done on Linux, but it ought to also work on Windows, you
+can make that work as part of your contribution.
 
 .. code:: bash
 
