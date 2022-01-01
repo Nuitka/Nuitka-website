@@ -1,9 +1,13 @@
+###################
+ Nuitka Commercial
+###################
+
 If you are a commercial user of Nuitka, you fall into one of 4
 categories, which Nuitka tries to address.
 
-#########################################
+*************************************
  Protection vs. Reverse Enginneering
-#########################################
+*************************************
 
 Hiding your source code and contained keys is crucial to your IP
 protection. For this, you need the Nuitka commercial package. It
@@ -61,9 +65,9 @@ contains plugins to Nuitka that will achieve the following:
    This will allow you to decode outputs as necessary, and will make
    sure it's not readable to your clients.
 
-###########################################
+*******************************************
  Special needs (Commercial only use cases)
-###########################################
+*******************************************
 
 In this instance, you have special wishes that only commercial customers
 will have and that are effort to maintain.
@@ -92,9 +96,9 @@ will have and that are effort to maintain.
    hiding your source or data, but much rather you care about the
    quality of deployment of your software.
 
-##########################
+**************************
  Priority Issue Solutions
-##########################
+**************************
 
 You might have an issue that blocks you from using Nuitka, which you
 want to use though, because of performance gains, the IP protection,
@@ -104,9 +108,9 @@ The Nuitka Priority package gives you access to elevated priority of
 your issues. If you buy this, reported issues will be solved with
 highest priority, to enable you using Nuitka.
 
-#############
+*************
  Sponsorship
-#############
+*************
 
 You are happy in using Nuitka and you want to benefit it, because it
 solves a crucial part of your workflow in deployment. You may or may not
@@ -118,82 +122,81 @@ relatively free service you get on a daily basis.
 Naturally sponsors will be entitled to all access and treated with
 highest priority.
 
-#########
+*********
  Pricing
-#########
+*********
 
 .. grid:: 4
 
-    .. grid-item-card::  Nuitka Commercial
-       :class-item: nuitka-grid-offer nuitka-offer-commercial
+   .. grid-item-card::  Nuitka Commercial
+      :class-item: nuitka-grid-offer nuitka-offer-commercial
 
-        .. container:: nuitka-price
+       .. container:: nuitka-price
 
-            € 250
+           € 250
 
-        .. container:: nuitka-buy
+       .. container:: nuitka-buy
 
-            `Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__
+           `Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__
 
-        - Commercial only Features
+       - Commercial only Features
 
-        - All your applications
+       - All your applications
 
-        - Standard Support
+       - Standard Support
 
-    .. grid-item-card::  Nuitka Priority
-       :class-item: nuitka-grid-offer nuitka-offer-priority
+   .. grid-item-card::  Nuitka Priority
+      :class-item: nuitka-grid-offer nuitka-offer-priority
 
-        .. container:: nuitka-price
+       .. container:: nuitka-price
 
-            € 250
+           € 250
 
-        .. container:: nuitka-buy
+       .. container:: nuitka-buy
 
-            `Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__
+           `Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__
 
-        - Best Support
+       - Best Support
 
-        - Issues have **Priority**
+       - Issues have **Priority**
 
-        - **No** Commercial features
-
-
-    .. grid-item-card::  Full Package
-       :class-item: nuitka-grid-offer nuitka-offer-full-package
-
-        .. container:: nuitka-price
-
-            € 400
-
-        .. container:: nuitka-buy
-
-            `Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__
-
-        - Nuitka Commercial **plus**
-
-        - Nuitka Priority
+       - **No** Commercial features
 
 
-    .. grid-item-card::  Sponsor
-       :class-item: nuitka-grid-offer nuitka-offer-sponsor
+   .. grid-item-card::  Full Package
+      :class-item: nuitka-grid-offer nuitka-offer-full-package
 
-        .. container:: nuitka-price
+       .. container:: nuitka-price
 
-            € 1000
+           € 400
 
-        .. container:: nuitka-buy
+       .. container:: nuitka-buy
 
-            `Buy Now <https://buy.stripe.com/9AQ3eUb2maQs7rG28c>`__
+           `Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__
 
-        - Best Support
+       - Nuitka Commercial **plus**
 
-        - Nuitka Commercial
+       - Nuitka Priority
 
-        - Roadmap Influence
 
-        - Use Cases Priority
+   .. grid-item-card::  Sponsor
+      :class-item: nuitka-grid-offer nuitka-offer-sponsor
 
+       .. container:: nuitka-price
+
+           € 1000
+
+       .. container:: nuitka-buy
+
+           `Buy Now <https://buy.stripe.com/9AQ3eUb2maQs7rG28c>`__
+
+       - Best Support
+
+       - Nuitka Commercial
+
+       - Roadmap Influence
+
+       - Use Cases Priority
 
 -  Nuitka commercial subscription
 
@@ -208,16 +211,16 @@ highest priority.
 -  Nuitka Full Package
 
    Contains Nuitka Commercial subscription and priority package. Priced
-   at 400 EUR (or 500 USD). `Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__.
-
+   at 400 EUR (or 500 USD). `Buy Now
+   <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__.
 
 -  Nuitka Sponsors
 
    Pick your value.
 
-############
+************
  Contact Us
-############
+************
 
 Please use `this form to contact us
 <https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_
