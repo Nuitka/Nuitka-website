@@ -55,7 +55,7 @@ the improvements that I have made and get some feedback about it.
    covered by existing tests yet.
 
 ****************
- Organizational
+ Organisational
 ****************
 
 -  There is now a new environment variable "NUITKA_SCONS" which should

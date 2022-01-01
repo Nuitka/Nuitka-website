@@ -56,7 +56,7 @@ contained jobs that you may enjoy.
    <https://nuitka.net/gitweb/?p=Nuitka.git;a=blob;f=nuitka/tree/ReformulationWithStatements.py;h=2a2d5821e5a511201454e5ae8a7c979d48f04c4a;hb=HEAD>`_
 
    There is also `descriptions of all these re-formulations in the
-   developer manual
+   Developer Manual
    </doc/developer-manual.html#language-conversions-to-make-things-simpler>`_
    so you can see how this is done.
 

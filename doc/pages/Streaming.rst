@@ -50,7 +50,7 @@ specialization of ``INT`` ``LONG`` and ``CLONG`` work for code like
  Annoucements
 **************
 
-I think I could e.g. go with streaming on Sunday and annoucing the topic
+I think I could e.g. go with streaming on Sunday and announcing the topic
 on Friday in a blog post, and a Twitter post. Then when going live, a
 Discord ping could be done, but I am not sure, I have this available
 with the few visitors of the channel. Gitter chat could be better.

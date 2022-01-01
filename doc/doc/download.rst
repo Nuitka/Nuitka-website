@@ -104,7 +104,7 @@ Windows
    .. note::
 
       The versions of the MSI have a different numbering scheme in their
-      filenames, explained in the user manual.
+      filenames, explained in the User Manual.
 
       Also, it's recommended to use PyPI and pip based installation on
       Windows, as MSI cannot be used e.g. with ``virtualenv`` and other

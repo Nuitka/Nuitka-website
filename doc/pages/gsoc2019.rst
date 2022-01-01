@@ -22,8 +22,8 @@ it is about static compilation, and aims to be less complex, but fully
 compatible with gradual degradation of performance, up to C level.
 
 See our `introduction </pages/overview.html>`__ for a
-full summary and consider reading the `user manual
-</doc/user-manual.html>`__ and the `developer manual
+full summary and consider reading the `User Manual
+</doc/user-manual.html>`__ and the `Developer Manual
 </doc/developer-manual.html>`__ for further
 clarification.
 

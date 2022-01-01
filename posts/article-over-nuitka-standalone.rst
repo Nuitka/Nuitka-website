@@ -11,7 +11,7 @@ Sheffler.
 
 .. note::
 
-   The article has since become unvailable unfortunately.
+   The article has since become unavailable unfortunately.
 
 It inspired me to finally become clean with ``__file__`` attributes in
 standalone mode. Currently it points to where your source was when

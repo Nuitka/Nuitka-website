@@ -41,7 +41,7 @@ I am currently very annoyed, because:
 Other stuff in favor of it, is that Wordpress or any CMS needs more
 memory and more time to process than static pages of course. I can't
 right now let anyone fork and edit the pages in a practical manner. So
-while for user manual and developer manual of Nuitka I will get
+while for User Manual and Developer Manual of Nuitka I will get
 corrections, for the website it's not happening.
 
 Is Mynth an appropriate intermediate step? Do I really want to learn one
