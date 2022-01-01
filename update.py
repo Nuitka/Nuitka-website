@@ -18,8 +18,14 @@ import zipfile
 from lxml import html
 
 
+# Which branches were already done.
+updated_branches = set()
+
 def _updateCheckout(branch, update):
     if os.path.exists(f"Nuitka-{branch}") and not update:
+        return
+
+    if branch in updated_branches:
         return
 
     if os.path.exists(f"Nuitka-{branch}"):
@@ -60,6 +66,7 @@ def _updateCheckout(branch, update):
             with open(filename, "wb") as out_file:
                 out_file.write(new_contents)
 
+    updated_branches.add(branch)
 
 def updateNuitkaMaster(update):
     _updateCheckout("master", update=update)
@@ -628,6 +635,9 @@ def updateReleasePosts():
     count = 0
     sep = "#"
 
+    # Make sure changelog is there.
+    updateNuitkaFactory(update=True)
+
     with open("doc/doc/Changelog.rst", "w") as changelog_output:
 
         for title, lines in splitRestByChapter(
@@ -867,10 +877,6 @@ When given, all is updated. Default %default.""",
         options.build = True
         options.deploy = True
 
-    if options.docs or options.build:
-        updateNuitkaMaster(update=True)
-        updateNuitkaDevelop(update=True)
-        updateNuitkaFactory(update=True)
 
     if options.docs:
         updateDocs()
@@ -882,6 +888,11 @@ When given, all is updated. Default %default.""",
         checkRestPages()
 
     if options.build:
+        # Make sure links in the file system are correct, and API doc
+        # is also generated that way.
+        updateNuitkaMaster(update=True)
+        updateNuitkaDevelop(update=True)
+
         # Avoid left over files.
         output_dir = "output"
         if os.path.isdir(output_dir):

@@ -8,21 +8,11 @@ import time
 project = "Nuitka the Python Compiler"
 copyright = "%s, Kay Hayen and Nuitka Contributors" % time.gmtime().tm_year
 author = "Kay Hayen"
+release = version = ""
 
-sys.path.insert(0, os.path.abspath("../Nuitka-master"))
-from nuitka.Version import getNuitkaVersion
-
-del sys.path[0]
-
-release = version = getNuitkaVersion()
-
-del sys.modules["nuitka.Version"]
-del sys.modules["nuitka"]
-
+# For autodoc to work
 sys.path.insert(0, os.path.abspath("../Nuitka-develop"))
 import nuitka
-
-del sys.path[0]
 
 # -- General configuration
 
@@ -156,6 +146,7 @@ html_theme_options = {
 }
 
 html_extra_path = ["../files"]
+html_title = ""
 
 sphinxcontrib_asciinema_defaults = {
     'theme': 'asciinema',
