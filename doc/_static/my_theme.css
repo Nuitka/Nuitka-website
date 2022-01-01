@@ -100,7 +100,7 @@
 .share-button-container{
     text-align: center;
     margin: 0 0;
-    padding: 10px 0;
+    padding: 0 0;
     position: absolute;
     top: 0;
     right: 20px;
@@ -112,15 +112,20 @@
 }
 
 .socialbutton {
-    width: 80px;
+    width: 60px;
     height: 45px;
     margin-bottom: 0;
     display: inline-block;
 
     transition: all 500ms;
     -webkit-transition: all 500ms;
-
 }
+
+@media screen and (max-width: 1000px) {
+    .socialbutton {
+      display: none;
+    }
+  }
 
 .socialbutton:hover {
     height: 70px;
