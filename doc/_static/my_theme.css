@@ -2,6 +2,10 @@
     max-width: 1000px !important;
 }
 
+.sd-col {
+    margin-bottom: 2rem;
+}
+
 .nuitka-offer-full-package .sd-card {
     background-color: #403472;
 }
