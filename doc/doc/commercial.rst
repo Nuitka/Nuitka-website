@@ -136,7 +136,7 @@ highest priority.
  Pricing
 *********
 
-.. grid:: 2 2 2 4
+.. grid:: 1 2 2 4
 
    .. grid-item-card::  Nuitka Commercial
       :class-item: nuitka-grid-offer nuitka-offer-commercial
