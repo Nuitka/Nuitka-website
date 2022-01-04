@@ -21,6 +21,7 @@
 .nuitka-grid-offer .sd-card {
     display: flex;
     color: white;
+    margin-bottom: 15px;
 }
 
 .nuitka-buy .sd-card-text:last-child {
@@ -72,7 +73,7 @@
 .nuitka-price p::first-letter {
     color: white;
     text-align: center;
-    font-size: 14px;ma
+    font-size: 14px;
     vertical-align: 20px
 
 }
