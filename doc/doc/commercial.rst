@@ -13,57 +13,67 @@ Hiding your source code and contained keys is crucial to your IP
 protection. For this, you need the Nuitka commercial package. It
 contains plugins to Nuitka that will achieve the following:
 
--  Obfuscucate contained constants data
+.. grid:: 1 1 2 2
 
-   Your encryption keys, your program texts, your library usages, all
-   expose textual information, that can be valuable input in Reverse
-   Enginneering.
+   .. grid-item-card::  Program Constants Data
+      :class-item: nuitka-grid-security
 
-   Normally these constants are plain and readable in the created
-   programs (and of course your Python source code or bytecode).
-   Compiling with Nuitka gives you protection of the code, but with the
-   data being easily readable, it will be less effective.
+      Obfuscucate contained program constants data
 
-   Another facet of the same issue is datafiles. When your program
-   includes data files to work on, these are visible in the file system.
-   Sometimes, e.g. via QML files of Qt, your program behaviour can be
-   changed by changing these files.
+      Your encryption keys, your program texts, your library usages, all
+      expose textual information, that can be valuable input in Reverse
+      Enginneering.
 
-   Therefore Nuitka commercial allows you to include data files as part
-   of the program constants and protect it in the same way as other
-   constants. Without these files accessible, the attacker will have no
-   attack vector for Reverse Enginneering.
+      Normally these constants are plain and readable in the created
+      programs (and of course your Python source code or bytecode).
+      Compiling with Nuitka gives you protection of the code, but with the
+      data being easily readable, it will be less effective.
 
--  Encrypted tracebacks
+   .. grid-item-card::  Contained Data Files
+      :class-item: nuitka-grid-security
 
-   When your program is deployed and crashing, you could take
-   potentially successful steps against these tracebacks appearing. But
-   when you need to support your client, you need to be able to to
-   actually tell, why your software is crashing.
+      Another facet of the same issue is datafiles. When your program
+      includes data files to work on, these are visible in the file system.
+      Sometimes, e.g. via QML files of Qt, your program behaviour can be
+      changed by changing these files.
 
-   Python tracebacks are good for this, but you cannot want them to be
-   readable to the user. This is very traceback encryption comes in.
-   Nuitka with the commercial plugin will make sure to encrypt all
-   traceback outputs. They still carry the information as you want, but
-   *only you* will be able to decode them.
+      Therefore Nuitka commercial allows you to include data files as part
+      of the program constants and protect it in the same way as other
+      constants. Without these files accessible, the attacker will have no
+      attack vector for Reverse Enginneering.
 
-   Symmetric encryption (and asymmetric encryption in a future update)
-   are available for you to use there.
+   .. grid-item-card:: Encrypted tracebacks
+      :class-item: nuitka-grid-security
 
-   In a future update, you can decide which information is transferred,
-   and what is part of the encryption, and which part is not, e.g.
-   hostname, client name, etc. could be output int plain text, while the
-   variable names and values would not be, depending on your choice!
+      When your program is deployed and crashing, you could take
+      potentially successful steps against these tracebacks appearing. But
+      when you need to support your client, you need to be able to to
+      actually tell, why your software is crashing.
 
--  Encrypted outputs
+      Python tracebacks are good for this, but you cannot want them to be
+      readable to the user. This is very traceback encryption comes in.
+      Nuitka with the commercial plugin will make sure to encrypt all
+      traceback outputs. They still carry the information as you want, but
+      *only you* will be able to decode them.
 
-   If you need to query information from a machine, or just in general
-   want to have perfect protection, you can use the Nuitka plugin to
-   make sure it can only output encrypted information on standard output
-   and standard error.
+      Symmetric encryption (and asymmetric encryption in a future update)
+      are available for you to use there.
 
-   This will allow you to decode outputs as necessary, and will make
-   sure it's not readable to your clients.
+      In a future update, you can decide which information is transferred,
+      and what is part of the encryption, and which part is not, e.g.
+      hostname, client name, etc. could be output int plain text, while the
+      variable names and values would not be, depending on your choice!
+
+   .. grid-item-card:: Encrypted outputs
+      :class-item: nuitka-grid-security
+
+      If you need to query information from a machine, or just in general
+      want to have perfect protection, you can use the Nuitka plugin to
+      make sure it can only output encrypted information on standard output
+      and standard error.
+
+      This will allow you to decode outputs as necessary, and will make
+      sure it's not readable to anybody but you.
 
 *******************************************
  Special needs (Commercial only use cases)
