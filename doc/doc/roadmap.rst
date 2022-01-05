@@ -227,3 +227,6 @@ run.
 
 [ ] Compression of onefile with bootstrap before Python3.5, so far it's
 there for 3.5 or higher only.
+
+[x] Make pydantic support the default, removing the experimental flag
+``function-base`` with it being the default behavior.
