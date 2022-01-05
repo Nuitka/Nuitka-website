@@ -16,7 +16,8 @@ regular basis will be best.
 
 On Discord, we will have a Streaming room. There is a react bot, that
 you can use to be automatically notified by Discord, when a Stream is
-started, this one is in: https://discord.gg/nZ9hr9tUck
+started, this one is in: https://discord.gg/nZ9hr9tUck the welcome
+channel of the Discord.
 
 The main chat on Gitter will be linked a chat room on Discord, so for
 people not on Discord, they still have that available.
@@ -26,10 +27,10 @@ a few excerpts, not sure how good it's going to be. There will be
 quality issues in the beginning. And I don't want to spend a lot of time
 editing material that might not get watched at all.
 
-Also Discord will be used for a call-in part. I will unmute people and
+Discord will be used for a call-in part. I will unmute people and
 discuss one on one with viewers, live on air, answering questions.
 
-Also, I have setup OBS with a camera view and my desktop shared, and I
+And then, I have setup OBS with a camera view and my desktop shared, and I
 expect to be streaming to Youtube on my existing channel that I cleaned
 up a bit: https://www.youtube.com/c/KayHayen
 
