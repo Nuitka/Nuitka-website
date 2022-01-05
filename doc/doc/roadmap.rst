@@ -212,7 +212,7 @@ than it should.
 
 List of things, we are aiming for to be included in that release.
 
-[ ] Support for Kivy 2.x to work out of the box.
+[x] Support for Kivy 2.x to work out of the box.
 
 [x] Better scalability
 
