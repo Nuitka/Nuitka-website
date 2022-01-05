@@ -195,7 +195,7 @@ than it should.
 
    The suite still needs a bit of help to run through, should be good though.
 
--  Add support for new case syntax of 3.10
+-  Add support for all of the new case syntax of 3.10
 
    This is partially done, but assignments in or matches do not work yet.
 
