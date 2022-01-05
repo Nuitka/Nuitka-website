@@ -7,18 +7,27 @@
 *****
 
 The Nuitka development will hopefully become richer by me developing
-online one day per week. It's not clear yet, when this could be.
+online one day per week. Maybe more or less often, but I believe on a
+regular basis will be best.
 
 *****
  How
 *****
 
-I think the main chat could still be on Gitter, could create a room
-there, but Youtube chat might be equally good. Also Discord might be
-used for a call-in part. I have created https://discord.gg/9RDbhGXpCD as
-a test bed for that. In the call-in side of things, I might discuss one
-on one with viewers, live on air. I might be able to send notifications
-out this way, not sure.
+On Discord, we will have a Streaming room. There is a react bot, that
+you can use to be automatically notified by Discord, when a Stream is
+started, this one is in: https://discord.gg/nZ9hr9tUck
+
+The main chat on Gitter will be linked a chat room on Discord, so for
+people not on Discord, they still have that available.
+
+The stream will be recorded in Youtube and later put online, maybe only
+a few excerpts, not sure how good it's going to be. There will be
+quality issues in the beginning. And I don't want to spend a lot of time
+editing material that might not get watched at all.
+
+Also Discord will be used for a call-in part. I will unmute people and
+discuss one on one with viewers, live on air, answering questions.
 
 Also, I have setup OBS with a camera view and my desktop shared, and I
 expect to be streaming to Youtube on my existing channel that I cleaned
@@ -29,13 +38,11 @@ up a bit: https://www.youtube.com/c/KayHayen
 ******
 
 I believe the weekend should be used. Not sure yet when exactly I can
-start. I have told myself to first get the website in place. With the
-Sphinx migration done, I do think that Stripe payment integration needs
-to go next, but I might do that at the same time, or even during
-streams. :)
+start, I am aiming for mid January right now, with a test stream before
+that.
 
-I plan to stream with one lunch/sports break, a morning and an afternoon
-or evening, and maybe if I get carried away, more often.
+I plan to stream with one lunch/sports break, on my CEST morning and an
+afternoon or evening time, and maybe if I get carried away, more often.
 
 ******
  What
@@ -46,13 +53,18 @@ specialization of ``INT`` ``LONG`` and ``CLONG`` work for code like
 ``some_int += 2``, where the ``2`` is currently used as a prepared
 ``INT`` or ``LONG`` object (depending on Python version).
 
+In a test stream, it worked really well to commonly improve the web
+site. Documentation and generally clarification would be good, but I
+think there also needs to be some plan, like making a certain piece of
+code quicker. I will be asking for submissions on Twitter and/or in a
+blog post.
+
 **************
- Annoucements
+ Anouncements
 **************
 
-I think I could e.g. go with streaming on Sunday and announcing the topic
-on Friday in a blog post, and a Twitter post. Then when going live, a
-Discord ping could be done, but I am not sure, I have this available
-with the few visitors of the channel. Gitter chat could be better.
+I think I could e.g. go with streaming on Sunday and announcing the
+topic on Friday in a blog post, and/or a Twitter post. Then when going
+live, a Discord ping is done. Gitter chat will also get a text message.
 Youtube has the bell, that I might ask people to use, but I don't like
 asking these things.
