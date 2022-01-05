@@ -27,8 +27,8 @@ feature branches.
 
 .. Note::
 
-   In case, you want and can improve the `source
-   </posts/images/Nuitka-git-flow.odg>`_ visually or otherwise, please go
+   In case, you want and can improve the source (link since removed)
+   visually or otherwise, please go
    ahead. I am using it for a presentation next week too, and would be
    glad if you could make it more pretty. My artistic skills are not the
    same as my programmer skills. :-)
