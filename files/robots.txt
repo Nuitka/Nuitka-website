@@ -3,3 +3,5 @@ Sitemap: https://nuitka.net/sitemap.xml
 Disallow: /cgi-bin/
 Disallow: /gitweb
 Disallow: /volatile
+Disallow: /shop
+Disallow: /stripe

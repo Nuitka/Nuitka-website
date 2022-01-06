@@ -3,6 +3,19 @@ Welcome
 
 This page is used for experiments in web design with Sphinx.
 
+New style Stripe Checkout for Nuitka commercial:
+
+`Buy now </stripe/checkout-commercial-subscription>`__
+
+`Buy now </stripe/checkout-priority-subscription>`__
+
+`Buy now </stripe/checkout-priority-subscription>`__
+
+`Buy now </stripe/checkout-sponsor-subscription>`__
+
+
+
+
 .. grid:: 4
 
     .. grid-item-card::  Nuitka Commercial
@@ -74,42 +87,3 @@ This page is used for experiments in web design with Sphinx.
         - Roadmap Influence
 
         - Use Cases Priority
-
-
-
-.. raw:: html
-
-       <div class='share-button-container'>
-        <div class="socialbutton-wrapper">
-            <a href="https://twitter.com/share?url=https://www.nuitka.net&hashtags=nuitka" target="_blank">
-                <div class="socialbutton twitter" data-share-url="https://www.nuitka.net">
-                    <p class="icon">
-                        <img src="/_static/icon-twitter.png">
-                    </p>
-
-                    <p class="shares">share...</p>
-                </div>
-            </a>
-
-            <a href="https://www.facebook.com/sharer.php?u=https://www.nuitka.net&hashtag=%23nuitka"  target="_blank">
-                <div class="socialbutton facebook" data-share-url="https://www.nuitka.net">
-                    <p class="icon">
-                        <img src="/_static/icon-facebook.png">
-                    </p>
-
-                    <p class="shares">share...</p>
-                </div>
-            </a>
-
-
-            <a href="http://www.reddit.com/submit?url=https://www.nuitka.net" target="_blank">
-                <div class="socialbutton reddit">
-                    <p class="icon">
-                        <img src="/_static/icon-reddit.png">
-                    </p>
-
-                    <p class="shares">share...</p>
-                </div>
-            </a>
-        </div>
-    </div>
