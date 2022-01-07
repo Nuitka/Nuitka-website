@@ -1,5 +1,3 @@
-:orphan:
-
 Thanks for your order!
 ----------------------
 

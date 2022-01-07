@@ -29,6 +29,8 @@ contains plugins to Nuitka that will achieve the following:
       Compiling with Nuitka gives you protection of the code, but with the
       data being easily readable, it will be less effective.
 
+      `Read more.... <commercial/protect-constants-data.html>`__
+
    .. grid-item-card::  Contained Data Files
       :class-item: nuitka-grid-security
 

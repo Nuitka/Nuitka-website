@@ -109,8 +109,6 @@ In the meantime you can find its `latest version here
 </pages/download.html>`_.
 
 .. toctree::
-   :caption: Main
-   :hidden:
 
    Download <doc/download>
    User Manual <doc/user-manual>
@@ -118,13 +116,11 @@ In the meantime you can find its `latest version here
 
 .. toctree::
    :caption: Commercial Users
-   :hidden:
 
    doc/commercial
 
 .. toctree::
    :caption: Release Information
-   :hidden:
 
    doc/Changelog
    Roadmap <doc/roadmap>
@@ -145,17 +141,25 @@ In the meantime you can find its `latest version here
 
 .. toctree::
    :caption: Other
-   :hidden:
 
    doc/Credits
    pages/impressum
 
 .. toctree::
    :caption: Under construction
-   :hidden:
 
    doc/welcome
    pages/pyside2
    pages/donations
    pages/gsoc2019
    pages/nuitka-demo
+
+.. toctree::
+   :hidden:
+
+   pages/overview
+
+   shop/cancel
+   shop/success
+
+   doc/commercial/protect-constants-data
