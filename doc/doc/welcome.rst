@@ -5,17 +5,6 @@ This page is used for experiments in web design with Sphinx.
 
 New style Stripe Checkout for Nuitka commercial:
 
-`Buy now </stripe/checkout-commercial-subscription>`__
-
-`Buy now </stripe/checkout-priority-subscription>`__
-
-`Buy now </stripe/checkout-priority-subscription>`__
-
-`Buy now </stripe/checkout-sponsor-subscription>`__
-
-
-
-
 .. grid:: 4
 
     .. grid-item-card::  Nuitka Commercial
@@ -27,7 +16,7 @@ New style Stripe Checkout for Nuitka commercial:
 
         .. container:: nuitka-buy
 
-            `Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__
+            `Buy now </stripe/checkout-commercial-subscription>`__
 
         - Commercial only Features
 
@@ -44,7 +33,7 @@ New style Stripe Checkout for Nuitka commercial:
 
         .. container:: nuitka-buy
 
-            `Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__
+            `Buy now </stripe/checkout-priority-subscription>`__
 
         - Best Support
 
@@ -62,7 +51,7 @@ New style Stripe Checkout for Nuitka commercial:
 
         .. container:: nuitka-buy
 
-            `Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__
+            `Buy now </stripe/checkout-full-subscription>`__
 
         - Nuitka Commercial **plus**
 
@@ -78,7 +67,7 @@ New style Stripe Checkout for Nuitka commercial:
 
         .. container:: nuitka-buy
 
-            `Buy Now <https://buy.stripe.com/9AQ3eUb2maQs7rG28c>`__
+            `Buy now </stripe/checkout-sponsor-subscription>`__
 
         - Best Support
 
