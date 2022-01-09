@@ -6,3 +6,4 @@ Disallow: /volatile
 Disallow: /shop
 Disallow: /stripe
 Disallow: /deb
+Disallow: /releases
