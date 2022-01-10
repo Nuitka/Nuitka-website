@@ -5,74 +5,74 @@ This page is used for experiments in web design with Sphinx.
 
 New style Stripe Checkout for Nuitka commercial:
 
-.. grid:: 4
+.. grid:: 1 2 2 4
 
-    .. grid-item-card::  Nuitka Commercial
-       :class-item: nuitka-grid-offer nuitka-offer-commercial
+   .. grid-item-card::  Nuitka Commercial
+      :class-item: nuitka-grid-offer nuitka-offer-commercial
 
-        .. container:: nuitka-price
+       .. container:: nuitka-price
 
-            € 250
+           € 250
 
-        .. container:: nuitka-buy
+       .. container:: nuitka-buy
 
-            `Buy now </stripe/checkout-commercial-subscription>`__
+         `Buy now </stripe/checkout-commercial-subscription>`__
 
-        - Commercial only Features
+       - Commercial only Features
 
-        - All your applications
+       - All your applications
 
-        - Standard Support
+       - Standard Support
 
-    .. grid-item-card::  Nuitka Priority
-       :class-item: nuitka-grid-offer nuitka-offer-priority
+   .. grid-item-card::  Nuitka Priority
+      :class-item: nuitka-grid-offer nuitka-offer-priority
 
-        .. container:: nuitka-price
+       .. container:: nuitka-price
 
-            € 250
+           € 250
 
-        .. container:: nuitka-buy
+       .. container:: nuitka-buy
 
-            `Buy now </stripe/checkout-priority-subscription>`__
+         `Buy now </stripe/checkout-priority-subscription>`__
 
-        - Best Support
+       - Best Support
 
-        - Issues have **Priority**
+       - Issues have **Priority**
 
-        - **No** Commercial features
-
-
-    .. grid-item-card::  Full Package
-       :class-item: nuitka-grid-offer nuitka-offer-full-package
-
-        .. container:: nuitka-price
-
-            € 400
-
-        .. container:: nuitka-buy
-
-            `Buy now </stripe/checkout-full-subscription>`__
-
-        - Nuitka Commercial **plus**
-
-        - Nuitka Priority
+       - **No** Commercial features
 
 
-    .. grid-item-card::  Sponsor
-       :class-item: nuitka-grid-offer nuitka-offer-sponsor
+   .. grid-item-card::  Full Package
+      :class-item: nuitka-grid-offer nuitka-offer-full-package
 
-        .. container:: nuitka-price
+       .. container:: nuitka-price
 
-            € 1000
+           € 400
 
-        .. container:: nuitka-buy
+       .. container:: nuitka-buy
 
-            `Buy now </stripe/checkout-sponsor-subscription>`__
+         `Buy now </stripe/checkout-full-subscription>`__
 
-        - Best Support
+       - Nuitka Commercial **plus**
 
-        - Nuitka Commercial
+       - Nuitka Priority
 
-        - Roadmap Influence
 
-        - Use Cases Priority
+   .. grid-item-card::  Sponsor
+      :class-item: nuitka-grid-offer nuitka-offer-sponsor
+
+       .. container:: nuitka-price
+
+           € 1000
+
+       .. container:: nuitka-buy
+
+         `Buy now </stripe/checkout-sponsor-subscription>`__
+
+       - Best Support
+
+       - Nuitka Commercial
+
+       - Roadmap Influence
+
+       - Use Cases Priority

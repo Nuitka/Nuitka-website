@@ -149,7 +149,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-           `Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__
+         `Buy now </stripe/checkout-commercial-subscription>`__
 
        - Commercial only Features
 
@@ -166,7 +166,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-           `Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__
+         `Buy now </stripe/checkout-priority-subscription>`__
 
        - Best Support
 
@@ -184,7 +184,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-           `Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__
+         `Buy now </stripe/checkout-full-subscription>`__
 
        - Nuitka Commercial **plus**
 
@@ -200,7 +200,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-           `Buy Now <https://buy.stripe.com/9AQ3eUb2maQs7rG28c>`__
+         `Buy now </stripe/checkout-sponsor-subscription>`__
 
        - Best Support
 
@@ -210,25 +210,6 @@ highest priority.
 
        - Use Cases Priority
 
--  Nuitka commercial subscription
-
-   Currently 250 EUR (or 300 USD), valid for one year, renewal same
-   price. `Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__.
-
--  Nuitka Priority package
-
-   Currently 250 EUR (or 300 USD), valid for one year, renewal same
-   price. `Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__.
-
--  Nuitka Full Package
-
-   Contains Nuitka Commercial subscription and priority package. Priced
-   at 400 EUR (or 500 USD). `Buy Now
-   <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__.
-
--  Nuitka Sponsors
-
-   Pick your value.
 
 ************
  Contact Us
