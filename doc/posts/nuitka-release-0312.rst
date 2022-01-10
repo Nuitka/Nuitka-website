@@ -156,8 +156,8 @@ were many of these.
 
 -  Then there was a feature branch ``meta_path_import`` that lived until
    being merged to ``develop`` to improve the import code, which is now
-   released on ``master`` as stable. Getting that feature right took a
-   while.
+   released as part of the main branch. Getting that feature right took
+   a while.
 
 -  And there is the feature branch ``minimize_CPython26_tests_diff``
    which has some success already in documenting the required changes to

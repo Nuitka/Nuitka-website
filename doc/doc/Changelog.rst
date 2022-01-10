@@ -1,8 +1,15 @@
 
 
 ##############################
- Nuitka Release 0.6.19 (Draft)
+ Nuitka Release 0.6.20 (Draft)
 ##############################
+
+This release is not done yet.
+
+
+######################
+ Nuitka Release 0.6.19
+######################
 
 This release adds support for 3.10 while also adding very many new
 optimization, and doing a lot of bug fixes.
@@ -23,8 +30,7 @@ Bug Fixes
 -  Standalone: Ignore warning given by ``patchelf`` on Linux with at
    least newer OpenSUSE. Fixed in 0.6.18.1 already.
 
--  Standalone: Add needed datafile for ``cv2`` package. Fixed in
-   0.6.18.2 already.
+-  Standalone: Add needed datafile for ``cv2`` package.
 
 -  Fix, need to avoid computing large values out of ``<<`` operation as
    well. Fixed in 0.6.18.2 already.
@@ -135,8 +141,9 @@ Bug Fixes
 -  Standalone: Added support for including OpenGL and SSL libraries with
    ``PySide2`` and ``PySide6`` packages.
 
--  Windows: Fix, the ``cmd`` files created for accelerated of of
-   uninstalled Python were not passing command line arguments.
+-  Windows: Fix, the ``cmd`` files created for uninstalled Python and
+   accelerated programs to find the Python installation were not passing
+   command line arguments.
 
 -  Windows: Executing modules with ``--run`` was not working properly
    due to missing escaping of file paths.
@@ -1038,15 +1045,20 @@ will strive to complete the support for it fully, but this should be
 usable at least, for now please stay on 3.9 if you can.
 
 
-######################
- Nuitka Release 0.6.17
-######################
+##############
+Older Releases
+##############
+
+These are older releases of Nuitka.
+
+Nuitka Release 0.6.17
+=====================
 
 This release has a focus on performance improvements, while also
 polishing plugins and adding many new features.
 
 Bug Fixes
-=========
+---------
 
 -  Fix, plugins were not catching being used on packages not installed.
    Fixed in 0.6.16.2 already.
@@ -1158,7 +1170,7 @@ Bug Fixes
 -  Fix, standard library detection could fail for relative paths.
 
 New Features
-============
+------------
 
 -  Added experimental support for C level PGO (Profile Guided
    Optimization), which runs your program and then uses feedback from
@@ -1229,7 +1241,7 @@ New Features
    now yellow for better recognition.
 
 Optimization
-============
+------------
 
 -  Faster threading code was used for Python3.8 or higher, and this has
    been extended to 3.7 on Windows, but we won't be able to have it
@@ -1297,7 +1309,7 @@ Optimization
    also allowing more optimization.
 
 Organisational
-==============
+--------------
 
 -  Added section in the User Manual on how to deal with memory issues
    and C compiler bugs. This is a frequent topic and should serve as a
@@ -1340,7 +1352,7 @@ Organisational
    optimization when a plugin is asking to ``sysexit``.
 
 Cleanups
-========
+--------
 
 -  Encoding names for UTF8 in calls to ``.encode()`` were used
    inconsistent with and without dashes in the source code, added
@@ -1371,7 +1383,7 @@ Cleanups
    reused for other platforms more easily.
 
 Tests
-=====
+-----
 
 -  Removed ``reflected`` test, because of Nuitka special needs to
    restart with variable Python flags. This could be reverted though,
@@ -1392,7 +1404,7 @@ Tests
    catch corruption of them in tests.
 
 Summary
-=======
+-------
 
 This release is one of the most important ones in a long time. The PGO
 and LTO, and static libpython work make a big different for performance
@@ -1424,12 +1436,6 @@ Generally this release marks a huge step forward. We hope to add Python
 level PGO in the coming releases, for type knowledge retrofitted without
 any annotations used. Benchmarks will become more fun clearly.
 
-
-##############
-Older Releases
-##############
-
-These are older releases of Nuitka.
 
 Nuitka Release 0.6.16
 =====================
@@ -7043,7 +7049,7 @@ Organisational
 
 -  Added support for Python3.5 numbers to Speedcenter. There are now
    also tags for speedcenter, indicating how well "develop" branch fares
-   in comparison to master.
+   in comparison to the stable branch.
 
 -  With a new tool, source code and Developer Manual contents can be
    kept in sync, so that descriptions can be quoted there. Eventually a
@@ -14651,8 +14657,8 @@ Organisational
 
 -  Then there was a feature branch ``meta_path_import`` that lived until
    being merged to ``develop`` to improve the import code, which is now
-   released on ``master`` as stable. Getting that feature right took a
-   while.
+   released as part of the main branch. Getting that feature right took
+   a while.
 
 -  And there is the feature branch ``minimize_CPython26_tests_diff``
    which has some success already in documenting the required changes to
@@ -16911,7 +16917,8 @@ Organisational
 
    .. admonition:: Update
 
-      Turned out I never master it, and used ReStructured Text instead.
+      Turned out I never mastered it, and used ReStructured Text
+      instead.
 
 -  There is a public git repository for you to track Nuitka releases.
    Make your changes and then ``git pull --rebase``. If you encounter

@@ -151,7 +151,7 @@ improvements, and many cleanups.
 
 -  Added support for Python3.5 numbers to Speedcenter. There are now
    also tags for speedcenter, indicating how well "develop" branch fares
-   in comparison to master.
+   in comparison to the stable branch.
 
 -  With a new tool, source code and Developer Manual contents can be
    kept in sync, so that descriptions can be quoted there. Eventually a

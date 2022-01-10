@@ -42,7 +42,8 @@ Good day, this is a major step ahead, improvements everywhere.
 
    .. admonition:: Update
 
-      Turned out I never master it, and used ReStructured Text instead.
+      Turned out I never mastered it, and used ReStructured Text
+      instead.
 
 -  There is a public git repository for you to track Nuitka releases.
    Make your changes and then ``git pull --rebase``. If you encounter
