@@ -68,8 +68,8 @@ def _updateCheckout(branch, update):
 
     updated_branches.add(branch)
 
-def updateNuitkaMaster(update):
-    _updateCheckout("master", update=update)
+def updateNuitkaMain(update):
+    _updateCheckout("main", update=update)
 
 
 def updateNuitkaDevelop(update):
@@ -890,7 +890,7 @@ When given, all is updated. Default %default.""",
     if options.build:
         # Make sure links in the file system are correct, and API doc
         # is also generated that way.
-        updateNuitkaMaster(update=True)
+        updateNuitkaMain(update=True)
         updateNuitkaDevelop(update=True)
 
         # Avoid left over files.
