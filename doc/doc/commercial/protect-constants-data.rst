@@ -4,12 +4,8 @@
  Protect Program Constants Data
 *************************************
 
-Watch this demo, to see what this about. Only Nuitka commercial offers the full
-protection, and this illustrates the issue best.
-
-.. note::
-
-    The demo is not yet done, but the commands and outputs are below.
+Consider this example information, to learn what this about. Only Nuitka commercial offers the full
+protection, and this illustrates the issue with standard Python the best.
 
 .. code:: sh
 
@@ -55,4 +51,5 @@ offers no protection for your data there. Nuitka Commercial to the rescue.
 For Nuitka commercial, the output is empty. Without that plugin, the string will be found. The
 plugin is part of the Nuitka Commercial subscription and unqiue in this level of protection.
 
-Go Back to Nuitka commercial overview.
+Go `back to Nuitka commercial </doc/commercial.html#protection-vs-reverse-enginneering>`__ overview to
+learn about more features or to subscribe to `Nuitka commercial </doc/commercial.html#pricing>`__.
