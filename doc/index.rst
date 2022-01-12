@@ -31,17 +31,20 @@ In the meantime you can checkout why `Nuitka commercial </doc/commercial.html>`_
 </pages/download.html>`_.
 
 .. toctree::
+   :hidden:
 
    Download <doc/download>
    User Manual <doc/user-manual>
    pages/support
 
 .. toctree::
+   :hidden:
    :caption: Commercial Users
 
    doc/commercial
 
 .. toctree::
+   :hidden:
    :caption: Release Information
 
    doc/Changelog
@@ -49,6 +52,7 @@ In the meantime you can checkout why `Nuitka commercial </doc/commercial.html>`_
 
 
 .. toctree::
+   :hidden:
    :caption: More documentation
 
    Developer Manual <doc/developer-manual>
@@ -56,18 +60,21 @@ In the meantime you can checkout why `Nuitka commercial </doc/commercial.html>`_
    doc/factory
 
 .. toctree::
+   :hidden:
    :caption: Media
 
    Presentations <pages/Presentations>
    Streaming <pages/Streaming>
 
 .. toctree::
+   :hidden:
    :caption: Other
 
    doc/Credits
    pages/impressum
 
 .. toctree::
+   :hidden:
    :caption: Under construction
 
    doc/welcome
@@ -78,10 +85,3 @@ In the meantime you can checkout why `Nuitka commercial </doc/commercial.html>`_
 
 .. toctree::
    :hidden:
-
-   pages/overview
-
-   shop/cancel
-   shop/success
-
-   doc/commercial/protect-constants-data
