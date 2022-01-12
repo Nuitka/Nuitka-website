@@ -12,10 +12,6 @@ sphinx-autobuild = "*"
 black = "*"
 
 [packages]
-nikola = "*"
-webassets = "*"
-doit = "*"
-unidecode = "*"
 restructuredtext-lint = "*"
 lxml = "*"
 sphinx-copybutton = "*"
