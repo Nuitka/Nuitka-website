@@ -85,7 +85,7 @@
 .nuitka-price p::after {
     content: "/ yr";
     font-size: 14px;
-    vertical-align: -20px
+    vertical-align: -10px
 }
 
 .nuitka-grid-offer .sd-card-text {
