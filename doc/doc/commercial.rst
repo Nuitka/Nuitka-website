@@ -1,6 +1,6 @@
 .. meta::
    :description: Protect your IP against reverse engineering with the Python compiler Nuitka and turn your Python code into binary. Protect code, data, outputs and tracebacks!
-   :keywords: python,compiler,protection,reverse engineering,hacking,commercial,encrypted,tracebacks
+   :keywords: python,compiler,protection,reverse engineering,encrypted,tracebacks,obfuscate,obfuscation,obfuscator
 
 ###################
  Nuitka Commercial
