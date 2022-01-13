@@ -1,3 +1,7 @@
+.. meta::
+   :description: With the Python compiler Nuitka you create protected binaries out of your Python source code.
+   :keywords: python,compiler,exe,binary,protection,portable,standalone,windows,linux,mac
+
 ############################
  Nuitka the Python Compiler
 ############################
@@ -10,7 +14,7 @@
    :excerpts:
 
 *****************
-What is Nuitka
+ What is Nuitka
 *****************
 
 Nuitka is the optimizing Python compiler written in Python that creates
