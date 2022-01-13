@@ -1,9 +1,14 @@
+.. meta::
+   :description: Protect your IP against reverse engineering with the Python compiler Nuitka and turn your Python code into binary. Protect code, data, outputs and tracebacks!
+   :keywords: python,compiler,protection,reverse engineering,hacking,commercial,encrypted,tracebacks
+
 ###################
  Nuitka Commercial
 ###################
 
-If you are a commercial user of Nuitka, you fall into one of 4
-categories, which Nuitka tries to address.
+As a commercial user of Python, you definitely need these 4 critical features that only
+Nuitka commercial offers. Protect your code, your data, your outputs, and tracebacks
+while still enjoying major convinience features for your application.
 
 *************************************
  Protection vs. Reverse Enginneering
