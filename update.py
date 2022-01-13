@@ -99,6 +99,9 @@ from nuitka.tools.quality.autoformat.Autoformat import (
 from nuitka.Tracing import my_print
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
+from nuitka.utils.FileOperations import getFileContents
+
+
 
 
 def updateDownloadPage():
@@ -723,8 +726,23 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
                 output_file.write("".join(lines))
 
 
+def updateImportedPages():
+    # Make sure changelog is there.
+    updateNuitkaDevelop(update=True)
+
+    with withFileOpenedAndAutoformatted("doc/doc/Credits.rst") as credits_output:
+        credits_output.write("""\
+.. meta::
+   :description: Why is Nuitka named like this, and who do we thank for it.
+   :keywords: python,scons,black,buildbot,isort,NeuroDebian,mingw64,valgrind
+
+""")
+
+        credits_output.write(getFileContents("Nuitka-develop/Credits.rst"))
+
 def updateDocs():
     updateReleasePosts()
+    updateImportedPages()
 
 
 def runSphinxBuild():

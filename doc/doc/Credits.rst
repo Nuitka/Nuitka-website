@@ -1,1 +1,0 @@
-../../Nuitka-develop/Credits.rst
