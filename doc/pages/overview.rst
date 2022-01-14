@@ -4,26 +4,27 @@
  Nuitka the Python Compiler
 ############################
 
-****************
+*************
  Nuitka Blog
-****************
+*************
 
 .. postlist:: 5
    :excerpts:
 
-*****************
-What is Nuitka
-*****************
+****************
+ What is Nuitka
+****************
 
 Nuitka is a Python compiler written in Python.
 
 It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10).
 
-You feed Nuitka your Python app, it does a lot of clever things, and then
-creates an executable or extension module, or even a Python wheel.
+You feed Nuitka your Python app, it does a lot of clever things, and
+then creates an executable or extension module, or even a Python wheel.
 
-Nuitka is distributed under the Apache license. Nuitka commercial is a private
-repository that you pay to access and get plugins for commercial usage.
+Nuitka is distributed under the Apache license. Nuitka commercial is a
+private repository that you pay to access and get plugins for commercial
+usage.
 
 ********************************
  Okay I'm hooked! Tell me more!

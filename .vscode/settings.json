@@ -25,6 +25,7 @@
         "elif",
         "EPEL",
         "importlib",
+        "Impressum",
         "isort",
         "libc",
         "libpython",

@@ -30,9 +30,9 @@ editing material that might not get watched at all.
 Discord will be used for a call-in part. I will unmute people and
 discuss one on one with viewers, live on air, answering questions.
 
-And then, I have setup OBS with a camera view and my desktop shared, and I
-expect to be streaming to Youtube on my existing channel that I cleaned
-up a bit: https://www.youtube.com/c/KayHayen
+And then, I have setup OBS with a camera view and my desktop shared, and
+I expect to be streaming to Youtube on my existing channel that I
+cleaned up a bit: https://www.youtube.com/c/KayHayen
 
 ******
  When

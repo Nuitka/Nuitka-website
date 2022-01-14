@@ -21,10 +21,9 @@ Nuitka is a project to write a Python compiler in Python. Unlike PyPy,
 it is about static compilation, and aims to be less complex, but fully
 compatible with gradual degradation of performance, up to C level.
 
-See our `introduction </pages/overview.html>`__ for a
-full summary and consider reading the `User Manual
-</doc/user-manual.html>`__ and the `Developer Manual
-</doc/developer-manual.html>`__ for further
+See our `introduction </pages/overview.html>`__ for a full summary and
+consider reading the `User Manual </doc/user-manual.html>`__ and the
+`Developer Manual </doc/developer-manual.html>`__ for further
 clarification.
 
 What we do
@@ -80,10 +79,9 @@ We will be able to accommodate all time zones somehow.
 *****************
 
 Nuitka setup is trivial and explained in the `User Manual
-</doc/user-manual.html>`_. Using Anaconda Python on
-Windows, or a normal Linux system, and you are good to go with a git
-clone of Nuitka in a minute. See `Download page
-</pages/download.html>`_ how to do that.
+</doc/user-manual.html>`_. Using Anaconda Python on Windows, or a normal
+Linux system, and you are good to go with a git clone of Nuitka in a
+minute. See `Download page </pages/download.html>`_ how to do that.
 
 Bug fixes and features are expected to be done via PRs on Github. We can
 guide you through that, it's easy. We are not very formal, but helpful.
