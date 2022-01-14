@@ -51,5 +51,5 @@ offers no protection for your data there. Nuitka Commercial to the rescue.
 For Nuitka commercial, the output is empty. Without that plugin, the string will be found. The
 plugin is part of the Nuitka Commercial subscription and unqiue in this level of protection.
 
-Go `back to Nuitka commercial </doc/commercial.html#protection-vs-reverse-enginneering>`__ overview to
+Go `back to Nuitka commercial </doc/commercial.html#protection-vs-reverse-engineering>`__ overview to
 learn about more features or to subscribe to `Nuitka commercial </doc/commercial.html#pricing>`__.

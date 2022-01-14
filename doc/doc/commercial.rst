@@ -8,10 +8,10 @@
 
 As a commercial user of Python, you definitely need these 4 critical features that only
 Nuitka commercial offers. Protect your code, your data, your outputs, and tracebacks
-while still enjoying major convinience features for your application.
+while still enjoying major convenience features for your application.
 
 *************************************
- Protection vs. Reverse Enginneering
+ Protection vs. Reverse Engineering
 *************************************
 
 Hiding your source code and contained keys is crucial to your IP
@@ -23,11 +23,11 @@ contains plugins to Nuitka that will achieve the following:
    .. grid-item-card::  Program Constants Data
       :class-item: nuitka-grid-security
 
-      Obfuscucate contained program constants data
+      Obfuscate contained program constants data
 
       Your encryption keys, your program texts, your library usages, all
       expose textual information, that can be valuable input in Reverse
-      Enginneering.
+      Engineering.
 
       Normally these constants are plain and readable in the created
       programs (and of course your Python source code or bytecode).
@@ -71,7 +71,7 @@ contains plugins to Nuitka that will achieve the following:
 
       In a future update, you can decide which information is transferred,
       and what is part of the encryption, and which part is not, e.g.
-      hostname, client name, etc. could be output int plain text, while the
+      hostname, client name, etc. could be output in plain text, while the
       variable names and values would not be, depending on your choice!
 
    .. grid-item-card:: Encrypted outputs

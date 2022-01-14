@@ -64,5 +64,5 @@ disk for inspection:
     the view and need for deployment, but it cannot replace Nuitka commercial and
     its inclusion of data files inside the main binary.
 
-Go `back to Nuitka commercial </doc/commercial.html#protection-vs-reverse-enginneering>`__ overview to
+Go `back to Nuitka commercial </doc/commercial.html#protection-vs-reverse-engineering>`__ overview to
 learn about more features or to subscribe to `Nuitka commercial </doc/commercial.html#pricing>`__.
