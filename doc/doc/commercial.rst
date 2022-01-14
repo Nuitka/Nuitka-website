@@ -41,8 +41,8 @@ contains plugins to Nuitka that will achieve the following:
 
       Another facet of the data protection is data files. When your program
       includes data files to work on, these are visible in the file system.
-      Sometimes, e.g. via QML files of Qt, your program behaviour can be
-      changed by changing these files.
+      Sometimes, e.g. via QML files of Qt, your program behavior can be
+      changed by an attacker modifying these files.
 
       Therefore Nuitka commercial allows you to include data files as part
       of the program constants and protect it in the same way as other
