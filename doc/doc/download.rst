@@ -1,3 +1,7 @@
+.. meta::
+   :description: Download the Python compiler Nuitka and make your code faster today.
+   :keywords: nuitka,download,redhat,centos,debian,mint,freebsd,openbsd,arch,PyPI,git
+
 ##################
  Nuitka Downloads
 ##################
