@@ -27,8 +27,9 @@ fixes and new features.
 -  Pipenv: Workaround parsing issue with our ``setup.py`` to allow
    installation from Github. Fixed in 0.6.10.1 already.
 
--  Merging of branches in optimization could give indetermistic results
-   leading to more iterations than necessary. Fixed in 0.6.10.1 already.
+-  Merging of branches in optimization could give indeterministic
+   results leading to more iterations than necessary. Fixed in 0.6.10.1
+   already.
 
 -  Windows: Avoid profile powershell when attempting to resolve
    symlinks. Fixed in 0.6.10.1 already.

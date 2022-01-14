@@ -10,7 +10,7 @@
  Nuitka Blog
 *************
 
-.. post::list 5
+.. postlist:: 5
    :excerpts:
 
 ****************
