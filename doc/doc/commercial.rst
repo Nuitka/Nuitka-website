@@ -69,10 +69,7 @@ contains plugins to Nuitka that will achieve the following:
       Symmetric encryption (and asymmetric encryption in a future update)
       are available for you to use there.
 
-      In a future update, you can decide which information is transferred,
-      and what is part of the encryption, and which part is not, e.g.
-      hostname, client name, etc. could be output in plain text, while the
-      variable names and values would not be, depending on your choice!
+      `Read more.... <commercial/encrypted-tracebacks.html>`__
 
    .. grid-item-card:: Encrypted outputs
       :class-item: nuitka-grid-security
