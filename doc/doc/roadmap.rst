@@ -121,13 +121,13 @@ compile numpy for speed.
 
 -  Support for static libpython together with LTO for Python3
 
-   This gives an enormouse speed bump for Python2 with Debian package
+   This gives an enormous speed bump for Python2 with Debian package
    Python and of course for any properly self compiled Python, and to
    the Nuitka Python there will be. For Python3, this has not yet been
    achieved, but ought to be doable too. And in some cases, it can be
    known to not work and should not be suggested.
 
--  Better code for ``+= 1`` constructs with lack of type knowledge.
+-  Better code for ``+= 1`` constructs with full type knowledge.
 
    There is a long standing todo, to add the ``CLONG`` support for
    binary operations. It requires the code generation of Jinja to be
@@ -206,6 +206,18 @@ than it should.
 -  Needs more documentation and addition of (some) command line options
    of Nuitka to the ``bdist_nuitka`` target.
 
+
+***********************************
+ Traceback Encryption (commercial)
+***********************************
+
+-  Right now tracebacks are entirely encrypted. But in a future update,
+   you can decide which information is transferred, and what information
+   is part of the encryption, and which part is not, e.g. hostname,
+   client name, etc. could be output in plain text, while the variable
+   names and values would not be, depending on your choice!
+
+
 *********************************
  Features to be added for 0.6.19
 *********************************
@@ -228,5 +240,5 @@ run.
 [ ] Compression of onefile with bootstrap before Python3.5, so far it's
 there for 3.5 or higher only.
 
-[x] Make pydantic support the default, removing the experimental flag
+[x] Make ``pydantic`` support the default, removing the experimental flag
 ``function-base`` with it being the default behavior.
