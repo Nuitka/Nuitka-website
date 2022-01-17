@@ -6,13 +6,14 @@
  Nuitka Commercial
 ###################
 
-As a commercial user of Python, you definitely need these 4 critical features that only
-Nuitka commercial offers. Protect your code, your data, your outputs, and tracebacks
-while still enjoying major convenience features for your application.
+As a commercial user of Python, you definitely need these 4 critical
+features that only Nuitka commercial offers. Protect your code, your
+data, your outputs, and tracebacks while still enjoying major
+convenience features for your application.
 
-*************************************
+************************************
  Protection vs. Reverse Engineering
-*************************************
+************************************
 
 Hiding your source code and contained keys is crucial to your IP
 protection. For this, you need the Nuitka commercial package. It
@@ -214,7 +215,6 @@ highest priority.
        - Roadmap Influence
 
        - Use Cases Priority
-
 
 ************
  Contact Us
