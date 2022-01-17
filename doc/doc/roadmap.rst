@@ -26,7 +26,7 @@ This is the Nuitka roadmap, broken down by features.
 
 -  "Multidist" support (undecided)
 
-   Allow combinining multiple main programs into one, called
+   Allow combining multiple main programs into one, called
    "multidist". These will work with a dispatcher that decides from the
    binary name what it is. There will be one big binary with the ability
    to run each program.
@@ -44,7 +44,7 @@ This is the Nuitka roadmap, broken down by features.
    Much like for onefile, you need to distinguish program location and
    package location in this way. Note shared stuff living near the CMD
    file will see that CMD file path in ``sys.argv[0]`` there, and shared
-   stuff, e.g. ``xmlschema`` module will find its datafiles directory
+   stuff, e.g. ``xmlschema`` module will find its data files in a directory
    that is shared.
 
    And to top it off, the fat binary of "multidist" may be in standalone
@@ -66,9 +66,9 @@ This is the Nuitka roadmap, broken down by features.
    does and make this kind of change. This transition is almost
    complete, but the Qt plugins are still missing.
 
-   My goal here is to say that e.g. a datafile should be what Nuitka
+   My goal here is to say that e.g. a data file should be what Nuitka
    commercial currently calls "trusted" independent of it being a
-   datafile, right now that is not the case, but Nuitka is much closer
+   data file, right now that is not the case, but Nuitka is much closer
    to that now. This is of course the same with multiple distributions.
 
    For data files, this plugin could hook the data file copying process
@@ -83,7 +83,7 @@ This is the Nuitka roadmap, broken down by features.
 -  Dejong Stacks: More robust parser that allows stdout and stderr in
    same file with mixed outputs.
 
--  Add ability to inhibit datafiles from the command line, so that
+-  Add ability to inhibit data files from the command line, so that
    things coming from a plugin can be suppressed.
 
 -  Add support for upx (public feature)
@@ -119,16 +119,7 @@ compile numpy for speed.
    static libpython it can linked though, but we still might want to
    make our own replacement.
 
--  Support for static libpython together with LTO for Python3
-
-   This gives an enormous speed bump for Python2 with Debian package
-   Python and of course for any properly self compiled Python, and to
-   the Nuitka Python there will be. For Python3, this has not yet been
-   achieved, but ought to be doable too. And in some cases, it can be
-   known to not work and should not be suggested.
-
--  Better code for ``+= 1`` constructs with full type knowledge.
-
+-  Better code for ``+= 1`` constructs with no lack of type knowledge.
    There is a long standing todo, to add the ``CLONG`` support for
    binary operations. It requires the code generation of Jinja to be
    abstract, but that should have been close to being reached in last
@@ -177,7 +168,7 @@ compile numpy for speed.
  Container Builds (commercial)
 *******************************
 
-Providing docker images like manylinux does with Nuitka installed into
+Providing docker images like ``manylinux`` does with Nuitka installed into
 all of them and ready to use. Might make this a free feature once it's
 done and supports ``--commercial`` download of the plugins nicely.
 
@@ -193,11 +184,13 @@ than it should.
 
 -  Get it to work for 3.9 test suite.
 
-   The suite still needs a bit of help to run through, should be good though.
+   The suite still needs a bit of help to run through, should be good
+   though.
 
 -  Add support for all of the new case syntax of 3.10
 
-   This is partially done, but assignments in or matches do not work yet.
+   This is partially done, but assignments in or matches do not work
+   yet.
 
 **************
  Wheels Build
@@ -217,17 +210,6 @@ than it should.
    client name, etc. could be output in plain text, while the variable
    names and values would not be, depending on your choice!
 
-
-*********************************
- Features to be added for 0.6.19
-*********************************
-
-List of things, we are aiming for to be included in that release.
-
-[x] Support for Kivy 2.x to work out of the box.
-
-[x] Better scalability
-
 *********************************
  Features to be added for 0.6.20
 *********************************
@@ -242,3 +224,11 @@ there for 3.5 or higher only.
 
 [x] Make ``pydantic`` support the default, removing the experimental flag
 ``function-base`` with it being the default behavior.
+
+
+*********************************
+ Features to be added for 0.6.21
+*********************************
+
+[ ] Add ability to inhibit data files from the command line, so that
+   things coming from a plugin can be suppressed.
