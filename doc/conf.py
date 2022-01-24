@@ -143,8 +143,8 @@ html_static_path = ["_static"]
 # Configure theme
 html_theme_options = {
     "prev_next_buttons_location": "none",
-    "analytics_id": "G-V73VK1T804",
-    "analytics_anonymize_ip": True,
+#    "analytics_id": "G-V73VK1T804",
+#    "analytics_anonymize_ip": True,
     "includehidden" : True,
 }
 
