@@ -86,7 +86,6 @@ here </pages/download.html>`_.
    pages/pyside2
    pages/donations
    pages/gsoc2019
-   pages/nuitka-demo
 
 .. toctree::
    :hidden:

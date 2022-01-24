@@ -32,7 +32,9 @@ extensions = [
     "sphinx-favicon",
     "sphinx_sitemap",
     # Blog extension
-    "sphinxcontrib.asciinema",
+
+    # Disabled, loads to slow and cannot be limited to needing pages.
+    # "sphinxcontrib.asciinema",
     "ablog",
 ]
 
