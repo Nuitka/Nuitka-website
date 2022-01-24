@@ -150,10 +150,3 @@ html_theme_options = {
 
 html_extra_path = ["../files"]
 html_title = ""
-
-sphinxcontrib_asciinema_defaults = {
-    'theme': 'asciinema',
-    'preload': 0,
-    'font-size': '1rem',
-    'path': 'pages/demos'
-}

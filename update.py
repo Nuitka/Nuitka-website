@@ -770,30 +770,38 @@ def runPostProcessing():
         assert css_links
 
         css_filenames = [
-            "output/%s/%s"
+            os.path.normpath("output/%s/%s"
             % (
                 os.path.relpath(os.path.dirname(filename), "output"),
                 css_link.get("href"),
-            )
+            ))
             for css_link in css_links
             if "combined_" not in css_link.get("href")
         ]
 
-        if not css_filenames:
-            continue
+        if css_filenames:
+            output_filename = "/_static/combined_%s.css" % getHashFromValues(*css_filenames)
 
-        output_filename = "/_static/combined_%s.css" % getHashFromValues(*css_filenames)
+            if not os.path.exists(output_filename):
+                command = "minify %s -o output%s" % (
+                    " ".join(css_filenames),
+                    output_filename,
+                )
+                assert 0 == os.system(command), command
 
-        if not os.path.exists(output_filename):
-            command = "minify %s -o output%s" % (
-                " ".join(css_filenames),
-                output_filename,
-            )
-            assert 0 == os.system(command), command
+            css_links[0].attrib["href"] = output_filename
+            for css_link in css_links[1:]:
+                css_link.getparent().remove(css_link)
 
-        css_links[0].attrib["href"] = output_filename
-        for css_link in css_links[1:]:
-            css_link.getparent().remove(css_link)
+        for link in doc.xpath("//a[not(contains(@classes, 'intern'))]"):
+            if link.attrib["href"].startswith("http:") or link.attrib["href"].startswith("https:"):
+                if "nuitka.net" not in link.attrib["href"]:
+                    link.attrib["target"] = "_blank"
+
+        logo_img, = doc.xpath("//img[@class='logo']")
+
+        logo_img.attrib["width"] = "208"
+        logo_img.attrib["height"] = "209"
 
         with open(filename, "wb") as output:
             output.write(
@@ -951,6 +959,7 @@ When given, all is updated. Default %default.""",
         options.downloads = True
         options.docs = True
         options.build = True
+        options.postprocess = True
         options.deploy = True
 
     if options.docs:
