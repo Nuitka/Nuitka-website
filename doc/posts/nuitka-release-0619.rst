@@ -30,8 +30,6 @@ optimization, and doing a lot of bug fixes.
 -  Standalone: Ignore warning given by ``patchelf`` on Linux with at
    least newer OpenSUSE. Fixed in 0.6.18.1 already.
 
--  Standalone: Add needed datafile for ``cv2`` package.
-
 -  Fix, need to avoid computing large values out of ``<<`` operation as
    well. Fixed in 0.6.18.2 already.
 
@@ -67,9 +65,6 @@ optimization, and doing a lot of bug fixes.
 -  Fix, attribute nodes were not considering the value they are looking
    up on. Now that more values will know to have the attributes, that
    was causing errors. Fixed in 0.6.18.2 already.
-
--  Standalone: Added datafile for ``cv2`` package. Fixed in 0.6.18.2
-   already.
 
 -  Fix, left shifting can also produce large values and needs to be
    avoided in that case, similar to what we do for multiplications
@@ -173,7 +168,7 @@ optimization, and doing a lot of bug fixes.
    useful yet.
 
 -  Added support for Python 3.10, only ``match`` statements are not
-   completely supported. Variantion with ``|`` matches that also assign
+   completely supported. Variations with ``|`` matches that also assign
    are not allowed currently.
 
 -  Windows: Allow using ``--clang`` with ``--mingw64`` to e.g. use the
@@ -214,7 +209,7 @@ optimization, and doing a lot of bug fixes.
    no point in them. This was actually happening a lot and should mean a
    scalability improvement and unlock new optimization as well.
 
--  Avoid escaping uninit traces. Unset values need not be considered as
+-  Avoid escaping un-init traces. Unset values need not be considered as
    potentially modified as that cannot be done.
 
 -  The ``str`` shape is now detected through variables, this enables
@@ -225,7 +220,7 @@ optimization, and doing a lot of bug fixes.
    These are specifically all methods with no arguments, as these are
    very generic to add, introduced a base class for them, where we know
    they all have no effect or raise, as these functions are all
-   guarantueed to succeed and can be served by a common base class.
+   guaranteed to succeed and can be served by a common base class.
 
    This covers the ``str.capitalize``, ``str.upper``, ``str.lower``,
    ``str.swapcase``, ``str.title``, ``str.isalnum``, ``str.isalpha``,
@@ -408,7 +403,7 @@ optimization, and doing a lot of bug fixes.
    Nuitka, that had grown to address various requirements discovered
    over time.
 
--  Major cleanup of Jinja2 template organisation
+-  Major cleanup of Jinja2 template organisation.
 
    Renamed all C templates from ``.j2`` to ``.c.j2`` for clarity, this
    was not done fully consistent before. Also move all C templates to
