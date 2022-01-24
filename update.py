@@ -21,6 +21,7 @@ from lxml import html
 # Which branches were already done.
 updated_branches = set()
 
+
 def _updateCheckout(branch, update):
     if os.path.exists(f"Nuitka-{branch}") and not update:
         return
@@ -68,6 +69,7 @@ def _updateCheckout(branch, update):
 
     updated_branches.add(branch)
 
+
 def updateNuitkaMain(update):
     _updateCheckout("main", update=update)
 
@@ -81,6 +83,8 @@ def updateNuitkaFactory(update):
 
 
 def importNuitka():
+    # TODO: Move to at least develop, after next release, or even pip install as a requirement
+    # after release with an option to use other branches.
     updateNuitkaFactory(update=False)
 
     sys.path.insert(0, os.path.abspath("Nuitka-factory"))
@@ -97,16 +101,13 @@ from nuitka.tools.quality.autoformat.Autoformat import (
     withFileOpenedAndAutoformatted,
 )
 from nuitka.Tracing import my_print
+from nuitka.utils.FileOperations import getFileContents, getFileList
+from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
-from nuitka.utils.FileOperations import getFileContents
-
-
 
 
 def updateDownloadPage():
-    # TODO: Move to at least develop, after next releease, or even pip install as a requirement
-    # after release with an option to use other branches.
 
     page_template = getTemplate(
         package_name=None, template_name="download.rst.j2", template_subdir="doc/doc"
@@ -377,7 +378,7 @@ def updateDownloadPage():
     opensuse_rpm = {}
 
     max_leap_minor = 4
-    for leap_minor in range(0,max_leap_minor+1):
+    for leap_minor in range(0, max_leap_minor + 1):
         stable, develop = checkOBS(f"openSUSE_Leap_15.{leap_minor}")
 
         opensuse_rpm["stable", leap_minor] = stable
@@ -448,7 +449,6 @@ def updateDownloadPage():
     def makeVersionText(version):
         return f"""Nuitka {version.split("-", 1)[0]}"""
 
-
     def makeRepoLinkText(repo_name):
         return f"""`repository file <https://download.opensuse.org/repositories/home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"""
 
@@ -512,14 +512,17 @@ def updateDownloadPage():
             makeLeapText(leap_minor, "stable"),
             makeLeapText(leap_minor, "develop"),
         )
-        for leap_minor in range(0,max_leap_minor+1)
+        for leap_minor in range(0, max_leap_minor + 1)
     ]
 
-
-    suse_data.insert(0, (
-        "SLE 15",
-        makeRepoLinkText(f"SLE_15"),
-        makeVersionText(max_sle_150_release), makeVersionText(max_sle_150_prerelease))
+    suse_data.insert(
+        0,
+        (
+            "SLE 15",
+            makeRepoLinkText(f"SLE_15"),
+            makeVersionText(max_sle_150_release),
+            makeVersionText(max_sle_150_prerelease),
+        ),
     )
 
     suse_table = makeTable(
@@ -548,11 +551,11 @@ def updateDownloadPage():
     )
 
     template_context = {
-        "stable_version" : plain_stable,
+        "stable_version": plain_stable,
         "fedora_table": fedora_table,
         "centos_table": centos_table,
         "rhel_table": rhel_table,
-        "suse_table" : suse_table,
+        "suse_table": suse_table,
         "source_table": source_table,
     }
 
@@ -731,14 +734,17 @@ def updateImportedPages():
     updateNuitkaDevelop(update=True)
 
     with withFileOpenedAndAutoformatted("doc/doc/Credits.rst") as credits_output:
-        credits_output.write("""\
+        credits_output.write(
+            """\
 .. meta::
    :description: Why is Nuitka named like this, and who do we thank for it.
    :keywords: python,scons,black,buildbot,isort,NeuroDebian,mingw64,valgrind
 
-""")
+"""
+        )
 
         credits_output.write(getFileContents("Nuitka-develop/Credits.rst"))
+
 
 def updateDocs():
     updateReleasePosts()
@@ -753,8 +759,51 @@ def runSphinxAutoBuild():
     os.system("python -m sphinx_autobuild doc output/ --watch doc --watch Pipenv.lock")
 
 
+def runPostProcessing():
+    # Step one, compress the CSS files into one file.
+    # TODO: Could delete all CSS files that are not combined afterwards.
+
+    for filename in getFileList("output", only_suffixes=".html"):
+        doc = html.fromstring(getFileContents(filename, mode="rb"))
+
+        css_links = doc.xpath("//link[@rel='stylesheet']")
+        assert css_links
+
+        css_filenames = [
+            "output/%s/%s"
+            % (
+                os.path.relpath(os.path.dirname(filename), "output"),
+                css_link.get("href"),
+            )
+            for css_link in css_links
+            if "combined_" not in css_link.get("href")
+        ]
+
+        if not css_filenames:
+            continue
+
+        output_filename = "/_static/combined_%s.css" % getHashFromValues(*css_filenames)
+
+        if not os.path.exists(output_filename):
+            command = "minify %s -o output%s" % (
+                " ".join(css_filenames),
+                output_filename,
+            )
+            assert 0 == os.system(command), command
+
+        css_links[0].attrib["href"] = output_filename
+        for css_link in css_links[1:]:
+            css_link.getparent().remove(css_link)
+
+        with open(filename, "wb") as output:
+            output.write(
+                b"<!DOCTYPE html>\n"
+                + html.tostring(doc, include_meta_content_type=True)
+            )
+
+
 def checkRstLint(document):
-    my_print("Checking %r for proper restructed text ..." % document)
+    my_print("Checking %r for proper restructured text ..." % document)
     lint_results = restructuredtext_lint.lint_file(document, encoding="utf8")
 
     lint_error = False
@@ -868,6 +917,15 @@ When given, the site is re-built on changes and served locally. Default %default
     )
 
     parser.add_option(
+        "--post-process",
+        action="store_true",
+        dest="postprocess",
+        default=False,
+        help="""\
+When given, the site is post processed with minify. Default %default.""",
+    )
+
+    parser.add_option(
         "--deploy-site",
         action="store_true",
         dest="deploy",
@@ -895,7 +953,6 @@ When given, all is updated. Default %default.""",
         options.build = True
         options.deploy = True
 
-
     if options.docs:
         updateDocs()
 
@@ -920,6 +977,9 @@ When given, all is updated. Default %default.""",
 
     if options.serve:
         runSphinxAutoBuild()
+
+    if options.postprocess:
+        runPostProcessing()
 
     if options.deploy:
         runDeploymentCommand()
