@@ -782,7 +782,7 @@ def runPostProcessing():
         ]
 
         if css_filenames:
-            output_filename = "/_static/combined_%s.css" % getHashFromValues(*css_filenames)
+            output_filename = "/_static/css/combined_%s.css" % getHashFromValues(*css_filenames)
 
             if not os.path.exists(output_filename):
                 command = "minify %s -o output%s" % (
@@ -997,11 +997,11 @@ When given, all is updated. Default %default.""",
 
         runSphinxBuild()
 
-    if options.serve:
-        runSphinxAutoBuild()
-
     if options.postprocess:
         runPostProcessing()
+
+    if options.serve:
+        runSphinxAutoBuild()
 
     if options.deploy:
         runDeploymentCommand()
