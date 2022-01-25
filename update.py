@@ -763,6 +763,8 @@ def runPostProcessing():
     # Step one, compress the CSS files into one file.
     # TODO: Could delete all CSS files that are not combined afterwards.
 
+    documentation_options_js_filename = "output/_static/documentation_options.js"
+
     for filename in getFileList("output", only_suffixes=".html"):
         doc = html.fromstring(getFileContents(filename, mode="rb"))
 
@@ -803,11 +805,22 @@ def runPostProcessing():
         logo_img.attrib["width"] = "208"
         logo_img.attrib["height"] = "209"
 
+        data_url, = doc.xpath("//script[@data-url_root]")
+        data_url.text = getFileContents(documentation_options_js_filename).replace(
+            """document.getElementById("documentation_options").getAttribute('data-url_root')""", "'%s'" % data_url.attrib["data-url_root"]
+        )
+        del data_url.attrib["src"]
+        del data_url.attrib["id"]
+        del data_url.attrib["data-url_root"]
+
         with open(filename, "wb") as output:
             output.write(
                 b"<!DOCTYPE html>\n"
                 + html.tostring(doc, include_meta_content_type=True)
             )
+
+    if os.path.exists(documentation_options_js_filename):
+        os.unlink(documentation_options_js_filename)
 
 
 def checkRstLint(document):
