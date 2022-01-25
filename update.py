@@ -972,7 +972,9 @@ When given, all is updated. Default %default.""",
         options.downloads = True
         options.docs = True
         options.build = True
-        options.postprocess = True
+
+        # TODO: Once it works
+        # options.postprocess = True
         options.deploy = True
 
     if options.docs:
