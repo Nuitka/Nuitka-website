@@ -804,6 +804,13 @@ def runPostProcessing():
         logo_img.attrib["width"] = "208"
         logo_img.attrib["height"] = "209"
 
+        social_images = doc.xpath("//img[contains(@src, '/_static/icon-')]")
+        assert len(social_images) == 3, social_images
+
+        for social_image in social_images:
+            social_image.attrib["width"] = "24"
+            social_image.attrib["height"] = "24"
+
         data_url, = doc.xpath("//script[@data-url_root]")
         data_url.text = getFileContents(documentation_options_js_filename).replace(
             """document.getElementById("documentation_options").getAttribute('data-url_root')""", "'%s'" % data_url.attrib["data-url_root"]
