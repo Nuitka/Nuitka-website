@@ -824,7 +824,7 @@ def runPostProcessing():
             del data_url.attrib["data-url_root"]
 
         for script_tag in doc.xpath("//script[@src]"):
-            script_tag.attrib["defer"] = ""
+            script_tag.attrib["async"] = ""
 
         with open(filename, "wb") as output:
             output.write(
