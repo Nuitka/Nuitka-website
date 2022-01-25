@@ -23,11 +23,11 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
-    # "sphinx.ext.viewcode",
+#    "sphinx.ext.viewcode",
     # External extensions
     "sphinx_copybutton",
     "sphinx_design",
-    "sphinx_inline_tabs",
+#    "sphinx_inline_tabs",
     "sphinxcontrib.youtube",
     "sphinx-favicon",
     "sphinx_sitemap",
