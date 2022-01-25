@@ -101,7 +101,7 @@ from nuitka.tools.quality.autoformat.Autoformat import (
     withFileOpenedAndAutoformatted,
 )
 from nuitka.Tracing import my_print
-from nuitka.utils.FileOperations import getFileContents, getFileList
+from nuitka.utils.FileOperations import getFileContents, getFileList, putTextFileContents
 from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
@@ -785,11 +785,10 @@ def runPostProcessing():
             output_filename = "/_static/css/combined_%s.css" % getHashFromValues(*css_filenames)
 
             if not os.path.exists(output_filename):
-                command = "minify %s -o output%s" % (
-                    " ".join(css_filenames),
-                    output_filename,
+                putTextFileContents(
+                    filename="output" + output_filename,
+                    contents="\n".join(getFileContents(css_filename) for css_filename in css_filenames)
                 )
-                assert 0 == os.system(command), command
 
             css_links[0].attrib["href"] = output_filename
             for css_link in css_links[1:]:
