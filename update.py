@@ -785,9 +785,12 @@ def runPostProcessing():
             output_filename = "/_static/css/combined_%s.css" % getHashFromValues(*css_filenames)
 
             if not os.path.exists(output_filename):
+                merged_css = "\n".join(getFileContents(css_filename) for css_filename in css_filenames)
+                merged_css = merged_css.replace("@font-face{", "@font-face{font-display:swap;")
+
                 putTextFileContents(
                     filename="output" + output_filename,
-                    contents="\n".join(getFileContents(css_filename) for css_filename in css_filenames)
+                    contents=merged_css
                 )
 
             css_links[0].attrib["href"] = output_filename
