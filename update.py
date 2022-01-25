@@ -814,13 +814,17 @@ def runPostProcessing():
             social_image.attrib["width"] = "24"
             social_image.attrib["height"] = "24"
 
-        data_url, = doc.xpath("//script[@data-url_root]")
-        data_url.text = getFileContents(documentation_options_js_filename).replace(
-            """document.getElementById("documentation_options").getAttribute('data-url_root')""", "'%s'" % data_url.attrib["data-url_root"]
-        )
-        del data_url.attrib["src"]
-        del data_url.attrib["id"]
-        del data_url.attrib["data-url_root"]
+        for data_url in doc.xpath("//script[@data-url_root]"):
+            data_url.text = getFileContents(documentation_options_js_filename).replace(
+                """document.getElementById("documentation_options").getAttribute('data-url_root')""", "'%s'" % data_url.attrib["data-url_root"]
+            )
+
+            del data_url.attrib["src"]
+            del data_url.attrib["id"]
+            del data_url.attrib["data-url_root"]
+
+        for script_tag in doc.xpath("//script[@src]"):
+            script_tag.attrib["defer"] = ""
 
         with open(filename, "wb") as output:
             output.write(
