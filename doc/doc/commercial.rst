@@ -123,7 +123,7 @@ want to use though, because of performance gains, the IP protection,
 with or without the commercial plugins.
 
 The Nuitka Priority package gives you access to elevated priority of
-your issues. If you buy this, reported issues will be solved with
+your issues. If you subscribe to this, reported issues will be solved with
 highest priority, to enable you using Nuitka.
 
 *************
@@ -155,7 +155,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-         `Buy now </stripe/checkout-commercial-subscription>`__
+         `Subscribe now </stripe/checkout-commercial-subscription>`__
 
        - Commercial only Features
 
@@ -172,7 +172,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-         `Buy now </stripe/checkout-priority-subscription>`__
+         `Subscribe now </stripe/checkout-priority-subscription>`__
 
        - Best Support
 
@@ -190,7 +190,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-         `Buy now </stripe/checkout-full-subscription>`__
+         `Subscribe now </stripe/checkout-full-subscription>`__
 
        - Nuitka Commercial **plus**
 
@@ -206,7 +206,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-         `Buy now </stripe/checkout-sponsor-subscription>`__
+         `Subscribe now </stripe/checkout-sponsor-subscription>`__
 
        - Best Support
 
@@ -222,4 +222,4 @@ highest priority.
 
 Please use `this form to contact us
 <https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_
-with intent of buying Nuitka products
+with intent of buying Nuitka services
