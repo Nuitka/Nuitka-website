@@ -768,6 +768,9 @@ def runPostProcessing():
     for filename in getFileList("output", only_suffixes=".html"):
         doc = html.fromstring(getFileContents(filename, mode="rb"))
 
+        # Check copybutton.js
+        has_highlight = doc.xpath("//div[@class='highlight']")
+
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
 
@@ -779,6 +782,7 @@ def runPostProcessing():
             ))
             for css_link in css_links
             if "combined_" not in css_link.get("href")
+            if "copybutton" not in css_link.get("href") or has_highlight
         ]
 
         if css_filenames:
@@ -825,6 +829,11 @@ def runPostProcessing():
 
         for script_tag in doc.xpath("//script[@src]"):
             script_tag.attrib["async"] = ""
+
+            if not has_highlight and "copybutton" in script_tag.attrib["src"]:
+                script_tag.getparent().remove(script_tag)
+            if not has_highlight and "clipboard" in script_tag.attrib["src"]:
+                script_tag.getparent().remove(script_tag)
 
         with open(filename, "wb") as output:
             output.write(
@@ -884,7 +893,7 @@ def runDeploymentCommand():
     ]
 
     command = (
-        "rsync -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@nuitka.net:/var/www/"
+        "rsync -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@ssh.nuitka.net:/var/www/"
         % (" ".join("--exclude=%s" % exclude for exclude in excluded))
     )
 
