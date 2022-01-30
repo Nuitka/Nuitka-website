@@ -16,6 +16,7 @@
         "appdirs",
         "bytecode",
         "ccache",
+        "CEST",
         "clcache",
         "conda",
         "ctypes",
