@@ -25,6 +25,7 @@ sphinx-favicon = "*"
 sphinx-sitemap = "*"
 rstfmt = "*"
 "sphinxcontrib.asciinema" = "*"
+unicode = "*"
 
 [requires]
 python_version = "3.9"
