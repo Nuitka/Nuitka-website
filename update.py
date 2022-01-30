@@ -110,7 +110,6 @@ from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
 
-
 def updateDownloadPage():
 
     page_template = getTemplate(
@@ -950,12 +949,16 @@ def runDeploymentCommand():
         "rss.xml",
     ]
 
+    branch = subprocess.check_output("git branch --show-current".split()).strip()
+
+    target_dir = "/var/www/" if branch == b"main" else "/var/www-staging"
     command = (
-        "rsync -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@ssh.nuitka.net:/var/www/"
-        % (" ".join("--exclude=%s" % exclude for exclude in excluded))
+        "rsync -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@ssh.nuitka.net:%s"
+        % (" ".join("--exclude=%s" % exclude for exclude in excluded), target_dir)
     )
 
     my_print(command)
+
     assert 0 == os.system(command)
 
 
