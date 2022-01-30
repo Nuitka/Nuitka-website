@@ -821,7 +821,7 @@ jQuery(function () {
                 merged_css = "\n".join(
                     getFileContents(css_filename) for css_filename in css_filenames
                 )
-                # merged_css = merged_css.replace("@font-face{", "@font-face{font-display:swap;")
+                merged_css = merged_css.replace("@font-face{", "@font-face{font-display:swap;")
 
                 putTextFileContents(
                     filename="output" + output_filename, contents=merged_css
