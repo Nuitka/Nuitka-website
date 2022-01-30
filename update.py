@@ -771,6 +771,8 @@ def runPostProcessing():
         # Check copybutton.js
         has_highlight = doc.xpath("//div[@class='highlight']")
 
+        has_inline_tabs = doc.xpath("//*[@class='sd-tab-label']")
+
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
 
@@ -833,6 +835,8 @@ def runPostProcessing():
             if not has_highlight and "copybutton" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
             if not has_highlight and "clipboard" in script_tag.attrib["src"]:
+                script_tag.getparent().remove(script_tag)
+            if not has_inline_tabs and "design-tabs" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
 
         with open(filename, "wb") as output:
