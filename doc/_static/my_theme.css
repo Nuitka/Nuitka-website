@@ -2,6 +2,16 @@
     max-width: 1000px !important;
 }
 
+.logo_container {
+    display: block;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 0;
+    max-width: 100%;
+    width: 217.633px;
+    height: 208.533px;
+}
+
 .sd-col {
     margin-bottom: 2rem;
 }
