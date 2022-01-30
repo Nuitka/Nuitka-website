@@ -101,7 +101,11 @@ from nuitka.tools.quality.autoformat.Autoformat import (
     withFileOpenedAndAutoformatted,
 )
 from nuitka.Tracing import my_print
-from nuitka.utils.FileOperations import getFileContents, getFileList, putTextFileContents
+from nuitka.utils.FileOperations import (
+    getFileContents,
+    getFileList,
+    putTextFileContents,
+)
 from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
@@ -765,6 +769,25 @@ def runPostProcessing():
 
     documentation_options_js_filename = "output/_static/documentation_options.js"
 
+    js_set_1 = ["jquery", "underscore", "doctools", "js/theme"]
+    js_set_1_contents = "\n".join(
+        getFileContents("output/_static/" + js_name + ".js") for js_name in js_set_1
+    )
+
+    js_set_1_contents += """
+jQuery(function () {
+    SphinxRtdTheme.Navigation.enable(true);
+});
+    """
+
+
+
+    js_set_1_output_filename = "/_static/combined_%s.js" % getHashFromValues(
+        js_set_1_contents
+    )
+
+    putTextFileContents("output" + js_set_1_output_filename, js_set_1_contents)
+
     for filename in getFileList("output", only_suffixes=".html"):
         doc = html.fromstring(getFileContents(filename, mode="rb"))
 
@@ -777,26 +800,31 @@ def runPostProcessing():
         assert css_links
 
         css_filenames = [
-            os.path.normpath("output/%s/%s"
-            % (
-                os.path.relpath(os.path.dirname(filename), "output"),
-                css_link.get("href"),
-            ))
+            os.path.normpath(
+                "output/%s/%s"
+                % (
+                    os.path.relpath(os.path.dirname(filename), "output"),
+                    css_link.get("href"),
+                )
+            )
             for css_link in css_links
             if "combined_" not in css_link.get("href")
             if "copybutton" not in css_link.get("href") or has_highlight
         ]
 
         if css_filenames:
-            output_filename = "/_static/css/combined_%s.css" % getHashFromValues(*css_filenames)
+            output_filename = "/_static/css/combined_%s.css" % getHashFromValues(
+                *css_filenames
+            )
 
             if not os.path.exists(output_filename):
-                merged_css = "\n".join(getFileContents(css_filename) for css_filename in css_filenames)
-                merged_css = merged_css.replace("@font-face{", "@font-face{font-display:swap;")
+                merged_css = "\n".join(
+                    getFileContents(css_filename) for css_filename in css_filenames
+                )
+                # merged_css = merged_css.replace("@font-face{", "@font-face{font-display:swap;")
 
                 putTextFileContents(
-                    filename="output" + output_filename,
-                    contents=merged_css
+                    filename="output" + output_filename, contents=merged_css
                 )
 
             css_links[0].attrib["href"] = output_filename
@@ -804,11 +832,13 @@ def runPostProcessing():
                 css_link.getparent().remove(css_link)
 
         for link in doc.xpath("//a[not(contains(@classes, 'intern'))]"):
-            if link.attrib["href"].startswith("http:") or link.attrib["href"].startswith("https:"):
+            if link.attrib["href"].startswith("http:") or link.attrib[
+                "href"
+            ].startswith("https:"):
                 if "nuitka.net" not in link.attrib["href"]:
                     link.attrib["target"] = "_blank"
 
-        logo_img, = doc.xpath("//img[@class='logo']")
+        (logo_img,) = doc.xpath("//img[@class='logo']")
 
         logo_img.attrib["width"] = "208"
         logo_img.attrib["height"] = "209"
@@ -835,21 +865,39 @@ def runPostProcessing():
             del data_url.attrib["id"]
             del data_url.attrib["data-url_root"]
 
-        for script_tag in doc.xpath("//script[@src]"):
+        for script_tag in doc.xpath("//script"):
+            if "src" not in script_tag.attrib:
+                if (
+                    script_tag.text
+                    and "SphinxRtdTheme.Navigation.enable(true);" in script_tag.text
+                ):
+                    script_tag.getparent().remove(script_tag)
+
+                continue
+
             script_tag.attrib["async"] = ""
 
             if not has_highlight and "copybutton" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
-            if not has_highlight and "clipboard" in script_tag.attrib["src"]:
+            elif not has_highlight and "clipboard" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
-            if not has_inline_tabs and "design-tabs" in script_tag.attrib["src"]:
+            elif not has_inline_tabs and "design-tabs" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
+            elif (
+                any(js_name in script_tag.attrib["src"] for js_name in js_set_1)
+                and "combined" not in script_tag.attrib["src"]
+            ):
+                if js_set_1[0] in script_tag.attrib["src"]:
+                    script_tag.attrib["src"] = js_set_1_output_filename
+                else:
+                    script_tag.getparent().remove(script_tag)
+
+        document_bytes = b"<!DOCTYPE html>\n" + html.tostring(
+            doc, include_meta_content_type=True
+        )
 
         with open(filename, "wb") as output:
-            output.write(
-                b"<!DOCTYPE html>\n"
-                + html.tostring(doc, include_meta_content_type=True)
-            )
+            output.write(document_bytes)
 
     if os.path.exists(documentation_options_js_filename):
         os.unlink(documentation_options_js_filename)
