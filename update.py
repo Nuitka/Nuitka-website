@@ -951,6 +951,10 @@ def runDeploymentCommand():
 
     branch = subprocess.check_output("git branch --show-current".split()).strip()
 
+    if branch != b"main":
+        with open("output/robots.txt", "w") as robots_file:
+            robots_file.write("Disallow: *\n")
+
     target_dir = "/var/www/" if branch == b"main" else "/var/www-staging"
     command = (
         "rsync -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@ssh.nuitka.net:%s"
