@@ -820,7 +820,12 @@ jQuery(function () {
                 merged_css = "\n".join(
                     getFileContents(css_filename) for css_filename in css_filenames
                 )
-                merged_css = merged_css.replace("@font-face{", "@font-face{font-display:swap;")
+
+                # Do not display fonts on mobile devices.
+                merged_css = re.sub(r"@font-face\{(.*?)\}", r"@media(min-width:901px){@font-face{font-display:swap;\1}}", merged_css, flags=re.S)
+
+                # Strip comments.
+                merged_css = re.sub(r"/\*.*?\*/", "", merged_css, flags=re.S)
 
                 putTextFileContents(
                     filename="output" + output_filename, contents=merged_css
