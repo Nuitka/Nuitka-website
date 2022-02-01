@@ -1,3 +1,7 @@
+.. meta::
+   :description: Download the Python compiler Nuitka and make your code faster today.
+   :keywords: nuitka,download,redhat,centos,debian,mint,freebsd,openbsd,arch,PyPI,git
+
 ##################
  Nuitka Downloads
 ##################
@@ -163,15 +167,16 @@ Debian/Ubuntu/Mint
 
    .. code:: bash
 
-      CODENAME=`egrep 'UBUNTU_CODENAME|VERSION_CODENAME' /etc/os-release | cut -d= -f2`
+      CODENAME=`egrep 'UBUNTU_CODENAME|VERSION_CODENAME' /etc/os-release | sort | head -1 | cut -d= -f2`
       if [ -z "$CODENAME" ]
       then
          CODENAME=`lsb_release -c -s`
       fi
-      wget -O - https://nuitka.net/deb/archive.key.gpg | apt-key add -
-      echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/stable/$CODENAME $CODENAME main"
-      apt-get update
-      apt-get install nuitka
+      wget -O - https://nuitka.net/deb/archive.key.gpg | sudo apt-key add -
+      sudo apt-get install ca-certificates
+      sudo echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/stable/$CODENAME $CODENAME main"
+      sudo apt-get update
+      sudo apt-get install nuitka
 
 -  |DEBIAN_LOGO| |UBUNTU_LOGO| |MINT_LOGO| Develop: Debian/Ubuntu/Mint
    repositories
@@ -183,16 +188,17 @@ Debian/Ubuntu/Mint
       then
          CODENAME=`lsb_release -c -s`
       fi
-      wget -O - https://nuitka.net/deb/archive.key.gpg | apt-key add -
-      echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/develop/$CODENAME $CODENAME main"
-      apt-get update
-      apt-get install nuitka
+      wget -O - https://nuitka.net/deb/archive.key.gpg | sudo apt-key add -
+      sudo apt-get install ca-certificates
+      sudo echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/develop/$CODENAME $CODENAME main"
+      sudo apt-get update
+      sudo apt-get install nuitka
 
    .. note::
 
-      Because Nuitka is part of Debian Stable/Testing/Unstable, a stable
-      version is already in the standard repository. This is the only
-      way to access the develop version of Nuitka though.
+      Because Nuitka is part of Debian Stable/Testing/Unstable, a stable version
+      is already in the standard repository. This is the only way to access the
+      develop version of Nuitka though.
 
 RHEL
 ====
