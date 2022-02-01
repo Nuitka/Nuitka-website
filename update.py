@@ -822,10 +822,12 @@ jQuery(function () {
                 )
 
                 # Do not display fonts on mobile devices.
-                merged_css = re.sub(r"@font-face\{(.*?)\}", r"@media(min-width:901px){@font-face{font-display:swap;\1}}", merged_css, flags=re.S)
+                merged_css = re.sub(r"@font-face\{(?!.*?awesome)(.*?)\}", r"@media(min-width:901px){@font-face{\1}}", merged_css, flags=re.S)
+                merged_css = re.sub(r"@font-face\{(.*?)\}", r"@font-face{font-display:swap;\1}", merged_css, flags=re.S)
 
-                # Strip comments.
+                # Strip comments and trailing whitespace (created by that in part)
                 merged_css = re.sub(r"/\*.*?\*/", "", merged_css, flags=re.S)
+                merged_css = re.sub(r"\s+\n", r"\n", merged_css, flags=re.M)
 
                 putTextFileContents(
                     filename="output" + output_filename, contents=merged_css
