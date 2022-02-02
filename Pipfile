@@ -26,6 +26,7 @@ sphinx-sitemap = "*"
 rstfmt = "*"
 "sphinxcontrib.asciinema" = "*"
 unicode = "*"
+unidecode = "*"
 
 [requires]
 python_version = "3.9"
