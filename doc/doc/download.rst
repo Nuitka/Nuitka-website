@@ -1,3 +1,7 @@
+.. meta::
+   :description: Download the Python compiler Nuitka and make your code faster today.
+   :keywords: nuitka,download,redhat,centos,debian,mint,freebsd,openbsd,arch,PyPI,git
+
 ##################
  Nuitka Downloads
 ##################
@@ -35,7 +39,7 @@ commercial subscriber.
 You may also learn more about `Nuitka Commercial
 </doc/commercial.html>`__ offering.
 
-The current release is Nuitka 0.6.19.4. Stable releases are supported
+The current release is Nuitka 0.6.19.5. Stable releases are supported
 with hot fixes, indicated by the last of the 4 digits.
 
 .. note::
@@ -80,7 +84,7 @@ well. So you can install with ``pip`` as follows.
 +-------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
 | Branch                                                                              | zip                                                                                 | tar.gz                                                                              | tar.bz2                                                                             |
 +=====================================================================================+=====================================================================================+=====================================================================================+=====================================================================================+
-| Stable                                                                              | `Nuitka 0.6.19.4.zip <https://nuitka.net/releases/Nuitka-0.6.19.4.zip>`__           | `Nuitka 0.6.19.4.tar.gz <https://nuitka.net/releases/Nuitka-0.6.19.4.tar.gz>`__     | `Nuitka 0.6.19.4.tar.bz2 <https://nuitka.net/releases/Nuitka-0.6.19.4.tar.bz2>`__   |
+| Stable                                                                              | `Nuitka 0.6.19.5.zip <https://nuitka.net/releases/Nuitka-0.6.19.5.zip>`__           | `Nuitka 0.6.19.5.tar.gz <https://nuitka.net/releases/Nuitka-0.6.19.5.tar.gz>`__     | `Nuitka 0.6.19.5.tar.bz2 <https://nuitka.net/releases/Nuitka-0.6.19.5.tar.bz2>`__   |
 +-------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
 | Develop                                                                             | `Nuitka 0.6.20rc3.zip <https://nuitka.net/releases/Nuitka-0.6.20rc3.zip>`__         | `Nuitka 0.6.20rc3.tar.gz <https://nuitka.net/releases/Nuitka-0.6.20rc3.tar.gz>`__   | `Nuitka 0.6.20rc3.tar.bz2 <https://nuitka.net/releases/Nuitka-0.6.20rc3.tar.bz2>`__ |
 +-------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
