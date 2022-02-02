@@ -14,6 +14,8 @@
     "python.analysis.extraPaths": ["Nuitka-factory"],
     "cSpell.words": [
         "appdirs",
+        "backport",
+        "backported",
         "bytecode",
         "ccache",
         "CEST",
