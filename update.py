@@ -110,7 +110,6 @@ from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
 
-
 def updateDownloadPage():
 
     page_template = getTemplate(
@@ -821,7 +820,14 @@ jQuery(function () {
                 merged_css = "\n".join(
                     getFileContents(css_filename) for css_filename in css_filenames
                 )
-                merged_css = merged_css.replace("@font-face{", "@font-face{font-display:swap;")
+
+                # Do not display fonts on mobile devices.
+                merged_css = re.sub(r"@font-face\{(?!.*?awesome)(.*?)\}", r"@media(min-width:901px){@font-face{\1}}", merged_css, flags=re.S)
+                merged_css = re.sub(r"@font-face\{(.*?)\}", r"@font-face{font-display:swap;\1}", merged_css, flags=re.S)
+
+                # Strip comments and trailing whitespace (created by that in part)
+                merged_css = re.sub(r"/\*.*?\*/", "", merged_css, flags=re.S)
+                merged_css = re.sub(r"\s+\n", r"\n", merged_css, flags=re.M)
 
                 putTextFileContents(
                     filename="output" + output_filename, contents=merged_css
@@ -950,12 +956,20 @@ def runDeploymentCommand():
         "rss.xml",
     ]
 
+    branch = subprocess.check_output("git branch --show-current".split()).strip()
+
+    if branch != b"main":
+        with open("output/robots.txt", "w") as robots_file:
+            robots_file.write("Disallow: *\n")
+
+    target_dir = "/var/www/" if branch == b"main" else "/var/www-staging"
     command = (
-        "rsync -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@ssh.nuitka.net:/var/www/"
-        % (" ".join("--exclude=%s" % exclude for exclude in excluded))
+        "rsync -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@ssh.nuitka.net:%s"
+        % (" ".join("--exclude=%s" % exclude for exclude in excluded), target_dir)
     )
 
     my_print(command)
+
     assert 0 == os.system(command)
 
 
