@@ -734,6 +734,7 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
 
 def updateImportedPages():
     # Make sure changelog is there.
+    updateNuitkaMain(update=True)
     updateNuitkaDevelop(update=True)
 
     with withFileOpenedAndAutoformatted("doc/doc/Credits.rst") as credits_output:
@@ -747,6 +748,34 @@ def updateImportedPages():
         )
 
         credits_output.write(getFileContents("Nuitka-develop/Credits.rst"))
+
+
+    with withFileOpenedAndAutoformatted("doc/doc/user-manual.rst") as user_manual_output:
+        # We can plug meta changes for website here, this could be better.
+        user_manual_output.write(
+            """\
+.. meta::
+   :description: User Manual of Nuitka with the details on how to use it
+   :keywords: python,compiler,nuitka,manual
+
+"""
+        )
+
+        user_manual_output.write(getFileContents("Nuitka-main/README.rst"))
+
+
+    with withFileOpenedAndAutoformatted("doc/doc/developer-manual.rst") as developer_manual_output:
+        # We can plug meta changes for website here, this could be better.
+        developer_manual_output.write(
+            """\
+.. meta::
+   :description: Developer Manual of Nuitka with instructions geared to changing it
+   :keywords: python,compiler,nuitka,developer
+
+"""
+        )
+
+        developer_manual_output.write(getFileContents("Nuitka-develop/Developer_Manual.rst"))
 
 
 def updateDocs():
