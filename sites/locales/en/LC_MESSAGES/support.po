@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-10 10:31+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../doc/pages/support.rst:3
+msgid "Support"
+msgstr ""
+
+#: ../../doc/pages/support.rst:5
+msgid "If you have some issue or need support for Nuitka these are your options:"
+msgstr ""
+
+#: ../../doc/pages/support.rst:10
+msgid "Commercial Grade Support"
+msgstr ""
+
+#: ../../doc/pages/support.rst:12
+msgid ""
+"While Nuitka is Free Software, your software is not, and you want to get "
+"help with the tool, somebody to do it for you, or a quick solution, or "
+"even better IP protection with more advanced techniques. You are best "
+"served here in the `Nuitka Commercial area. </doc/commercial.html>`_."
+msgstr ""
+
+#: ../../doc/pages/support.rst:19
+msgid "Donations"
+msgstr ""
+
+#: ../../doc/pages/support.rst:21
+msgid ""
+"You want to sponsor Nuitka development, as it is a cool project to make "
+"Python a fast programming language, please head here and pledge your "
+"support. `Donations </pages/donations.html>`_."
+msgstr ""
+
+#: ../../doc/pages/support.rst:27
+msgid "Github Issue Tracker"
+msgstr ""
+
+#: ../../doc/pages/support.rst:29
+msgid ""
+"Nuitka uses Github for public issue tracking (commercial users have a "
+"private tracker available) and your can report the issue on the `issue "
+"tracker <https://github.com/Nuitka/Nuitka/issues>`_ there."
+msgstr ""
+
+#: ../../doc/pages/support.rst:35
+msgid "Chat Room"
+msgstr ""
+
+#: ../../doc/pages/support.rst:37
+msgid ""
+"Try the chat room, which is not a replacement for an issue tracker, but "
+"we have it. You are also welcome to lurk and help others."
+msgstr ""
+
+msgid "Join the chat at https://gitter.im/Nuitka-chat/community"
+msgstr ""
+
