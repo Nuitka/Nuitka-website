@@ -8,3 +8,4 @@ output.*
 .vscode/tags
 doc/Changelog.rst
 doc/doc/Credits.rst
+_build/
