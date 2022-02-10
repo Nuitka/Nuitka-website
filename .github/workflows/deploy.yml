@@ -16,10 +16,10 @@ jobs:
         with:
           fetch-depth: 0  # fetch all history so that last modified date-times are accurate
 
-      - name: 🐍 Set up Python 3.10
+      - name: 🐍 Set up Python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: "3.10"
+          python-version: "3.9"
 
       - name: 🧳 Cache pip
         uses: actions/cache@v2
