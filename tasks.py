@@ -25,5 +25,9 @@ def preprocessing(c):
     #       'docs/doc/images/Nuitka-Logo-Symbol.png')
     c.run('cp -rf doc/posts intl/posts/')
 
+@task
+def output(c):
+    c.run('cp -rf doc/_build/html output/')
+    c.run('cp -rf intl/_build/html/zh_CN output/zh_CN')
 
-ns = Collection(download, init, preprocessing, intl, doc)
+ns = Collection(download, init, preprocessing, intl, doc, output)

@@ -44,8 +44,7 @@ jobs:
         run: |
           invoke doc
           invoke intl.language -l zh_CN
-          cp -rf doc/_build/html output/
-          cp -rf intl/_build/html/zh_CN output/zh_CN
+          invoke output
 
       - name: 🚀 Deploy to GitHub pages
         uses: peaceiris/actions-gh-pages@v3.6.1
