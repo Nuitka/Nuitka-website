@@ -42,7 +42,7 @@ jobs:
       - name: 🔧 Build HTML
         run: |
           invoke update
-          invoke update -t build-site
+          invoke doc
           invoke intl.language -l zh_CN
           invoke output
 

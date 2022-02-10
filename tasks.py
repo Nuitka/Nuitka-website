@@ -35,7 +35,7 @@ def update(c, target='update-docs'):
 
 @task
 def output(c):
-    # c.run('cp -rf doc/_build/html output/')
+    c.run('cp -rf doc/_build/html output/')
     c.run('cp -rf intl/_build/html/zh_CN output/zh_CN')
 
 ns = Collection(download, init, virtualenv, update, intl, doc, output)
