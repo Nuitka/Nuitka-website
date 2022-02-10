@@ -9,7 +9,7 @@ sphinxcontrib.asciinema
 ablog
 restructuredtext-lint
 unidecode
-# sphinx-rtd-theme
+sphinx-rtd-theme
 myst-parser
 sphinx_book_theme
 Sphinx>=4.4
