@@ -16,10 +16,10 @@ jobs:
         with:
           fetch-depth: 0  # fetch all history so that last modified date-times are accurate
 
-      - name: 🐍 Set up Python 3.9
+      - name: 🐍 Set up Python 3.10
         uses: actions/setup-python@v2
         with:
-          python-version: "3.9"
+          python-version: "3.10"
 
       - name: 🧳 Cache pip
         uses: actions/cache@v2
@@ -36,6 +36,7 @@ jobs:
         shell: bash
         run: |
           pip install --upgrade pip
+          pip install -r dev-requirements.txt
           pip install invoke
           invoke virtualenv
       

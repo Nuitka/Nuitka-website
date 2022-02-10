@@ -1,5 +1,6 @@
 '''It is best to work in an environment created by conda.
 '''
+from shutil import rmtree
 from invoke import Collection, task
 from _docs import intl, doc
 
@@ -35,7 +36,10 @@ def update(c, target='update-docs'):
 
 @task
 def output(c):
-    c.run('cp -rf doc/_build/html output/')
-    c.run('cp -rf intl/_build/html/zh_CN output/zh_CN')
+    out = 'output/'
+    rmtree(out)
+    c.run(f'cp -rf doc/_build/html {out}')
+    c.run(f'cp -rf intl/_build/html/zh_CN {out}/zh_CN')
+        
 
 ns = Collection(download, init, virtualenv, update, intl, doc, output)
