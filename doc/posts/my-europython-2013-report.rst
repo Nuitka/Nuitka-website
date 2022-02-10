@@ -117,7 +117,7 @@ and it would detract me away from it.
 *******
 
 So Nuitka got a lot more exposure. And one guy watching the talk even
-created a really `nice logo </_static/Nuitka-Logo-Symbol.png>`_ for
+created a really `nice logo </_static/Nuitka-Logo-Symbol.svg>`_ for
 it. I will make it a separate announcement though, and the next release
 is going to use it.
 
