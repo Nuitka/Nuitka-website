@@ -1,3 +1,7 @@
+'''It is best to work in an environment created by conda.
+'''
+from pathlib import Path
+from shutil import rmtree
 from invoke import Collection, task
 from _docs import intl, doc
 
@@ -10,24 +14,34 @@ def download(c, branch='main'):
 
 @task
 def init(c):
-    c.run(f'pip install -r dev-requirements.txt')
+    '''Initialize reop.'''
     download(c, 'main')
     download(c, 'develop')
     download(c, 'factory')
 
 
 @task
-def preprocessing(c):
-    # c.run('cp doc/pages/images/gitter-badge.svg'
-    #       'docs/images/gitter-badge.svg')
-    # c.run('mkdir intl/doc/ intl/doc/images/')
-    # c.run('cp Nuitka-develop/doc/images/Nuitka-Logo-Symbol.png'
-    #       'docs/doc/images/Nuitka-Logo-Symbol.png')
-    c.run('cp -rf doc/posts intl/posts/')
+def virtualenv(c):
+    '''create and install env'''
+    c.run('pip install -U pipenv')
+    c.run('pipenv install --dev')
+
+
+@task
+def update(c, target='update-docs'):
+    '''
+    :target: can be `update-docs`, `build-site`, `serve-site`
+    '''
+    cmd = 'pipenv run python update.py'
+    c.run(f'{cmd} --{target}')
 
 @task
 def output(c):
-    c.run('cp -rf doc/_build/html output/')
-    c.run('cp -rf intl/_build/html/zh_CN output/zh_CN')
+    out = 'output/'
+    # if Path(out).exists():
+    #     rmtree(out)
+    # c.run(f'cp -rf doc/_build/html {out}')
+    c.run(f'cp -rf intl/_build/html/zh_CN {out}/zh_CN')
+        
 
-ns = Collection(download, init, preprocessing, intl, doc, output)
+ns = Collection(download, init, virtualenv, update, intl, doc, output)
