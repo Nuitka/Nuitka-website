@@ -70,10 +70,11 @@ def build(
 
 
 @task
-def gettext(c):
+def gettext(c, language='en'):
     opts = "-b gettext"
     target = Path(c.sphinx.target).parent / 'gettext'
-    build(c, target=target, opts=opts)
+    build(c, clean=True, target=target, opts=opts)
+    c.run(f'sphinx-intl update -p {target} -l {language}')
 
 
 @task(name='language')
@@ -81,7 +82,6 @@ def _language(c, language='en'):
     opts = f"-D language={language}"
     target = c.sphinx.target + f'/{language}'
     build(c, target=target, opts=opts)
-
 
 @task
 def doctest(c):
@@ -123,7 +123,7 @@ def _site(name, help_part):
     if name == 'doc':
         _path = name
     else:
-        _path = join("sites", name)
+        _path = join(".", name)
     # TODO: turn part of from_module into .clone(), heh.
     self = sys.modules[__name__]
     coll = Collection.from_module(
