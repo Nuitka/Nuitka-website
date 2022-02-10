@@ -9,4 +9,3 @@ output.*
 doc/Changelog.rst
 doc/doc/Credits.rst
 _build/
-*.lock
