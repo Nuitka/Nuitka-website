@@ -1,5 +1,6 @@
 '''It is best to work in an environment created by conda.
 '''
+from pathlib import Path
 from shutil import rmtree
 from invoke import Collection, task
 from _docs import intl, doc
@@ -37,8 +38,9 @@ def update(c, target='update-docs'):
 @task
 def output(c):
     out = 'output/'
-    rmtree(out)
-    c.run(f'cp -rf doc/_build/html {out}')
+    # if Path(out).exists():
+    #     rmtree(out)
+    # c.run(f'cp -rf doc/_build/html {out}')
     c.run(f'cp -rf intl/_build/html/zh_CN {out}/zh_CN')
         
 
