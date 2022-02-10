@@ -14,3 +14,4 @@ myst-parser
 sphinx_book_theme
 Sphinx>=4.4
 nuitka
+sphinx-intl
