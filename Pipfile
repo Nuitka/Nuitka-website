@@ -27,6 +27,7 @@ rstfmt = "*"
 "sphinxcontrib.asciinema" = "*"
 unicode = "*"
 unidecode = "*"
+sphinx-intl = "*"
 
 [requires]
 python_version = "3.9"

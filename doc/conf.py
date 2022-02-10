@@ -31,10 +31,9 @@ extensions = [
     "sphinxcontrib.youtube",
     "sphinx-favicon",
     "sphinx_sitemap",
-    # Blog extension
-
     # Disabled, loads to slow and cannot be limited to needing pages.
     # "sphinxcontrib.asciinema",
+    # Blog extension
     "ablog",
 ]
 
@@ -150,3 +149,7 @@ html_theme_options = {
 
 html_extra_path = ["../files"]
 html_title = ""
+
+# Sphinx intl configuration
+locale_dirs = ['locale/']
+gettext_compact = False
