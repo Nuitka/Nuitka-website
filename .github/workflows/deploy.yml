@@ -38,14 +38,16 @@ jobs:
           pip install --upgrade pip
           pip install -r dev-requirements.txt
           pip install invoke
+
+      - name: Site initialization
           invoke virtualenv
+          invoke run
+          invoke run -t build-site
       
       - name: 🔧 Build HTML
         run: |
-          invoke update
-          invoke update -t build-site
-          invoke intl.language -l zh_CN
-          invoke output
+          invoke doc
+          invoke intl -l zh_CN
 
       - name: 🚀 Deploy to GitHub pages
         uses: peaceiris/actions-gh-pages@v3.6.1
