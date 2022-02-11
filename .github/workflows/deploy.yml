@@ -40,6 +40,7 @@ jobs:
           pip install invoke
 
       - name: Site initialization
+        run: |
           invoke virtualenv
           invoke run
           invoke run -t build-site
