@@ -151,5 +151,5 @@ html_extra_path = ["../files"]
 html_title = ""
 
 # Sphinx intl configuration
-locale_dirs = ['locale/']
+locale_dirs = ['../locales/']
 gettext_compact = False

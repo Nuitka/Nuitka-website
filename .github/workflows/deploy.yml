@@ -46,6 +46,7 @@ jobs:
       
       - name: 🔧 Build HTML
         run: |
+          invoke doc.clean
           invoke doc
           invoke intl -l zh_CN
 

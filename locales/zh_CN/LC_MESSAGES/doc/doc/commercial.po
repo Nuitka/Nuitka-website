@@ -18,24 +18,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../intl/commercial.rst:3
+#: ../../doc/doc/doc/commercial.rst:1
 msgid ""
 "Protect your IP against reverse engineering with the Python compiler "
 "Nuitka and turn your Python code into binary. Protect code, data, outputs"
 " and tracebacks!"
 msgstr ""
 
-#: ../../intl/commercial.rst:3
+#: ../../doc/doc/doc/commercial.rst:1
 msgid ""
 "python,compiler,protection,reverse "
 "engineering,encrypted,tracebacks,obfuscate,obfuscation,obfuscator"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:7 ../../doc/doc/commercial.rst:213
+#: ../../doc/doc/doc/commercial.rst:7 ../../doc/doc/doc/commercial.rst:213
 msgid "Nuitka Commercial"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:9
+#: ../../doc/doc/doc/commercial.rst:9
 msgid ""
 "As a commercial user of Python, you definitely need these 4 critical "
 "features that only Nuitka commercial offers. Protect your code, your "
@@ -43,28 +43,28 @@ msgid ""
 " features for your application."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:16
+#: ../../doc/doc/doc/commercial.rst:16
 msgid "Protection vs. Reverse Engineering"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:18
+#: ../../doc/doc/doc/commercial.rst:18
 msgid ""
 "Hiding your source code and contained keys is crucial to your IP "
 "protection. For this, you need the Nuitka commercial package. It contains"
 " plugins to Nuitka that will achieve the following:"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:27
+#: ../../doc/doc/doc/commercial.rst:27
 msgid "Obfuscate contained program constants data"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:29
+#: ../../doc/doc/doc/commercial.rst:29
 msgid ""
 "Your encryption keys, your program texts, your library usages, all expose"
 " textual information, that can be valuable input in Reverse Engineering."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:33
+#: ../../doc/doc/doc/commercial.rst:33
 msgid ""
 "Normally these constants are plain and readable in the created programs "
 "(and of course your Python source code or bytecode). Compiling with "
@@ -72,11 +72,11 @@ msgid ""
 "readable, it will be less effective."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:38
+#: ../../doc/doc/doc/commercial.rst:38
 msgid "`Read more.... <commercial/protect-constants-data.html>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:43
+#: ../../doc/doc/doc/commercial.rst:43
 msgid ""
 "Another facet of the data protection is data files. When your program "
 "includes data files to work on, these are visible in the file system. "
@@ -84,7 +84,7 @@ msgid ""
 " by an attacker modifying these files."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:48
+#: ../../doc/doc/doc/commercial.rst:48
 msgid ""
 "Therefore Nuitka commercial allows you to include data files as part of "
 "the program constants and protect it in the same way as other constants. "
@@ -92,11 +92,11 @@ msgid ""
 "attack vector."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:53
+#: ../../doc/doc/doc/commercial.rst:53
 msgid "`Read more.... <commercial/protect-data-files.html>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:59
+#: ../../doc/doc/doc/commercial.rst:59
 msgid ""
 "When your program is deployed and crashing, you could take potentially "
 "successful steps against these tracebacks appearing. But when you need to"
@@ -104,7 +104,7 @@ msgid ""
 "software is crashing."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:64
+#: ../../doc/doc/doc/commercial.rst:64
 msgid ""
 "Python tracebacks are good for this, but you cannot want them to be "
 "readable to the user. This is very traceback encryption comes in. Nuitka "
@@ -113,17 +113,17 @@ msgid ""
 "will be able to decode them."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:70
+#: ../../doc/doc/doc/commercial.rst:70
 msgid ""
 "Symmetric encryption (and asymmetric encryption in a future update) are "
 "available for you to use there."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:73
+#: ../../doc/doc/doc/commercial.rst:73
 msgid "`Read more.... <commercial/encrypted-tracebacks.html>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:78
+#: ../../doc/doc/doc/commercial.rst:78
 msgid ""
 "If you need to query information from a machine, or just in general want "
 "to have perfect protection, you can use the Nuitka plugin to make sure it"
@@ -131,61 +131,61 @@ msgid ""
 "error."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:83
+#: ../../doc/doc/doc/commercial.rst:83
 msgid ""
 "This will allow you to decode outputs as necessary, and will make sure "
 "it's not readable to anybody but you."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:88
+#: ../../doc/doc/doc/commercial.rst:88
 msgid "Special needs (Commercial only use cases)"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:90
+#: ../../doc/doc/doc/commercial.rst:90
 msgid ""
 "In this instance, you have special wishes that only commercial customers "
 "will have and that are effort to maintain."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:93
+#: ../../doc/doc/doc/commercial.rst:93
 msgid "You might e.g. you want to deploy a Windows service"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:95
+#: ../../doc/doc/doc/commercial.rst:95
 msgid ""
 "For this, there is a dedicated plugin in Nuitka that makes deployment of "
 "a practically unchanged program as a service very easy."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:98
+#: ../../doc/doc/doc/commercial.rst:98
 msgid "You might need to support special commercial grade software."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:100
+#: ../../doc/doc/doc/commercial.rst:100
 msgid ""
 "This can be done, but you might have to pay for the development time this"
 " takes."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:103
+#: ../../doc/doc/doc/commercial.rst:103
 msgid "You might need to support very old OSes, e.g. RHEL 5."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:105
+#: ../../doc/doc/doc/commercial.rst:105
 msgid ""
 "Again, this can be done, but you might have to pay for the development "
 "time this takes."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:108
+#: ../../doc/doc/doc/commercial.rst:108
 msgid "Automatic download, alerts to, applying updates of deployed software."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:110
+#: ../../doc/doc/doc/commercial.rst:110
 msgid "This is not yet implemented, but will be added in a future update."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:112
+#: ../../doc/doc/doc/commercial.rst:112
 msgid ""
 "Support for these things will also be covered in the Nuitka commercial "
 "package, and while you might not care necessarily about hiding your "
@@ -193,29 +193,29 @@ msgid ""
 "of your software."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:119
+#: ../../doc/doc/doc/commercial.rst:119
 msgid "Priority Issue Solutions"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:121
+#: ../../doc/doc/doc/commercial.rst:121
 msgid ""
 "You might have an issue that blocks you from using Nuitka, which you want"
 " to use though, because of performance gains, the IP protection, with or "
 "without the commercial plugins."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:125
+#: ../../doc/doc/doc/commercial.rst:125
 msgid ""
 "The Nuitka Priority package gives you access to elevated priority of your"
 " issues. If you subscribe to this, reported issues will be solved with "
 "highest priority, to enable you using Nuitka."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:131
+#: ../../doc/doc/doc/commercial.rst:131
 msgid "Sponsorship"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:133
+#: ../../doc/doc/doc/commercial.rst:133
 msgid ""
 "You are happy in using Nuitka and you want to benefit it, because it "
 "solves a crucial part of your workflow in deployment. You may or may not "
@@ -225,208 +225,92 @@ msgid ""
 "relatively free service you get on a daily basis."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:140
+#: ../../doc/doc/doc/commercial.rst:140
 msgid ""
 "Naturally sponsors will be entitled to all access and treated with "
 "highest priority."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:145
+#: ../../doc/doc/doc/commercial.rst:145
 msgid "Pricing"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:154 ../../doc/doc/commercial.rst:171
+#: ../../doc/doc/doc/commercial.rst:154 ../../doc/doc/doc/commercial.rst:171
 msgid "€ 250"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:158
+#: ../../doc/doc/doc/commercial.rst:158
 msgid "`Subscribe now </stripe/checkout-commercial-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:160
+#: ../../doc/doc/doc/commercial.rst:160
 msgid "Commercial only Features"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:162
+#: ../../doc/doc/doc/commercial.rst:162
 msgid "All your applications"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:164
+#: ../../doc/doc/doc/commercial.rst:164
 msgid "Standard Support"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:175
+#: ../../doc/doc/doc/commercial.rst:175
 msgid "`Subscribe now </stripe/checkout-priority-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:177 ../../doc/doc/commercial.rst:211
+#: ../../doc/doc/doc/commercial.rst:177 ../../doc/doc/doc/commercial.rst:211
 msgid "Best Support"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:179
+#: ../../doc/doc/doc/commercial.rst:179
 msgid "Issues have **Priority**"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:181
+#: ../../doc/doc/doc/commercial.rst:181
 msgid "**No** Commercial features"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:189
+#: ../../doc/doc/doc/commercial.rst:189
 msgid "€ 400"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:193
+#: ../../doc/doc/doc/commercial.rst:193
 msgid "`Subscribe now </stripe/checkout-full-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:195
+#: ../../doc/doc/doc/commercial.rst:195
 msgid "Nuitka Commercial **plus**"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:197
+#: ../../doc/doc/doc/commercial.rst:197
 msgid "Nuitka Priority"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:205
+#: ../../doc/doc/doc/commercial.rst:205
 msgid "€ 1000"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:209
+#: ../../doc/doc/doc/commercial.rst:209
 msgid "`Subscribe now </stripe/checkout-sponsor-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:215
+#: ../../doc/doc/doc/commercial.rst:215
 msgid "Roadmap Influence"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:217
+#: ../../doc/doc/doc/commercial.rst:217
 msgid "Use Cases Priority"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:221
+#: ../../doc/doc/doc/commercial.rst:221
 msgid "Contact Us"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:223
+#: ../../doc/doc/doc/commercial.rst:223
 msgid ""
 "Please use `this form to contact us "
 "<https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_"
 " with intent of buying Nuitka services"
 msgstr ""
-
-#~ msgid ""
-#~ "If you are a commercial user of"
-#~ " Nuitka, you fall into one of 4"
-#~ " categories, which Nuitka tries to "
-#~ "address."
-#~ msgstr ""
-
-#~ msgid "Protection vs. Reverse Enginneering"
-#~ msgstr ""
-
-#~ msgid "Obfuscucate contained program constants data"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Your encryption keys, your program "
-#~ "texts, your library usages, all expose"
-#~ " textual information, that can be "
-#~ "valuable input in Reverse Enginneering."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Another facet of the same issue is"
-#~ " datafiles. When your program includes "
-#~ "data files to work on, these are"
-#~ " visible in the file system. "
-#~ "Sometimes, e.g. via QML files of "
-#~ "Qt, your program behaviour can be "
-#~ "changed by changing these files."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Therefore Nuitka commercial allows you "
-#~ "to include data files as part of"
-#~ " the program constants and protect it"
-#~ " in the same way as other "
-#~ "constants. Without these files accessible, "
-#~ "the attacker will have no attack "
-#~ "vector for Reverse Enginneering."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "In a future update, you can decide"
-#~ " which information is transferred, and "
-#~ "what is part of the encryption, "
-#~ "and which part is not, e.g. "
-#~ "hostname, client name, etc. could be "
-#~ "output int plain text, while the "
-#~ "variable names and values would not "
-#~ "be, depending on your choice!"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The Nuitka Priority package gives you"
-#~ " access to elevated priority of your"
-#~ " issues. If you buy this, reported"
-#~ " issues will be solved with highest"
-#~ " priority, to enable you using "
-#~ "Nuitka."
-#~ msgstr ""
-
-#~ msgid "`Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__"
-#~ msgstr ""
-
-#~ msgid "`Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__"
-#~ msgstr ""
-
-#~ msgid "`Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__"
-#~ msgstr ""
-
-#~ msgid "`Buy Now <https://buy.stripe.com/9AQ3eUb2maQs7rG28c>`__"
-#~ msgstr ""
-
-#~ msgid "Nuitka commercial subscription"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Currently 250 EUR (or 300 USD), "
-#~ "valid for one year, renewal same "
-#~ "price. `Buy Now "
-#~ "<https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__."
-#~ msgstr ""
-
-#~ msgid "Nuitka Priority package"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Currently 250 EUR (or 300 USD), "
-#~ "valid for one year, renewal same "
-#~ "price. `Buy Now "
-#~ "<https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__."
-#~ msgstr ""
-
-#~ msgid "Nuitka Full Package"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Contains Nuitka Commercial subscription and"
-#~ " priority package. Priced at 400 EUR"
-#~ " (or 500 USD). `Buy Now "
-#~ "<https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__."
-#~ msgstr ""
-
-#~ msgid "Nuitka Sponsors"
-#~ msgstr ""
-
-#~ msgid "Pick your value."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Please use `this form to contact "
-#~ "us "
-#~ "<https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_"
-#~ " with intent of buying Nuitka "
-#~ "products"
-#~ msgstr ""
 
