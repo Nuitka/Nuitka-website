@@ -1,4 +1,6 @@
-.. include:: ../doc/index.txt
+########################
+Multilingual document
+########################
 
 .. toctree::
    :glob:

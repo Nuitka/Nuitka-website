@@ -47,8 +47,8 @@ extensions = [
 ]
 
 intersphinx_mapping = {
-    # "python": ("https://docs.python.org/3/", None),
-    # "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
+    "python": ("https://docs.python.org/3/", None),
+    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
 }
 intersphinx_disabled_domains = ["std"]
 
@@ -86,7 +86,7 @@ x_blog_feed_templates = {
 }
 
 # Sitemap configuration
-html_baseurl = "https://daobook.github.io/nuitka-doc"
+html_baseurl = f'{blog_baseurl}/zh_CN'
 sitemap_locales = ['en', 'zh_CN']
 sitemap_url_scheme = "{lang}/{link}"
 extlinks = {
