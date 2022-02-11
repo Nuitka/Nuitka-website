@@ -18,14 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../intl/commercial.rst:3
+#: ../../doc/doc/commercial.rst:1
 msgid ""
 "Protect your IP against reverse engineering with the Python compiler "
 "Nuitka and turn your Python code into binary. Protect code, data, outputs"
 " and tracebacks!"
 msgstr ""
 
-#: ../../intl/commercial.rst:3
+#: ../../doc/doc/commercial.rst:1
 msgid ""
 "python,compiler,protection,reverse "
 "engineering,encrypted,tracebacks,obfuscate,obfuscation,obfuscator"
@@ -313,120 +313,4 @@ msgid ""
 "<https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_"
 " with intent of buying Nuitka services"
 msgstr ""
-
-#~ msgid ""
-#~ "If you are a commercial user of"
-#~ " Nuitka, you fall into one of 4"
-#~ " categories, which Nuitka tries to "
-#~ "address."
-#~ msgstr ""
-
-#~ msgid "Protection vs. Reverse Enginneering"
-#~ msgstr ""
-
-#~ msgid "Obfuscucate contained program constants data"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Your encryption keys, your program "
-#~ "texts, your library usages, all expose"
-#~ " textual information, that can be "
-#~ "valuable input in Reverse Enginneering."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Another facet of the same issue is"
-#~ " datafiles. When your program includes "
-#~ "data files to work on, these are"
-#~ " visible in the file system. "
-#~ "Sometimes, e.g. via QML files of "
-#~ "Qt, your program behaviour can be "
-#~ "changed by changing these files."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Therefore Nuitka commercial allows you "
-#~ "to include data files as part of"
-#~ " the program constants and protect it"
-#~ " in the same way as other "
-#~ "constants. Without these files accessible, "
-#~ "the attacker will have no attack "
-#~ "vector for Reverse Enginneering."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "In a future update, you can decide"
-#~ " which information is transferred, and "
-#~ "what is part of the encryption, "
-#~ "and which part is not, e.g. "
-#~ "hostname, client name, etc. could be "
-#~ "output int plain text, while the "
-#~ "variable names and values would not "
-#~ "be, depending on your choice!"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The Nuitka Priority package gives you"
-#~ " access to elevated priority of your"
-#~ " issues. If you buy this, reported"
-#~ " issues will be solved with highest"
-#~ " priority, to enable you using "
-#~ "Nuitka."
-#~ msgstr ""
-
-#~ msgid "`Buy Now <https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__"
-#~ msgstr ""
-
-#~ msgid "`Buy Now <https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__"
-#~ msgstr ""
-
-#~ msgid "`Buy Now <https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__"
-#~ msgstr ""
-
-#~ msgid "`Buy Now <https://buy.stripe.com/9AQ3eUb2maQs7rG28c>`__"
-#~ msgstr ""
-
-#~ msgid "Nuitka commercial subscription"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Currently 250 EUR (or 300 USD), "
-#~ "valid for one year, renewal same "
-#~ "price. `Buy Now "
-#~ "<https://buy.stripe.com/4gwaHmgmG4s4h2g001>`__."
-#~ msgstr ""
-
-#~ msgid "Nuitka Priority package"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Currently 250 EUR (or 300 USD), "
-#~ "valid for one year, renewal same "
-#~ "price. `Buy Now "
-#~ "<https://buy.stripe.com/7sI6r6b2mf6IaDS9AC>`__."
-#~ msgstr ""
-
-#~ msgid "Nuitka Full Package"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Contains Nuitka Commercial subscription and"
-#~ " priority package. Priced at 400 EUR"
-#~ " (or 500 USD). `Buy Now "
-#~ "<https://buy.stripe.com/3cs7va1rM8Ik5jy003>`__."
-#~ msgstr ""
-
-#~ msgid "Nuitka Sponsors"
-#~ msgstr ""
-
-#~ msgid "Pick your value."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Please use `this form to contact "
-#~ "us "
-#~ "<https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_"
-#~ " with intent of buying Nuitka "
-#~ "products"
-#~ msgstr ""
 

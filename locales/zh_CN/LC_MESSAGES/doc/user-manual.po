@@ -1,0 +1,2129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-11 23:48+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../doc/doc/user-manual.rst:1
+msgid "User Manual of Nuitka with the details on how to use it"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1
+msgid "python,compiler,nuitka,manual"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:7
+msgid "Nuitka User Manual"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:13
+msgid ""
+"This document is the recommended first read if you are interested in "
+"using Nuitka, understand its use cases, check what you can expect, "
+"license, requirements, credits, etc."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:17
+msgid ""
+"Nuitka is **the** Python compiler. It is written in Python. It is a "
+"seamless replacement or extension to the Python interpreter and compiles "
+"**every** construct that CPython 2.6, 2.7, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, "
+"3.9, 3.10 have, when itself run with that Python version."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:22
+msgid ""
+"It then executes uncompiled code and compiled code together in an "
+"extremely compatible manner."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:25
+msgid "You can use all Python library modules and all extension modules freely."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:27
+msgid ""
+"Nuitka translates the Python modules into a C level program that then "
+"uses ``libpython`` and static C files of its own to execute in the same "
+"way as CPython does."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:31
+msgid ""
+"All optimization is aimed at avoiding overhead, where it's unnecessary. "
+"None is aimed at removing compatibility, although slight improvements "
+"will occasionally be done, where not every bug of standard Python is "
+"emulated, e.g. more complete error messages are given, but there is a "
+"full compatibility mode to disable even that."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:39
+msgid "Usage"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:42
+msgid "Requirements"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:44
+msgid ""
+"C Compiler: You need a compiler with support for C11 or alternatively for"
+" C++03 [#]_"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:47
+msgid "Currently this means, you need to use one of these compilers:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:49
+msgid ""
+"The MinGW64 C11 compiler on Windows, must be based on gcc 11.2 or higher."
+" It will be *automatically* downloaded if no usable C compiler is found, "
+"which is the recommended way of installing it, as Nuitka will also "
+"upgrade it for you."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:54
+msgid ""
+"Visual Studio 2022 or higher on Windows [#]_, older versions will work "
+"but only supported for commercial users. Configure to use the English "
+"language pack for best results (Nuitka filters away garbage outputs, but "
+"only for English language). It will be used by default if installed."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:60
+msgid ""
+"On all other platforms, the ``gcc`` compiler of at least version 5.1, and"
+" below that the ``g++`` compiler of at least version 4.4 as an "
+"alternative."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:64
+msgid "The ``clang`` compiler on macOS X and most FreeBSD architectures."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:66
+msgid ""
+"On Windows the ``clang-cl`` compiler on Windows can be used if provided "
+"by the Visual Studio installer."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:69
+msgid "Python: Version 2.6, 2.7 or 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:71
+msgid ""
+"For Python 3.3/3.4 and *only* those, we need other Python version as a "
+"*compile time* dependency."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:73
+msgid ""
+"Nuitka itself is fully compatible with all listed versions, but Scons as "
+"an internally used tool is not."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:76
+msgid ""
+"For these versions, you *need* a Python2 or Python 3.5 or higher "
+"installed as well, but only during the compile time only. That is for use"
+" with Scons (which orchestrates the C compilation), which does not "
+"support the same Python versions as Nuitka."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:81
+msgid ""
+"In addition, on Windows, Python2 cannot be used because ``clcache`` does "
+"not work with it, there a Python 3.5 or higher needs to be installed."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:85
+msgid ""
+"Nuitka finds these needed Python versions (on Windows via registry) and "
+"you shouldn't notice it as long as they are installed."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:89
+msgid "Moving binaries to other machines"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:91
+msgid ""
+"The created binaries can be made executable independent of the Python "
+"installation, with ``--standalone`` and ``--onefile`` options."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:95
+msgid "Binary filename suffix"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:97
+msgid ""
+"The created binaries have an ``.exe`` suffix on Windows. On other "
+"platforms they have no suffix for standalone mode, or ``.bin`` suffix, "
+"that you are free to remove or change, or specify with the ``-o`` option."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:102
+msgid ""
+"The suffix for acceleration mode is added just to be sure that the "
+"original script name and the binary name do not ever collide, so we can "
+"safely do an overwrite without destroying the original source file."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:107
+msgid "It **has to** be CPython, Anaconda Python."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:109
+msgid ""
+"You need the standard Python implementation, called \"CPython\", to "
+"execute Nuitka, because it is closely tied to implementation details of "
+"it."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:113
+msgid "It **cannot be** from Windows app store"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:115
+msgid ""
+"It is known that Windows app store Python definitely does not work, it's "
+"checked against. And on macOS \"pyenv\" likely does **not** work."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:119
+msgid ""
+"Operating System: Linux, FreeBSD, NetBSD, macOS X, and Windows (32/64 "
+"bits)."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:122
+msgid ""
+"Others may work as well. The portability is expected to be generally "
+"good, but the e.g. Scons usage may have to be adapted. Make sure to match"
+" Windows Python and C compiler architecture, or else you will get cryptic"
+" error messages."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:127
+msgid "Architectures: x86, x86_64 (amd64), and arm, likely many more"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:129
+msgid ""
+"Other architectures are expected to also work, out of the box, as Nuitka "
+"is generally not using any hardware specifics. These are just the ones "
+"tested and known to be good. Feedback is welcome. Generally, the "
+"architectures that Debian supports can be considered good and tested too."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:137
+msgid ""
+"Support for this C11 is a given with gcc 5.x or higher or any clang "
+"version."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:140
+msgid ""
+"The MSVC compiler doesn't do it yet. But as a workaround, as the C++03 "
+"language standard is very overlapping with C11, it is then used instead "
+"where the C compiler is too old. Nuitka used to require a C++ compiler in"
+" the past, but it changed."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:147
+msgid ""
+"Download for free from https://www.visualstudio.com/en-us/downloads"
+"/download-visual-studio-vs.aspx (the community editions work just fine)."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:151
+msgid ""
+"The latest version is recommended but not required. On the other hand, "
+"there is no need to except pre-Windows 10 support, and they might work "
+"for you, but support of these configurations is only available to "
+"commercial users."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:157
+msgid "Command Line"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:159
+msgid ""
+"The recommended way of executing Nuitka is ``<the_right_python> -m "
+"nuitka`` to be absolutely certain which Python interpreter you are using,"
+" so it is easier to match with what Nuitka has."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:163
+msgid ""
+"The next best way of executing Nuitka bare that is from a source checkout"
+" or archive, with no environment variable changes, most noteworthy, you "
+"do not have to mess with ``PYTHONPATH`` at all for Nuitka. You just "
+"execute the ``nuitka`` and ``nuitka-run`` scripts directly without any "
+"changes to the environment. You may want to add the ``bin`` directory to "
+"your ``PATH`` for your convenience, but that step is optional."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:171
+msgid ""
+"Moreover, if you want to execute with the right interpreter, in that "
+"case, be sure to execute ``<the_right_python> bin/nuitka`` and be good."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:174
+msgid "Pick the right Interpreter"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:176
+msgid ""
+"If you encounter a ``SyntaxError`` you absolutely most certainly have "
+"picked the wrong interpreter for the program you are compiling."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:179
+msgid "Nuitka has a ``--help`` option to output what it can do:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:185
+msgid ""
+"The ``nuitka-run`` command is the same as ``nuitka``, but with a "
+"different default. It tries to compile *and* directly execute a Python "
+"script:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:193
+msgid ""
+"This option that is different is ``--run``, and passing on arguments "
+"after the first non-option to the created binary, so it is somewhat more "
+"similar to what plain ``python`` will do."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:198
+msgid "Installation"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:200
+msgid ""
+"For most systems, there will be packages on the `download page "
+"<https://nuitka.net/doc/download.html>`__ of Nuitka. But you can also "
+"install it from source code as described above, but also like any other "
+"Python program it can be installed via the normal ``python setup.py "
+"install`` routine."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:207
+msgid "License"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:209
+msgid ""
+"Nuitka is licensed under the Apache License, Version 2.0; you may not use"
+" it except in compliance with the License."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:212
+msgid ""
+"You may obtain a copy of the License at "
+"http://www.apache.org/licenses/LICENSE-2.0"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:215
+msgid ""
+"Unless required by applicable law or agreed to in writing, software "
+"distributed under the License is distributed on an \"AS IS\" BASIS, "
+"WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. "
+"See the License for the specific language governing permissions and "
+"limitations under the License."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:223
+msgid "Tutorial Setup and build on Windows"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:225
+msgid ""
+"This is basic steps if you have nothing installed, of course if you have "
+"any of the parts, just skip it."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:229
+msgid "Setup"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:232
+msgid "Install Python"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:234
+msgid "Download and install from https://www.python.org/downloads/windows"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:236
+msgid ""
+"Select one of ``Windows x86-64 web-based installer`` (64 bits Python, "
+"recommended) or ``x86 executable`` (32 bits Python) installer."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:239
+msgid "Verify using command ``python --version``."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:242
+msgid "Install Nuitka"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:244
+msgid "``python -m pip install nuitka``"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:246
+msgid "Verify using command ``python -m nuitka --version``"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:249
+msgid "Write some code and test"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:252
+msgid "Create a folder for the Python code"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:254
+msgid "mkdir HelloWorld"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:256
+msgid "make a python file named **hello.py**"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:272
+msgid "Test your program"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:274
+msgid ""
+"Do as you normally would. Running Nuitka on code that works incorrectly "
+"is not easier to debug."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:284
+msgid "Build it using"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:292
+msgid ""
+"This will prompt you to download a C caching tool (to speed up repeated "
+"compilation of generated C code) and a MinGW64 based C compiler unless "
+"you have a suitable MSVC installed. Say ``yes`` to both those questions."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:298
+msgid "Run it"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:300
+msgid "Execute the ``hello.exe`` created near ``hello.py``."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:303
+msgid "Distribute"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:305
+msgid ""
+"To distribute, build with ``--standalone`` option, which will not output "
+"a single executable, but a whole folder. Copy the resulting "
+"``hello.dist`` folder to the other machine and run it."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:309
+msgid ""
+"You may also try ``--onefile`` which does create a single file, but make "
+"sure that the mere standalone is working, before turning to it, as it "
+"will make the debugging only harder, e.g. in case of missing data files."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:315
+msgid "Use Cases"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:318
+msgid "Use Case 1 - Program compilation with all modules embedded"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:320
+msgid ""
+"If you want to compile a whole program recursively, and not only the "
+"single file that is the main program, do it like this:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:329
+msgid ""
+"There are more fine grained controls than ``--follow-imports`` available."
+" Consider the output of ``nuitka --help``. Including less modules into "
+"the compilation, but instead using normal Python for it will make it "
+"faster to compile."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:334
+msgid ""
+"In case you have a source directory with dynamically loaded files, i.e. "
+"one which cannot be found by recursing after normal import statements via"
+" the ``PYTHONPATH`` (which would be the recommended way), you can always "
+"require that a given directory shall also be included in the executable:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:346
+msgid ""
+"If you don't do any dynamic imports, simply setting your ``PYTHONPATH`` "
+"at compilation time is what you should do."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:349
+msgid ""
+"Use ``--include-plugin-directory`` only if you make ``__import__()`` "
+"calls that Nuitka cannot predict, because they e.g. depend on command "
+"line parameters. Nuitka also warns about these, and point to the option."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:356
+msgid ""
+"The resulting filename will be ``program.exe`` on Windows, "
+"``program.bin`` on other platforms."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:361
+msgid ""
+"The resulting binary still depend on CPython and used C extension modules"
+" being installed."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:364
+msgid ""
+"If you want to be able to copy it to another machine, use "
+"``--standalone`` and copy the created ``program.dist`` directory and "
+"execute the ``program.exe`` (Windows) or ``program`` (other platforms) "
+"put inside."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:370
+msgid "Use Case 2 - Extension Module compilation"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:372
+msgid ""
+"If you want to compile a single extension module, all you have to do is "
+"this:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:379
+msgid ""
+"The resulting file ``some_module.so`` can then be used instead of "
+"``some_module.py``."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:384
+msgid ""
+"It's left as an exercise to the reader, to find out what happens if both "
+"are present."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:389
+msgid ""
+"The option ``--follow-imports`` and other variants work as well, but the "
+"included modules will only become importable *after* you imported the "
+"``some_module`` name."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:395
+msgid ""
+"The resulting extension module can only be loaded into a CPython of the "
+"same version and doesn't include other extension modules."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:399
+msgid "Use Case 3 - Package compilation"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:401
+msgid ""
+"If you need to compile a whole package and embed all modules, that is "
+"also feasible, use Nuitka like this:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:410
+msgid ""
+"The inclusion of the package contents needs to be provided manually, "
+"otherwise, the package is empty. You can be more specific if you want, "
+"and only include part of it. Data files located inside the package will "
+"not be embedded by this process, you need to copy them yourself with this"
+" approach."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:417
+msgid "Use Case 4 - Program Distribution"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:419
+msgid ""
+"For distribution to other systems, there is the standalone mode which "
+"produces a folder for which you can specify ``--standalone``."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:426
+msgid ""
+"Follow all imports is default in this mode. You can selectively exclude "
+"modules by specifically saying ``--nofollow-import-to``, but then an "
+"``ImportError`` will be raised when import of it is attempted at program "
+"runtime."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:431
+msgid ""
+"For data files to be included, use the option ``--include-data-"
+"file=<source>=<target>`` where the source is a file system path, but "
+"target has to be specified relative. For standalone you can also copy "
+"them manually, but this can do extra checks, and for onefile mode, there "
+"is no manual copying possible."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:437
+msgid ""
+"To copy some or all file in a directory, use the option ``--include-data-"
+"file=/etc/*.txt=etc/`` where you get to specify shell patterns for the "
+"files, and a subdirectory where to put them, indicated by the trailing "
+"slash."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:442
+msgid ""
+"To copy a whole folder with all files, you can use ``--include-data-"
+"dir=/path/to/images=images`` which will copy all files including a "
+"potential subdirectory structure. You cannot filter here, i.e. if you "
+"want only a partial copy, remove the files beforehand."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:447
+msgid ""
+"For package data, there is a better way, using ``--include-package-data``"
+" which detects data files of packages automatically and copies them over."
+" It even accepts patterns in shell style."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:452
+msgid ""
+"With data files, you are largely on your own. Nuitka keeps track of ones "
+"that are needed by popular packages, but it might be incomplete. Raise "
+"issues if you encounter something in these."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:456
+msgid "When that is working, you can use the onefile mode if you so desire."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:462
+msgid ""
+"This will create a single binary, which on Linux will not even unpack "
+"itself, but instead loop back mount its contents as a filesystem and use "
+"that."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:473
+msgid ""
+"There are more platform specific options, e.g. related to icons, splash "
+"screen, and version information, consider the ``--help`` output for the "
+"details of these and check the section \"Good Looks\"."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:477
+msgid ""
+"Again, on Windows, for the temporary file directory, by default the user "
+"one is used, however this is overridable with a path specification given "
+"in ``--windows-onefile-tempdir-spec=%TEMP%\\\\onefile_%PID%_%TIME%`` "
+"which is the default and asserts that the temporary directories created "
+"cannot collide."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:483
+msgid "Currently these expanded tokens are available:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:486
+msgid "Token"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:486 ../../doc/doc/user-manual.rst:838
+msgid "What this Expands to"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:486 ../../doc/doc/user-manual.rst:838
+msgid "Example"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:488
+msgid "%TEMP%"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:488
+msgid "User temporary file directory"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:488
+msgid "C:\\Users\\...\\AppData\\Locals\\Temp"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:490
+msgid "%PID%"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:490
+msgid "Process ID"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:490
+msgid "2772"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:492
+msgid "%TIME%"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:492
+msgid "Time in seconds since the epoch."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:492
+msgid "1299852985"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:494
+msgid "%PROGRAM%"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:494
+msgid "Full program filename of executable."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:494
+msgid "C:\\SomeWhere\\YourOnefile.exe"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:499
+msgid ""
+"It is your responsibility to make the path provided unique, on Windows a "
+"running program will be locked, and while using a fixed folder name is "
+"possible, it can cause locking issues in that case, where the program "
+"gets restarted."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:504
+msgid ""
+"Usually you need to use ``%TIME%`` or at least ``%PID%`` to make a path "
+"unique, and this is mainly intended for use cases, where e.g. you want "
+"things to reside in a place you choose or abide your naming conventions."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:510
+msgid "Use Case 5 - Setuptools Wheels"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:512
+msgid ""
+"If you have a ``setup.py``, ``setup.cfg`` or ``pyproject.toml`` driven "
+"creation of wheels for your software in place, putting Nuitka to use is "
+"extremely easy."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:516
+msgid ""
+"Lets start with the most common ``setuptools`` approach, you can - having"
+" Nuitka installed of course, simply execute the target ``bdist_nuitka`` "
+"rather than the ``bdist_wheel``. It takes all the options and allows you "
+"to specify some more, that are specific to Nuitka."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:562
+msgid ""
+"If for some reason, you cannot or do not what to change the target, you "
+"can add this to your ``setup.py``."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:575
+msgid ""
+"To temporarily disable the compilation, you could remove above line, or "
+"edit the value to ``False`` by or take its value from an environment "
+"variable if you so choose, e.g. ``bool(os.environ.get(\"USE_NUITKA\", "
+"\"True\"))``. This is up to you."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:580
+msgid "Or you could put it in your ``setup.cfg``"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:587
+msgid ""
+"And last, but not least, Nuitka also supports the new ``build`` meta, so "
+"when you have a ``pyproject.toml`` already, simple replace or add this "
+"value:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:599
+msgid "Tweaks"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:602
+msgid "Icons"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:604
+msgid ""
+"For good looks, you may specify icons. On Windows, you can provide an "
+"icon file, a template executable, or a PNG file. All of these will work "
+"and may even be combined:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:616
+msgid "Splash screen"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:618
+msgid ""
+"Splash screens are useful when program startup is slow. Onefile startup "
+"itself is not slow, but your program may be, and you cannot really know "
+"how fast the computer used will be, so it might be a good idea to have "
+"them. Luckily with Nuitka, they are easy to add for Windows."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:623
+msgid ""
+"For splash screen, you need to specify it as an PNG file, and then make "
+"sure to disable the splash screen when your program is ready, e.g. has "
+"complete the imports, prepared the window, connected to the database, and"
+" wants the splash screen to go away. Here we are using the project syntax"
+" to combine the code with the creation, compile this:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:656
+msgid "Typical Problems"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:659
+msgid "Memory issues and compiler bugs"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:661
+msgid ""
+"Sometimes the C compilers will crash saying they cannot allocate memory "
+"or that some input was truncated, or similar error messages, clearly from"
+" it. There are several options you can explore here:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:666
+msgid "Ask Nuitka to use less memory"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:668
+msgid ""
+"There is a dedicated option ``--low-memory`` which influces decisions of "
+"Nuitka, such that it avoids high usage of memory during compilation at "
+"the cost of increased compile time."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:673
+msgid "Avoid 32 bit C compiler/assembler memory limits"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:675
+msgid ""
+"Do not use a 32 bits compiler, but a 64 bit one. If you are using Python "
+"with 32 bits on Windows, you most definitely ought to use MSVC as the C "
+"compiler, and not MinGW64. The MSVC is a cross compiler, and can use more"
+" memory than gcc on that platform. If you are not on Windows, that is not"
+" an option of course. Also using the 64 bits Python will work."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:682
+msgid "Use LTO compilation or not"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:684
+msgid ""
+"With ``--lto=yes`` or ``--lto=no`` you can switch the C compilation to "
+"only produce bytecode, and not assembler code and machine code directly, "
+"but make a whole program optimization at the end. This will change the "
+"memory usage pretty dramatically, and if you error is coming from the "
+"assembler, using LTO will most definitely avoid that."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:691
+msgid "Switch the C compiler to clang"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:693
+msgid ""
+"People have reported that programs that fail to compile with gcc due to "
+"its bugs or memory usage work fine with clang on Linux. On Windows, this "
+"could still be an option, but it needs to be implemented first for the "
+"automatic downloaded gcc, that would contain it. Since MSVC is known to "
+"be more memory effective anyway, you should go there, and if you want to "
+"use Clang, there is support for the one contained in MSVC."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:701
+msgid "Add a larger swap file to your embedded Linux"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:703
+msgid ""
+"On systems with not enough RAM, you need to use swap space. Running out "
+"of it is possibly a cause, and adding more swap space, or one at all, "
+"might solve the issue, but beware that it will make things extremely slow"
+" when the compilers swap back and forth, so consider the next tip first "
+"or on top of it."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:710
+msgid "Limit the amount of compilation jobs"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:712
+msgid ""
+"With the ``--jobs`` option of Nuitka, it will not start many C compiler "
+"instances at once, each competing for the scarce resource of RAM. By "
+"picking a value of one, only one C compiler instance will be running, and"
+" on a 8 core system, that reduces the amount of memory by factor 8, so "
+"that's a natural choice right there."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:719
+msgid "Dynamic ``sys.path``"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:721
+msgid ""
+"If your script modifies ``sys.path`` to e.g. insert directories with "
+"source code relative to it, Nuitka will currently not be able to see "
+"those. However, if you set the ``PYTHONPATH`` to the resulting value, you"
+" will be able to compile it."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:727
+msgid "Missing data files in standalone"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:729
+msgid ""
+"If your program fails to file data, it can cause all kinds of different "
+"behaviours, e.g. a package might complain it is not the right version, "
+"because a ``VERSION`` file check defaulted to unknown. The absence of "
+"icon files or help texts, may raise strange errors."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:734
+msgid ""
+"Often the error paths for files not being present are even buggy and will"
+" reveal programming errors like unbound local variables. Please look "
+"carefully at these exceptions keeping in mind that this can be the cause."
+" If you program works without standalone, chances are data files might be"
+" cause."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:741
+msgid "Missing DLLs in standalone"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:743
+msgid ""
+"Nuitka has plugins that deal with copying DLLs. For NumPy, SciPy, "
+"Tkinter, etc."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:746
+msgid ""
+"These need special treatment to be able to run on other systems. Manually"
+" copying them is not enough and will given strange errors. Sometimes "
+"newer version of packages, esp. NumPy can be unsupported. In this case "
+"you will have to raise an issue, and use the older one."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:752
+msgid "Dependency creep in standalone"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:754
+msgid ""
+"Some packages are a single import, but to Nuitka mean that more than a "
+"thousand packages (literally) are to be included. The prime example of "
+"Pandas, which does want to plug and use just about everything you can "
+"imagine. Multiple frameworks for syntax highlighting everything "
+"imaginable take time."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:760
+msgid ""
+"Nuitka will have to learn effective caching to deal with this in the "
+"future. Right now, you will have to deal with huge compilation times for "
+"these."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:764
+msgid ""
+"For now, a major weapon in fighting dependency creap should be applied, "
+"namely the ``anti-bloat`` plugin, which offers interesting abilities, "
+"that can be put to use and block unneeded imports, giving an error for "
+"where they occur. Use it e.g. like this ``--enable-plugin=anti-bloat "
+"--noinclude-pytest-mode=nofollow --noinclude-setuptools-mode=nofollow`` "
+"and check its help output. It can take for each module of your choice, "
+"e.g. forcing also that PyQt5 is considered uninstalled for standalone "
+"mode."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:774
+msgid "Onefile: Finding files"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:776
+msgid ""
+"There is a difference between ``sys.argv[0]`` and ``__file__`` of the "
+"main module for onefile more, that is caused by using a bootstrap to a "
+"temporary location. The first one will be the original executable path, "
+"where as the second one will be the temporary or permanent path the "
+"bootstrap executable unpacks to. Data files will be in the later "
+"location, your original environment files will be in the former location."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:784
+msgid ""
+"Given 2 files, one which you expect to be near your executable, and one "
+"which you expect to be inside the onefile binary, access them like this."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:795
+msgid "Windows Programs without console give no errors"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:797
+msgid ""
+"For debugging purposes, remove ``--windows-disable-console`` or use the "
+"options ``--windows-force-stdout-spec`` and ``--windows-force-stderr-"
+"spec`` with paths as documented for ``--windows-onefile-tempdir-spec`` "
+"above."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:804
+msgid "Tips"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:807
+msgid "Nuitka Options in the code"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:809
+msgid ""
+"There is support for conditional options, and options using pre-defined "
+"variables, this is an example:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:824
+msgid ""
+"The comments must be a start of line, and indentation is to be used, to "
+"end a conditional block, much like in Python. There are currently no "
+"other keywords than the used ones demonstrated above."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:828
+msgid ""
+"You can put abitrary Python expressions there, and if you wanted to e.g. "
+"access a version information of a package, you could simply use "
+"``__import__(\"module_name\").__version__`` if that would be required to "
+"e.g. enable or disable certain Nuitka settings. The only thing Nuitka "
+"does that makes this not Python expressions, is expanding ``{variable}`` "
+"for a pre-defined set of variables:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:835
+msgid "Table with supported variables:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:838
+msgid "Variable"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:840
+msgid "{OS}"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:840
+msgid "Name of the OS used"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:840
+msgid "Linux, Windows, Darwin, FreeBSD, OpenBSD"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:842
+msgid "{Version}"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:842
+msgid "Version of Nuitka"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:842
+msgid "e.g. (0, 6, 16)"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:844
+msgid "{Commercial}"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:844
+msgid "Version of Nuitka Commercial"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:844
+msgid "e.g. (0, 9, 4)"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:846
+msgid "{Arch}"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:846
+msgid "Architecture used"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:846
+msgid "x86_64, arm64, etc."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:848
+msgid "{MAIN_DIRECTORY}"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:848
+msgid "Directory of the compiled file"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:848
+msgid "some_dir/maybe_relative"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:850
+msgid "{Flavor}"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:850
+msgid "Variant of Python"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:850
+msgid "e.g. Debian Python, Anaconda Python"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:854
+msgid "Python command line flags"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:856
+msgid ""
+"For passing things like ``-O`` or ``-S`` to Python, to your compiled "
+"program, there is a command line option name ``--python-flag=`` which "
+"makes Nuitka emulate these options."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:860
+msgid "The most important ones are supported, more can certainly be added."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:863
+msgid "Caching compilation results"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:865
+msgid ""
+"The C compiler, when invoked with the same input files, will take a long "
+"time and much CPU to compile over and over. Make sure you are having "
+"``ccache`` installed and configured when using gcc (even on Windows). It "
+"will make repeated compilations much faster, even if things are not yet "
+"not perfect, i.e. changes to the program can cause many C files to "
+"change, requiring a new compilation instead of using the cached result."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:872
+msgid ""
+"On Windows, with gcc Nuitka supports using ``ccache.exe`` which it will "
+"offer to download from an official source and it automatically. This is "
+"the recommended way of using it on Windows, as other versions can e.g. "
+"hang."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:877
+msgid ""
+"Nuitka will pick up ``ccache`` if it's in found in system ``PATH``, and "
+"it will also be possible to provide if by setting "
+"``NUITKA_CCACHE_BINARY`` to the full path of the binary, this is for use "
+"in CI systems."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:882
+msgid ""
+"For the MSVC compilers and ClangCL setups, using the ``clcache`` is "
+"automatic and included in Nuitka."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:886
+msgid "Control where Caches live"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:888
+msgid ""
+"The storage for cache results of all kinds, downloads, cached compilation"
+" results from C and Nuitka, is done in a platform dependent directory as "
+"determined by the ``appdirs`` package. However, you can override it with "
+"setting the environment variable ``NUITKA_CACHE_DIR`` to a base "
+"directory. This is for use in environments where the home directory is "
+"not persisted, but other paths are."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:896
+msgid "Runners"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:898
+#, python-format
+msgid ""
+"Avoid running the ``nuitka`` binary, doing ``python -m nuitka`` will make"
+" a 100% sure you are using what you think you are. Using the wrong Python"
+" will make it give you ``SyntaxError`` for good code or ``ImportError`` "
+"for installed modules. That is happening, when you run Nuitka with "
+"Python2 on Python3 code and vice versa. By explicitly calling the same "
+"Python interpreter binary, you avoid that issue entirely."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:907
+msgid "Fastest C Compilers"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:909
+msgid ""
+"The fastest binaries of ``pystone.exe`` on Windows with 64 bits Python "
+"proved to be significantly faster with MinGW64, roughly 20% better score."
+" So it is recommended for use over MSVC. Using ``clang-cl.exe`` of Clang7"
+" was faster than MSVC, but still significantly slower than MinGW64, and "
+"it will be harder to use, so it is not recommended."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:915
+msgid ""
+"On Linux for ``pystone.bin`` the binary produced by ``clang6`` was faster"
+" than ``gcc-6.3``, but not by a significant margin. Since gcc is more "
+"often already installed, that is recommended to use for now."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:919
+msgid "Differences in C compilation times have not yet been examined."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:922
+msgid "Unexpected Slowdowns"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:924
+msgid ""
+"Using the Python DLL, like standard CPython does can lead to unexpected "
+"slowdowns, e.g. in uncompiled code that works with Unicode strings. This "
+"is because calling to the DLL rather than residing in the DLL causes "
+"overhead, and this even happens to the DLL with itself, being slower, "
+"than a Python all contained in one binary."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:930
+msgid ""
+"So if feasible, aim at static linking, which is currently only possible "
+"with Anaconda Python on non-Windows, Debian Python2, self compiled "
+"Pythons (do not activate ``--enable-shared``, not needed), and installs "
+"created with ``pyenv``."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:937
+msgid ""
+"On Anaconda, you may need to execute ``conda install -c conda-forge "
+"libpython-static``"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:941
+msgid "Standalone executables and dependencies"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:943
+msgid ""
+"The process of making standalone executables for Windows traditionally "
+"involves using an external dependency walker in order to copy necessary "
+"libraries along with the compiled executables to the distribution folder."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:948
+msgid ""
+"There is plenty of ways to find that something is missing. Do not "
+"manually copy things into the folder, esp. not DLLs, as that's not going "
+"to work. Instead make bug reports to get these handled by Nuitka "
+"properly."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:954
+msgid "Windows errors with resources"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:956
+msgid ""
+"On Windows, the Windows Defender tool and the Windows Indexing Service "
+"both scan the freshly created binaries, while Nuitka wants to work with "
+"it, e.g. adding more resources, and then preventing operations randomly "
+"due to holding locks. Make sure to exclude your compilation stage from "
+"these services."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:963
+msgid "Windows standalone program redistribuation"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:965
+msgid ""
+"Whether compiling with MingW or MSVC, the standalone programs have "
+"external dependencies to Visual C Runtime libraries. Nuitka tries to ship"
+" those dependent DLLs by copying them from your system."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:969
+msgid ""
+"Beginning with Microsoft Windows 10, Microsoft ships ``ucrt.dll`` "
+"(Universal C Runtime libraries) which rehook calls to ``api-ms-"
+"crt-*.dll``."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:973
+msgid ""
+"With earlier Windows platforms (and wine/ReactOS), you should consider "
+"installing Visual C Runtime libraries before executing a Nuitka "
+"standalone compiled program."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:977
+msgid ""
+"Depending on the used C compiler, you'll need the following redist "
+"versions:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:981
+msgid "Visual C version"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:981 ../../doc/doc/user-manual.rst:997
+msgid "Redist Year"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:981 ../../doc/doc/user-manual.rst:997
+msgid "CPython"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:983
+msgid "14.2"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:983
+msgid "2019"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:983 ../../doc/doc/user-manual.rst:999
+msgid "3.5, 3.6, 3.7, 3.8, 3.9, 3.10"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:985
+msgid "14.1"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:985
+msgid "2017"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:985 ../../doc/doc/user-manual.rst:987
+msgid "3.5, 3.6, 3.7, 3.8"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:987
+msgid "14.0"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:987 ../../doc/doc/user-manual.rst:999
+msgid "2015"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:989
+msgid "10.0"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:989
+msgid "2010"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:989
+msgid "3.3, 3.4"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:991
+msgid "9.0"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:991
+msgid "2008"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:991
+msgid "2.6, 2.7"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:994
+msgid "When using MingGW64, you'll need the following redist versions:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:997
+msgid "MingGW64 version"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:999
+msgid "8.1.0"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1002
+msgid ""
+"Once the corresponding runtime libraries are installed on the target "
+"system, you may remove all ``api-ms-crt-*.dll`` files from your Nuitka "
+"compiled dist folder."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1007
+msgid "Detecting Nuitka at run time"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1009
+msgid ""
+"It doesn't set ``sys.frozen`` unlike other tools. For Nuitka, we have the"
+" module attribute ``__compiled__`` to test if a specific module was "
+"compiled."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1015
+msgid "Performance"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1017
+msgid ""
+"This chapter gives an overview, of what to currently expect in terms of "
+"performance from Nuitka. It's a work in progress and is updated as we go."
+" The current focus for performance measurements is Python 2.7, but 3.x is"
+" going to follow later."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1023
+msgid "pystone results"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1025
+msgid ""
+"The results are the top value from this kind of output, running pystone "
+"1000 times and taking the minimal value. The idea is that the fastest run"
+" is most meanigful, and eliminates usage spikes."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1044
+msgid "Python"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1044
+msgid "Uncompiled"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1044
+msgid "Compiled LTO"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1044
+msgid "Compiled PGO"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1046
+msgid "Debian Python 2.7"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1046
+msgid "137497.87 (1.000)"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1046
+msgid "460995.20 (3.353)"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1046
+msgid "503681.91 (3.663)"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1048
+msgid "Nuitka Python 2.7"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1048
+msgid "144074.78 (1.048)"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1048
+msgid "479271.51 (3.486)"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1048
+msgid "511247.44 (3.718)"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1053
+msgid "Where to go next"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1055
+msgid ""
+"Remember, this project is not completed yet. Although the CPython test "
+"suite works near perfect, there is still more work needed, esp. to make "
+"it do more optimization. Try it out."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1060
+msgid "Follow me on Twitter"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1062
+msgid ""
+"Nuitka announcements and interesting stuff is pointed to on the Twitter "
+"account, but obviously with not too many details. `@KayHayen "
+"<https://twitter.com/KayHayen>`_."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1067
+msgid "Report issues or bugs"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1069
+msgid ""
+"Should you encounter any issues, bugs, or ideas, please visit the `Nuitka"
+" bug tracker <https://github.com/kayhayen/Nuitka/issues>`__ and report "
+"them."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1073
+msgid "Best practices for reporting bugs:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1075
+msgid ""
+"Please always include the following information in your report, for the "
+"underlying Python version. You can easily copy&paste this into your "
+"report."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1083
+msgid ""
+"Try to make your example minimal. That is, try to remove code that does "
+"not contribute to the issue as much as possible. Ideally come up with a "
+"small reproducing program that illustrates the issue, using ``print`` "
+"with different results when that programs runs compiled or native."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1089
+msgid ""
+"If the problem occurs spuriously (i.e. not each time), try to set the "
+"environment variable ``PYTHONHASHSEED`` to ``0``, disabling hash "
+"randomization. If that makes the problem go away, try increasing in steps"
+" of 1 to a hash seed value that makes it happen every time, include it in"
+" your report."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1095
+msgid ""
+"Do not include the created code in your report. Given proper input, it's "
+"redundant, and it's not likely that I will look at it without the ability"
+" to change the Python or Nuitka source and re-run it."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1099
+msgid ""
+"Do not send screenshots of text, that is bad and lazy. Instead, capture "
+"text outputs from the console."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1103
+msgid "Word of Warning"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1105
+msgid ""
+"Consider using this software with caution. Even though many tests are "
+"applied before releases, things are potentially breaking. Your feedback "
+"and patches to Nuitka are very welcome."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1111
+msgid "Join Nuitka"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1113
+msgid ""
+"You are more than welcome to join Nuitka development and help to complete"
+" the project in all minor and major ways."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1116
+msgid ""
+"The development of Nuitka occurs in git. We currently have these 3 "
+"branches:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1119
+msgid "``main``"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1121
+msgid ""
+"This branch contains the stable release to which only hotfixes for bugs "
+"will be done. It is supposed to work at all times and is supported."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1125
+msgid "``develop``"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1127
+msgid ""
+"This branch contains the ongoing development. It may at times contain "
+"little regressions, but also new features. On this branch, the "
+"integration work is done, whereas new features might be developed on "
+"feature branches."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1132
+msgid "``factory``"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1134
+msgid ""
+"This branch contains unfinished and incomplete work. It is very "
+"frequently subject to ``git rebase`` and the public staging ground, where"
+" my work for develop branch lives first. It is intended for testing only "
+"and recommended to base any of your own development on. When updating it,"
+" you very often will get merge conflicts. Simply resolve those by doing "
+"``git reset --hard origin/factory`` and switch to the latest version."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1144
+msgid ""
+"The `Developer Manual <https://nuitka.net/doc/developer-manual.html>`__ "
+"explains the coding rules, branching model used, with feature branches "
+"and hotfix releases, the Nuitka design and much more. Consider reading it"
+" to become a contributor. This document is intended for Nuitka users."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1152
+msgid "Donations"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1154
+msgid ""
+"Should you feel that you cannot help Nuitka directly, but still want to "
+"support, please consider `making a donation "
+"<https://nuitka.net/pages/donations.html>`__ and help this way."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1160
+msgid "Unsupported functionality"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1163
+msgid "The ``co_code`` attribute of code objects"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1165
+msgid ""
+"The code objects are empty for native compiled functions. There is no "
+"bytecode with Nuitka's compiled function objects, so there is no way to "
+"provide it."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1170
+msgid "PDB"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1172
+msgid "There is no tracing of compiled functions to attach a debugger to."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1176
+msgid "Optimization"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1179
+msgid "Constant Folding"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1181
+msgid ""
+"The most important form of optimization is the constant folding. This is "
+"when an operation can be fully predicted at compile time. Currently, "
+"Nuitka does these for some built-ins (but not all yet, somebody to look "
+"at this more closely will be very welcome!), and it does it e.g. for "
+"binary/unary operations and comparisons."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1187
+msgid "Constants currently recognized:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1196
+msgid ""
+"Literals are the one obvious source of constants, but also most likely "
+"other optimization steps like constant propagation or function inlining "
+"will be. So this one should not be underestimated and a very important "
+"step of successful optimizations. Every option to produce a constant may "
+"impact the generated code quality a lot."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1202 ../../doc/doc/user-manual.rst:1229
+#: ../../doc/doc/user-manual.rst:1248 ../../doc/doc/user-manual.rst:1270
+#: ../../doc/doc/user-manual.rst:1284 ../../doc/doc/user-manual.rst:1322
+#: ../../doc/doc/user-manual.rst:1357 ../../doc/doc/user-manual.rst:1392
+#: ../../doc/doc/user-manual.rst:1428 ../../doc/doc/user-manual.rst:1446
+#: ../../doc/doc/user-manual.rst:1463 ../../doc/doc/user-manual.rst:1492
+#: ../../doc/doc/user-manual.rst:1516 ../../doc/doc/user-manual.rst:1543
+#: ../../doc/doc/user-manual.rst:1574
+msgid "Status"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1204
+msgid ""
+"The folding of constants is considered implemented, but it might be "
+"incomplete in that not all possible cases are caught. Please report it as"
+" a bug when you find an operation in Nuitka that has only constants as "
+"input and is not folded."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1210
+msgid "Constant Propagation"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1212
+msgid ""
+"At the core of optimizations, there is an attempt to determine the values"
+" of variables at run time and predictions of assignments. It determines "
+"if their inputs are constants or of similar values. An expression, e.g. a"
+" module variable access, an expensive operation, may be constant across "
+"the module of the function scope and then there needs to be none or no "
+"repeated module variable look-up."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1219
+msgid ""
+"Consider e.g. the module attribute ``__name__`` which likely is only ever"
+" read, so its value could be predicted to a constant string known at "
+"compile time. This can then be used as input to the constant folding."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1231
+msgid ""
+"From modules attributes, only ``__name__`` is currently actually "
+"optimized. Also possible would be at least ``__doc__``. In the future, "
+"this may improve as SSA is expanded to module variables."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1236
+msgid "Built-in Name Lookups"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1238
+msgid ""
+"Also, built-in exception name references are optimized if they are used "
+"as a module level read-only variables:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1250
+msgid ""
+"This works for all built-in names. When an assignment is done to such a "
+"name, or it's even local, then, of course, it is not done."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1254
+msgid "Built-in Call Prediction"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1256
+msgid ""
+"For built-in calls like ``type``, ``len``, or ``range`` it is often "
+"possible to predict the result at compile time, esp. for constant inputs "
+"the resulting value often can be precomputed by Nuitka. It can simply "
+"determine the result or the raised exception and replace the built-in "
+"call with that value, allowing for more constant folding or code path "
+"reduction."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1272
+msgid ""
+"The built-in call prediction is considered implemented. We can simply "
+"during compile time emulate the call and use its result or raised "
+"exception. But we may not cover all the built-ins there are yet."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1276
+msgid ""
+"Sometimes the result of a built-in should not be predicted when the "
+"result is big. A ``range()`` call e.g. may give too big values to include"
+" the result in the binary. Then it is not done."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1286
+msgid ""
+"This is considered mostly implemented. Please file bugs for built-ins "
+"that are pre-computed, but should not be computed by Nuitka at compile "
+"time with specific values."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1291
+msgid "Conditional Statement Prediction"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1293
+msgid ""
+"For conditional statements, some branches may not ever be taken, because "
+"of the conditions being possible to predict. In these cases, the branch "
+"not taken and the condition check is removed."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1297
+msgid "This can typically predict code like this:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1305
+msgid "or"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1313
+msgid ""
+"It will also benefit from constant propagations, or enable them because "
+"once some branches have been removed, other things may become more "
+"predictable, so this can trigger other optimization to become possible."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1317
+msgid ""
+"Every branch removed makes optimization more likely. With some code "
+"branches removed, access patterns may be more friendly. Imagine e.g. that"
+" a function is only called in a removed branch. It may be possible to "
+"remove it entirely, and that may have other consequences too."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1324
+msgid ""
+"This is considered implemented, but for the maximum benefit, more "
+"constants need to be determined at compile time."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1328
+msgid "Exception Propagation"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1330
+msgid ""
+"For exceptions that are determined at compile time, there is an "
+"expression that will simply do raise the exception. These can be "
+"propagated upwards, collecting potentially \"side effects\", i.e. parts "
+"of expressions that were executed before it occurred, and still have to "
+"be executed."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1336 ../../doc/doc/user-manual.rst:1368
+msgid "Consider the following code:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1343
+msgid ""
+"The ``(1 / 0)`` can be predicted to raise a ``ZeroDivisionError`` "
+"exception, which will be propagated through the ``+`` operation. That "
+"part is just Constant Propagation as normal."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1347
+msgid ""
+"The call ``side_effect_having()`` will have to be retained though, but "
+"the ``print`` does not and can be turned into an explicit raise. The "
+"statement sequence can then be aborted and as such the ``something_else``"
+" call needs no code generation or consideration anymore."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1353
+msgid ""
+"To that end, Nuitka works with a special node that raises an exception "
+"and is wrapped with a so-called \"side_effects\" expression, but yet can "
+"be used in the code as an expression having a value."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1359
+msgid ""
+"The propagation of exceptions is mostly implemented but needs handling in"
+" every kind of operations, and not all of them might do it already. As "
+"work progresses or examples arise, the coverage will be extended. Feel "
+"free to generate bug reports with non-working examples."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1366
+msgid "Exception Scope Reduction"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1379
+msgid ""
+"The ``try`` block is bigger than it needs to be. The statement ``b = 8`` "
+"cannot cause a ``ValueError`` to be raised. As such it can be moved to "
+"outside the try without any risk."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1394
+msgid ""
+"This is considered done. For every kind of operation, we trace if it may "
+"raise an exception. We do however *not* track properly yet, what can do a"
+" ``ValueError`` and what cannot."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1399
+msgid "Exception Block Inlining"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1401
+msgid ""
+"With the exception propagation, it then becomes possible to transform "
+"this code:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1420
+msgid ""
+"Which then can be lowered in complexity by avoiding the raise and catch "
+"of the exception, making it:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1430
+msgid "This is not implemented yet."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1433
+msgid "Empty Branch Removal"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1435
+msgid ""
+"For loops and conditional statements that contain only code without "
+"effect, it should be possible to remove the whole construct:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1443
+msgid ""
+"The loop could be removed, at maximum, it should be considered an "
+"assignment of variable ``i`` to ``999`` and no more."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1448
+msgid ""
+"This is not implemented yet, as it requires us to track iterators, and "
+"their side effects, as well as loop values, and exit conditions. Too much"
+" yet, but we will get there."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1452
+msgid "Another example:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1459
+msgid ""
+"The condition check should be removed in this case, as its evaluation is "
+"not needed. It may be difficult to predict that ``side_effect_free`` has "
+"no side effects, but many times this might be possible."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1465
+msgid ""
+"This is considered implemented. The conditional statement nature is "
+"removed if both branches are empty, only the condition is evaluated and "
+"checked for truth (in cases that could raise an exception)."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1470
+msgid "Unpacking Prediction"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1472
+msgid ""
+"When the length of the right-hand side of an assignment to a sequence can"
+" be predicted, the unpacking can be replaced with multiple assignments."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1486
+msgid ""
+"This is of course only really safe if the left-hand side cannot raise an "
+"exception while building the assignment targets."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1489
+msgid ""
+"We do this now, but only for constants, because we currently have no "
+"ability to predict if an expression can raise an exception or not."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1494
+msgid ""
+"Not implemented yet. Will need us to see through the unpacking of what is"
+" an iteration over a tuple, we created ourselves. We are not there yet, "
+"but we will get there."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1499
+msgid "Built-in Type Inference"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1501
+msgid ""
+"When a construct like ``in xrange()`` or ``in range()`` is used, it is "
+"possible to know what the iteration does and represent that so that "
+"iterator users can use that instead."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1505
+msgid "I consider that:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1512
+msgid ""
+"could translate ``xrange(1000)`` into an object of a special class that "
+"does the integer looping more efficiently. In case ``i`` is only assigned"
+" from there, this could be a nice case for a dedicated class."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1518
+msgid "Future work, not even started."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1521
+msgid "Quicker Function Calls"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1523
+msgid ""
+"Functions are structured so that their parameter parsing and ``tp_call`` "
+"interface is separate from the actual function code. This way the call "
+"can be optimized away. One problem is that the evaluation order can "
+"differ."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1536
+msgid ""
+"This will have to evaluate first ``get1()``, then ``get2()`` and only "
+"then ``get3()`` and then make the function call with these values."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1539
+msgid ""
+"Therefore it will be necessary to have a staging of the parameters before"
+" making the actual call, to avoid a re-ordering of the calls to "
+"``get1()``, ``get2()``, and ``get3()``."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1545
+msgid ""
+"Not even started. A re-formulation that avoids the dictionary to call the"
+" function, and instead uses temporary variables appears to be relatively "
+"straight forward once we do that kind of parameter analysis."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1551
+msgid "Lowering of iterated Container Types"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1553
+msgid ""
+"In some cases, accesses to ``list`` constants can become ``tuple`` "
+"constants instead."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1556
+msgid "Consider that:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1563
+msgid "Can be optimized into this:"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1570
+msgid ""
+"This allows for simpler, faster code to be generated, and fewer checks "
+"needed, because e.g. the ``tuple`` is clearly immutable, whereas the "
+"``list`` needs a check to assert that. This is also possible for sets."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1576
+msgid ""
+"Implemented, even works for non-constants. Needs other optimization to "
+"become generally useful, and will itself help other optimization to "
+"become possible. This allows us to e.g. only treat iteration over tuples,"
+" and not care about sets."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1581
+msgid ""
+"In theory, something similar is also possible for ``dict``. For the "
+"later, it will be non-trivial though to maintain the order of execution "
+"without temporary values introduced. The same thing is done for pure "
+"constants of these types, they change to ``tuple`` values when iterated."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1588
+msgid "Updates for this Manual"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1590
+msgid ""
+"This document is written in REST. That is an ASCII format which is "
+"readable to human, but easily used to generate PDF or HTML documents."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1593
+msgid ""
+"You will find the current version at: https://nuitka.net/doc/user-"
+"manual.html"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:1596
+msgid "And the current PDF under: https://nuitka.net/doc/README.pdf"
+msgstr ""
+
