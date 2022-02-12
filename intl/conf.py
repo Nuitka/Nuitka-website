@@ -40,7 +40,7 @@ intersphinx_mapping = {
 }
 intersphinx_disabled_domains = ["std"]
 
-templates_path = ["_templates", ablog.get_html_templates_path()]
+templates_path = ["../doc/_templates", ablog.get_html_templates_path()]
 
 language = 'en'  #'zh_CN'
 locale_dirs = ['locales/']  # path is example but recommended.
