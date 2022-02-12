@@ -5,7 +5,7 @@ on:
     branches:
       # - main
       - translation
-      
+
 jobs:
   deploy-to-pages:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-        
+
 
       - name: 🧳 Cache pip
         uses: actions/cache@v2
@@ -42,9 +42,9 @@ jobs:
       - name: Site initialization
         run: |
           invoke virtualenv
-          invoke run
+          invoke run -t update-docs
           invoke run -t build-site
-      
+
       - name: 🔧 Build HTML
         run: |
           invoke doc.clean

@@ -10,7 +10,7 @@ def virtualenv(c):
 
 
 @task
-def run(c, target='update-docs'):
+def run(c, target='build-site'):
     '''
     :target: can be `update-docs`, `build-site`, `serve-site`
     '''
