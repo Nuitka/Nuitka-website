@@ -795,10 +795,6 @@ def runSphinxBuild():
     assert 0 == os.system("cd doc && sphinx-build . ../output/ -a")
 
 
-def runSphinxAutoBuild():
-    os.system("python3 -m sphinx_autobuild doc output/ --watch doc --watch Pipenv.lock")
-
-
 def runPostProcessing():
     # Step one, compress the CSS files into one file.
     # TODO: Could delete all CSS files that are not combined afterwards.
@@ -1051,24 +1047,6 @@ When given, the pages are not checked with rest lint. Default %default.""",
     )
 
     parser.add_option(
-        "--build-site",
-        action="store_true",
-        dest="build",
-        default=False,
-        help="""\
-When given, the site is built. Default %default.""",
-    )
-
-    parser.add_option(
-        "--serve-site",
-        action="store_true",
-        dest="serve",
-        default=False,
-        help="""\
-When given, the site is re-built on changes and served locally. Default %default.""",
-    )
-
-    parser.add_option(
         "--post-process",
         action="store_true",
         dest="postprocess",
@@ -1100,24 +1078,9 @@ When given, the site is deployed. Default %default.""",
     if options.check_pages:
         checkRestPages()
 
-    if options.build:
-        # Make sure links in the file system are correct, and API doc
-        # is also generated that way.
-        updateNuitkaMain(update=True)
-        updateNuitkaDevelop(update=True)
-
-        # Avoid left over files.
-        output_dir = "output"
-        if os.path.isdir(output_dir):
-            shutil.rmtree(output_dir)
-
-        runSphinxBuild()
 
     if options.postprocess:
         runPostProcessing()
-
-    if options.serve:
-        runSphinxAutoBuild()
 
     if options.deploy:
         runDeploymentCommand()
