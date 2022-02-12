@@ -15,6 +15,11 @@ Additional information
 
 .. toctree::
    :hidden:
+
+   home <https://nuitka.github.io/Nuitka-website>
+
+.. toctree::
+   :hidden:
    :caption: Release Information
 
    doc/Changelog

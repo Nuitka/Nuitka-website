@@ -42,19 +42,14 @@ here </pages/download.html>`_.
    Download <doc/download>
    User Manual <doc/user-manual>
    pages/support
+   Roadmap <doc/roadmap>
+   intl
 
 .. toctree::
    :hidden:
    :caption: Commercial Users
 
    doc/commercial
-
-.. toctree::
-   :hidden:
-   :caption: Navigation
-
-   Roadmap <doc/roadmap>
-   intl
 
 .. toctree::
    :hidden:
@@ -65,16 +60,7 @@ here </pages/download.html>`_.
 
 .. toctree::
    :hidden:
-   :caption: More documentation
-
-   Developer Manual <doc/developer-manual>
-   API doc <doc/api-doc>
-   doc/factory
-
-.. toctree::
-   :hidden:
    :caption: Under construction
 
-   doc/welcome
-   pages/pyside2
-   pages/donations
+   more
+   extra
