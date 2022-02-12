@@ -14,8 +14,7 @@ def run(c, target='update-docs'):
     '''
     :target: can be `update-docs`, `build-site`, `serve-site`
     '''
-    cmd = 'pipenv run python update.py'
-    c.run(f'{cmd} --{target}')
+    c.run(f'pipenv run python update.py --{target}')
 
 
 ns = Collection(intl, doc, run, virtualenv)
