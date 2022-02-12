@@ -788,7 +788,7 @@ def runSphinxBuild():
 
 
 def runSphinxAutoBuild():
-    os.system("python -m sphinx_autobuild doc output/ --watch doc --watch Pipenv.lock")
+    os.system("python3 -m sphinx_autobuild doc output/ --watch doc --watch Pipenv.lock")
 
 
 def runPostProcessing():
