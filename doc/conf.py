@@ -84,7 +84,7 @@ html_show_sourcelink = False
 html_show_sphinx = False
 
 
-favicons = favicons = [
+favicons = [
     {
         "rel": "icon",
         "static-file": "favicon.svg",
