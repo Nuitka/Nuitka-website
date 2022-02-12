@@ -59,7 +59,7 @@ def _updateCheckout(branch, update):
 
             # Logo inside doc removed.
             new_contents = new_contents.replace(
-                b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
+                b"\n.. image:: sites/images/Nuitka-Logo-Symbol.png\n", b"\n"
             )
             new_contents = new_contents.replace(b"\n   :alt: Nuitka Logo", b"\n")
 
@@ -113,7 +113,7 @@ from nuitka.utils.Rest import makeTable
 def updateDownloadPage():
 
     page_template = getTemplate(
-        package_name=None, template_name="download.rst.j2", template_subdir="doc/doc"
+        package_name=None, template_name="download.rst.j2", template_subdir="sites/doc"
     )
 
     page_source = requests.get("https://nuitka.net/releases/").text
@@ -585,7 +585,7 @@ def updateDownloadPage():
         else:
             variable = None
 
-    with withFileOpenedAndAutoformatted("doc/doc/download.rst") as output_file:
+    with withFileOpenedAndAutoformatted("sites/doc/download.rst") as output_file:
         output_file.write("\n".join(output) + "\n")
 
 
@@ -647,7 +647,7 @@ def updateReleasePosts():
     # Make sure changelog is there.
     updateNuitkaFactory(update=True)
 
-    with open("doc/doc/Changelog.rst", "w") as changelog_output:
+    with open("extra/doc/Changelog.rst", "w") as changelog_output:
 
         for title, lines in splitRestByChapter(
             open("Nuitka-factory/Changelog.rst").readlines()
@@ -692,7 +692,7 @@ def updateReleasePosts():
                     """\
 This is to inform you about the new stable release
 of `Nuitka <https://nuitka.net>`_. It is the extremely
-compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
+compatible Python compiler,  `"download now" </sites/download.html>`_.\n""",
                     "\n",
                 ]
                 + lines
@@ -737,7 +737,7 @@ def updateImportedPages():
     updateNuitkaMain(update=True)
     updateNuitkaDevelop(update=True)
 
-    with withFileOpenedAndAutoformatted("doc/doc/Credits.rst") as credits_output:
+    with withFileOpenedAndAutoformatted("sites/doc/Credits.rst") as credits_output:
         credits_output.write(
             """\
 .. meta::
@@ -750,7 +750,7 @@ def updateImportedPages():
         credits_output.write(getFileContents("Nuitka-develop/Credits.rst"))
 
 
-    with withFileOpenedAndAutoformatted("doc/doc/user-manual.rst") as user_manual_output:
+    with withFileOpenedAndAutoformatted("sites/doc/user-manual.rst") as user_manual_output:
         # We can plug meta changes for website here, this could be better.
         user_manual_output.write(
             """\
@@ -764,7 +764,7 @@ def updateImportedPages():
         user_manual_output.write(getFileContents("Nuitka-main/README.rst"))
 
 
-    with withFileOpenedAndAutoformatted("doc/doc/developer-manual.rst") as developer_manual_output:
+    with withFileOpenedAndAutoformatted("sites/doc/developer-manual.rst") as developer_manual_output:
         # We can plug meta changes for website here, this could be better.
         developer_manual_output.write(
             """\
@@ -978,7 +978,7 @@ def runDeploymentCommand():
         "ccache",
         "volatile",
         # PDF documentation for current release
-        "'doc/*.pdf'",
+        "'sites/*.pdf'",
         # Google ownership marker, do not touch.
         "googlee5244704183a9a15.html",
         # Link into blog, for compatibility with old blog subscriptions.
