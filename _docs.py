@@ -1,4 +1,4 @@
-import sys
+import sys, os
 from pathlib import Path
 from shutil import rmtree
 from invoke import Collection, task
@@ -60,7 +60,7 @@ def update(c, language='en'):
             rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
 
 
-def _site(name, help_part):
+def _site(name, target, help_part):
     self = sys.modules[__name__]
     coll = Collection.from_module(
         self,
@@ -68,7 +68,7 @@ def _site(name, help_part):
         config={
             "sphinx": {
                 "source": name,
-                "target": f"{name}/../output/html"
+                "target": os.path.normpath(f"output/{target}")
             }
         },
     )
@@ -78,7 +78,7 @@ def _site(name, help_part):
 
 
 # Usage doc/API site (published as e.g. docs.myproject.org)
-intl = _site("intl", "the API docs subsite.")
-doc = _site("doc", "the API docs subsite.")
+intl = _site("intl", "intl", "the translations subsite.")
+doc = _site("doc", ".", "the main site.")
 
 ns = Collection(intl, doc)
