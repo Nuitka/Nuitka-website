@@ -36,7 +36,6 @@ jobs:
         shell: bash
         run: |
           pip install --upgrade pip
-          pip install -r dev-requirements.txt
           pip install invoke
 
       - name: Site initialization

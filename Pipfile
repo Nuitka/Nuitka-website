@@ -28,6 +28,7 @@ rstfmt = "*"
 unicode = "*"
 unidecode = "*"
 sphinx-intl = "*"
+sphinx-book-theme = "*"
 
 [requires]
 python_version = "3.9"
