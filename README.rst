@@ -31,7 +31,7 @@ you can make that work as part of your contribution.
    python3 -m invoke virtualenv
 
    # Now lets build the site, to see if it's all correct.
-   python3 -m invoke run -t build-site
+   python3 -m invoke doc
 
    # Start local web server with the site, and do automatic
    # rebuilds
