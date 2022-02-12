@@ -106,7 +106,7 @@ msgstr ""
 
 #: ../../README.rst:3
 msgid "Nuitka Website"
-msgstr ""
+msgstr "Nuitka 网站"
 
 #, fuzzy
 msgid "Nuitka Logo"

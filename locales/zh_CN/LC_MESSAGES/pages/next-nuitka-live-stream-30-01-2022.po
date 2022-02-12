@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:6
 msgid "Next Nuitka Live Stream"
-msgstr ""
+msgstr "下一个 Nuitka 实时流"
 
 #: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:8
 msgid ""
@@ -30,10 +30,13 @@ msgid ""
 "18 CEST until probably at least 20 CEST, but it seems I tend to go "
 "overtime."
 msgstr ""
+"今天，2022 年 1 月 30 日星期日，将会有第三次我在 Nuitka 上编码的直播流，"
+"并在为此专门创建的 Discord 频道与访客交谈和聊天。"
+"我会从 9-12 CEST，18 CEST，直到至少 20 CEST，但我似乎倾向于加班。"
 
 #: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:16
 msgid "Last time"
-msgstr ""
+msgstr "最后一次"
 
 #: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:18
 msgid ""

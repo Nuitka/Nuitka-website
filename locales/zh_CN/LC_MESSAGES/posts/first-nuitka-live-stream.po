@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../../sites/posts/first-nuitka-live-stream.rst:6
 msgid "First Nuitka Live Stream"
-msgstr ""
+msgstr "首次 Nuitka 直播流"
 
 #: ../../sites/posts/first-nuitka-live-stream.rst:8
 msgid ""
@@ -29,6 +29,9 @@ msgid ""
 "Discord channel created specifically for this. I will go from 9-12 CEST "
 "and from 17-20 CEST."
 msgstr ""
+"明天，2022 年 1 月 15 日，周六，将会有不是一个，而是两个我在 Nuitka 编码的直播流，"
+"并在为此专门创建的 Discord 频道与游客交谈和聊天。"
+"我将从 9-12 CEST 和 17-20 CEST。"
 
 #: ../../sites/posts/first-nuitka-live-stream.rst:13
 msgid ""
