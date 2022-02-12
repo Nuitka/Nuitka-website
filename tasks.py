@@ -1,5 +1,5 @@
 from invoke import Collection, task
-from _docs import doc, intl
+from _docs import sites, extra
 
 import os
 
@@ -23,4 +23,4 @@ def run(c, target='build-site'):
     c.run(f'python3 -m pipenv run python update.py --{target}')
 
 
-ns = Collection(intl, doc, run, virtualenv)
+ns = Collection(sites, extra, run, virtualenv)

@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-12 23:20+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../sites/posts/first-nuitka-live-stream.rst:6
+msgid "First Nuitka Live Stream"
+msgstr ""
+
+#: ../../sites/posts/first-nuitka-live-stream.rst:8
+msgid ""
+"Tomorrow, Saturday 15.01.2022, there will be not one, but two live stream"
+" of me coding on Nuitka, and talking and chatting with visitors in the "
+"Discord channel created specifically for this. I will go from 9-12 CEST "
+"and from 17-20 CEST."
+msgstr ""
+
+#: ../../sites/posts/first-nuitka-live-stream.rst:13
+msgid ""
+"There is a `dedicated page on the web site </pages/Streaming.html>`_ "
+"which has the details. Spoiler, it's free and I have no plans for "
+"anything that involves a subscription of any kind. Of course, talking of "
+"subscription, do also checkout the `Nuitka commercial "
+"</doc/commercial.html>`_ offering. That is a subscription with adds that "
+"protect your IP even more than regular Nuitka."
+msgstr ""
+
+#: ../../sites/posts/first-nuitka-live-stream.rst:20
+msgid ""
+"I want to do this on a regular basis, and I will be happy to do this even"
+" when nearly nobody shows up. It will be however your chance, and in "
+"previous GSoC and generally, I made very good experiences with joint "
+"sessions. So I hope you will help me pasting code snippets and Google "
+"results in chat, and discuss the optimization that we are going to add."
+msgstr ""
+
+#: ../../sites/posts/first-nuitka-live-stream.rst:26
+msgid ""
+"Come and join me there. `Instructions </pages/Streaming.html>`_ here. You"
+" know you want to do it. I know I want you to do to it!"
+msgstr ""
+
+#: ../../sites/posts/first-nuitka-live-stream.rst:29
+msgid "Yours,"
+msgstr ""
+
+#: ../../sites/posts/first-nuitka-live-stream.rst:30
+msgid "Kay"
+msgstr ""
+

@@ -5,6 +5,7 @@ on:
     branches:
       # - main
       - translation
+      - rebuild
 
 jobs:
   deploy-to-pages:
@@ -46,9 +47,10 @@ jobs:
 
       - name: 🔧 Build HTML
         run: |
-          invoke doc.clean
-          invoke doc
-          invoke doc -l zh_CN
+          invoke sites.clean
+          invoke sites
+          invoke sites -l zh_CN
+          invoke extra
           # TODO: Activate this
           # invoke run -t post-process
 

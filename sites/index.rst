@@ -53,8 +53,14 @@ here </pages/download.html>`_.
    :hidden:
    :caption: Release Information
 
-   doc/Changelog
    Roadmap <doc/roadmap>
+
+.. toctree::
+   :hidden:
+   :caption: Other
+
+   doc/Credits
+   pages/impressum
 
 .. toctree::
    :hidden:
@@ -66,26 +72,8 @@ here </pages/download.html>`_.
 
 .. toctree::
    :hidden:
-   :caption: Media
-
-   Presentations <pages/Presentations>
-   Streaming <pages/Streaming>
-
-.. toctree::
-   :hidden:
-   :caption: Other
-
-   doc/Credits
-   pages/impressum
-
-.. toctree::
-   :hidden:
    :caption: Under construction
 
    doc/welcome
    pages/pyside2
    pages/donations
-   pages/gsoc2019
-
-.. toctree::
-   :hidden:

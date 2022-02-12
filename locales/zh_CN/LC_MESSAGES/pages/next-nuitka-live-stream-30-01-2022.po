@@ -1,0 +1,118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-12 23:20+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:6
+msgid "Next Nuitka Live Stream"
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:8
+msgid ""
+"Today, Sunday 30.01.2022, there will be the third live stream of me "
+"coding on Nuitka, and talking and chatting with visitors in the Discord "
+"channel created specifically for this. I will go from 9-12 CEST and from "
+"18 CEST until probably at least 20 CEST, but it seems I tend to go "
+"overtime."
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:16
+msgid "Last time"
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:18
+msgid ""
+"So the last two streams are on my Youtube, these are around 4h videos, "
+"done on the same day."
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:21
+msgid ""
+"In the second stream I was working on Onefile compression for all Python "
+"versions, by making the location of another Python that for Scons we sort"
+" of did already, reusable. So now, you can run Nuitka with Python2.6 and "
+"compile your legacy code, while with say 3.6 also installed on the same "
+"system, you do the ``zstandard`` compression. That will be used for other"
+" things in the future as well. This is going to be part of the next "
+"release and currently on develop."
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:29
+msgid ""
+"In the first stream, I also did a little bit of performance plans, but "
+"mostly only showing people what I have there in stock, not actually went "
+"there and I started work on a ``upx`` plugin, such that DLLs for "
+"standalone are compressed with that. That also required a bit of plugin "
+"interface changes and research. This one works mostly, but will need more"
+" live. Also I think I looked at reducing what is included with the follow"
+" standard library option, getting very minimal distributions out of it."
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:40
+msgid "This time"
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:42
+msgid ""
+"All around, this last stream, was a huge success. I was a bit under the "
+"weather last weekend, but we go on now."
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:45
+msgid ""
+"Not sure yet, what to do. I might be debugging issues I have with 2.6 and"
+" a recent optimization, that prevents factory branch from becoming the "
+"next pre-release, I might be looking at macOS still. And I might be "
+"looking at the caching of bytecode demoted modules, that is kind of ready"
+" to be used, but is not currently, which is a pity. And of course, the "
+"Python PGO may get a closer look, such that e.g. it works for standalone "
+"mode."
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:55
+msgid "How to Join"
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:57
+msgid ""
+"There is a `dedicated page on the web site </pages/Streaming.html>`_ "
+"which has the details. Spoiler, it's free and I have no plans for "
+"anything that involves a subscription of any kind. Of course, talking of "
+"subscription, do also checkout the `Nuitka commercial "
+"</doc/commercial.html>`_ offering. That is a subscription with adds that "
+"protect your IP even more than regular Nuitka."
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:66
+msgid "Join me"
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:68
+msgid ""
+"Come and join me there. `Instructions </pages/Streaming.html>`_ here. You"
+" know you want to do it. I know I want you to do to it!"
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:71
+msgid "Yours,"
+msgstr ""
+
+#: ../../sites/pages/next-nuitka-live-stream-30-01-2022.rst:72
+msgid "Kay"
+msgstr ""
+

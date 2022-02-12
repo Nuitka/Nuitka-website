@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-12 00:17+0800\n"
+"POT-Creation-Date: 2022-02-12 23:17+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: xinetzone <735613050@qq.com>, 2022\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,108 +18,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../doc/index.rst:39
+#: ../../sites/index.rst:39
 msgid "Download"
 msgstr "下载"
 
-#: ../../doc/index.rst:39
+#: ../../sites/index.rst:39
 msgid "User Manual"
 msgstr "用户手册"
 
-#: ../../doc/index.rst:46
+#: ../../sites/index.rst:46
 msgid "Commercial Users"
 msgstr "商业用户"
 
-#: ../../doc/index.rst:52
+#: ../../sites/index.rst:52
 msgid "Roadmap"
 msgstr "路线图"
 
-#: ../../doc/index.rst:52
+#: ../../sites/index.rst:52
 msgid "Release Information"
 msgstr "发行信息"
 
-#: ../../doc/index.rst:59
-msgid "Developer Manual"
-msgstr "开发者手册"
-
-#: ../../doc/index.rst:59
-msgid "API doc"
-msgstr "API 文档"
-
-#: ../../doc/index.rst:59
-msgid "More documentation"
-msgstr "更多文档"
-
-#: ../../doc/index.rst:67
-msgid "Presentations"
-msgstr "演讲稿"
-
-#: ../../doc/index.rst:67
-msgid "Streaming"
-msgstr "流媒体"
-
-#: ../../doc/index.rst:67
-msgid "Media"
-msgstr "影音"
-
-#: ../../doc/index.rst:74
+#: ../../sites/index.rst:58
 msgid "Other"
 msgstr "其他"
 
-#: ../../doc/index.rst:81
+#: ../../sites/index.rst:65
+msgid "Developer Manual"
+msgstr "开发者手册"
+
+#: ../../sites/index.rst:65
+msgid "API doc"
+msgstr "API 文档"
+
+#: ../../sites/index.rst:65
+msgid "More documentation"
+msgstr "更多文档"
+
+#: ../../sites/index.rst:73
 msgid "Under construction"
 msgstr "建设中"
 
-#: ../../doc/index.rst:1
+#: ../../sites/index.rst:1
 msgid ""
 "With the Python compiler Nuitka you create protected binaries out of your"
 " Python source code."
 msgstr ""
 
-#: ../../doc/index.rst:1
+#: ../../sites/index.rst:1
 msgid "python,compiler,exe,binary,protection,portable,standalone,windows,linux,mac"
 msgstr ""
 
-#: ../../doc/index.rst:7
+#: ../../sites/index.rst:7
 msgid "Nuitka the Python Compiler"
 msgstr ""
 
-#: ../../doc/index.rst:11
+#: ../../sites/index.rst:11
 msgid "Nuitka Blog"
 msgstr ""
 
-#: ../../doc/index.rst:18
+#: ../../sites/index.rst:18
 msgid "What is Nuitka"
 msgstr ""
 
-#: ../../doc/index.rst:20
+#: ../../sites/index.rst:20
 msgid ""
 "Nuitka is the optimizing Python compiler written in Python that creates "
 "executables that run without an need for a separate installer. Data files"
 " can both be included or put alongside."
 msgstr ""
 
-#: ../../doc/index.rst:24
+#: ../../sites/index.rst:24
 msgid ""
 "It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10), "
 "works on Windows, macOS, Linux and more, basically where Python works for"
 " you already."
 msgstr ""
 
-#: ../../doc/index.rst:28
+#: ../../sites/index.rst:28
 msgid ""
 "It protects your code and data, esp. with the Nuitka commercial offering,"
 " and also just works and is easy to use."
 msgstr ""
 
-#: ../../doc/index.rst:31
+#: ../../sites/index.rst:31
 msgid ""
 "Nuitka is freely distributed under the Apache license. Nuitka commercial "
 "is a private repository that you pay to access and get plugins for "
 "commercial usage."
 msgstr ""
 
-#: ../../doc/index.rst:35
+#: ../../sites/index.rst:35
 msgid ""
 "In the meantime you can checkout why `Nuitka commercial "
 "</doc/commercial.html>`__ is for you or find the its `standard version "
@@ -157,7 +145,7 @@ msgstr ""
 #~ msgstr "流媒体"
 
 #~ msgid "Media"
-#~ msgstr "媒体"
+#~ msgstr "影音"
 
 #~ msgid "Other"
 #~ msgstr "其他"

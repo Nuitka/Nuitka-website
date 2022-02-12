@@ -56,8 +56,8 @@ def update(c, language='en'):
         if not Path(target).exists():
             build(c, target=target, opts=opts)
         c.run(f'python3 -m pipenv run sphinx-intl update -p {target} -l {language}')
-        for DIR in ['pages', 'posts', 'shop']:
-            rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
+        # for DIR in ['pages', 'posts', 'shop']:
+        #     rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
 
 
 def _site(name, target, help_part):
@@ -79,7 +79,7 @@ def _site(name, target, help_part):
 
 # Usage doc/API site (published as e.g. docs.myproject.org)
 # intl = _site("intl", "intl", "the translations subsite.")
-doc = _site("doc", ".", "the main site.")
+sites = _site("sites", ".", "the main site.")
+extra = _site("extra", "extra", "other web site.")
 
-# ns = Collection(intl, doc)
-ns = Collection(doc)
+ns = Collection(extra, sites)
