@@ -23,49 +23,57 @@ updated_branches = set()
 
 
 def _updateCheckout(branch, update):
-    if os.path.exists(f"Nuitka-{branch}") and not update:
-        return
+    # We cannot use Nuitka directory change yet here.
+    old_cwd = os.getcwd()
+    os.chdir(os.path.dirname(__file__))
 
-    if branch in updated_branches:
-        return
+    try:
+        if os.path.exists(f"Nuitka-{branch}") and not update:
+            return
 
-    if os.path.exists(f"Nuitka-{branch}"):
-        shutil.rmtree(f"Nuitka-{branch}")
+        if branch in updated_branches:
+            return
 
-    print(f"Updating {branch} checkout...")
-    sys.stdout.flush()
+        if os.path.exists(f"Nuitka-{branch}"):
+            shutil.rmtree(f"Nuitka-{branch}")
 
-    urlretrieve(
-        f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
-    )
+        print(f"Updating {branch} checkout...")
+        sys.stdout.flush()
 
-    with zipfile.ZipFile(f"nuitka.zip.tmp") as archive:
-        archive.extractall(".")
+        urlretrieve(
+            f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
+        )
 
-    os.unlink("nuitka.zip.tmp")
+        with zipfile.ZipFile(f"nuitka.zip.tmp") as archive:
+            archive.extractall(".")
 
-    for filename in (
-        "README.rst",
-        "Developer_Manual.rst",
-    ):
-        filename = os.path.join(f"Nuitka-{branch}", filename)
+        os.unlink("nuitka.zip.tmp")
 
-        with open(filename, "rb") as patched_file:
-            old_contents = new_contents = patched_file.read()
+        for filename in (
+            "README.rst",
+            "Developer_Manual.rst",
+        ):
+            filename = os.path.join(f"Nuitka-{branch}", filename)
 
-        if filename.endswith(".rst"):
-            # Sphinx has its own TOC method.
-            new_contents = new_contents.replace(b".. contents::\n", b"")
+            with open(filename, "rb") as patched_file:
+                old_contents = new_contents = patched_file.read()
 
-            # Logo inside doc removed.
-            new_contents = new_contents.replace(
-                b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
-            )
-            new_contents = new_contents.replace(b"\n   :alt: Nuitka Logo", b"\n")
+            if filename.endswith(".rst"):
+                # Sphinx has its own TOC method.
+                new_contents = new_contents.replace(b".. contents::\n", b"")
 
-        if old_contents != new_contents:
-            with open(filename, "wb") as out_file:
-                out_file.write(new_contents)
+                # Logo inside doc removed.
+                new_contents = new_contents.replace(
+                    b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
+                )
+                new_contents = new_contents.replace(b"\n   :alt: Nuitka Logo", b"\n")
+
+            if old_contents != new_contents:
+                with open(filename, "wb") as out_file:
+                    out_file.write(new_contents)
+
+    finally:
+        os.chdir(old_cwd)
 
     updated_branches.add(branch)
 
@@ -85,9 +93,9 @@ def updateNuitkaFactory(update):
 def importNuitka():
     # TODO: Move to at least develop, after next release, or even pip install as a requirement
     # after release with an option to use other branches.
-    updateNuitkaFactory(update=False)
+    updateNuitkaDevelop(update=False)
 
-    sys.path.insert(0, os.path.abspath("Nuitka-factory"))
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "Nuitka-develop")))
     import nuitka
 
     del sys.path[0]
@@ -787,10 +795,6 @@ def runSphinxBuild():
     assert 0 == os.system("cd doc && sphinx-build . ../output/ -a")
 
 
-def runSphinxAutoBuild():
-    os.system("python -m sphinx_autobuild doc output/ --watch doc --watch Pipenv.lock")
-
-
 def runPostProcessing():
     # Step one, compress the CSS files into one file.
     # TODO: Could delete all CSS files that are not combined afterwards.
@@ -885,7 +889,7 @@ jQuery(function () {
         logo_parent.append(logo_div)
 
         social_images = doc.xpath("//img[contains(@src, '/_static/icon-')]")
-        assert len(social_images) == 3, social_images
+        assert len(social_images) == 3, (filename, social_images)
 
         for social_image in social_images:
             social_image.attrib["width"] = "24"
@@ -987,9 +991,9 @@ def runDeploymentCommand():
 
     branch = subprocess.check_output("git branch --show-current".split()).strip()
 
-    if branch != b"main":
-        with open("output/robots.txt", "w") as robots_file:
-            robots_file.write("Disallow: *\n")
+    if branch == b"main":
+        os.unlink("output/robots.txt")
+        os.rename("output/robots.txt-operational", "output/robots.txt")
 
     target_dir = "/var/www/" if branch == b"main" else "/var/www-staging"
     command = (
@@ -1043,24 +1047,6 @@ When given, the pages are not checked with rest lint. Default %default.""",
     )
 
     parser.add_option(
-        "--build-site",
-        action="store_true",
-        dest="build",
-        default=False,
-        help="""\
-When given, the site is built. Default %default.""",
-    )
-
-    parser.add_option(
-        "--serve-site",
-        action="store_true",
-        dest="serve",
-        default=False,
-        help="""\
-When given, the site is re-built on changes and served locally. Default %default.""",
-    )
-
-    parser.add_option(
         "--post-process",
         action="store_true",
         dest="postprocess",
@@ -1078,26 +1064,10 @@ When given, the site is post processed with minify. Default %default.""",
 When given, the site is deployed. Default %default.""",
     )
     #
-    parser.add_option(
-        "--update-all",
-        action="store_true",
-        dest="all",
-        default=False,
-        help="""\
-When given, all is updated. Default %default.""",
-    )
 
     options, positional_args = parser.parse_args()
 
     assert not positional_args, positional_args
-
-    if options.all:
-        options.downloads = True
-        options.docs = True
-        options.build = True
-
-        options.postprocess = True
-        options.deploy = True
 
     if options.docs:
         updateDocs()
@@ -1108,24 +1078,9 @@ When given, all is updated. Default %default.""",
     if options.check_pages:
         checkRestPages()
 
-    if options.build:
-        # Make sure links in the file system are correct, and API doc
-        # is also generated that way.
-        updateNuitkaMain(update=True)
-        updateNuitkaDevelop(update=True)
-
-        # Avoid left over files.
-        output_dir = "output"
-        if os.path.isdir(output_dir):
-            shutil.rmtree(output_dir)
-
-        runSphinxBuild()
 
     if options.postprocess:
         runPostProcessing()
-
-    if options.serve:
-        runSphinxAutoBuild()
 
     if options.deploy:
         runDeploymentCommand()

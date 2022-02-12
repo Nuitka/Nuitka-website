@@ -6,3 +6,5 @@ Nuitka-main
 output
 output.*
 .vscode/tags
+_build/
+*.mo

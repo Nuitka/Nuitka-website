@@ -110,7 +110,7 @@ recursion options, and so on. So it's mostly a consolidation release.
    <https://nuitka.net/doc/user-manual.html#license>`__.
 
 -  Added `Nuitka Logo
-   <https://github.com/Nuitka/Nuitka/blob/develop/doc/images/Nuitka-Logo-Symbol.png>`__
+   <https://github.com/Nuitka/Nuitka/blob/develop/doc/Logo/Nuitka-Logo-Symbol.svg>`__
    to the distribution.
 
 -  Use Nuitka Logo as the bitmap in the Windows installer.

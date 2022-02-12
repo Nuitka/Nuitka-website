@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import ablog
 
 # Configuration file for the Sphinx documentation builder.
 
@@ -9,12 +10,6 @@ project = "Nuitka the Python Compiler"
 copyright = "%s, Kay Hayen and Nuitka Contributors" % time.gmtime().tm_year
 author = "Kay Hayen"
 release = version = ""
-
-# For autodoc to work
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from update import importNuitka
-importNuitka()
-del sys.path[-1]
 
 # -- General configuration
 
@@ -45,7 +40,11 @@ intersphinx_mapping = {
 }
 intersphinx_disabled_domains = ["std"]
 
-templates_path = ["_templates"]
+templates_path = ["../doc/_templates", ablog.get_html_templates_path()]
+
+language = 'en'  #'zh_CN'
+locale_dirs = ['locales/']  # path is example but recommended.
+gettext_compact = False  # optional.
 
 # Options for ABlog
 
@@ -54,8 +53,8 @@ blog_title = "Nuitka Blog"
 
 # Base URL for the website, required for generating feeds.
 # e.g. blog_baseurl = "http://example.com/"
-blog_baseurl = "https://nuitka.net"
-blog_path = "blog"
+blog_baseurl =  "https://nuitka.net"
+blog_path = "posts"
 blog_feed_fulltext = True
 blog_feed_archives = True
 blog_feed_length = None
@@ -67,24 +66,27 @@ x_blog_feed_templates = {
     # Create content text suitable posting to social media
     "social": {
         # Format tags as hashtags and append to the content
-        "content": "{{ title }}{% for tag in post.tags %}"
+        "content":
+        "{{ title }}{% for tag in post.tags %}"
         " #{{ tag.name|trim()|replace(' ', '') }}"
         "{% endfor %}",
     },
 }
 
 # Sitemap configuration
-html_baseurl = blog_baseurl
-sitemap_locales = [None]
-sitemap_url_scheme = "{link}"
+html_baseurl = f'{blog_baseurl}/zh_CN'
+sitemap_locales = ['en', 'zh_CN']
+sitemap_url_scheme = "{lang}/{link}"
+extlinks = {
+    'nuitka': (f'{html_baseurl}/%s', ''),
+}
 
 # -- Options for HTML output
 html_theme = "sphinx_rtd_theme"
-html_logo = "Nuitka-Logo-Symbol.svg"
+html_logo = "../doc/Nuitka-Logo-Symbol.svg"
 html_copy_source = False
 html_show_sourcelink = False
 html_show_sphinx = False
-
 
 favicons = [
     {
@@ -134,12 +136,19 @@ epub_show_urls = "footnote"
 
 autodoc_member_order = "bysource"
 
+
 # Enable our own CSS to be used.
 def setup(app):
     app.add_css_file("my_theme.css")
 
 
-html_static_path = ["_static"]
+html_static_path = ["../doc/_static"]
+
+extra_navbar = """<div>
+<button><a href="/nuitka-doc/">en</a></button>
+<button><a href="/nuitka-doc/zh_CN">zh_CN</a></button>
+</div>
+"""
 
 # Configure theme
 html_theme_options = {
@@ -149,9 +158,22 @@ html_theme_options = {
     "includehidden" : True,
 }
 
+html_sidebars = {
+    "posts/**": [
+        "postcard.html",
+        "recentposts.html",
+        "tagcloud.html",
+        "categories.html",
+        "archives.html",
+    ],
+}
+
 html_extra_path = ["../files"]
 html_title = ""
 
-# Sphinx intl configuration
-locale_dirs = ['../locales/']
-gettext_compact = False
+sphinxcontrib_asciinema_defaults = {
+    'theme': 'asciinema',
+    'preload': 0,
+    'font-size': '1rem',
+    'path': 'pages/demos'
+}
