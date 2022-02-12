@@ -26,8 +26,7 @@ def build(c,
           language=None,
           source=None,
           target=None,
-          nitpick=False,
-          intl=None):
+          nitpick=False):
     """
     Build the project's Sphinx docs.
     """

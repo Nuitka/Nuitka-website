@@ -11,17 +11,6 @@ copyright = "%s, Kay Hayen and Nuitka Contributors" % time.gmtime().tm_year
 author = "Kay Hayen"
 release = version = ""
 
-develop_root = '../Nuitka-develop'
-
-# if sys.platform == 'win32':
-#     import asyncio
-#     asyncio.set_event_loop_pobuttoncy(
-#         asyncio.WindowsSelectorEventLoopPobuttoncy())
-
-# For autodoc to work
-sys.path.insert(0, os.path.abspath(develop_root))
-import nuitka
-
 # -- General configuration
 
 extensions = [
@@ -31,19 +20,18 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
-    # "sphinx.ext.viewcode",
+#    "sphinx.ext.viewcode",
     # External extensions
     "sphinx_copybutton",
     "sphinx_design",
-    "sphinx_inline_tabs",
+#    "sphinx_inline_tabs",
     "sphinxcontrib.youtube",
     "sphinx-favicon",
     "sphinx_sitemap",
+    # Disabled, loads to slow and cannot be limited to needing pages.
+    # "sphinxcontrib.asciinema",
     # Blog extension
-    "sphinxcontrib.asciinema",
     "ablog",
-    "sphinx_book_theme",
-    "myst_parser"
 ]
 
 intersphinx_mapping = {
@@ -95,12 +83,12 @@ extlinks = {
 
 # -- Options for HTML output
 html_theme = "sphinx_book_theme"
-html_logo = f"{develop_root}/doc/images/Nuitka-Logo-Symbol.png"
+html_logo = "Nuitka-Logo-Symbol.svg"
 html_copy_source = False
-html_show_sourcebuttonnk = False
+html_show_sourcelink = False
 html_show_sphinx = False
 
-favicons = favicons = [
+favicons = [
     {
         "rel": "icon",
         "static-file": "favicon.svg",
@@ -162,12 +150,12 @@ extra_navbar = """<div>
 </div>
 """
 
+# Configure theme
 html_theme_options = {
-    # "prev_next_buttons_location": "none",
-    # "analytics_id": "G-V73VK1T804",
-    # "analytics_anonymize_ip": True,
-    # "includehidden": False,
-    "extra_navbar": extra_navbar,
+    "prev_next_buttons_location": "none",
+#    "analytics_id": "G-V73VK1T804",
+#    "analytics_anonymize_ip": True,
+    "includehidden" : True,
 }
 
 html_sidebars = {
