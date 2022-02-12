@@ -36,6 +36,8 @@ In the meantime you can checkout why `Nuitka commercial
 </doc/commercial.html>`__ is for you or find the its `standard version
 here </pages/download.html>`_.
 
+.. include:: ../README.rst
+
 .. toctree::
    :hidden:
 
