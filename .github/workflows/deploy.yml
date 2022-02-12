@@ -48,10 +48,8 @@ jobs:
         run: |
           invoke doc.clean
           invoke doc
-          # invoke doc -l zh_CN
           invoke intl -l zh_CN
-          # TODO: Activate this
-          # invoke run -t post-process
+          invoke run -t post-process
 
       - name: 🚀 Deploy to GitHub pages
         uses: peaceiris/actions-gh-pages@v3.6.1
