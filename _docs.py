@@ -60,7 +60,7 @@ def update(c, language='en'):
             rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
 
 
-def _site(name, target, help_part):
+def _site(name, help_part):
     self = sys.modules[__name__]
     coll = Collection.from_module(
         self,
@@ -68,7 +68,7 @@ def _site(name, target, help_part):
         config={
             "sphinx": {
                 "source": name,
-                "target": os.path.normpath(f"output/{target}")
+                "target": "output"
             }
         },
     )
@@ -78,7 +78,7 @@ def _site(name, target, help_part):
 
 
 # Usage doc/API site (published as e.g. docs.myproject.org)
-intl = _site("intl", "intl", "the translations subsite.")
-doc = _site("doc", ".", "the main site.")
+intl = _site("intl", "the translations subsite.")
+doc = _site("doc", "the main site.")
 
 ns = Collection(intl, doc)

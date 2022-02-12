@@ -1,1 +1,1 @@
-.. include:: ../Nuitka-main/README.rst
+.. include:: ../doc/user-manual.rst
