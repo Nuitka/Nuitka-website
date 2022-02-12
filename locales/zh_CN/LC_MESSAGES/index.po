@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-12 23:17+0800\n"
+"POT-Creation-Date: 2022-02-13 00:17+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: xinetzone <735613050@qq.com>, 2022\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,26 +35,26 @@ msgid "Roadmap"
 msgstr "路线图"
 
 #: ../../sites/index.rst:52
-msgid "Release Information"
-msgstr "发行信息"
+msgid "Navigation"
+msgstr ""
 
-#: ../../sites/index.rst:58
+#: ../../sites/index.rst:59
 msgid "Other"
 msgstr "其他"
 
-#: ../../sites/index.rst:65
+#: ../../sites/index.rst:66
 msgid "Developer Manual"
 msgstr "开发者手册"
 
-#: ../../sites/index.rst:65
+#: ../../sites/index.rst:66
 msgid "API doc"
 msgstr "API 文档"
 
-#: ../../sites/index.rst:65
+#: ../../sites/index.rst:66
 msgid "More documentation"
 msgstr "更多文档"
 
-#: ../../sites/index.rst:73
+#: ../../sites/index.rst:74
 msgid "Under construction"
 msgstr "建设中"
 

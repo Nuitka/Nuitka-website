@@ -51,9 +51,10 @@ here </pages/download.html>`_.
 
 .. toctree::
    :hidden:
-   :caption: Release Information
+   :caption: Navigation
 
    Roadmap <doc/roadmap>
+   intl
 
 .. toctree::
    :hidden:
