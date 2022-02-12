@@ -48,7 +48,7 @@ def update(c, language='en'):
     '''Update the POT file and invoke the `sphinx-intl` `update` command
     '''
     opts = "-b gettext"
-    target = Path(c.sphinx.target).parent / 'gettext'
+    target = Path(c.sphinx.target).parent / 'output/gettext'
     if language == 'en':
         _clean(c)
         build(c, target=target, opts=opts)

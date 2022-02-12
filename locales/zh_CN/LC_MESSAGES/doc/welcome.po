@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 23:48+0800\n"
+"POT-Creation-Date: 2022-02-12 21:29+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,87 +18,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../doc/doc/welcome.rst:3
+#: ../doc/doc/welcome.rst:3
 msgid "Welcome"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:5
+#: ../doc/doc/welcome.rst:5
 msgid "This page is used for experiments in web design with Sphinx."
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:7
+#: ../doc/doc/welcome.rst:7
 msgid "New style Stripe Checkout for Nuitka commercial:"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:16 ../../doc/doc/welcome.rst:33
+#: ../doc/doc/welcome.rst:16 ../doc/doc/welcome.rst:33
 msgid "€ 250"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:20
+#: ../doc/doc/welcome.rst:20
 msgid "`Buy now </stripe/checkout-commercial-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:22
+#: ../doc/doc/welcome.rst:22
 msgid "Commercial only Features"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:24
+#: ../doc/doc/welcome.rst:24
 msgid "All your applications"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:26
+#: ../doc/doc/welcome.rst:26
 msgid "Standard Support"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:37
+#: ../doc/doc/welcome.rst:37
 msgid "`Buy now </stripe/checkout-priority-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:39 ../../doc/doc/welcome.rst:73
+#: ../doc/doc/welcome.rst:39 ../doc/doc/welcome.rst:73
 msgid "Best Support"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:41
+#: ../doc/doc/welcome.rst:41
 msgid "Issues have **Priority**"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:43
+#: ../doc/doc/welcome.rst:43
 msgid "**No** Commercial features"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:51
+#: ../doc/doc/welcome.rst:51
 msgid "€ 400"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:55
+#: ../doc/doc/welcome.rst:55
 msgid "`Buy now </stripe/checkout-full-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:57
+#: ../doc/doc/welcome.rst:57
 msgid "Nuitka Commercial **plus**"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:59
+#: ../doc/doc/welcome.rst:59
 msgid "Nuitka Priority"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:67
+#: ../doc/doc/welcome.rst:67
 msgid "€ 1000"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:71
+#: ../doc/doc/welcome.rst:71
 msgid "`Buy now </stripe/checkout-sponsor-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:75
+#: ../doc/doc/welcome.rst:75
 msgid "Nuitka Commercial"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:77
+#: ../doc/doc/welcome.rst:77
 msgid "Roadmap Influence"
 msgstr ""
 
-#: ../../doc/doc/welcome.rst:79
+#: ../doc/doc/welcome.rst:79
 msgid "Use Cases Priority"
 msgstr ""
 
