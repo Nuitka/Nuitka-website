@@ -709,7 +709,7 @@ compatible Python compiler,  `"download now" </sites/download.html>`_.\n""",
             if "release-011" in slug:
                 slug = "minor-" + slug.replace("nuitka-release", "release-nuitka")
 
-            output_path = "doc/posts"
+            output_path = "extra/posts"
             txt_path = os.path.join(output_path, slug + ".rst")
 
             if os.path.exists(txt_path):
