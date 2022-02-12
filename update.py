@@ -987,9 +987,9 @@ def runDeploymentCommand():
 
     branch = subprocess.check_output("git branch --show-current".split()).strip()
 
-    if branch != b"main":
-        with open("output/robots.txt", "w") as robots_file:
-            robots_file.write("Disallow: *\n")
+    if branch == b"main":
+        os.unlink("output/robots.txt")
+        os.rename("output/robots.txt-operational", "output/robots.txt")
 
     target_dir = "/var/www/" if branch == b"main" else "/var/www-staging"
     command = (
