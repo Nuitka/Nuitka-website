@@ -78,7 +78,8 @@ def _site(name, target, help_part):
 
 
 # Usage doc/API site (published as e.g. docs.myproject.org)
-intl = _site("intl", "intl", "the translations subsite.")
+# intl = _site("intl", "intl", "the translations subsite.")
 doc = _site("doc", ".", "the main site.")
 
-ns = Collection(intl, doc)
+# ns = Collection(intl, doc)
+ns = Collection(doc)

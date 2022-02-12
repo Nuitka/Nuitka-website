@@ -49,7 +49,6 @@ jobs:
           invoke doc.clean
           invoke doc
           invoke doc -l zh_CN
-          invoke intl -l zh_CN
           # TODO: Activate this
           # invoke run -t post-process
 
