@@ -27,19 +27,15 @@ you can make that work as part of your contribution.
 
    # Creates a virtualenv with all that is needed to develop the
    # site.
-   python3.9 -m pip install -U pipenv
-   python3.9 -m pipenv install --dev
-
-   # Need to do this at least once to make manuals, logos
-   # available for build.
-   python3.9 -m pipenv run python update.py --update-docs
+   python3 -m pip install -U invoke
+   python3 -m invoke virtualenv
 
    # Now lets build the site, to see if it's all correct.
-   python3.9 -m pipenv run python update.py --build-site
+   python3 -m invoke run -t build-site
 
    # Start local web server with the site, and do automatic
    # rebuilds
-   python3.9 -m pipenv run python update.py --serve-site
+   python3 -m invoke run -t serve-site
 
    # Browse it (Linux)
    xdg-open http://localhost:8080
