@@ -1,1 +1,1 @@
-.. include:: ../Nuitka-develop/Developer_Manual.rst
+.. include:: ../doc/doc/developer-manual.rst

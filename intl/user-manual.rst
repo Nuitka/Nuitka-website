@@ -1,1 +1,1 @@
-.. include:: ../doc/user-manual.rst
+.. include:: ../doc/doc/user-manual.rst
