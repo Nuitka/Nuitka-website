@@ -23,49 +23,57 @@ updated_branches = set()
 
 
 def _updateCheckout(branch, update):
-    if os.path.exists(f"Nuitka-{branch}") and not update:
-        return
+    # We cannot use Nuitka directory change yet here.
+    old_cwd = os.getcwd()
+    os.chdir(os.path.dirname(__file__))
 
-    if branch in updated_branches:
-        return
+    try:
+        if os.path.exists(f"Nuitka-{branch}") and not update:
+            return
 
-    if os.path.exists(f"Nuitka-{branch}"):
-        shutil.rmtree(f"Nuitka-{branch}")
+        if branch in updated_branches:
+            return
 
-    print(f"Updating {branch} checkout...")
-    sys.stdout.flush()
+        if os.path.exists(f"Nuitka-{branch}"):
+            shutil.rmtree(f"Nuitka-{branch}")
 
-    urlretrieve(
-        f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
-    )
+        print(f"Updating {branch} checkout...")
+        sys.stdout.flush()
 
-    with zipfile.ZipFile(f"nuitka.zip.tmp") as archive:
-        archive.extractall(".")
+        urlretrieve(
+            f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
+        )
 
-    os.unlink("nuitka.zip.tmp")
+        with zipfile.ZipFile(f"nuitka.zip.tmp") as archive:
+            archive.extractall(".")
 
-    for filename in (
-        "README.rst",
-        "Developer_Manual.rst",
-    ):
-        filename = os.path.join(f"Nuitka-{branch}", filename)
+        os.unlink("nuitka.zip.tmp")
 
-        with open(filename, "rb") as patched_file:
-            old_contents = new_contents = patched_file.read()
+        for filename in (
+            "README.rst",
+            "Developer_Manual.rst",
+        ):
+            filename = os.path.join(f"Nuitka-{branch}", filename)
 
-        if filename.endswith(".rst"):
-            # Sphinx has its own TOC method.
-            new_contents = new_contents.replace(b".. contents::\n", b"")
+            with open(filename, "rb") as patched_file:
+                old_contents = new_contents = patched_file.read()
 
-            # Logo inside doc removed.
-            new_contents = new_contents.replace(
-                b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
-            )
-            new_contents = new_contents.replace(b"\n   :alt: Nuitka Logo", b"\n")
+            if filename.endswith(".rst"):
+                # Sphinx has its own TOC method.
+                new_contents = new_contents.replace(b".. contents::\n", b"")
 
-        if old_contents != new_contents:
-            with open(filename, "wb") as out_file:
-                out_file.write(new_contents)
+                # Logo inside doc removed.
+                new_contents = new_contents.replace(
+                    b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
+                )
+                new_contents = new_contents.replace(b"\n   :alt: Nuitka Logo", b"\n")
+
+            if old_contents != new_contents:
+                with open(filename, "wb") as out_file:
+                    out_file.write(new_contents)
+
+    finally:
+        os.chdir(old_cwd)
 
     updated_branches.add(branch)
 
@@ -87,7 +95,7 @@ def importNuitka():
     # after release with an option to use other branches.
     updateNuitkaDevelop(update=False)
 
-    sys.path.insert(0, os.path.abspath("Nuitka-develop"))
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "Nuitka-develop")))
     import nuitka
 
     del sys.path[0]

@@ -11,8 +11,10 @@ author = "Kay Hayen"
 release = version = ""
 
 # For autodoc to work
-sys.path.insert(0, os.path.abspath("../Nuitka-develop"))
-import nuitka
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from update import importNuitka
+importNuitka()
+del sys.path[-1]
 
 # -- General configuration
 
