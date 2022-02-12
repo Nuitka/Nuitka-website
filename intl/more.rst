@@ -6,4 +6,3 @@
 
    Developer Manual <developer-manual>
    factory
-   use
