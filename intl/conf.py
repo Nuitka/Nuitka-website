@@ -43,7 +43,7 @@ intersphinx_disabled_domains = ["std"]
 templates_path = ["_templates", ablog.get_html_templates_path()]
 
 language = 'en'  #'zh_CN'
-locale_dirs = ['../locales/']  # path is example but recommended.
+locale_dirs = ['locales/']  # path is example but recommended.
 gettext_compact = False  # optional.
 
 # Options for ABlog

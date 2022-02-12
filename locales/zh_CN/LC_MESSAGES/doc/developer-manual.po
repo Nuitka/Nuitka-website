@@ -2,16 +2,16 @@
 # Copyright (C) 2022, Kay Hayen and Nuitka Contributors
 # This file is distributed under the same license as the Nuitka the Python
 # Compiler package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# xinetzone <735613050@qq.com>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 23:48+0800\n"
+"POT-Creation-Date: 2022-02-12 22:01+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: xinetzone <735613050@qq.com>, 2022\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: ../../doc/doc/developer-manual.rst:7
 msgid "Nuitka Developer Manual"
-msgstr ""
+msgstr "Nuitka 开发者手册"
 
 #: ../../doc/doc/developer-manual.rst:9
 msgid ""
@@ -36,7 +36,7 @@ msgid ""
 "Nuitka, the project rules, and the motivations for choices made. It is "
 "intended to be a guide to the source code, and to give explanations that "
 "don't fit into the source code in comments form."
-msgstr ""
+msgstr "本开发者手册的目的是介绍 Nuitka 的当前设计、项目规则以及所做选择的动机。它旨在成为源代码的指南，并以注释的形式给出不适合源代码的解释。"
 
 #: ../../doc/doc/developer-manual.rst:14
 msgid ""
@@ -44,23 +44,23 @@ msgid ""
 "documenting decisions we made. Therefore we are e.g. presenting here the "
 "type inference plans before implementing them. And we update them as we "
 "proceed."
-msgstr ""
+msgstr "它应该被用作规划和记录我们所做决定过程的参考。因此，我们在这里，例如，在实施类型推理计划之前，提出了这些计划。而且我们在进行过程中更新它们。"
 
 #: ../../doc/doc/developer-manual.rst:19
 msgid ""
 "It grows out of discussions and presentations made at conferences as well"
 " as private conversations or issue tracker."
-msgstr ""
+msgstr "它是从会议上的讨论和演讲以及私人谈话或问题跟踪器中成长起来的。"
 
 #: ../../doc/doc/developer-manual.rst:24
 msgid "Milestones"
-msgstr ""
+msgstr "里程碑"
 
 #: ../../doc/doc/developer-manual.rst:26
 msgid ""
 "Feature parity with CPython, understand all the language construct and "
 "behave absolutely compatible."
-msgstr ""
+msgstr "与 CPython 的功能相当，理解所有的语言构造，行为上绝对兼容。"
 
 #: ../../doc/doc/developer-manual.rst:29
 msgid ""
@@ -69,84 +69,86 @@ msgid ""
 "reached. We do not target the older and practically unused CPython 3.0 to"
 " 3.2 releases."
 msgstr ""
+"CPython 2.6 和2.7 的功能已经达到平价。我们不针对任何旧的 CPython 版本。对于CPython 3.3 到 "
+"3.8，也已经达到了平价。我们不针对旧的、几乎没有使用过的 CPython 3.0 到 3.2 版本。"
 
 #: ../../doc/doc/developer-manual.rst:34
 msgid ""
 "This milestone was reached. Dropping support for Python 2.6 and 3.3 is an"
 " option, should this prove to be any benefit. Currently it is not, as it "
 "extends the test coverage only."
-msgstr ""
+msgstr "这个里程碑已经达成。放弃对 Python 2.6 和 3.3 的支持是一种选择，如果这被证明有任何好处的话。目前还没有，因为它只扩展了测试范围。"
 
 #: ../../doc/doc/developer-manual.rst:38
 msgid ""
 "Create the most efficient native code from this. This means to be fast "
 "with the basic Python object handling."
-msgstr ""
+msgstr "从中创建最有效的本地代码。这意味着要在基本的 Python 对象处理方面做到快速。"
 
 #: ../../doc/doc/developer-manual.rst:41
 msgid ""
 "This milestone was reached, although of course, micro optimizations to "
 "this are happening all the time."
-msgstr ""
+msgstr "这个里程碑已经达成，当然，对此的微观优化一直在进行。"
 
 #: ../../doc/doc/developer-manual.rst:44
 msgid ""
 "Then do constant propagation, determine as many values and useful "
 "constraints as possible at compile time and create more efficient code."
-msgstr ""
+msgstr "然后做 constant 传播，在编译时确定尽可能多的值和有用的约束，并创建更有效的代码。"
 
 #: ../../doc/doc/developer-manual.rst:48
 msgid ""
 "This milestone is considered almost reached. We continue to discover new "
 "things, but the infrastructure is there, and these are easy to add."
-msgstr ""
+msgstr "这个里程碑被认为几乎达到了。我们继续发现新的东西，但基础设施已经存在，这些都很容易添加。"
 
 #: ../../doc/doc/developer-manual.rst:52
 msgid ""
 "Type inference, detect and special case the handling of strings, "
 "integers, lists in the program."
-msgstr ""
+msgstr "类型推理，检测和特例处理程序中的字符串、整数、列表。"
 
 #: ../../doc/doc/developer-manual.rst:55
 msgid "This milestone is considered in progress."
-msgstr ""
+msgstr "这个里程碑被认为是正在进行中。"
 
 #: ../../doc/doc/developer-manual.rst:57
 msgid ""
 "Add interfacing to C code, so Nuitka can turn a ``ctypes`` binding into "
 "an efficient binding as written with C."
-msgstr ""
+msgstr "增加与 C 代码的接口，所以 Nuitka 可以把 ``ctypes`` 的绑定变成用 C 编写的有效绑定。"
 
 #: ../../doc/doc/developer-manual.rst:60 ../../doc/doc/developer-manual.rst:65
 msgid "This milestone is planned only."
-msgstr ""
+msgstr "这个里程碑只是计划中的。"
 
 #: ../../doc/doc/developer-manual.rst:62
 msgid ""
 "Add hints module with a useful Python implementation that the compiler "
 "can use to learn about types from the programmer."
-msgstr ""
+msgstr "增加提示模块，有一个有用的 Python 实现，编译器可以用它来向程序员学习类型。"
 
 #: ../../doc/doc/developer-manual.rst:69
 msgid "Version Numbers"
-msgstr ""
+msgstr "版本数字"
 
 #: ../../doc/doc/developer-manual.rst:71
 msgid ""
 "For Nuitka we use a defensive version numbering system to indicate that "
 "it is not yet ready for everything. We have defined milestones and the "
 "version numbers should express which of these, we consider done."
-msgstr ""
+msgstr "对于 Nuitka，我们使用了一个防御性的版本编号系统，以表明它还没有准备好一切。我们已经定义了里程碑，版本号应该表达其中哪些，我们认为已经完成了。"
 
 #: ../../doc/doc/developer-manual.rst:75
 msgid "So far:"
-msgstr ""
+msgstr "到目前为止："
 
 #: ../../doc/doc/developer-manual.rst:77
 msgid ""
 "Before milestone 1, we used ``0.1.x`` version numbers. After reaching it,"
 " we used ``0.2.x`` version numbers."
-msgstr ""
+msgstr "在里程碑 1 之前，我们使用 ``0.1.x`` 的版本号。达到之后，我们使用 ``0.2.x`` 的版本号。"
 
 #: ../../doc/doc/developer-manual.rst:80
 msgid ""
@@ -154,25 +156,27 @@ msgid ""
 " reaching 3, and beginning with 4, we use \"0.4.x\" version numbers. Due "
 "to an interface change, ``0.5.x`` version numbers are being used."
 msgstr ""
+"在里程碑 2 和 3 之前，我们使用 ``0.3.x`` 的版本号。在几乎达到 3 之后，从 4 开始，我们使用 \"0.4.x\" "
+"的版本号。由于接口的改变，正在使用 ``0.5.x`` 的版本号。"
 
 #: ../../doc/doc/developer-manual.rst:85
 msgid ""
 "Due to reaching type inference in code generation, even if only starting,"
 " the ``0.6.x`` version numbers were started to be used. This stage should"
 " allow quick progress in performance for individual releases."
-msgstr ""
+msgstr "由于在代码生成中达到了类型推理，即使只是开始，也开始使用 ``0.6.x`` 的版本号了。这个阶段应该允许个别版本的性能快速进步。"
 
 #: ../../doc/doc/developer-manual.rst:90
 msgid "Future:"
-msgstr ""
+msgstr "未来："
 
 #: ../../doc/doc/developer-manual.rst:92
 msgid "With ``ctypes`` bindings in a usable state it will be ``0.7.x``."
-msgstr ""
+msgstr "在 ``ctypes`` 绑定处于可用状态时，它将是 ``0.7.x``。"
 
 #: ../../doc/doc/developer-manual.rst:94
 msgid "Final:"
-msgstr ""
+msgstr "最终："
 
 #: ../../doc/doc/developer-manual.rst:96
 msgid ""
@@ -180,52 +184,54 @@ msgid ""
 "expected for a bunch of people. The plan is to reach this goal during "
 "2021. This is based on positive assumptions that may not hold up though."
 msgstr ""
+"然后我们将把它围起来，当这对一群人来说如预期的那样工作时，就称之为Nuitka ``1.0``。计划是在 2021 "
+"年期间达到这个目标。这是基于积极的假设，但可能不成立。"
 
 #: ../../doc/doc/developer-manual.rst:101
 msgid "Of course, all of this may be subject to change."
-msgstr ""
+msgstr "当然，所有这些都可能会有变化。"
 
 #: ../../doc/doc/developer-manual.rst:105
 msgid "Current State"
-msgstr ""
+msgstr "当前状态"
 
 #: ../../doc/doc/developer-manual.rst:107
 msgid "Nuitka top level works like this:"
-msgstr ""
+msgstr "Nuitka 顶层的工作是这样的："
 
 #: ../../doc/doc/developer-manual.rst:109
 msgid "``nuitka.tree.Building`` outputs node tree"
-msgstr ""
+msgstr "``nuitka.tree.Building`` 输出节点树"
 
 #: ../../doc/doc/developer-manual.rst:111
 msgid "``nuitka.optimization`` enhances it as best as it can"
-msgstr ""
+msgstr "``nuitka.optimization`` 尽可能地增强它"
 
 #: ../../doc/doc/developer-manual.rst:113
 msgid "``nuitka.finalization`` prepares the tree for code generation"
-msgstr ""
+msgstr "``nuitka.finalization`` 为代码生成准备好树"
 
 #: ../../doc/doc/developer-manual.rst:115
 msgid ""
 "``nuitka.codegen.CodeGeneration`` orchestrates the creation of code "
 "snippets"
-msgstr ""
+msgstr "``nuitka.codegen.CodeGeneration`` 协调代码片断的创建"
 
 #: ../../doc/doc/developer-manual.rst:118
 msgid "``nuitka.codegen.*Codes`` knows how specific code kinds are created"
-msgstr ""
+msgstr "``nuitka.codegen.*Codes`` 知道具体的代码种类是如何产生的"
 
 #: ../../doc/doc/developer-manual.rst:120
 msgid "``nuitka.MainControl`` keeps it all together"
-msgstr ""
+msgstr "``nuitka.MainControl`` 保持一致"
 
 #: ../../doc/doc/developer-manual.rst:122
 msgid "This design is intended to last."
-msgstr ""
+msgstr "这种设计的目的是为了持久。"
 
 #: ../../doc/doc/developer-manual.rst:124
 msgid "Regarding types, the state is:"
-msgstr ""
+msgstr "关于类型，状态是："
 
 #: ../../doc/doc/developer-manual.rst:126
 msgid ""
@@ -234,6 +240,9 @@ msgid ""
 "objects, often it's know that things are e.g. really a ``PyTupleObject "
 "**``, but no C type is available for that yet."
 msgstr ""
+"类型总是 ``PyObject *``，只有少数 C 类型，例如 ``nuitka_bool`` 和 "
+"``nuitka_void``，更多的类型正在到来。即使是对象，也经常知道事物是例如 ``PyTupleObject **``，但还没有 C "
+"类型可用于此。"
 
 #: ../../doc/doc/developer-manual.rst:131
 msgid ""
@@ -242,6 +251,8 @@ msgid ""
 "some operations, conditions, etc. if they raise, and result types they "
 "give."
 msgstr ""
+"有一些特定的使用类型超越了 "
+"\"编译时间常量\"，这些类型在类型和值的形状中被编码，可以用来预测一些操作、条件等，如果他们提出，以及他们给出的结果类型。"
 
 #: ../../doc/doc/developer-manual.rst:136
 msgid ""
@@ -250,6 +261,8 @@ msgid ""
 "``int`` and a ``float`` and produces a ``float`` value. There will be "
 "fallbacks to less specific types."
 msgstr ""
+"在代码生成中，使用支持的 C 类型，有时我们会有专门的代码生成，例如，一个二进制操作需要一个 ``int`` 和一个 ``float`` "
+"并产生一个 ``float`` 值。将会有回落到不太具体的类型。"
 
 #: ../../doc/doc/developer-manual.rst:141
 msgid ""
@@ -259,17 +272,19 @@ msgid ""
 "will be available that can avoid creating the ``PyObject **`` unless the "
 "later overflows."
 msgstr ""
+"目前正在用更多的 C 类型进行扩展，也会有替代的 C 类型，例如 ``PyObject *`` 和 ``C long`` "
+"在一个枚举中，表明哪个值是有效的，而且会有特殊的代码，可以避免创建 ``PyObject **``，除非后来的溢出。"
 
 #: ../../doc/doc/developer-manual.rst:149
 msgid "Setting up the Development Environment for Nuitka"
-msgstr ""
+msgstr "为 Nuitka 设置开发环境"
 
 #: ../../doc/doc/developer-manual.rst:151
 msgid ""
 "Currently there are very different kinds of files that we need support "
 "for. This is best addressed with an IDE. We cover here how to setup the "
 "most common one."
-msgstr ""
+msgstr "目前，我们需要支持极其不同种类的文件。这一点最好用 IDE 来解决。我们在这里介绍如何设置最常见的文件。"
 
 #: ../../doc/doc/developer-manual.rst:156
 msgid "Visual Studio Code"
@@ -279,7 +294,7 @@ msgstr ""
 msgid ""
 "Download Visual Studio Code from here: "
 "https://code.visualstudio.com/download"
-msgstr ""
+msgstr "从这里下载 Visual Studio Code：https://code.visualstudio.com/download"
 
 #: ../../doc/doc/developer-manual.rst:161
 msgid ""
@@ -289,6 +304,8 @@ msgid ""
 "Eclipse, this is Free Software IDE,designed to be universally extended, "
 "and it truly is. There are plugins available for nearly everything."
 msgstr ""
+"目前，这是推荐用于 Linux 和 Windows 的 IDE。这将涵盖要安装的插件。配置是你的 Nuitka 检出中的 ``.vscode`` "
+"的一部分。如果你不熟悉 Eclipse，这是一个自由软件 IDE，被设计成可以普遍扩展的，而且它确实如此。几乎所有的东西都有插件可用。"
 
 #: ../../doc/doc/developer-manual.rst:167
 msgid ""
@@ -296,6 +313,8 @@ msgid ""
 "recommendations in ``.vscode/extensions.json`` and you will be prompted "
 "about that and ought to install these."
 msgstr ""
+"要安装的扩展是 Visual Code 建议的一部分，在 ``.vscode/extensions.json`` "
+"中，你会被提示到这一点，应该安装这些。"
 
 #: ../../doc/doc/developer-manual.rst:172
 msgid "Eclipse / PyCharm"
@@ -305,31 +324,35 @@ msgstr ""
 msgid ""
 "Don't use these anymore, we consider Visual Studio Code to be far "
 "superior for delivering a nice out of the box environment."
-msgstr ""
+msgstr "不要再使用这些了，我们认为 Visual Studio Code 在提供一个良好的开箱即用环境方面要优越得多。"
 
 #: ../../doc/doc/developer-manual.rst:179
 msgid "Commit and Code Hygiene"
-msgstr ""
+msgstr "承诺和守则的卫士"
 
 #: ../../doc/doc/developer-manual.rst:181
+#, fuzzy
 msgid ""
 "In Nuitka we have tools to auto format code, you can execute them "
 "manually, but it's probably best to execute them at commit time, to make "
 "sure when we share code, it's already well format, and to avoid noise "
 "doing cleanups."
 msgstr ""
+"在 Nuitka "
+"中，我们有自动格式化代码的工具，你可以手动执行，但最好是在提交时执行，以确保当我们分享代码时，它已经被很好地格式化了，并避免做清理的噪音。"
 
 #: ../../doc/doc/developer-manual.rst:186
+#, fuzzy
 msgid ""
 "The kinds of changes also often cause unnecessary merge conflicts, while "
 "the auto format is designed to format code also in a way that it avoids "
 "merge conflicts in the normal case, e.g. by doing imports one item per "
 "line."
-msgstr ""
+msgstr "这类修改也经常引起不必要的合并冲突，而自动格式化的设计也是为了在正常情况下避免合并冲突，比如说每行做导入一项，就可以避免合并冲突。"
 
 #: ../../doc/doc/developer-manual.rst:191
 msgid "In order to set up hooks, you need to execute these commands:"
-msgstr ""
+msgstr "为了设置钩子，你需要执行这些命令："
 
 #: ../../doc/doc/developer-manual.rst:200
 msgid ""
@@ -339,24 +362,26 @@ msgid ""
 "advice. You may call the above tool at all times, without arguments to "
 "format call Nuitka source code."
 msgstr ""
+"这些命令将确保 ``autoformat-nuitka-source`` 在你做提交的时候对每个阶段性的文件内容运行。对于 C 文件，它可能会抱怨"
+" ``clang-format`` 不可用，请遵循它的建议。你可以在任何时候调用上述工具，不需要参数就可以格式化调用 Nuitka 源代码。"
 
 #: ../../doc/doc/developer-manual.rst:206
 msgid ""
 "Should you encounter problems with applying the changes to the checked "
 "out file, you can always execute it with ``COMMIT_UNCHECKED=1`` "
 "environment set."
-msgstr ""
+msgstr "如果你在将修改应用到检查出来的文件时遇到问题，你总是可以在 ``COMMIT_UNCHECKED=1`` 的环境设置下执行它。"
 
 #: ../../doc/doc/developer-manual.rst:212
 msgid "Coding Rules Python"
-msgstr ""
+msgstr "Python 编码规则"
 
 #: ../../doc/doc/developer-manual.rst:214
 msgid ""
 "These rules should generally be adhered when working on Nuitka code. It's"
 " not library code and it's optimized for readability, and avoids all "
 "performance optimization for itself."
-msgstr ""
+msgstr "在 Nuitka 代码上工作时，一般应遵守这些规则。它不是库的代码，而且它是为了可读性而优化的，避免了对自己的所有性能优化。"
 
 #: ../../doc/doc/developer-manual.rst:219
 msgid "Tool to format"
@@ -5052,4 +5077,127 @@ msgstr ""
 #: ../../doc/doc/developer-manual.rst:4634
 msgid "And the current PDF under: https://nuitka.net/doc/Developer_Manual.pdf"
 msgstr ""
+
+#~ msgid "Another one we found useful to collaborate:"
+#~ msgstr "另一个我们发现有用的合作："
+
+#~ msgid "Live Share (``ms-vsliveshare.vsliveshare``)"
+#~ msgstr ""
+
+#~ msgid "Stable (master branch)"
+#~ msgstr ""
+
+#~ msgid "Development (develop branch)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Same as factory, but not integrated "
+#~ "as factory normally is, and not "
+#~ "rebased all the time. For some "
+#~ "branches, they will be rebased as "
+#~ "a service when we update develop."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Every class and every method **must "
+#~ "be documented** via the standard Python"
+#~ " delimiters (``\"\"\" ... \"\"\"``) in "
+#~ "the usual way."
+#~ msgstr ""
+
+#~ msgid "Recursion checks are expensive."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If the \"caller\" or the \"called\" "
+#~ "can declare that it cannot be "
+#~ "called by itself, we could leave "
+#~ "it out."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "TODO: Are they really that expensive?"
+#~ " Unnecessary yes, but expensive may "
+#~ "not be true."
+#~ msgstr ""
+
+#~ msgid "Contents"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The tool (mostly ``black`` and "
+#~ "``isort``) encodes all formatting rules, "
+#~ "and makes the decisions for us. "
+#~ "The idea being that we can focus"
+#~ " on actual code and do not have"
+#~ " to care as much about other "
+#~ "things. It also deals with Windows "
+#~ "new lines, trailing space, etc. and "
+#~ "even sorts pylint disable statements."
+#~ msgstr ""
+
+#~ msgid "We are replacing doxygen with sphinx, this is all obsolete"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The documentation from the source code"
+#~ " for both the Python and the C"
+#~ " parts are published as `Nuitka API"
+#~ " <https://nuitka.net/apidoc>`__ and argumently in"
+#~ " a relatively bad shape as we "
+#~ "started generating those with Doxygen "
+#~ "only relatively late."
+#~ msgstr ""
+
+#~ msgid "``unstriped_mode``"
+#~ msgstr ""
+
+#~ msgid "Unstriped mode: Do not remove debug symbols."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Only string objects are spared from "
+#~ "the ``str`` built-in wrapper, because"
+#~ " that would only cause noise in "
+#~ "optimization stage. Later optization can "
+#~ "then find it unnecessary for certain "
+#~ "arguments."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "When assigning ``a`` to something new,"
+#~ " that won't change ``b`` at all. "
+#~ "But when an attribute is set, a"
+#~ " method called of it, that might "
+#~ "impact the actual value, referenced by"
+#~ " both. We need to understand mutable"
+#~ " vs. immutable though, as some things"
+#~ " are not affectable by aliasing in"
+#~ " any way."
+#~ msgstr ""
+
+#~ msgid "Given this, we then should be able to precompute the value of this:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Ignoring the locks cannot be good. "
+#~ "But what updates that thread state "
+#~ "pointer ever without a thread change,"
+#~ " and is this what abiflags are "
+#~ "about in this context, are there "
+#~ "some that allow us to ignore the"
+#~ " locks."
+#~ msgstr ""
+
+#~ msgid "Onefile compression on Windows"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "We need to add compression on that"
+#~ " platform too. This should use zstd"
+#~ " and probably just needs integration "
+#~ "into our build. The Python side "
+#~ "already is capable of producing "
+#~ "compressed payload."
+#~ msgstr ""
 

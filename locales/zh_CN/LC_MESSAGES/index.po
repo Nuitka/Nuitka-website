@@ -20,55 +20,55 @@ msgstr ""
 
 #: ../../doc/index.rst:39
 msgid "Download"
-msgstr ""
+msgstr "下载"
 
 #: ../../doc/index.rst:39
 msgid "User Manual"
-msgstr ""
+msgstr "用户手册"
 
 #: ../../doc/index.rst:46
 msgid "Commercial Users"
-msgstr ""
+msgstr "商业用户"
 
 #: ../../doc/index.rst:52
 msgid "Roadmap"
-msgstr ""
+msgstr "路线图"
 
 #: ../../doc/index.rst:52
 msgid "Release Information"
-msgstr ""
+msgstr "发行信息"
 
 #: ../../doc/index.rst:59
 msgid "Developer Manual"
-msgstr ""
+msgstr "开发者手册"
 
 #: ../../doc/index.rst:59
 msgid "API doc"
-msgstr ""
+msgstr "API 文档"
 
 #: ../../doc/index.rst:59
 msgid "More documentation"
-msgstr ""
+msgstr "更多文档"
 
 #: ../../doc/index.rst:67
 msgid "Presentations"
-msgstr ""
+msgstr "演讲稿"
 
 #: ../../doc/index.rst:67
 msgid "Streaming"
-msgstr ""
+msgstr "流媒体"
 
 #: ../../doc/index.rst:67
 msgid "Media"
-msgstr ""
+msgstr "影音"
 
 #: ../../doc/index.rst:74
 msgid "Other"
-msgstr ""
+msgstr "其他"
 
 #: ../../doc/index.rst:81
 msgid "Under construction"
-msgstr ""
+msgstr "建设中"
 
 #: ../../doc/index.rst:1
 msgid ""
