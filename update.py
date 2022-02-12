@@ -1078,26 +1078,10 @@ When given, the site is post processed with minify. Default %default.""",
 When given, the site is deployed. Default %default.""",
     )
     #
-    parser.add_option(
-        "--update-all",
-        action="store_true",
-        dest="all",
-        default=False,
-        help="""\
-When given, all is updated. Default %default.""",
-    )
 
     options, positional_args = parser.parse_args()
 
     assert not positional_args, positional_args
-
-    if options.all:
-        options.downloads = True
-        options.docs = True
-        options.build = True
-
-        options.postprocess = True
-        options.deploy = True
 
     if options.docs:
         updateDocs()
