@@ -41,7 +41,12 @@ jobs:
         run: |
           invoke virtualenv
           invoke run -t update-downloads
-          invoke run -t update-docs
+
+      # - name: Site initialization
+      #   run: |
+      #     invoke virtualenv
+      #     invoke run -t update-downloads
+      #     invoke run -t update-docs
 
       - name: 🔧 Build HTML
         run: |
