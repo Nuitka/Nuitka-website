@@ -42,6 +42,7 @@ here </pages/download.html>`_.
    Download <doc/download>
    User Manual <doc/user-manual>
    pages/support
+   switcher
 
 .. toctree::
    :hidden:

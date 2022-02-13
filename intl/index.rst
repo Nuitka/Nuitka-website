@@ -8,4 +8,5 @@
    commercial
    more
    blog
+   switcher
 
