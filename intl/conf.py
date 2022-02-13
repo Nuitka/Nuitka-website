@@ -8,7 +8,7 @@ sys.path.extend([DOC_ROOT.as_posix(), DOC_ROOT.parent.as_posix()])
 from shared_conf import *
 
 language = 'en'  #'zh_CN'
-locale_dirs = ['../locales/']  # path is example but recommended.
+locale_dirs = ['../locales/']
 gettext_compact = False  # optional.
 
 # Sitemap configuration
