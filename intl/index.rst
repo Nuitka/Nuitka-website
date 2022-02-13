@@ -6,7 +6,7 @@ Multilingual document
    :glob:
    :hidden:
 
-   start
+   start/index
    commercial
    more
    blog

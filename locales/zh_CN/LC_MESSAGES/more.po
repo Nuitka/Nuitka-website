@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 23:48+0800\n"
+"POT-Creation-Date: 2022-02-13 11:50+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../doc/doc/commercial/encrypted-tracebacks.rst:5
-msgid "Encrypted Tracebacks"
-msgstr ""
+#: ../../intl/more.rst:5
+msgid "Developer Manual"
+msgstr "开发者手册"
 
-#: ../../doc/doc/commercial/encrypted-tracebacks.rst:7
-msgid "TODO"
-msgstr ""
+#: ../../intl/more.rst:3
+msgid "More documentation"
+msgstr "更多内容"
 
-#: ../../doc/doc/commercial/encrypted-tracebacks.rst:9
-msgid ""
-"Go `back to Nuitka commercial </doc/commercial.html#protection-vs-"
-"reverse-engineering>`__ overview to learn about more features or to "
-"subscribe to `Nuitka commercial </doc/commercial.html#pricing>`__."
-msgstr ""
+#~ msgid "API doc"
+#~ msgstr "API 文档"
 
