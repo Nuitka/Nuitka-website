@@ -1,6 +1,4 @@
-########################
-Multilingual document
-########################
+.. include:: ../README.rst
 
 .. toctree::
    :glob:

@@ -57,7 +57,9 @@ def update(c, language='en'):
     else:
         if not Path(target).exists():
             build(c, target=target, opts=opts)
-        c.run(f'python3 -m pipenv run sphinx-intl update -p {target} -l {language}')
+        c.run(
+            f'python3 -m pipenv run sphinx-intl update -p {target} -l {language}'
+        )
         # for DIR in ['pages', 'posts', 'shop']:
         #     rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
 
@@ -67,12 +69,10 @@ def _site(name, help_part):
     coll = Collection.from_module(
         self,
         name=name,
-        config={
-            "sphinx": {
-                "source": name,
-                "target": "output"
-            }
-        },
+        config={"sphinx": {
+            "source": name,
+            "target": "output"
+        }},
     )
     coll.__doc__ = f"Tasks for building {help_part}"
     coll["build"].__doc__ = f"Build {help_part}"
