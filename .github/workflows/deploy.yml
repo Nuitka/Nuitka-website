@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - switcher
 
 jobs:
   deploy-to-pages:
