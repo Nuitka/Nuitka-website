@@ -12,14 +12,15 @@ copyright = "%s, Kay Hayen and Nuitka Contributors" % time.gmtime().tm_year
 author = "Kay Hayen"
 release = version = ""
 
+ROOT = Path(__file__).parent.absolute().as_posix()  # The root directory
 # For autodoc to work
-sys.path.append(os.path.join(os.path.dirname(__file__), "."))
+sys.path.append(ROOT)
 from update import importNuitka
 
 importNuitka()
 del sys.path[-1]
 
-ROOT = Path(__file__).parent.absolute().as_posix()  # The root directory
+
 
 # -- General configuration
 
@@ -30,11 +31,11 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
-    #    "sphinx.ext.viewcode",
+#    "sphinx.ext.viewcode",
     # External extensions
     "sphinx_copybutton",
     "sphinx_design",
-    #    "sphinx_inline_tabs",
+#    "sphinx_inline_tabs",
     "sphinxcontrib.youtube",
     "sphinx-favicon",
     "sphinx_sitemap",
@@ -89,43 +90,43 @@ html_show_sphinx = False
 favicons = [
     {
         "rel": "icon",
-        "static-file": "favicon.svg",
+        "static-file": f"favicon.svg",
         "type": "image/svg+xml",
     },
     {
         "rel": "icon",
         "sizes": "32x32",
-        "static-file": "favicon.png",
+        "static-file": f"favicon.png",
     },
     {
         "rel": "icon",
         "sizes": "32x32",
-        "static-file": "favicon.ico",
+        "static-file": f"favicon.ico",
     },
     {
         "rel": "icon",
         "sizes": "57x57",
-        "static-file": "apple-touch-icon-iphone.png",
+        "static-file": f"apple-touch-icon-iphone.png",
     },
     {
         "rel": "icon",
         "sizes": "72x72",
-        "static-file": "apple-touch-icon-ipad.png",
+        "static-file": f"apple-touch-icon-ipad.png",
     },
     {
         "rel": "icon",
         "sizes": "114x114",
-        "static-file": "apple-touch-icon-iphone4.png",
+        "static-file": f"apple-touch-icon-iphone4.png",
     },
     {
         "rel": "icon",
         "sizes": "144x144",
-        "static-file": "apple-touch-icon-ipad3.png",
+        "static-file": f"apple-touch-icon-ipad3.png",
     },
     {
         "rel": "apple-touch-icon",
         "sizes": "180x180",
-        "static-file": "apple-touch-icon-180x180.png",
+        "static-file": f"apple-touch-icon-180x180.png",
     },
 ]
 
@@ -134,13 +135,16 @@ epub_show_urls = "footnote"
 
 autodoc_member_order = "bysource"
 
+html_static_path = [f"{ROOT}/_static"]
+
 
 # Enable our own CSS to be used.
 def setup(app):
     app.add_css_file("my_theme.css")
 
 
-html_static_path = [f"{ROOT}/_static"]
+# RTD theme has fontawesome used, allow ablog to use it too.
+fontawesome_included = True
 
 # Configure theme
 html_theme_options = {
@@ -152,6 +156,3 @@ html_theme_options = {
 
 html_extra_path = [f"{ROOT}/files"]
 html_title = ""
-
-# RTD theme has fontawesome used, allow ablog to use it too.
-fontawesome_included = True
