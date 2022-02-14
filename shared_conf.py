@@ -152,3 +152,6 @@ html_theme_options = {
 
 html_extra_path = [f"{ROOT}/files"]
 html_title = ""
+
+# RTD theme has fontawesome used, allow ablog to use it too.
+fontawesome_included = True

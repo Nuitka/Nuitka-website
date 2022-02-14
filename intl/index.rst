@@ -4,7 +4,7 @@
    :glob:
    :hidden:
 
-   start/index
+   doc/index
    commercial
    more
    blog

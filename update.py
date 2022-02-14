@@ -992,10 +992,11 @@ def runDeploymentCommand():
     branch = subprocess.check_output("git branch --show-current".split()).strip()
 
     if branch == b"main":
-        os.unlink("output/robots.txt")
-        os.rename("output/robots.txt-operational", "output/robots.txt")
+        if os.path.exists("output/robots.txt-operational"):
+            os.unlink("output/robots.txt")
+            os.rename("output/robots.txt.operational", "output/robots.txt")
 
-    target_dir = "/var/www/" if branch == b"main" else "/var/www-staging"
+    target_dir = "/var/www/" if branch == b"main" else "/var/www-staging/"
     command = (
         "rsync -ravz %s --chown www-data:git --chmod Dg+x --delete-after output/ root@ssh.nuitka.net:%s"
         % (" ".join("--exclude=%s" % exclude for exclude in excluded), target_dir)
