@@ -17,7 +17,7 @@ def get_builder(watcher, sphinx_args, *, host, port, pre_build_commands):
 
             for locale in "zh_CN", "de_DE":
                 if os.path.isdir(f"output/{locale}"):
-                    show(context="python3 -m invoke intl -l {locale}")
+                    show(context=f"python3 -m invoke intl -l {locale}")
                     subprocess.run(f"python3 -m invoke intl -l {locale}".split(), check=False)
 
             show(context="python3 -m invoke run -t post-process")

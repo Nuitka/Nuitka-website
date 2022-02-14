@@ -105,7 +105,7 @@
 
 .socialbutton-wrapper {
     height: 70px;
-    text-align:center;
+    text-align: center;
 }
 
 .socialbutton-wrapper a {
@@ -220,4 +220,32 @@
         height: 100%;
         overflow: hidden
     }
+}
+
+details.sd-dropdown {
+    display: inline;
+    vertical-align: top;
+}
+
+details.sd-dropdown .sd-summary-title {
+    /* border: 10px solid blue !important; */
+    width: fit-content !important;
+    padding: 0px !important;
+    padding-right: 0px !important;
+    height: 45px;
+}
+
+details.sd-dropdown .switcher-body {
+    /* border: 10px solid greenyellow !important; */
+    width: fit-content !important;
+    padding: 0px !important;
+}
+
+details.sd-dropdown {
+    width: fit-content !important;
+    padding: 0px !important;
+}
+
+details.sd-dropdown blockquote {
+    margin-left: 0px;
 }

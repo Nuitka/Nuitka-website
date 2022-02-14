@@ -10,6 +10,7 @@ pylint = "*"
 doc8 = "*"
 sphinx-autobuild = "*"
 black = "*"
+pipenv = "*"
 
 [packages]
 restructuredtext-lint = "*"

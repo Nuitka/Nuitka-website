@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.9
 
 import datetime
-import os
+import os, copy
 import re
 import shutil
 import subprocess
@@ -405,11 +405,7 @@ def updateDownloadPage():
 
         m1, m2, m3 = numberize(filename)[1:4]
 
-        return (
-            "0.%drc%d" % (m1, m3)
-            if not m2
-            else "0.%d.%d" % (m1, m3/10)
-        )
+        return "0.%drc%d" % (m1, m3) if not m2 else "0.%d.%d" % (m1, m3 / 10)
 
     findings = {
         "plain_prerelease": makePlain(max_pre_release),
@@ -429,14 +425,15 @@ def updateDownloadPage():
             filename
         )
 
-        templates[
-            "NUITKA_" + category.upper() + "_MSI_" + version + "_" + bits
-        ] = r"`Nuitka %%(msi_%(category)s_%(version)s_%(bits)s)s Python%(dot_version)s %(bits)s bit MSI <https://nuitka.net/releases/%%(max_msi_%(category)s_%(version)s_%(bits)s)s>`__" % {
-            "version": version,
-            "bits": bits,
-            "category": category,
-            "dot_version": version[0] + "." + version[1:],
-        }
+        templates["NUITKA_" + category.upper() + "_MSI_" + version + "_" + bits] = (
+            r"`Nuitka %%(msi_%(category)s_%(version)s_%(bits)s)s Python%(dot_version)s %(bits)s bit MSI <https://nuitka.net/releases/%%(max_msi_%(category)s_%(version)s_%(bits)s)s>`__"
+            % {
+                "version": version,
+                "bits": bits,
+                "category": category,
+                "dot_version": version[0] + "." + version[1:],
+            }
+        )
 
     def makeFedoraText(fedora_number, release):
         version = fedora_rpm[release, fedora_number]
@@ -800,9 +797,32 @@ def runSphinxBuild():
     assert 0 == os.system("cd doc && sphinx-build . ../output/ -a")
 
 
+_translations = ("zh_CN/", "de_DE/")
+
+
+def _getLangageFromFilename(filename):
+    filename_relative = os.path.relpath(filename, "output")
+    if filename_relative.startswith(("zh_CN/", "de_DE/")):
+        return filename_relative[3:5].upper(), filename_relative[6:]
+    else:
+        return "EN", filename_relative
+
+
+def _getTranslationFileSet(filename):
+    language, filename_translation = _getLangageFromFilename(filename)
+
+    filename_translations = {
+        os.path.join("output", translation, filename_translation)
+        for translation in _translations
+    }
+
+    filename_translations.add(os.path.join("output", filename_translation))
+
+    return language, filename_translations
+
+
 def runPostProcessing():
-    # Step one, compress the CSS files into one file.
-    # TODO: Could delete all CSS files that are not combined afterwards.
+    # Compress the CSS and JS files into one file.
 
     documentation_options_js_filename = "output/_static/documentation_options.js"
 
@@ -951,6 +971,36 @@ jQuery(function () {
                     script_tag.attrib["src"] = js_set_1_output_filename
                 else:
                     script_tag.getparent().remove(script_tag)
+
+        file_language, translated_filenames = _getTranslationFileSet(filename)
+
+        if len(translated_filenames) == 1:
+            assert False, doc.xpath('//footer/details["sd-dropdown"]')
+        else:
+            # assert False, (translated_files, filename)
+            doc.xpath('//footer//details["sd-dropdown"]/summary')[
+                0
+            ].text = file_language
+
+            link_node = doc.xpath("//footer//details//@href")[0].getparent()
+            line_node = link_node.getparent()
+            dropdown_node = line_node.getparent()
+            dropdown_node.clear()
+
+            for translated_filename in translated_filenames:
+                if filename == translated_filename:
+                    continue
+
+                language, _ = _getLangageFromFilename(translated_filename)
+
+                link_node.attrib["href"] = "/" + os.path.relpath(
+                    translated_filename, "output"
+                )
+                link_node.text = language
+
+                new_line_node = copy.deepcopy(line_node)
+
+                dropdown_node.append(new_line_node)
 
         document_bytes = b"<!DOCTYPE html>\n" + html.tostring(
             doc, include_meta_content_type=True

@@ -38,6 +38,10 @@ you can make that work as part of your contribution.
    python3 -m invoke intl -l de_DE
    ...
 
+   # Post processing, e.g. adds language switcher, compact
+   # JS/CSS, adapts external links, and more.
+   python3 -m invoke run -t post-process
+
    # Start local web server with the site, and do automatic
    # rebuilds. Localization are rebuilt if they were previously
    # built.
