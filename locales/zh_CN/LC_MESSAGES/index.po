@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-12 00:17+0800\n"
+"POT-Creation-Date: 2022-02-13 20:43+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: xinetzone <735613050@qq.com>, 2022\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,112 +18,290 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../doc/index.rst:39
-msgid "Download"
-msgstr "下载"
+#: ../../README.rst:3
+msgid "Nuitka Website"
+msgstr ""
 
-#: ../../doc/index.rst:39
-msgid "User Manual"
-msgstr "用户手册"
+msgid "Nuitka Logo"
+msgstr ""
 
-#: ../../doc/index.rst:46
-msgid "Commercial Users"
-msgstr "商业用户"
+#: ../../README.rst:10
+msgid "Thanks"
+msgstr ""
 
-#: ../../doc/index.rst:52
-msgid "Roadmap"
-msgstr "路线图"
-
-#: ../../doc/index.rst:52
-msgid "Release Information"
-msgstr "发行信息"
-
-#: ../../doc/index.rst:59
-msgid "Developer Manual"
-msgstr "开发者手册"
-
-#: ../../doc/index.rst:59
-msgid "API doc"
-msgstr "API 文档"
-
-#: ../../doc/index.rst:59
-msgid "More documentation"
-msgstr "更多文档"
-
-#: ../../doc/index.rst:67
-msgid "Presentations"
-msgstr "演讲稿"
-
-#: ../../doc/index.rst:67
-msgid "Streaming"
-msgstr "流媒体"
-
-#: ../../doc/index.rst:67
-msgid "Media"
-msgstr "影音"
-
-#: ../../doc/index.rst:74
-msgid "Other"
-msgstr "其他"
-
-#: ../../doc/index.rst:81
-msgid "Under construction"
-msgstr "建设中"
-
-#: ../../doc/index.rst:1
+#: ../../README.rst:12
 msgid ""
-"With the Python compiler Nuitka you create protected binaries out of your"
-" Python source code."
+"Please help and improve this in all ways, typos, cooler tech, better "
+"looks, more information, etc. all is appreciated and necessary."
 msgstr ""
 
-#: ../../doc/index.rst:1
-msgid "python,compiler,exe,binary,protection,portable,standalone,windows,linux,mac"
+#: ../../README.rst:15
+msgid "Right now, this is very much possible to improve. Your turn!"
 msgstr ""
 
-#: ../../doc/index.rst:7
-msgid "Nuitka the Python Compiler"
+#: ../../README.rst:19
+msgid "Usage"
 msgstr ""
 
-#: ../../doc/index.rst:11
-msgid "Nuitka Blog"
-msgstr ""
-
-#: ../../doc/index.rst:18
-msgid "What is Nuitka"
-msgstr ""
-
-#: ../../doc/index.rst:20
+#: ../../README.rst:21
 msgid ""
-"Nuitka is the optimizing Python compiler written in Python that creates "
-"executables that run without an need for a separate installer. Data files"
-" can both be included or put alongside."
+"This is used to build the Nuitka web site. Enhancements of all kinds are "
+"welcome. You will need python 3.9 and ``pipenv`` to build it, and so far "
+"this has only be done on Linux, but it ought to also work on Windows, you"
+" can make that work as part of your contribution."
 msgstr ""
 
-#: ../../doc/index.rst:24
-msgid ""
-"It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10), "
-"works on Windows, macOS, Linux and more, basically where Python works for"
-" you already."
+#: ../../README.rst:47
+msgid "Usage of Sphinx"
 msgstr ""
 
-#: ../../doc/index.rst:28
+#: ../../README.rst:49
 msgid ""
-"It protects your code and data, esp. with the Nuitka commercial offering,"
-" and also just works and is easy to use."
+"So the site is basically mostly an automation of importing a few files "
+"from the Nuitka git repository, splitting up e.g. the ``Changelog.rst`` "
+"into pages, with otherwise using Sphinx to render it. Reference the "
+"Sphinx documentation and esp. the one for Read the Docs theme and ABlog."
 msgstr ""
 
-#: ../../doc/index.rst:31
-msgid ""
-"Nuitka is freely distributed under the Apache license. Nuitka commercial "
-"is a private repository that you pay to access and get plugins for "
-"commercial usage."
+#: ../../README.rst:56
+msgid "Translation"
 msgstr ""
 
-#: ../../doc/index.rst:35
+#: ../../README.rst:58
 msgid ""
-"In the meantime you can checkout why `Nuitka commercial "
-"</doc/commercial.html>`__ is for you or find the its `standard version "
-"here </pages/download.html>`_."
+"Translations of the Nuitka website are very welcome. We have a team for "
+"those want to work on it, with push rights to the repository. Right now a"
+" ``translation`` branch is used, but the plan is for it to be merged, and"
+" to provide the infrastructure in the ``main`` branch."
+msgstr ""
+
+#: ../../README.rst:63
+msgid ""
+"Here is a table of the files to translate and their styles. Everything "
+"that is not mentioned here, should be asked about if in doubt. Not all "
+"pages make sense to translate."
+msgstr ""
+
+#: ../../README.rst:69
+msgid "important"
+msgstr ""
+
+#: ../../README.rst:71
+msgid ""
+"Before translating, I would love you to also actually review the content,"
+" if you agree it makes sense, if it can be better structured. This is "
+"very much needed unfortunately."
+msgstr ""
+
+#: ../../README.rst:77
+msgid ""
+"There are plans to get rid of ``pages`` and ``doc`` sub-folders of the "
+"site folder ``doc``. For URLs, these are plain bad, and would e.g. be "
+"much better as ``python-compiler`` and the like. A plan will be devised "
+"and put into place, but it will just move and renamed pages."
+msgstr ""
+
+#: ../../README.rst:84
+msgid "Directory ``posts/``"
+msgstr ""
+
+#: ../../README.rst:86
+msgid ""
+"At this time, the blog posts, esp. old ones should not be translated. I "
+"believe often new content will be created in post form, and then moved "
+"over to pages for translation. A current example are tutorial style pages"
+" including screenshots, which depending on how the e.g. Python installer "
+"look in your language, Explorer and shell prompt, even screenshots might "
+"have to be translated. This will come only later though."
+msgstr ""
+
+#: ../../README.rst:95
+msgid "Page ``pages/donations.rst``"
+msgstr ""
+
+#: ../../README.rst:97
+msgid ""
+"Yes, please go ahead. Let me know if there is any need to hint Paypal, or"
+" when Paypal is not available in your country, what alternative ways we "
+"could use."
+msgstr ""
+
+#: ../../README.rst:102
+msgid "Page ``pages/overview.rst``"
+msgstr ""
+
+#: ../../README.rst:104
+msgid ""
+"Please hold off from this one. It currently is a duplicate of content "
+"that is just the same in ``index.rst`` and not linked, so please ignore "
+"it for now. There is a plan to have a feel good more like a cross road "
+"entry page, that will lead to the kind of page, that the home page is "
+"right now."
+msgstr ""
+
+#: ../../README.rst:111
+msgid "Page ``pages/pyside2.rst``"
+msgstr ""
+
+#: ../../README.rst:113
+msgid ""
+"Very important kind of page, of which I want to have more. Nuitka links "
+"itself to this from the plugin, and it's a landing page to inform users "
+"about troubles that can be expected. We want to have some boilerplate for"
+" this, and a general way of adding these. These user hint pages are where"
+" I think we ought to help the users from real Nuitka to find the "
+"information, and even localized for their needs."
+msgstr ""
+
+#: ../../README.rst:121
+msgid "Page ``pages/support.rst``"
+msgstr ""
+
+#: ../../README.rst:123
+msgid ""
+"This one is not mentioning the Discord server yet, I will add that soon "
+"though. Very important page that should be linked to from many places."
+msgstr ""
+
+#: ../../README.rst:127
+msgid "Page ``pages/gsoc2019.rst``"
+msgstr ""
+
+#: ../../README.rst:129
+msgid ""
+"This is historical information, translation makes no sense, not sure what"
+" to do with it. But if Nuitka were to do it again, we would translate it "
+"ideally for the next time."
+msgstr ""
+
+#: ../../README.rst:134
+msgid "Page ``pages/impressum.rst``"
+msgstr ""
+
+#: ../../README.rst:136
+msgid ""
+"This one is required by law in my country, translators might want to add "
+"their information here. I cannot take responsibility for the content of "
+"translations, as I cannot verify it in many cases."
+msgstr ""
+
+#: ../../README.rst:141
+msgid "Page ``pages/Presentations.rst``"
+msgstr ""
+
+#: ../../README.rst:143
+msgid ""
+"This one probably should get more love content wise. It's under "
+"construction. I want to go over the blog and link all information from "
+"there. But if you are aware of material in your language, please go ahead"
+" and add it."
+msgstr ""
+
+#: ../../README.rst:149
+msgid "Page ``Streaming.rst``"
+msgstr ""
+
+#: ../../README.rst:151
+msgid ""
+"Since this about an English offer, not sure it makes sense, I will also "
+"update it in near future somewhat, but making clear it's going to be an "
+"English content, I think it ought to be translated on a basic level at "
+"the beginning of the page, and then have untranslated content?"
+msgstr ""
+
+#: ../../README.rst:157
+msgid "Page ``doc/api-doc.rst``"
+msgstr ""
+
+#: ../../README.rst:159
+msgid ""
+"Translation makes no sense and cannot be done currently anyway. The API "
+"doc is going to be generated with Spinx, Doxygen docs are without love."
+msgstr ""
+
+#: ../../README.rst:163
+msgid "Page ``doc/commercial.rst`` and folder ``commercial``"
+msgstr ""
+
+#: ../../README.rst:165
+msgid ""
+"Translation is very welcome. There will be more content added over time. "
+"For payment options, please check out if they work for your country and "
+"if not, help me find alternatives. I was e.g. rejected for AliPay in "
+"China, but maybe other things can work. And Russia e.g. has no Paypal "
+"(which I mean to add as an alternative still)."
+msgstr ""
+
+#: ../../README.rst:172
+msgid "Page ``doc/factory.rst``"
+msgstr ""
+
+#: ../../README.rst:174
+msgid "Very useful to have it translated."
+msgstr ""
+
+#: ../../README.rst:177
+msgid "Page ``doc/welcome.rst``"
+msgstr ""
+
+#: ../../README.rst:179
+msgid ""
+"This is just a playground for me, do not translate, unless we want to "
+"play around with translation mechanics. We will want to e.g. have an "
+"intelligent language switcher at some point, and could try it out there."
+msgstr ""
+
+#: ../../README.rst:184
+msgid "Page ``doc/Changelog.rst``"
+msgstr ""
+
+#: ../../README.rst:186
+msgid "Do not translate, this is a bizarre amount of work."
+msgstr ""
+
+#: ../../README.rst:189
+msgid "Page ``download.rst``"
+msgstr ""
+
+#: ../../README.rst:191
+msgid ""
+"Very welcome, but beware that ``download.rst.j2`` is the real source. "
+"Tables are generated into the document, this is probably a harder case "
+"technically, so hold off until this is sorted out."
+msgstr ""
+
+#: ../../README.rst:196
+msgid "Page ``developer-manual.rst``"
+msgstr ""
+
+#: ../../README.rst:198
+msgid ""
+"Makes no sense to translate. But potentially there is content that "
+"belongs to user manual in there or should be split off."
+msgstr ""
+
+#: ../../README.rst:202
+msgid "Page ``roadmap.rst``"
+msgstr ""
+
+#: ../../README.rst:204
+msgid "Much like changelog, not as much work, but also not as important."
+msgstr ""
+
+#: ../../README.rst:207
+msgid "Page ``doc/user-manual.rst``"
+msgstr ""
+
+#: ../../README.rst:209
+msgid ""
+"This one is most important in my mind, optimization section needs a "
+"serious update from my side, maybe ignore that, until I get there. Review"
+" applies here very much. I think Tutorial parts might be factored out to "
+"separate documents."
+msgstr ""
+
+#: ../../README.rst:216
+msgid "Image Optimization"
 msgstr ""
 
 #~ msgid "Download"
@@ -380,4 +558,7 @@ msgstr ""
 #~ "In the meantime you can find its"
 #~ " `latest version here </pages/download.html>`_."
 #~ msgstr "与此同时，你可以在这里找到它的 `最新版本 </pages/download.html>`_。"
+
+#~ msgid "Multilingual document"
+#~ msgstr ""
 

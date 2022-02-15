@@ -2,7 +2,7 @@
  Nuitka Website
 ################
 
-.. image:: posts/images/nuitka-website-logo.png
+.. image:: ../images/nuitka-website-logo.png
    :alt: Nuitka Logo
 
 ********

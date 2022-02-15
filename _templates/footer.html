@@ -1,0 +1,38 @@
+{% extends "!footer.html" %}
+
+{%- block extrafooter %}
+<div class='share-button-container'>
+    <div class="socialbutton-wrapper">
+        <a href="https://twitter.com/share?url={{ pageurl|e }}&hashtags=nuitka" target="_blank">
+            <div class="socialbutton twitter">
+                <p class="icon">
+                    <img src="../_static/icon-twitter.png">
+                </p>
+
+                <p class="shares">share...</p>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/sharer.php?u={{ pageurl|e }}&hashtag=%23nuitka"  target="_blank">
+            <div class="socialbutton facebook">
+                <p class="icon">
+                    <img src="../_static/icon-facebook.png">
+                </p>
+
+                <p class="shares">share...</p>
+            </div>
+        </a>
+
+        <a href="http://www.reddit.com/submit?url={{ pageurl|e }}" target="_blank">
+            <div class="socialbutton reddit">
+                <p class="icon">
+                    <img src="../_static/icon-reddit.png">
+                </p>
+
+                <p class="shares">share...</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

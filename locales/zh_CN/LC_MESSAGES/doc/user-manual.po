@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-12 21:50+0800\n"
+"POT-Creation-Date: 2022-02-13 11:50+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: xinetzone <735613050@qq.com>, 2022\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../doc/doc/user-manual.rst:1
+#: ../../intl/start/user-manual.rst:3
 msgid "User Manual of Nuitka with the details on how to use it"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1
+#: ../../intl/start/user-manual.rst:3
 msgid "python,compiler,nuitka,manual"
 msgstr ""
 

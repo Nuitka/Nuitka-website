@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 23:48+0800\n"
+"POT-Creation-Date: 2022-02-15 09:52+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: xinetzone <735613050@qq.com>, 2022.\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../intl/download.rst:3
+#: ../../intl/doc/download.rst:3
 msgid "Download the Python compiler Nuitka and make your code faster today."
 msgstr ""
 
-#: ../../intl/download.rst:3
+#: ../../intl/doc/download.rst:3
 msgid "nuitka,download,redhat,centos,debian,mint,freebsd,openbsd,arch,PyPI,git"
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr "您也可以了解更多关于 `Nuitka Commercial </doc/commercial.html>
 #: ../../doc/doc/download.rst:42
 #, fuzzy
 msgid ""
-"The current release is Nuitka 0.6.19.5. Stable releases are supported "
+"The current release is Nuitka 0.6.19.7. Stable releases are supported "
 "with hot fixes, indicated by the last of the 4 digits."
 msgstr "目前的版本是 Nuitka 0.6.18.6。稳定的版本支持热修复，由 4 位数字中的最后一位表示。"
 
@@ -114,19 +114,19 @@ msgid "Stable"
 msgstr "稳定版"
 
 #: ../../doc/doc/download.rst:87
-msgid "`Nuitka 0.6.19.5.zip <https://nuitka.net/releases/Nuitka-0.6.19.5.zip>`__"
+msgid "`Nuitka 0.6.19.7.zip <https://nuitka.net/releases/Nuitka-0.6.19.7.zip>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:87
 msgid ""
-"`Nuitka 0.6.19.5.tar.gz "
-"<https://nuitka.net/releases/Nuitka-0.6.19.5.tar.gz>`__"
+"`Nuitka 0.6.19.7.tar.gz "
+"<https://nuitka.net/releases/Nuitka-0.6.19.7.tar.gz>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:87
 msgid ""
-"`Nuitka 0.6.19.5.tar.bz2 "
-"<https://nuitka.net/releases/Nuitka-0.6.19.5.tar.bz2>`__"
+"`Nuitka 0.6.19.7.tar.bz2 "
+"<https://nuitka.net/releases/Nuitka-0.6.19.7.tar.bz2>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:89 ../../doc/doc/download.rst:227
@@ -136,21 +136,19 @@ msgid "Develop"
 msgstr "开发版"
 
 #: ../../doc/doc/download.rst:89
-msgid ""
-"`Nuitka 0.6.20rc3.zip "
-"<https://nuitka.net/releases/Nuitka-0.6.20rc3.zip>`__"
+msgid "`Nuitka 0.7rc1.zip <https://nuitka.net/releases/Nuitka-0.7rc1.zip>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:89
 msgid ""
-"`Nuitka 0.6.20rc3.tar.gz "
-"<https://nuitka.net/releases/Nuitka-0.6.20rc3.tar.gz>`__"
+"`Nuitka 0.7rc1.tar.gz "
+"<https://nuitka.net/releases/Nuitka-0.7rc1.tar.gz>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:89
 msgid ""
-"`Nuitka 0.6.20rc3.tar.bz2 "
-"<https://nuitka.net/releases/Nuitka-0.6.20rc3.tar.bz2>`__"
+"`Nuitka 0.7rc1.tar.bz2 "
+"<https://nuitka.net/releases/Nuitka-0.7rc1.tar.bz2>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:94
@@ -460,16 +458,19 @@ msgstr ""
 #: ../../doc/doc/download.rst:321 ../../doc/doc/download.rst:323
 #: ../../doc/doc/download.rst:325 ../../doc/doc/download.rst:327
 #: ../../doc/doc/download.rst:329 ../../doc/doc/download.rst:331
-msgid "Nuitka 0.6.19.4"
+msgid "Nuitka 0.6.19.7"
 msgstr ""
 
 #: ../../doc/doc/download.rst:229 ../../doc/doc/download.rst:231
-#: ../../doc/doc/download.rst:233 ../../doc/doc/download.rst:257
-#: ../../doc/doc/download.rst:259 ../../doc/doc/download.rst:261
+#: ../../doc/doc/download.rst:257 ../../doc/doc/download.rst:259
 #: ../../doc/doc/download.rst:284 ../../doc/doc/download.rst:286
 #: ../../doc/doc/download.rst:288 ../../doc/doc/download.rst:290
-#: ../../doc/doc/download.rst:292
-msgid "Nuitka 0.6.20rc4"
+#: ../../doc/doc/download.rst:292 ../../doc/doc/download.rst:294
+#: ../../doc/doc/download.rst:296 ../../doc/doc/download.rst:298
+#: ../../doc/doc/download.rst:321 ../../doc/doc/download.rst:323
+#: ../../doc/doc/download.rst:325 ../../doc/doc/download.rst:327
+#: ../../doc/doc/download.rst:329 ../../doc/doc/download.rst:331
+msgid "Nuitka 0.6.20rc6"
 msgstr ""
 
 #: ../../doc/doc/download.rst:231
@@ -490,6 +491,10 @@ msgstr ""
 msgid ""
 "`repository file "
 "<https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/home:kayhayen.repo>`__"
+msgstr ""
+
+#: ../../doc/doc/download.rst:233 ../../doc/doc/download.rst:261
+msgid "Nuitka 0.6.20rc4"
 msgstr ""
 
 #: ../../doc/doc/download.rst:237
@@ -612,14 +617,6 @@ msgstr ""
 msgid ""
 "`repository file "
 "<https://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/home:kayhayen.repo>`__"
-msgstr ""
-
-#: ../../doc/doc/download.rst:294 ../../doc/doc/download.rst:296
-#: ../../doc/doc/download.rst:298 ../../doc/doc/download.rst:321
-#: ../../doc/doc/download.rst:323 ../../doc/doc/download.rst:325
-#: ../../doc/doc/download.rst:327 ../../doc/doc/download.rst:329
-#: ../../doc/doc/download.rst:331
-msgid "Nuitka 0.6.20rc2"
 msgstr ""
 
 #: ../../doc/doc/download.rst:296
@@ -816,5 +813,38 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Nuitka 0.6.19rc9"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.6.19.6.zip "
+#~ "<https://nuitka.net/releases/Nuitka-0.6.19.6.zip>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.6.19.6.tar.gz "
+#~ "<https://nuitka.net/releases/Nuitka-0.6.19.6.tar.gz>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.6.19.6.tar.bz2 "
+#~ "<https://nuitka.net/releases/Nuitka-0.6.19.6.tar.bz2>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.6.20rc6.zip "
+#~ "<https://nuitka.net/releases/Nuitka-0.6.20rc6.zip>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.6.20rc6.tar.gz "
+#~ "<https://nuitka.net/releases/Nuitka-0.6.20rc6.tar.gz>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.6.20rc6.tar.bz2 "
+#~ "<https://nuitka.net/releases/Nuitka-0.6.20rc6.tar.bz2>`__"
+#~ msgstr ""
+
+#~ msgid "Nuitka 0.6.19.6"
 #~ msgstr ""
 

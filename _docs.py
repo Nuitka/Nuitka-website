@@ -46,6 +46,8 @@ def build(c,
 @task
 def update(c, language='en'):
     '''Update the POT file and invoke the `sphinx-intl` `update` command
+
+    Only used with `invoke intl.update`
     '''
     opts = "-b gettext"
     target = Path(c.sphinx.target).parent / 'output/gettext'
@@ -55,9 +57,11 @@ def update(c, language='en'):
     else:
         if not Path(target).exists():
             build(c, target=target, opts=opts)
-        c.run(f'python3 -m pipenv run sphinx-intl update -p {target} -l {language}')
-        for DIR in ['pages', 'posts', 'shop']:
-            rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
+        c.run(
+            f'python3 -m pipenv run sphinx-intl update -p {target} -l {language}'
+        )
+        # for DIR in ['pages', 'posts', 'shop']:
+        #     rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
 
 
 def _site(name, help_part):
@@ -65,12 +69,10 @@ def _site(name, help_part):
     coll = Collection.from_module(
         self,
         name=name,
-        config={
-            "sphinx": {
-                "source": name,
-                "target": "output"
-            }
-        },
+        config={"sphinx": {
+            "source": name,
+            "target": "output"
+        }},
     )
     coll.__doc__ = f"Tasks for building {help_part}"
     coll["build"].__doc__ = f"Build {help_part}"

@@ -1,12 +1,10 @@
-########################
-Multilingual document
-########################
+.. include:: ../README.rst
 
 .. toctree::
    :glob:
    :hidden:
 
-   start
+   doc/index
    commercial
    more
    blog
