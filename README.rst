@@ -33,8 +33,14 @@ you can make that work as part of your contribution.
    # Now lets build the site, to see if it's all correct.
    python3 -m invoke doc
 
+   # Optionally build the localized sites.
+   python3 -m invoke intl -l zh_CN
+   python3 -m invoke intl -l de_DE
+   ...
+
    # Start local web server with the site, and do automatic
-   # rebuilds
+   # rebuilds. Localization are rebuilt if they were previously
+   # built.
    python3 -m invoke run -t serve-site
 
    # Browse it (Linux)
