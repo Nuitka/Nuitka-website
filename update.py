@@ -1016,6 +1016,11 @@ def checkRestPages():
 
                 checkRstLint(full_name)
 
+def runSphinxAutoBuild():
+    # Use sphinx_autobuild, but force misc/sphinx-build to be used.
+    # TODO: For Windows, a batch file would be needed that does the
+    # same thing.
+    os.system("python misc/sphinx_autobuild_wrapper.py doc output/ --watch misc --watch update.py --watch doc --watch intl --watch Pipenv.lock")
 
 def main():
     parser = OptionParser()
@@ -1057,6 +1062,15 @@ When given, the site is post processed with minify. Default %default.""",
     )
 
     parser.add_option(
+        "--serve-site",
+        action="store_true",
+        dest="serve",
+        default=False,
+        help="""\
+When given, the site is re-built on changes and served locally. Default %default.""",
+    )
+
+    parser.add_option(
         "--deploy-site",
         action="store_true",
         dest="deploy",
@@ -1079,9 +1093,11 @@ When given, the site is deployed. Default %default.""",
     if options.check_pages:
         checkRestPages()
 
-
     if options.postprocess:
         runPostProcessing()
+
+    if options.serve:
+        runSphinxAutoBuild()
 
     if options.deploy:
         runDeploymentCommand()

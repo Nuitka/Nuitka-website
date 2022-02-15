@@ -49,6 +49,7 @@ jobs:
           invoke doc.clean
           invoke doc
           invoke intl -l zh_CN
+          invoke run -t post-process
 
       - name: 🚀 Deploy to GitHub pages
         uses: peaceiris/actions-gh-pages@v3.6.1
