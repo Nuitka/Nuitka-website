@@ -31,12 +31,12 @@ Docs. This is for local testing purposes only.
         </dl>
         <dl>
           <dt>{{ _('Locale') }}</dt>
+          <dd><a href="/">en</a></dd>
           {%- if test_versions %}
             {%- for locale in locale_versions %}
             <dd><a href="/{{ locale }}">{{ locale }}</a></dd>
             {%- endfor %}
           {%- else %}
-            <dd><a href="#">en</a></dd>
             <dd><a href="#">zh_CN</a></dd>
           {%- endif %}
         </dl>
