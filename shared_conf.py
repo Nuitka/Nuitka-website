@@ -135,8 +135,6 @@ epub_show_urls = "footnote"
 
 autodoc_member_order = "bysource"
 
-html_static_path = [f"{ROOT}/_static"]
-
 
 # Enable our own CSS to be used.
 def setup(app):
@@ -156,3 +154,17 @@ html_theme_options = {
 
 html_extra_path = [f"{ROOT}/files"]
 html_title = ""
+html_baseurl = 'https://translation.nuitka.net'
+# Sitemap configuration
+
+sitemap_locales = ['en', 'zh_CN']
+sitemap_url_scheme = "{lang}/{link}"
+extlinks = {
+    'nuitka': (f'{html_baseurl}/%s', ''),
+}
+
+html_static_path = [f"{ROOT}/_static"]
+html_context = {}
+# Add fake versions for local QA of the menu
+html_context['test_versions'] = ['latest', 'translation']
+html_context['locale_versions'] = sitemap_locales

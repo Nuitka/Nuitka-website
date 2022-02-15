@@ -11,13 +11,7 @@ language = 'en'  #'zh_CN'
 locale_dirs = ['../locales/']
 gettext_compact = False  # optional.
 
-# Sitemap configuration
-html_baseurl = f'{blog_baseurl}/zh_CN'
-sitemap_locales = ['en', 'zh_CN']
-sitemap_url_scheme = "{lang}/{link}"
-extlinks = {
-    'nuitka': (f'{html_baseurl}/%s', ''),
-}
+
 
 # extra_navbar = """<div>
 # <button><a href="/nuitka-doc/">en</a></button>
