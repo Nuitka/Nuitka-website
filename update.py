@@ -801,6 +801,10 @@ def runPostProcessing():
 
     documentation_options_js_filename = "output/_static/documentation_options.js"
 
+    searchindex_js_filename = "output/searchindex.js"
+
+    search_html_filename = "output/search.html"
+
     js_set_1 = ["jquery", "underscore", "doctools", "js/theme"]
     js_set_1_contents = "\n".join(
         getFileContents("output/_static/" + js_name + ".js") for js_name in js_set_1
@@ -827,6 +831,9 @@ jQuery(function () {
         has_highlight = doc.xpath("//div[@class='highlight']")
 
         has_inline_tabs = doc.xpath("//*[@class='sd-tab-label']")
+
+        for search_link in doc.xpath("//link[@rel='search']"):
+            search_link.getparent().remove(search_link)
 
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
@@ -940,6 +947,12 @@ jQuery(function () {
 
     if os.path.exists(documentation_options_js_filename):
         os.unlink(documentation_options_js_filename)
+
+    if os.path.exists(searchindex_js_filename):
+        os.unlink(searchindex_js_filename)
+
+    if os.path.exists(search_html_filename):
+        os.unlink(search_html_filename)
 
 
 def checkRstLint(document):
