@@ -88,47 +88,36 @@ html_show_sourcelink = False
 html_show_sphinx = False
 
 favicons = [
-    {
-        "rel": "icon",
-        "static-file": f"favicon.svg",
-        "type": "image/svg+xml",
-    },
-    {
-        "rel": "icon",
-        "sizes": "32x32",
-        "static-file": f"favicon.png",
-    },
-    {
-        "rel": "icon",
-        "sizes": "32x32",
-        "static-file": f"favicon.ico",
-    },
+    {"rel": "icon", "static-file": 'favicon.svg', "type": "image/svg+xml"},
+    {"rel": "icon", "sizes": "32x32", "static-file": 'favicon.png'},
+    {"rel": "icon", "sizes": "32x32", "static-file": 'favicon.ico'},
     {
         "rel": "icon",
         "sizes": "57x57",
-        "static-file": f"apple-touch-icon-iphone.png",
+        "static-file": 'apple-touch-icon-iphone.png',
     },
     {
         "rel": "icon",
         "sizes": "72x72",
-        "static-file": f"apple-touch-icon-ipad.png",
+        "static-file": 'apple-touch-icon-ipad.png',
     },
     {
         "rel": "icon",
         "sizes": "114x114",
-        "static-file": f"apple-touch-icon-iphone4.png",
+        "static-file": 'apple-touch-icon-iphone4.png',
     },
     {
         "rel": "icon",
         "sizes": "144x144",
-        "static-file": f"apple-touch-icon-ipad3.png",
+        "static-file": 'apple-touch-icon-ipad3.png',
     },
     {
         "rel": "apple-touch-icon",
         "sizes": "180x180",
-        "static-file": f"apple-touch-icon-180x180.png",
+        "static-file": 'apple-touch-icon-180x180.png',
     },
 ]
+
 
 # -- Options for EPUB output
 epub_show_urls = "footnote"
@@ -164,7 +153,7 @@ extlinks = {
 }
 
 html_static_path = [f"{ROOT}/_static"]
-html_context = {}
-# Add fake versions for local QA of the menu
-html_context['test_versions'] = ['latest', 'translation']
-html_context['locale_versions'] = ['zh_CN']
+html_context = {
+    'test_versions': ['latest', 'translation'],
+    'locale_versions': ['zh_CN'],
+}
