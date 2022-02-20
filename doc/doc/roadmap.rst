@@ -190,6 +190,6 @@ than it should.
    things coming from a plugin can be suppressed.
 
 [ ] Onefile should support keeping cached binaries and then not requires
-   to overwrite
+   to overwrite. Then we can drop ``AppImage`` usage on Linux.
 
 [ ] Forcing output and stderr to files should be supported for all OSes.
