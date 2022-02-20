@@ -155,7 +155,7 @@ def updateDownloadPage():
             if v in ".-+":
                 parts.append(current)
                 current = ""
-            elif v.isdigit() and (current.isdigit() or current == ""):
+            elif v.isdigit() and (current.isdigit() or not current):
                 current += v
             elif v.isdigit():
                 parts.append(current)
@@ -326,8 +326,7 @@ def updateDownloadPage():
 
         def splitVersion(v):
             for w in v.split("."):
-                for x in w.split("rc"):
-                    yield x
+                yield from w.split("rc")
 
         def compareVersion(v):
             v = v.split("-")
