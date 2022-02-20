@@ -53,7 +53,7 @@ contains plugins to Nuitka that will achieve the following:
       `Read more.... <commercial/protect-data-files.html>`__
 
 
-   .. grid-item-card:: Encrypted tracebacks
+   .. grid-item-card:: Encrypted Tracebacks
       :class-item: nuitka-grid-security
 
       When your program is deployed and crashing, you could take
@@ -72,7 +72,7 @@ contains plugins to Nuitka that will achieve the following:
 
       `Read more.... <commercial/encrypted-tracebacks.html>`__
 
-   .. grid-item-card:: Encrypted outputs
+   .. grid-item-card:: Encrypted Outputs
       :class-item: nuitka-grid-security
 
       If you need to query information from a machine, or just in general
