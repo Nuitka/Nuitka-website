@@ -95,7 +95,9 @@ def importNuitka():
     # after release with an option to use other branches.
     updateNuitkaDevelop(update=False)
 
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "Nuitka-develop")))
+    sys.path.insert(
+        0, os.path.abspath(os.path.join(os.path.dirname(__file__), "Nuitka-develop"))
+    )
     import nuitka
 
     del sys.path[0]
@@ -108,6 +110,7 @@ importNuitka()
 from nuitka.tools.quality.autoformat.Autoformat import (
     withFileOpenedAndAutoformatted,
 )
+from nuitka.tools.release.Documentation import checkRstLint
 from nuitka.Tracing import my_print
 from nuitka.utils.FileOperations import (
     getFileContents,
@@ -117,7 +120,7 @@ from nuitka.utils.FileOperations import (
 from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
-from nuitka.tools.release.Documentation import checkRstLint
+
 
 def updateDownloadPage():
 
@@ -758,8 +761,9 @@ def updateImportedPages():
 
         credits_output.write(getFileContents("Nuitka-develop/Credits.rst"))
 
-
-    with withFileOpenedAndAutoformatted("doc/doc/user-manual.rst") as user_manual_output:
+    with withFileOpenedAndAutoformatted(
+        "doc/doc/user-manual.rst"
+    ) as user_manual_output:
         # We can plug meta changes for website here, this could be better.
         user_manual_output.write(
             """\
@@ -772,8 +776,9 @@ def updateImportedPages():
 
         user_manual_output.write(getFileContents("Nuitka-main/README.rst"))
 
-
-    with withFileOpenedAndAutoformatted("doc/doc/developer-manual.rst") as developer_manual_output:
+    with withFileOpenedAndAutoformatted(
+        "doc/doc/developer-manual.rst"
+    ) as developer_manual_output:
         # We can plug meta changes for website here, this could be better.
         developer_manual_output.write(
             """\
@@ -784,7 +789,9 @@ def updateImportedPages():
 """
         )
 
-        developer_manual_output.write(getFileContents("Nuitka-develop/Developer_Manual.rst"))
+        developer_manual_output.write(
+            getFileContents("Nuitka-develop/Developer_Manual.rst")
+        )
 
 
 def updateDocs():
@@ -816,8 +823,6 @@ jQuery(function () {
     SphinxRtdTheme.Navigation.enable(true);
 });
     """
-
-
 
     js_set_1_output_filename = "/_static/combined_%s.js" % getHashFromValues(
         js_set_1_contents
@@ -863,8 +868,18 @@ jQuery(function () {
                 )
 
                 # Do not display fonts on mobile devices.
-                merged_css = re.sub(r"@font-face\{(?!.*?awesome)(.*?)\}", r"@media(min-width:901px){@font-face{\1}}", merged_css, flags=re.S)
-                merged_css = re.sub(r"@font-face\{(.*?)\}", r"@font-face{font-display:swap;\1}", merged_css, flags=re.S)
+                merged_css = re.sub(
+                    r"@font-face\{(?!.*?awesome)(.*?)\}",
+                    r"@media(min-width:901px){@font-face{\1}}",
+                    merged_css,
+                    flags=re.S,
+                )
+                merged_css = re.sub(
+                    r"@font-face\{(.*?)\}",
+                    r"@font-face{font-display:swap;\1}",
+                    merged_css,
+                    flags=re.S,
+                )
 
                 # Strip comments and trailing whitespace (created by that in part)
                 merged_css = re.sub(r"/\*.*?\*/", "", merged_css, flags=re.S)
@@ -905,7 +920,8 @@ jQuery(function () {
 
         for data_url in doc.xpath("//script[@data-url_root]"):
             data_url.text = getFileContents(documentation_options_js_filename).replace(
-                """document.getElementById("documentation_options").getAttribute('data-url_root')""", "'%s'" % data_url.attrib["data-url_root"]
+                """document.getElementById("documentation_options").getAttribute('data-url_root')""",
+                "'%s'" % data_url.attrib["data-url_root"],
             )
 
             del data_url.attrib["src"]
@@ -954,6 +970,7 @@ jQuery(function () {
 
     if os.path.exists(search_html_filename):
         os.unlink(search_html_filename)
+
 
 def runDeploymentCommand():
     excluded = [
@@ -1009,7 +1026,10 @@ def runSphinxAutoBuild():
     # Use sphinx_autobuild, but force misc/sphinx-build to be used.
     # TODO: For Windows, a batch file would be needed that does the
     # same thing.
-    os.system("python misc/sphinx_autobuild_wrapper.py doc output/ --watch misc --watch update.py --watch doc --watch intl --watch Pipenv.lock")
+    os.system(
+        "python misc/sphinx_autobuild_wrapper.py doc output/ --watch misc --watch update.py --watch doc --watch intl --watch Pipenv.lock"
+    )
+
 
 def main():
     parser = OptionParser()
