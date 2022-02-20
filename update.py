@@ -10,7 +10,6 @@ from io import StringIO
 from optparse import OptionParser
 
 import requests
-import restructuredtext_lint
 import unidecode
 from urllib.request import urlretrieve
 import zipfile
@@ -44,7 +43,7 @@ def _updateCheckout(branch, update):
             f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
         )
 
-        with zipfile.ZipFile(f"nuitka.zip.tmp") as archive:
+        with zipfile.ZipFile('nuitka.zip.tmp') as archive:
             archive.extractall(".")
 
         os.unlink("nuitka.zip.tmp")

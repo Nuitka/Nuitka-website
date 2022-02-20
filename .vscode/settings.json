@@ -11,7 +11,7 @@
     },
     "restructuredtext.confPath": "",
     "python.formatting.provider": "black",
-    "python.analysis.extraPaths": ["Nuitka-factory"],
+    "python.analysis.extraPaths": ["Nuitka-develop"],
     "cSpell.words": [
         "appdirs",
         "backport",
@@ -41,6 +41,7 @@
         "MSVC",
         "nofollow",
         "Nuitka",
+        "numberize",
         "onefile",
         "optipng",
         "pipenv",
