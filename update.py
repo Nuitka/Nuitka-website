@@ -406,12 +406,11 @@ def updateDownloadPage():
 
         m1, m2, m3 = numberize(filename)[1:4]
 
-        if not m2:
-            result = "0.%d.%drc%d" % (m1, m3 / 100, (m3 / 10) % 10)
-        else:
-            result = "0.%d.%d.%d" % (m1, (m3 // 10), m3 % 10)
-
-        return result
+        return (
+            "0.%drc%d" % (m1, m3 / 10)
+            if not m2
+            else "0.%d.%d" % (m1, m3 % 10)
+        )
 
     findings = {
         "plain_prerelease": makePlain(max_pre_release),
