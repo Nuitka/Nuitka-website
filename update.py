@@ -117,6 +117,7 @@ from nuitka.utils.FileOperations import (
 from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
+from nuitka.tools.release.Documentation import checkRstLint
 
 def updateDownloadPage():
 
@@ -954,31 +955,6 @@ jQuery(function () {
     if os.path.exists(search_html_filename):
         os.unlink(search_html_filename)
 
-
-def checkRstLint(document):
-    my_print("Checking %r for proper restructured text ..." % document)
-    lint_results = restructuredtext_lint.lint_file(document, encoding="utf8")
-
-    lint_error = False
-    for lint_result in lint_results:
-        # Not an issue.
-        if lint_result.message.startswith("Duplicate implicit target name:"):
-            continue
-
-        if lint_result.message.startswith('No directive entry for "youtube"'):
-            continue
-        if lint_result.message.startswith('Unknown directive type "youtube"'):
-            continue
-
-        my_print(lint_result)
-        lint_error = True
-
-    if lint_error:
-        sys.exit("Error, no lint clean rest.")
-
-    my_print("OK.")
-
-
 def runDeploymentCommand():
     excluded = [
         # Build information from Sphinx
@@ -1026,8 +1002,8 @@ def checkRestPages():
             full_name = os.path.join(root, filename)
 
             if full_name.endswith(".rst"):
-
                 checkRstLint(full_name)
+
 
 def runSphinxAutoBuild():
     # Use sphinx_autobuild, but force misc/sphinx-build to be used.
