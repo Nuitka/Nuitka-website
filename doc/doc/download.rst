@@ -86,7 +86,7 @@ well. So you can install with ``pip`` as follows.
 +===============================================================================+===============================================================================+===============================================================================+===============================================================================+
 | Stable                                                                        | `Nuitka 0.7.zip <https://nuitka.net/releases/Nuitka-0.7.zip>`__               | `Nuitka 0.7.tar.gz <https://nuitka.net/releases/Nuitka-0.7.tar.gz>`__         | `Nuitka 0.7.tar.bz2 <https://nuitka.net/releases/Nuitka-0.7.tar.bz2>`__       |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Develop                                                                       | `Nuitka 0.7rc2.zip <https://nuitka.net/releases/Nuitka-0.7rc2.zip>`__         | `Nuitka 0.7rc2.tar.gz <https://nuitka.net/releases/Nuitka-0.7rc2.tar.gz>`__   | `Nuitka 0.7rc2.tar.bz2 <https://nuitka.net/releases/Nuitka-0.7rc2.tar.bz2>`__ |
+| Develop                                                                       | `Nuitka 0.8rc1.zip <https://nuitka.net/releases/Nuitka-0.8rc1.zip>`__         | `Nuitka 0.8rc1.tar.gz <https://nuitka.net/releases/Nuitka-0.8rc1.tar.gz>`__   | `Nuitka 0.8rc1.tar.bz2 <https://nuitka.net/releases/Nuitka-0.8rc1.tar.bz2>`__ |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
 .. note::
@@ -226,11 +226,11 @@ RHEL
 +------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
 | RHEL Version                                                                                                     | RPM Repository                                                                                                   | Stable                                                                                                           | Develop                                                                                                          |
 +==================================================================================================================+==================================================================================================================+==================================================================================================================+==================================================================================================================+
-| RHEL 8                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-8/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                       | Nuitka 0.7rc2                                                                                                    |
+| RHEL 8                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-8/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                       | Nuitka 0.8rc1                                                                                                    |
 +------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
-| RHEL 7                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                       | Nuitka 0.7rc2                                                                                                    |
+| RHEL 7                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-7/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                       | Nuitka 0.8rc1                                                                                                    |
 +------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
-| RHEL 6                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                       | Nuitka 0.7rc2                                                                                                    |
+| RHEL 6                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                       | Nuitka 0.8rc1                                                                                                    |
 +------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
 
 CentOS
@@ -254,11 +254,11 @@ CentOS
 +--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
 | CentOS Version                                                                                                     | RPM Repository                                                                                                     | Stable                                                                                                             | Develop                                                                                                            |
 +====================================================================================================================+====================================================================================================================+====================================================================================================================+====================================================================================================================+
-| CentOS 8                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo>`__        | Nuitka 0.7                                                                                                         | Nuitka 0.7rc2                                                                                                      |
+| CentOS 8                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo>`__        | Nuitka 0.7                                                                                                         | Nuitka 0.8rc1                                                                                                      |
 +--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
 | CentOS 7                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo>`__        | Nuitka 0.7                                                                                                         | Nuitka 0.7rc2                                                                                                      |
 +--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
-| CentOS 6                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                         | Nuitka 0.7rc2                                                                                                      |
+| CentOS 6                                                                                                           | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                         | Nuitka 0.8rc1                                                                                                      |
 +--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
 
 Fedora
@@ -281,21 +281,21 @@ Fedora
 +--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
 | Fedora Version                                                                                               | RPM Repository                                                                                               | Stable                                                                                                       | Develop                                                                                                      |
 +==============================================================================================================+==============================================================================================================+==============================================================================================================+==============================================================================================================+
-| Fedora 35                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_35/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.7rc2                                                                                                |
+| Fedora 35                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_35/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.8rc1                                                                                                |
 +--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
-| Fedora 34                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.7rc2                                                                                                |
+| Fedora 34                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_34/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.8rc1                                                                                                |
 +--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
-| Fedora 33                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.7rc2                                                                                                |
+| Fedora 33                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_33/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.8rc1                                                                                                |
 +--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
-| Fedora 32                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.7rc2                                                                                                |
+| Fedora 32                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_32/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.8rc1                                                                                                |
 +--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
-| Fedora 31                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.7rc2                                                                                                |
+| Fedora 31                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_31/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.8rc1                                                                                                |
 +--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
-| Fedora 30                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.7rc2                                                                                                |
+| Fedora 30                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_30/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.8rc1                                                                                                |
 +--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
-| Fedora 29                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.7rc2                                                                                                |
+| Fedora 29                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_29/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.8rc1                                                                                                |
 +--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
-| Fedora 28                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.7rc2                                                                                                |
+| Fedora 28                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/Fedora_28/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                   | Nuitka 0.8rc1                                                                                                |
 +--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
 
 Suse
@@ -318,17 +318,17 @@ Suse
 +-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | SUSE Version                                                                                                          | RPM Repository                                                                                                        | Stable                                                                                                                | Develop                                                                                                               |
 +=======================================================================================================================+=======================================================================================================================+=======================================================================================================================+=======================================================================================================================+
-| SLE 15                                                                                                                | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/home:kayhayen.repo>`__             | Nuitka 0.7                                                                                                            | Nuitka 0.7rc2                                                                                                         |
+| SLE 15                                                                                                                | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/SLE_15/home:kayhayen.repo>`__             | Nuitka 0.7                                                                                                            | Nuitka 0.8rc1                                                                                                         |
 +-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| openSUSE Leap 15.0                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.7rc2                                                                                                         |
+| openSUSE Leap 15.0                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.0/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.8rc1                                                                                                         |
 +-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| openSUSE Leap 15.1                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.7rc2                                                                                                         |
+| openSUSE Leap 15.1                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.1/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.8rc1                                                                                                         |
 +-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| openSUSE Leap 15.2                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.7rc2                                                                                                         |
+| openSUSE Leap 15.2                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.2/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.8rc1                                                                                                         |
 +-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| openSUSE Leap 15.3                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.3/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.7rc2                                                                                                         |
+| openSUSE Leap 15.3                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.3/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.8rc1                                                                                                         |
 +-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| openSUSE Leap 15.4                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.4/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.7rc2                                                                                                         |
+| openSUSE Leap 15.4                                                                                                    | `repository file <https://download.opensuse.org/repositories/home:/kayhayen/openSUSE_Leap_15.4/home:kayhayen.repo>`__ | Nuitka 0.7                                                                                                            | Nuitka 0.8rc1                                                                                                         |
 +-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 
 Arch
@@ -364,75 +364,67 @@ Github.
 
 .. |NUITKA_UNSTABLE_MSI_27_32| replace::
 
-   `Nuitka 0.7rc1 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win32.py27.msi>`__
+   `Nuitka 0.8rc0 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win32.py27.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_27_64| replace::
 
-   `Nuitka 0.7rc1 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win-amd64.py27.msi>`__
-
-.. |NUITKA_UNSTABLE_MSI_33_32| replace::
-
-   `Nuitka 0.5rc295 Python3.3 32 bit MSI <https://nuitka.net/releases/Nuitka-5.0.2950.win32.py33.msi>`__
+   `Nuitka 0.8rc0 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win-amd64.py27.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_33_64| replace::
 
-   `Nuitka 0.7rc1 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win-amd64.py33.msi>`__
-
-.. |NUITKA_UNSTABLE_MSI_34_32| replace::
-
-   `Nuitka 0.5rc264 Python3.4 32 bit MSI <https://nuitka.net/releases/Nuitka-5.0.2640.win32.py34.msi>`__
+   `Nuitka 0.8rc0 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win-amd64.py33.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_34_64| replace::
 
-   `Nuitka 0.7rc1 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win-amd64.py34.msi>`__
+   `Nuitka 0.8rc0 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win-amd64.py34.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_35_32| replace::
 
-   `Nuitka 0.7rc1 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win32.py35.msi>`__
+   `Nuitka 0.8rc0 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win32.py35.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_35_64| replace::
 
-   `Nuitka 0.7rc1 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win-amd64.py35.msi>`__
+   `Nuitka 0.8rc0 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win-amd64.py35.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_36_32| replace::
 
-   `Nuitka 0.7rc1 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win32.py36.msi>`__
+   `Nuitka 0.8rc0 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win32.py36.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_36_64| replace::
 
-   `Nuitka 0.7rc1 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win-amd64.py36.msi>`__
+   `Nuitka 0.8rc0 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win-amd64.py36.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_37_32| replace::
 
-   `Nuitka 0.7rc1 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win32.py37.msi>`__
+   `Nuitka 0.8rc0 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win32.py37.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_37_64| replace::
 
-   `Nuitka 0.7rc1 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win-amd64.py37.msi>`__
+   `Nuitka 0.8rc0 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win-amd64.py37.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_38_32| replace::
 
-   `Nuitka 0.7rc1 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win32.py38.msi>`__
+   `Nuitka 0.8rc0 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win32.py38.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_38_64| replace::
 
-   `Nuitka 0.7rc1 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win-amd64.py38.msi>`__
+   `Nuitka 0.8rc0 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win-amd64.py38.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_39_32| replace::
 
-   `Nuitka 0.7rc1 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win32.py39.msi>`__
+   `Nuitka 0.8rc0 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win32.py39.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_39_64| replace::
 
-   `Nuitka 0.7rc1 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win-amd64.py39.msi>`__
+   `Nuitka 0.8rc0 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win-amd64.py39.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_310_32| replace::
 
-   `Nuitka 0.7rc1 Python3.0 32 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win32.py310.msi>`__
+   `Nuitka 0.8rc0 Python3.0 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win32.py310.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_310_64| replace::
 
-   `Nuitka 0.7rc1 Python3.0 64 bit MSI <https://nuitka.net/releases/Nuitka-7.0.10.win-amd64.py310.msi>`__
+   `Nuitka 0.8rc0 Python3.0 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.1.win-amd64.py310.msi>`__
 
 .. |NUITKA_STABLE_MSI_27_32| replace::
 
@@ -442,17 +434,9 @@ Github.
 
    `Nuitka 0.7.0 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.0.win-amd64.py27.msi>`__
 
-.. |NUITKA_STABLE_MSI_33_32| replace::
-
-   `Nuitka 0.5.1 Python3.3 32 bit MSI <https://nuitka.net/releases/Nuitka-5.1.281.win32.py33.msi>`__
-
 .. |NUITKA_STABLE_MSI_33_64| replace::
 
    `Nuitka 0.7.0 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.0.win-amd64.py33.msi>`__
-
-.. |NUITKA_STABLE_MSI_34_32| replace::
-
-   `Nuitka 0.5.0 Python3.4 32 bit MSI <https://nuitka.net/releases/Nuitka-5.1.250.win32.py34.msi>`__
 
 .. |NUITKA_STABLE_MSI_34_64| replace::
 
