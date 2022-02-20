@@ -8,15 +8,15 @@ This is the Nuitka roadmap, broken down by features.
  User Extensibility
 ********************
 
--  Data files, implicit imports, and DLL inclusion are specified in Yaml files
-   now.
+-  Data files, implicit imports, and DLL inclusion are specified in Yaml
+   files now.
 
-   In this way, it is easy to extend by third parties. We could
-   imagine even supporting packages that provide their own configuration
-   for compilation with Nuitka through such files.
+   In this way, it is easy to extend by third parties. We could imagine
+   even supporting packages that provide their own configuration for
+   compilation with Nuitka through such files.
 
-   The next step is to document these file formats, potentially define a schema
-   for them and check it.
+   The next step is to document these file formats, potentially define a
+   schema for them and check it.
 
 ************
  Standalone
@@ -24,10 +24,10 @@ This is the Nuitka roadmap, broken down by features.
 
 -  "Multidist" support (undecided)
 
-   Allow combining multiple main programs into one, called
-   "multidist". These will work with a dispatcher that decides from the
-   binary name what it is. There will be one big binary with the ability
-   to run each program.
+   Allow combining multiple main programs into one, called "multidist".
+   These will work with a dispatcher that decides from the binary name
+   what it is. There will be one big binary with the ability to run each
+   program.
 
    The CMD file for accelerated mode, demonstrates that it's possible to
    load the CPython DLL from another directory. We can leverage that
@@ -42,8 +42,8 @@ This is the Nuitka roadmap, broken down by features.
    Much like for onefile, you need to distinguish program location and
    package location in this way. Note shared stuff living near the CMD
    file will see that CMD file path in ``sys.argv[0]`` there, and shared
-   stuff, e.g. ``xmlschema`` module will find its data files in a directory
-   that is shared.
+   stuff, e.g. ``xmlschema`` module will find its data files in a
+   directory that is shared.
 
    And to top it off, the fat binary of "multidist" may be in standalone
    or onefile mode, at your choice. The disadvantage there being, that
@@ -65,9 +65,9 @@ This is the Nuitka roadmap, broken down by features.
    complete, but the Qt plugins are still missing.
 
    My goal here is to say that e.g. a data file should be what Nuitka
-   commercial currently calls "trusted" independent of it being a
-   data file, right now that is not the case, but Nuitka is much closer
-   to that now. This is of course the same with multiple distributions.
+   commercial currently calls "trusted" independent of it being a data
+   file, right now that is not the case, but Nuitka is much closer to
+   that now. This is of course the same with multiple distributions.
 
    For data files, this plugin could hook the data file copying process
    in much the same way, and put data files near the executable or in
@@ -83,10 +83,10 @@ This is the Nuitka roadmap, broken down by features.
  Nuitka-Python (public)
 ************************
 
-This is currently under way and not yet described here. The current Nuitka
-release has support for using it. Most work is focused on Linux and Python 2.7
-as well as Windows and 3.9 now with the aim of getting it capable to statically
-compile for speed.
+This is currently under way and not yet described here. The current
+Nuitka release has support for using it. Most work is focused on Linux
+and Python 2.7 as well as Windows and 3.9 now with the aim of getting it
+capable to statically compile for speed.
 
 **********************
  Performance (public)
@@ -129,24 +129,25 @@ compile for speed.
  macOS enhancements
 ********************
 
-- While ``arm64`` (M1) only builds and ``x86_64`` (Intel) only builds work, the
-  value ``universal`` which of course implies twice the size, and as such has
-  other disadvantages, is not yet supported.
+-  While ``arm64`` (M1) only builds and ``x86_64`` (Intel) only builds
+   work, the value ``universal`` which of course implies twice the size,
+   and as such has other disadvantages, is not yet supported.
 
-  It will require two distinct compilations, and on the Python level, some values,
-  e.g. architecture, cannot be compile time decided on macOS, which currently is
-  even a potential weakness of the current code.
+   It will require two distinct compilations, and on the Python level,
+   some values, e.g. architecture, cannot be compile time decided on
+   macOS, which currently is even a potential weakness of the current
+   code.
 
-  So far we use macOS tools to split binaries that are universal, and in this case
-  we need to merge binaries into one with the same tools.
+   So far we use macOS tools to split binaries that are universal, and
+   in this case we need to merge binaries into one with the same tools.
 
 *******************************
  Container Builds (commercial)
 *******************************
 
-Providing docker images like ``manylinux`` does with Nuitka installed into
-all of them and ready to use. Might make this a free feature once it's
-done and supports ``--commercial`` download of the plugins nicely.
+Providing docker images like ``manylinux`` does with Nuitka installed
+into all of them and ready to use. Might make this a free feature once
+it's done and supports ``--commercial`` download of the plugins nicely.
 
 Providing containers with old Linux, and optimally compiled CPython with
 podman such that building with Nuitka on Fedora latest and Ubuntu latest
@@ -160,9 +161,9 @@ than it should.
 
 -  Add support for all of the new case syntax of 3.10
 
-   This is only working for the majority of cases, but assignments in ``or``
-   matches do not work yet. User code with it has not been observed yet
-   though.
+   This is only working for the majority of cases, but assignments in
+   ``or`` matches do not work yet. User code with it has not been
+   observed yet though.
 
 **************
  Wheels Build
@@ -181,14 +182,14 @@ than it should.
    client name, etc. could be output in plain text, while the variable
    names and values would not be, depending on your choice!
 
-*******************************
+******************************
  Features to be added for 0.8
-*******************************
+******************************
 
 [ ] Add ability to inhibit data files from the command line, so that
    things coming from a plugin can be suppressed.
 
 [ ] Onefile should support keeping cached binaries and then not requires
-    to overwrite
+   to overwrite
 
 [ ] Forcing output and stderr to files should be supported for all OSes.
