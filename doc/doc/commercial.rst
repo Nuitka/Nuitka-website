@@ -83,6 +83,14 @@ contains plugins to Nuitka that will achieve the following:
       This will allow you to decode outputs as necessary, and will make
       sure it's not readable to anybody but you.
 
+
+   .. grid-item-card:: Commercial-only packages
+      :class-item: nuitka-grid-security
+
+      For select few packages, these are only supported with Nuitka commercial.
+
+      `Read more.... <commercial/commercial-only-packages.html>`__
+
 *******************************************
  Special needs (Commercial only use cases)
 *******************************************
@@ -123,8 +131,8 @@ want to use though, because of performance gains, the IP protection,
 with or without the commercial plugins.
 
 The Nuitka Priority package gives you access to elevated priority of
-your issues. If you subscribe to this, reported issues will be solved with
-highest priority, to enable you using Nuitka.
+your issues. If you subscribe to this, reported issues will be solved
+with highest priority, to enable you using Nuitka.
 
 *************
  Sponsorship
