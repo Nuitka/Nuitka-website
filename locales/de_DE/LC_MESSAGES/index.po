@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-18 18:35+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../doc/index.rst:39
+msgid "Download"
+msgstr ""
+
+#: ../doc/index.rst:39
+msgid "User Manual"
+msgstr "Benutzerhandbuch"
+
+#: ../doc/index.rst:46
+msgid "Commercial Users"
+msgstr "Kommerzielle Benutzer"
+
+#: ../doc/index.rst:52
+msgid "Roadmap"
+msgstr ""
+
+#: ../doc/index.rst:52
+msgid "Release Information"
+msgstr "Veröffentlichungsinformationen"
+
+#: ../doc/index.rst:59
+msgid "Developer Manual"
+msgstr "Entwicklerhandbuch"
+
+#: ../doc/index.rst:59
+msgid "API doc"
+msgstr "API Dokumentation"
+
+#: ../doc/index.rst:59
+msgid "More documentation"
+msgstr "Mehr Dokumentationen"
+
+#: ../doc/index.rst:67
+msgid "Presentations"
+msgstr "Präsentationen"
+
+#: ../doc/index.rst:67
+msgid "Streaming"
+msgstr ""
+
+#: ../doc/index.rst:67
+msgid "Media"
+msgstr "Medien"
+
+#: ../doc/index.rst:74
+msgid "Other"
+msgstr "Anderes"
+
+#: ../doc/index.rst:81
+msgid "Under construction"
+msgstr "Im Bau"
+
+#: ../doc/index.rst:1
+msgid ""
+"With the Python compiler Nuitka you create protected binaries out of your"
+" Python source code."
+msgstr ""
+
+#: ../doc/index.rst:1
+msgid "python,compiler,exe,binary,protection,portable,standalone,windows,linux,mac"
+msgstr ""
+
+#: ../doc/index.rst:7
+msgid "Nuitka the Python Compiler"
+msgstr "Nuitka der Python Compiler"
+
+#: ../doc/index.rst:11
+msgid "Nuitka Blog"
+msgstr ""
+
+#: ../doc/index.rst:18
+msgid "What is Nuitka"
+msgstr "Was ist Nuitka"
+
+#: ../doc/index.rst:20
+msgid ""
+"Nuitka is the optimizing Python compiler written in Python that creates "
+"executables that run without an need for a separate installer. Data files"
+" can both be included or put alongside."
+msgstr ""
+"Nuitka ist ein optimierender Python-Compiler, der in Python geschrieben ist und "
+"ausführbare Dateien erstellt, die ohne ein separates Installationsprogramm laufen. ""
+"Datendateien können sowohl eingebunden als auch separat hinzugefügt werden."
+
+#: ../doc/index.rst:24
+msgid ""
+"It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10), "
+"works on Windows, macOS, Linux and more, basically where Python works for"
+" you already."
+msgstr ""
+"Es ist vollständig kompatibel mit Python2 (2.6, 2.7) und Python3 (3.3 - 3.10),"
+"funktioniert unter Windows, macOS, Linux und mehr, im Grunde überall, wo Python "
+"für Sie funktioniert."
+
+#: ../doc/index.rst:28
+msgid ""
+"It protects your code and data, esp. with the Nuitka commercial offering,"
+" and also just works and is easy to use."
+msgstr ""
+"Es schützt Ihren Code und Ihre Daten, vor allem mit dem kommerziellen Angebot, "
+"und es funktioniert einfach und ist leicht zu benutzen."
+
+#: ../doc/index.rst:31
+msgid ""
+"Nuitka is freely distributed under the Apache license. Nuitka commercial "
+"is a private repository that you pay to access and get plugins for "
+"commercial usage."
+msgstr ""
+"Nuitka wird unter der Apache-Lizenz frei verteilt. Nuitka kommerziell "
+"ist ein privates Repository, auf das Sie gegen Bezahlung zugreifen können, um Plugins für "
+"die kommerzielle Nutzung zu erhalten."
+
+#: ../doc/index.rst:35
+msgid ""
+"In the meantime you can checkout why `Nuitka commercial "
+"</doc/commercial.html>`__ is for you or find the its `standard version "
+"here </pages/download.html>`_."
+msgstr ""
+"Hier können sie überprüfen, wieso `Nuitka kommerziell </doc/commercial.html>`__etwas für sie sein könnte, "
+"oder schauen sie sich die `standart Version </pages/download.html>`__ an."
