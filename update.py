@@ -406,9 +406,9 @@ def updateDownloadPage():
         m1, m2, m3 = numberize(filename)[1:4]
 
         return (
-            "0.%drc%d" % (m1, m3 / 10)
+            "0.%drc%d" % (m1, m3)
             if not m2
-            else "0.%d.%d" % (m1, m3 % 10)
+            else "0.%d.%d" % (m1, m3/10)
         )
 
     findings = {

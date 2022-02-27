@@ -364,131 +364,131 @@ Github.
 
 .. |NUITKA_UNSTABLE_MSI_27_32| replace::
 
-   `Nuitka 0.8rc0 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py27.msi>`__
+   `Nuitka 0.8rc3 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py27.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_27_64| replace::
 
-   `Nuitka 0.8rc0 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py27.msi>`__
+   `Nuitka 0.8rc3 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py27.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_33_64| replace::
 
-   `Nuitka 0.8rc0 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py33.msi>`__
+   `Nuitka 0.8rc3 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py33.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_34_64| replace::
 
-   `Nuitka 0.8rc0 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py34.msi>`__
+   `Nuitka 0.8rc3 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py34.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_35_32| replace::
 
-   `Nuitka 0.8rc0 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py35.msi>`__
+   `Nuitka 0.8rc3 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py35.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_35_64| replace::
 
-   `Nuitka 0.8rc0 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py35.msi>`__
+   `Nuitka 0.8rc3 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py35.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_36_32| replace::
 
-   `Nuitka 0.8rc0 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py36.msi>`__
+   `Nuitka 0.8rc3 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py36.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_36_64| replace::
 
-   `Nuitka 0.8rc0 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py36.msi>`__
+   `Nuitka 0.8rc3 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py36.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_37_32| replace::
 
-   `Nuitka 0.8rc0 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py37.msi>`__
+   `Nuitka 0.8rc3 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py37.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_37_64| replace::
 
-   `Nuitka 0.8rc0 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py37.msi>`__
+   `Nuitka 0.8rc3 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py37.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_38_32| replace::
 
-   `Nuitka 0.8rc0 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py38.msi>`__
+   `Nuitka 0.8rc3 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py38.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_38_64| replace::
 
-   `Nuitka 0.8rc0 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py38.msi>`__
+   `Nuitka 0.8rc3 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py38.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_39_32| replace::
 
-   `Nuitka 0.8rc0 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py39.msi>`__
+   `Nuitka 0.8rc3 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py39.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_39_64| replace::
 
-   `Nuitka 0.8rc0 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py39.msi>`__
+   `Nuitka 0.8rc3 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py39.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_310_32| replace::
 
-   `Nuitka 0.8rc0 Python3.10 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py310.msi>`__
+   `Nuitka 0.8rc3 Python3.10 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py310.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_310_64| replace::
 
-   `Nuitka 0.8rc0 Python3.10 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py310.msi>`__
+   `Nuitka 0.8rc3 Python3.10 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py310.msi>`__
 
 .. |NUITKA_STABLE_MSI_27_32| replace::
 
-   `Nuitka 0.7.0 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py27.msi>`__
+   `Nuitka 0.7.2 Python2.7 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py27.msi>`__
 
 .. |NUITKA_STABLE_MSI_27_64| replace::
 
-   `Nuitka 0.7.0 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py27.msi>`__
+   `Nuitka 0.7.2 Python2.7 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py27.msi>`__
 
 .. |NUITKA_STABLE_MSI_33_64| replace::
 
-   `Nuitka 0.7.0 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py33.msi>`__
+   `Nuitka 0.7.2 Python3.3 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py33.msi>`__
 
 .. |NUITKA_STABLE_MSI_34_64| replace::
 
-   `Nuitka 0.7.0 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py34.msi>`__
+   `Nuitka 0.7.2 Python3.4 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py34.msi>`__
 
 .. |NUITKA_STABLE_MSI_35_32| replace::
 
-   `Nuitka 0.7.0 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py35.msi>`__
+   `Nuitka 0.7.2 Python3.5 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py35.msi>`__
 
 .. |NUITKA_STABLE_MSI_35_64| replace::
 
-   `Nuitka 0.7.0 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py35.msi>`__
+   `Nuitka 0.7.2 Python3.5 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py35.msi>`__
 
 .. |NUITKA_STABLE_MSI_36_32| replace::
 
-   `Nuitka 0.7.0 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py36.msi>`__
+   `Nuitka 0.7.2 Python3.6 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py36.msi>`__
 
 .. |NUITKA_STABLE_MSI_36_64| replace::
 
-   `Nuitka 0.7.0 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py36.msi>`__
+   `Nuitka 0.7.2 Python3.6 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py36.msi>`__
 
 .. |NUITKA_STABLE_MSI_37_32| replace::
 
-   `Nuitka 0.7.0 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py37.msi>`__
+   `Nuitka 0.7.2 Python3.7 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py37.msi>`__
 
 .. |NUITKA_STABLE_MSI_37_64| replace::
 
-   `Nuitka 0.7.0 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py37.msi>`__
+   `Nuitka 0.7.2 Python3.7 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py37.msi>`__
 
 .. |NUITKA_STABLE_MSI_38_32| replace::
 
-   `Nuitka 0.7.0 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py38.msi>`__
+   `Nuitka 0.7.2 Python3.8 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py38.msi>`__
 
 .. |NUITKA_STABLE_MSI_38_64| replace::
 
-   `Nuitka 0.7.0 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py38.msi>`__
+   `Nuitka 0.7.2 Python3.8 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py38.msi>`__
 
 .. |NUITKA_STABLE_MSI_39_32| replace::
 
-   `Nuitka 0.7.0 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py39.msi>`__
+   `Nuitka 0.7.2 Python3.9 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py39.msi>`__
 
 .. |NUITKA_STABLE_MSI_39_64| replace::
 
-   `Nuitka 0.7.0 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py39.msi>`__
+   `Nuitka 0.7.2 Python3.9 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py39.msi>`__
 
 .. |NUITKA_STABLE_MSI_310_32| replace::
 
-   `Nuitka 0.7.0 Python3.10 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py310.msi>`__
+   `Nuitka 0.7.2 Python3.10 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py310.msi>`__
 
 .. |NUITKA_STABLE_MSI_310_64| replace::
 
-   `Nuitka 0.7.0 Python3.10 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py310.msi>`__
+   `Nuitka 0.7.2 Python3.10 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py310.msi>`__
 
 .. |DEBIAN_LOGO| image:: ../../images/debian.png
 
