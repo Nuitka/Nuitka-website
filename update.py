@@ -435,7 +435,7 @@ def updateDownloadPage():
             "version": version,
             "bits": bits,
             "category": category,
-            "dot_version": version[0] + "." + version[-1],
+            "dot_version": version[0] + "." + version[1:],
         }
 
     def makeFedoraText(fedora_number, release):

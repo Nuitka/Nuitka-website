@@ -420,11 +420,11 @@ Github.
 
 .. |NUITKA_UNSTABLE_MSI_310_32| replace::
 
-   `Nuitka 0.8rc0 Python3.0 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py310.msi>`__
+   `Nuitka 0.8rc0 Python3.10 32 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win32.py310.msi>`__
 
 .. |NUITKA_UNSTABLE_MSI_310_64| replace::
 
-   `Nuitka 0.8rc0 Python3.0 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py310.msi>`__
+   `Nuitka 0.8rc0 Python3.10 64 bit MSI <https://nuitka.net/releases/Nuitka-8.0.3.win-amd64.py310.msi>`__
 
 .. |NUITKA_STABLE_MSI_27_32| replace::
 
@@ -484,11 +484,11 @@ Github.
 
 .. |NUITKA_STABLE_MSI_310_32| replace::
 
-   `Nuitka 0.7.0 Python3.0 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py310.msi>`__
+   `Nuitka 0.7.0 Python3.10 32 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win32.py310.msi>`__
 
 .. |NUITKA_STABLE_MSI_310_64| replace::
 
-   `Nuitka 0.7.0 Python3.0 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py310.msi>`__
+   `Nuitka 0.7.0 Python3.10 64 bit MSI <https://nuitka.net/releases/Nuitka-7.1.20.win-amd64.py310.msi>`__
 
 .. |DEBIAN_LOGO| image:: ../../images/debian.png
 
