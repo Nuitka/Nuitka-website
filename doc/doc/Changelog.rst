@@ -144,7 +144,7 @@ New Features
 -  Compiled types of Nuitka now inherit from uncompiled types. This
    should allow easier and more complete compatibility, making even code
    in extension modules that uses ``PyObject_IsInstance`` work, e.g.
-   ``pydanctic``.
+   ``pydantic``.
 
 -  macOS: Added signing of application bundles and standalone binaries
    for deployment to newer macOS platforms and esp. M1 where these are
