@@ -17,6 +17,7 @@
         "appdirs",
         "backport",
         "backported",
+        "bdist",
         "bytecode",
         "ccache",
         "CEST",
@@ -68,4 +69,6 @@
         "virtualenv",
         "whitebox"
     ],
+    "esbonio.server.enabled": true,
+    "esbonio.sphinx.confDir": "",
 }
