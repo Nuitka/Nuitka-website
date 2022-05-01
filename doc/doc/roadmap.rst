@@ -16,7 +16,8 @@ This is the Nuitka roadmap, broken down by features.
    compilation with Nuitka through such files.
 
    The next step is to document these file formats, potentially define a
-   schema for them and check it.
+   schema for them and check it. We might have to change the format to
+   make this possible.
 
 ************
  Standalone
@@ -83,10 +84,10 @@ This is the Nuitka roadmap, broken down by features.
  Nuitka-Python (public)
 ************************
 
-This is currently under way and not yet described here. The current
-Nuitka release has support for using it. Most work is focused on Linux
-and Python 2.7 as well as Windows and 3.9 now with the aim of getting it
-capable to statically compile for speed.
+This is currently under way and not yet described here. The current Nuitka
+release has support for using it. Most work is focused on Linux with Python 2.7
+as well as Windows with Python 3.9 now with the aim of getting it capable to
+statically compile, avoiding extension modules and DLL usages.
 
 **********************
  Performance (public)
@@ -146,14 +147,11 @@ capable to statically compile for speed.
 *******************************
 
 Providing docker images like ``manylinux`` does with Nuitka installed
-into all of them and ready to use. Might make this a free feature once
-it's done and supports ``--commercial`` download of the plugins nicely.
+into all of them and ready to use.
 
 Providing containers with old Linux, and optimally compiled CPython with
-podman such that building with Nuitka on Fedora latest and Ubuntu latest
-can be done fully automatically and still run on very old Linux. Right
-now this is implemented, but works mostly locally and needs more work
-than it should.
+``podman`` such that building with Nuitka on Fedora latest and Ubuntu latest
+can be done fully automatically and still run on very old Linux.
 
 ********************************************
  Complete Support for Python Version (3.10)
@@ -161,16 +159,8 @@ than it should.
 
 -  Add support for all of the new case syntax of 3.10
 
-   This is only working for the majority of cases, but assignments in
-   ``or`` matches do not work yet. User code with it has not been
-   observed yet though.
-
-**************
- Wheels Build
-**************
-
--  Needs more documentation and addition of (some) command line options
-   of Nuitka to the ``bdist_nuitka`` target.
+   Right now it is not clear what is missing, need to investigate it by
+   attempting to manage the full test suite.
 
 ***********************************
  Traceback Encryption (commercial)
@@ -192,4 +182,4 @@ than it should.
 [ ] Onefile should support keeping cached binaries and then not requires
    to overwrite. Then we can drop ``AppImage`` usage on Linux.
 
-[ ] Forcing output and stderr to files should be supported for all OSes.
+[x] Forcing output and stderr to files should be supported for all OSes.
