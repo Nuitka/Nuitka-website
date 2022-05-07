@@ -103,6 +103,8 @@ will have and that are effort to maintain.
    For this, there is a dedicated plugin in Nuitka that makes deployment
    of a practically unchanged program as a service very easy.
 
+   `Read more.... <commercial/windows-service.html>`__
+
 -  You might need to support special commercial grade software.
 
    This can be done, but you might have to pay for the development time
