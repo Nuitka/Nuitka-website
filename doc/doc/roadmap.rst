@@ -153,6 +153,27 @@ Providing containers with old Linux, and optimally compiled CPython with
 ``podman`` such that building with Nuitka on Fedora latest and Ubuntu latest
 can be done fully automatically and still run on very old Linux.
 
+******************
+Automatic Updates
+******************
+
+The running application needs to check for updates, and update itself
+automatically, optionally after user prompt, on a restart, or after
+successful update.
+
+These are the steps needed to take.
+
+[x] Add path spec identifiers that are suitable for caching, like ``%CACHE_DIR%``
+
+[ ] Detect caching ability for a spec, and add a onefile mode modifier that will
+make it overwrite. Ideally volatile path elements are detected.
+
+[ ] Add download URL spec.
+
+[ ] Actually download the file in a thread of the onefile bootstrap binary and
+move it over the running binary, e.g. during restart.
+
+
 ********************************************
  Complete Support for Python Version (3.10)
 ********************************************
@@ -179,7 +200,11 @@ can be done fully automatically and still run on very old Linux.
 [ ] Add ability to inhibit data files from the command line, so that
    things coming from a plugin can be suppressed.
 
+[x] Forcing output and stderr to files should be supported for all OSes.
+
+******************************
+ Features to be added for 0.9
+******************************
+
 [ ] Onefile should support keeping cached binaries and then not requires
    to overwrite. Then we can drop ``AppImage`` usage on Linux.
-
-[x] Forcing output and stderr to files should be supported for all OSes.
