@@ -77,8 +77,6 @@ This is the Nuitka roadmap, broken down by features.
 -  Dejong Stacks: More robust parser that allows stdout and stderr in
    same file with mixed outputs.
 
--  Add ability to inhibit data files from the command line, so that
-   things coming from a plugin can be suppressed.
 
 ************************
  Nuitka-Python (public)
@@ -197,7 +195,7 @@ move it over the running binary, e.g. during restart.
  Features to be added for 0.8
 ******************************
 
-[ ] Add ability to inhibit data files from the command line, so that
+[x] Add ability to inhibit data files from the command line, so that
    things coming from a plugin can be suppressed.
 
 [x] Forcing output and stderr to files should be supported for all OSes.
