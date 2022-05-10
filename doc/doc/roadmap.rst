@@ -31,9 +31,9 @@ This is the Nuitka roadmap, broken down by features.
    program.
 
    The CMD file for accelerated mode, demonstrates that it's possible to
-   load the CPython DLL from another directory. We can leverage that
-   approach and produce CMD files that will call the binary in the right
-   fashion.
+   load the CPython Windows DLL from another directory. We can leverage
+   that approach and produce CMD files that will call the binary in the
+   right fashion.
 
    I believe we can make it so that all the scripts will still think of
    themselves as ``__main__`` for the ``__name__`` during their
@@ -65,27 +65,18 @@ This is the Nuitka roadmap, broken down by features.
    does and make this kind of change. This transition is almost
    complete, but the Qt plugins are still missing.
 
-   My goal here is to say that e.g. a data file should be what Nuitka
-   commercial currently calls "trusted" independent of it being a data
-   file, right now that is not the case, but Nuitka is much closer to
-   that now. This is of course the same with multiple distributions.
-
-   For data files, this plugin could hook the data file copying process
-   in much the same way, and put data files near the executable or in
-   the shared area.
-
 -  Dejong Stacks: More robust parser that allows stdout and stderr in
    same file with mixed outputs.
-
 
 ************************
  Nuitka-Python (public)
 ************************
 
-This is currently under way and not yet described here. The current Nuitka
-release has support for using it. Most work is focused on Linux with Python 2.7
-as well as Windows with Python 3.9 now with the aim of getting it capable to
-statically compile, avoiding extension modules and DLL usages.
+This is currently under way and not yet described here. The current
+Nuitka release has support for using it. Most work is focused on Linux
+with Python 2.7 as well as Windows with Python 3.9 now with the aim of
+getting it capable to statically compile, avoiding extension modules and
+DLL usages.
 
 **********************
  Performance (public)
@@ -144,16 +135,13 @@ statically compile, avoiding extension modules and DLL usages.
  Container Builds (commercial)
 *******************************
 
-Providing docker images like ``manylinux`` does with Nuitka installed
-into all of them and ready to use.
-
 Providing containers with old Linux, and optimally compiled CPython with
-``podman`` such that building with Nuitka on Fedora latest and Ubuntu latest
-can be done fully automatically and still run on very old Linux.
+``podman`` such that building with Nuitka on Fedora latest and Ubuntu
+latest can be done fully automatically and still run on very old Linux.
 
-******************
-Automatic Updates
-******************
+*******************
+ Automatic Updates
+*******************
 
 The running application needs to check for updates, and update itself
 automatically, optionally after user prompt, on a restart, or after
@@ -161,16 +149,17 @@ successful update.
 
 These are the steps needed to take.
 
-[x] Add path spec identifiers that are suitable for caching, like ``%CACHE_DIR%``
+[x] Add path spec identifiers that are suitable for caching, like
+``%CACHE_DIR%``
 
-[ ] Detect caching ability for a spec, and add a onefile mode modifier that will
-make it overwrite. Ideally volatile path elements are detected.
+[ ] Detect caching ability for a spec, and add a onefile mode modifier
+that will make it overwrite. Ideally volatile path elements are
+detected.
 
 [ ] Add download URL spec.
 
-[ ] Actually download the file in a thread of the onefile bootstrap binary and
-move it over the running binary, e.g. during restart.
-
+[ ] Actually download the file in a thread of the onefile bootstrap
+binary and move it over the running binary, e.g. during restart.
 
 ********************************************
  Complete Support for Python Version (3.10)
