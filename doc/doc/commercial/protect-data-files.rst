@@ -1,8 +1,8 @@
 :orphan:
 
-################################
- Protect Program Constants Data
-################################
+####################
+ Protect Data Files
+####################
 
 Your program might be using Qt and QML, or data files loaded. With
 Nuitka Commercial, you can product (even before onefile) an executable
