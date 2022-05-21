@@ -13,7 +13,8 @@ release = version = ""
 ROOT = Path(__file__).parent.absolute().as_posix()  # The root directory
 # For autodoc to work
 sys.path.append(ROOT)
-from update import importNuitka # isort:skip
+from update import importNuitka  # isort:skip
+
 importNuitka()
 del sys.path[-1]
 
@@ -26,11 +27,11 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
-#    "sphinx.ext.viewcode",
+    #    "sphinx.ext.viewcode",
     # External extensions
     "sphinx_copybutton",
     "sphinx_design",
-#    "sphinx_inline_tabs",
+    #    "sphinx_inline_tabs",
     "sphinxcontrib.youtube",
     "sphinx-favicon",
     "sphinx_sitemap",

@@ -1,7 +1,8 @@
-from invoke import Collection, task
-from _docs import doc, intl
-
 import os
+
+from invoke import Collection, task
+
+from _docs import doc, intl
 
 # Disable pipenv warning, we run potentially inside the virtualenv already,
 # Visual Code e.g. picks it up and there is no harm in that. This is only
