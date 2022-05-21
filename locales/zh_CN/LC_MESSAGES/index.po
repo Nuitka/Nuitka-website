@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-13 20:43+0800\n"
+"POT-Creation-Date: 2022-02-22 11:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: xinetzone <735613050@qq.com>, 2022\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,9 @@ msgstr ""
 msgid "Nuitka Website"
 msgstr ""
 
+#, fuzzy
 msgid "Nuitka Logo"
-msgstr ""
+msgstr "Nuitka 图标"
 
 #: ../../README.rst:10
 msgid "Thanks"
@@ -51,11 +52,11 @@ msgid ""
 " can make that work as part of your contribution."
 msgstr ""
 
-#: ../../README.rst:47
+#: ../../README.rst:53
 msgid "Usage of Sphinx"
 msgstr ""
 
-#: ../../README.rst:49
+#: ../../README.rst:55
 msgid ""
 "So the site is basically mostly an automation of importing a few files "
 "from the Nuitka git repository, splitting up e.g. the ``Changelog.rst`` "
@@ -63,11 +64,11 @@ msgid ""
 "Sphinx documentation and esp. the one for Read the Docs theme and ABlog."
 msgstr ""
 
-#: ../../README.rst:56
+#: ../../README.rst:62
 msgid "Translation"
 msgstr ""
 
-#: ../../README.rst:58
+#: ../../README.rst:64
 msgid ""
 "Translations of the Nuitka website are very welcome. We have a team for "
 "those want to work on it, with push rights to the repository. Right now a"
@@ -75,25 +76,25 @@ msgid ""
 " to provide the infrastructure in the ``main`` branch."
 msgstr ""
 
-#: ../../README.rst:63
+#: ../../README.rst:69
 msgid ""
 "Here is a table of the files to translate and their styles. Everything "
 "that is not mentioned here, should be asked about if in doubt. Not all "
 "pages make sense to translate."
 msgstr ""
 
-#: ../../README.rst:69
+#: ../../README.rst:75
 msgid "important"
 msgstr ""
 
-#: ../../README.rst:71
+#: ../../README.rst:77
 msgid ""
 "Before translating, I would love you to also actually review the content,"
 " if you agree it makes sense, if it can be better structured. This is "
 "very much needed unfortunately."
 msgstr ""
 
-#: ../../README.rst:77
+#: ../../README.rst:83
 msgid ""
 "There are plans to get rid of ``pages`` and ``doc`` sub-folders of the "
 "site folder ``doc``. For URLs, these are plain bad, and would e.g. be "
@@ -101,11 +102,11 @@ msgid ""
 "and put into place, but it will just move and renamed pages."
 msgstr ""
 
-#: ../../README.rst:84
+#: ../../README.rst:90
 msgid "Directory ``posts/``"
 msgstr ""
 
-#: ../../README.rst:86
+#: ../../README.rst:92
 msgid ""
 "At this time, the blog posts, esp. old ones should not be translated. I "
 "believe often new content will be created in post form, and then moved "
@@ -115,22 +116,22 @@ msgid ""
 "have to be translated. This will come only later though."
 msgstr ""
 
-#: ../../README.rst:95
+#: ../../README.rst:101
 msgid "Page ``pages/donations.rst``"
 msgstr ""
 
-#: ../../README.rst:97
+#: ../../README.rst:103
 msgid ""
 "Yes, please go ahead. Let me know if there is any need to hint Paypal, or"
 " when Paypal is not available in your country, what alternative ways we "
 "could use."
 msgstr ""
 
-#: ../../README.rst:102
+#: ../../README.rst:108
 msgid "Page ``pages/overview.rst``"
 msgstr ""
 
-#: ../../README.rst:104
+#: ../../README.rst:110
 msgid ""
 "Please hold off from this one. It currently is a duplicate of content "
 "that is just the same in ``index.rst`` and not linked, so please ignore "
@@ -139,11 +140,11 @@ msgid ""
 "right now."
 msgstr ""
 
-#: ../../README.rst:111
+#: ../../README.rst:117
 msgid "Page ``pages/pyside2.rst``"
 msgstr ""
 
-#: ../../README.rst:113
+#: ../../README.rst:119
 msgid ""
 "Very important kind of page, of which I want to have more. Nuitka links "
 "itself to this from the plugin, and it's a landing page to inform users "
@@ -153,43 +154,43 @@ msgid ""
 "information, and even localized for their needs."
 msgstr ""
 
-#: ../../README.rst:121
+#: ../../README.rst:127
 msgid "Page ``pages/support.rst``"
 msgstr ""
 
-#: ../../README.rst:123
+#: ../../README.rst:129
 msgid ""
 "This one is not mentioning the Discord server yet, I will add that soon "
 "though. Very important page that should be linked to from many places."
 msgstr ""
 
-#: ../../README.rst:127
+#: ../../README.rst:133
 msgid "Page ``pages/gsoc2019.rst``"
 msgstr ""
 
-#: ../../README.rst:129
+#: ../../README.rst:135
 msgid ""
 "This is historical information, translation makes no sense, not sure what"
 " to do with it. But if Nuitka were to do it again, we would translate it "
 "ideally for the next time."
 msgstr ""
 
-#: ../../README.rst:134
+#: ../../README.rst:140
 msgid "Page ``pages/impressum.rst``"
 msgstr ""
 
-#: ../../README.rst:136
+#: ../../README.rst:142
 msgid ""
 "This one is required by law in my country, translators might want to add "
 "their information here. I cannot take responsibility for the content of "
 "translations, as I cannot verify it in many cases."
 msgstr ""
 
-#: ../../README.rst:141
+#: ../../README.rst:147
 msgid "Page ``pages/Presentations.rst``"
 msgstr ""
 
-#: ../../README.rst:143
+#: ../../README.rst:149
 msgid ""
 "This one probably should get more love content wise. It's under "
 "construction. I want to go over the blog and link all information from "
@@ -197,11 +198,11 @@ msgid ""
 " and add it."
 msgstr ""
 
-#: ../../README.rst:149
+#: ../../README.rst:155
 msgid "Page ``Streaming.rst``"
 msgstr ""
 
-#: ../../README.rst:151
+#: ../../README.rst:157
 msgid ""
 "Since this about an English offer, not sure it makes sense, I will also "
 "update it in near future somewhat, but making clear it's going to be an "
@@ -209,21 +210,21 @@ msgid ""
 "the beginning of the page, and then have untranslated content?"
 msgstr ""
 
-#: ../../README.rst:157
+#: ../../README.rst:163
 msgid "Page ``doc/api-doc.rst``"
 msgstr ""
 
-#: ../../README.rst:159
+#: ../../README.rst:165
 msgid ""
 "Translation makes no sense and cannot be done currently anyway. The API "
 "doc is going to be generated with Spinx, Doxygen docs are without love."
 msgstr ""
 
-#: ../../README.rst:163
+#: ../../README.rst:169
 msgid "Page ``doc/commercial.rst`` and folder ``commercial``"
 msgstr ""
 
-#: ../../README.rst:165
+#: ../../README.rst:171
 msgid ""
 "Translation is very welcome. There will be more content added over time. "
 "For payment options, please check out if they work for your country and "
@@ -232,67 +233,67 @@ msgid ""
 "(which I mean to add as an alternative still)."
 msgstr ""
 
-#: ../../README.rst:172
+#: ../../README.rst:178
 msgid "Page ``doc/factory.rst``"
 msgstr ""
 
-#: ../../README.rst:174
+#: ../../README.rst:180
 msgid "Very useful to have it translated."
 msgstr ""
 
-#: ../../README.rst:177
+#: ../../README.rst:183
 msgid "Page ``doc/welcome.rst``"
 msgstr ""
 
-#: ../../README.rst:179
+#: ../../README.rst:185
 msgid ""
 "This is just a playground for me, do not translate, unless we want to "
 "play around with translation mechanics. We will want to e.g. have an "
 "intelligent language switcher at some point, and could try it out there."
 msgstr ""
 
-#: ../../README.rst:184
+#: ../../README.rst:190
 msgid "Page ``doc/Changelog.rst``"
 msgstr ""
 
-#: ../../README.rst:186
+#: ../../README.rst:192
 msgid "Do not translate, this is a bizarre amount of work."
 msgstr ""
 
-#: ../../README.rst:189
+#: ../../README.rst:195
 msgid "Page ``download.rst``"
 msgstr ""
 
-#: ../../README.rst:191
+#: ../../README.rst:197
 msgid ""
 "Very welcome, but beware that ``download.rst.j2`` is the real source. "
 "Tables are generated into the document, this is probably a harder case "
 "technically, so hold off until this is sorted out."
 msgstr ""
 
-#: ../../README.rst:196
+#: ../../README.rst:202
 msgid "Page ``developer-manual.rst``"
 msgstr ""
 
-#: ../../README.rst:198
+#: ../../README.rst:204
 msgid ""
 "Makes no sense to translate. But potentially there is content that "
 "belongs to user manual in there or should be split off."
 msgstr ""
 
-#: ../../README.rst:202
+#: ../../README.rst:208
 msgid "Page ``roadmap.rst``"
 msgstr ""
 
-#: ../../README.rst:204
+#: ../../README.rst:210
 msgid "Much like changelog, not as much work, but also not as important."
 msgstr ""
 
-#: ../../README.rst:207
+#: ../../README.rst:213
 msgid "Page ``doc/user-manual.rst``"
 msgstr ""
 
-#: ../../README.rst:209
+#: ../../README.rst:215
 msgid ""
 "This one is most important in my mind, optimization section needs a "
 "serious update from my side, maybe ignore that, until I get there. Review"
@@ -300,265 +301,434 @@ msgid ""
 "separate documents."
 msgstr ""
 
-#: ../../README.rst:216
+#: ../../README.rst:222
 msgid "Image Optimization"
 msgstr ""
 
+#~ msgid "Nuitka Website"
+#~ msgstr "Nuitka 网站"
+
+#~ msgid "Thanks"
+#~ msgstr "致谢"
+
+#~ msgid ""
+#~ "Please help and improve this in "
+#~ "all ways, typos, cooler tech, better "
+#~ "looks, more information, etc. all is "
+#~ "appreciated and necessary."
+#~ msgstr "请在各方面给予帮助和改进，拼写错误、更酷的技术、更好的外观、更多的信息等，所有这些都是值得赞赏和必要的。"
+
+#~ msgid "Right now, this is very much possible to improve. Your turn!"
+#~ msgstr "现在，这是非常有可能改善的。轮到你登场！"
+
+#~ msgid "Usage"
+#~ msgstr "用法"
+
+#~ msgid ""
+#~ "This is used to build the Nuitka"
+#~ " web site. Enhancements of all kinds"
+#~ " are welcome. You will need python"
+#~ " 3.9 and ``pipenv`` to build it, "
+#~ "and so far this has only be "
+#~ "done on Linux, but it ought to "
+#~ "also work on Windows, you can make"
+#~ " that work as part of your "
+#~ "contribution."
+#~ msgstr ""
+#~ "这是用来建立 Nuitka 网站。各种改进都是受欢迎的。你将需要 python 3.9"
+#~ " 和 ``pipenv`` 来构建它，到目前为止，这只在 Linux "
+#~ "上完成，但它应该也可以在 Windows 上工作，你可以把它作为你的贡献的一部分。"
+
+#~ msgid "Usage of Sphinx"
+#~ msgstr "Sphinx 用法"
+
+#~ msgid ""
+#~ "So the site is basically mostly an"
+#~ " automation of importing a few files"
+#~ " from the Nuitka git repository, "
+#~ "splitting up e.g. the ``Changelog.rst`` "
+#~ "into pages, with otherwise using Sphinx"
+#~ " to render it. Reference the Sphinx"
+#~ " documentation and esp. the one for"
+#~ " Read the Docs theme and ABlog."
+#~ msgstr ""
+#~ "所以这个网站基本上是自动化的，从 Nuitka 的 git 库中导入一些文件，分割开来，例如"
+#~ " ``Changelog.rst`` 进入页面，否则使用 Sphinx 渲染它。参考 "
+#~ "Sphinx 文档，特别是 Read the Docs 主题和 "
+#~ "ABlog 的文档。"
+
+#~ msgid "Translation"
+#~ msgstr "翻译"
+
+#~ msgid ""
+#~ "Translations of the Nuitka website are"
+#~ " very welcome. We have a team "
+#~ "for those want to work on it, "
+#~ "with push rights to the repository. "
+#~ "Right now a ``translation`` branch is"
+#~ " used, but the plan is for it"
+#~ " to be merged, and to provide "
+#~ "the infrastructure in the ``main`` "
+#~ "branch."
+#~ msgstr ""
+#~ "非常欢迎翻译 Nuitka 网站。我们有一个团队可以帮助那些想要处理它的人，他们拥有对存储库的推送权。目前使用的是"
+#~ " ``translation`` 分支，但计划是将其合并，并在 ``main`` "
+#~ "分支中提供基础设施。"
+
+#~ msgid ""
+#~ "Here is a table of the files "
+#~ "to translate and their styles. "
+#~ "Everything that is not mentioned here,"
+#~ " should be asked about if in "
+#~ "doubt. Not all pages make sense to"
+#~ " translate."
+#~ msgstr "下面是要翻译的文件及其样式的表格。这里没有提到的一切，如果有疑问，都应该询问。并不是所有的页面都适合翻译。"
+
+#~ msgid ""
+#~ "Before translating, I would love you "
+#~ "to also actually review the content, "
+#~ "if you agree it makes sense, if"
+#~ " it can be better structured. This"
+#~ " is very much needed unfortunately."
+#~ msgstr "在翻译之前，希望你也能真正地检查一下内容，是否是你认为的有意义，是否它可以有更好的结构。不幸的是，这是非常需要的。"
+
+#~ msgid ""
+#~ "There are plans to get rid of "
+#~ "``pages`` and ``doc`` sub-folders of "
+#~ "the site folder ``doc``. For URLs, "
+#~ "these are plain bad, and would "
+#~ "e.g. be much better as ``python-"
+#~ "compiler`` and the like. A plan "
+#~ "will be devised and put into "
+#~ "place, but it will just move and"
+#~ " renamed pages."
+#~ msgstr ""
+#~ "计划删除网站文件夹 ``pages`` 和 ``doc`` 中的 ``doc``"
+#~ " 子文件夹。对于 URL 来说，这些都很糟糕，比如 ``python-"
+#~ "compiler`` 之类的会更好。一个计划将被设计出来并付诸实施，但它只是移动和重命名页面。"
+
+#~ msgid "Directory ``posts/``"
+#~ msgstr "目录 ``posts/``"
+
+#~ msgid ""
+#~ "At this time, the blog posts, esp."
+#~ " old ones should not be translated."
+#~ " I believe often new content will "
+#~ "be created in post form, and then"
+#~ " moved over to pages for translation."
+#~ " A current example are tutorial style"
+#~ " pages including screenshots, which "
+#~ "depending on how the e.g. Python "
+#~ "installer look in your language, "
+#~ "Explorer and shell prompt, even "
+#~ "screenshots might have to be translated."
+#~ " This will come only later though."
+#~ msgstr ""
+#~ "在这个时候，博客帖子，特别是旧的帖子不应该被翻译。我相信，新内容通常会以 post "
+#~ "的形式创建，然后移到页面进行翻译。当前的例子是教程样式的页面，包括截图，这取决于 Python "
+#~ "安装程序在你的语言中的外观，浏览器和 shell 提示符，甚至截图可能需要翻译。不过，这是以后的事情了。"
+
+#~ msgid "Page ``pages/donations.rst``"
+#~ msgstr "页面 ``pages/donations.rst``"
+
+#~ msgid ""
+#~ "Yes, please go ahead. Let me know"
+#~ " if there is any need to hint"
+#~ " Paypal, or when Paypal is not "
+#~ "available in your country, what "
+#~ "alternative ways we could use."
+#~ msgstr "是的，请讲吧。如果需要提示 Paypal，请告诉我，或者当 Paypal 在你们国家无法使用时，我们可以使用哪些替代方式。"
+
+#~ msgid "Page ``pages/overview.rst``"
+#~ msgstr "页面 ``pages/overview.rst``"
+
+#~ msgid ""
+#~ "Please hold off from this one. It"
+#~ " currently is a duplicate of content"
+#~ " that is just the same in "
+#~ "``index.rst`` and not linked, so please"
+#~ " ignore it for now. There is a"
+#~ " plan to have a feel good more"
+#~ " like a cross road entry page, "
+#~ "that will lead to the kind of "
+#~ "page, that the home page is right"
+#~ " now."
+#~ msgstr ""
+#~ "请推迟这个。它目前只是 ``index.rst`` "
+#~ "的副本并没有链接，所以现在请忽略它。我们的计划是让用户感觉很好，就像一个十字路口的入口页面，这样就会出现主页这样的页面。"
+
+#~ msgid "Page ``pages/pyside2.rst``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Very important kind of page, of "
+#~ "which I want to have more. Nuitka"
+#~ " links itself to this from the "
+#~ "plugin, and it's a landing page to"
+#~ " inform users about troubles that can"
+#~ " be expected. We want to have "
+#~ "some boilerplate for this, and a "
+#~ "general way of adding these. These "
+#~ "user hint pages are where I think"
+#~ " we ought to help the users "
+#~ "from real Nuitka to find the "
+#~ "information, and even localized for "
+#~ "their needs."
+#~ msgstr ""
+#~ "非常重要的一页，我想要更多。Nuitka "
+#~ "将自己从插件链接到这个页面，它是一个登陆页面，告知用户可能出现的问题。我们需要一些样板，以及添加这些的一般方法。我认为我们应该通过这些用户提示页面来帮助用户从真正的"
+#~ " Nuitka 中找到信息，甚至针对他们的需求进行本地化。"
+
+#~ msgid "Page ``pages/support.rst``"
+#~ msgstr "页面 ``pages/support.rst``"
+
+#~ msgid ""
+#~ "This one is not mentioning the "
+#~ "Discord server yet, I will add "
+#~ "that soon though. Very important page"
+#~ " that should be linked to from "
+#~ "many places."
+#~ msgstr "这篇文章还没有提到 Discord 服务器，我很快会补充的。非常重要的页面，应该从很多地方链接。"
+
+#~ msgid "Page ``pages/gsoc2019.rst``"
+#~ msgstr "页面 ``pages/gsoc2019.rst``"
+
+#~ msgid ""
+#~ "This is historical information, translation"
+#~ " makes no sense, not sure what "
+#~ "to do with it. But if Nuitka "
+#~ "were to do it again, we would "
+#~ "translate it ideally for the next "
+#~ "time."
+#~ msgstr "这是历史信息，翻译没有任何意义，不知道该怎么处理它。但如果 Nuitka 再做一次，我们将会在下一次进行理想的翻译。"
+
+#~ msgid "Page ``pages/impressum.rst``"
+#~ msgstr "页面 ``pages/impressum.rst``"
+
+#~ msgid ""
+#~ "This one is required by law in "
+#~ "my country, translators might want to"
+#~ " add their information here. I cannot"
+#~ " take responsibility for the content "
+#~ "of translations, as I cannot verify "
+#~ "it in many cases."
+#~ msgstr "这是我国法律要求的，译者可能会想要在这里添加他们的信息。我不能对翻译的内容负责，因为在很多情况下我无法核实。"
+
+#~ msgid "Page ``pages/Presentations.rst``"
+#~ msgstr "页面 ``pages/Presentations.rst``"
+
+#~ msgid ""
+#~ "This one probably should get more "
+#~ "love content wise. It's under "
+#~ "construction. I want to go over "
+#~ "the blog and link all information "
+#~ "from there. But if you are aware"
+#~ " of material in your language, please"
+#~ " go ahead and add it."
+#~ msgstr "这部电影可能需要更多的爱情内容。这是在建设中。我想浏览一下这个博客并链接所有来自那里的信息。但如果你知道用自己的语言写的东西，请继续添加。"
+
+#~ msgid "Page ``Streaming.rst``"
+#~ msgstr "页面 ``Streaming.rst``"
+
+#~ msgid ""
+#~ "Since this about an English offer, "
+#~ "not sure it makes sense, I will"
+#~ " also update it in near future "
+#~ "somewhat, but making clear it's going"
+#~ " to be an English content, I "
+#~ "think it ought to be translated on"
+#~ " a basic level at the beginning "
+#~ "of the page, and then have "
+#~ "untranslated content?"
+#~ msgstr "由于是英文提供的，不知道是否有道理的，我也会在不久的将来更新它，但明确表示这将是一个英语的内容，我认为这应该翻译在基本层面上的页面，然后翻译内容吗？"
+
+#~ msgid "Page ``doc/api-doc.rst``"
+#~ msgstr "页面 ``doc/api-doc.rst``"
+
+#~ msgid ""
+#~ "Translation makes no sense and cannot"
+#~ " be done currently anyway. The API"
+#~ " doc is going to be generated "
+#~ "with Spinx, Doxygen docs are without "
+#~ "love."
+#~ msgstr "翻译没有任何意义，而且目前也做不到。API 文档是用 Spinx 生成的，Doxygen 文档是没有爱的。"
+
+#~ msgid "Page ``doc/commercial.rst`` and folder ``commercial``"
+#~ msgstr "页面 ``doc/commercial.rst`` 和 文件夹 ``commercial``"
+
+#~ msgid ""
+#~ "Translation is very welcome. There will"
+#~ " be more content added over time. "
+#~ "For payment options, please check out"
+#~ " if they work for your country "
+#~ "and if not, help me find "
+#~ "alternatives. I was e.g. rejected for"
+#~ " AliPay in China, but maybe other "
+#~ "things can work. And Russia e.g. "
+#~ "has no Paypal (which I mean to "
+#~ "add as an alternative still)."
+#~ msgstr ""
+#~ "翻译非常受欢迎。随着时间的推移，会有更多的内容添加进来。关于付款方式，请查看它们是否对你的国家有效，如果不有效，请帮助我找到其他方式。例如，我在中国被拒绝使用支付宝，但也许其他东西可以起作用。比如俄罗斯就没有"
+#~ " Paypal（我的意思是这仍然是一个替代选择）。"
+
+#~ msgid "Page ``doc/factory.rst``"
+#~ msgstr "页面 ``doc/factory.rst``"
+
+#~ msgid "Very useful to have it translated."
+#~ msgstr "翻译出来非常有用。"
+
+#~ msgid "Page ``doc/welcome.rst``"
+#~ msgstr "页面 ``doc/welcome.rst``"
+
+#~ msgid ""
+#~ "This is just a playground for me,"
+#~ " do not translate, unless we want "
+#~ "to play around with translation "
+#~ "mechanics. We will want to e.g. "
+#~ "have an intelligent language switcher at"
+#~ " some point, and could try it "
+#~ "out there."
+#~ msgstr "这对我来说只是一个游乐场，不要翻译，除非我们想玩翻译机制。例如，我们希望在某个时候拥有一个智能语言切换器，并可以尝试它。"
+
+#~ msgid "Page ``doc/Changelog.rst``"
+#~ msgstr "页面 ``doc/Changelog.rst``"
+
+#~ msgid "Do not translate, this is a bizarre amount of work."
+#~ msgstr "不要翻译，有着奇怪的工作量。"
+
+#~ msgid "Page ``download.rst``"
+#~ msgstr "页面 ``download.rst``"
+
+#~ msgid ""
+#~ "Very welcome, but beware that "
+#~ "``download.rst.j2`` is the real source. "
+#~ "Tables are generated into the document,"
+#~ " this is probably a harder case "
+#~ "technically, so hold off until this "
+#~ "is sorted out."
+#~ msgstr ""
+#~ "非常欢迎，但要小心 ``download.rst.j2`` "
+#~ "才是真正的来源。表格会生成到文档中，这可能在技术上是一个比较困难的情况，所以先不要急着做，直到问题解决。"
+
+#~ msgid ""
+#~ "Makes no sense to translate. But "
+#~ "potentially there is content that "
+#~ "belongs to user manual in there or"
+#~ " should be split off."
+#~ msgstr "翻译没有任何意义。但其中可能有属于用户手册的内容，或者应该被拆分出来。"
+
+#~ msgid "Page ``roadmap.rst``"
+#~ msgstr "页面 ``roadmap.rst``"
+
+#~ msgid "Much like changelog, not as much work, but also not as important."
+#~ msgstr "很像更新日志，没有那么多工作，但也没有那么重要。"
+
+#~ msgid "Page ``doc/user-manual.rst``"
+#~ msgstr "页面 ``doc/user-manual.rst``"
+
+#~ msgid ""
+#~ "This one is most important in my"
+#~ " mind, optimization section needs a "
+#~ "serious update from my side, maybe "
+#~ "ignore that, until I get there. "
+#~ "Review applies here very much. I "
+#~ "think Tutorial parts might be factored"
+#~ " out to separate documents."
+#~ msgstr "这一点在我看来是最重要的，优化部分需要我的认真更新，也许忽略它，直到我到达那里。复习在这里很适用。我认为教程部分可能会被分解成独立的文档。"
+
+#~ msgid "Image Optimization"
+#~ msgstr "图片优化"
+
 #~ msgid "Download"
-#~ msgstr "下载"
+#~ msgstr ""
 
 #~ msgid "User Manual"
-#~ msgstr "用户手册"
+#~ msgstr ""
 
 #~ msgid "Commercial Users"
-#~ msgstr "商务用户"
+#~ msgstr ""
 
 #~ msgid "Roadmap"
-#~ msgstr "路线图"
+#~ msgstr ""
 
 #~ msgid "Release Information"
-#~ msgstr "发行信息"
+#~ msgstr ""
 
 #~ msgid "Developer Manual"
-#~ msgstr "开发者手册"
+#~ msgstr "页面 ``developer-manual.rst``"
 
 #~ msgid "API doc"
-#~ msgstr "API 文档"
+#~ msgstr ""
 
 #~ msgid "More documentation"
-#~ msgstr "更多文档"
+#~ msgstr ""
 
 #~ msgid "Presentations"
-#~ msgstr "演讲稿"
+#~ msgstr ""
 
 #~ msgid "Streaming"
-#~ msgstr "流媒体"
+#~ msgstr ""
 
 #~ msgid "Media"
-#~ msgstr "媒体"
+#~ msgstr ""
 
 #~ msgid "Other"
-#~ msgstr "其他"
+#~ msgstr ""
 
 #~ msgid "Under construction"
-#~ msgstr "建设中"
+#~ msgstr ""
 
-#~ msgid "Nuitka Blog"
-#~ msgstr "博文"
+#~ msgid ""
+#~ "With the Python compiler Nuitka you "
+#~ "create protected binaries out of your"
+#~ " Python source code."
+#~ msgstr ""
+
+#~ msgid "python,compiler,exe,binary,protection,portable,standalone,windows,linux,mac"
+#~ msgstr ""
 
 #~ msgid "Nuitka the Python Compiler"
-#~ msgstr "Python 编译器 Nuitka"
+#~ msgstr ""
 
 #~ msgid "What is Nuitka"
-#~ msgstr "Nuitka 是什么"
+#~ msgstr ""
 
-#~ msgid "Nuitka is a Python compiler written in Python."
-#~ msgstr "Nuitka 是一个用 Python 编写的 Python 编译器。"
+#~ msgid ""
+#~ "Nuitka is the optimizing Python compiler"
+#~ " written in Python that creates "
+#~ "executables that run without an need "
+#~ "for a separate installer. Data files "
+#~ "can both be included or put "
+#~ "alongside."
+#~ msgstr ""
 
 #~ msgid ""
 #~ "It is fully compatible with Python2 "
 #~ "(2.6, 2.7) and Python3 (3.3 - "
-#~ "3.10)."
-#~ msgstr "它与 Python2（2.6，2.7）和 Python3（3.3 - 3.10）完全兼容。"
-
-#~ msgid ""
-#~ "You feed Nuitka your Python app, "
-#~ "it does a lot of clever things,"
-#~ " and then creates an executable or"
-#~ " extension module, or even a Python"
-#~ " wheel."
-#~ msgstr "你给 Nuitka 提供你的 Python 应用程序，它做了很多智能的事情，然后创建一个可执行文件或扩展模块，甚至是一个 Python 轮子。"
-
-#~ msgid ""
-#~ "Nuitka is distributed under the Apache"
-#~ " license. Nuitka commercial is a "
-#~ "private repository that you pay to "
-#~ "access and get plugins for commercial"
-#~ " usage."
-#~ msgstr "Nuitka 是在 Apache 许可下发布的。Nuitka 商业版是一个私人仓库，你可以付费访问并获得商业用途的插件。"
-
-#~ msgid "Okay I'm hooked! Tell me more!"
-#~ msgstr "好吧，我被迷住了! 告诉我更多！"
-
-#~ msgid "Now"
-#~ msgstr "现在"
-
-#~ msgid ""
-#~ "Right now Nuitka is a good "
-#~ "replacement for the Python interpreter. "
-#~ "It compiles **every** language construct "
-#~ "in all relevant CPython versions, and"
-#~ " even the irrelevant ones like 2.6"
-#~ " and 3.3. It translates Python into"
-#~ " a C program that then is "
-#~ "linked against libpython to execute "
-#~ "exactly like CPython. It is extremely"
-#~ " compatible."
+#~ "3.10), works on Windows, macOS, Linux"
+#~ " and more, basically where Python "
+#~ "works for you already."
 #~ msgstr ""
-#~ "现在，Nuitka 是 Python 解释器的一个很好的替代品。它可以编译所有相关 "
-#~ "CPython 版本中的语言结构，甚至是不相关的版本，如 2.6 和 3.3。它将 "
-#~ "Python 翻译成 C 语言程序，然后与 libpython 连接，执行起来与"
-#~ " CPython 完全一样。它的兼容性非常好。"
 
 #~ msgid ""
-#~ "Nuitka is already slightly faster than"
-#~ " CPython, but there is work to "
-#~ "be done to include as many C "
-#~ "optimizations as possible. We currently "
-#~ "get a 335% speedup in pystone, "
-#~ "which is a good start. (source: "
-#~ "Nuitka version 0.6.17 with Debian Python"
-#~ " 2.7)"
+#~ "It protects your code and data, "
+#~ "esp. with the Nuitka commercial "
+#~ "offering, and also just works and "
+#~ "is easy to use."
 #~ msgstr ""
-#~ "Nuitka 已经比 CPython 略快了，但还有工作要做，以包括尽可能多的 C "
-#~ "优化。我们目前在 pystone 中得到了 335% "
-#~ "的速度提升，这是一个好的开始。（来源：Nuitka 0.6.17 版与 Debian "
-#~ "Python 2.7）"
-
-#~ msgid "Future"
-#~ msgstr "未来"
 
 #~ msgid ""
-#~ "In the future Nuitka will be able"
-#~ " to use type inferencing based on "
-#~ "whole program analysis. It will apply"
-#~ " that information in order to perform"
-#~ " as many calculations as possible in"
-#~ " C, using C native types, without "
-#~ "accessing ``libpython``."
+#~ "Nuitka is freely distributed under the"
+#~ " Apache license. Nuitka commercial is "
+#~ "a private repository that you pay "
+#~ "to access and get plugins for "
+#~ "commercial usage."
 #~ msgstr ""
-#~ "在未来，Nuitka 将能够使用基于整个程序分析的类型推理。它将应用这些信息，以便在 C "
-#~ "语言中尽可能多地进行计算，使用 C 语言的原生类型，而无需访问 ``libpython``。"
 
 #~ msgid ""
-#~ "Nuitka will also be able to "
-#~ "integrate ``ctypes`` bindings, but without "
-#~ "the usual speed penalty. The compiled"
-#~ " program can call the C library "
-#~ "directly, avoiding run-time overhead."
-#~ msgstr "Nuitka 也将能够整合 ``ctypes`` 绑定，但没有通常的速度损失。编译后的程序可以直接调用 C 库，避免了运行时的开销。"
-
-#~ msgid ""
-#~ "And finally, you will be able to"
-#~ " use a ``hints`` module to inform "
-#~ "Nuitka about type information."
-#~ msgstr "最后，你将能够使用一个 ``hints`` 模块来通知 Nuitka 关于类型信息。"
-
-#~ msgid "Now vs. Future, or, The Plan"
-#~ msgstr "现在与未来，或者，计划"
-
-#~ msgid "These are the milestones and priorities for Nuitka's development."
-#~ msgstr "这些是 Nuitka 发展的里程碑和重点。"
-
-#~ msgid ""
-#~ "Total feature parity with Python. "
-#~ "Understand all language constructs, and "
-#~ "behave exactly like CPython."
-#~ msgstr "与 Python 的功能完全对等。理解所有的语言结构，其行为与 CPython 完全一样。"
-
-#~ msgid ""
-#~ "Create the most efficient native C "
-#~ "code possible. The goal is to make"
-#~ " basic Python object handling as fast"
-#~ " as possible."
-#~ msgstr "尽可能创建最有效的原生 C 代码。目标是使基本的 Python 对象处理尽可能快。"
-
-#~ msgid ""
-#~ "Implement constant propagation. Determine as"
-#~ " many values and useful constraints "
-#~ "as possible at compile time, and "
-#~ "create extremely efficient code for the"
-#~ " compiler."
-#~ msgstr "constant 传播 实现。在编译时确定尽可能多的值和有用的约束，为编译器创建极其有效的代码。"
-
-#~ msgid ""
-#~ "Make intelligent type inferences. Detect "
-#~ "and use special case handling for "
-#~ "strings, integers, and lists in the "
-#~ "compiled program."
-#~ msgstr "进行智能类型推断。检测并使用编译程序中对字符串、整数和列表的特殊情况处理。"
-
-#~ msgid ""
-#~ "Add interfacing with C code to "
-#~ "allow Nuitka to turn Python ``ctypes``"
-#~ " bindings into efficient C bindings."
-#~ msgstr "增加与 C 代码的接口，让 Nuitka 把 Python 的 ``ctypes`` 绑定变成高效的 C 绑定。"
-
-#~ msgid ""
-#~ "Provide a hints module with a "
-#~ "useful Python implementation so the "
-#~ "compiler can learn about intended types"
-#~ " directly from the programmer."
-#~ msgstr "提供一个带有有用的 Python 实现的提示模块，这样编译器就可以直接从程序员那里了解到预定的类型。"
-
-#~ msgid "Where are we now?"
-#~ msgstr "我们现在在哪里？"
-
-#~ msgid ""
-#~ "Milestone 1, feature parity, has been"
-#~ " achieved for Python 2.6, 2.7, and"
-#~ " 3.3 up to 3.10. This part of"
-#~ " Nuitka is already mature, but every"
-#~ " new Python release has lots of "
-#~ "new features to add!"
-#~ msgstr ""
-#~ "里程碑1，功能平价，在 Python 2.6、2.7 和 3.3 直至 "
-#~ "3.10 中已经实现。Nuitka 的这一部分已经很成熟了，但是每一个新的 Python "
-#~ "版本都有很多新的功能需要添加！"
-
-#~ msgid ""
-#~ "Milestone 2 is always a work in"
-#~ " progress, but it has been quite "
-#~ "successful. Nuitka can already produce "
-#~ "code that is more than 2 times "
-#~ "faster than CPython. These gains are "
-#~ "nowhere near the best gains possible,"
-#~ " but they are solid improvements and"
-#~ " will improve further."
-#~ msgstr ""
-#~ "里程碑 2 始终是一项正在进行的工作，但它已经相当成功。Nuitka 已经可以产生比 "
-#~ "CPython 快 2 倍以上的代码。这些收益远未达到最佳收益，但它们是坚实的改进，并将进一步提高。"
-
-#~ msgid ""
-#~ "Milestone 3, constant folding and "
-#~ "propagation, is already in place, and"
-#~ " some control flow optimizations are "
-#~ "also applied - but this is just"
-#~ " the start. Constant folding will see"
-#~ " big gains as the type inferencing"
-#~ " matures and more variables are "
-#~ "opened up to become constants."
-#~ msgstr ""
-#~ "里程碑3，常量折叠和传播（constant folding and "
-#~ "propagation），已经到位，一些控制流优化也被应用 —— "
-#~ "但这只是开始。随着类型推理的成熟和更多的变量被开放成为常量，常量折叠将看到巨大的收益。"
-
-#~ msgid ""
-#~ "For milestone 4 the first steps "
-#~ "are in place achieve type inferencing."
-#~ " The results are encouraging, but it"
-#~ " will need a lot more work "
-#~ "before this can be made the "
-#~ "default approach. Remember that this is"
-#~ " still Python, Nuitka cannot be "
-#~ "guaranteed to perfectly guess type "
-#~ "information."
-#~ msgstr ""
-#~ "对于里程碑 4，第一步已经到位，实现了类型推断。结果是令人鼓舞的，但在使其成为默认方法之前，还需要做很多工作。记住，这仍然是"
-#~ " Python，Nuitka 不能保证完美地猜测类型信息。"
-
-#~ msgid ""
-#~ "We have yet to start on milestones"
-#~ " 5 and 6. There is still quite"
-#~ " a way to go until we hit "
-#~ "the \"future\"."
-#~ msgstr "我们还没有开始进行里程碑5和6。在我们达到 \"未来\" 之前，还有相当长的路要走。"
-
-#~ msgid ""
-#~ "In the meantime you can find its"
-#~ " `latest version here </pages/download.html>`_."
-#~ msgstr "与此同时，你可以在这里找到它的 `最新版本 </pages/download.html>`_。"
-
-#~ msgid "Multilingual document"
+#~ "In the meantime you can checkout "
+#~ "why `Nuitka commercial </doc/commercial.html>`__ "
+#~ "is for you or find the its "
+#~ "`standard version here </pages/download.html>`_."
 #~ msgstr ""
 

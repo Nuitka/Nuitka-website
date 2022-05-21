@@ -93,13 +93,13 @@ msgstr "本地化"
 
 #: ../../_templates/layout.html:45
 msgid "On Read the Docs"
-msgstr ""
+msgstr "Read the Docs"
 
 #: ../../_templates/layout.html:47
 msgid "Project Home"
-msgstr ""
+msgstr "项目主页"
 
 #: ../../_templates/layout.html:50
 msgid "Builds"
-msgstr ""
+msgstr "构建"
 

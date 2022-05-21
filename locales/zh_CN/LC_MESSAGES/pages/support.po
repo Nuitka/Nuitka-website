@@ -2,35 +2,35 @@
 # Copyright (C) 2022, Kay Hayen and Nuitka Contributors
 # This file is distributed under the same license as the Nuitka the Python
 # Compiler package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# xinetzone <735613050@qq.com>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-22 11:07+0800\n"
+"POT-Creation-Date: 2022-01-09 13:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: xinetzone <735613050@qq.com>, 2022\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.9.0\n"
 
-#: ../../doc/pages/support.rst:3
+#: ../../pages/support.rst:3
 msgid "Support"
-msgstr ""
+msgstr "支持"
 
-#: ../../doc/pages/support.rst:5
+#: ../../pages/support.rst:5
 msgid "If you have some issue or need support for Nuitka these are your options:"
-msgstr ""
+msgstr "如果你有一些问题或需要 Nuitka 的支持，这些是你的选择。"
 
-#: ../../doc/pages/support.rst:10
+#: ../../pages/support.rst:10
 msgid "Commercial Grade Support"
-msgstr ""
+msgstr "商业级支持"
 
-#: ../../doc/pages/support.rst:12
+#: ../../pages/support.rst:12
 msgid ""
 "While Nuitka is Free Software, your software is not, and you want to get "
 "help with the tool, somebody to do it for you, or a quick solution, or "
@@ -38,38 +38,41 @@ msgid ""
 "served here in the `Nuitka Commercial area. </doc/commercial.html>`_."
 msgstr ""
 
-#: ../../doc/pages/support.rst:19
+#: ../../pages/support.rst:19
 msgid "Donations"
-msgstr ""
+msgstr "贡献"
 
-#: ../../doc/pages/support.rst:21
+#: ../../pages/support.rst:21
 msgid ""
 "You want to sponsor Nuitka development, as it is a cool project to make "
 "Python a fast programming language, please head here and pledge your "
 "support. `Donations </pages/donations.html>`_."
 msgstr ""
 
-#: ../../doc/pages/support.rst:27
+#: ../../pages/support.rst:27
 msgid "Github Issue Tracker"
-msgstr ""
+msgstr "Github 议题追踪"
 
-#: ../../doc/pages/support.rst:29
+#: ../../pages/support.rst:29
 msgid ""
 "Nuitka uses Github for public issue tracking (commercial users have a "
 "private tracker available) and your can report the issue on the `issue "
 "tracker <https://github.com/Nuitka/Nuitka/issues>`_ there."
 msgstr ""
+"Nuitka 使用 Github 进行公共问题跟踪（商业用户有一个私人跟踪器可用），你可以在那里的 `问题跟踪器 "
+"<https://github.com/Nuitka/Nuitka/issues>`_ 上报告问题。"
 
-#: ../../doc/pages/support.rst:35
+#: ../../pages/support.rst:35
 msgid "Chat Room"
-msgstr ""
+msgstr "聊天室"
 
-#: ../../doc/pages/support.rst:37
+#: ../../pages/support.rst:37
 msgid ""
 "Try the chat room, which is not a replacement for an issue tracker, but "
 "we have it. You are also welcome to lurk and help others."
-msgstr ""
+msgstr "试试聊天室，这不是问题跟踪器的替代品，但我们有它。我们也欢迎你潜伏下来，帮助他人。"
 
+#, fuzzy
 msgid "Join the chat at https://gitter.im/Nuitka-chat/community"
-msgstr ""
+msgstr "加入聊天，请点击 https://gitter.im/Nuitka-chat/community"
 

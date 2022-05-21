@@ -1044,10 +1044,9 @@ def runDeploymentCommand():
 
     branch = subprocess.check_output("git branch --show-current".split()).strip()
 
-    if branch == b"main":
-        if os.path.exists("output/robots.txt-operational"):
-            os.unlink("output/robots.txt")
-            os.rename("output/robots.txt.operational", "output/robots.txt")
+    if branch == b"main" and os.path.exists("output/robots.txt-operational"):
+        os.unlink("output/robots.txt")
+        os.rename("output/robots.txt.operational", "output/robots.txt")
 
     target_dir = "/var/www/" if branch == b"main" else "/var/www-staging/"
     command = (

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-15 09:52+0800\n"
+"POT-Creation-Date: 2022-02-22 11:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: xinetzone <735613050@qq.com>, 2022.\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,8 +49,8 @@ msgstr "您也可以了解更多关于 `Nuitka Commercial </doc/commercial.html>
 #: ../../doc/doc/download.rst:42
 #, fuzzy
 msgid ""
-"The current release is Nuitka 0.6.19.7. Stable releases are supported "
-"with hot fixes, indicated by the last of the 4 digits."
+"The current release is Nuitka 0.7. Stable releases are supported with hot"
+" fixes, indicated by the last of the 4 digits."
 msgstr "目前的版本是 Nuitka 0.6.18.6。稳定的版本支持热修复，由 4 位数字中的最后一位表示。"
 
 #: ../../doc/doc/download.rst:47
@@ -114,19 +114,15 @@ msgid "Stable"
 msgstr "稳定版"
 
 #: ../../doc/doc/download.rst:87
-msgid "`Nuitka 0.6.19.7.zip <https://nuitka.net/releases/Nuitka-0.6.19.7.zip>`__"
+msgid "`Nuitka 0.7.zip <https://nuitka.net/releases/Nuitka-0.7.zip>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:87
-msgid ""
-"`Nuitka 0.6.19.7.tar.gz "
-"<https://nuitka.net/releases/Nuitka-0.6.19.7.tar.gz>`__"
+msgid "`Nuitka 0.7.tar.gz <https://nuitka.net/releases/Nuitka-0.7.tar.gz>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:87
-msgid ""
-"`Nuitka 0.6.19.7.tar.bz2 "
-"<https://nuitka.net/releases/Nuitka-0.6.19.7.tar.bz2>`__"
+msgid "`Nuitka 0.7.tar.bz2 <https://nuitka.net/releases/Nuitka-0.7.tar.bz2>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:89 ../../doc/doc/download.rst:227
@@ -136,19 +132,19 @@ msgid "Develop"
 msgstr "开发版"
 
 #: ../../doc/doc/download.rst:89
-msgid "`Nuitka 0.7rc1.zip <https://nuitka.net/releases/Nuitka-0.7rc1.zip>`__"
+msgid "`Nuitka 0.8rc1.zip <https://nuitka.net/releases/Nuitka-0.8rc1.zip>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:89
 msgid ""
-"`Nuitka 0.7rc1.tar.gz "
-"<https://nuitka.net/releases/Nuitka-0.7rc1.tar.gz>`__"
+"`Nuitka 0.8rc1.tar.gz "
+"<https://nuitka.net/releases/Nuitka-0.8rc1.tar.gz>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:89
 msgid ""
-"`Nuitka 0.7rc1.tar.bz2 "
-"<https://nuitka.net/releases/Nuitka-0.7rc1.tar.bz2>`__"
+"`Nuitka 0.8rc1.tar.bz2 "
+"<https://nuitka.net/releases/Nuitka-0.8rc1.tar.bz2>`__"
 msgstr ""
 
 #: ../../doc/doc/download.rst:94
@@ -171,7 +167,7 @@ msgstr ""
 msgid "|WINDOWS_LOGO| Stable MSI Installer:"
 msgstr ""
 
-#: ../../doc/doc/download.rst:523
+#: ../../doc/doc/download.rst:507
 msgid "WINDOWS_LOGO"
 msgstr ""
 
@@ -392,15 +388,15 @@ msgid ""
 "repositories"
 msgstr ""
 
-#: ../../doc/doc/download.rst:509
+#: ../../doc/doc/download.rst:493
 msgid "DEBIAN_LOGO"
 msgstr ""
 
-#: ../../doc/doc/download.rst:511
+#: ../../doc/doc/download.rst:495
 msgid "UBUNTU_LOGO"
 msgstr ""
 
-#: ../../doc/doc/download.rst:513
+#: ../../doc/doc/download.rst:497
 msgid "MINT_LOGO"
 msgstr ""
 
@@ -425,7 +421,7 @@ msgstr ""
 msgid "|RHEL_LOGO| repositories"
 msgstr ""
 
-#: ../../doc/doc/download.rst:517
+#: ../../doc/doc/download.rst:501
 msgid "RHEL_LOGO"
 msgstr ""
 
@@ -458,11 +454,12 @@ msgstr ""
 #: ../../doc/doc/download.rst:321 ../../doc/doc/download.rst:323
 #: ../../doc/doc/download.rst:325 ../../doc/doc/download.rst:327
 #: ../../doc/doc/download.rst:329 ../../doc/doc/download.rst:331
-msgid "Nuitka 0.6.19.7"
+msgid "Nuitka 0.7"
 msgstr ""
 
 #: ../../doc/doc/download.rst:229 ../../doc/doc/download.rst:231
-#: ../../doc/doc/download.rst:257 ../../doc/doc/download.rst:259
+#: ../../doc/doc/download.rst:233 ../../doc/doc/download.rst:257
+#: ../../doc/doc/download.rst:259 ../../doc/doc/download.rst:261
 #: ../../doc/doc/download.rst:284 ../../doc/doc/download.rst:286
 #: ../../doc/doc/download.rst:288 ../../doc/doc/download.rst:290
 #: ../../doc/doc/download.rst:292 ../../doc/doc/download.rst:294
@@ -470,7 +467,7 @@ msgstr ""
 #: ../../doc/doc/download.rst:321 ../../doc/doc/download.rst:323
 #: ../../doc/doc/download.rst:325 ../../doc/doc/download.rst:327
 #: ../../doc/doc/download.rst:329 ../../doc/doc/download.rst:331
-msgid "Nuitka 0.6.20rc6"
+msgid "Nuitka 0.8rc1"
 msgstr ""
 
 #: ../../doc/doc/download.rst:231
@@ -493,10 +490,6 @@ msgid ""
 "<https://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-6/home:kayhayen.repo>`__"
 msgstr ""
 
-#: ../../doc/doc/download.rst:233 ../../doc/doc/download.rst:261
-msgid "Nuitka 0.6.20rc4"
-msgstr ""
-
 #: ../../doc/doc/download.rst:237
 msgid "CentOS"
 msgstr ""
@@ -505,7 +498,7 @@ msgstr ""
 msgid "|CENTOS_LOGO| repositories"
 msgstr ""
 
-#: ../../doc/doc/download.rst:515
+#: ../../doc/doc/download.rst:499
 msgid "CENTOS_LOGO"
 msgstr ""
 
@@ -551,7 +544,7 @@ msgstr ""
 msgid "|FEDORA_LOGO| repositories"
 msgstr ""
 
-#: ../../doc/doc/download.rst:519
+#: ../../doc/doc/download.rst:503
 msgid "FEDORA_LOGO"
 msgstr ""
 
@@ -647,7 +640,7 @@ msgstr ""
 msgid "|SUSE_LOGO| repositories"
 msgstr ""
 
-#: ../../doc/doc/download.rst:521
+#: ../../doc/doc/download.rst:505
 msgid "SUSE_LOGO"
 msgstr ""
 
@@ -723,7 +716,7 @@ msgstr ""
 msgid "|ARCH_LOGO| Stable: Arch Linux, execute ``pacman -S nuitka``"
 msgstr ""
 
-#: ../../doc/doc/download.rst:525
+#: ../../doc/doc/download.rst:509
 msgid "ARCH_LOGO"
 msgstr ""
 
@@ -741,7 +734,7 @@ msgstr ""
 msgid "|GENTOO_LOGO| Gentoo Linux, execute ``emerge -a dev-python/nuitka``"
 msgstr ""
 
-#: ../../doc/doc/download.rst:527
+#: ../../doc/doc/download.rst:511
 msgid "GENTOO_LOGO"
 msgstr ""
 
@@ -763,7 +756,7 @@ msgstr ""
 msgid "|GIT_LOGO| Stable: **git clone https://github.com/Nuitka/Nuitka**"
 msgstr ""
 
-#: ../../doc/doc/download.rst:529
+#: ../../doc/doc/download.rst:513
 msgid "GIT_LOGO"
 msgstr ""
 
@@ -846,5 +839,61 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Nuitka 0.6.19.6"
+#~ msgstr ""
+
+#~ msgid "`Nuitka 0.7rc1.zip <https://nuitka.net/releases/Nuitka-0.7rc1.zip>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.7rc1.tar.gz "
+#~ "<https://nuitka.net/releases/Nuitka-0.7rc1.tar.gz>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.7rc1.tar.bz2 "
+#~ "<https://nuitka.net/releases/Nuitka-0.7rc1.tar.bz2>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.6.19.7.zip "
+#~ "<https://nuitka.net/releases/Nuitka-0.6.19.7.zip>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.6.19.7.tar.gz "
+#~ "<https://nuitka.net/releases/Nuitka-0.6.19.7.tar.gz>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.6.19.7.tar.bz2 "
+#~ "<https://nuitka.net/releases/Nuitka-0.6.19.7.tar.bz2>`__"
+#~ msgstr ""
+
+#~ msgid "`Nuitka 0.7rc2.zip <https://nuitka.net/releases/Nuitka-0.7rc2.zip>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.7rc2.tar.gz "
+#~ "<https://nuitka.net/releases/Nuitka-0.7rc2.tar.gz>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`Nuitka 0.7rc2.tar.bz2 "
+#~ "<https://nuitka.net/releases/Nuitka-0.7rc2.tar.bz2>`__"
+#~ msgstr ""
+
+#~ msgid "Nuitka 0.6.19.7"
+#~ msgstr ""
+
+#~ msgid "Nuitka 0.7rc2"
+#~ msgstr ""
+
+#~ msgid "Nuitka 0.7rc1"
+#~ msgstr ""
+
+#~ msgid "Nuitka 0.6.20rc4"
+#~ msgstr ""
+
+#~ msgid "Nuitka 0.6.20rc6"
 #~ msgstr ""
 

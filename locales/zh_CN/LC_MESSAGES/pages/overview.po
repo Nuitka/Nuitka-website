@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-16 01:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../doc/pages/overview.rst:5
+msgid "Nuitka the Python Compiler"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:9
+msgid "Nuitka Blog"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:16
+msgid "What is Nuitka"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:18
+msgid "Nuitka is a Python compiler written in Python."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:20
+msgid "It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10)."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:22
+msgid ""
+"You feed Nuitka your Python app, it does a lot of clever things, and then"
+" creates an executable or extension module, or even a Python wheel."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:25
+msgid ""
+"Nuitka is distributed under the Apache license. Nuitka commercial is a "
+"private repository that you pay to access and get plugins for commercial "
+"usage."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:31
+msgid "Okay I'm hooked! Tell me more!"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:34
+msgid "Now"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:36
+msgid ""
+"Right now Nuitka is a good replacement for the Python interpreter. It "
+"compiles **every** language construct in all relevant CPython versions, "
+"and even the irrelevant ones like 2.6 and 3.3. It translates Python into "
+"a C program that then is linked against libpython to execute exactly like"
+" CPython. It is extremely compatible."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:42
+#, python-format
+msgid ""
+"Nuitka is already slightly faster than CPython, but there is work to be "
+"done to include as many C optimizations as possible. We currently get a "
+"335% speedup in pystone, which is a good start. (source: Nuitka version "
+"0.6.17 with Debian Python 2.7)"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:48
+msgid "Future"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:50
+msgid ""
+"In the future Nuitka will be able to use type inferencing based on whole "
+"program analysis. It will apply that information in order to perform as "
+"many calculations as possible in C, using C native types, without "
+"accessing ``libpython``."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:55
+msgid ""
+"Nuitka will also be able to integrate ``ctypes`` bindings, but without "
+"the usual speed penalty. The compiled program can call the C library "
+"directly, avoiding run-time overhead."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:59
+msgid ""
+"And finally, you will be able to use a ``hints`` module to inform Nuitka "
+"about type information."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:63
+msgid "Now vs. Future, or, The Plan"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:65
+msgid "These are the milestones and priorities for Nuitka's development."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:67
+msgid ""
+"Total feature parity with Python. Understand all language constructs, and"
+" behave exactly like CPython."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:70
+msgid ""
+"Create the most efficient native C code possible. The goal is to make "
+"basic Python object handling as fast as possible."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:73
+msgid ""
+"Implement constant propagation. Determine as many values and useful "
+"constraints as possible at compile time, and create extremely efficient "
+"code for the compiler."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:77
+msgid ""
+"Make intelligent type inferences. Detect and use special case handling "
+"for strings, integers, and lists in the compiled program."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:80
+msgid ""
+"Add interfacing with C code to allow Nuitka to turn Python ``ctypes`` "
+"bindings into efficient C bindings."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:83
+msgid ""
+"Provide a hints module with a useful Python implementation so the "
+"compiler can learn about intended types directly from the programmer."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:87
+msgid "Where are we now?"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:89
+msgid ""
+"Milestone 1, feature parity, has been achieved for Python 2.6, 2.7, and "
+"3.3 up to 3.10. This part of Nuitka is already mature, but every new "
+"Python release has lots of new features to add!"
+msgstr ""
+
+#: ../../doc/pages/overview.rst:93
+msgid ""
+"Milestone 2 is always a work in progress, but it has been quite "
+"successful. Nuitka can already produce code that is more than 2 times "
+"faster than CPython. These gains are nowhere near the best gains "
+"possible, but they are solid improvements and will improve further."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:98
+msgid ""
+"Milestone 3, constant folding and propagation, is already in place, and "
+"some control flow optimizations are also applied - but this is just the "
+"start. Constant folding will see big gains as the type inferencing "
+"matures and more variables are opened up to become constants."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:103
+msgid ""
+"For milestone 4 the first steps are in place achieve type inferencing. "
+"The results are encouraging, but it will need a lot more work before this"
+" can be made the default approach. Remember that this is still Python, "
+"Nuitka cannot be guaranteed to perfectly guess type information."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:108
+msgid ""
+"We have yet to start on milestones 5 and 6. There is still quite a way to"
+" go until we hit the \"future\"."
+msgstr ""
+
+#: ../../doc/pages/overview.rst:111
+msgid ""
+"In the meantime you can find its `latest version here "
+"</pages/download.html>`_."
+msgstr ""
+

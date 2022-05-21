@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-13 11:50+0800\n"
+"POT-Creation-Date: 2022-02-22 11:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: xinetzone <735613050@qq.com>, 2022\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../intl/start/user-manual.rst:3
+#: ../../intl/doc/user-manual.rst:3
 msgid "User Manual of Nuitka with the details on how to use it"
 msgstr ""
 
-#: ../../intl/start/user-manual.rst:3
+#: ../../intl/doc/user-manual.rst:3
 msgid "python,compiler,nuitka,manual"
 msgstr ""
 
@@ -143,19 +143,19 @@ msgstr "在 Windows 上，如果 Visual Studio 安装程序提供，可以使用
 msgid "Python: Version 2.6, 2.7 or 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10"
 msgstr "Python 版本：2.6, 2.7 or 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9"
 
-#: ../../doc/doc/user-manual.rst:71
+#: ../../doc/doc/user-manual.rst:73
 msgid ""
 "For Python 3.3/3.4 and *only* those, we need other Python version as a "
 "*compile time* dependency."
 msgstr "对于 Python 3.3/3.4 和只有这些，我们需要其他 Python 版本作为 *编译时* 的依赖。"
 
-#: ../../doc/doc/user-manual.rst:73
+#: ../../doc/doc/user-manual.rst:76
 msgid ""
 "Nuitka itself is fully compatible with all listed versions, but Scons as "
 "an internally used tool is not."
 msgstr "Nuitka 本身与所有列出的版本完全兼容，但 Scons 作为内部使用的工具却不兼容。"
 
-#: ../../doc/doc/user-manual.rst:76
+#: ../../doc/doc/user-manual.rst:79
 msgid ""
 "For these versions, you *need* a Python2 or Python 3.5 or higher "
 "installed as well, but only during the compile time only. That is for use"
@@ -165,33 +165,42 @@ msgstr ""
 "对于这些版本，你 *需要* 也安装 Python2 或 Python3.5 或更高的版本，但只在编译时才需要。这是为了与 Scons（协调 C "
 "语言编译）一起使用，它不支持与 Nuitka 一样的 Python 版本。"
 
-#: ../../doc/doc/user-manual.rst:81
+#: ../../doc/doc/user-manual.rst:84
 msgid ""
 "In addition, on Windows, Python2 cannot be used because ``clcache`` does "
 "not work with it, there a Python 3.5 or higher needs to be installed."
 msgstr "此外，在 Windows 上，不能使用 Python2，因为 ``clcache`` 不与它一起工作，需要安装 Python 3.5 或更高版本。"
 
-#: ../../doc/doc/user-manual.rst:85
+#: ../../doc/doc/user-manual.rst:88
+#, fuzzy
 msgid ""
-"Nuitka finds these needed Python versions (on Windows via registry) and "
-"you shouldn't notice it as long as they are installed."
+"Nuitka finds these needed Python versions (e.g. on Windows via registry) "
+"and you shouldn't notice it as long as they are installed."
 msgstr "Nuitka 找到这些需要的 Python 版本（在 Windows 上通过注册表），只要它们被安装，你就不应该注意到它。"
 
-#: ../../doc/doc/user-manual.rst:89
+#: ../../doc/doc/user-manual.rst:92
+msgid ""
+"Increasingly, other functionality is available when another Python has a "
+"certain package installed. For example, onefile compression will work for"
+" a Python 2.x when another Python is found that has the ``zstandard`` "
+"package installed."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:97
 msgid "Moving binaries to other machines"
 msgstr "将二进制文件转移到其他机器上"
 
-#: ../../doc/doc/user-manual.rst:91
+#: ../../doc/doc/user-manual.rst:99
 msgid ""
 "The created binaries can be made executable independent of the Python "
 "installation, with ``--standalone`` and ``--onefile`` options."
 msgstr "创建的二进制文件可以独立于 Python 的安装，使用 ``--standalone`` 和 ``--onefile`` 选项，使之可执行。"
 
-#: ../../doc/doc/user-manual.rst:95
+#: ../../doc/doc/user-manual.rst:103
 msgid "Binary filename suffix"
 msgstr "二进制文件名后缀"
 
-#: ../../doc/doc/user-manual.rst:97
+#: ../../doc/doc/user-manual.rst:105
 msgid ""
 "The created binaries have an ``.exe`` suffix on Windows. On other "
 "platforms they have no suffix for standalone mode, or ``.bin`` suffix, "
@@ -200,41 +209,41 @@ msgstr ""
 "创建的二进制文件在 Windows 上有一个 ``.exe`` 的后缀。在其他平台上，它们没有独立模式的后缀，或 ``.bin`` "
 "后缀，你可以自由删除或改变，或用 ``-o`` 选项指定。"
 
-#: ../../doc/doc/user-manual.rst:102
+#: ../../doc/doc/user-manual.rst:110
 msgid ""
 "The suffix for acceleration mode is added just to be sure that the "
 "original script name and the binary name do not ever collide, so we can "
 "safely do an overwrite without destroying the original source file."
 msgstr "添加加速模式的后缀只是为了确保原始脚本名称和二进制名称不会发生冲突，所以我们可以安全地进行覆盖而不破坏原始源文件。"
 
-#: ../../doc/doc/user-manual.rst:107
+#: ../../doc/doc/user-manual.rst:115
 msgid "It **has to** be CPython, Anaconda Python."
 msgstr "它 **必须** 是 CPython，Anaconda Python。"
 
-#: ../../doc/doc/user-manual.rst:109
+#: ../../doc/doc/user-manual.rst:117
 msgid ""
 "You need the standard Python implementation, called \"CPython\", to "
 "execute Nuitka, because it is closely tied to implementation details of "
 "it."
 msgstr "你需要标准的 Python 实现，称为 \"CPython\"，来执行 Nuitka，因为它与它的实现细节紧密相连。"
 
-#: ../../doc/doc/user-manual.rst:113
+#: ../../doc/doc/user-manual.rst:121
 msgid "It **cannot be** from Windows app store"
 msgstr "它不能从 Windows 应用商店获得。"
 
-#: ../../doc/doc/user-manual.rst:115
+#: ../../doc/doc/user-manual.rst:123
 msgid ""
 "It is known that Windows app store Python definitely does not work, it's "
 "checked against. And on macOS \"pyenv\" likely does **not** work."
 msgstr "众所周知，Windows 应用商店的 Python 肯定不工作，它被检查过。而在 macOS 上，\"pyenv\" 可能不会工作。"
 
-#: ../../doc/doc/user-manual.rst:119
+#: ../../doc/doc/user-manual.rst:127
 msgid ""
 "Operating System: Linux, FreeBSD, NetBSD, macOS X, and Windows (32/64 "
 "bits)."
 msgstr "操作系统：Linux、FreeBSD、NetBSD、macOS X 和 Windows（32/64 位）。"
 
-#: ../../doc/doc/user-manual.rst:122
+#: ../../doc/doc/user-manual.rst:130
 msgid ""
 "Others may work as well. The portability is expected to be generally "
 "good, but the e.g. Scons usage may have to be adapted. Make sure to match"
@@ -244,11 +253,11 @@ msgstr ""
 "其他的也可能起作用。预计可移植性总体上是好的，但如 Scons 的使用可能要进行调整。确保与 Windows 的 Python 和 C "
 "编译器架构相匹配，否则你会得到神秘的错误信息。"
 
-#: ../../doc/doc/user-manual.rst:127
+#: ../../doc/doc/user-manual.rst:135
 msgid "Architectures: x86, x86_64 (amd64), and arm, likely many more"
 msgstr "架构：x86、x86_64（amd64）和 arm，可能还有更多的架构"
 
-#: ../../doc/doc/user-manual.rst:129
+#: ../../doc/doc/user-manual.rst:137
 msgid ""
 "Other architectures are expected to also work, out of the box, as Nuitka "
 "is generally not using any hardware specifics. These are just the ones "
@@ -258,13 +267,13 @@ msgstr ""
 "其他架构预计也能工作，开箱即用，因为 Nuitka 一般不使用任何硬件特性。这些只是经过测试的、已知的好东西。我们欢迎反馈。一般来说，Debian"
 " 支持的架构也可以被认为是好的，并且经过测试。"
 
-#: ../../doc/doc/user-manual.rst:137
+#: ../../doc/doc/user-manual.rst:145
 msgid ""
 "Support for this C11 is a given with gcc 5.x or higher or any clang "
 "version."
 msgstr "使用 gcc 5.x 或更高版本或任何 clang 版本，对这个 C11 的支持是必然的。"
 
-#: ../../doc/doc/user-manual.rst:140
+#: ../../doc/doc/user-manual.rst:148
 msgid ""
 "The MSVC compiler doesn't do it yet. But as a workaround, as the C++03 "
 "language standard is very overlapping with C11, it is then used instead "
@@ -274,7 +283,7 @@ msgstr ""
 "MSVC 的编译器还没有做到这一点。但作为一种变通方法，由于 C++03 语言标准与 C11 非常重合，然后在 C "
 "编译器太旧的地方用它代替。Nuitka 在过去需要一个 C++ 编译器，但它改变了。"
 
-#: ../../doc/doc/user-manual.rst:147
+#: ../../doc/doc/user-manual.rst:155
 msgid ""
 "Download for free from https://www.visualstudio.com/en-us/downloads"
 "/download-visual-studio-vs.aspx (the community editions work just fine)."
@@ -282,7 +291,7 @@ msgstr ""
 "从 https://www.visualstudio.com/en-us/downloads/download-visual-studio-"
 "vs.aspx 免费下载（社区版可以正常使用）。"
 
-#: ../../doc/doc/user-manual.rst:151
+#: ../../doc/doc/user-manual.rst:159
 msgid ""
 "The latest version is recommended but not required. On the other hand, "
 "there is no need to except pre-Windows 10 support, and they might work "
@@ -290,11 +299,11 @@ msgid ""
 "commercial users."
 msgstr "建议使用最新版本，但不是必须的。另一方面，不需要除 Windows 10 之前的支持，它们可能对你有用，但对这些配置的支持只提供给商业用户。"
 
-#: ../../doc/doc/user-manual.rst:157
+#: ../../doc/doc/user-manual.rst:165
 msgid "Command Line"
 msgstr "命令行"
 
-#: ../../doc/doc/user-manual.rst:159
+#: ../../doc/doc/user-manual.rst:167
 msgid ""
 "The recommended way of executing Nuitka is ``<the_right_python> -m "
 "nuitka`` to be absolutely certain which Python interpreter you are using,"
@@ -303,7 +312,7 @@ msgstr ""
 "推荐执行 Nuitka 的方式是 ``<the_right_python> -m nuitka``，以绝对确定你使用的是哪种 Python "
 "解释器，这样更容易与 Nuitka 的内容相匹配。"
 
-#: ../../doc/doc/user-manual.rst:163
+#: ../../doc/doc/user-manual.rst:171
 msgid ""
 "The next best way of executing Nuitka bare that is from a source checkout"
 " or archive, with no environment variable changes, most noteworthy, you "
@@ -316,45 +325,45 @@ msgstr ""
 "``PYTHONPATH``。你只需直接执行 ``nuitka`` 和 ``nuitka-run`` 脚本，不需要对环境做任何改变。你可能想把 "
 "``bin`` 目录添加到你的 ``PATH`` 中，以方便你使用，但这一步是可选的。"
 
-#: ../../doc/doc/user-manual.rst:171
+#: ../../doc/doc/user-manual.rst:179
 msgid ""
 "Moreover, if you want to execute with the right interpreter, in that "
 "case, be sure to execute ``<the_right_python> bin/nuitka`` and be good."
 msgstr "此外，如果你想用正确的解释器执行，在这种情况下，一定要执行 ``<the_right_python> bin/nuitka``，就可以了。"
 
-#: ../../doc/doc/user-manual.rst:174
+#: ../../doc/doc/user-manual.rst:182
 msgid "Pick the right Interpreter"
 msgstr "挑选合适的解释器"
 
-#: ../../doc/doc/user-manual.rst:176
+#: ../../doc/doc/user-manual.rst:184
 msgid ""
 "If you encounter a ``SyntaxError`` you absolutely most certainly have "
 "picked the wrong interpreter for the program you are compiling."
 msgstr "如果你遇到一个 ``SyntaxError``，你绝对是为你正在编译的程序选择了错误的解释器。"
 
-#: ../../doc/doc/user-manual.rst:179
+#: ../../doc/doc/user-manual.rst:187
 msgid "Nuitka has a ``--help`` option to output what it can do:"
 msgstr "Nuitka 有一个 ``--help`` 选项来输出它能做什么。"
 
-#: ../../doc/doc/user-manual.rst:185
+#: ../../doc/doc/user-manual.rst:193
 msgid ""
 "The ``nuitka-run`` command is the same as ``nuitka``, but with a "
 "different default. It tries to compile *and* directly execute a Python "
 "script:"
 msgstr "``nuitka-run`` 命令与 ``nuitka`` 相同，但有一个不同的默认值。它试图编译和直接执行一个 Python 脚本："
 
-#: ../../doc/doc/user-manual.rst:193
+#: ../../doc/doc/user-manual.rst:201
 msgid ""
 "This option that is different is ``--run``, and passing on arguments "
 "after the first non-option to the created binary, so it is somewhat more "
 "similar to what plain ``python`` will do."
 msgstr "这个不同的选项是 ``--run``，并在第一个非选项之后向创建的二进制文件传递参数，所以它与普通的 ``python`` 会做的事情有些类似。"
 
-#: ../../doc/doc/user-manual.rst:198
+#: ../../doc/doc/user-manual.rst:206
 msgid "Installation"
 msgstr "安装"
 
-#: ../../doc/doc/user-manual.rst:200
+#: ../../doc/doc/user-manual.rst:208
 #, fuzzy
 msgid ""
 "For most systems, there will be packages on the `download page "
@@ -367,23 +376,23 @@ msgstr ""
 "上会有软件包。但你也可以像上面描述的那样从源代码中安装它，但也像其他 Python 程序一样，可以通过正常的 ``python setup.py "
 "install`` 程序来安装。"
 
-#: ../../doc/doc/user-manual.rst:207
+#: ../../doc/doc/user-manual.rst:215
 msgid "License"
 msgstr "许可证"
 
-#: ../../doc/doc/user-manual.rst:209
+#: ../../doc/doc/user-manual.rst:217
 msgid ""
 "Nuitka is licensed under the Apache License, Version 2.0; you may not use"
 " it except in compliance with the License."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:212
+#: ../../doc/doc/user-manual.rst:220
 msgid ""
 "You may obtain a copy of the License at "
 "http://www.apache.org/licenses/LICENSE-2.0"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:215
+#: ../../doc/doc/user-manual.rst:223
 msgid ""
 "Unless required by applicable law or agreed to in writing, software "
 "distributed under the License is distributed on an \"AS IS\" BASIS, "
@@ -392,81 +401,82 @@ msgid ""
 "limitations under the License."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:223
+#: ../../doc/doc/user-manual.rst:231
 msgid "Tutorial Setup and build on Windows"
 msgstr "教程设置和在 Windows 上构建"
 
-#: ../../doc/doc/user-manual.rst:225
+#: ../../doc/doc/user-manual.rst:233
 msgid ""
 "This is basic steps if you have nothing installed, of course if you have "
 "any of the parts, just skip it."
 msgstr "这是基本步骤，如果你什么都没有安装，当然如果你有任何一个零件，就跳过它。"
 
-#: ../../doc/doc/user-manual.rst:229
+#: ../../doc/doc/user-manual.rst:237
 msgid "Setup"
 msgstr "设置"
 
-#: ../../doc/doc/user-manual.rst:232
+#: ../../doc/doc/user-manual.rst:240
 msgid "Install Python"
 msgstr "安装 Python"
 
-#: ../../doc/doc/user-manual.rst:234
-msgid "Download and install from https://www.python.org/downloads/windows"
+#: ../../doc/doc/user-manual.rst:242
+msgid "Download and install Python from https://www.python.org/downloads/windows"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:236
+#: ../../doc/doc/user-manual.rst:245
 msgid ""
 "Select one of ``Windows x86-64 web-based installer`` (64 bits Python, "
 "recommended) or ``x86 executable`` (32 bits Python) installer."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:239
-msgid "Verify using command ``python --version``."
-msgstr ""
+#: ../../doc/doc/user-manual.rst:248
+#, fuzzy
+msgid "Verify it's working using command ``python --version``."
+msgstr "使用命令 ``python -m nuitka --version`` 进行验证。"
 
-#: ../../doc/doc/user-manual.rst:242
+#: ../../doc/doc/user-manual.rst:251
 msgid "Install Nuitka"
 msgstr "安装 Nuitka"
 
-#: ../../doc/doc/user-manual.rst:244
+#: ../../doc/doc/user-manual.rst:253
 msgid "``python -m pip install nuitka``"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:246
+#: ../../doc/doc/user-manual.rst:255
 msgid "Verify using command ``python -m nuitka --version``"
 msgstr "使用命令 ``python -m nuitka --version`` 进行验证。"
 
-#: ../../doc/doc/user-manual.rst:249
+#: ../../doc/doc/user-manual.rst:258
 msgid "Write some code and test"
 msgstr "编写一些代码并进行测试"
 
-#: ../../doc/doc/user-manual.rst:252
+#: ../../doc/doc/user-manual.rst:261
 msgid "Create a folder for the Python code"
 msgstr "为 Python 代码创建一个文件夹"
 
-#: ../../doc/doc/user-manual.rst:254
-msgid "mkdir HelloWorld"
+#: ../../doc/doc/user-manual.rst:263
+msgid "``mkdir`` HelloWorld"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:256
+#: ../../doc/doc/user-manual.rst:265
 msgid "make a python file named **hello.py**"
 msgstr "创建名为 **hello.py** 的 Python 文件"
 
-#: ../../doc/doc/user-manual.rst:272
+#: ../../doc/doc/user-manual.rst:281
 msgid "Test your program"
 msgstr "测试你的程序"
 
-#: ../../doc/doc/user-manual.rst:274
+#: ../../doc/doc/user-manual.rst:283
 msgid ""
 "Do as you normally would. Running Nuitka on code that works incorrectly "
 "is not easier to debug."
 msgstr "像平常那样做。在工作不正确的代码上运行 Nuitka，并不容易调试。"
 
-#: ../../doc/doc/user-manual.rst:284
+#: ../../doc/doc/user-manual.rst:293
 msgid "Build it using"
 msgstr "采用以下方式构建"
 
-#: ../../doc/doc/user-manual.rst:292
+#: ../../doc/doc/user-manual.rst:301
 msgid ""
 "This will prompt you to download a C caching tool (to speed up repeated "
 "compilation of generated C code) and a MinGW64 based C compiler unless "
@@ -475,19 +485,19 @@ msgstr ""
 "这将提示你下载一个 C 语言缓存工具（以加速重复编译生成的 C 代码）和一个基于 MinGW64 的 C 语言编译器，除非你已经安装了合适的 "
 "MSVC。对这两个问题都说 ``yes``。"
 
-#: ../../doc/doc/user-manual.rst:298
+#: ../../doc/doc/user-manual.rst:307
 msgid "Run it"
 msgstr "运行它"
 
-#: ../../doc/doc/user-manual.rst:300
+#: ../../doc/doc/user-manual.rst:309
 msgid "Execute the ``hello.exe`` created near ``hello.py``."
 msgstr "执行在 ``hello.py`` 附近创建的 ``hello.exe``。"
 
-#: ../../doc/doc/user-manual.rst:303
+#: ../../doc/doc/user-manual.rst:312
 msgid "Distribute"
 msgstr "分发"
 
-#: ../../doc/doc/user-manual.rst:305
+#: ../../doc/doc/user-manual.rst:314
 msgid ""
 "To distribute, build with ``--standalone`` option, which will not output "
 "a single executable, but a whole folder. Copy the resulting "
@@ -496,7 +506,7 @@ msgstr ""
 "要分发，用 ``--standalone`` 选项构建，这不会输出一个单一的可执行文件，而是整个文件夹。将生成的 ``hello.dist`` "
 "文件夹复制到另一台机器上并运行它。"
 
-#: ../../doc/doc/user-manual.rst:309
+#: ../../doc/doc/user-manual.rst:318
 msgid ""
 "You may also try ``--onefile`` which does create a single file, but make "
 "sure that the mere standalone is working, before turning to it, as it "
@@ -505,21 +515,21 @@ msgstr ""
 "你也可以尝试 "
 "``--onefile``，它确实创建了一个单一的文件，但在转向它之前，要确保单纯的独立运行，因为它将使调试更加困难，例如在数据文件丢失的情况下。"
 
-#: ../../doc/doc/user-manual.rst:315
+#: ../../doc/doc/user-manual.rst:324
 msgid "Use Cases"
 msgstr "用例"
 
-#: ../../doc/doc/user-manual.rst:318
+#: ../../doc/doc/user-manual.rst:327
 msgid "Use Case 1 - Program compilation with all modules embedded"
 msgstr "用例 1 - 嵌入所有模块的程序编译"
 
-#: ../../doc/doc/user-manual.rst:320
+#: ../../doc/doc/user-manual.rst:329
 msgid ""
 "If you want to compile a whole program recursively, and not only the "
 "single file that is the main program, do it like this:"
 msgstr "如果你想递归地编译整个程序，而不是只编译作为主程序的单个文件，可以这样做："
 
-#: ../../doc/doc/user-manual.rst:329
+#: ../../doc/doc/user-manual.rst:338
 msgid ""
 "There are more fine grained controls than ``--follow-imports`` available."
 " Consider the output of ``nuitka --help``. Including less modules into "
@@ -529,7 +539,7 @@ msgstr ""
 "有比 ``--follow-imports``  更精细的控制。考虑一下 ``nuitka --help`` "
 "的输出。在编译中包括更少的模块，而使用正常的 Python 进行编译，会使编译速度更快。"
 
-#: ../../doc/doc/user-manual.rst:334
+#: ../../doc/doc/user-manual.rst:343
 msgid ""
 "In case you have a source directory with dynamically loaded files, i.e. "
 "one which cannot be found by recursing after normal import statements via"
@@ -539,13 +549,13 @@ msgstr ""
 "如果你有一个带有动态加载文件的源目录，即通过 ``PYTHONPATH`` "
 "正常导入语句后无法找到的目录（这将是推荐的方式），你总是可以要求一个特定的目录也应包括在可执行文件中："
 
-#: ../../doc/doc/user-manual.rst:346
+#: ../../doc/doc/user-manual.rst:355
 msgid ""
 "If you don't do any dynamic imports, simply setting your ``PYTHONPATH`` "
 "at compilation time is what you should do."
 msgstr "如果你不做任何动态导入，只需在编译时设置你的 ``PYTHONPATH`` 就可以了。"
 
-#: ../../doc/doc/user-manual.rst:349
+#: ../../doc/doc/user-manual.rst:358
 msgid ""
 "Use ``--include-plugin-directory`` only if you make ``__import__()`` "
 "calls that Nuitka cannot predict, because they e.g. depend on command "
@@ -554,19 +564,19 @@ msgstr ""
 "只有在你进行 Nuitka 无法预测的 ``__import__()`` 调用时，才使用 ``--include-plugin-"
 "directory``，因为它们依赖于命令行参数。Nuitka 也会警告这些，并指出该选项。"
 
-#: ../../doc/doc/user-manual.rst:356
+#: ../../doc/doc/user-manual.rst:365
 msgid ""
 "The resulting filename will be ``program.exe`` on Windows, "
 "``program.bin`` on other platforms."
 msgstr "产生的文件名在 Windows 上将是 ``program.exe``，在其他平台上是 ``program.bin``。"
 
-#: ../../doc/doc/user-manual.rst:361
+#: ../../doc/doc/user-manual.rst:370
 msgid ""
 "The resulting binary still depend on CPython and used C extension modules"
 " being installed."
 msgstr "产生的二进制文件仍然依赖于 CPython 和使用的 C 扩展模块被安装。"
 
-#: ../../doc/doc/user-manual.rst:364
+#: ../../doc/doc/user-manual.rst:373
 msgid ""
 "If you want to be able to copy it to another machine, use "
 "``--standalone`` and copy the created ``program.dist`` directory and "
@@ -576,29 +586,29 @@ msgstr ""
 "如果你想能够把它复制到另一台机器上，使用 ``--standalone`` 并复制创建的 ``program.dist`` 目录并执行放在里面的 "
 "``program.exe`` （Windows）或 ``program`` （其他平台）\""
 
-#: ../../doc/doc/user-manual.rst:370
+#: ../../doc/doc/user-manual.rst:379
 msgid "Use Case 2 - Extension Module compilation"
 msgstr "用例2 -- 扩展模块的编译"
 
-#: ../../doc/doc/user-manual.rst:372
+#: ../../doc/doc/user-manual.rst:381
 msgid ""
 "If you want to compile a single extension module, all you have to do is "
 "this:"
 msgstr "如果你想编译一个单一的扩展模块，你所要做的就是这样："
 
-#: ../../doc/doc/user-manual.rst:379
+#: ../../doc/doc/user-manual.rst:388
 msgid ""
 "The resulting file ``some_module.so`` can then be used instead of "
 "``some_module.py``."
 msgstr "产生的文件 ``some_module.so`` 就可以代替 ``some_module.py`` 使用。"
 
-#: ../../doc/doc/user-manual.rst:384
+#: ../../doc/doc/user-manual.rst:393
 msgid ""
 "It's left as an exercise to the reader, to find out what happens if both "
 "are present."
 msgstr "这是留给读者的一个练习，以找出如果两者都存在会发生什么。"
 
-#: ../../doc/doc/user-manual.rst:389
+#: ../../doc/doc/user-manual.rst:398
 msgid ""
 "The option ``--follow-imports`` and other variants work as well, but the "
 "included modules will only become importable *after* you imported the "
@@ -607,23 +617,23 @@ msgstr ""
 "选项 ``--follow-imports`` 和其他变体也可以工作，但所包含的模块只有在你导入了 ``some_module`` "
 "的名字之后才会变得可以导入。"
 
-#: ../../doc/doc/user-manual.rst:395
+#: ../../doc/doc/user-manual.rst:404
 msgid ""
 "The resulting extension module can only be loaded into a CPython of the "
 "same version and doesn't include other extension modules."
 msgstr "产生的扩展模块只能加载到同一版本的 CPython 中，并且不包括其他扩展模块。"
 
-#: ../../doc/doc/user-manual.rst:399
+#: ../../doc/doc/user-manual.rst:408
 msgid "Use Case 3 - Package compilation"
 msgstr "用例3--软件包的编译"
 
-#: ../../doc/doc/user-manual.rst:401
+#: ../../doc/doc/user-manual.rst:410
 msgid ""
 "If you need to compile a whole package and embed all modules, that is "
 "also feasible, use Nuitka like this:"
 msgstr "如果你需要编译整个软件包并嵌入所有模块，那也是可行的，像这样使用 Nuitka："
 
-#: ../../doc/doc/user-manual.rst:410
+#: ../../doc/doc/user-manual.rst:419
 msgid ""
 "The inclusion of the package contents needs to be provided manually, "
 "otherwise, the package is empty. You can be more specific if you want, "
@@ -632,17 +642,17 @@ msgid ""
 " approach."
 msgstr "包内容的包含需要手动提供，否则，包是空的。如果你愿意，你可以更具体一些，只包括一部分。位于包内的数据文件不会被这个过程嵌入，你需要用这种方法自己复制它们。"
 
-#: ../../doc/doc/user-manual.rst:417
+#: ../../doc/doc/user-manual.rst:426
 msgid "Use Case 4 - Program Distribution"
 msgstr "用例4--程序分发"
 
-#: ../../doc/doc/user-manual.rst:419
+#: ../../doc/doc/user-manual.rst:428
 msgid ""
 "For distribution to other systems, there is the standalone mode which "
 "produces a folder for which you can specify ``--standalone``."
 msgstr "对于分发到其他系统，有一种独立模式，它产生一个文件夹，你可以指定 ``--standalone``。"
 
-#: ../../doc/doc/user-manual.rst:426
+#: ../../doc/doc/user-manual.rst:435
 msgid ""
 "Follow all imports is default in this mode. You can selectively exclude "
 "modules by specifically saying ``--nofollow-import-to``, but then an "
@@ -652,7 +662,7 @@ msgstr ""
 "在这种模式下，\"跟随所有 import\" 是默认的。你可以有选择地排除模块，特别是说 ``--nofollow-import-"
 "to``，但是当在程序运行时试图导入它时，会出现 ``ImportError``。"
 
-#: ../../doc/doc/user-manual.rst:431
+#: ../../doc/doc/user-manual.rst:440
 msgid ""
 "For data files to be included, use the option ``--include-data-"
 "file=<source>=<target>`` where the source is a file system path, but "
@@ -664,7 +674,7 @@ msgstr ""
 "是一个文件系统路径，但 ``target`` "
 "必须指定为相对路径。对于单机版，你也可以手动复制它们，但这可能会做额外的检查，而对于单文件模式，不可能有手动复制。"
 
-#: ../../doc/doc/user-manual.rst:437
+#: ../../doc/doc/user-manual.rst:446
 msgid ""
 "To copy some or all file in a directory, use the option ``--include-data-"
 "file=/etc/*.txt=etc/`` where you get to specify shell patterns for the "
@@ -674,7 +684,7 @@ msgstr ""
 "要复制一个目录中的部分或全部文件，使用选项 ``--include-data-file=/etc/*.txt=etc/``，你可以为这些文件指定 "
 "shell 模式，以及用尾部斜线表示的放置它们的子目录。"
 
-#: ../../doc/doc/user-manual.rst:442
+#: ../../doc/doc/user-manual.rst:451
 msgid ""
 "To copy a whole folder with all files, you can use ``--include-data-"
 "dir=/path/to/images=images`` which will copy all files including a "
@@ -684,7 +694,7 @@ msgstr ""
 "要复制整个文件夹的所有文件，你可以使用 ``--include-data-"
 "dir=/path/to/images=images``，这将复制所有文件，包括潜在的子目录结构。你不能在这里进行过滤，也就是说，如果你只想要一个部分的拷贝，请事先删除文件。"
 
-#: ../../doc/doc/user-manual.rst:447
+#: ../../doc/doc/user-manual.rst:456
 msgid ""
 "For package data, there is a better way, using ``--include-package-data``"
 " which detects data files of packages automatically and copies them over."
@@ -693,25 +703,25 @@ msgstr ""
 "对于包的数据，有一个更好的方法，使用 ``--include-package-data``，它可以自动检测包的数据文件并将其复制过来。 "
 "它甚至可以接受 shell 风格的模式。"
 
-#: ../../doc/doc/user-manual.rst:452
+#: ../../doc/doc/user-manual.rst:461
 msgid ""
 "With data files, you are largely on your own. Nuitka keeps track of ones "
 "that are needed by popular packages, but it might be incomplete. Raise "
 "issues if you encounter something in these."
 msgstr "对于数据文件，你在很大程度上是靠自己的。Nuitka 记录了流行软件包所需要的数据，但它可能并不完整。如果你在这些方面遇到了问题，请提出来。"
 
-#: ../../doc/doc/user-manual.rst:456
+#: ../../doc/doc/user-manual.rst:465
 msgid "When that is working, you can use the onefile mode if you so desire."
 msgstr "当这个工作完成后，如果你愿意，你可以使用 ``onefile`` 模式。"
 
-#: ../../doc/doc/user-manual.rst:462
+#: ../../doc/doc/user-manual.rst:471
 msgid ""
 "This will create a single binary, which on Linux will not even unpack "
 "itself, but instead loop back mount its contents as a filesystem and use "
 "that."
 msgstr "这将创建一个单一的二进制文件，在 Linux 上，它甚至不会自己解压，而是将其内容作为一个文件系统循环回装，并使用该文件。"
 
-#: ../../doc/doc/user-manual.rst:473
+#: ../../doc/doc/user-manual.rst:482
 msgid ""
 "There are more platform specific options, e.g. related to icons, splash "
 "screen, and version information, consider the ``--help`` output for the "
@@ -720,82 +730,83 @@ msgstr ""
 "还有更多的平台特定选项，例如与图标、闪屏和版本信息有关的选项，请考虑 ``--help`` 输出以了解这些细节，并查看 \"Good "
 "Looks\" 部分。"
 
-#: ../../doc/doc/user-manual.rst:477
+#: ../../doc/doc/user-manual.rst:486
+#, fuzzy
 msgid ""
 "Again, on Windows, for the temporary file directory, by default the user "
-"one is used, however this is overridable with a path specification given "
-"in ``--windows-onefile-tempdir-spec=%TEMP%\\\\onefile_%PID%_%TIME%`` "
-"which is the default and asserts that the temporary directories created "
-"cannot collide."
+"one is used, however this can be overridden with a path specification "
+"given in ``--windows-onefile-tempdir-"
+"spec=%TEMP%\\\\onefile_%PID%_%TIME%`` which is the default and asserts "
+"that the temporary directories created cannot collide."
 msgstr ""
 "同样，在 Windows 上，对于临时文件目录，默认使用用户的目录，然而这可以用 ``--windows-onefile-tempdir-"
 "spec=%TEMP%\\\\onefile_%PID%_%TIME%`` 中给出的路径规范来覆盖，这是默认的，断言创建的临时目录不能发生冲突。"
 
-#: ../../doc/doc/user-manual.rst:483
+#: ../../doc/doc/user-manual.rst:492
 msgid "Currently these expanded tokens are available:"
 msgstr "目前，这些扩大的 token 可以使用。"
 
-#: ../../doc/doc/user-manual.rst:486
+#: ../../doc/doc/user-manual.rst:495
 msgid "Token"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:486 ../../doc/doc/user-manual.rst:838
+#: ../../doc/doc/user-manual.rst:495 ../../doc/doc/user-manual.rst:890
 msgid "What this Expands to"
 msgstr "这将扩展到什么？"
 
-#: ../../doc/doc/user-manual.rst:486 ../../doc/doc/user-manual.rst:838
+#: ../../doc/doc/user-manual.rst:495 ../../doc/doc/user-manual.rst:890
 msgid "Example"
 msgstr "示例"
 
-#: ../../doc/doc/user-manual.rst:488
+#: ../../doc/doc/user-manual.rst:497
 msgid "%TEMP%"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:488
+#: ../../doc/doc/user-manual.rst:497
 msgid "User temporary file directory"
 msgstr "用户临时文件目录"
 
-#: ../../doc/doc/user-manual.rst:488
+#: ../../doc/doc/user-manual.rst:497
 msgid "C:\\Users\\...\\AppData\\Locals\\Temp"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:490
+#: ../../doc/doc/user-manual.rst:499
 msgid "%PID%"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:490
+#: ../../doc/doc/user-manual.rst:499
 msgid "Process ID"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:490
+#: ../../doc/doc/user-manual.rst:499
 msgid "2772"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:492
+#: ../../doc/doc/user-manual.rst:501
 msgid "%TIME%"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:492
+#: ../../doc/doc/user-manual.rst:501
 msgid "Time in seconds since the epoch."
 msgstr "自纪元以来的时间，以秒为单位。"
 
-#: ../../doc/doc/user-manual.rst:492
+#: ../../doc/doc/user-manual.rst:501
 msgid "1299852985"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:494
+#: ../../doc/doc/user-manual.rst:503
 msgid "%PROGRAM%"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:494
+#: ../../doc/doc/user-manual.rst:503
 msgid "Full program filename of executable."
 msgstr "可执行文件的完整程序文件名。"
 
-#: ../../doc/doc/user-manual.rst:494
+#: ../../doc/doc/user-manual.rst:503
 msgid "C:\\SomeWhere\\YourOnefile.exe"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:499
+#: ../../doc/doc/user-manual.rst:508
 msgid ""
 "It is your responsibility to make the path provided unique, on Windows a "
 "running program will be locked, and while using a fixed folder name is "
@@ -805,7 +816,7 @@ msgstr ""
 "你有责任使提供的路径是唯一的，在 Windows "
 "上，一个正在运行的程序将被锁定，虽然使用一个固定的文件夹名称是可能的，但在这种情况下，它可能导致锁定问题，即程序被重新启动。"
 
-#: ../../doc/doc/user-manual.rst:504
+#: ../../doc/doc/user-manual.rst:513
 msgid ""
 "Usually you need to use ``%TIME%`` or at least ``%PID%`` to make a path "
 "unique, and this is mainly intended for use cases, where e.g. you want "
@@ -814,11 +825,11 @@ msgstr ""
 "通常你需要使用 ``%TIME%`` 或者至少使用 ``%PID%`` "
 "来使路径唯一，这主要是针对使用情况的，例如你希望事物驻留在你选择的地方或者遵守你的命名惯例。"
 
-#: ../../doc/doc/user-manual.rst:510
+#: ../../doc/doc/user-manual.rst:519
 msgid "Use Case 5 - Setuptools Wheels"
 msgstr "用例5 - Setuptools 轮子"
 
-#: ../../doc/doc/user-manual.rst:512
+#: ../../doc/doc/user-manual.rst:521
 msgid ""
 "If you have a ``setup.py``, ``setup.cfg`` or ``pyproject.toml`` driven "
 "creation of wheels for your software in place, putting Nuitka to use is "
@@ -827,7 +838,7 @@ msgstr ""
 "如果你有一个 ``setup.py``、``setup.cfg`` 或 ``pyproject.toml`` 驱动的为你的软件创建轮子的地方，把 "
 "Nuitka 用起来是非常容易的。"
 
-#: ../../doc/doc/user-manual.rst:516
+#: ../../doc/doc/user-manual.rst:525
 msgid ""
 "Lets start with the most common ``setuptools`` approach, you can - having"
 " Nuitka installed of course, simply execute the target ``bdist_nuitka`` "
@@ -837,13 +848,13 @@ msgstr ""
 "让我们从最常见的 ``setuptools`` 方法开始，你可以--当然是安装了 Nuitka，简单地执行目标 ``bdist_nuitka`` "
 "而不是 ``bdist_wheel``。它接受所有的选项，并允许你指定一些特定于 Nuitka 的内容。"
 
-#: ../../doc/doc/user-manual.rst:562
+#: ../../doc/doc/user-manual.rst:571
 msgid ""
 "If for some reason, you cannot or do not what to change the target, you "
 "can add this to your ``setup.py``."
 msgstr "如果由于某种原因，你不能或不愿意改变目标，你可以把这个添加到你的 ``setup.py`` 中。"
 
-#: ../../doc/doc/user-manual.rst:575
+#: ../../doc/doc/user-manual.rst:584
 msgid ""
 "To temporarily disable the compilation, you could remove above line, or "
 "edit the value to ``False`` by or take its value from an environment "
@@ -853,11 +864,11 @@ msgstr ""
 "为了暂时禁止编译，你可以删除上面这一行，或者把它的值编辑成 ``False``，或者从环境变量中取值，如果你选择的话，例如 "
 "``bool(os.environ.get(\"USE_NUITKA\", \"True\"))``。这由你决定。"
 
-#: ../../doc/doc/user-manual.rst:580
+#: ../../doc/doc/user-manual.rst:589
 msgid "Or you could put it in your ``setup.cfg``"
 msgstr "或者你可以把它放在你的 ``setup.cfg`` 里。"
 
-#: ../../doc/doc/user-manual.rst:587
+#: ../../doc/doc/user-manual.rst:596
 msgid ""
 "And last, but not least, Nuitka also supports the new ``build`` meta, so "
 "when you have a ``pyproject.toml`` already, simple replace or add this "
@@ -866,26 +877,26 @@ msgstr ""
 "最后，但不是最不重要的，Nuitka也支持新的 ``build`` meta，所以当你已经有一个 ``pyproject.toml`` "
 "时，简单替换或添加这个值："
 
-#: ../../doc/doc/user-manual.rst:599
+#: ../../doc/doc/user-manual.rst:608
 msgid "Tweaks"
 msgstr "调整"
 
-#: ../../doc/doc/user-manual.rst:602
+#: ../../doc/doc/user-manual.rst:611
 msgid "Icons"
 msgstr "图标"
 
-#: ../../doc/doc/user-manual.rst:604
+#: ../../doc/doc/user-manual.rst:613
 msgid ""
 "For good looks, you may specify icons. On Windows, you can provide an "
 "icon file, a template executable, or a PNG file. All of these will work "
 "and may even be combined:"
 msgstr "为了好看，你可以指定图标。在 Windows 上，你可以提供一个图标文件、一个可执行模板或一个 PNG 文件。所有这些都可以使用，甚至可以组合使用："
 
-#: ../../doc/doc/user-manual.rst:616
+#: ../../doc/doc/user-manual.rst:625
 msgid "Splash screen"
 msgstr "闪屏"
 
-#: ../../doc/doc/user-manual.rst:618
+#: ../../doc/doc/user-manual.rst:627
 msgid ""
 "Splash screens are useful when program startup is slow. Onefile startup "
 "itself is not slow, but your program may be, and you cannot really know "
@@ -896,7 +907,7 @@ msgstr ""
 "启动本身并不慢，但你的程序可能很慢，而且你无法真正知道所用的电脑会有多快，所以拥有它们也许是个好主意。幸运的是，有了 Nuitka，它们很容易为 "
 "Windows 添加。"
 
-#: ../../doc/doc/user-manual.rst:623
+#: ../../doc/doc/user-manual.rst:632
 msgid ""
 "For splash screen, you need to specify it as an PNG file, and then make "
 "sure to disable the splash screen when your program is ready, e.g. has "
@@ -907,37 +918,38 @@ msgstr ""
 "对于闪屏，你需要将其指定为 PNG "
 "文件，然后确保在你的程序准备好后禁用闪屏，例如已经完成导入，准备好窗口，连接到数据库，并希望闪屏消失。这里我们使用项目语法将代码与创建结合起来，编译时要注意："
 
-#: ../../doc/doc/user-manual.rst:656
+#: ../../doc/doc/user-manual.rst:665
 msgid "Typical Problems"
 msgstr "典型问题"
 
-#: ../../doc/doc/user-manual.rst:659
+#: ../../doc/doc/user-manual.rst:668
 msgid "Memory issues and compiler bugs"
 msgstr "内存问题和编译器错误"
 
-#: ../../doc/doc/user-manual.rst:661
+#: ../../doc/doc/user-manual.rst:670
 msgid ""
 "Sometimes the C compilers will crash saying they cannot allocate memory "
 "or that some input was truncated, or similar error messages, clearly from"
 " it. There are several options you can explore here:"
 msgstr "有时 C 语言编译器会崩溃，说他们不能分配内存，或者一些输入被截断了，或者类似的错误信息，显然是来自于此。这里有几个选择，你可以探索一下："
 
-#: ../../doc/doc/user-manual.rst:666
+#: ../../doc/doc/user-manual.rst:675
 msgid "Ask Nuitka to use less memory"
 msgstr "要求 Nuitka 使用更少的内存"
 
-#: ../../doc/doc/user-manual.rst:668
+#: ../../doc/doc/user-manual.rst:677
+#, fuzzy
 msgid ""
-"There is a dedicated option ``--low-memory`` which influces decisions of "
-"Nuitka, such that it avoids high usage of memory during compilation at "
-"the cost of increased compile time."
+"There is a dedicated option ``--low-memory`` which influences decisions "
+"of Nuitka, such that it avoids high usage of memory during compilation at"
+" the cost of increased compile time."
 msgstr "有一个专门的选项 ``--low-memory``，它影响了 Nuitka 的决策，使其在编译过程中避免大量使用内存，代价是增加编译时间。"
 
-#: ../../doc/doc/user-manual.rst:673
+#: ../../doc/doc/user-manual.rst:682
 msgid "Avoid 32 bit C compiler/assembler memory limits"
 msgstr "避免 32 位 C 语言编译器/汇编器的内存限制"
 
-#: ../../doc/doc/user-manual.rst:675
+#: ../../doc/doc/user-manual.rst:684
 msgid ""
 "Do not use a 32 bits compiler, but a 64 bit one. If you are using Python "
 "with 32 bits on Windows, you most definitely ought to use MSVC as the C "
@@ -949,11 +961,11 @@ msgstr ""
 "编译器，而不是 MinGW64。MSVC 是一个交叉编译器，在该平台上可以比 gcc 使用更多的内存。如果你不在 Windows "
 "上，当然就没有这个选择了。另外，使用 64 位的 Python 也能工作。"
 
-#: ../../doc/doc/user-manual.rst:682
+#: ../../doc/doc/user-manual.rst:691
 msgid "Use LTO compilation or not"
 msgstr "是否使用 LTO 编译"
 
-#: ../../doc/doc/user-manual.rst:684
+#: ../../doc/doc/user-manual.rst:693
 msgid ""
 "With ``--lto=yes`` or ``--lto=no`` you can switch the C compilation to "
 "only produce bytecode, and not assembler code and machine code directly, "
@@ -965,11 +977,11 @@ msgstr ""
 "语言的编译切换到只产生字节码，而不是直接产生汇编码和机器码，但在最后做整个程序的优化。这将大大改变内存的使用，如果你的错误来自汇编器，使用 LTO"
 " 将最能避免这种情况。"
 
-#: ../../doc/doc/user-manual.rst:691
+#: ../../doc/doc/user-manual.rst:700
 msgid "Switch the C compiler to clang"
 msgstr "将 C 语言编译器切换为 clang"
 
-#: ../../doc/doc/user-manual.rst:693
+#: ../../doc/doc/user-manual.rst:702
 msgid ""
 "People have reported that programs that fail to compile with gcc due to "
 "its bugs or memory usage work fine with clang on Linux. On Windows, this "
@@ -982,11 +994,11 @@ msgstr ""
 "上，这可能仍然是一个选项，但需要先实现自动下载的 gcc，这将包含它。由于 MSVC 无论如何都是已知的更有效的内存，你应该去那里，如果你想使用 "
 "Clang，有支持 MSVC 中包含的那个。"
 
-#: ../../doc/doc/user-manual.rst:701
+#: ../../doc/doc/user-manual.rst:710
 msgid "Add a larger swap file to your embedded Linux"
 msgstr "在你的嵌入式 Linux 中添加一个更大的交换文件"
 
-#: ../../doc/doc/user-manual.rst:703
+#: ../../doc/doc/user-manual.rst:712
 msgid ""
 "On systems with not enough RAM, you need to use swap space. Running out "
 "of it is possibly a cause, and adding more swap space, or one at all, "
@@ -995,11 +1007,11 @@ msgid ""
 "or on top of it."
 msgstr "在内存不足的系统上，你需要使用交换空间。用完了可能是一个原因，增加更多的交换空间，或者根本就没有，可能会解决这个问题，但是要注意，当编译器来回交换时，会使事情变得非常慢，所以要先考虑下一个提示，或者在它的基础上考虑。"
 
-#: ../../doc/doc/user-manual.rst:710
+#: ../../doc/doc/user-manual.rst:719
 msgid "Limit the amount of compilation jobs"
 msgstr "限制编译工作的数量"
 
-#: ../../doc/doc/user-manual.rst:712
+#: ../../doc/doc/user-manual.rst:721
 msgid ""
 "With the ``--jobs`` option of Nuitka, it will not start many C compiler "
 "instances at once, each competing for the scarce resource of RAM. By "
@@ -1010,35 +1022,50 @@ msgstr ""
 "使用 Nuitka 的 ``--jobs`` 选项，它不会同时启动许多 C 编译器实例，每个实例都在争夺稀缺的 RAM "
 "资源。通过选择一个值，只有一个 C 编译器实例将被运行，在一个 8 核系统上，这将减少 8 倍的内存量，所以这是一个自然的选择。"
 
-#: ../../doc/doc/user-manual.rst:719
+#: ../../doc/doc/user-manual.rst:728
 msgid "Dynamic ``sys.path``"
 msgstr "动态 ``sys.path``"
 
-#: ../../doc/doc/user-manual.rst:721
+#: ../../doc/doc/user-manual.rst:730
+#, fuzzy
 msgid ""
 "If your script modifies ``sys.path`` to e.g. insert directories with "
-"source code relative to it, Nuitka will currently not be able to see "
-"those. However, if you set the ``PYTHONPATH`` to the resulting value, you"
-" will be able to compile it."
+"source code relative to it, Nuitka will not be able to see those. "
+"However, if you set the ``PYTHONPATH`` to the resulting value, it will be"
+" able to compile it and find the used modules from these paths as well."
 msgstr ""
 "如果你的脚本修改了 ``sys.path``，例如插入与源代码相对的目录，Nuitka 目前将无法看到这些。然而，如果你将 "
 "``PYTHONPATH`` 设置为结果值，你就可以编译它了。"
 
-#: ../../doc/doc/user-manual.rst:727
+#: ../../doc/doc/user-manual.rst:737
+msgid "Manual Python File Loading"
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:739
+msgid ""
+"A very frequent pattern with private code is that it scans plugin "
+"directories of some kind, and uses ``os.listdir``, checks filenames, and "
+"then opens a file and does ``exec`` on them. This approach is working for"
+" Python code, but for compiled code, you should use this much cleaner "
+"approach, that works for pure Python code and is a lot less vulnerable."
+msgstr ""
+
+#: ../../doc/doc/user-manual.rst:779
 msgid "Missing data files in standalone"
 msgstr "单机版中缺少的数据文件"
 
-#: ../../doc/doc/user-manual.rst:729
+#: ../../doc/doc/user-manual.rst:781
+#, fuzzy
 msgid ""
 "If your program fails to file data, it can cause all kinds of different "
-"behaviours, e.g. a package might complain it is not the right version, "
+"behaviors, e.g. a package might complain it is not the right version, "
 "because a ``VERSION`` file check defaulted to unknown. The absence of "
 "icon files or help texts, may raise strange errors."
 msgstr ""
 "如果你的程序不能将数据归档，会导致各种不同的行为，例如，一个软件包可能会抱怨它的版本不对，因为 ``VERSION`` "
 "文件检查默认为未知。没有图标文件或帮助文本，可能会引起奇怪的错误。"
 
-#: ../../doc/doc/user-manual.rst:734
+#: ../../doc/doc/user-manual.rst:786
 msgid ""
 "Often the error paths for files not being present are even buggy and will"
 " reveal programming errors like unbound local variables. Please look "
@@ -1047,17 +1074,17 @@ msgid ""
 " cause."
 msgstr "通常情况下，文件不存在的错误路径甚至是错误的，会暴露出编程错误，如未绑定局部变量。请仔细查看这些异常情况，牢记这可能是原因。如果你的程序没有独立运行，有可能是数据文件的原因。"
 
-#: ../../doc/doc/user-manual.rst:741
+#: ../../doc/doc/user-manual.rst:793
 msgid "Missing DLLs in standalone"
 msgstr "单机中缺少 DLLs"
 
-#: ../../doc/doc/user-manual.rst:743
+#: ../../doc/doc/user-manual.rst:795
 msgid ""
 "Nuitka has plugins that deal with copying DLLs. For NumPy, SciPy, "
 "Tkinter, etc."
 msgstr "Nuitka 有处理复制 DLLs 的插件。对于 NumPy、SciPy、Tkinter 等。"
 
-#: ../../doc/doc/user-manual.rst:746
+#: ../../doc/doc/user-manual.rst:798
 msgid ""
 "These need special treatment to be able to run on other systems. Manually"
 " copying them is not enough and will given strange errors. Sometimes "
@@ -1067,11 +1094,11 @@ msgstr ""
 "这些需要特殊处理，以便能够在其他系统上运行。手动复制它们是不够的，而且会产生奇怪的错误。有时较新版本的软件包，特别是 NumPy "
 "可能不被支持。在这种情况下，你将不得不提出一个问题，并使用较旧的版本。"
 
-#: ../../doc/doc/user-manual.rst:752
+#: ../../doc/doc/user-manual.rst:804
 msgid "Dependency creep in standalone"
 msgstr "单机中的依赖性爬升"
 
-#: ../../doc/doc/user-manual.rst:754
+#: ../../doc/doc/user-manual.rst:806
 msgid ""
 "Some packages are a single import, but to Nuitka mean that more than a "
 "thousand packages (literally) are to be included. The prime example of "
@@ -1082,16 +1109,17 @@ msgstr ""
 "有些包是单一的 import，但对 Nuitka  来说，意味着要包括一千多个包（字面意思）。最典型的例子是 "
 "Pandas，它确实想插入和使用你能想象到的一切。多个框架用于语法高亮显示一切可以想象的东西，需要时间。"
 
-#: ../../doc/doc/user-manual.rst:760
+#: ../../doc/doc/user-manual.rst:812
 msgid ""
 "Nuitka will have to learn effective caching to deal with this in the "
 "future. Right now, you will have to deal with huge compilation times for "
 "these."
 msgstr "Nuitka 将来必须学习有效的缓存来处理这个问题。现在，你将不得不为这些处理巨大的编译时间。"
 
-#: ../../doc/doc/user-manual.rst:764
+#: ../../doc/doc/user-manual.rst:816
+#, fuzzy
 msgid ""
-"For now, a major weapon in fighting dependency creap should be applied, "
+"For now, a major weapon in fighting dependency creep should be applied, "
 "namely the ``anti-bloat`` plugin, which offers interesting abilities, "
 "that can be put to use and block unneeded imports, giving an error for "
 "where they occur. Use it e.g. like this ``--enable-plugin=anti-bloat "
@@ -1105,11 +1133,11 @@ msgstr ""
 "=anti-bloat --noinclude-pytest-mode=nofollow --noinclude-setuptools-"
 "mode=nofollow`` 并查看其帮助输出。它可以为你选择的每一个模块，例如，也可以强迫 PyQt5 被视为独立模式的卸载。"
 
-#: ../../doc/doc/user-manual.rst:774
+#: ../../doc/doc/user-manual.rst:826
 msgid "Onefile: Finding files"
 msgstr "一体化文件：寻找文件"
 
-#: ../../doc/doc/user-manual.rst:776
+#: ../../doc/doc/user-manual.rst:828
 msgid ""
 "There is a difference between ``sys.argv[0]`` and ``__file__`` of the "
 "main module for onefile more, that is caused by using a bootstrap to a "
@@ -1122,17 +1150,17 @@ msgstr ""
 "之间有差异，那是由于使用引导到临时位置造成的。第一个将是原始的可执行路径，而第二个将是 bootstrap "
 "可执行文件解包到的临时或永久路径。数据文件将在后一个位置，你的原始环境文件将在前一个位置。"
 
-#: ../../doc/doc/user-manual.rst:784
+#: ../../doc/doc/user-manual.rst:836
 msgid ""
 "Given 2 files, one which you expect to be near your executable, and one "
 "which you expect to be inside the onefile binary, access them like this."
 msgstr "给定两个文件，一个是你希望在你的可执行文件附近的，一个是你希望在 onefile 二进制文件内的，像这样访问它们。"
 
-#: ../../doc/doc/user-manual.rst:795
+#: ../../doc/doc/user-manual.rst:847
 msgid "Windows Programs without console give no errors"
 msgstr "没有控制台的 Windows 程序不会出现错误"
 
-#: ../../doc/doc/user-manual.rst:797
+#: ../../doc/doc/user-manual.rst:849
 msgid ""
 "For debugging purposes, remove ``--windows-disable-console`` or use the "
 "options ``--windows-force-stdout-spec`` and ``--windows-force-stderr-"
@@ -1143,31 +1171,32 @@ msgstr ""
 "spec`` 和 ``--windows-force-stderr-spec``，其路径与上述 ``--windows-onefile-"
 "tempdir-spec`` 所记载的相同。"
 
-#: ../../doc/doc/user-manual.rst:804
+#: ../../doc/doc/user-manual.rst:856
 msgid "Tips"
 msgstr "小贴士"
 
-#: ../../doc/doc/user-manual.rst:807
+#: ../../doc/doc/user-manual.rst:859
 msgid "Nuitka Options in the code"
 msgstr "代码中的 Nuitka 选项"
 
-#: ../../doc/doc/user-manual.rst:809
+#: ../../doc/doc/user-manual.rst:861
 msgid ""
 "There is support for conditional options, and options using pre-defined "
 "variables, this is an example:"
 msgstr "支持条件性选项，以及使用预定义变量的选项，这是一个例子："
 
-#: ../../doc/doc/user-manual.rst:824
+#: ../../doc/doc/user-manual.rst:876
 msgid ""
 "The comments must be a start of line, and indentation is to be used, to "
 "end a conditional block, much like in Python. There are currently no "
 "other keywords than the used ones demonstrated above."
 msgstr "注释必须是一个行的开始，并且要使用缩进，以结束一个条件块，就像在 Python 中一样。目前除了上面演示的使用的关键字外，没有其他关键字。"
 
-#: ../../doc/doc/user-manual.rst:828
+#: ../../doc/doc/user-manual.rst:880
+#, fuzzy
 msgid ""
-"You can put abitrary Python expressions there, and if you wanted to e.g. "
-"access a version information of a package, you could simply use "
+"You can put arbitrary Python expressions there, and if you wanted to e.g."
+" access a version information of a package, you could simply use "
 "``__import__(\"module_name\").__version__`` if that would be required to "
 "e.g. enable or disable certain Nuitka settings. The only thing Nuitka "
 "does that makes this not Python expressions, is expanding ``{variable}`` "
@@ -1177,91 +1206,91 @@ msgstr ""
 "``__import__(\"module_name\").__version__``，如果这将是需要的，例如启用或禁用某些 Nuitka "
 "设置。Nuitka 所做的唯一一件事使得这不是 Python 表达式，就是为一组预先定义的变量扩展 ``{variable}``："
 
-#: ../../doc/doc/user-manual.rst:835
+#: ../../doc/doc/user-manual.rst:887
 msgid "Table with supported variables:"
 msgstr "带有支持的变量的表格："
 
-#: ../../doc/doc/user-manual.rst:838
+#: ../../doc/doc/user-manual.rst:890
 msgid "Variable"
 msgstr "变量"
 
-#: ../../doc/doc/user-manual.rst:840
+#: ../../doc/doc/user-manual.rst:892
 msgid "{OS}"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:840
+#: ../../doc/doc/user-manual.rst:892
 msgid "Name of the OS used"
 msgstr "使用的操作系统名称"
 
-#: ../../doc/doc/user-manual.rst:840
+#: ../../doc/doc/user-manual.rst:892
 msgid "Linux, Windows, Darwin, FreeBSD, OpenBSD"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:842
+#: ../../doc/doc/user-manual.rst:894
 msgid "{Version}"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:842
+#: ../../doc/doc/user-manual.rst:894
 msgid "Version of Nuitka"
 msgstr "Nuitka 版本"
 
-#: ../../doc/doc/user-manual.rst:842
+#: ../../doc/doc/user-manual.rst:894
 msgid "e.g. (0, 6, 16)"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:844
+#: ../../doc/doc/user-manual.rst:896
 msgid "{Commercial}"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:844
+#: ../../doc/doc/user-manual.rst:896
 msgid "Version of Nuitka Commercial"
 msgstr "Nuitka 商业版本"
 
-#: ../../doc/doc/user-manual.rst:844
+#: ../../doc/doc/user-manual.rst:896
 msgid "e.g. (0, 9, 4)"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:846
+#: ../../doc/doc/user-manual.rst:898
 msgid "{Arch}"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:846
+#: ../../doc/doc/user-manual.rst:898
 msgid "Architecture used"
 msgstr "所用的架构"
 
-#: ../../doc/doc/user-manual.rst:846
+#: ../../doc/doc/user-manual.rst:898
 msgid "x86_64, arm64, etc."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:848
+#: ../../doc/doc/user-manual.rst:900
 msgid "{MAIN_DIRECTORY}"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:848
+#: ../../doc/doc/user-manual.rst:900
 msgid "Directory of the compiled file"
 msgstr "编译文件的目录"
 
-#: ../../doc/doc/user-manual.rst:848
+#: ../../doc/doc/user-manual.rst:900
 msgid "some_dir/maybe_relative"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:850
+#: ../../doc/doc/user-manual.rst:902
 msgid "{Flavor}"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:850
+#: ../../doc/doc/user-manual.rst:902
 msgid "Variant of Python"
 msgstr "Python 的变体"
 
-#: ../../doc/doc/user-manual.rst:850
+#: ../../doc/doc/user-manual.rst:902
 msgid "e.g. Debian Python, Anaconda Python"
 msgstr "例如：Debian Python, Anaconda Python"
 
-#: ../../doc/doc/user-manual.rst:854
+#: ../../doc/doc/user-manual.rst:906
 msgid "Python command line flags"
 msgstr "Python 命令行旗标"
 
-#: ../../doc/doc/user-manual.rst:856
+#: ../../doc/doc/user-manual.rst:908
 msgid ""
 "For passing things like ``-O`` or ``-S`` to Python, to your compiled "
 "program, there is a command line option name ``--python-flag=`` which "
@@ -1270,15 +1299,15 @@ msgstr ""
 "对于向 Python 传递 ``-O`` 或 ``-S`` 这样的东西，对于你的编译程序，有一个命令行选项名为 ``--python-"
 "flag=`` ，它使 Nuitka 模拟这些选项。"
 
-#: ../../doc/doc/user-manual.rst:860
+#: ../../doc/doc/user-manual.rst:912
 msgid "The most important ones are supported, more can certainly be added."
 msgstr "支持最重要的那些，当然还可以增加更多。"
 
-#: ../../doc/doc/user-manual.rst:863
+#: ../../doc/doc/user-manual.rst:915
 msgid "Caching compilation results"
 msgstr "缓存编译结果"
 
-#: ../../doc/doc/user-manual.rst:865
+#: ../../doc/doc/user-manual.rst:917
 msgid ""
 "The C compiler, when invoked with the same input files, will take a long "
 "time and much CPU to compile over and over. Make sure you are having "
@@ -1291,7 +1320,7 @@ msgstr ""
 "（即使在 Windows 上）。它将使重复编译快得多，即使事情还不是很完美，即程序的改变会导致许多 C "
 "文件的改变，需要重新编译而不是使用缓存的结果\""
 
-#: ../../doc/doc/user-manual.rst:872
+#: ../../doc/doc/user-manual.rst:924
 msgid ""
 "On Windows, with gcc Nuitka supports using ``ccache.exe`` which it will "
 "offer to download from an official source and it automatically. This is "
@@ -1301,27 +1330,28 @@ msgstr ""
 "在 Windows 上，Nuitka 支持使用 ``ccache.exe``，它将提供从官方来源下载，并自动进行。这是在 Windows "
 "上使用它的推荐方式，因为其他版本可能会挂起。"
 
-#: ../../doc/doc/user-manual.rst:877
+#: ../../doc/doc/user-manual.rst:929
+#, fuzzy
 msgid ""
 "Nuitka will pick up ``ccache`` if it's in found in system ``PATH``, and "
 "it will also be possible to provide if by setting "
 "``NUITKA_CCACHE_BINARY`` to the full path of the binary, this is for use "
-"in CI systems."
+"in CI systems where things might be non-standard."
 msgstr ""
 "如果在系统的 ``PATH`` 中找到 ``ccache`` ，Nuitka 就会接收它，也可以通过设置 "
 "``NUITKA_CCACHE_BINARY`` 为二进制的完整路径来提供，这是为了在 CI 系统中使用。"
 
-#: ../../doc/doc/user-manual.rst:882
+#: ../../doc/doc/user-manual.rst:934
 msgid ""
 "For the MSVC compilers and ClangCL setups, using the ``clcache`` is "
 "automatic and included in Nuitka."
 msgstr "对于 MSVC 编译器和 ClangCL 设置，使用 ``clcache`` 是自动的，包含在 Nuitka 中。"
 
-#: ../../doc/doc/user-manual.rst:886
+#: ../../doc/doc/user-manual.rst:938
 msgid "Control where Caches live"
 msgstr "控制缓存的位置"
 
-#: ../../doc/doc/user-manual.rst:888
+#: ../../doc/doc/user-manual.rst:940
 msgid ""
 "The storage for cache results of all kinds, downloads, cached compilation"
 " results from C and Nuitka, is done in a platform dependent directory as "
@@ -1334,11 +1364,11 @@ msgstr ""
 "包决定。然而，你可以通过设置环境变量 ``NUITKA_CACHE_DIR`` "
 "来覆盖它的基本目录。这是为了在主目录不被持久化，但其他路径被持久化的环境中使用。"
 
-#: ../../doc/doc/user-manual.rst:896
+#: ../../doc/doc/user-manual.rst:948
 msgid "Runners"
 msgstr "运行器"
 
-#: ../../doc/doc/user-manual.rst:898
+#: ../../doc/doc/user-manual.rst:950
 #, python-format
 msgid ""
 "Avoid running the ``nuitka`` binary, doing ``python -m nuitka`` will make"
@@ -1353,11 +1383,11 @@ msgstr ""
 " Python3 代码上运行 Nuitka 时，这种情况就会发生，反之亦然。通过明确地调用相同的 Python "
 "解释器二进制文件，你可以完全避免这个问题。"
 
-#: ../../doc/doc/user-manual.rst:907
+#: ../../doc/doc/user-manual.rst:959
 msgid "Fastest C Compilers"
 msgstr "最快的 C 语言编译器"
 
-#: ../../doc/doc/user-manual.rst:909
+#: ../../doc/doc/user-manual.rst:961
 msgid ""
 "The fastest binaries of ``pystone.exe`` on Windows with 64 bits Python "
 "proved to be significantly faster with MinGW64, roughly 20% better score."
@@ -1369,7 +1399,7 @@ msgstr ""
 "明显更快，大概有 20% 的提升。所以推荐使用它，而不是 MSVC。使用 Clang7 的 ``clang-cl.exe`` 比 MSVC "
 "快，但仍然明显比 MinGW64 慢，而且会更难使用，所以不推荐使用。"
 
-#: ../../doc/doc/user-manual.rst:915
+#: ../../doc/doc/user-manual.rst:967
 msgid ""
 "On Linux for ``pystone.bin`` the binary produced by ``clang6`` was faster"
 " than ``gcc-6.3``, but not by a significant margin. Since gcc is more "
@@ -1378,15 +1408,15 @@ msgstr ""
 "在 Linux 上，对于 ``pystone.bin``，由 ``clang6`` 产生的二进制文件比 ``gcc-6.3`` "
 "快，但差距不大。由于 gcc 更多的时候已经安装了，所以现在建议使用它。"
 
-#: ../../doc/doc/user-manual.rst:919
+#: ../../doc/doc/user-manual.rst:971
 msgid "Differences in C compilation times have not yet been examined."
 msgstr "C 语言编译时间的差异还没有被研究。"
 
-#: ../../doc/doc/user-manual.rst:922
+#: ../../doc/doc/user-manual.rst:974
 msgid "Unexpected Slowdowns"
 msgstr "意外的速度减慢"
 
-#: ../../doc/doc/user-manual.rst:924
+#: ../../doc/doc/user-manual.rst:976
 msgid ""
 "Using the Python DLL, like standard CPython does can lead to unexpected "
 "slowdowns, e.g. in uncompiled code that works with Unicode strings. This "
@@ -1397,7 +1427,7 @@ msgstr ""
 "使用Python DLL，就像标准的CPython那样，可能会导致意外的减速，例如在处理 Unicode 字符串的未编译的代码中。这是因为调用 "
 "DLL 而不是驻留在 DLL 中会导致开销，这甚至发生在 DLL 与本身，比一个 Python 全部包含在一个二进制文件中更慢。"
 
-#: ../../doc/doc/user-manual.rst:930
+#: ../../doc/doc/user-manual.rst:982
 msgid ""
 "So if feasible, aim at static linking, which is currently only possible "
 "with Anaconda Python on non-Windows, Debian Python2, self compiled "
@@ -1407,24 +1437,24 @@ msgstr ""
 "所以如果可行的话，以静态链接为目标，目前只有 Anaconda Python 在非 Windows、Debian Python2、自编译的 "
 "Python（不要激活 ``--enable-shared``，不需要），以及用 ``pyenv`` 创建的安装程序可以做到。"
 
-#: ../../doc/doc/user-manual.rst:937
+#: ../../doc/doc/user-manual.rst:989
 msgid ""
 "On Anaconda, you may need to execute ``conda install -c conda-forge "
 "libpython-static``"
 msgstr "在 Anaconda 上，你可能需要执行 ``conda install -c conda-forge libpython-static``"
 
-#: ../../doc/doc/user-manual.rst:941
+#: ../../doc/doc/user-manual.rst:993
 msgid "Standalone executables and dependencies"
 msgstr "独立的可执行文件和依赖性"
 
-#: ../../doc/doc/user-manual.rst:943
+#: ../../doc/doc/user-manual.rst:995
 msgid ""
 "The process of making standalone executables for Windows traditionally "
 "involves using an external dependency walker in order to copy necessary "
 "libraries along with the compiled executables to the distribution folder."
 msgstr "传统上，为 Windows 制作独立可执行文件的过程涉及使用外部依赖性运行器，以便将必要的库与编译的可执行文件一起复制到分发文件夹。"
 
-#: ../../doc/doc/user-manual.rst:948
+#: ../../doc/doc/user-manual.rst:1000
 msgid ""
 "There is plenty of ways to find that something is missing. Do not "
 "manually copy things into the folder, esp. not DLLs, as that's not going "
@@ -1434,11 +1464,11 @@ msgstr ""
 "有很多方法可以发现缺少什么。不要手动复制东西到文件夹中，特别是不要复制 DLL，因为那是行不通的。相反，要做错误报告，让 Nuitka "
 "正确处理这些问题。"
 
-#: ../../doc/doc/user-manual.rst:954
+#: ../../doc/doc/user-manual.rst:1006
 msgid "Windows errors with resources"
 msgstr "资源方面的 Windows 错误"
 
-#: ../../doc/doc/user-manual.rst:956
+#: ../../doc/doc/user-manual.rst:1008
 msgid ""
 "On Windows, the Windows Defender tool and the Windows Indexing Service "
 "both scan the freshly created binaries, while Nuitka wants to work with "
@@ -1449,11 +1479,12 @@ msgstr ""
 "在 Windows 上，Windows Defender 工具和 Windows 索引服务都会扫描刚创建的二进制文件，而 Nuitka "
 "则想与之合作，例如添加更多资源，然后由于持有锁而随机阻止操作。请确保将你的编译阶段排除在这些服务之外。"
 
-#: ../../doc/doc/user-manual.rst:963
-msgid "Windows standalone program redistribuation"
+#: ../../doc/doc/user-manual.rst:1015
+#, fuzzy
+msgid "Windows standalone program redistribution"
 msgstr "Windows 独立程序的重新分配"
 
-#: ../../doc/doc/user-manual.rst:965
+#: ../../doc/doc/user-manual.rst:1017
 msgid ""
 "Whether compiling with MingW or MSVC, the standalone programs have "
 "external dependencies to Visual C Runtime libraries. Nuitka tries to ship"
@@ -1462,16 +1493,17 @@ msgstr ""
 "无论是用 MingW 还是 MSVC 编译，独立程序都对 Visual C Runtime 库有外部依赖性。Nuitka "
 "试图通过从你的系统中复制这些依赖的 DLL 来运送它们。"
 
-#: ../../doc/doc/user-manual.rst:969
+#: ../../doc/doc/user-manual.rst:1021
+#, fuzzy
 msgid ""
 "Beginning with Microsoft Windows 10, Microsoft ships ``ucrt.dll`` "
-"(Universal C Runtime libraries) which rehook calls to ``api-ms-"
+"(Universal C Runtime libraries) which handles calls to ``api-ms-"
 "crt-*.dll``."
 msgstr ""
 "从微软 Windows 10 开始，微软提供的 ``ucrt.dll`` （通用 C 语言运行库）重新钩住了对 ``api-ms-"
 "crt-*.dll`` 的调用。"
 
-#: ../../doc/doc/user-manual.rst:973
+#: ../../doc/doc/user-manual.rst:1025
 msgid ""
 "With earlier Windows platforms (and wine/ReactOS), you should consider "
 "installing Visual C Runtime libraries before executing a Nuitka "
@@ -1480,104 +1512,104 @@ msgstr ""
 "对于早期的 Windows 平台（和 wine/ReactOS），你应该考虑在执行 Nuitka 独立编译程序之前安装 Visual C "
 "Runtime 库。"
 
-#: ../../doc/doc/user-manual.rst:977
+#: ../../doc/doc/user-manual.rst:1029
 msgid ""
 "Depending on the used C compiler, you'll need the following redist "
 "versions:"
 msgstr "根据所使用的C语言编译器，你需要以下的 redist 版本："
 
-#: ../../doc/doc/user-manual.rst:981
+#: ../../doc/doc/user-manual.rst:1033
 msgid "Visual C version"
 msgstr "Visual C 版本"
 
-#: ../../doc/doc/user-manual.rst:981 ../../doc/doc/user-manual.rst:997
+#: ../../doc/doc/user-manual.rst:1033 ../../doc/doc/user-manual.rst:1049
 msgid "Redist Year"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:981 ../../doc/doc/user-manual.rst:997
+#: ../../doc/doc/user-manual.rst:1033 ../../doc/doc/user-manual.rst:1049
 msgid "CPython"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:983
+#: ../../doc/doc/user-manual.rst:1035
 msgid "14.2"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:983
+#: ../../doc/doc/user-manual.rst:1035
 msgid "2019"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:983 ../../doc/doc/user-manual.rst:999
+#: ../../doc/doc/user-manual.rst:1035 ../../doc/doc/user-manual.rst:1051
 msgid "3.5, 3.6, 3.7, 3.8, 3.9, 3.10"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:985
+#: ../../doc/doc/user-manual.rst:1037
 msgid "14.1"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:985
+#: ../../doc/doc/user-manual.rst:1037
 msgid "2017"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:985 ../../doc/doc/user-manual.rst:987
+#: ../../doc/doc/user-manual.rst:1037 ../../doc/doc/user-manual.rst:1039
 msgid "3.5, 3.6, 3.7, 3.8"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:987
+#: ../../doc/doc/user-manual.rst:1039
 msgid "14.0"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:987 ../../doc/doc/user-manual.rst:999
+#: ../../doc/doc/user-manual.rst:1039 ../../doc/doc/user-manual.rst:1051
 msgid "2015"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:989
+#: ../../doc/doc/user-manual.rst:1041
 msgid "10.0"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:989
+#: ../../doc/doc/user-manual.rst:1041
 msgid "2010"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:989
+#: ../../doc/doc/user-manual.rst:1041
 msgid "3.3, 3.4"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:991
+#: ../../doc/doc/user-manual.rst:1043
 msgid "9.0"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:991
+#: ../../doc/doc/user-manual.rst:1043
 msgid "2008"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:991
+#: ../../doc/doc/user-manual.rst:1043
 msgid "2.6, 2.7"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:994
+#: ../../doc/doc/user-manual.rst:1046
 msgid "When using MingGW64, you'll need the following redist versions:"
 msgstr "在使用 MingGW64 时，你需要以下的 redist 版本："
 
-#: ../../doc/doc/user-manual.rst:997
+#: ../../doc/doc/user-manual.rst:1049
 msgid "MingGW64 version"
 msgstr "MingGW64 版本"
 
-#: ../../doc/doc/user-manual.rst:999
+#: ../../doc/doc/user-manual.rst:1051
 msgid "8.1.0"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1002
+#: ../../doc/doc/user-manual.rst:1054
 msgid ""
 "Once the corresponding runtime libraries are installed on the target "
 "system, you may remove all ``api-ms-crt-*.dll`` files from your Nuitka "
 "compiled dist folder."
 msgstr "一旦在目标系统上安装了相应的运行库，你可以从 Nuitka 编译的 dist 文件夹中删除所有 ``api-ms-crt-*.dll`` 文件。"
 
-#: ../../doc/doc/user-manual.rst:1007
+#: ../../doc/doc/user-manual.rst:1059
 msgid "Detecting Nuitka at run time"
 msgstr "在运行时检测 Nuitka"
 
-#: ../../doc/doc/user-manual.rst:1009
+#: ../../doc/doc/user-manual.rst:1061
 msgid ""
 "It doesn't set ``sys.frozen`` unlike other tools. For Nuitka, we have the"
 " module attribute ``__compiled__`` to test if a specific module was "
@@ -1586,11 +1618,11 @@ msgstr ""
 "它不像其他工具那样设置 ``sys.frozen``。对于 Nuitka，我们有模块属性 ``__compiled__`` "
 "来测试特定模块是否被编译。"
 
-#: ../../doc/doc/user-manual.rst:1015
+#: ../../doc/doc/user-manual.rst:1067
 msgid "Performance"
 msgstr "性能"
 
-#: ../../doc/doc/user-manual.rst:1017
+#: ../../doc/doc/user-manual.rst:1069
 msgid ""
 "This chapter gives an overview, of what to currently expect in terms of "
 "performance from Nuitka. It's a work in progress and is updated as we go."
@@ -1600,81 +1632,82 @@ msgstr ""
 "本章概述了目前对 Nuitka 性能的期望。这是一项正在进行中的工作，会随着我们的进展而更新。目前性能测量的重点是 Python 2.7，但 "
 "3.x 将在以后跟进。"
 
-#: ../../doc/doc/user-manual.rst:1023
+#: ../../doc/doc/user-manual.rst:1075
 msgid "pystone results"
 msgstr "pystone 结果"
 
-#: ../../doc/doc/user-manual.rst:1025
+#: ../../doc/doc/user-manual.rst:1077
+#, fuzzy
 msgid ""
 "The results are the top value from this kind of output, running pystone "
 "1000 times and taking the minimal value. The idea is that the fastest run"
-" is most meanigful, and eliminates usage spikes."
+" is most meaningful, and eliminates usage spikes."
 msgstr "结果是这种输出的最高值，运行 pystone 1000 次，取最小值。这个想法是，最快的运行是最有意义的，并消除了使用高峰。"
 
-#: ../../doc/doc/user-manual.rst:1044
+#: ../../doc/doc/user-manual.rst:1096
 msgid "Python"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1044
+#: ../../doc/doc/user-manual.rst:1096
 msgid "Uncompiled"
 msgstr "未编译"
 
-#: ../../doc/doc/user-manual.rst:1044
+#: ../../doc/doc/user-manual.rst:1096
 msgid "Compiled LTO"
 msgstr "编译的 LTO"
 
-#: ../../doc/doc/user-manual.rst:1044
+#: ../../doc/doc/user-manual.rst:1096
 msgid "Compiled PGO"
 msgstr "编译的 PGO"
 
-#: ../../doc/doc/user-manual.rst:1046
+#: ../../doc/doc/user-manual.rst:1098
 msgid "Debian Python 2.7"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1046
+#: ../../doc/doc/user-manual.rst:1098
 msgid "137497.87 (1.000)"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1046
+#: ../../doc/doc/user-manual.rst:1098
 msgid "460995.20 (3.353)"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1046
+#: ../../doc/doc/user-manual.rst:1098
 msgid "503681.91 (3.663)"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1048
+#: ../../doc/doc/user-manual.rst:1100
 msgid "Nuitka Python 2.7"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1048
+#: ../../doc/doc/user-manual.rst:1100
 msgid "144074.78 (1.048)"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1048
+#: ../../doc/doc/user-manual.rst:1100
 msgid "479271.51 (3.486)"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1048
+#: ../../doc/doc/user-manual.rst:1100
 msgid "511247.44 (3.718)"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1053
+#: ../../doc/doc/user-manual.rst:1105
 msgid "Where to go next"
 msgstr "下一步该去哪里"
 
-#: ../../doc/doc/user-manual.rst:1055
+#: ../../doc/doc/user-manual.rst:1107
 msgid ""
 "Remember, this project is not completed yet. Although the CPython test "
 "suite works near perfect, there is still more work needed, esp. to make "
 "it do more optimization. Try it out."
 msgstr "记住，这个项目还没有完成。尽管 CPython 测试套件的工作近乎完美，但仍然需要更多的工作，特别是使它做更多的优化。试试吧。"
 
-#: ../../doc/doc/user-manual.rst:1060
+#: ../../doc/doc/user-manual.rst:1112
 msgid "Follow me on Twitter"
 msgstr "在 Twitter 上关注我"
 
-#: ../../doc/doc/user-manual.rst:1062
+#: ../../doc/doc/user-manual.rst:1114
 #, fuzzy
 msgid ""
 "Nuitka announcements and interesting stuff is pointed to on the Twitter "
@@ -1684,11 +1717,11 @@ msgstr ""
 "Nuitka 的公告和有趣的东西在推特账户上被指出，但显然没有细节。`@KayHayen "
 "<https://twitter.com/KayHayen>`_。"
 
-#: ../../doc/doc/user-manual.rst:1067
+#: ../../doc/doc/user-manual.rst:1119
 msgid "Report issues or bugs"
 msgstr "报告问题或 bug"
 
-#: ../../doc/doc/user-manual.rst:1069
+#: ../../doc/doc/user-manual.rst:1121
 msgid ""
 "Should you encounter any issues, bugs, or ideas, please visit the `Nuitka"
 " bug tracker <https://github.com/kayhayen/Nuitka/issues>`__ and report "
@@ -1697,18 +1730,18 @@ msgstr ""
 "如果你遇到任何问题、错误或想法，请访问 `Nuitka 错误跟踪器 "
 "<https://github.com/kayhayen/Nuitka/issues>`__ 并报告它们。"
 
-#: ../../doc/doc/user-manual.rst:1073
+#: ../../doc/doc/user-manual.rst:1125
 msgid "Best practices for reporting bugs:"
 msgstr "报告 bug 的最佳做法："
 
-#: ../../doc/doc/user-manual.rst:1075
+#: ../../doc/doc/user-manual.rst:1127
 msgid ""
 "Please always include the following information in your report, for the "
 "underlying Python version. You can easily copy&paste this into your "
 "report."
 msgstr "请在你的报告中始终包括以下信息，用于底层的 Python 版本。你可以很容易地把它复制&粘贴到你的报告中。"
 
-#: ../../doc/doc/user-manual.rst:1083
+#: ../../doc/doc/user-manual.rst:1135
 msgid ""
 "Try to make your example minimal. That is, try to remove code that does "
 "not contribute to the issue as much as possible. Ideally come up with a "
@@ -1718,7 +1751,7 @@ msgstr ""
 "尽量使你的例子最小化。也就是说，尽可能地删除那些对问题没有贡献的代码。最好是想出一个小的复制程序来说明这个问题，使用 "
 "``print``，当该程序运行时，会有不同的结果。"
 
-#: ../../doc/doc/user-manual.rst:1089
+#: ../../doc/doc/user-manual.rst:1141
 msgid ""
 "If the problem occurs spuriously (i.e. not each time), try to set the "
 "environment variable ``PYTHONHASHSEED`` to ``0``, disabling hash "
@@ -1729,61 +1762,61 @@ msgstr ""
 "如果问题是假性发生的（即不是每次都发生），尝试将环境变量 ``PYTHONHASHSEED`` 设为 "
 "``0``，禁用哈希随机化。如果这使问题消失，试着以 1 的步骤增加到一个哈希种子值，使它每次都发生，把它包括在你的报告中。"
 
-#: ../../doc/doc/user-manual.rst:1095
+#: ../../doc/doc/user-manual.rst:1147
 msgid ""
 "Do not include the created code in your report. Given proper input, it's "
 "redundant, and it's not likely that I will look at it without the ability"
 " to change the Python or Nuitka source and re-run it."
 msgstr "不要在你的报告中包括创建的代码。考虑到适当的输入，它是多余的，如果没有改变 Python 或 Nuitka 源并重新运行的能力，我不太可能看它。"
 
-#: ../../doc/doc/user-manual.rst:1099
+#: ../../doc/doc/user-manual.rst:1151
 msgid ""
 "Do not send screenshots of text, that is bad and lazy. Instead, capture "
 "text outputs from the console."
 msgstr "不要发送文本的截图，那是不好的和懒惰的。相反，从控制台捕捉文本输出。"
 
-#: ../../doc/doc/user-manual.rst:1103
+#: ../../doc/doc/user-manual.rst:1155
 msgid "Word of Warning"
 msgstr "警示语"
 
-#: ../../doc/doc/user-manual.rst:1105
+#: ../../doc/doc/user-manual.rst:1157
 msgid ""
 "Consider using this software with caution. Even though many tests are "
 "applied before releases, things are potentially breaking. Your feedback "
 "and patches to Nuitka are very welcome."
 msgstr "考虑慎重使用这个软件。尽管在发布前进行了许多测试，但事情还是有可能发生变化。我们非常欢迎你对 Nuitka 的反馈和补丁。"
 
-#: ../../doc/doc/user-manual.rst:1111
+#: ../../doc/doc/user-manual.rst:1163
 msgid "Join Nuitka"
 msgstr "加入 Nuitka"
 
-#: ../../doc/doc/user-manual.rst:1113
+#: ../../doc/doc/user-manual.rst:1165
 msgid ""
 "You are more than welcome to join Nuitka development and help to complete"
 " the project in all minor and major ways."
 msgstr "我们非常欢迎你加入 Nuitka 的发展，并在所有的小事和大事上帮助完成这个项目。"
 
-#: ../../doc/doc/user-manual.rst:1116
+#: ../../doc/doc/user-manual.rst:1168
 msgid ""
 "The development of Nuitka occurs in git. We currently have these 3 "
 "branches:"
 msgstr "Nuitka 的开发发生在 git 中。我们目前有以下 3 个分支："
 
-#: ../../doc/doc/user-manual.rst:1119
+#: ../../doc/doc/user-manual.rst:1171
 msgid "``main``"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1121
+#: ../../doc/doc/user-manual.rst:1173
 msgid ""
 "This branch contains the stable release to which only hotfixes for bugs "
 "will be done. It is supposed to work at all times and is supported."
 msgstr "这个分支包含稳定版，只对其进行错误的热修复。它应该在任何时候都能工作，并受到支持。"
 
-#: ../../doc/doc/user-manual.rst:1125
+#: ../../doc/doc/user-manual.rst:1177
 msgid "``develop``"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1127
+#: ../../doc/doc/user-manual.rst:1179
 msgid ""
 "This branch contains the ongoing development. It may at times contain "
 "little regressions, but also new features. On this branch, the "
@@ -1791,11 +1824,11 @@ msgid ""
 "feature branches."
 msgstr "这个分支包含正在进行的开发。它有时可能包含一些小的退步，但也有新的功能。在这个分支上，集成工作已经完成，而新功能可能在特性分支上开发。"
 
-#: ../../doc/doc/user-manual.rst:1132
+#: ../../doc/doc/user-manual.rst:1184
 msgid "``factory``"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1134
+#: ../../doc/doc/user-manual.rst:1186
 msgid ""
 "This branch contains unfinished and incomplete work. It is very "
 "frequently subject to ``git rebase`` and the public staging ground, where"
@@ -1808,7 +1841,7 @@ msgstr ""
 "和公共暂存地的影响，我的开发分支的工作首先在这里进行。它只用于测试，建议在此基础上进行自己的开发。当更新它时，你经常会遇到合并冲突。只需通过做 "
 "``git reset --hard origin/factory`` 来解决这些问题，然后切换到最新版本。"
 
-#: ../../doc/doc/user-manual.rst:1144
+#: ../../doc/doc/user-manual.rst:1196
 msgid ""
 "The `Developer Manual <https://nuitka.net/doc/developer-manual.html>`__ "
 "explains the coding rules, branching model used, with feature branches "
@@ -1819,49 +1852,49 @@ msgstr ""
 "解释了编码规则，使用的分支模型，与功能分支和热修复版本，Nuitka 设计等等。考虑阅读它以成为一个贡献者。这份文档是为 Nuitka "
 "用户准备的。"
 
-#: ../../doc/doc/user-manual.rst:1152
+#: ../../doc/doc/user-manual.rst:1204
 msgid "Donations"
 msgstr "奉献"
 
-#: ../../doc/doc/user-manual.rst:1154
+#: ../../doc/doc/user-manual.rst:1206
 msgid ""
 "Should you feel that you cannot help Nuitka directly, but still want to "
 "support, please consider `making a donation "
 "<https://nuitka.net/pages/donations.html>`__ and help this way."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1160
+#: ../../doc/doc/user-manual.rst:1212
 msgid "Unsupported functionality"
 msgstr "不支持的功能"
 
-#: ../../doc/doc/user-manual.rst:1163
+#: ../../doc/doc/user-manual.rst:1215
 msgid "The ``co_code`` attribute of code objects"
 msgstr "代码对象的 ``co_code`` 属性"
 
-#: ../../doc/doc/user-manual.rst:1165
+#: ../../doc/doc/user-manual.rst:1217
 msgid ""
 "The code objects are empty for native compiled functions. There is no "
 "bytecode with Nuitka's compiled function objects, so there is no way to "
 "provide it."
 msgstr "对于本地编译的函数，代码对象是空的。Nuitka 的编译函数对象没有字节码，所以没有办法提供。"
 
-#: ../../doc/doc/user-manual.rst:1170
+#: ../../doc/doc/user-manual.rst:1222
 msgid "PDB"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1172
+#: ../../doc/doc/user-manual.rst:1224
 msgid "There is no tracing of compiled functions to attach a debugger to."
 msgstr "没有对编译后的函数进行跟踪，也没有对调试器进行跟踪。"
 
-#: ../../doc/doc/user-manual.rst:1176
+#: ../../doc/doc/user-manual.rst:1228
 msgid "Optimization"
 msgstr "优化"
 
-#: ../../doc/doc/user-manual.rst:1179
+#: ../../doc/doc/user-manual.rst:1231
 msgid "Constant Folding"
 msgstr "常量叠算"
 
-#: ../../doc/doc/user-manual.rst:1181
+#: ../../doc/doc/user-manual.rst:1233
 msgid ""
 "The most important form of optimization is the constant folding. This is "
 "when an operation can be fully predicted at compile time. Currently, "
@@ -1872,11 +1905,11 @@ msgstr ""
 "最重要的优化形式是常量叠算（Constant Folding）。这时，一个操作可以在编译时被完全预测。目前，Nuitka "
 "为一些内建程序做了这些工作（但还不是全部，非常欢迎有人更仔细地研究这个问题！），它为二元/一元运算和比较等做了这些工作。"
 
-#: ../../doc/doc/user-manual.rst:1187
+#: ../../doc/doc/user-manual.rst:1239
 msgid "Constants currently recognized:"
 msgstr "目前承认的常数："
 
-#: ../../doc/doc/user-manual.rst:1196
+#: ../../doc/doc/user-manual.rst:1248
 msgid ""
 "Literals are the one obvious source of constants, but also most likely "
 "other optimization steps like constant propagation or function inlining "
@@ -1885,18 +1918,18 @@ msgid ""
 "impact the generated code quality a lot."
 msgstr "字面值是常量的一个明显来源，但也很可能是其他优化步骤，如常量传播或函数内联。所以这一点不应该被低估，也是成功优化的一个非常重要的步骤。每一个产生常量的选项都可能对生成的代码质量产生很大的影响\""
 
-#: ../../doc/doc/user-manual.rst:1202 ../../doc/doc/user-manual.rst:1229
-#: ../../doc/doc/user-manual.rst:1248 ../../doc/doc/user-manual.rst:1270
-#: ../../doc/doc/user-manual.rst:1284 ../../doc/doc/user-manual.rst:1322
-#: ../../doc/doc/user-manual.rst:1357 ../../doc/doc/user-manual.rst:1392
-#: ../../doc/doc/user-manual.rst:1428 ../../doc/doc/user-manual.rst:1446
-#: ../../doc/doc/user-manual.rst:1463 ../../doc/doc/user-manual.rst:1492
-#: ../../doc/doc/user-manual.rst:1516 ../../doc/doc/user-manual.rst:1543
-#: ../../doc/doc/user-manual.rst:1574
+#: ../../doc/doc/user-manual.rst:1254 ../../doc/doc/user-manual.rst:1281
+#: ../../doc/doc/user-manual.rst:1300 ../../doc/doc/user-manual.rst:1322
+#: ../../doc/doc/user-manual.rst:1336 ../../doc/doc/user-manual.rst:1374
+#: ../../doc/doc/user-manual.rst:1409 ../../doc/doc/user-manual.rst:1444
+#: ../../doc/doc/user-manual.rst:1480 ../../doc/doc/user-manual.rst:1498
+#: ../../doc/doc/user-manual.rst:1515 ../../doc/doc/user-manual.rst:1544
+#: ../../doc/doc/user-manual.rst:1568 ../../doc/doc/user-manual.rst:1595
+#: ../../doc/doc/user-manual.rst:1626
 msgid "Status"
 msgstr "状态"
 
-#: ../../doc/doc/user-manual.rst:1204
+#: ../../doc/doc/user-manual.rst:1256
 msgid ""
 "The folding of constants is considered implemented, but it might be "
 "incomplete in that not all possible cases are caught. Please report it as"
@@ -1906,11 +1939,11 @@ msgstr ""
 "常量的折叠被认为已经实现，但它可能是不完整的，因为不是所有可能的情况都被抓住。当你在 Nuitka "
 "中发现一个只有常量输入且没有折叠的操作时，请将其作为一个错误报告。"
 
-#: ../../doc/doc/user-manual.rst:1210
+#: ../../doc/doc/user-manual.rst:1262
 msgid "Constant Propagation"
 msgstr "常量传播"
 
-#: ../../doc/doc/user-manual.rst:1212
+#: ../../doc/doc/user-manual.rst:1264
 msgid ""
 "At the core of optimizations, there is an attempt to determine the values"
 " of variables at run time and predictions of assignments. It determines "
@@ -1920,14 +1953,14 @@ msgid ""
 "repeated module variable look-up."
 msgstr "在优化的核心，是试图在运行时确定变量的值和预测赋值的情况。它决定了它们的输入是否是常数或类似的值。一个表达式，例如一个模块变量访问，一个昂贵的操作，可能在整个函数范围的模块中是恒定的，那么就不需要或者不需要重复的模块变量查找。"
 
-#: ../../doc/doc/user-manual.rst:1219
+#: ../../doc/doc/user-manual.rst:1271
 msgid ""
 "Consider e.g. the module attribute ``__name__`` which likely is only ever"
 " read, so its value could be predicted to a constant string known at "
 "compile time. This can then be used as input to the constant folding."
 msgstr "考虑到例如模块属性 ``__name__``，它很可能只被读取，所以它的值可以在编译时被预测为一个已知的常量字符串。然后，这可以作为常量折叠的输入。"
 
-#: ../../doc/doc/user-manual.rst:1231
+#: ../../doc/doc/user-manual.rst:1283
 msgid ""
 "From modules attributes, only ``__name__`` is currently actually "
 "optimized. Also possible would be at least ``__doc__``. In the future, "
@@ -1936,27 +1969,27 @@ msgstr ""
 "在模块属性中，目前只有 ``__name__`` 被实际优化。同样可能的是，至少有 ``__doc__``。在未来，随着 SSA "
 "扩展到模块变量，这一点可能会得到改善。"
 
-#: ../../doc/doc/user-manual.rst:1236
+#: ../../doc/doc/user-manual.rst:1288
 msgid "Built-in Name Lookups"
 msgstr "内置名称查询"
 
-#: ../../doc/doc/user-manual.rst:1238
+#: ../../doc/doc/user-manual.rst:1290
 msgid ""
 "Also, built-in exception name references are optimized if they are used "
 "as a module level read-only variables:"
 msgstr "另外，如果内置的异常名称引用被用作模块级的只读变量，则会被优化："
 
-#: ../../doc/doc/user-manual.rst:1250
+#: ../../doc/doc/user-manual.rst:1302
 msgid ""
 "This works for all built-in names. When an assignment is done to such a "
 "name, or it's even local, then, of course, it is not done."
 msgstr "这适用于所有的内置名称。当对这样的名字进行赋值时，或者它甚至是本地的，那么，当然就不做了。"
 
-#: ../../doc/doc/user-manual.rst:1254
+#: ../../doc/doc/user-manual.rst:1306
 msgid "Built-in Call Prediction"
 msgstr "内置回调预测"
 
-#: ../../doc/doc/user-manual.rst:1256
+#: ../../doc/doc/user-manual.rst:1308
 msgid ""
 "For built-in calls like ``type``, ``len``, or ``range`` it is often "
 "possible to predict the result at compile time, esp. for constant inputs "
@@ -1968,54 +2001,54 @@ msgstr ""
 "对于像 ``type``、``len`` 或 ``range`` 这样的内置调用，通常可以在编译时预测结果，特别是对于常数输入，结果值往往可以由 "
 "Nuitka 预先计算出来。它可以简单地确定结果或引发的异常，并用该值替换内置调用，允许更多的常量折叠或减少代码路径。"
 
-#: ../../doc/doc/user-manual.rst:1272
+#: ../../doc/doc/user-manual.rst:1324
 msgid ""
 "The built-in call prediction is considered implemented. We can simply "
 "during compile time emulate the call and use its result or raised "
 "exception. But we may not cover all the built-ins there are yet."
 msgstr "内置的回调预测被认为已经实现。我们可以在编译时简单地模拟调用，并使用其结果或引发的异常。但我们可能还没有涵盖所有的内置程序。"
 
-#: ../../doc/doc/user-manual.rst:1276
+#: ../../doc/doc/user-manual.rst:1328
 msgid ""
 "Sometimes the result of a built-in should not be predicted when the "
 "result is big. A ``range()`` call e.g. may give too big values to include"
 " the result in the binary. Then it is not done."
 msgstr "有时，当一个内置的结果很大时，不应该预测它的结果。例如，调用 ``range()`` 可能会给出太大的值，无法将结果纳入二进制。那么就不做了。"
 
-#: ../../doc/doc/user-manual.rst:1286
+#: ../../doc/doc/user-manual.rst:1338
 msgid ""
 "This is considered mostly implemented. Please file bugs for built-ins "
 "that are pre-computed, but should not be computed by Nuitka at compile "
 "time with specific values."
 msgstr "这被认为是基本实现了。请为那些预先计算，但不应该由 Nuitka 在编译时用特定值计算的内置程序提出错误。"
 
-#: ../../doc/doc/user-manual.rst:1291
+#: ../../doc/doc/user-manual.rst:1343
 msgid "Conditional Statement Prediction"
 msgstr "条件性声明的预测"
 
-#: ../../doc/doc/user-manual.rst:1293
+#: ../../doc/doc/user-manual.rst:1345
 msgid ""
 "For conditional statements, some branches may not ever be taken, because "
 "of the conditions being possible to predict. In these cases, the branch "
 "not taken and the condition check is removed."
 msgstr "对于条件性语句，有些分支可能永远不会被采纳，因为条件是可以预测的。在这些情况下，不采取的分支和条件检查被删除。"
 
-#: ../../doc/doc/user-manual.rst:1297
+#: ../../doc/doc/user-manual.rst:1349
 msgid "This can typically predict code like this:"
 msgstr "这通常可以预测这样的代码："
 
-#: ../../doc/doc/user-manual.rst:1305
+#: ../../doc/doc/user-manual.rst:1357
 msgid "or"
 msgstr "或"
 
-#: ../../doc/doc/user-manual.rst:1313
+#: ../../doc/doc/user-manual.rst:1365
 msgid ""
 "It will also benefit from constant propagations, or enable them because "
 "once some branches have been removed, other things may become more "
 "predictable, so this can trigger other optimization to become possible."
 msgstr "它也将受益于不断的传播，或使其成为可能，因为一旦一些分支被删除，其他事情可能变得更可预测，所以这可以引发其他优化成为可能。"
 
-#: ../../doc/doc/user-manual.rst:1317
+#: ../../doc/doc/user-manual.rst:1369
 msgid ""
 "Every branch removed makes optimization more likely. With some code "
 "branches removed, access patterns may be more friendly. Imagine e.g. that"
@@ -2023,17 +2056,17 @@ msgid ""
 "remove it entirely, and that may have other consequences too."
 msgstr "每删除一个分支都会使优化更有可能。随着一些代码分支的删除，访问模式可能更加友好。想象一下，例如，一个函数只在被删除的分支中被调用。有可能完全删除它，而这也可能产生其他后果。"
 
-#: ../../doc/doc/user-manual.rst:1324
+#: ../../doc/doc/user-manual.rst:1376
 msgid ""
 "This is considered implemented, but for the maximum benefit, more "
 "constants need to be determined at compile time."
 msgstr "这被认为已经实现了，但为了获得最大的利益，需要在编译时确定更多的常数。"
 
-#: ../../doc/doc/user-manual.rst:1328
+#: ../../doc/doc/user-manual.rst:1380
 msgid "Exception Propagation"
 msgstr "异常传播"
 
-#: ../../doc/doc/user-manual.rst:1330
+#: ../../doc/doc/user-manual.rst:1382
 msgid ""
 "For exceptions that are determined at compile time, there is an "
 "expression that will simply do raise the exception. These can be "
@@ -2044,18 +2077,18 @@ msgstr ""
 "对于在编译时确定的异常，有一个表达式会简单地引发异常。这些可以向上传播，收集潜在的 "
 "\"副作用\"，即在它发生之前已经执行的表达式的一部分，并且仍然要执行。"
 
-#: ../../doc/doc/user-manual.rst:1336 ../../doc/doc/user-manual.rst:1368
+#: ../../doc/doc/user-manual.rst:1388 ../../doc/doc/user-manual.rst:1420
 msgid "Consider the following code:"
 msgstr "请考虑以下代码："
 
-#: ../../doc/doc/user-manual.rst:1343
+#: ../../doc/doc/user-manual.rst:1395
 msgid ""
 "The ``(1 / 0)`` can be predicted to raise a ``ZeroDivisionError`` "
 "exception, which will be propagated through the ``+`` operation. That "
 "part is just Constant Propagation as normal."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1347
+#: ../../doc/doc/user-manual.rst:1399
 msgid ""
 "The call ``side_effect_having()`` will have to be retained though, but "
 "the ``print`` does not and can be turned into an explicit raise. The "
@@ -2063,14 +2096,14 @@ msgid ""
 " call needs no code generation or consideration anymore."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1353
+#: ../../doc/doc/user-manual.rst:1405
 msgid ""
 "To that end, Nuitka works with a special node that raises an exception "
 "and is wrapped with a so-called \"side_effects\" expression, but yet can "
 "be used in the code as an expression having a value."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1359
+#: ../../doc/doc/user-manual.rst:1411
 msgid ""
 "The propagation of exceptions is mostly implemented but needs handling in"
 " every kind of operations, and not all of them might do it already. As "
@@ -2078,145 +2111,145 @@ msgid ""
 "free to generate bug reports with non-working examples."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1366
+#: ../../doc/doc/user-manual.rst:1418
 msgid "Exception Scope Reduction"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1379
+#: ../../doc/doc/user-manual.rst:1431
 msgid ""
 "The ``try`` block is bigger than it needs to be. The statement ``b = 8`` "
 "cannot cause a ``ValueError`` to be raised. As such it can be moved to "
 "outside the try without any risk."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1394
+#: ../../doc/doc/user-manual.rst:1446
 msgid ""
 "This is considered done. For every kind of operation, we trace if it may "
 "raise an exception. We do however *not* track properly yet, what can do a"
 " ``ValueError`` and what cannot."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1399
+#: ../../doc/doc/user-manual.rst:1451
 msgid "Exception Block Inlining"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1401
+#: ../../doc/doc/user-manual.rst:1453
 msgid ""
 "With the exception propagation, it then becomes possible to transform "
 "this code:"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1420
+#: ../../doc/doc/user-manual.rst:1472
 msgid ""
 "Which then can be lowered in complexity by avoiding the raise and catch "
 "of the exception, making it:"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1430
+#: ../../doc/doc/user-manual.rst:1482
 msgid "This is not implemented yet."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1433
+#: ../../doc/doc/user-manual.rst:1485
 msgid "Empty Branch Removal"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1435
+#: ../../doc/doc/user-manual.rst:1487
 msgid ""
 "For loops and conditional statements that contain only code without "
 "effect, it should be possible to remove the whole construct:"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1443
+#: ../../doc/doc/user-manual.rst:1495
 msgid ""
 "The loop could be removed, at maximum, it should be considered an "
 "assignment of variable ``i`` to ``999`` and no more."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1448
+#: ../../doc/doc/user-manual.rst:1500
 msgid ""
 "This is not implemented yet, as it requires us to track iterators, and "
 "their side effects, as well as loop values, and exit conditions. Too much"
 " yet, but we will get there."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1452
+#: ../../doc/doc/user-manual.rst:1504
 msgid "Another example:"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1459
+#: ../../doc/doc/user-manual.rst:1511
 msgid ""
 "The condition check should be removed in this case, as its evaluation is "
 "not needed. It may be difficult to predict that ``side_effect_free`` has "
 "no side effects, but many times this might be possible."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1465
+#: ../../doc/doc/user-manual.rst:1517
 msgid ""
 "This is considered implemented. The conditional statement nature is "
 "removed if both branches are empty, only the condition is evaluated and "
 "checked for truth (in cases that could raise an exception)."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1470
+#: ../../doc/doc/user-manual.rst:1522
 msgid "Unpacking Prediction"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1472
+#: ../../doc/doc/user-manual.rst:1524
 msgid ""
 "When the length of the right-hand side of an assignment to a sequence can"
 " be predicted, the unpacking can be replaced with multiple assignments."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1486
+#: ../../doc/doc/user-manual.rst:1538
 msgid ""
 "This is of course only really safe if the left-hand side cannot raise an "
 "exception while building the assignment targets."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1489
+#: ../../doc/doc/user-manual.rst:1541
 msgid ""
 "We do this now, but only for constants, because we currently have no "
 "ability to predict if an expression can raise an exception or not."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1494
+#: ../../doc/doc/user-manual.rst:1546
 msgid ""
 "Not implemented yet. Will need us to see through the unpacking of what is"
 " an iteration over a tuple, we created ourselves. We are not there yet, "
 "but we will get there."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1499
+#: ../../doc/doc/user-manual.rst:1551
 msgid "Built-in Type Inference"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1501
+#: ../../doc/doc/user-manual.rst:1553
 msgid ""
 "When a construct like ``in xrange()`` or ``in range()`` is used, it is "
 "possible to know what the iteration does and represent that so that "
 "iterator users can use that instead."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1505
+#: ../../doc/doc/user-manual.rst:1557
 msgid "I consider that:"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1512
+#: ../../doc/doc/user-manual.rst:1564
 msgid ""
 "could translate ``xrange(1000)`` into an object of a special class that "
 "does the integer looping more efficiently. In case ``i`` is only assigned"
 " from there, this could be a nice case for a dedicated class."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1518
+#: ../../doc/doc/user-manual.rst:1570
 msgid "Future work, not even started."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1521
+#: ../../doc/doc/user-manual.rst:1573
 msgid "Quicker Function Calls"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1523
+#: ../../doc/doc/user-manual.rst:1575
 msgid ""
 "Functions are structured so that their parameter parsing and ``tp_call`` "
 "interface is separate from the actual function code. This way the call "
@@ -2224,52 +2257,52 @@ msgid ""
 "differ."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1536
+#: ../../doc/doc/user-manual.rst:1588
 msgid ""
 "This will have to evaluate first ``get1()``, then ``get2()`` and only "
 "then ``get3()`` and then make the function call with these values."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1539
+#: ../../doc/doc/user-manual.rst:1591
 msgid ""
 "Therefore it will be necessary to have a staging of the parameters before"
 " making the actual call, to avoid a re-ordering of the calls to "
 "``get1()``, ``get2()``, and ``get3()``."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1545
+#: ../../doc/doc/user-manual.rst:1597
 msgid ""
 "Not even started. A re-formulation that avoids the dictionary to call the"
 " function, and instead uses temporary variables appears to be relatively "
 "straight forward once we do that kind of parameter analysis."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1551
+#: ../../doc/doc/user-manual.rst:1603
 msgid "Lowering of iterated Container Types"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1553
+#: ../../doc/doc/user-manual.rst:1605
 msgid ""
 "In some cases, accesses to ``list`` constants can become ``tuple`` "
 "constants instead."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1556
+#: ../../doc/doc/user-manual.rst:1608
 msgid "Consider that:"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1563
+#: ../../doc/doc/user-manual.rst:1615
 msgid "Can be optimized into this:"
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1570
+#: ../../doc/doc/user-manual.rst:1622
 msgid ""
 "This allows for simpler, faster code to be generated, and fewer checks "
 "needed, because e.g. the ``tuple`` is clearly immutable, whereas the "
 "``list`` needs a check to assert that. This is also possible for sets."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1576
+#: ../../doc/doc/user-manual.rst:1628
 msgid ""
 "Implemented, even works for non-constants. Needs other optimization to "
 "become generally useful, and will itself help other optimization to "
@@ -2277,7 +2310,7 @@ msgid ""
 " and not care about sets."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1581
+#: ../../doc/doc/user-manual.rst:1633
 msgid ""
 "In theory, something similar is also possible for ``dict``. For the "
 "later, it will be non-trivial though to maintain the order of execution "
@@ -2285,25 +2318,21 @@ msgid ""
 "constants of these types, they change to ``tuple`` values when iterated."
 msgstr ""
 
-#: ../../doc/doc/user-manual.rst:1588
+#: ../../doc/doc/user-manual.rst:1640
 msgid "Updates for this Manual"
 msgstr "更新手册"
 
-#: ../../doc/doc/user-manual.rst:1590
+#: ../../doc/doc/user-manual.rst:1642
 msgid ""
 "This document is written in REST. That is an ASCII format which is "
 "readable to human, but easily used to generate PDF or HTML documents."
 msgstr "这份文件是用 REST 写的。这是一种 ASCII 格式，人类可以阅读，但很容易用于生成 PDF 或 HTML 文档。"
 
-#: ../../doc/doc/user-manual.rst:1593
+#: ../../doc/doc/user-manual.rst:1645
 msgid ""
 "You will find the current version at: https://nuitka.net/doc/user-"
 "manual.html"
 msgstr "你可以在以下网站找到当前版本：https://nuitka.net/doc/user-manual.html"
-
-#: ../../doc/doc/user-manual.rst:1596
-msgid "And the current PDF under: https://nuitka.net/doc/README.pdf"
-msgstr "当前 PDF 版本：https://nuitka.net/doc/README.pdf"
 
 #~ msgid "3.5, 3.6, 3.7, 3.8, 3.9"
 #~ msgstr ""
@@ -2324,4 +2353,16 @@ msgstr "当前 PDF 版本：https://nuitka.net/doc/README.pdf"
 
 #~ msgid "Contents"
 #~ msgstr "图标"
+
+#~ msgid "Download and install from https://www.python.org/downloads/windows"
+#~ msgstr ""
+
+#~ msgid "Verify using command ``python --version``."
+#~ msgstr ""
+
+#~ msgid "mkdir HelloWorld"
+#~ msgstr ""
+
+#~ msgid "And the current PDF under: https://nuitka.net/doc/README.pdf"
+#~ msgstr "当前 PDF 版本：https://nuitka.net/doc/README.pdf"
 

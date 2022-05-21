@@ -49,6 +49,7 @@ jobs:
           invoke doc.clean
           invoke doc
           invoke intl -l zh_CN
+          invoke intl -l de_DE
           invoke run -t post-process
 
       - name: 🚀 Deploy to GitHub pages

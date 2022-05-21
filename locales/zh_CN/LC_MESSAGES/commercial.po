@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-13 11:50+0800\n"
+"POT-Creation-Date: 2022-02-22 11:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgid ""
 "engineering,encrypted,tracebacks,obfuscate,obfuscation,obfuscator"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:7 ../../doc/doc/commercial.rst:213
+#: ../../doc/doc/commercial.rst:7 ../../doc/doc/commercial.rst:221
 msgid "Nuitka Commercial"
 msgstr ""
 
@@ -137,55 +137,63 @@ msgid ""
 "it's not readable to anybody but you."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:88
+#: ../../doc/doc/commercial.rst:90
+msgid "For select few packages, these are only supported with Nuitka commercial."
+msgstr ""
+
+#: ../../doc/doc/commercial.rst:92
+msgid "`Read more.... <commercial/commercial-only-packages.html>`__"
+msgstr ""
+
+#: ../../doc/doc/commercial.rst:96
 msgid "Special needs (Commercial only use cases)"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:90
+#: ../../doc/doc/commercial.rst:98
 msgid ""
 "In this instance, you have special wishes that only commercial customers "
 "will have and that are effort to maintain."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:93
+#: ../../doc/doc/commercial.rst:101
 msgid "You might e.g. you want to deploy a Windows service"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:95
+#: ../../doc/doc/commercial.rst:103
 msgid ""
 "For this, there is a dedicated plugin in Nuitka that makes deployment of "
 "a practically unchanged program as a service very easy."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:98
+#: ../../doc/doc/commercial.rst:106
 msgid "You might need to support special commercial grade software."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:100
+#: ../../doc/doc/commercial.rst:108
 msgid ""
 "This can be done, but you might have to pay for the development time this"
 " takes."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:103
+#: ../../doc/doc/commercial.rst:111
 msgid "You might need to support very old OSes, e.g. RHEL 5."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:105
+#: ../../doc/doc/commercial.rst:113
 msgid ""
 "Again, this can be done, but you might have to pay for the development "
 "time this takes."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:108
+#: ../../doc/doc/commercial.rst:116
 msgid "Automatic download, alerts to, applying updates of deployed software."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:110
+#: ../../doc/doc/commercial.rst:118
 msgid "This is not yet implemented, but will be added in a future update."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:112
+#: ../../doc/doc/commercial.rst:120
 msgid ""
 "Support for these things will also be covered in the Nuitka commercial "
 "package, and while you might not care necessarily about hiding your "
@@ -193,29 +201,29 @@ msgid ""
 "of your software."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:119
+#: ../../doc/doc/commercial.rst:127
 msgid "Priority Issue Solutions"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:121
+#: ../../doc/doc/commercial.rst:129
 msgid ""
 "You might have an issue that blocks you from using Nuitka, which you want"
 " to use though, because of performance gains, the IP protection, with or "
 "without the commercial plugins."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:125
+#: ../../doc/doc/commercial.rst:133
 msgid ""
 "The Nuitka Priority package gives you access to elevated priority of your"
 " issues. If you subscribe to this, reported issues will be solved with "
 "highest priority, to enable you using Nuitka."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:131
+#: ../../doc/doc/commercial.rst:139
 msgid "Sponsorship"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:133
+#: ../../doc/doc/commercial.rst:141
 msgid ""
 "You are happy in using Nuitka and you want to benefit it, because it "
 "solves a crucial part of your workflow in deployment. You may or may not "
@@ -225,89 +233,89 @@ msgid ""
 "relatively free service you get on a daily basis."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:140
+#: ../../doc/doc/commercial.rst:148
 msgid ""
 "Naturally sponsors will be entitled to all access and treated with "
 "highest priority."
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:145
+#: ../../doc/doc/commercial.rst:153
 msgid "Pricing"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:154 ../../doc/doc/commercial.rst:171
+#: ../../doc/doc/commercial.rst:162 ../../doc/doc/commercial.rst:179
 msgid "€ 250"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:158
+#: ../../doc/doc/commercial.rst:166
 msgid "`Subscribe now </stripe/checkout-commercial-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:160
+#: ../../doc/doc/commercial.rst:168
 msgid "Commercial only Features"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:162
+#: ../../doc/doc/commercial.rst:170
 msgid "All your applications"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:164
+#: ../../doc/doc/commercial.rst:172
 msgid "Standard Support"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:175
+#: ../../doc/doc/commercial.rst:183
 msgid "`Subscribe now </stripe/checkout-priority-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:177 ../../doc/doc/commercial.rst:211
+#: ../../doc/doc/commercial.rst:185 ../../doc/doc/commercial.rst:219
 msgid "Best Support"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:179
+#: ../../doc/doc/commercial.rst:187
 msgid "Issues have **Priority**"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:181
+#: ../../doc/doc/commercial.rst:189
 msgid "**No** Commercial features"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:189
+#: ../../doc/doc/commercial.rst:197
 msgid "€ 400"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:193
+#: ../../doc/doc/commercial.rst:201
 msgid "`Subscribe now </stripe/checkout-full-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:195
+#: ../../doc/doc/commercial.rst:203
 msgid "Nuitka Commercial **plus**"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:197
+#: ../../doc/doc/commercial.rst:205
 msgid "Nuitka Priority"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:205
+#: ../../doc/doc/commercial.rst:213
 msgid "€ 1000"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:209
+#: ../../doc/doc/commercial.rst:217
 msgid "`Subscribe now </stripe/checkout-sponsor-subscription>`__"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:215
+#: ../../doc/doc/commercial.rst:223
 msgid "Roadmap Influence"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:217
+#: ../../doc/doc/commercial.rst:225
 msgid "Use Cases Priority"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:221
+#: ../../doc/doc/commercial.rst:229
 msgid "Contact Us"
 msgstr ""
 
-#: ../../doc/doc/commercial.rst:223
+#: ../../doc/doc/commercial.rst:231
 msgid ""
 "Please use `this form to contact us "
 "<https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_"

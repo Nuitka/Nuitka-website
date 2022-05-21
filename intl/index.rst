@@ -6,6 +6,7 @@
 
    doc/index
    commercial
+   pages/index
    more
    blog
 

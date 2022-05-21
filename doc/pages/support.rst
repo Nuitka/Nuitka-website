@@ -37,6 +37,6 @@ tracker <https://github.com/Nuitka/Nuitka/issues>`_ there.
 Try the chat room, which is not a replacement for an issue tracker, but
 we have it. You are also welcome to lurk and help others.
 
-.. image:: images/gitter-badge.svg
+.. image:: ../../images/gitter-badge.svg
    :target: https://gitter.im/Nuitka-chat/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
    :alt: Join the chat at https://gitter.im/Nuitka-chat/community

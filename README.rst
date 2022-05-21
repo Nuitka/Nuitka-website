@@ -74,9 +74,7 @@ Here is a table of the files to translate and their styles. Everything
 that is not mentioned here, should be asked about if in doubt. Not all
 pages make sense to translate.
 
-.. note::
-
-   important
+.. important::
 
    Before translating, I would love you to also actually review the
    content, if you agree it makes sense, if it can be better structured.

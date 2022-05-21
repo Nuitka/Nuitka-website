@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-16 01:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../doc/pages/impressum.rst:3
+msgid "Impressum"
+msgstr ""
+
+#: ../../doc/pages/impressum.rst:5
+msgid ""
+"This is the Nuitka website, run by me on my personal machine. Its main "
+"mission is to serve as a forum for my Python compiler work and "
+"announcements."
+msgstr ""
+
+#: ../../doc/pages/impressum.rst:9
+msgid "This website is in part personal and in part commercial:"
+msgstr ""
+
+#: ../../doc/pages/impressum.rst:11
+msgid ""
+"My postal address is Kay Hayen, Hegelstrasse 21, 76356 Weingarten, "
+"Germany."
+msgstr ""
+
+#: ../../doc/pages/impressum.rst:14
+msgid "Contact me via Email: Kay.Hayen@gmail.com"
+msgstr ""
+

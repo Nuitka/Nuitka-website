@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-16 01:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../doc/pages/pyside2.rst:3
+msgid "Nuitka PySide2 support"
+msgstr ""
+
+#: ../../doc/pages/pyside2.rst:7
+msgid "Support with baseline PySide2 is only partial"
+msgstr ""
+
+#: ../../doc/pages/pyside2.rst:9
+msgid ""
+"While the ``pyside2`` plugin of Nuitka can workaround some issues PySide "
+"5.15.2.1 has to support compiled methods as callbacks, these are far from"
+" complete. Some programs work, but many do have problems, esp. in "
+"reacting to events."
+msgstr ""
+
+#: ../../doc/pages/pyside2.rst:14
+msgid ""
+"For this the PySide2 wheels provided by Nuitka commercial contain a "
+"backport of the PySide6 changes made to support compiled code perfectly. "
+"The support of PySide6 is much better, but unfortunately not perfect. "
+"However, all current known bugs with PySide6 do not affect PySide2 as "
+"accessible in Nuitka commercial."
+msgstr ""
+
+#: ../../doc/pages/pyside2.rst:20
+msgid ""
+"For older PySide2 and just generally, the recommended solution is to use "
+"the wheels as provided by Nuitka commercial. There is no way these "
+"patches will be backported and as a result, we have that backported patch"
+" that will not get released in any other way. This is very "
+"understandable, now that Qt6 is out."
+msgstr ""
+
+#: ../../doc/pages/pyside2.rst:28
+msgid "Solution in Nuitka Commercial"
+msgstr ""
+
+#: ../../doc/pages/pyside2.rst:30
+msgid ""
+"The patched PySide2 source code and binary wheels for some platforms are "
+"available as part of the the `Nuitka Commercial </doc/commercial.html>`__"
+" offering."
+msgstr ""
+
+#: ../../doc/pages/pyside2.rst:36
+msgid "Alternative"
+msgstr ""
+
+#: ../../doc/pages/pyside2.rst:38
+msgid ""
+"Otherwise your best bet is to migrate to PySide6 and work around the bugs"
+" that it might have. Hopefully with time, all will be ironed out."
+msgstr ""
+
