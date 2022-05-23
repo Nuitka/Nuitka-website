@@ -112,7 +112,7 @@ they are now becoming more common.
  Tests
 *******
 
--  Added tests to Github Actions, for the supported Python versions for
+-  Added tests to GitHub Actions, for the supported Python versions for
    all of Linux, macOS and Windows, covering the later publicly for the
    first time. We use Anaconda on macOS for the tests now, rather than
    Homebrew.

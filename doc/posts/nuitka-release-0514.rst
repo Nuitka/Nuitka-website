@@ -243,7 +243,7 @@ as well as major cleanups of code base.
 
 -  Added more assertions to the generated code, to aid bug finding.
 
--  The autoformat now sorts pylint markups for increased consistency.
+-  The auto-format now sorts pylint markups for increased consistency.
 
 -  Releases no longer have a ``tolerant`` flag, this was not needed
    anymore as we use SSA.

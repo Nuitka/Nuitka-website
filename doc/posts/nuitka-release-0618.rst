@@ -236,7 +236,7 @@ organisational changes.
    uncompiled types. This should allow easier and more complete
    compatibility, making even code in extension modules that uses
    ``PyObject_IsInstance`` work, providing support for packages like
-   ``pydanctic``.
+   ``pydantic``.
 
 -  Plugins: The Qt binding plugins now resolve ``pyqtgraph`` selection
    of binding by hard coding ``QT_LIB``. This will allow to resolve its
@@ -489,8 +489,8 @@ organisational changes.
 -  The PDF specific annotations were moved into being applied only in
    the PDF building step, avoiding errors for raw PDF directives.
 
--  Apply Visual Code autoformat to our Yaml files. This is unfortunately
-   not and automatic formatting yet.
+-  Apply Visual Code auto-format to our Yaml files. This is
+   unfortunately not and automatic formatting yet.
 
 -  Introduce dedicated ``nuitka.utils.Json`` module, as we intend to
    expand its usage, e.g. for caching.

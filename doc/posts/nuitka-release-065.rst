@@ -135,7 +135,7 @@ new optimization and many organisational improvements.
 
 -  Added repository for openSUSE 15.1 for download.
 
--  Ask people to compile hello world program in the Github issue
+-  Ask people to compile hello world program in the GitHub issue
    template, because many times, they have setup problems only.
 
 -  Visual Studio Code is now the recommended IDE and has integrated
@@ -156,7 +156,7 @@ new optimization and many organisational improvements.
 -  Plugins: To locate module kind, use core Nuitka code that handles
    more cases.
 
--  The test suite runners are also now autoformatted and checked with
+-  The test suite runners are also now auto-formatted and checked with
    PyLint.
 
 -  The Scons file is now PyLint clean too.

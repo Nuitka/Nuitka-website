@@ -351,7 +351,7 @@ as many new optimization and bug fixes.
 -  The commit hook should be reinstalled, since it got improved and
    adapted for newer git versions.
 
--  Added link to donations to funding document, following a Github
+-  Added link to donations to funding document, following a GitHub
    standard.
 
 -  Bumped requirements for development to the latest versions, esp.

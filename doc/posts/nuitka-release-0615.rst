@@ -144,7 +144,7 @@ important performance improvement.
  Organisational
 ****************
 
--  Enhanced Github issue raising instructions.
+-  Enhanced GitHub issue raising instructions.
 
 -  Apply ``rstfmt`` to all documentation and make it part of the commit
    hook.

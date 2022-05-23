@@ -167,7 +167,7 @@ improvements, and many cleanups.
 **********
 
 -  Moved the tools to compare CPython output, to sort import statements
-   (isort) to autoformat the source code (Redbaron usage), and to check
+   (isort) to auto-format the source code (Redbaron usage), and to check
    with PyLint to a common new ``nuitka.tools`` package, runnable with
    ``__main__`` modules and dedicated runners in ``bin`` directory.
 

@@ -108,7 +108,7 @@ new optimization and many organisational improvements.
 -  Added description of how to use experimental flags for your PRs.
 
 -  Removed mirroring from Bitbucket and Gitlab, as we increasingly use
-   the Github organisation features.
+   the GitHub organisation features.
 
 -  Added support for Ubuntu Disco, removed support for Ubuntu Artful
    packages.

@@ -73,7 +73,7 @@ growing in terms of contributors and supported platforms.
  Organisational
 ****************
 
--  The Nuitka Github Organisation that was created a while ago and owns
+-  The Nuitka GitHub Organisation that was created a while ago and owns
    the Nuitka repo now, has gained members. Check out
    https://github.com/orgs/Nuitka/people for their list. This is an
    exciting transformation for Nuitka.

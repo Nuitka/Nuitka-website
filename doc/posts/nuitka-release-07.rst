@@ -22,9 +22,9 @@ and bug fixes in all areas.
    from hashing values and is not as free of side effects as ``list``
    and ``tuple`` creations are. Fixed in 0.6.19.1 already.
 
--  Windows: Fix, experimental options got lost for the C compilation
-   when switching from MSVC to MinGW64, making them have no effect.
-   Fixed in 0.6.19.1 already.
+-  Windows: Fix, ``--experimental`` option values got lost for the C
+   compilation when switching from MSVC to MinGW64, making them have no
+   effect. Fixed in 0.6.19.1 already.
 
 -  Windows: Fix, Clang from MinGW64 doesn't support LTO at this time,
    therefore default to ``no`` for it. Fixed in 0.6.19.1 already.
@@ -138,7 +138,7 @@ and bug fixes in all areas.
 -  Compiled types of Nuitka now inherit from uncompiled types. This
    should allow easier and more complete compatibility, making even code
    in extension modules that uses ``PyObject_IsInstance`` work, e.g.
-   ``pydanctic``.
+   ``pydantic``.
 
 -  macOS: Added signing of application bundles and standalone binaries
    for deployment to newer macOS platforms and esp. M1 where these are

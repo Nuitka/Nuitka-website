@@ -140,7 +140,7 @@ only at threading performance, and LTO improvements on Windows.
 -  Make it clear that PySide 6.1.2 is actually going to be the supported
    version of PySide6.
 
--  Use MSVC in Github actions.
+-  Use MSVC in GitHub actions.
 
 *********
  Summary

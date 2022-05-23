@@ -25,7 +25,7 @@ fixes and new features.
    0.6.10.1 already.
 
 -  Pipenv: Workaround parsing issue with our ``setup.py`` to allow
-   installation from Github. Fixed in 0.6.10.1 already.
+   installation from GitHub. Fixed in 0.6.10.1 already.
 
 -  Merging of branches in optimization could give indeterministic
    results leading to more iterations than necessary. Fixed in 0.6.10.1
@@ -213,7 +213,7 @@ fixes and new features.
    only the changed files get checked. This is much faster and allows to
    do it more often before commit.
 
--  Check the versions of isort and black when doing the autoformat to
+-  Check the versions of isort and black when doing the auto-format to
    avoid using outdated versions.
 
 -  Handling missing pylint more gracefully when checking source code
@@ -221,9 +221,9 @@ fixes and new features.
 
 -  Make sure to use the codespell tool with Python3 and make sure to
    error exit when spelling problems were found, so we can use this in
-   Github actions too.
+   GitHub actions too.
 
--  Removed Travis config, we now only use Github actions.
+-  Removed Travis config, we now only use GitHub actions.
 
 -  Removed landscape config, it doesn't really exist anymore.
 

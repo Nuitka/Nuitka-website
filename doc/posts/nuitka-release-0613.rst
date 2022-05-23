@@ -180,7 +180,7 @@ with lots of bug fixes and new features.
 -  Plugins: Revamped the ``eventlet`` plugin, include needed DNS modules
    as bytecode rather than as source code, scanning them with
    ``pkgutil`` rather than filesystem, with much cleaner code in the
-   plugin.
+   plugin. The plugin is also now enabled by default.
 
 ****************
  Organisational

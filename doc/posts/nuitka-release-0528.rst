@@ -163,7 +163,7 @@ a dedicated structure for that representing an in-lined function.
 -  Use the ``bool`` enum definition of Python2 which is more elegant
    than ours.
 
--  Move quality tools, autoformat, isort, etc. to the
+-  Move quality tools, auto-format, isort, etc. to the
    ``nuitka.tools.quality`` namespace.
 
 -  Move output comparison tool to the ``nuitka.tools.testing``

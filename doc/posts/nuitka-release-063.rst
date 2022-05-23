@@ -82,21 +82,21 @@ optimization was on hold.
    remains only used with Python 2.6, making it easier to know the
    relevant code.
 
--  Autoformat was very much enhanced and handles C and ReST files too
+-  Auto-format was very much enhanced and handles C and ReST files too
    now. For Python code it does pylint comment formatting, import
    statement sorting, and blackening.
 
 -  Added script ``misc/install-git-hooks.py`` that adds a commit hook
-   that runs autoformat on commit. Currently it commits unstaged content
-   and therefore is not yet ready for prime time.
+   that runs auto-format on commit. Currently it commits unstaged
+   content and therefore is not yet ready for prime time.
 
--  Moved adapted CPython test suites to `Github repository under Nuitka
+-  Moved adapted CPython test suites to `GitHub repository under Nuitka
    Organisation <https://github.com/Nuitka/Nuitka-CPython-tests>`__.
 
--  Moved Nuitka-website repository to `Github repository under Nuitka
+-  Moved Nuitka-website repository to `GitHub repository under Nuitka
    Organisation <https://github.com/Nuitka/Nuitka-website>`__.
 
--  Moved Nuitka-speedcenter repository to `Github repository under
+-  Moved Nuitka-speedcenter repository to `GitHub repository under
    Nuitka Organisation
    <https://github.com/Nuitka/Nuitka-speedcenter>`__.
 

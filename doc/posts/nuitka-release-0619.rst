@@ -114,7 +114,7 @@ optimization, and doing a lot of bug fixes.
 
 -  Distutils: When providing arguments, the method suggested in the docs
    is not compatible with all other systems, e.g. not
-   ``setuptools_rust`` for which a two elemented tuple form needs to be
+   ``setuptools_rust`` for which a two elements tuple form needs to be
    used for values. Added support for that and documented its use as
    well in the User Manual.
 
@@ -314,9 +314,9 @@ optimization, and doing a lot of bug fixes.
 -  Added a small presentation about Nuitka on the Download page, to make
    sure people are aware of core features.
 
--  The ``gi`` plugin is now always on. The copying of the typelib when
-   ``gi`` is imported is harmless and people can disable the plugin if
-   that's not needed.
+-  The ``gi`` plugin is now always on. The copying of the ``typelib``
+   when ``gi`` is imported is harmless and people can disable the plugin
+   if that's not needed.
 
 -  The ``matplotlib`` plugin is new and also always on. It previously
    was part of the ``numpy`` plugin, which is doing too many unrelated
@@ -356,7 +356,7 @@ optimization, and doing a lot of bug fixes.
    User Manual.
 
 -  Warnings about imports not done, are now only given when optimization
-   can not remove the usage, and no options relatved to following have
+   can not remove the usage, and no options related to following have
    been given.
 
 -  Added Windows version to ``--version`` output of Nuitka. This is to
@@ -366,7 +366,7 @@ optimization, and doing a lot of bug fixes.
 -  In Visual Code, the default Python used is now 3.9 in the "Linux" C
    configuration. This matches Debian Bullseye.
 
--  Nicer outputs from check mode of the autoformat as run for CI
+-  Nicer outputs from check mode of the auto-format as run for CI
    testing, displays problematic files more clearly.
 
 -  Remove broken links to old bug tracker that is no longer online from
@@ -443,7 +443,7 @@ optimization, and doing a lot of bug fixes.
    to a few details not yet being as compatible as needed.
 
 -  Added test suite for CPython 3.10 and enable execution of tests with
-   this version on Github actions.
+   this version on GitHub actions.
 
 *********
  Summary
@@ -453,7 +453,7 @@ This release is another big step forward.
 
 The amount of optimization added is again very large, some of which yet
 again unlocks more static optimization of module imports, that
-previously would have to be considered implicit. Now analysing these on
+previously would have to be considered implicit. Now analyzing these on
 the function level as well, we can start searching for cases, where it
 could be done, but is not done yet.
 

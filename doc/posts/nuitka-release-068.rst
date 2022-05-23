@@ -47,7 +47,7 @@ enhance the Python 3.8 compatibility.
    initialisation and switch to built-in bytecode loader that is more
    compatible afterwards, increasing compatibility.
 
--  Standalone: Fix for pydanctic support.
+-  Standalone: Fix for ``pydantic`` support.
 
 -  Standalone: Added missing hidden dependency of uvicorn.
 
@@ -194,7 +194,7 @@ enhance the Python 3.8 compatibility.
 -  Added 3.8 support mentions in even more places.
 
 -  The mailing list has been deleted. We now prefer Gitter chat and
-   Github issues for discussions.
+   GitHub issues for discussions.
 
 -  Visual Code recommended extensions are now defined as such in the
    project configuration and you will be prompted to install them.

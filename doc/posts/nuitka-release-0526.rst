@@ -207,7 +207,7 @@ going to change soon. However this release improves all aspects.
 -  We now use symbolic identifiers in all PyLint annotations.
 
 -  The release scripts started to move into ``nuitka.tools.release`` so
-   they get PyLint checks, autoformat and proper code re-use.
+   they get PyLint checks, auto-format and proper code re-use.
 
 -  The use of ``INCREASE_REFCOUNT_X`` was removed, it got replaced with
    proper ``Py_XINCREF`` usages.
@@ -238,10 +238,10 @@ going to change soon. However this release improves all aspects.
 -  Added repository for Ubuntu Zesty (17.04) for download.
 
 -  Added support for testing with Travis to complement the internal
-   Buildbot based infrastructure and have pull requests on Github
+   Buildbot based infrastructure and have pull requests on GitHub
    automatically tested before merge.
 
--  The ``factory`` branch is now also on Github.
+-  The ``factory`` branch is now also on GitHub.
 
 -  Removed MSI for Python3.4 32 bits. It seems impossible to co-install
    this one with the 64 bits variant. All other versions are provided

@@ -128,7 +128,7 @@ generators.
  Organisational
 ****************
 
--  The issue tracker on Github is now the one that should be used with
+-  The issue tracker on GitHub is now the one that should be used with
    Nuitka, winning due to easier issue templating and integration with
    pull requests.
 

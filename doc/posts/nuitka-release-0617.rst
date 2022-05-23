@@ -317,7 +317,7 @@ polishing plugins and adding many new features.
 
 -  Encoding names for UTF8 in calls to ``.encode()`` were used
    inconsistent with and without dashes in the source code, added
-   cleanup to autoformat that picks the one blessed.
+   cleanup to auto-format that picks the one blessed.
 
 -  Cleanup taking of runtime traces of DLLs used in preparation for
    using it in main code eventually, moving it to a dedicated module.
@@ -337,7 +337,7 @@ polishing plugins and adding many new features.
    than unknown, allowing for many optimizations to still work on them.,
    esp. for immutable value
 
--  Enhanced autoformat for rest documents, bullet list spacing is now
+-  Enhanced auto-format for rest documents, bullet list spacing is now
    consistent and spelling of organisational is unified automatically.
 
 -  Moved icon conversion functionality to separate module, so it can be

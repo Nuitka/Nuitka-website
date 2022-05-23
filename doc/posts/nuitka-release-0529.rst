@@ -169,7 +169,7 @@ a lot of compatibility work.
 -  Removed support for Debian Wheezy and Ubuntu Precise (they are too
    old for modern packaging used).
 
--  There is now a issue template for Github when used.
+-  There is now a issue template for GitHub when used.
 
 *******
  Tests

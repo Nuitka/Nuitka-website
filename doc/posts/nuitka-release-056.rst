@@ -138,8 +138,8 @@ on all fronts.
 
 -  Massive indentation cleanup of keyword argument calls. We have a rule
    to align the keywords, but as this was done manually, it could easily
-   get out of touch. Now with a "autoformat" tool based on RedBaron,
-   it's correct. Also, spacing around arguments is now automatically
+   get out of touch. Now with a auto-format tool based on RedBaron, it's
+   correct. Also, spacing around arguments is now automatically
    corrected. More to come.
 
 -  For ``exec`` statements, the coping back to local variables is now an

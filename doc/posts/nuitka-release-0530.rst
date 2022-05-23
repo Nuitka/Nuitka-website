@@ -160,13 +160,13 @@ accompanied with optimization changes towards value tracing.
  Organisational
 ****************
 
--  There is now a pull request template for Github when used.
+-  There is now a pull request template for GitHub when used.
 
 -  Deprecating the ``--python-version`` argument which should be
    replaced by using ``-m nuitka`` with the correct Python version.
    Outputs have been updated to recommend this one instead.
 
--  Make automatic import sorting and autoformat tools properly
+-  Make automatic import sorting and auto-format tools properly
    executable on Windows without them changing new lines.
 
 -  The documentation was updated to prefer the call method with ``-m
