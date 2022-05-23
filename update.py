@@ -106,8 +106,8 @@ importNuitka()
 
 # isort:start
 
-from nuitka.tools.quality.autoformat.Autoformat import (
-    withFileOpenedAndAutoformatted,
+from nuitka.tools.quality.auto_format.AutoFormat import (
+    withFileOpenedAndAutoFormatted,
 )
 from nuitka.tools.release.Documentation import checkRstLint
 from nuitka.Tracing import my_print
