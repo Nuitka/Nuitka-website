@@ -179,8 +179,8 @@ a lot of compatibility work.
    ``depends.exe`` that wasn't populated on new installs.
 
 -  Refinements for CPython test suites to become more stable in results.
-   Some tests occasionally fail to clean up, or might do indeterministic
-   outputs, or are not relevant at all.
+   Some tests occasionally fail to clean up, or might do
+   nondeterministic outputs, or are not relevant at all.
 
 -  The tests don't use the runners, but more often do ``-m nuitka`` to
    become executable without having to find the proper runner. This

@@ -27,7 +27,7 @@ fixes and new features.
 -  Pipenv: Workaround parsing issue with our ``setup.py`` to allow
    installation from GitHub. Fixed in 0.6.10.1 already.
 
--  Merging of branches in optimization could give indeterministic
+-  Merging of branches in optimization could give nondeterministic
    results leading to more iterations than necessary. Fixed in 0.6.10.1
    already.
 

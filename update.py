@@ -591,7 +591,7 @@ def updateDownloadPage():
         else:
             variable = None
 
-    with withFileOpenedAndAutoformatted("doc/doc/download.rst") as output_file:
+    with withFileOpenedAndAutoFormatted("doc/doc/download.rst") as output_file:
         output_file.write("\n".join(output) + "\n")
 
 
@@ -734,7 +734,7 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
                 "\n",
             ] + lines
 
-            with withFileOpenedAndAutoformatted(txt_path) as output_file:
+            with withFileOpenedAndAutoFormatted(txt_path) as output_file:
                 output_file.write("".join(lines))
 
 
@@ -743,7 +743,7 @@ def updateImportedPages():
     updateNuitkaMain(update=True)
     updateNuitkaDevelop(update=True)
 
-    with withFileOpenedAndAutoformatted("doc/doc/Credits.rst") as credits_output:
+    with withFileOpenedAndAutoFormatted("doc/doc/Credits.rst") as credits_output:
         credits_output.write(
             """\
 .. meta::
@@ -755,7 +755,7 @@ def updateImportedPages():
 
         credits_output.write(getFileContents("Nuitka-develop/Credits.rst"))
 
-    with withFileOpenedAndAutoformatted(
+    with withFileOpenedAndAutoFormatted(
         "doc/doc/user-manual.rst"
     ) as user_manual_output:
         # We can plug meta changes for website here, this could be better.
@@ -770,7 +770,7 @@ def updateImportedPages():
 
         user_manual_output.write(getFileContents("Nuitka-main/README.rst"))
 
-    with withFileOpenedAndAutoformatted(
+    with withFileOpenedAndAutoFormatted(
         "doc/doc/developer-manual.rst"
     ) as developer_manual_output:
         # We can plug meta changes for website here, this could be better.

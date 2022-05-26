@@ -78,7 +78,7 @@ This release comes a lot of bug fixes and improvements.
    to exception raises and warned about if the according option is
    enabled.
 
--  Unhashable keys in dictionaries are now statically optimized to
+-  Non-hashable keys in dictionaries are now statically optimized to
    exception raises and warned about if the according option is enabled.
 
 -  Enable forward propagation for classes too, resulting in some classes
