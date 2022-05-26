@@ -6,7 +6,7 @@ from pathlib import Path
 
 # -- Project information
 project = "Nuitka the Python Compiler"
-copyright = "%s, Kay Hayen and Nuitka Contributors" % time.gmtime().tm_year
+copyright = f"{time.gmtime().tm_year}, Kay Hayen and Nuitka Contributors"
 author = "Kay Hayen"
 release = version = ""
 
@@ -136,9 +136,7 @@ sitemap_url_scheme = "{lang}/{link}"
 
 # TODO: Not sure if I really like that, we should use relative URLs on the inside,
 # so this ought to be wrong anyway.
-extlinks = {
-    'nuitka': (f'/%s', ''),
-}
+extlinks = {'nuitka': ('/%s', '')}
 
 html_static_path = [f"{ROOT}/_static"]
 
