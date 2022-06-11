@@ -29,11 +29,33 @@ Bug Fixes
 
       { {}:1, }
 
+-  Fix, hard imported sub-modules of hard imports were falsely resolved
+   to their parent. Fixed in 0.8.3 already.
+
+   .. code:: python
+
+      importlib.resources.read_bytes() # gave importlib has no attribute...
+
+-  Windows: Fix, outputs with ``--force-stdout-spec`` or
+   ``--force-stderr-spec`` were created with the file system encoding on
+   Python3, but they nee to be ``utf-8``.
+
 New Features
 ============
 
 -  macOS: Signing now optionally uses hardened runtime as require for
    notarization (not complete yet.)
+
+-  Standalone: Added new ``no-qt`` plugin as an easy way to prevent all
+   of the Qt bindings from being included in a compilation.
+
+-  Include module search path in compilation report.
+
+Tests
+=====
+
+-  The reflected test was adapted to preserve ``PYTHONPATH`` now that
+   module presence influences optimization.
 
 Optimization
 ============
@@ -48,6 +70,44 @@ Optimization
 -  The node for ``dict.update`` with only an iterable argument, but no
    keyword arguments, was in fact unused due to wrongly generated code.
    Also the form with no arguments wasn't yet handled properly.
+
+-  Scalability: Use specialized nodes for pair values, i.e. the
+   representation of ``x = y`` in e.g. dictionary creations. With
+   constant keys, and values, these avoid full constant value nodes, and
+   therefore save memory and compile time for a lot of code.
+
+-  Anti-bloat: Added more scalability work to avoid including modules
+   that make compilation unnecessarily big.
+
+-  Python3.9+: Faster calls in case of mixed code, i.e. compiled code
+   calling uncompiled code.
+
+-  Removing duplicates and non-existent entries from modules search path
+   should improve performance when locating modules.
+
+Organisational
+==============
+
+-  Merged our Yaml files into one and added schema description, for
+   completion and checking in Visual Code while editing. Also check the
+   schema in ``check-nuitka-with-yamllint`` which is now slightly
+   misnamed.
+
+-  Quality: Auto-format the package configuration Yaml file for
+   anti-bloat, implicit dependencies, etc.
+
+-  GitHub: Point out the commit hook in the PR template.
+
+-  UI: Nicer output in case of no commercial version is used
+
+-  Updated the MinGW64 winlibs download used on Windows to the latest
+   version based on gcc 11, the gcc 12 is not yet ready.
+
+-  Git: Make sure we are not affected by ``core.autocrlf`` setting, as
+   it interferes with auto-format enforcing Unix newlines.
+
+Summary
+=======
 
 This release is not done yet.
 
