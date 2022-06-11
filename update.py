@@ -43,7 +43,7 @@ def _updateCheckout(branch, update):
             f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
         )
 
-        with zipfile.ZipFile('nuitka.zip.tmp') as archive:
+        with zipfile.ZipFile("nuitka.zip.tmp") as archive:
             archive.extractall(".")
 
         os.unlink("nuitka.zip.tmp")
@@ -182,8 +182,6 @@ def updateDownloadPage():
 
         return parts
 
-    msi_info = {}
-
     for filename in link_names:
         # Navigation links
         if filename.startswith("?C") or filename == "/":
@@ -199,39 +197,10 @@ def updateDownloadPage():
 
         assert filename.lower().startswith("nuitka"), filename
 
-        if (
-            filename.startswith("Nuitka-")
-            and filename.endswith(".msi")
-            and "factory" not in filename
-        ):
-
-            parts = filename.split(".")
-
-            if parts[-3] == "win32":
-                bits = "32"
-            elif parts[-3] == "win-amd64":
-                bits = "64"
-            else:
-                my_print("Ignoring broken MSI filename %s" % filename, file=sys.stderr)
-                continue
-
-            version = parts[-2][2:]
-
-            if numberize(filename)[2] == 1:
-                category = "stable"
-            else:
-                category = "develop"
-
-            key = category, version, bits
-
-            if key not in msi_info:
-                msi_info[key] = filename
-            else:
-                msi_info[key] = max(msi_info[key], filename, key=numberize)
-
+        if filename.endswith(".msi"):
             continue
 
-        if not filename.endswith(".deb") or not filename.endswith("_all.deb"):
+        if not filename.endswith("_all.deb"):
             continue
 
         # print "FILE", filename
@@ -399,14 +368,6 @@ def updateDownloadPage():
 
     max_sle_150_release, max_sle_150_prerelease = checkOBS("SLE_15")
 
-    def extractMsiVersion(filename):
-        if not filename:
-            return ""
-
-        m1, m2, m3 = numberize(filename)[1:4]
-
-        return "0.%d.%d" % (m1, m3 / 10) if m2 else "0.%drc%d" % (m1, m3)
-
     findings = {
         "plain_prerelease": makePlain(max_pre_release),
         "deb_prerelease": max_pre_release,
@@ -415,25 +376,6 @@ def updateDownloadPage():
     }
 
     templates = {}
-
-    for (category, version, bits), filename in list(msi_info.items()):
-        if category == "develop":
-            category = "unstable"
-
-        findings["max_msi_" + category + "_" + version + "_" + bits] = filename
-        findings["msi_" + category + "_" + version + "_" + bits] = extractMsiVersion(
-            filename
-        )
-
-        templates["NUITKA_" + category.upper() + "_MSI_" + version + "_" + bits] = (
-            r"`Nuitka %%(msi_%(category)s_%(version)s_%(bits)s)s Python%(dot_version)s %(bits)s bit MSI <https://nuitka.net/releases/%%(max_msi_%(category)s_%(version)s_%(bits)s)s>`__"
-            % {
-                "version": version,
-                "bits": bits,
-                "category": category,
-                "dot_version": version[0] + "." + version[1:],
-            }
-        )
 
     def makeFedoraText(fedora_number, release):
         version = fedora_rpm[release, fedora_number]
@@ -716,7 +658,7 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
                 slug = "minor-" + slug.replace("nuitka-release", "release-nuitka")
 
             output_path = "doc/posts"
-            txt_path = os.path.join(output_path, f'{slug}.rst')
+            txt_path = os.path.join(output_path, f"{slug}.rst")
 
             if os.path.exists(txt_path):
                 pub_date = open(txt_path).readline().split(maxsplit=2)[2].strip()
