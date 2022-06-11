@@ -1,0 +1,394 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-06 11:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../intl/commercial.rst:3
+msgid ""
+"Protect your IP against reverse engineering with the Python compiler "
+"Nuitka and turn your Python code into binary. Protect code, data, outputs"
+" and tracebacks!"
+msgstr ""
+"Schütze mit dem Python Compiler Nuitka deine IP gegen Reverse Engineering"
+" und verwandle deinen Python Code in eine Binärdatei. Schütze Code, Daten, Ausgaben"
+" und Tracebacks."
+#: ../../intl/commercial.rst:3
+msgid ""
+"python,compiler,protection,reverse "
+"engineering,encrypted,tracebacks,obfuscate,obfuscation,obfuscator"
+msgstr ""
+
+#: ../../doc/doc/commercial.rst:7 ../../doc/doc/commercial.rst:223
+msgid "Nuitka Commercial"
+msgstr ""
+
+#: ../../doc/doc/commercial.rst:9
+msgid ""
+"As a commercial user of Python, you definitely need these 4 critical "
+"features that only Nuitka commercial offers. Protect your code, your "
+"data, your outputs, and tracebacks while still enjoying major convenience"
+" features for your application."
+
+msgstr ""
+"Als kommerzieller Benutzer von Python benötigen Sie auf jeden Fall diese 4 sehr wichtigen"
+" Funktionen, die nur ``Nuitka Commercial`` bietet. Schützen Sie Ihren Code, Ihre"
+" Daten, Ihre Ausgaben und Rückverfolgungen und genießen Sie gleichzeitig wichtige"
+" Komfortfunktionen für Ihre Anwendung."
+
+#: ../../doc/doc/commercial.rst:16
+msgid "Protection vs. Reverse Engineering"
+msgstr "Schutz vs. Reverse Engineering"
+
+#: ../../doc/doc/commercial.rst:18
+msgid ""
+"Hiding your source code and contained keys is crucial to your IP "
+"protection. For this, you need the Nuitka commercial package. It contains"
+" plugins to Nuitka that will achieve the following:"
+
+msgstr ""
+"Das Verbergen Ihres Quellcodes und enthaltener Schlüssel ist entscheidend für Ihren IP-Schutz."
+" Dazu benötigen Sie das ``Nuitka Commercial``-Paket."
+" Es enthält Plugins für Nuitka, die Folgendes erreichen:"
+
+#: ../../doc/doc/commercial.rst:27
+msgid "Obfuscate contained program constants data"
+msgstr "Im Programm enthaltene Konstanten verschleiern"
+
+#: ../../doc/doc/commercial.rst:29
+msgid ""
+"Your encryption keys, your program texts, your library usages, all expose"
+" textual information, that can be valuable input in Reverse Engineering."
+msgstr ""
+"Ihre Verschlüsselungsschlüssel, Ihre Programmtexte, Ihre Bibliotheksnutzungen, alles"
+" sind wertvolle Informationen, die das Reverse Engineering erleichtert."
+
+#: ../../doc/doc/commercial.rst:33
+msgid ""
+"Normally these constants are plain and readable in the created programs "
+"(and of course your Python source code or bytecode). Compiling with "
+"Nuitka gives you protection of the code, but with the data being easily "
+"readable, it will be less effective."
+msgstr ""
+"Normalerweise sind diese Konstanten in den erstellten"
+" Programmen (und natürlich Ihrem Python-Quellcode oder Bytecode) leicht lesbar."
+" Das Kompilieren mit Nuitka bietet Ihnen Schutz für den Code,"
+" aber da die Daten leicht lesbar sind, wird es weniger effektiv sein."
+
+#: ../../doc/doc/commercial.rst:38
+msgid "`Read more.... <commercial/protect-constants-data.html>`__"
+msgstr "`Weiterlesen.... <commercial/protect-constants-data.html>`__"
+
+#: ../../doc/doc/commercial.rst:43
+msgid ""
+"Another facet of the data protection is data files. When your program "
+"includes data files to work on, these are visible in the file system. "
+"Sometimes, e.g. via QML files of Qt, your program behavior can be changed"
+" by an attacker modifying these files."
+msgstr ""
+"Eine weitere Gefahr sind Dateien. Wenn Ihr Programm Datendateien zum Bearbeiten enthält,"
+" sind diese im Dateisystem sichtbar. Manchmal, zB über QML-Dateien von Qt,"
+" kann Ihr Programmverhalten von einem Angreifer, der diese Dateien modifiziert verändert werden."
+
+#: ../../doc/doc/commercial.rst:48
+msgid ""
+"Therefore Nuitka commercial allows you to include data files as part of "
+"the program constants and protect it in the same way as other constants. "
+"Without these files accessible, the attacker will not has these an an "
+"attack vector."
+msgstr ""
+"Daher erlaubt ``Nuitka Commercial``, Datendateien als Teil der Programmkonstanten einzubinden"
+" und sie auf die gleiche Weise wie andere Konstanten zu schützen."
+" Wenn diese Dateien nicht zugänglich sind, kann der Angreifer sie nicht als Angriffsvektor nutzen."
+
+#: ../../doc/doc/commercial.rst:53
+msgid "`Read more.... <commercial/protect-data-files.html>`__"
+msgstr "`Weiterlesen.... <commercial/protect-data-files.html>`__"
+
+#: ../../doc/doc/commercial.rst:59
+msgid ""
+"When your program is deployed and crashing, you could take potentially "
+"successful steps against these tracebacks appearing. But when you need to"
+" support your client, you need to be able to to actually tell, why your "
+"software is crashing."
+msgstr ""
+"Wenn Ihr Programm eingesetzt wird und abstürzt,"
+" können Sie möglicherweise erfolgreich gegen das Auftreten dieser Tracebacks vorgehen."
+" Aber wenn Sie Ihren Kunden unterstützen müssen, müssen Sie in der Lage sein,"
+" tatsächlich zu erkennen, warum Ihre Software abstürzt."
+
+#: ../../doc/doc/commercial.rst:64
+msgid ""
+"Python tracebacks are good for this, but you cannot want them to be "
+"readable to the user. This is very traceback encryption comes in. Nuitka "
+"with the commercial plugin will make sure to encrypt all traceback "
+"outputs. They still carry the information as you want, but *only you* "
+"will be able to decode them."
+msgstr ""
+"Python-Tracebacks sind gut dafür geeignet, aber Sie wollen nicht,"
+" dass sie für den Benutzer lesbar sind. Hier kommt die Traceback-Verschlüsselung ins Spiel."
+" Nuitka mit dem kommerziellen Plugin sorgt dafür,"
+" dass alle Traceback-Ausgaben verschlüsselt werden. Sie enthalten immer noch die von"
+" Ihnen gewünschten Informationen, aber nur Sie können sie entschlüsseln."
+
+#: ../../doc/doc/commercial.rst:70
+msgid ""
+"Symmetric encryption (and asymmetric encryption in a future update) are "
+"available for you to use there."
+msgstr "Symmetrische Verschlüsselung (und asymmetrische Verschlüsselung in einem zukünftigen Update)"
+" sind dort für Sie verfügbar."
+
+#: ../../doc/doc/commercial.rst:73
+msgid "`Read more.... <commercial/encrypted-tracebacks.html>`__"
+msgstr "`Weiterlesen.... <commercial/encrypted-tracebacks.html>`__"
+
+#: ../../doc/doc/commercial.rst:78
+msgid ""
+"If you need to query information from a machine, or just in general want "
+"to have perfect protection, you can use the Nuitka plugin to make sure it"
+" can only output encrypted information on standard output and standard "
+"error."
+msgstr ""
+"Wenn Sie Informationen von einer Maschine abfragen müssen oder generell"
+" einen perfekten Schutz haben wollen, können Sie das Nuitka-Plugin verwenden,"
+" um sicherzustellen, dass nur verschlüsselte Informationen"
+" auf der Standardausgabe und dem Standardfehler ausgeben werden."
+
+#: ../../doc/doc/commercial.rst:83
+msgid ""
+"This will allow you to decode outputs as necessary, and will make sure "
+"it's not readable to anybody but you."
+msgstr ""
+"So können Sie die Ausgaben bei Bedarf entschlüsseln und sicherstellen, dass"
+" es für niemanden außer Ihnen lesbar ist."
+
+#: ../../doc/doc/commercial.rst:90
+msgid "For select few packages, these are only supported with Nuitka commercial."
+msgstr "Einige wenige Pakete werden nur mit ``Nuitka Commercial`` unterstützt."
+
+#: ../../doc/doc/commercial.rst:92
+msgid "`Read more.... <commercial/commercial-only-packages.html>`__"
+msgstr "`Weiterlesen.... <commercial/commercial-only-packages.html>`__"
+
+#: ../../doc/doc/commercial.rst:96
+msgid "Special needs (Commercial only use cases)"
+msgstr "Besondere Anforderungen (nur kommerzielle Anwendungsfälle)"
+
+#: ../../doc/doc/commercial.rst:98
+msgid ""
+"In this instance, you have special wishes that only commercial customers "
+"will have and that are effort to maintain."
+msgstr ""
+"In diesem Fall haben Sie spezielle Wünsche, die nur für gewerbliche Kunden"
+" relevant und mit viel Aufwand zu erfüllen sind."
+
+#: ../../doc/doc/commercial.rst:101
+msgid "You might e.g. you want to deploy a Windows service"
+msgstr "Sie könnten z.B. einen Windows-Dienst einrichten wollen."
+
+#: ../../doc/doc/commercial.rst:103
+msgid ""
+"For this, there is a dedicated plugin in Nuitka that makes deployment of "
+"a practically unchanged program as a service very easy."
+msgstr ""
+"Hierfür gibt es in Nuitka ein spezielles Plugin, das die Bereitstellung von "
+"einem praktisch unverändertem Programm als Dienst sehr einfach macht."
+
+#: ../../doc/doc/commercial.rst:106
+msgid "`Read more.... <commercial/windows-service.html>`__"
+msgstr "`Weiterlesen.... <commercial/windows-service.html>`__"
+
+#: ../../doc/doc/commercial.rst:108
+msgid "You might need to support special commercial grade software."
+msgstr "Möglicherweise müssen Sie spezielle kommerzielle Software unterstützen."
+
+#: ../../doc/doc/commercial.rst:110
+msgid ""
+"This can be done, but you might have to pay for the development time this"
+" takes."
+msgstr ""
+"Das ist machbar, aber Sie müssen möglicherweise für die Entwicklungszeit bezahlen,"
+" die es braucht."
+
+#: ../../doc/doc/commercial.rst:113
+msgid "You might need to support very old OSes, e.g. RHEL 5."
+msgstr "Sie müssen möglicherweise sehr alte Betriebssysteme unterstützen"
+" wie zum Beispiel RHEL 5."
+
+#: ../../doc/doc/commercial.rst:115
+msgid ""
+"Again, this can be done, but you might have to pay for the development "
+"time this takes."
+msgstr ""
+"Auch das ist möglich, aber Sie müssen möglicherweise für die Entwicklungszeit bezahlen, "
+" die dafür benötigt wird."
+
+#: ../../doc/doc/commercial.rst:118
+msgid "Automatic download, alerts to, applying updates of deployed software."
+msgstr "Automatisches Herunterladen, Benachrichtigung und Anwendung von Updates für die bereitgestellte Software."
+
+#: ../../doc/doc/commercial.rst:120
+msgid "This is not yet implemented, but will be added in a future update."
+msgstr "Diese Funktion ist noch nicht implementiert, wird aber in einem zukünftigen Update hinzugefügt werden."
+
+#: ../../doc/doc/commercial.rst:122
+msgid ""
+"Support for these things will also be covered in the Nuitka commercial "
+"package, and while you might not care necessarily about hiding your "
+"source or data, but much rather you care about the quality of deployment "
+"of your software."
+msgstr "Die Unterstützung für solche Dinge wird auch in dem ``Nuitka Commercial`` Paket abgedeckt"
+" Hierbei geht es nicht unbedingt um das Verstecken des Codes oder ihren Daten, "
+" sondern um die Qualität ihrer Software."
+
+#: ../../doc/doc/commercial.rst:129
+msgid "Priority Issue Solutions"
+msgstr "Vorrangige Problemlösungen"
+
+#: ../../doc/doc/commercial.rst:131
+msgid ""
+"You might have an issue that blocks you from using Nuitka, which you want"
+" to use though, because of performance gains, the IP protection, with or "
+"without the commercial plugins."
+msgstr "Vielleicht haben Sie ein Problem, das Sie daran hindert,"
+" Nuitka zu verwenden, das Sie aber wegen der Leistungssteigerung"
+" und des IP-Schutzes mit oder ohne kommerzielle Plugins nutzen möchten."
+
+
+#: ../../doc/doc/commercial.rst:135
+msgid ""
+"The Nuitka Priority package gives you access to elevated priority of your"
+" issues. If you subscribe to this, reported issues will be solved with "
+"highest priority, to enable you using Nuitka."
+msgstr ""
+"Das Nuitka Priority-Paket bietet Ihnen Zugang zu einer erhöhten Priorität für Ihre"
+" Probleme. Wenn Sie dieses Paket abonnieren, werden die gemeldeten Probleme mit"
+" höchster Priorität gelöst, damit Sie Nuitka nutzen können."
+
+#: ../../doc/doc/commercial.rst:141
+msgid "Sponsorship"
+msgstr "Sponsoring"
+
+#: ../../doc/doc/commercial.rst:143
+msgid ""
+"You are happy in using Nuitka and you want to benefit it, because it "
+"solves a crucial part of your workflow in deployment. You may or may not "
+"need the priority package or the commercial package. You can pay the "
+"relatively large amount and help Nuitka development in general. And you "
+"can know that it remains active and supported and pay back to the "
+"relatively free service you get on a daily basis."
+msgstr ""
+"Sie sind mit Nuitka zufrieden und wollen es nutzen, weil es"
+" einen wichtigen Teil Ihrer Arbeitsabläufe bei der Bereitstellung löst. Sie können"
+" das Prioritätspaket oder das kommerzielle Paket benötigen oder auch nicht. Sie können den "
+" relativ hohen Betrag bezahlen und die Entwicklung von Nuitka im Allgemeinen unterstützen. Und Sie "
+" können wissen, dass es aktiv bleibt und unterstützt wird und den "
+" relativ kostenlosen Service, den Sie täglich erhalten."
+
+#: ../../doc/doc/commercial.rst:150
+msgid ""
+"Naturally sponsors will be entitled to all access and treated with "
+"highest priority."
+msgstr ""
+"Natürlich haben Sponsoren das Recht auf jeden Zugang und werden mit "
+"höchster Priorität behandelt."
+
+#: ../../doc/doc/commercial.rst:155
+msgid "Pricing"
+msgstr "Preisgestaltung"
+
+#: ../../doc/doc/commercial.rst:164 ../../doc/doc/commercial.rst:181
+msgid "€ 250"
+msgstr ""
+
+#: ../../doc/doc/commercial.rst:168
+msgid "`Subscribe now </stripe/checkout-commercial-subscription>`__"
+msgstr "`Abonniere jetzt </stripe/checkout-commercial-subscription>`__"
+
+#: ../../doc/doc/commercial.rst:170
+msgid "Commercial only Features"
+msgstr "Nur kommerzielle Features"
+
+#: ../../doc/doc/commercial.rst:172
+msgid "All your applications"
+msgstr "All ihre Anwendungen"
+
+#: ../../doc/doc/commercial.rst:174
+msgid "Standard Support"
+msgstr "Standart Support"
+
+#: ../../doc/doc/commercial.rst:185
+msgid "`Subscribe now </stripe/checkout-priority-subscription>`__"
+msgstr "`Abonniere jetzt </stripe/checkout-priority-subscription>`__"
+
+#: ../../doc/doc/commercial.rst:187 ../../doc/doc/commercial.rst:221
+msgid "Best Support"
+msgstr "Bester Support"
+
+#: ../../doc/doc/commercial.rst:189
+msgid "Issues have **Priority**"
+msgstr "Probleme haben **Priorität**"
+
+#: ../../doc/doc/commercial.rst:191
+msgid "**No** Commercial features"
+msgstr "**Keine** kommerziellen Features"
+
+#: ../../doc/doc/commercial.rst:199
+msgid "€ 400"
+msgstr ""
+
+#: ../../doc/doc/commercial.rst:203
+msgid "`Subscribe now </stripe/checkout-full-subscription>`__"
+msgstr "`Abonniere jetzt </stripe/checkout-full-subscription>`__"
+
+#: ../../doc/doc/commercial.rst:205
+msgid "Nuitka Commercial **plus**"
+msgstr "Nuitka Commercial **plus**"
+
+#: ../../doc/doc/commercial.rst:207
+msgid "Nuitka Priority"
+msgstr "Nuitka Priority"
+
+#: ../../doc/doc/commercial.rst:215
+msgid "€ 1000"
+msgstr ""
+
+#: ../../doc/doc/commercial.rst:219
+msgid "`Subscribe now </stripe/checkout-sponsor-subscription>`__"
+msgstr "`Abonniere jetzt </stripe/checkout-sponsor-subscription>`__"
+
+#: ../../doc/doc/commercial.rst:225
+msgid "Roadmap Influence"
+msgstr "Roadmap Einfluss"
+
+#: ../../doc/doc/commercial.rst:227
+msgid "Use Cases Priority"
+msgstr "Priorität der Anwendungsfälle"
+
+#: ../../doc/doc/commercial.rst:231
+msgid "Contact Us"
+msgstr "Kontaktiere uns"
+
+#: ../../doc/doc/commercial.rst:233
+msgid ""
+"Please use `this form to contact us "
+"<https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_"
+" with intent of buying Nuitka services"
+msgstr ""
+"Bitte benutze `diese Formular um uns zu kontaktieren "
+"<https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_"
+" mit der Absicht, die Dienstleistungen von Nuitka zu kaufen"
