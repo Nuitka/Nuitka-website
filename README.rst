@@ -220,6 +220,24 @@ serious update from my side, maybe ignore that, until I get there.
 Review applies here very much. I think Tutorial parts might be factored
 out to separate documents.
 
+******************
+ How to translate
+******************
+
+.. code:: bash
+   
+   # Generate the .pot files
+   cd intl
+   make gettext
+
+   # Generate .po files from .pot
+   sphinx-intl update -p ../output/gettext -l your_language_code
+
+Under locales in the folder with the language code you will then have many .po files.
+In the .po file you can see ``msgid`` and below it ``msgstr``.
+``msgid`` contains the english original, in ``msgstr`` you can write the translation.
+If you then want to transfer your changes via PR, please commit **only** the files you have translated.
+
 ********************
  Image Optimization
 ********************
