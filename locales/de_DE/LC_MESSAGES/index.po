@@ -2,14 +2,14 @@
 # Copyright (C) 2022, Kay Hayen and Nuitka Contributors
 # This file is distributed under the same license as the Nuitka the Python
 # Compiler package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# Fire-Cube <ben7@gmx.ch>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Nuitka the Python Compiler \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-18 18:35+0100\n"
+"POT-Creation-Date: 2022-06-12 18:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,123 +18,373 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../doc/index.rst:39
-msgid "Download"
+#: ../../README.rst:3
+msgid "Nuitka Website"
+msgstr "Nuitka Webseite"
+
+msgid "Nuitka Logo"
 msgstr ""
 
-#: ../doc/index.rst:39
-msgid "User Manual"
-msgstr "Benutzerhandbuch"
+#: ../../README.rst:10
+msgid "Thanks"
+msgstr "Danke"
 
-#: ../doc/index.rst:46
-msgid "Commercial Users"
-msgstr "Kommerzielle Benutzer"
-
-#: ../doc/index.rst:52
-msgid "Roadmap"
-msgstr ""
-
-#: ../doc/index.rst:52
-msgid "Release Information"
-msgstr "Veröffentlichungsinformationen"
-
-#: ../doc/index.rst:59
-msgid "Developer Manual"
-msgstr "Entwicklerhandbuch"
-
-#: ../doc/index.rst:59
-msgid "API doc"
-msgstr "API Dokumentation"
-
-#: ../doc/index.rst:59
-msgid "More documentation"
-msgstr "Mehr Dokumentationen"
-
-#: ../doc/index.rst:67
-msgid "Presentations"
-msgstr "Präsentationen"
-
-#: ../doc/index.rst:67
-msgid "Streaming"
-msgstr ""
-
-#: ../doc/index.rst:67
-msgid "Media"
-msgstr "Medien"
-
-#: ../doc/index.rst:74
-msgid "Other"
-msgstr "Anderes"
-
-#: ../doc/index.rst:81
-msgid "Under construction"
-msgstr "Im Bau"
-
-#: ../doc/index.rst:1
+#: ../../README.rst:12
 msgid ""
-"With the Python compiler Nuitka you create protected binaries out of your"
-" Python source code."
+"Please help and improve this in all ways, typos, cooler tech, better "
+"looks, more information, etc. all is appreciated and necessary."
 msgstr ""
+"Bitte helfen Sie mit und verbessern Sie es in jeder Hinsicht, Tippfehler,"
+" coolere Technik, besseres Aussehen, mehr Informationen, usw."
+" alles ist willkommen und notwendig."
 
-#: ../doc/index.rst:1
-msgid "python,compiler,exe,binary,protection,portable,standalone,windows,linux,mac"
-msgstr ""
+#: ../../README.rst:15
+msgid "Right now, this is very much possible to improve. Your turn!"
+msgstr "Im Moment ist es sehr gut möglich, dies zu verbessern. Sie sind dran!"
 
-#: ../doc/index.rst:7
-msgid "Nuitka the Python Compiler"
-msgstr "Nuitka der Python Compiler"
+#: ../../README.rst:19
+msgid "Usage"
+msgstr "Verwendung"
 
-#: ../doc/index.rst:11
-msgid "Nuitka Blog"
-msgstr ""
-
-#: ../doc/index.rst:18
-msgid "What is Nuitka"
-msgstr "Was ist Nuitka"
-
-#: ../doc/index.rst:20
+#: ../../README.rst:21
 msgid ""
-"Nuitka is the optimizing Python compiler written in Python that creates "
-"executables that run without an need for a separate installer. Data files"
-" can both be included or put alongside."
+"This is used to build the Nuitka web site. Enhancements of all kinds are "
+"welcome. You will need python 3.9 and ``pipenv`` to build it, and so far "
+"this has only be done on Linux, but it ought to also work on Windows, you"
+" can make that work as part of your contribution."
 msgstr ""
-"Nuitka ist ein optimierender Python-Compiler, der in Python geschrieben ist und "
-"ausführbare Dateien erstellt, die ohne ein separates Installationsprogramm laufen. ""
-"Datendateien können sowohl eingebunden als auch separat hinzugefügt werden."
+"Damit wird die Nuitka-Website aufgebaut. Erweiterungen aller Art sind willkommen."
+" Du brauchst Python 3.9 und ``pipenv``, um es zu bauen, und bis jetzt wurde es nur"
+" unter Linux gemacht, aber es sollte auch unter Windows funktionieren, du kannst"
+" das als Teil deines Beitrags machen."
 
-#: ../doc/index.rst:24
-msgid ""
-"It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10), "
-"works on Windows, macOS, Linux and more, basically where Python works for"
-" you already."
-msgstr ""
-"Es ist vollständig kompatibel mit Python2 (2.6, 2.7) und Python3 (3.3 - 3.10),"
-"funktioniert unter Windows, macOS, Linux und mehr, im Grunde überall, wo Python "
-"für Sie funktioniert."
+#: ../../README.rst:57
+msgid "Usage of Sphinx"
+msgstr "Verwendung von Sphinx"
 
-#: ../doc/index.rst:28
+#: ../../README.rst:59
 msgid ""
-"It protects your code and data, esp. with the Nuitka commercial offering,"
-" and also just works and is easy to use."
+"So the site is basically mostly an automation of importing a few files "
+"from the Nuitka git repository, splitting up e.g. the ``Changelog.rst`` "
+"into pages, with otherwise using Sphinx to render it. Reference the "
+"Sphinx documentation and esp. the one for Read the Docs theme and ABlog."
 msgstr ""
-"Es schützt Ihren Code und Ihre Daten, vor allem mit dem kommerziellen Angebot, "
-"und es funktioniert einfach und ist leicht zu benutzen."
+"Die Seite ist also im Grunde eine Automatisierung des Imports einiger Dateien"
+" aus dem Nuitka git repository, die z.B. die ``Changelog.rst`` in Seiten aufteilt"
+" und ansonsten Sphinx zum Rendern verwendet. Siehe die Sphinx-Dokumentation,"
+" insbesondere die für das Thema Read the Docs und ABlog."
 
-#: ../doc/index.rst:31
-msgid ""
-"Nuitka is freely distributed under the Apache license. Nuitka commercial "
-"is a private repository that you pay to access and get plugins for "
-"commercial usage."
-msgstr ""
-"Nuitka wird unter der Apache-Lizenz frei verteilt. Nuitka kommerziell "
-"ist ein privates Repository, auf das Sie gegen Bezahlung zugreifen können, um Plugins für "
-"die kommerzielle Nutzung zu erhalten."
+#: ../../README.rst:66
+msgid "Translation"
+msgstr "Übersetzung"
 
-#: ../doc/index.rst:35
+#: ../../README.rst:68
 msgid ""
-"In the meantime you can checkout why `Nuitka commercial "
-"</doc/commercial.html>`__ is for you or find the its `standard version "
-"here </pages/download.html>`_."
+"Translations of the Nuitka website are very welcome. We have a team for "
+"those want to work on it, with push rights to the repository. Right now a"
+" ``translation`` branch is used, but the plan is for it to be merged, and"
+" to provide the infrastructure in the ``main`` branch."
 msgstr ""
-"Hier können sie überprüfen, wieso `Nuitka kommerziell </doc/commercial.html>`__etwas für sie sein könnte, "
-"oder schauen sie sich die `standart Version </pages/download.html>`__ an."
+"Übersetzungen der Nuitka-Website sind sehr willkommen."
+" Wir haben ein Team für diejenigen, die daran arbeiten wollen,"
+" mit Push-Rechten für das Repository. Im Moment wird ein ``translation`` Zweig"
+" verwendet, aber der Plan ist, diesen zusammenzuführen und die Infrastruktur im ``main`` Zweig bereitzustellen."
+
+#: ../../README.rst:73
+msgid ""
+"Here is a table of the files to translate and their styles. Everything "
+"that is not mentioned here, should be asked about if in doubt. Not all "
+"pages make sense to translate."
+msgstr ""
+"Hier ist eine Tabelle mit den zu übersetzenden Dateien und ihren Stilen."
+" Alles, was hier nicht aufgeführt ist, sollte im Zweifelsfall nachgefragt werden."
+" Nicht alle Seiten sind sinnvoll zu übersetzen."
+
+#: ../../README.rst:79
+msgid ""
+"Before translating, I would love you to also actually review the content,"
+" if you agree it makes sense, if it can be better structured. This is "
+"very much needed unfortunately."
+msgstr ""
+"Ich würde mich freuen, wenn Sie vor der Übersetzung auch den Inhalt überprüfen würden,"
+" ob er sinnvoll ist und ob er besser strukturiert werden kann. Das ist leider sehr nötig."
+
+#: ../../README.rst:85
+msgid ""
+"There are plans to get rid of ``pages`` and ``doc`` sub-folders of the "
+"site folder ``doc``. For URLs, these are plain bad, and would e.g. be "
+"much better as ``python-compiler`` and the like. A plan will be devised "
+"and put into place, but it will just move and renamed pages."
+msgstr ""
+"Es gibt Pläne, die Unterordner ``pages`` und ``doc`` des Site-Ordners ``doc``"
+" abzuschaffen. Für URLs sind diese einfach schlecht, und wären z.B. viel besser"
+" als ``python-compiler`` und dergleichen. Es wird ein Plan ausgearbeitet"
+" und umgesetzt, aber es werden nur Seiten verschoben und umbenannt."
+
+#: ../../README.rst:92
+msgid "Directory ``posts/``"
+msgstr "Ordner ``posts/``"
+
+#: ../../README.rst:94
+msgid ""
+"At this time, the blog posts, esp. old ones should not be translated. I "
+"believe often new content will be created in post form, and then moved "
+"over to pages for translation. A current example are tutorial style pages"
+" including screenshots, which depending on how the e.g. Python installer "
+"look in your language, Explorer and shell prompt, even screenshots might "
+"have to be translated. This will come only later though."
+msgstr ""
+"Zur Zeit sollten die Blogeinträge, vor allem die alten, nicht übersetzt werden."
+" Ich glaube, dass neue Inhalte oft in Form von Beiträgen erstellt werden und dann"
+" zur Übersetzung auf Seiten verschoben werden. Ein aktuelles Beispiel sind Seiten"
+" im Stil eines Tutorials mit Screenshots, die je nachdem, wie z.B. der Python-Installer"
+" in Ihrer Sprache, der Explorer und die Shell-Eingabeaufforderung aussehen,"
+" auch übersetzt werden müssen. Das wird aber erst später kommen."
+
+#: ../../README.rst:103
+msgid "Page ``pages/donations.rst``"
+msgstr "Seite ``pages/donations.rst``"
+
+#: ../../README.rst:105
+msgid ""
+"Yes, please go ahead. Let me know if there is any need to hint Paypal, or"
+" when Paypal is not available in your country, what alternative ways we "
+"could use."
+msgstr ""
+"Ja, bitte machen Sie weiter. Lassen Sie mich wissen, ob es notwendig ist,"
+" auf Paypal hinzuweisen, oder wenn Paypal in Ihrem Land nicht verfügbar"
+" ist, welche alternativen Möglichkeiten wir nutzen können."
+
+#: ../../README.rst:110
+msgid "Page ``pages/overview.rst``"
+msgstr "Seite ``pages/overview.rst``"
+
+#: ../../README.rst:119
+msgid "Page ``pages/pyside2.rst``"
+msgstr "Seite ``pages/pyside2.rst``"
+
+#: ../../README.rst:121
+msgid ""
+"Very important kind of page, of which I want to have more. Nuitka links "
+"itself to this from the plugin, and it's a landing page to inform users "
+"about troubles that can be expected. We want to have some boilerplate for"
+" this, and a general way of adding these. These user hint pages are where"
+" I think we ought to help the users from real Nuitka to find the "
+"information, and even localized for their needs."
+msgstr ""
+"Sehr wichtige Art von Seite, von der ich mehr haben möchte."
+" Nuitka verlinkt sich selbst mit dieser Seite aus dem Plugin,"
+" und es ist eine Landing Page, um Benutzer über zu erwartende"
+" Probleme zu informieren. Wir wollen dafür eine Art Boilerplate"
+" haben und eine allgemeine Möglichkeit, diese hinzuzufügen."
+" Diese Benutzer-Hinweis-Seiten sind der Ort, an dem wir meiner Meinung"
+" nach den Benutzern von Nuitka helfen sollten, die Informationen zu finden."
+
+#: ../../README.rst:129
+msgid "Page ``pages/support.rst``"
+msgstr "Seite ``pages/support.rst``"
+
+#: ../../README.rst:131
+msgid ""
+"This one is not mentioning the Discord server yet, I will add that soon "
+"though. Very important page that should be linked to from many places."
+msgstr ""
+"Hier wird der Discord-Server noch nicht erwähnt, ich werde das aber bald hinzufügen."
+" Sehr wichtige Seite, die von vielen Stellen aus verlinkt werden sollte."
+
+#: ../../README.rst:135
+msgid "Page ``pages/gsoc2019.rst``"
+msgstr "Seite ``pages/gsoc2019.rst``"
+
+#: ../../README.rst:137
+msgid ""
+"This is historical information, translation makes no sense, not sure what"
+" to do with it. But if Nuitka were to do it again, we would translate it "
+"ideally for the next time."
+msgstr ""
+"Das ist eine historische Information, die Übersetzung macht keinen Sinn,"
+" wir wissen nicht, was wir damit anfangen sollen. Aber wenn Nuitka es noch"
+" einmal machen würde, würden wir es für das nächste Mal idealerweise übersetzen."
+
+#: ../../README.rst:142
+msgid "Page ``pages/impressum.rst``"
+msgstr "Seite ``pages/impressum.rst``"
+
+#: ../../README.rst:144
+msgid ""
+"This one is required by law in my country, translators might want to add "
+"their information here. I cannot take responsibility for the content of "
+"translations, as I cannot verify it in many cases."
+msgstr ""
+"Dies ist in meinem Land gesetzlich vorgeschrieben,"
+" Übersetzer sollten hier ihre Informationen hinzufügen. Ich kann keine"
+" Verantwortung für den Inhalt der Übersetzungen übernehmen, da ich"
+" ihn in vielen Fällen nicht überprüfen kann."
+
+#: ../../README.rst:149
+msgid "Page ``pages/Presentations.rst``"
+msgstr "Seite ``pages/Presentations.rst``"
+
+#: ../../README.rst:151
+msgid ""
+"This one probably should get more love content wise. It's under "
+"construction. I want to go over the blog and link all information from "
+"there. But if you are aware of material in your language, please go ahead"
+" and add it."
+msgstr ""
+"Diesem sollte wahrscheinlich mehr Aufmerksamkeit geschenkt werden,"
+" was den Inhalt betrifft. Er befindet sich im Aufbau. Ich möchte"
+" den Blog überarbeiten und alle Informationen von dort verlinken."
+" Aber wenn Sie Material in Ihrer Sprache kennen, fügen Sie es bitte hinzu."
+
+#: ../../README.rst:157
+msgid "Page ``Streaming.rst``"
+msgstr "Seite ``Streaming.rst``"
+
+#: ../../README.rst:159
+msgid ""
+"Since this about an English offer, not sure it makes sense, I will also "
+"update it in near future somewhat, but making clear it's going to be an "
+"English content, I think it ought to be translated on a basic level at "
+"the beginning of the page, and then have untranslated content?"
+msgstr ""
+"Da es sich um ein englisches Angebot handelt, bin ich mir nicht sicher,"
+" ob es Sinn macht, ich werde es in naher Zukunft auch etwas aktualisieren,"
+" aber um klarzustellen, dass es ein englischer Inhalt sein wird, denke ich,"
+" dass es auf einer grundlegenden Ebene am Anfang der Seite übersetzt werden sollte,"
+" der Rest nicht?"
+
+#: ../../README.rst:165
+msgid "Page ``doc/api-doc.rst``"
+msgstr "Seite ``doc/api-doc.rst``"
+
+#: ../../README.rst:167
+msgid ""
+"Translation makes no sense and cannot be done currently anyway. The API "
+"doc is going to be generated with Spinx, Doxygen docs are without love."
+msgstr ""
+"Eine Übersetzung macht keinen Sinn und kann derzeit ohnehin nicht durchgeführt werden."
+" Die API-Dokumentation wird mit Sphinx erstellt, Doxygen-Dokumente sind lieblos."
+
+#: ../../README.rst:171
+msgid "Page ``doc/commercial.rst`` and folder ``commercial``"
+msgstr "Seite ``doc/commercial.rst`` und Ordner ``commercial``"
+
+#: ../../README.rst:173
+msgid ""
+"Translation is very welcome. There will be more content added over time. "
+"For payment options, please check out if they work for your country and "
+"if not, help me find alternatives. I was e.g. rejected for AliPay in "
+"China, but maybe other things can work. And Russia e.g. has no Paypal "
+"(which I mean to add as an alternative still)."
+msgstr ""
+"Die Übersetzung ist sehr willkommen. Mit der Zeit werden weitere Inhalte"
+" hinzugefügt. Was die Zahlungsmöglichkeiten angeht, so prüfen Sie bitte,"
+" ob sie in Ihrem Land funktionieren und wenn nicht, helfen Sie mir,"
+" Alternativen zu finden. Ich wurde z.B. für AliPay in China abgelehnt,"
+" aber vielleicht funktionieren andere Dinge. Und Russland hat z.B."
+" kein Paypal (was ich als Alternative noch hinzufügen möchte)."
+
+#: ../../README.rst:180
+msgid "Page ``doc/factory.rst``"
+msgstr "Seite ``doc/factory.rst``"
+
+#: ../../README.rst:182
+msgid "Very useful to have it translated."
+msgstr "Es ist sehr nützlich, es übersetzt zu haben."
+
+#: ../../README.rst:185
+msgid "Page ``doc/welcome.rst``"
+msgstr "Seite ``doc/welcome.rst``"
+
+#: ../../README.rst:187
+msgid ""
+"This is just a playground for me, do not translate, unless we want to "
+"play around with translation mechanics. We will want to e.g. have an "
+"intelligent language switcher at some point, and could try it out there."
+msgstr ""
+"Das ist nur ein Spielplatz für mich, nicht übersetzen, es sei denn,"
+" wir wollen mit Übersetzungsmechanismen herumspielen. Wir werden z.B."
+" irgendwann einen intelligenten Sprachwechsler haben wollen und"
+" könnten ihn dort ausprobieren."
+
+#: ../../README.rst:192
+msgid "Page ``doc/Changelog.rst``"
+msgstr "Seite ``doc/Changelog.rst``"
+
+#: ../../README.rst:194
+msgid "Do not translate, this is a bizarre amount of work."
+msgstr "Übersetzen Sie nicht, das ist ein bizarrer Aufwand."
+
+#: ../../README.rst:197
+msgid "Page ``download.rst``"
+msgstr "Seite ``download.rst``"
+
+#: ../../README.rst:199
+msgid ""
+"Very welcome, but beware that ``download.rst.j2`` is the real source. "
+"Tables are generated into the document, this is probably a harder case "
+"technically, so hold off until this is sorted out."
+msgstr ""
+"Sehr willkommen, aber Vorsicht, ``download.rst.j2`` ist die eigentliche Quelle."
+" Tabellen werden in das Dokument generiert, dies ist wahrscheinlich"
+" ein technisch schwierigerer Fall, also warten Sie, bis dies geklärt ist."
+
+#: ../../README.rst:204
+msgid "Page ``developer-manual.rst``"
+msgstr "Seite ``developer-manual.rst``"
+
+#: ../../README.rst:206
+msgid ""
+"Makes no sense to translate. But potentially there is content that "
+"belongs to user manual in there or should be split off."
+msgstr ""
+"Es macht keinen Sinn, zu übersetzen. Möglicherweise gibt es aber"
+" Inhalte, die in das Benutzerhandbuch gehören oder abgetrennt werden sollten."
+
+#: ../../README.rst:210
+msgid "Page ``roadmap.rst``"
+msgstr "Seite ``roadmap.rst``"
+
+#: ../../README.rst:212
+msgid "Much like changelog, not as much work, but also not as important."
+msgstr "Ähnlich wie der Changelog, nicht so viel Arbeit, aber auch nicht so wichtig."
+
+#: ../../README.rst:215
+msgid "Page ``doc/user-manual.rst``"
+msgstr "Seite ``doc/user-manual.rst``"
+
+#: ../../README.rst:217
+msgid ""
+"This one is most important in my mind, optimization section needs a "
+"serious update from my side, maybe ignore that, until I get there. Review"
+" applies here very much. I think Tutorial parts might be factored out to "
+"separate documents."
+msgstr ""
+"Das ist meiner Meinung nach das Wichtigste. Der Bereich Optimierung"
+" braucht ein ernsthaftes Update von meiner Seite, vielleicht ignoriere ich das,"
+" bis ich dazu komme. Review trifft hier sehr gut zu. Ich denke,"
+" dass die Tutorial-Teile in separate Dokumente ausgelagert werden könnten."
+
+#: ../../README.rst:224
+msgid "How to translate"
+msgstr "Wie wird übersetzt"
+
+#: ../../README.rst:235
+msgid ""
+"Under locales in the folder with the language code you will then have "
+"many .po files. In the .po file you can see ``msgid`` and below it "
+"``msgstr``. ``msgid`` contains the english original, in ``msgstr`` you "
+"can write the translation. If you then want to transfer your changes via "
+"PR, please commit **only** the files you have translated."
+msgstr ""
+"Unter locales in dem Ordner mit dem Sprachkürzel sind viele .po Dateien."
+" In der .po Datei kannst du ``msgid`` und darunter ``msgstr`` sehen."
+" In ``msgid`` befindet sich das englische Original,"
+" in ``msgstr`` kannst du die Übersetzung reinschreiben."
+" Bitte committe **nur** die Dateien, die du übersetzt hast,"
+" wenn du deine Änderungen per PR hochlädst."
+
+#: ../../README.rst:242
+msgid "Image Optimization"
+msgstr "Bild Optimierung"

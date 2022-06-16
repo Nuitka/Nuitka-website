@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Kay Hayen and Nuitka Contributors
+# This file is distributed under the same license as the Nuitka the Python
+# Compiler package.
+# Fire-Cube <ben7@gmx.ch>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nuitka the Python Compiler \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-14 12:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../doc/doc/commercial/commercial-only-packages.rst:5
+msgid "Commercial-only Packages"
+msgstr "Rein kommerzielle Pakete"
+
+#: ../../doc/doc/commercial/commercial-only-packages.rst:7
+msgid ""
+"There currently are two packages that are with commercial only support. "
+"They are exceptions though, generally the support is in proper Nuitka. "
+"Due to the relatively low price, no trials are available, but these are "
+"known to work excellent."
+msgstr ""
+"Derzeit gibt es zwei Pakete, die nur kommerzielle Unterstützung bieten."
+" Das sind aber Ausnahmen, im Allgemeinen ist der Support in Nuitka selbst."
+" Aufgrund des relativ niedrigen Preises sind keine Testversionen verfügbar,"
+" aber diese sind dafür bekannt, dass sie hervorragend funktionieren."
+
+#: ../../doc/doc/commercial/commercial-only-packages.rst:14
+msgid "PySide2"
+msgstr ""
+
+#: ../../doc/doc/commercial/commercial-only-packages.rst:16
+msgid ""
+"These are `PySide2 </pages/pyside2.html>`_ for which back-ports of "
+"patches created by Nuitka have been integrated. This work needs to be "
+"compensated for and therefore requires the subscription. Others can use "
+"PySide6 which contains these patches and is freely available."
+msgstr ""
+"Dies sind `PySide2 </pages/pyside2.html>`_, für die Backports von Patches,"
+" die von Nuitka erstellt wurden, integriert wurden. Diese Arbeit muss"
+" vergütet werden und erfordert daher das Abonnement. Andere können PySide6 verwenden,"
+" das diese Patches enthält und frei verfügbar ist."
+
+#: ../../doc/doc/commercial/commercial-only-packages.rst:23
+msgid "Web3/eth-hash"
+msgstr ""
+
+#: ../../doc/doc/commercial/commercial-only-packages.rst:25
+msgid ""
+"This requires a plugin ``ethereum`` that handles the backend selection. "
+"We have chosen to only offer as part of the commercial subscription, "
+"since this was paid for by a commercial customer and is absolutely a sign"
+" of a commercial application. When you process crypto payments or money, "
+"you can definitely ought to subscribe to Nuitka commercial anyway, as "
+"things are otherwise not secure enough."
+msgstr ""
+"Dies erfordert ein Plugin ``ethereum``, das die Auswahl im Backend übernimmt."
+" Wir haben uns entschieden, dies nur im Rahmen des kommerziellen Abonnements"
+" anzubieten, da dies von einem kommerziellen Kunden bezahlt wurde und durchaus"
+" ein Zeichen für eine kommerzielle Anwendung ist. Wenn Sie Krypto-Zahlungen"
+" oder Geld verarbeiten, sollten Sie auf jeden Fall ein ``Nuitka Commercial``- Abonnement"
+" abschließen, da die Dinge sonst nicht sicher genug sind."
