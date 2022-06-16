@@ -321,7 +321,7 @@ msgstr "`Abonniere jetzt </stripe/checkout-commercial-subscription>`__"
 
 #: ../../doc/doc/commercial.rst:170
 msgid "Commercial only Features"
-msgstr "Nur kommerzielle Features"
+msgstr "exklusive Commercial Features"
 
 #: ../../doc/doc/commercial.rst:172
 msgid "All your applications"
