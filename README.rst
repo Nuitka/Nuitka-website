@@ -109,11 +109,12 @@ we could use.
 Page ``pages/overview.rst``
 ===========================
 
-Please hold off from this one. It currently is a duplicate of content
-that is just the same in ``index.rst`` and not linked, so please ignore
-it for now. There is a plan to have a feel good more like a cross road
-entry page, that will lead to the kind of page, that the home page is
-right now.
+Please hold off from this one. It currently is just a duplicate of content that
+is just the same in ``index.rst`` and not linked anywhere, so please ignore it
+for now.
+
+There is a plan to have a "feel good" cross road entry page, that will
+lead to the kind of page, that the home page is right now.
 
 Page ``pages/pyside2.rst``
 ==========================
