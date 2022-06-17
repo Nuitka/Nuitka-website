@@ -97,7 +97,6 @@
     text-align: center;
     font-size: 14px;
     vertical-align: 20px
-
 }
 
 .nuitka-price p::after {
@@ -120,7 +119,7 @@
     text-decoration: none;
 }
 
-.share-button-container{
+.share-button-container {
     text-align: center;
     margin: 0 0;
     padding: 0 0;
@@ -146,9 +145,9 @@
 
 @media screen and (max-width: 1000px) {
     .socialbutton {
-      display: none;
+        display: none;
     }
-  }
+}
 
 .socialbutton:hover {
     height: 70px;
@@ -208,7 +207,9 @@
         left: 0
     }
 
-    .wy-menu.wy-menu-vertical, .wy-side-nav-search, .wy-side-scroll {
+    .wy-menu.wy-menu-vertical,
+    .wy-side-nav-search,
+    .wy-side-scroll {
         width: auto
     }
 
