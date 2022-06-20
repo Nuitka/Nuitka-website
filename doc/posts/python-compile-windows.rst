@@ -1,5 +1,5 @@
 .. post:: 2022/05/15 07:46:50
-   :tags: Python, quiz
+   :tags: Python, Windows, Nuitka, HowTo
    :author: Kay Hayen
 
 ###########################
