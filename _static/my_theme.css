@@ -170,6 +170,7 @@
 .socialbutton p {
     margin: 0;
     padding: 0;
+    border-radius: 15px;
 }
 
 .socialbutton p.icon {
@@ -179,14 +180,17 @@
 
 .socialbutton.twitter {
     background-color: #5BC2F0;
+    border-radius: 10px;
 }
 
 .socialbutton.reddit {
     background-color: #333333;
+    border-radius: 10px;
 }
 
 .socialbutton.facebook {
     background-color: #435D96;
+    border-radius: 10px;
 }
 
 @media screen and (max-width:900px) {
@@ -257,4 +261,17 @@ details.sd-dropdown {
 
 details.sd-dropdown blockquote {
     margin-left: 0px;
+}
+
+p.admonition-title {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.admonition {
+    border-radius: 10px;
+}
+
+.notranslate {
+    border-radius: 4px;
 }
