@@ -19,6 +19,8 @@ This is the Nuitka roadmap, broken down by features.
    schema for them and check it. We might have to change the format to
    make this possible.
 
+   Changes are under way and nearly complete now.
+
 ************
  Standalone
 ************
@@ -104,10 +106,6 @@ DLL usages.
    supported in binary operations and in-place operations, esp. for
    ``int``, ``float`` and ``long`` values.
 
--  Make module variable traces available to functions. This will be
-   needed to optimize import of ``sys`` on module level and then
-   attribute access on function level at compile time.
-
 -  Implement the ``partial`` built-in and make it work with compiled
    functions. It could prepare calls much better, such that they do not
    come through keyword arguments unnecessarily.
@@ -181,17 +179,28 @@ binary and move it over the running binary, e.g. during restart.
    names and values would not be, depending on your choice!
 
 ******************************
- Features to be added for 0.8
+ Features to be added for 1.0
 ******************************
 
-[x] Add ability to inhibit data files from the command line, so that
-   things coming from a plugin can be suppressed.
-
-[x] Forcing output and stderr to files should be supported for all OSes.
-
-******************************
- Features to be added for 0.9
-******************************
-
-[ ] Onefile should support keeping cached binaries and then not requires
+[x] Onefile should support keeping cached binaries and then not requires
    to overwrite. Then we can drop ``AppImage`` usage on Linux.
+
+[ ] Add support for ``list`` methods, things like ``append`` really
+   should be optimized as well in the mostly existing operation nodes.
+
+[ ] Tuple unpacking for values that support indexing should be
+optimized.
+
+[ ] Get complex flask standalone examples to work.
+
+[ ] Add download updating for onefile on at least Windows.
+
+[ ] Document commercial file embedding publicly with examples.
+
+[ ] Document commercial Windows Service usage with examples.
+
+******************************
+ Features to be added for 1.1
+******************************
+
+[ ] Initial support for ctypes based direct calls of C code.
