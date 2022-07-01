@@ -1021,7 +1021,7 @@ created with ``pyenv``.
 
 .. note::
 
-   On Anaconda, you may need to execute ``conda install -c conda-forge
+   On Anaconda, you may need to execute ``conda install
    libpython-static``
 
 Standalone executables and dependencies
