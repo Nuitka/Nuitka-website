@@ -34,8 +34,13 @@ tracker <https://github.com/Nuitka/Nuitka/issues>`_ there.
  Chat Room
 ***********
 
-Try the chat room, which is not a replacement for an issue tracker, but
-we have it. You are also welcome to lurk and help others.
+Try the chat room on Discord, which although not a replacement for an
+issue tracker, can be used for first contact and questions. It is not an
+interactive User Manual though. Please refer to that first. You are also
+welcome to lurk and help others. https://discord.gg/9RDbhGXpCD
+
+Alternatively you can use this Gitter chat room, that mirrors the
+general Discord chat:
 
 .. image:: ../../images/gitter-badge.svg
    :target: https://gitter.im/Nuitka-chat/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
