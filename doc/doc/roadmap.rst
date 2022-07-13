@@ -88,14 +88,14 @@ DLL usages.
 
    For Python3 we still use ``_PyObjectDict_SetItem`` which is very hard
    to replace, as it's forking shared dictionary as necessary. With
-   static libpython it can linked though, but we still might want to
+   static libpython it can be linked though, but we still might want to
    make our own replacement.
 
 -  Better code for ``+= 1`` constructs with no lack of type knowledge.
-   There is a long standing todo, to add the ``CLONG`` support for
-   binary operations. It requires the code generation of Jinja to be
-   abstract, but that should have been close to being reached in last
-   releases.
+
+   We have this for ``INT`` now, but ``FLOAT`` and ``LONG`` should also
+   get it. The later needs abstraction of long values, currently done
+   for comparisons already, to be abstracted.
 
 -  Better code for ``+= 1`` constructs even with lack of type knowledge.
 
