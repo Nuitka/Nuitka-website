@@ -226,15 +226,14 @@ highest priority.
 
        - Use Cases Priority
 
-
 .. important::
 
-   Click the buttons in the boxes above if Stripe payment works for you (bank
-   transfer, credit card, SEPA debit charge, etc).
+   Click the buttons in the boxes above if Stripe payment works for you
+   (bank transfer, credit card, SEPA debit charge, etc).
 
-   Alternatively Bitcoin transfers are also acceptable to our wallet address
-   ``bc1qj9htss26ltk24prdl4zcea86yn8k6f7hcxlapg``. Please fill out below contact
-   form after doing it, so we have your information.
+   Alternatively Bitcoin and USDT crypto currency transfers are also acceptable,
+   please read the details here `details here .... <crypto.html>`__
+
 
 ************
  Contact Us
