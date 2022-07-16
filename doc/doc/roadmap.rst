@@ -58,14 +58,10 @@ This is the Nuitka roadmap, broken down by features.
    are resumed, produced shared and non-shared parts of multiple
    distributions.
 
-   The plugins in Nuitka are still somewhat wild west when it comes to
-   copying DLLs and data files as they see fit, sometimes, but not
-   always, reporting to the core, so it could scan dependencies. Work is
-   being done to clean them up. Some, most recently numpy, have been
-   changed to make them yield objects describing tasks and executing
-   them in the core. This way there is a chance to know what the program
-   does and make this kind of change. This transition is almost
-   complete, but the Qt plugins are still missing.
+   The plugins in Nuitka are cleaned up entirely, when comes to copying
+   DLLs and data files now. The main confusion right now is the
+   different handling of extension modules, and DLLs, that should be
+   unified in order to make the code that deals with it less repetitive.
 
 -  Dejong Stacks: More robust parser that allows stdout and stderr in
    same file with mixed outputs.
@@ -93,9 +89,9 @@ DLL usages.
 
 -  Better code for ``+= 1`` constructs with no lack of type knowledge.
 
-   We have this for ``INT`` now, but ``FLOAT`` and ``LONG`` should also
-   get it. The later needs abstraction of long values, currently done
-   for comparisons already, to be abstracted.
+   We have this for ``INT``, ``LONG``, and ``FLOAT`` now. Actually for
+   all in-place operations, except for ``LONG`` we only cover ``+=`` and
+   ``-=``.
 
 -  Better code for ``+= 1`` constructs even with lack of type knowledge.
 
@@ -113,6 +109,9 @@ DLL usages.
 -  Add support for ``list`` methods, things like ``append`` really
    should be optimized as well in the mostly existing operation nodes.
 
+-  Loop trace analysis fails to deliver ``int`` types shapes. We would
+   need that for optimizing loops.
+
 ********************
  macOS enhancements
 ********************
@@ -128,6 +127,9 @@ DLL usages.
 
    So far we use macOS tools to split binaries that are universal, and
    in this case we need to merge binaries into one with the same tools.
+
+-  Duplicate DLLs are a unresolved issue. We need to identify, is DLLs
+   in different paths should be considered colliding at all.
 
 *******************************
  Container Builds (commercial)
@@ -150,7 +152,7 @@ These are the steps needed to take.
 [x] Add path spec identifiers that are suitable for caching, like
 ``%CACHE_DIR%``
 
-[ ] Detect caching ability for a spec, and add a onefile mode modifier
+[x] Detect caching ability for a spec, and add a onefile mode modifier
 that will make it overwrite. Ideally volatile path elements are
 detected.
 
@@ -189,15 +191,18 @@ binary and move it over the running binary, e.g. during restart.
    should be optimized as well in the mostly existing operation nodes.
 
 [ ] Tuple unpacking for values that support indexing should be
-optimized.
+   optimized.
 
-[ ] Get complex flask standalone examples to work.
+[x] Get complex flask standalone examples to work.
 
 [ ] Add download updating for onefile on at least Windows.
 
 [ ] Document commercial file embedding publicly with examples.
 
 [ ] Document commercial Windows Service usage with examples.
+
+[ ] Add support for executables in the onefile binary. Right now outside of
+   Windows, the x-bit is lost.
 
 ******************************
  Features to be added for 1.1
