@@ -57,6 +57,7 @@ Additionally, you can purchase priority support.
    :caption: Commercial Users
 
    doc/commercial
+   doc/bundles
 
 .. toctree::
    :hidden:
