@@ -113,13 +113,6 @@ bug fixes.
 
 -  Include module search path in compilation report.
 
-*******
- Tests
-*******
-
--  The reflected test was adapted to preserve ``PYTHONPATH`` now that
-   module presence influences optimization.
-
 **************
  Optimization
 **************
@@ -253,6 +246,13 @@ bug fixes.
 -  Quality: The auto-format now floats imports to the top for
    consistency. With few exceptions, it was already done like this. But
    it makes things easier for generated code.
+
+*******
+ Tests
+*******
+
+-  The reflected test was adapted to preserve ``PYTHONPATH`` now that
+   module presence influences optimization.
 
 *********
  Summary
