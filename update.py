@@ -90,12 +90,11 @@ def updateNuitkaFactory(update):
 
 
 def importNuitka():
-    # TODO: Move to at least develop, after next release, or even pip install as a requirement
-    # after release with an option to use other branches.
+    # TODO: Add an option to use other branches.
     updateNuitkaDevelop(update=False)
 
     sys.path.insert(
-        0, os.path.abspath(os.path.join(os.path.dirname(__file__), "Nuitka-develop"))
+        0, os.path.abspath(os.path.join(os.path.dirname(__file__), "Nuitka-factory"))
     )
     import nuitka
 

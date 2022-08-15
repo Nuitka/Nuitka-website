@@ -62,6 +62,17 @@ into pages, with otherwise using Sphinx to render it. Reference the
 Sphinx documentation and esp. the one for Read the Docs theme and ABlog.
 
 *************
+ New posting
+*************
+
+Create the ``*.rst`` file similar to e.g. ``doc/letting-go-of-c11.rst``
+and then execute this
+
+.. code:: bash
+
+   python3 -m invoke run -t update-docs
+
+*************
  Translation
 *************
 
