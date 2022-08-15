@@ -94,7 +94,7 @@ def importNuitka():
     updateNuitkaDevelop(update=False)
 
     sys.path.insert(
-        0, os.path.abspath(os.path.join(os.path.dirname(__file__), "Nuitka-factory"))
+        0, os.path.abspath(os.path.join(os.path.dirname(__file__), "Nuitka-develop"))
     )
     import nuitka
 
@@ -741,7 +741,7 @@ def runSphinxBuild():
 _translations = ("zh_CN/", "de_DE/")
 
 
-def _getLangageFromFilename(filename):
+def _getLanguageFromFilename(filename):
     filename_relative = os.path.relpath(filename, "output")
     if filename_relative.startswith(("zh_CN/", "de_DE/")):
         return filename_relative[3:5].upper(), filename_relative[6:]
@@ -750,7 +750,7 @@ def _getLangageFromFilename(filename):
 
 
 def _getTranslationFileSet(filename):
-    language, filename_translation = _getLangageFromFilename(filename)
+    language, filename_translation = _getLanguageFromFilename(filename)
 
     filename_translations = {
         os.path.join("output", translation, filename_translation)
@@ -927,7 +927,7 @@ jQuery(function () {
                 if filename == translated_filename:
                     continue
 
-                language, _ = _getLangageFromFilename(translated_filename)
+                language, _ = _getLanguageFromFilename(translated_filename)
 
                 link_node.attrib["href"] = "/" + os.path.relpath(
                     translated_filename, "output"

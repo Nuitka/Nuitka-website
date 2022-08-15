@@ -1,0 +1,1 @@
+.. include:: ../../doc/doc/factory.rst

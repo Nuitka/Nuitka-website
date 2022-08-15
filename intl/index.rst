@@ -5,8 +5,8 @@
    :hidden:
 
    doc/index
-   commercial
+   doc/commercial
+   doc/factory
    pages/index
    more
    blog
-
