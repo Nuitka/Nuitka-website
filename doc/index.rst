@@ -32,9 +32,8 @@ Nuitka is freely distributed under the Apache license. Nuitka commercial
 is a private repository that you pay to access and get plugins for
 commercial usage.
 
-In the meantime you can checkout why `Nuitka commercial
-</doc/commercial.html>`__ is for you or find the its `standard version
-here </pages/download.html>`_.
+Checkout why `Nuitka commercial </doc/commercial.html>`__ is for you or
+find the `standard version here </pages/download.html>`_.
 
 .. toctree::
    :hidden:
