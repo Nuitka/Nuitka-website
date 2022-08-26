@@ -21,20 +21,27 @@ Nuitka is the optimizing Python compiler written in Python that creates
 executables that run without an need for a separate installer. Data
 files can both be included or put alongside.
 
-It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10),
-works on Windows, macOS, Linux and more, basically where Python works
-for you already.
+It is easy to use and just works. It is fully compatible with Python2
+(2.6, 2.7) and Python3 (3.3 - 3.10), works on Windows, macOS, Linux and
+more, basically where Python works for you already.
 
-It protects your code and data, esp. with the Nuitka commercial
-offering, and also just works and is easy to use.
+Nuitka Standard
+===============
 
-Nuitka is freely distributed under the Apache license. Nuitka commercial
-is a private repository that you pay to access and get plugins for
-commercial usage.
+The standard edition bundles your code, dependencies and data into a
+single executable. It is freely distributed under the Apache license.
 
-In the meantime you can checkout why `Nuitka commercial
-</doc/commercial.html>`__ is for you or find the its `standard version
-here </pages/download.html>`_.
+`Get Nuitka Standard </pages/download.html>`_
+
+Nuitka Commercial
+=================
+
+The commercial edition additionally protects your code, data and
+outputs, so that users of the executable cannot access these. This a
+private repository of plugins that you pay to get access to.
+Additionally, you can purchase priority support.
+
+`Find out more ... </doc/commercial.html>`__
 
 .. toctree::
    :hidden:
