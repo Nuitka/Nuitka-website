@@ -29,7 +29,9 @@ Nuitka Standard
 ===============
 
 The standard edition bundles your code, dependencies and data into a
-single executable. It is freely distributed under the Apache license.
+single executable if you want. It also does acceleration, just running
+faster in the same environment, and can produce extension modules as
+well. It is freely distributed under the Apache license.
 
 `Get Nuitka Standard </pages/download.html>`_
 
