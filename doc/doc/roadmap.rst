@@ -15,9 +15,10 @@ This is the Nuitka roadmap, broken down by features.
    even supporting packages that provide their own configuration for
    compilation with Nuitka through such files.
 
-   The next step is to document these file formats, potentially define a
-   schema for them and check it. We might have to change the format to
-   make this possible.
+   A schema was created and helps editing in Visual Code, user files can
+   be provided.
+
+   The next step is to document these file formats.
 
    Changes are under way and nearly complete now.
 
@@ -54,14 +55,12 @@ This is the Nuitka roadmap, broken down by features.
 
 -  "Sharedist" support (undecided)
 
-   In this the programs are not combined, rather standalone compilations
-   are resumed, produced shared and non-shared parts of multiple
-   distributions.
+   In this the programs are not combined, rather separate standalone
+   compilations are combined, produced shared and non-shared parts of
+   multiple distributions.
 
    The plugins in Nuitka are cleaned up entirely, when comes to copying
-   DLLs and data files now. The main confusion right now is the
-   different handling of extension modules, and DLLs, that should be
-   unified in order to make the code that deals with it less repetitive.
+   DLLs and data files now.
 
 -  Dejong Stacks: More robust parser that allows stdout and stderr in
    same file with mixed outputs.
@@ -181,17 +180,8 @@ binary and move it over the running binary, e.g. during restart.
    names and values would not be, depending on your choice!
 
 ******************************
- Features to be added for 1.0
+ Features to be added for 1.1
 ******************************
-
-[x] Onefile should support keeping cached binaries and then not requires
-   to overwrite. Then we can drop ``AppImage`` usage on Linux.
-
-[ ] Add support for ``list`` methods, things like ``append`` really
-   should be optimized as well in the mostly existing operation nodes.
-
-[ ] Tuple unpacking for values that support indexing should be
-   optimized.
 
 [x] Get complex flask standalone examples to work.
 
@@ -201,11 +191,19 @@ binary and move it over the running binary, e.g. during restart.
 
 [ ] Document commercial Windows Service usage with examples.
 
-[ ] Add support for executables in the onefile binary. Right now outside of
+[x] Add support for executables in the onefile binary. Right now outside of
    Windows, the x-bit is lost.
 
 ******************************
- Features to be added for 1.1
+ Features to be added for 1.2
 ******************************
 
 [ ] Initial support for ctypes based direct calls of C code.
+
+[ ] Add support for ``list`` methods, things like ``append`` really
+   should be optimized as well in the mostly existing operation nodes.
+
+[ ] Tuple unpacking for values that support indexing should be
+   optimized.
+
+[ ] Document Yaml format with a series of postings with examples.
