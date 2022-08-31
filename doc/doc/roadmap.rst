@@ -198,6 +198,8 @@ binary and move it over the running binary, e.g. during restart.
  Features to be added for 1.2
 ******************************
 
+[ ] Update for MinGW64 on Windows to use gcc 12.x based on.
+
 [ ] Initial support for ctypes based direct calls of C code.
 
 [ ] Add support for ``list`` methods, things like ``append`` really
