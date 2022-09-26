@@ -20,8 +20,6 @@ This is the Nuitka roadmap, broken down by features.
 
    The next step is to document these file formats.
 
-   Changes are under way and nearly complete now.
-
 ************
  Standalone
 ************
@@ -127,9 +125,6 @@ DLL usages.
    So far we use macOS tools to split binaries that are universal, and
    in this case we need to merge binaries into one with the same tools.
 
--  Duplicate DLLs are a unresolved issue. We need to identify, is DLLs
-   in different paths should be considered colliding at all.
-
 *******************************
  Container Builds (commercial)
 *******************************
@@ -180,22 +175,22 @@ binary and move it over the running binary, e.g. during restart.
    names and values would not be, depending on your choice!
 
 ******************************
- Features to be added for 1.1
+ Features to be added for 1.2
 ******************************
 
-[x] Get complex flask standalone examples to work.
-
-[ ] Add download updating for onefile on at least Windows.
+[ ] Add download updating for standalone as well, onefile for windows works.
 
 [ ] Document commercial file embedding publicly with examples.
 
 [ ] Document commercial Windows Service usage with examples.
 
-[x] Add support for executables in the onefile binary. Right now outside of
-   Windows, the x-bit is lost.
+[ ] Document Yaml format with a series of postings with examples.
+
+[ ] Tuple unpacking for values that support indexing should be
+   optimized.
 
 ******************************
- Features to be added for 1.2
+ Features to be added for 1.3
 ******************************
 
 [ ] Update for MinGW64 on Windows to use gcc 12.x based on.
@@ -204,8 +199,3 @@ binary and move it over the running binary, e.g. during restart.
 
 [ ] Add support for ``list`` methods, things like ``append`` really
    should be optimized as well in the mostly existing operation nodes.
-
-[ ] Tuple unpacking for values that support indexing should be
-   optimized.
-
-[ ] Document Yaml format with a series of postings with examples.
