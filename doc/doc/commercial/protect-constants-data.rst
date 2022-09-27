@@ -49,6 +49,7 @@ Commercial to the rescue.
    python -m nuitka --enable-plugin=data-hiding important-data-demo.py
    # produces e.g. important-data.bin, depending on platform
 
+   # No output
    strings important-data.bin | grep SuperSecret
 
 For Nuitka commercial, the output is empty. Without that plugin, the
