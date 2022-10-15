@@ -43,13 +43,13 @@ with this release yet.
 
 -  Windows: Avoid encoding issues for Python3 on more systems, by going
    from wide characters to unicode strings more directly, avoiding an
-   encoding as UTF8 in the middle. Fixed in 0.6.8.2 already.
+   encoding as UTF-8 in the middle. Fixed in 0.6.8.2 already.
 
 -  Windows: Do not crash when warning about uninstalled MSVC using
    Python3. This is a Scons bug that we fixed. Fixed in 0.6.8.3 already.
 
 -  Standalone: The output of dependency walker should be considered as
-   "latin1" rather than UTF8. Fixed in 0.6.8.3 already.
+   "latin1" rather than UTF-8. Fixed in 0.6.8.3 already.
 
 -  Standalone: Added missing hidden dependencies for ``flask``. Fixed in
    0.6.8.1 already.

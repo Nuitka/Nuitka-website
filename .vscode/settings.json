@@ -67,6 +67,7 @@
         "tracebacks",
         "ucrt",
         "uncompiled",
+        "unstripped",
         "virtualenv",
         "whitebox"
     ],

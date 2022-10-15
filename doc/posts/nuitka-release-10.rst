@@ -208,7 +208,7 @@ way forward.
 
 -  Anaconda: Use ``CondaCC`` from environment variables for Linux and
    macOS, in case it is installed. This can be done with e.g. ``conda
-   install gcc-linux-64`` on Linux or ``conda install clang_osx-64`` on
+   install gcc_linux-64`` on Linux or ``conda install clang_osx-64`` on
    macOS.
 
 -  Added new option ``--nowarn-mnemonic`` to disable warnings that use

@@ -181,7 +181,7 @@ This release comes a lot of bug fixes and improvements.
 
 -  Build all constant values without use of the ``pickle`` module which
    has a lot more overhead than ``marshal``, instead use that for too
-   large ``long`` values, non-UTF8 ``unicode`` values, ``nan`` float,
+   large ``long`` values, non-UTF-8 ``unicode`` values, ``nan`` float,
    etc.
 
 -  Detect the linker arch for all Linux platforms using ``objdump``

@@ -315,7 +315,7 @@ polishing plugins and adding many new features.
  Cleanups
 **********
 
--  Encoding names for UTF8 in calls to ``.encode()`` were used
+-  Encoding names for UTF-8 in calls to ``.encode()`` were used
    inconsistent with and without dashes in the source code, added
    cleanup to auto-format that picks the one blessed.
 

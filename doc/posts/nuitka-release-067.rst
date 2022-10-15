@@ -117,8 +117,8 @@ they are now becoming more common.
    first time. We use Anaconda on macOS for the tests now, rather than
    Homebrew.
 
--  Enable IO encoding to make sure we use UTF8 for more test suites that
-   actually need it in case of problems.
+-  Enable IO encoding to make sure we use UTF-8 for more test suites
+   that actually need it in case of problems.
 
 -  Comparing module outputs now handles segfaults by running in the
    debugger too.
