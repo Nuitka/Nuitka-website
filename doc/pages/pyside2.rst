@@ -35,5 +35,6 @@ available as part of the the `Nuitka Commercial
  Alternative
 *************
 
-Otherwise your best bet is to migrate to PySide6 and work around the
-bugs that it might have. Hopefully with time, all will be ironed out.
+Otherwise your best bet is to migrate to PySide6 which has excellent
+support for Nuitka. Also PyQt6 would work, but PyQt5 unfortunately is
+very poorly supported.
