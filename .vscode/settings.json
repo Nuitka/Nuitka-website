@@ -7,7 +7,6 @@
         "**/__pycache__": true,
         "**/*.orig": true,
         "**/*.tmp": true,
-        "output" : true,
     },
     "restructuredtext.confPath": "",
     "python.formatting.provider": "black",

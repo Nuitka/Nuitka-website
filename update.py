@@ -1,21 +1,22 @@
 #!/usr/bin/env python3.9
 
+import copy
 import datetime
-import os, copy
+import os
 import re
 import shutil
 import subprocess
 import sys
+import zipfile
 from io import StringIO
 from optparse import OptionParser
+from pathlib import Path
+from urllib.request import urlretrieve
 
 import requests
 import unidecode
-from urllib.request import urlretrieve
-import zipfile
-
 from lxml import html
-
+from texttable import Texttable
 
 # Which branches were already done.
 updated_branches = set()
@@ -105,16 +106,12 @@ importNuitka()
 
 # isort:start
 
-from nuitka.tools.quality.auto_format.AutoFormat import (
-    withFileOpenedAndAutoFormatted,
-)
+from nuitka.tools.quality.auto_format.AutoFormat import \
+    withFileOpenedAndAutoFormatted
 from nuitka.tools.release.Documentation import checkRstLint
 from nuitka.Tracing import my_print
-from nuitka.utils.FileOperations import (
-    getFileContents,
-    getFileList,
-    putTextFileContents,
-)
+from nuitka.utils.FileOperations import (getFileContents, getFileList,
+                                         putTextFileContents)
 from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
@@ -1009,6 +1006,19 @@ def runSphinxAutoBuild():
         "python misc/sphinx_autobuild_wrapper.py doc output/ --watch misc --watch update.py --watch doc --watch intl --watch Pipenv.lock"
     )
 
+def checkTranslations():
+    table = Texttable()
+    table.add_row(["Site", "Translations"])
+    for path in Path("doc").rglob("*.rst"):
+        translations = []
+        for locale in Path("locales").glob("*"):
+            if Path(locale, "LC_MESSAGES", f"{str(path.relative_to('doc'))[:-3]}po").exists():
+                translations.append(locale.name)
+
+        if translations:
+            table.add_row([str(path), ",".join(translations)])
+
+    print(table.draw())
 
 def main():
     parser = OptionParser()
@@ -1066,8 +1076,15 @@ When given, the site is re-built on changes and served locally. Default %default
         help="""\
 When given, the site is deployed. Default %default.""",
     )
-    #
 
+    parser.add_option(
+        "--check-translations",
+        action="store_true",
+        dest="check_translations",
+        default=False,
+        help="""\
+Check which sites are translated. Default %default.""",
+    )
     options, positional_args = parser.parse_args()
 
     assert not positional_args, positional_args
@@ -1090,6 +1107,8 @@ When given, the site is deployed. Default %default.""",
     if options.deploy:
         runDeploymentCommand()
 
+    if options.check_translations:
+        checkTranslations()
 
 if __name__ == "__main__":
     importNuitka()
