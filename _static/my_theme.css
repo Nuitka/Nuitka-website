@@ -149,6 +149,13 @@
     }
 }
 
+/* IE only, cannot get it to display correctly */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .switcher-container {
+        display: none;
+    }
+}
+
 .socialbutton:hover {
     height: 70px;
     margin-bottom: 0;
