@@ -144,7 +144,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .socialbutton {
+    .share-button-container {
         display: none;
     }
 }
