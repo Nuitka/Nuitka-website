@@ -8,3 +8,4 @@ output.*
 .vscode/tags
 _build/
 *.mo
+/doc/translation-status.rst
