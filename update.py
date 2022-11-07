@@ -219,20 +219,18 @@ def updateDownloadPage():
 
         return value
 
+    my_print(f"Max pre-release is {max_pre_release} {makePlain(max_pre_release)} ")
     my_print(
-        "Max pre-release is %s %s " % (max_pre_release, makePlain(max_pre_release))
+        f"Max stable release is {max_stable_release} {makePlain(max_stable_release)} "
     )
-    my_print(
-        "Max stable release is %s %s "
-        % (max_stable_release, makePlain(max_stable_release))
-    )
+
 
     output = ""
 
     def extractDebVersion(path):
         match = re.search(r"nuitka_(.*)_all\.deb", filename)
 
-        return match.group(1)
+        return match[1]
 
     def makeRepositoryUrl(path):
         return f"https://nuitka.net/{path}"
@@ -257,10 +255,8 @@ def updateDownloadPage():
         )
 
     def checkOBS(repo_name):
-        command = (
-            "curl -s download.opensuse.org/repositories/home:/kayhayen/%s/noarch/"
-            % repo_name
-        )
+        command = f"curl -s download.opensuse.org/repositories/home:/kayhayen/{repo_name}/noarch/"
+
 
         output = subprocess.check_output(command.split())
         output = output.decode("utf8").split("\n")
@@ -278,7 +274,7 @@ def updateDownloadPage():
                 continue
 
             match = re.search(r"\>nuitka-(.*).noarch\.rpm\<", line)
-            candidates.append(match.group(1))
+            candidates.append(match[1])
 
         def numberize(x):
             if x.startswith("lp"):
@@ -311,13 +307,13 @@ def updateDownloadPage():
                 continue
 
             match = re.search(r"\>nuitka-unstable-(.*).noarch\.rpm\<", line)
-            candidates.append(match.group(1))
+            candidates.append(match[1])
 
         max_prerelease = max(candidates, key=compareVersion)
 
         assert "6.7" not in max_prerelease, command
 
-        my_print("Repo %s %s" % (repo_name, max_prerelease))
+        my_print(f"Repo {repo_name} {max_prerelease}")
 
         return max_release, max_prerelease
 
@@ -355,7 +351,7 @@ def updateDownloadPage():
     opensuse_rpm = {}
 
     max_leap_minor = 4
-    for leap_minor in range(0, max_leap_minor + 1):
+    for leap_minor in range(max_leap_minor + 1):
         stable, develop = checkOBS(f"openSUSE_Leap_15.{leap_minor}")
 
         opensuse_rpm["stable", leap_minor] = stable
@@ -415,23 +411,24 @@ def updateDownloadPage():
     centos_data = [
         (
             "CentOS 8",
-            makeRepoLinkText(f"CentOS_8"),
+            makeRepoLinkText("CentOS_8"),
             makeCentOSText(8, "stable"),
             makeCentOSText(8, "develop"),
         ),
         (
             "CentOS 7",
-            makeRepoLinkText(f"CentOS_7"),
+            makeRepoLinkText("CentOS_7"),
             makeCentOSText(7, "stable"),
             makeCentOSText(7, "develop"),
         ),
         (
             "CentOS 6",
-            makeRepoLinkText(f"CentOS_CentOS-6"),
+            makeRepoLinkText("CentOS_CentOS-6"),
             makeCentOSText(6, "stable"),
             makeCentOSText(6, "develop"),
         ),
     ]
+
 
     centos_table = makeTable(
         [["CentOS Version", "RPM Repository", "Stable", "Develop"]] + centos_data
@@ -440,12 +437,13 @@ def updateDownloadPage():
     rhel_data = [
         (
             f"RHEL {rhel_number}",
-            makeRepoLinkText(f"RedHat_RHEL-%d" % rhel_number),
+            makeRepoLinkText("RedHat_RHEL-%d" % rhel_number),
             makeRHELText(rhel_number, "stable"),
             makeRHELText(rhel_number, "develop"),
         )
         for rhel_number in range(max_rhel, min_rhel - 1, -1)
     ]
+
 
     rhel_table = makeTable(
         [["RHEL Version", "RPM Repository", "Stable", "Develop"]] + rhel_data
@@ -458,18 +456,20 @@ def updateDownloadPage():
             makeLeapText(leap_minor, "stable"),
             makeLeapText(leap_minor, "develop"),
         )
-        for leap_minor in range(0, max_leap_minor + 1)
+        for leap_minor in range(max_leap_minor + 1)
     ]
+
 
     suse_data.insert(
         0,
         (
             "SLE 15",
-            makeRepoLinkText(f"SLE_15"),
+            makeRepoLinkText("SLE_15"),
             makeVersionText(max_sle_150_release),
             makeVersionText(max_sle_150_prerelease),
         ),
     )
+
 
     suse_table = makeTable(
         [["SUSE Version", "RPM Repository", "Stable", "Develop"]] + suse_data
@@ -759,10 +759,6 @@ def _getTranslationFileSet(filename):
 
 
 def runPostProcessing():
-    # Compress the CSS and JS files into one file.
-
-    documentation_options_js_filename = "output/_static/documentation_options.js"
-
     searchindex_js_filename = "output/searchindex.js"
 
     search_html_filename = "output/search.html"
@@ -779,12 +775,14 @@ jQuery(function () {
     """
     )
 
-    js_set_1_output_filename = "/_static/combined_%s.js" % getHashFromValues(
-        js_set_1_contents
+    js_set_1_output_filename = (
+        f"/_static/combined_{getHashFromValues(js_set_1_contents)}.js"
     )
+
 
     putTextFileContents(f"output{js_set_1_output_filename}", js_set_1_contents)
 
+    documentation_options_js_filename = "output/_static/documentation_options.js"
     for filename in getFileList("output", only_suffixes=".html"):
         doc = html.fromstring(getFileContents(filename, mode="rb"))
 
@@ -807,9 +805,8 @@ jQuery(function () {
             if "combined_" not in css_link.get("href")
             if "copybutton" not in css_link.get("href") or has_highlight
         ]:
-            output_filename = "/_static/css/combined_%s.css" % getHashFromValues(
-                *css_filenames
-            )
+            output_filename = f"/_static/css/combined_{getHashFromValues(*css_filenames)}.css"
+
 
             if not os.path.exists(output_filename):
                 merged_css = "\n".join(
