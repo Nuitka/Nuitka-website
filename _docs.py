@@ -1,4 +1,3 @@
-import os
 import sys
 from pathlib import Path
 from shutil import rmtree
@@ -37,6 +36,7 @@ def build(c, opts=None, language=None, source=None, target=None, nitpick=False):
     if nitpick:
         opts += " -n -W -T"
     cmd = f"pipenv run sphinx-build {opts} {source} {target}"
+    c.run("pipenv run invoke run -t update-translations-status-site")
     c.run(cmd)
 
 

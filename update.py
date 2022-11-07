@@ -16,7 +16,6 @@ from urllib.request import urlretrieve
 import requests
 import unidecode
 from lxml import html
-from texttable import Texttable
 
 # Which branches were already done.
 updated_branches = set()
@@ -1006,19 +1005,25 @@ def runSphinxAutoBuild():
         "python misc/sphinx_autobuild_wrapper.py doc output/ --watch misc --watch update.py --watch doc --watch intl --watch Pipenv.lock"
     )
 
-def checkTranslations():
-    table = Texttable()
-    table.add_row(["Site", "Translations"])
+def getTranslationStatus():
+    status = {}
     for path in Path("doc").rglob("*.rst"):
         translations = []
         for locale in Path("locales").glob("*"):
             if Path(locale, "LC_MESSAGES", f"{str(path.relative_to('doc'))[:-3]}po").exists():
                 translations.append(locale.name)
 
-        if translations:
-            table.add_row([str(path), ",".join(translations)])
+            status[path] = translations
 
-    print(table.draw())
+    return status
+
+def updateTranslationStatusPage():
+    table = [["Site", "Translations"]]
+    for path, translations in getTranslationStatus().items():
+        if translations:
+            table += [[str(path.relative_to("doc")).replace("\\", "/"), ", ".join(translations)]]
+
+    putTextFileContents(Path("doc", "translation-status.rst"), makeTable(table))
 
 def main():
     parser = OptionParser()
@@ -1078,16 +1083,20 @@ When given, the site is deployed. Default %default.""",
     )
 
     parser.add_option(
-        "--check-translations",
+        "--update-translations-status-site",
         action="store_true",
-        dest="check_translations",
+        dest="update_translations_status_site",
         default=False,
         help="""\
-Check which sites are translated. Default %default.""",
+Update translations-status-site. Default %default.""",
     )
+
     options, positional_args = parser.parse_args()
 
     assert not positional_args, positional_args
+
+    if options.update_translations_status_site:
+        updateTranslationStatusPage()
 
     if options.docs:
         updateDocs()
@@ -1106,9 +1115,6 @@ Check which sites are translated. Default %default.""",
 
     if options.deploy:
         runDeploymentCommand()
-
-    if options.check_translations:
-        checkTranslations()
 
 if __name__ == "__main__":
     importNuitka()
