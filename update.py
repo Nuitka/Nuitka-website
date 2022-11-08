@@ -1,21 +1,21 @@
 #!/usr/bin/env python3.9
 
+import copy
 import datetime
-import os, copy
+import os
 import re
 import shutil
 import subprocess
 import sys
+import zipfile
 from io import StringIO
 from optparse import OptionParser
+from pathlib import Path
+from urllib.request import urlretrieve
 
 import requests
 import unidecode
-from urllib.request import urlretrieve
-import zipfile
-
 from lxml import html
-
 
 # Which branches were already done.
 updated_branches = set()
@@ -1010,6 +1010,36 @@ def runSphinxAutoBuild():
     )
 
 
+def getTranslationStatus():
+    status = {}
+    for path in Path("doc").rglob("*.rst"):
+        translations = []
+        for locale in Path("locales").glob("*"):
+            if Path(
+                locale, "LC_MESSAGES", f"{str(path.relative_to('doc'))[:-3]}po"
+            ).exists():
+                translations.append(locale.name)
+
+            status[path] = translations
+
+    return status
+
+
+def updateTranslationStatusPage():
+    table = [["Site", "Translations"]]
+
+    for path, translations in getTranslationStatus().items():
+        if translations:
+            table += [
+                [
+                    str(path.relative_to("doc")).replace("\\", "/"),
+                    ", ".join(translations),
+                ]
+            ]
+
+    putTextFileContents(Path("doc", "translation-status.rst"), makeTable(table))
+
+
 def main():
     parser = OptionParser()
 
@@ -1066,7 +1096,6 @@ When given, the site is re-built on changes and served locally. Default %default
         help="""\
 When given, the site is deployed. Default %default.""",
     )
-    #
 
     options, positional_args = parser.parse_args()
 
@@ -1074,6 +1103,7 @@ When given, the site is deployed. Default %default.""",
 
     if options.docs:
         updateDocs()
+        updateTranslationStatusPage()
 
     if options.downloads:
         updateDownloadPage()
