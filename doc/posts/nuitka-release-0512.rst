@@ -13,7 +13,7 @@ This is to inform you about the new stable release of `Nuitka
 This release contains massive amounts of corrections for long standing
 issues in the import recursion mechanism, as well as for standalone
 issues now visible after the ``__file__`` and ``__path__`` values have
-changed to become runtime dependent values.
+changed to become run time dependent values.
 
 ***********
  Bug Fixes

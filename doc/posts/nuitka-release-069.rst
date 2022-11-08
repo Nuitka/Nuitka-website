@@ -70,8 +70,8 @@ with this release yet.
 
 -  Standalone: The bytecode for the standard library had filenames
    pointing to the original installation attached. While these were not
-   used, but replaced at runtime, they increased the size of the binary,
-   and leaked information.
+   used, but replaced at run time, they increased the size of the
+   binary, and leaked information.
 
 -  Standalone: The path of ``sys.executable`` was not None, but pointing
    to the original executable, which could also point to some temporary

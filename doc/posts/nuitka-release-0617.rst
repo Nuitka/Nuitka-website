@@ -69,8 +69,8 @@ polishing plugins and adding many new features.
 -  Standalone: Added missing implicit dependency for ``sklearn``.
 
 -  Compatibility: Modules giving ``SyntaxError`` from source were not
-   properly handled, giving runtime ``ImportError``. Now they are giving
-   ``SyntaxError``.
+   properly handled, giving run time ``ImportError``. Now they are
+   giving ``SyntaxError``.
 
 -  Fix, the LTO mode has issues with ``incbin`` usage on older gcc, so
    use ``linker`` mode when it is enabled.
@@ -118,7 +118,7 @@ polishing plugins and adding many new features.
 
 -  Standalone: Added support for ``win32file``.
 
--  Fix, namespace packages were not using runtime values for their
+-  Fix, namespace packages were not using run time values for their
    ``__path__`` value.
 
 -  Python3.7+: Fix, was leaking ``AttributeError`` exceptions during
@@ -142,7 +142,7 @@ polishing plugins and adding many new features.
    only standalone mode works.
 
 -  Plugins: Add support for ``pkg_resources.require`` calls to be
-   resolved at compile time. These are not working at runtime, but this
+   resolved at compile time. These are not working at run time, but this
    avoids the issue very nicely.
 
 -  Plugins: Massive improvements to the ``anti-bloat`` plugin, it can
@@ -319,7 +319,7 @@ polishing plugins and adding many new features.
    inconsistent with and without dashes in the source code, added
    cleanup to auto-format that picks the one blessed.
 
--  Cleanup taking of runtime traces of DLLs used in preparation for
+-  Cleanup taking of run time traces of DLLs used in preparation for
    using it in main code eventually, moving it to a dedicated module.
 
 -  Avoid special names for Nuitka options in test runner, this only adds

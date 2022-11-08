@@ -61,7 +61,7 @@ features, and adds new ones.
    default. Fixed in 0.7.3 already. Later ``http.cookiejar`` was added
    too.
 
--  Standalone: Do not compress MSVC runtime library when using ``upx``
+-  Standalone: Do not compress MSVC run time library when using ``upx``
    plugin, that is not going to work. Fixed in 0.7.4 already.
 
 -  Standalone: Fix, on Windows more files should be included for TkInter
@@ -245,7 +245,7 @@ features, and adds new ones.
    once again being able to be cached and not unpacked repeatedly for
    each execution.
 
--  Standalone: Detect missing ``tk-inter`` plugin at runtime. When TCL
+-  Standalone: Detect missing ``tk-inter`` plugin at run time. When TCL
    fails to load, it then outputs a more helpful error. This ought to be
    done for all plugins, where it's not clear if they are needed.
 
@@ -388,7 +388,7 @@ features, and adds new ones.
 -  Added automatic execution of ``pyproject.toml`` driven test case.
 
 -  Enhanced output in case of ``optimization`` test failures, dumping
-   what value is there that has not become compile-time not constant.
+   what value is there that has not become a compile time constant.
 
 *********
  Summary

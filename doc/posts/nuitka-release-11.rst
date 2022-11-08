@@ -72,7 +72,7 @@ cases.
    show e.g. in onefile compression. Fixed in 1.0.5 already.
 
 -  Onefile: Fix, using a too old ``zstandard`` without finding another
-   Python with a suitable one, lead to runtime unpacking errors. Fixed
+   Python with a suitable one, lead to run time unpacking errors. Fixed
    in 1.0.6 already.
 
 -  Fix, the inline copy of Jinja2 imported ``logging`` for no good
@@ -222,7 +222,7 @@ cases.
    included everything and ``--noinclude-data-files`` would have to be
    used.
 
--  macOS: Make runtime signing an experimental option.
+-  macOS: Make ``runtime`` signing an experimental option.
 
 -  Consistently allow ``when`` conditions for all package configuration
    elements, e.g. also DLLs.
@@ -379,6 +379,9 @@ cases.
 
 -  Quality: Added ability to limit autoformat by file type, which can be
    handy when e.g. only the yaml files should be scanned.
+
+-  UI: Removed ``--windows-onefile-tempdir-spec`` alias of
+   ``--onefile-tempdir-spec`` option, it is no longer Windows specific.
 
 **********
  Cleanups

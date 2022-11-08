@@ -55,7 +55,7 @@ bug fixes.
    expected.
 
 -  Modules: Fix, the ``del __file__`` in the top level module in module
-   mode caused crashes at runtime, when trying to restore the original
+   mode caused crashes at run time, when trying to restore the original
    ``__file__`` value, after the loading CPython corrupted it.
 
 -  Python2.6: Fixes for installations without ``pkg_resources``.

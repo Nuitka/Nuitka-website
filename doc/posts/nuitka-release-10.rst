@@ -366,7 +366,7 @@ way forward.
 
 -  For generated attribute nodes, avoid local doing import statements on
    the function level. While these were easier to generate, they can
-   only be slow at runtime.
+   only be slow at run time.
 
 -  For the ``str`` built-in annotate its value as derived from ``str``,
    which unfortunately does not allow much optimization, since that can

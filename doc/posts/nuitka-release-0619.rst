@@ -35,7 +35,7 @@ optimization, and doing a lot of bug fixes.
 
    .. code:: python
 
-      # This large value was computed at runtime and then if used, also
+      # This large value was computed at run time and then if used, also
       # converted to a string and potentially hashed, taking a long time.
       1 << sys.maxint
 

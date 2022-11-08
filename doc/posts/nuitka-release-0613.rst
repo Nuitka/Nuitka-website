@@ -108,10 +108,11 @@ with lots of bug fixes and new features.
    useful for programs run as ``--windows-disable-console`` or with
    ``--enable-plugin=windows-service``.
 
--  Windows: Added option ``--windows-onefile-tempdir-spec`` to provide
-   the temporary directory used with ``--windows-onefile-tempdir`` in
-   onefile mode, you can now select your own pattern, and e.g. hardcode
-   a base directory of your choice rather than ``%TEMP``.
+-  Windows: Added option ``--windows-onefile-tempdir-spec`` (since
+   renamed to ``--onefile-tempdir-spec``) to provide the temporary
+   directory used with ``--windows-onefile-tempdir`` in onefile mode,
+   you can now select your own pattern, and e.g. hardcode a base
+   directory of your choice rather than ``%TEMP``.
 
 -  Added experimental support for ``PySide2`` with workarounds for
    compiled methods not being accepted by its core. There are known
@@ -154,9 +155,9 @@ with lots of bug fixes and new features.
 -  Improved ``__future__`` imports to become hard imports, so more
    efficient code is generated for them.
 
--  Counting of instances had a runtime impact by providing a ``__del__``
-   that was still needed to be executed and limits garbage collection on
-   types with older Python versions.
+-  Counting of instances had a run time impact by providing a
+   ``__del__`` that was still needed to be executed and limits garbage
+   collection on types with older Python versions.
 
 -  UI: Avoid loading ``tqdm`` module before it's actually used if at all
    (it may get disabled by the user), speeding up the start of Nuitka.

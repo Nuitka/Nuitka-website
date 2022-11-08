@@ -37,10 +37,10 @@ organisational changes.
 -  Fix, ``pkg-resources`` exiting with error at compile time for
    unresolved requirements in compiled code, but these can of course
    still be optional, i.e. that code would never run. Instead give only
-   a warning, and runtime fail on these. Fixed in 0.6.17.2 already.
+   a warning, and run time fail on these. Fixed in 0.6.17.2 already.
 
 -  Standalone: Prevent the inclusion of ``drm`` libraries on Linux, they
-   have to come from the target OS at runtime. Fixed in 0.6.17.2
+   have to come from the target OS at run time. Fixed in 0.6.17.2
    already.
 
 -  Standalone: Added missing implicit dependency for ``ipcqueue``
@@ -316,8 +316,8 @@ organisational changes.
 
 -  For nodes, have dedicated child mixin classes for nodes with a single
    child value and for nodes with a tuple of children, so that these
-   common kind of nodes operate faster and don't have to check at
-   runtime what type they are during access.
+   common kind of nodes operate faster and don't have to check at run
+   time what type they are during access.
 
 -  Actually make use of the egg cache. Nuitka was unpacking eggs in
    every compilation, but in wheel installs, these can be quite common

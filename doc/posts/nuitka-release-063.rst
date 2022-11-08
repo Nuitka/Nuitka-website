@@ -53,7 +53,7 @@ optimization was on hold.
  Optimization
 **************
 
--  Avoid static C++ runtime library when using MinGW64.
+-  Avoid using static C++ runtime library when using MinGW64.
 
 **************
  New Features
