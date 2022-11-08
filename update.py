@@ -1026,6 +1026,10 @@ def getTranslationStatus():
 
 
 def updateTranslationStatusPage():
+    page_template = getTemplate(
+        package_name=None, template_name="translation-status.rst.j2", template_subdir="doc"
+    )
+
     table = [["Site", "Translations"]]
 
     for path, translations in getTranslationStatus().items():
@@ -1037,7 +1041,14 @@ def updateTranslationStatusPage():
                 ]
             ]
 
-    putTextFileContents(Path("doc", "translation-status.rst"), makeTable(table))
+    template_context = {
+        "translation_table" : makeTable(table)
+    }
+
+    output = page_template.render(name=page_template.name, **template_context)
+
+    with withFileOpenedAndAutoFormatted("doc/translation-status.rst") as output_file:
+        output_file.write(output + "\n")
 
 
 def main():
@@ -1102,8 +1113,8 @@ When given, the site is deployed. Default %default.""",
     assert not positional_args, positional_args
 
     if options.docs:
-        updateDocs()
         updateTranslationStatusPage()
+        updateDocs()
 
     if options.downloads:
         updateDownloadPage()
