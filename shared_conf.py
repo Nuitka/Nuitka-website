@@ -136,7 +136,7 @@ sitemap_url_scheme = "{lang}/{link}"
 
 # TODO: Not sure if I really like that, we should use relative URLs on the inside,
 # so this ought to be wrong anyway.
-extlinks = {'nuitka': ('/%s', '')}
+extlinks = {'nuitka': ('/%s', None)}
 
 html_static_path = [f"{ROOT}/_static"]
 
