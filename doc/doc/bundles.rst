@@ -133,15 +133,20 @@ at a discount.
 +----------------------+----------------+----------------+----------+--------+
 | Product              | Original Price | Nuitka Themida | Combined | Bundle |
 +======================+================+================+==========+========+
-| Themida Developer    | 199            | 401            | 600      | 550    |
+| Themida Developer    | 199            | 451            | 650      | 550    |
 +----------------------+----------------+----------------+----------+--------+
-| Themida Company      | 399            | 401            | 800      | 700    |
+| Themida Company      | 399            | 451            | 850      | 700    |
 +----------------------+----------------+----------------+----------+--------+
-| WinLicense Developer | 399            | 401            | 800      | 700    |
+| WinLicense Developer | 399            | 451            | 850      | 700    |
 +----------------------+----------------+----------------+----------+--------+
-| WinLicense Company   | 799            | 401            | 1200     | 1100   |
+| WinLicense Company   | 799            | 451            | 1250     | 1100   |
 +----------------------+----------------+----------------+----------+--------+
 
 .. note::
 
    At the price, Nuitka Services cannot handle trial versions.
+
+.. note::
+
+   If you already own a Themida license, you can purchase Nuitka Themida
+   separately as well, but you loose out on the bundling.
