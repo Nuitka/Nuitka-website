@@ -71,6 +71,7 @@ Additionally, you can purchase priority support.
    :caption: More documentation
 
    Developer Manual <doc/developer-manual>
+   Nuitka Package Configuration <doc/nuitka-package-config>
    API doc <doc/api-doc>
    doc/factory
 
