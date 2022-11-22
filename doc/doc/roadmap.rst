@@ -18,7 +18,8 @@ This is the Nuitka roadmap, broken down by features.
    A schema was created and helps editing in Visual Code, user files can
    be provided.
 
-   The next step is to document these file formats.
+   A documentation was created, the next step is to make a series of postings
+   detailing each feature further.
 
 ************
  Standalone
@@ -62,6 +63,39 @@ This is the Nuitka roadmap, broken down by features.
 
 -  Dejong Stacks: More robust parser that allows stdout and stderr in
    same file with mixed outputs.
+
+************************
+ Onefile speed (public)
+************************
+
+- Use memory mapped files on Windows and Linux for performance in accessing the
+  payload.
+
+- Generally use memory mapping for calculating the checksum of a file. This is
+  for all OSes, and should make cached mode faster to use.
+
+- Use Windows NTFS and macOS HFS extended attributes to store caching status of
+  a file inside of it. It might be possible to detect modification of the file
+  in this way and spare us the checksum, which will then be used only in case of
+  a fallback being necessary.
+
+- Restructure the payload data stream in cached mode, such that skipping a file
+  content becomes easier and does not require decryption of the whole data.
+
+- One files are compressed individually, we might be able to cache the result of
+  a specific file, such that files from the Python installation do not have to
+  be redone over and over.
+
+************
+ Python3.11
+************
+
+- Dictionary changes still need to be followed correctly in order to manage
+  basic tests. This is currently in progress.
+
+- Execute Python 3.10 test suite in a compatible way with 3.11
+
+- And and execute Python 3.11 test suite in a compatible way with 3.11
 
 ************************
  Nuitka-Python (public)
@@ -175,7 +209,7 @@ binary and move it over the running binary, e.g. during restart.
    names and values would not be, depending on your choice!
 
 ******************************
- Features to be added for 1.2
+ Features to be added for 1.3
 ******************************
 
 [ ] Add download updating for standalone as well, onefile for windows works.
@@ -184,13 +218,13 @@ binary and move it over the running binary, e.g. during restart.
 
 [ ] Document commercial Windows Service usage with examples.
 
-[ ] Document Yaml format with a series of postings with examples.
+[x] Document Yaml format with a series of postings with examples.
 
 [ ] Tuple unpacking for values that support indexing should be
    optimized.
 
 ******************************
- Features to be added for 1.3
+ Features to be added for 1.4
 ******************************
 
 [ ] Update for MinGW64 on Windows to use gcc 12.x based on.
