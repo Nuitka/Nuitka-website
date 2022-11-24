@@ -380,25 +380,25 @@ These variables are currently available:
 |  ``before_python3``: ``True`` if Python 2 used
 |  ``python3_or_higher``: ``True`` if Python 3 used
 
-There are also generated ones. For each Python version supported by
+There are also more Python version specific ones. For each Python version supported by
 Nuitka there are the following:
 
-|  ``python[big][major]_or_higher``: e.g. ``python39_or_higher``
-|  ``before_python[big][major]``: e.g. ``before_python39``
+|  ``python[major][minor]_or_higher``: e.g. ``python310_or_higher``
+|  ``before_python[major][minor]``: e.g. ``before_python310``
 
 The Anti-Bloat plugin provides you with additional variables. These are
 only available in anti-bloat.
 
-|  ``use_setuptools``: ``True`` if ``--noinclude-setuptools-mode`` not
-   set to ``allow``
-|  ``use_pytest``: ``True`` if ``--noinclude-pytest-mode`` not set to
-   ``allow``
-|  ``use_unittest``: ``True`` if ``--noinclude-unittest-mode`` not set
-   to ``allow``
-|  ``use_ipython``: ``True`` if ``--noinclude-IPython-mode`` not set to
-   ``allow``
-|  ``use_dask``: ``True`` if ``--noinclude-dask-mode`` not set to
-   ``allow``
+|  ``use_setuptools``: ``True`` if ``--noinclude-setuptools-mode`` is not
+   set to ``nofollow`` or ``error``
+|  ``use_pytest``: ``True`` if ``--noinclude-pytest-mode`` is not
+   set to ``nofollow`` or ``error``
+|  ``use_unittest``: ``True`` if ``--noinclude-unittest-mode`` is not
+   set to ``nofollow`` or ``error``
+|  ``use_ipython``: ``True`` if ``--noinclude-IPython-mode`` is not
+   set to ``nofollow`` or ``error``
+|  ``use_dask``: ``True`` if ``--noinclude-dask-mode`` is not
+   set to ``nofollow`` or ``error``
 
 All these are bools.
 
