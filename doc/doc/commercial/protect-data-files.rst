@@ -4,22 +4,23 @@
  Protect Data Files
 ####################
 
-Your program might be using Qt and QML, or data files loaded. With
-Nuitka Commercial, you can product (even before onefile) an executable
-that contains them and then also covers it under the regular `constants
-data protection <protect-constants-data.html>`__ automatically.
+Your program might be using Qt and QML, or other kinds of data file
+loaded. With Nuitka Commercial, you can produce an executable that
+contains them and then also covers it under the regular `constants data
+protection <protect-constants-data.html>`__ automatically.
 
-Your program uses standard Python mechanisms from ``pkgutil``,
+Your program uses standard Python mechanisms from ``open``, ``pkgutil``,
 ``pkg_resources``, ``importlib.resources`` or ``importlib_resources``
 and generally similar packages, and these load the data as a file or a
 stream from within the binary without ever hitting the disk.
 
-All of this is happening with the same code base, i.e. you are not
-making any modification (if at all), that is incompatible with Python.
-Your code will still run directly. One thing you do have to change
-though is to not use ``open`` with paths created from ``__file__``, but
-the above code is more elegant anyway, as it does this for you in the
-normal case, but can easily be hooked by Nuitka.
+All of this is happening with your original code base, i.e. you are not
+making any modification, that is incompatible with Python. Your code
+will still run directly in Python during development, and during
+deployment, the files are embedded by merely adding an option. One thing
+you do have to do, is that you should use ``open`` with paths created
+from ``__file__`` (which is correct anyway, and not e.g. rely on the
+current directory to be where your script lives).
 
 This means, e.g. rather than this program
 
@@ -62,10 +63,10 @@ be on the customer disk for inspection:
 .. note::
 
    For extension modules and DLLs used, this doesn't affect things. This
-   is about merely about data files. This is where onefile comes in and
-   hides these from the view and need for deployment, but it cannot
-   replace Nuitka commercial and its inclusion of data files inside the
-   main binary.
+   is about merely about data files. This is where ``--onefile`` comes
+   in and hides these from the view and need for deployment, but it
+   cannot replace Nuitka commercial and its inclusion of data files
+   inside the main binary.
 
 Go `back to Nuitka commercial
 </doc/commercial.html#protection-vs-reverse-engineering>`__ overview to
