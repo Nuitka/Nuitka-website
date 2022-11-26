@@ -1,8 +1,62 @@
 
 
 ###########################
- Nuitka Release 1.2 (Draft)
+ Nuitka Release 1.3 (Draft)
 ###########################
+
+Bug Fixes
+=========
+
+-  Standalone: Added workaround for ``dotenv``. Do not insist on
+   compiled package directories that may not be there in case of no data
+   files. Fixed in 1.2.1 already.
+
+-  Python3.8+: Fix, the ``ctypes.CDLL`` node attributes the ``winmode``
+   argument to Python2, which is wrong, it was actually added with 3.8.
+   Fixed in 1.2.1 already.
+
+-  Windows: Attempt to detect corrupt object file in MSVC linking. These
+   might be produced by ``cl.exe`` crashes or ``clcache`` bugs. When
+   these are reported by the linker, it now suggests to use the
+   ``--clean-cache=ccache`` which will remove it, otherwise there would
+   be no way to cure it. Added in 1.2.1 already.
+
+New Features
+============
+
+-  UI: Added new option for cache disabling ``--disable-cache`` that
+   accepts ``all`` and cache names like ``ccache``, ``bytecode`` and on
+   Windows, ``dll-dependencies`` with selective values.
+
+   .. note::
+
+      The ``clcache`` is implied in ``ccache`` for simplicity.
+
+-  UI: With the same values as ``--disable-cache`` Nuitka may now be
+   called with ``--clean-cache`` in a compilation or without a filename
+   argument, and then it will erase those caches current data before
+   making a compilation.
+
+Organisational
+==============
+
+-  UI: Enhanced ``--version`` output to include the C compiler
+   selection. It is doing that respecting your other options, e.g.
+   ``--clang``, etc. so it will be helpful in debugging setup issues.
+
+Cleanups
+========
+
+-  When adding the new Scons file for C compiler version output, more
+   values that are needed for both onefile and backend compilation were
+   moved to centralized code, simplifying these somewhat again.
+
+This release is not done yet.
+
+
+###################
+ Nuitka Release 1.2
+###################
 
 This release contains a large amount of new compatibility features and a
 few new optimization, while again consolidating what we have.
@@ -880,9 +934,14 @@ there is terms of completeness. At some point, we should ask for it in
 bug reports.
 
 
-###################
- Nuitka Release 1.0
-###################
+##############
+Older Releases
+##############
+
+These are older releases of Nuitka.
+
+Nuitka Release 1.0
+==================
 
 This release contains a large amount of new features, while
 consolidating what we have with many bug fixes. Scalability should be
@@ -891,7 +950,7 @@ some code quite a bit. See the summary, how this release is paving the
 way forward.
 
 Bug Fixes
-=========
+---------
 
 -  Python3: Fix, ``bytes.decode`` with only ``errors`` argument given
    was not working. Fixed in 0.9.1 already.
@@ -1057,7 +1116,7 @@ Bug Fixes
    library paths.
 
 New Features
-============
+------------
 
 -  Onefile: Recognize a non-changing path from
    ``--onefile-tempdir-spec`` and then use cached mode. By default a
@@ -1150,7 +1209,7 @@ New Features
    make these portable again.
 
 Optimization
-============
+------------
 
 -  Scalability: Avoid merge traces of initial variable versions, which
    came into play when merging a variable used in only one branch. These
@@ -1249,7 +1308,7 @@ Optimization
    as well.
 
 Organisational
-==============
+--------------
 
 -  Plugins: Major changes to the Yaml file content, cleaning up some of
    the DLL configuration to more easy to use.
@@ -1354,7 +1413,7 @@ Organisational
    accordingly.
 
 Cleanups
-========
+--------
 
 -  Standalone: Major cleanup of the dependency analysis for standalone.
    There is no longer a distinction between entry points (main binary,
@@ -1419,7 +1478,7 @@ Cleanups
    ``nuitka.code_generation`` for clarity.
 
 Tests
-=====
+-----
 
 -  Added generated test to cover ``bytes`` method. This would have found
    the issue with ``decode`` potentially.
@@ -1428,7 +1487,7 @@ Tests
    something to test.
 
 Summary
-=======
+-------
 
 This release improves on many things at once. A lot of work has been put
 into polishing the Yaml configuration that now only lacks documentation
@@ -1470,12 +1529,6 @@ and given reasons and dependencies as they are known on the inside more
 clearly, such that is can be a major tool for testing, bug reporting and
 analysis of the compilation result.
 
-
-##############
-Older Releases
-##############
-
-These are older releases of Nuitka.
 
 Nuitka Release 0.9
 ==================
