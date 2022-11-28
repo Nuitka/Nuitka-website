@@ -1,5 +1,5 @@
 .. post:: May 27, 2022
-   :tags: Python, Nuitka, compiler
+   :tags: Python, Nuitka, compiler, stream
 
 #########################
  Next Nuitka Live Stream
