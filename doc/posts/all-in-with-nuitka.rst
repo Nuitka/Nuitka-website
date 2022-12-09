@@ -107,7 +107,7 @@ level.
 ###################
 
 Please become a `subscriber of Nuitka commercial
-<https://https://nuitka.net/doc/commercial.html>`__, even if you do not
+<https://nuitka.net/doc/commercial.html>`__, even if you do not
 need the IP protection features it mostly has. All essential packaging
 and performance features are free, and I have put incredible amounts of
 works in this, and I need to now make a living off it.
