@@ -18,14 +18,14 @@ This is the Nuitka roadmap, broken down by features.
    A schema was created and helps editing in Visual Code, user files can
    be provided.
 
-   A documentation was created, the next step is to make a series of postings
-   detailing each feature further.
+   A documentation was created, the next step is to make a series of
+   postings detailing each feature further.
 
 ************
  Standalone
 ************
 
--  "Multidist" support (undecided)
+-  "Multidist" support (public)
 
    Allow combining multiple main programs into one, called "multidist".
    These will work with a dispatcher that decides from the binary name
@@ -68,34 +68,39 @@ This is the Nuitka roadmap, broken down by features.
  Onefile speed (public)
 ************************
 
-- Use memory mapped files on Windows and Linux for performance in accessing the
-  payload.
+-  Use memory mapped files on Windows and Linux for performance in
+   accessing the payload.
 
-- Generally use memory mapping for calculating the checksum of a file. This is
-  for all OSes, and should make cached mode faster to use.
+-  Generally use memory mapping for calculating the checksum of a file.
+   This is for all OSes, and should make cached mode faster to use.
 
-- Use Windows NTFS and macOS HFS extended attributes to store caching status of
-  a file inside of it. It might be possible to detect modification of the file
-  in this way and spare us the checksum, which will then be used only in case of
-  a fallback being necessary.
+-  Use Windows NTFS and macOS HFS extended attributes to store caching
+   status of a file inside of it. It might be possible to detect
+   modification of the file in this way and spare us the checksum, which
+   will then be used only in case of a fallback being necessary.
 
-- Restructure the payload data stream in cached mode, such that skipping a file
-  content becomes easier and does not require decryption of the whole data.
+-  Restructure the payload data stream in cached mode, such that
+   skipping a file content becomes easier and does not require
+   decryption of the whole data.
 
-- One files are compressed individually, we might be able to cache the result of
-  a specific file, such that files from the Python installation do not have to
-  be redone over and over.
+-  One files are compressed individually, we might be able to cache the
+   result of a specific file, such that files from the Python
+   installation do not have to be redone over and over.
 
 ************
  Python3.11
 ************
 
-- Dictionary changes still need to be followed correctly in order to manage
-  basic tests. This is currently in progress.
+-  Basic tests appear to work mostly.
 
-- Execute Python 3.10 test suite in a compatible way with 3.11
+-  There is at least a memory leak with generators,
 
-- And and execute Python 3.11 test suite in a compatible way with 3.11
+-  There is a lack of integration of compiled and uncompiled generators
+   with each other, this needs porting still.
+
+-  Execute Python 3.10 test suite in a compatible way with 3.11
+
+-  And and execute Python 3.11 test suite in a compatible way with 3.11
 
 ************************
  Nuitka-Python (public)
