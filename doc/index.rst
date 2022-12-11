@@ -95,6 +95,7 @@ Additionally, you can purchase priority support.
 
    doc/welcome
    pages/pyside2
+   pages/pyqt5
    pages/donations
    pages/gsoc2019
 
