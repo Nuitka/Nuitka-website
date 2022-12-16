@@ -409,3 +409,5 @@ tuple. An example:
 .. code:: python
 
    version('shapely') < (1, 8, 1)
+
+It returns ``None`` if the package isn't installed.
