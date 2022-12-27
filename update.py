@@ -261,9 +261,10 @@ def updateDownloadPage():
         )
 
     def checkOBS(repo_name):
+        url = "https://download.opensuse.org/repositories/home:/kayhayen/%s/noarch/" % repo_name
+
         command = (
-            "curl -s download.opensuse.org/repositories/home:/kayhayen/%s/noarch/"
-            % repo_name
+            "curl -s %s" % url
         )
 
         output = subprocess.check_output(command.split())
@@ -281,8 +282,13 @@ def updateDownloadPage():
             if "experimental" in line:
                 continue
 
-            match = re.search(r"\>nuitka-(.*).noarch\.rpm\<", line)
-            candidates.append(match.group(1))
+            match = re.search(r'href="(?:\./)?nuitka-(.*).noarch\.rpm(?:\.mirrorlist)?"', line)
+
+            try:
+                candidates.append(match.group(1))
+            except Exception as e:
+                print("problem with line %r from '%s'" % (line, url))
+                raise
 
         def numberize(x):
             if x.startswith("lp"):
@@ -314,8 +320,13 @@ def updateDownloadPage():
             if "unstable" not in line:
                 continue
 
-            match = re.search(r"\>nuitka-unstable-(.*).noarch\.rpm\<", line)
-            candidates.append(match.group(1))
+            match = re.search(r'href="(?:\./)?nuitka-unstable-(.*).noarch\.rpm(?:\.mirrorlist)?"', line)
+
+            try:
+                candidates.append(match.group(1))
+            except Exception as e:
+                print("problem with line %r from '%s'" % (line, url))
+                raise
 
         max_prerelease = max(candidates, key=compareVersion)
 
