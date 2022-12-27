@@ -485,7 +485,7 @@ that.
 
 Again, on Windows, for the temporary file directory, by default the user
 one is used, however this can be overridden with a path specification
-given in ``--windows-onefile-tempdir-spec=%TEMP%\\onefile_%PID%_%TIME%``
+given in ``--onefile-tempdir-spec=%TEMP%\\onefile_%PID%_%TIME%``
 which is the default and asserts that the temporary directories created
 cannot collide.
 
@@ -910,7 +910,7 @@ Windows Programs without console give no errors
 For debugging purposes, remove ``--windows-disable-console`` or use the
 options ``--windows-force-stdout-spec`` and
 ``--windows-force-stderr-spec`` with paths as documented for
-``--windows-onefile-tempdir-spec`` above.
+``--onefile-tempdir-spec`` above.
 
 Deep copying uncompiled functions
 =================================
