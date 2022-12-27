@@ -50,7 +50,7 @@ tasks in the summary, but first out to the many details.
 -  Windows: Fix, when installing Python2 only for the user, the
    detection of it via registry failed as it was only searching system
    key. This was `a github pull request
-   <https://github.com/kayhayen/Nuitka/pull/8>`__. Fixed in 0.5.14.3
+   <https://github.com/Nuitka/Nuitka/pull/8>`__. Fixed in 0.5.14.3
    already.
 
 -  Some modules have extremely complex expressions requiring too deep

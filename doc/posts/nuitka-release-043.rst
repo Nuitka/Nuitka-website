@@ -137,7 +137,7 @@ form in Nuitka.
 -  Nuitka is now available on the social code platforms as well
 
    -  Bitbucket (since removed)
-   -  `GitHub <https://github.com/kayhayen/Nuitka>`__
+   -  `GitHub <https://github.com/Nuitka/Nuitka>`__
    -  Gitorious (since discontinued)
    -  Google Code (since discontinued)
 

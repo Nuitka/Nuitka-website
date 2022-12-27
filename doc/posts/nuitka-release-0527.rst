@@ -93,7 +93,7 @@ This release comes a lot of bug fixes and improvements.
 -  Python2: Selecting the metaclass is now visible in the tree and can
    be statically optimized.
 
--  For executables, we now also use a freelist for traceback objects,
+-  For executables, we now also use a free list for traceback objects,
    which also makes exception cases slightly faster.
 
 -  Generator expressions no longer require the use of a function call
