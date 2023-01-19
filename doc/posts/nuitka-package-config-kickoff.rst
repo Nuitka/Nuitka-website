@@ -1,4 +1,4 @@
-.. post:: 2023/01/19 08:52:00
+.. post:: 2023/01/19 15:51:00
    :tags: Python, compiler, Nuitka, package_config
    :author: Kay Hayen
 

@@ -125,9 +125,20 @@ Features
 Examples
 --------
 
-coming soon
+This example includes a complete folder with data files in a package.
 
-.. _when:
+.. code:: yaml
+
+   - module-name: 'tkinterweb'
+     data-files:
+       dirs:
+         - 'tkhtml'
+
+.. note::
+
+   The example is actually an imperfect solution, since dependent on
+   architecture, files can be omitted. We are going to address this in
+   an update later.
 
 DLLs
 ====
@@ -182,6 +193,9 @@ to compile time issues in many ways.
 Examples
 --------
 
+Very simple example, the normal case, include a DLL with a known prefix
+from its package directory.
+
 .. code:: yaml
 
    - module-name: 'vosk'
@@ -189,6 +203,25 @@ Examples
        - from_filenames:
            prefixes:
              - 'libvosk'
+
+Another more complex example, in which the DLL lives in a subfolder, and
+is even architecture dependant.
+
+.. code:: yaml
+
+   - module-name: 'tkinterweb'
+
+     dlls:
+       - from_filenames:
+           relative_path: 'tkhtml/Windows/32-bit'
+           prefixes:
+             - 'Tkhtml'
+         when: 'win32 and arch_x86'
+       - from_filenames:
+           relative_path: 'tkhtml/Windows/64-bit'
+           prefixes:
+             - 'Tkhtml'
+         when: 'win32 and arch_amd64'
 
 Anti-Bloat
 ==========
@@ -349,11 +382,35 @@ Features
 |  ``package-paths``:
 |  ``package-dirs``:
 |  ``find-dlls-near-module``:
+|  ``global-sys-path:``: for modules that manipulate ``sys.path``
 
 Examples
 --------
 
-coming soon
+The module ``tkinterweb`` contains the following code, that Nuitka
+doesn't yet understand well enough at compile time.
+
+.. code:: python
+
+   sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+
+What this does is to add the package directory, such that Python files
+in the package directory are visible as global imports. To Nuitka these
+will not be resolvable, unless we help it.
+
+.. code:: yaml
+
+   - module-name: 'tkinterweb'
+     import-hacks:
+       - global-sys-path:
+           # This package forces itself into "sys.path" and expects absolute
+           # imports to be available.
+           - ''
+
+This adds the relative path ``''`` during compile time to the import
+resolution, making it work. This makes the ``sys.path`` modification
+visible to Nuitka. Suffice to say that this is very unusual, thus it's
+in the import hacks category.
 
 when
 ====
@@ -380,8 +437,8 @@ These variables are currently available:
 |  ``before_python3``: ``True`` if Python 2 used
 |  ``python3_or_higher``: ``True`` if Python 3 used
 
-There are also more Python version specific ones. For each Python version supported by
-Nuitka there are the following:
+There are also more Python version specific ones. For each Python
+version supported by Nuitka there are the following:
 
 |  ``python[major][minor]_or_higher``: e.g. ``python310_or_higher``
 |  ``before_python[major][minor]``: e.g. ``before_python310``
@@ -389,16 +446,16 @@ Nuitka there are the following:
 The Anti-Bloat plugin provides you with additional variables. These are
 only available in anti-bloat.
 
-|  ``use_setuptools``: ``True`` if ``--noinclude-setuptools-mode`` is not
-   set to ``nofollow`` or ``error``
-|  ``use_pytest``: ``True`` if ``--noinclude-pytest-mode`` is not
-   set to ``nofollow`` or ``error``
+|  ``use_setuptools``: ``True`` if ``--noinclude-setuptools-mode`` is
+   not set to ``nofollow`` or ``error``
+|  ``use_pytest``: ``True`` if ``--noinclude-pytest-mode`` is not set to
+   ``nofollow`` or ``error``
 |  ``use_unittest``: ``True`` if ``--noinclude-unittest-mode`` is not
    set to ``nofollow`` or ``error``
-|  ``use_ipython``: ``True`` if ``--noinclude-IPython-mode`` is not
-   set to ``nofollow`` or ``error``
-|  ``use_dask``: ``True`` if ``--noinclude-dask-mode`` is not
-   set to ``nofollow`` or ``error``
+|  ``use_ipython``: ``True`` if ``--noinclude-IPython-mode`` is not set
+   to ``nofollow`` or ``error``
+|  ``use_dask``: ``True`` if ``--noinclude-dask-mode`` is not set to
+   ``nofollow`` or ``error``
 
 All these are bools.
 
@@ -411,3 +468,20 @@ tuple. An example:
    version('shapely') < (1, 8, 1)
 
 It returns ``None`` if the package isn't installed.
+
+Also, compilation modules, like ``no_asserts``, ``no_docstrings``, and
+``no_annotations`` are available. These are for use in ``anti-bloat``
+where packages sometimes will not work unless helped somewhat.
+
+********************
+ Where else to look
+********************
+
+There is a post series under the tag ``package_config`` found
+https://nuitka.net/blog/tag/package_config.html that explains some
+things in more detail and is going to cover this and expand it for some
+time.
+
+Then of course, there is also the current package configuration file, located at
+https://github.com/Nuitka/Nuitka/blob/develop/nuitka/plugins/standard/standard.nuitka-package.config.yml
+that is full of examples.
