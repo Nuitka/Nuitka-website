@@ -23,8 +23,6 @@ extensions += [
     "ablog",
 ]
 
-templates_path += [ablog.get_html_templates_path()]
-
 # Options for ABlog
 
 # The "title" for the blog, used in active pages.  Default is ``'Blog'``.
