@@ -120,7 +120,7 @@ Features
 |  ``empty_dirs``: all empty directories that should be copied
 |  ``empty_dir_structures``: all empty directory structures that should
    be copied
-|  ``when``: :ref:`jump to <when>`
+|  ``when``: `when`_ is documented in a separate section
 
 Examples
 --------
@@ -184,7 +184,7 @@ Features
       installation
 
 |  ``dest_path``: target directory
-|     ``when``: :ref:`jump to <when>`
+|     ``when``: `when`_ is documented in a separate section
 
 The recommended way goes by filename. The ``by_code`` version is still
 in flux and depends on compile time importing code, making it vulernable
@@ -259,7 +259,7 @@ Features
    removes the function
 |  ``append_result``: append the result of an expression to module code
 |  ``append_plain``: append plain text to the module code
-|  ``when``: :ref:`jump to <when>`
+|  ``when``: `when`_ is documented in a separate section
 
 Examples
 --------
@@ -285,7 +285,7 @@ Features
 |  ``depends``: modules that are required by this module
 |  ``pre-import-code``: code to execute before a module is imported
 |  ``post-import-code``: code to execute after a module is imported
-|  ``when``: :ref:`jump to <when>`
+|  ``when``: `when`_ is documented in a separate section
 
 Examples
 --------
@@ -336,7 +336,7 @@ Features
 |  ``macos_bundle``: Choose between ``yes``, ``no``, ``recommend``
 |  ``macos_bundle_as_onefile``: Choose between ``yes``, ``no``
 |  ``support_info``: Choose between ``info``, ``warning``, ``error``
-|  ``when``: :ref:`jump to <when>`
+|  ``when``: `when`_ is documented in a separate section
 
 Examples
 --------
