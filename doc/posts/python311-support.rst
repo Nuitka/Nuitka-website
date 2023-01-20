@@ -6,9 +6,10 @@
  Python 3.11 and Nuitka
 ########################
 
-In my `all in with Nuitka </posts/all-in-with-nuitka.html>`__ post, I promised
-to give you an update on the current status of Python 3.11 support and Nuitka,
-and this is the report on my busy bee activities there.
+In my `all in with Nuitka </posts/all-in-with-nuitka.html>`__ post, I
+promised to give you an update on the current status of Python 3.11
+support and Nuitka, and this is the report on my busy bee activities
+there.
 
 *************
  What is now
@@ -33,34 +34,36 @@ Gives the following output:
  What you can do?
 ******************
 
-As a mere mortal, what you can and should do is to consider
-becoming a `subscriber of Nuitka commercial
-<https://nuitka.net/doc/commercial.html>`__, even if you do not
-need the IP protection features it mostly has. All essential packaging
-and performance features are free, and I have put incredible amounts of
+As a mere mortal, what you can and should do is to consider becoming a
+`subscriber of Nuitka commercial
+<https://nuitka.net/doc/commercial.html>`__, even if you do not need the
+IP protection features it mostly has. All essential packaging and
+performance features are free, and I have put incredible amounts of
 works in this, and I need to now make a living off it.
 
 And working on 3.11 support, just so tings then continue to work, mostly
-on my own deserves financial support. Once a year, for weeks on end, I am
-re-implementing features that a collective of developers came up with.
+on my own deserves financial support. Once a year, for weeks on end, I
+am re-implementing features that a collective of developers came up
+with.
 
-Otherwise, unless you are CPython core developer responsible for the changes, I
-am afraid, not a lot. Having to know both Nuitka and CPython details is a tall
-ask. I might be the only one to do this for a while. I will however strive to
-get more people involved each time.
+Otherwise, unless you are CPython core developer responsible for the
+changes, I am afraid, not a lot. Having to know both Nuitka and CPython
+details is a tall ask. I might be the only one to do this for a while. I
+will however strive to get more people involved each time.
 
-That is not to say this does not happen. Not too long ago, I merged proposed
-changes that will help Nuitka with 3.12 compatibility. This would be nice if it
-was more frequent, and the fact that it is not, is probably my fault entirely.
+That is not to say this does not happen. Not too long ago, I merged
+proposed changes that will help Nuitka with 3.12 compatibility. This
+would be nice if it was more frequent, and the fact that it is not, is
+probably my fault entirely.
 
-***************
+****************
  What was done?
-***************
+****************
 
-In the summer, with release candidates, there was some refactoring done that
-aimed at making Nuitka compile, at least with less errors. One of the changes
-that was addressed at the time was the reduction of exception state to only a
-value.
+In the summer, with release candidates, there was some refactoring done
+that aimed at making Nuitka compile, at least with less errors. One of
+the changes that was addressed at the time was the reduction of
+exception state to only a value.
 
 In Python during an exception, you typically have a exception "type",
 "value", and a "traceback". And these used to be sort of independent
@@ -189,21 +192,23 @@ There are other benefits, e.g. 3.10 is exposing free lists (re-usable
 objects without going through allocation) it is using, allowing Nuitka
 to accelerate dictionary object creation esp. on Windows, and so on.
 
-*******************
+******************
  Expected results
 ******************
 
-People tend to expect that gains from Nuitka and enhancements of CPython stack
-up. The truth of the matter is, no they do not. CPython is applying some tricks
-that Nuitka already did. Not using its bytecode will then become less of a
-benefit, but that's OK, this is not what Nuitka is about.
+People tend to expect that gains from Nuitka and enhancements of CPython
+stack up. The truth of the matter is, no they do not. CPython is
+applying some tricks that Nuitka already did. Not using its bytecode
+will then become less of a benefit, but that's OK, this is not what
+Nuitka is about.
 
-We need to get somewhere else entirely anyway, in terms of speed
-up. I will be talking about PGO and C types a lot in the coming year, that is
+We need to get somewhere else entirely anyway, in terms of speed up. I
+will be talking about PGO and C types a lot in the coming year, that is
 at least the hope. That is where the "all in" part kicks in.
 
-************
+*************
  Final Words
-************
+*************
 
-Look ma, I posted about something that is not complete. I am getting better.
+Look ma, I posted about something that is not complete. I am getting
+better.
