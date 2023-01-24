@@ -133,7 +133,7 @@ bug fixes.
    constant keys, and values, these avoid full constant value nodes, and
    therefore save memory and compile time for a lot of code.
 
--  Anti-bloat: Added more scalability work to avoid including modules
+-  Anti-Bloat: Added more scalability work to avoid including modules
    that make compilation unnecessarily big.
 
 -  Python3.9+: Faster calls in case of mixed code, i.e. compiled code
@@ -149,7 +149,7 @@ bug fixes.
 -  Hard imported names should also be considered very trusted
    themselves, so they are e.g. also optimized in calls.
 
--  Anti-bloat: Avoid more useless imports in Pandas, Numba, Plotly, and
+-  Anti-Bloat: Avoid more useless imports in Pandas, Numba, Plotly, and
    other packages, improving the scalability some more.
 
 -  Added dedicated nodes for ``pkg_resources.require``,

@@ -29,7 +29,7 @@ improvements.
    message when missing.
 
 -  Windows: Find ``win32com`` DLLs too, even if they live in sub folders
-   of site-packages, and otherwise not found. They are used by other
+   of ``site-packages``, and otherwise not found. They are used by other
    DLLs that are found.
 
 -  Standalone: Fixup for problem with standard library module in most

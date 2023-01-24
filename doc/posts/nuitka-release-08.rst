@@ -249,7 +249,7 @@ features, and adds new ones.
    fails to load, it then outputs a more helpful error. This ought to be
    done for all plugins, where it's not clear if they are needed.
 
--  Anti-bloat: Added support for plain replacements in the
+-  Anti-Bloat: Added support for plain replacements in the
    ``anti-bloat.yml`` file. Before with ``replacement```, the new value
    had to be produced by an ``eval``, which makes for less readable
    values due to extra quoting. for plain values.
