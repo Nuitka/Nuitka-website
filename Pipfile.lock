@@ -435,7 +435,7 @@
                 "sha256:5120dc5722f774e9e49b1924e5ecaffa815902253839669fe6ca61f2981cf5bb"
             ],
             "index": "pypi",
-            "version": "==0.0.11"
+            "version": ">=0.0.12"
         },
         "setuptools": {
             "hashes": [
