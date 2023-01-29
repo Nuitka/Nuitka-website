@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../../README.rst:3
 msgid "Nuitka Website"
-msgstr ""
+msgstr "Nuitka 网站"
 
 #, fuzzy
 msgid "Nuitka Logo"
@@ -28,21 +28,22 @@ msgstr "Nuitka 图标"
 
 #: ../../README.rst:10
 msgid "Thanks"
-msgstr ""
+msgstr "致谢"
 
 #: ../../README.rst:12
 msgid ""
 "Please help and improve this in all ways, typos, cooler tech, better "
 "looks, more information, etc. all is appreciated and necessary."
 msgstr ""
+"请以各种方式帮助和改进，错别字，更酷的技术，更好的外观，更多的信息，等等，一切都是感激和必要的。"
 
 #: ../../README.rst:15
 msgid "Right now, this is very much possible to improve. Your turn!"
-msgstr ""
+msgstr "现在，这是很有可能改进的。轮到你！"
 
 #: ../../README.rst:19
 msgid "Usage"
-msgstr ""
+msgstr "用法"
 
 #: ../../README.rst:21
 msgid ""
@@ -51,10 +52,13 @@ msgid ""
 "this has only be done on Linux, but it ought to also work on Windows, you"
 " can make that work as part of your contribution."
 msgstr ""
+"这是用来建立 Nuitka 网站的。各种改进都是受欢迎的。"
+"你需要 python 3.9 和 ``pipenv`` 来构建它，到目前为止这只在 Linux 上做过，"
+"但它应该也可以在 Windows 上工作，你可以把它作为你的贡献的一部分。"
 
 #: ../../README.rst:53
 msgid "Usage of Sphinx"
-msgstr ""
+msgstr "Sphinx 用法"
 
 #: ../../README.rst:55
 msgid ""
@@ -63,10 +67,12 @@ msgid ""
 "into pages, with otherwise using Sphinx to render it. Reference the "
 "Sphinx documentation and esp. the one for Read the Docs theme and ABlog."
 msgstr ""
+"所以这个网站基本上是从 Nuitka git 存储库中导入一些文件的自动化程序，比如 ``Changelog.rst`` 转换到 pages，否则使用 Sphinx 渲染。"
+"参考 Sphinx 文档，特别是阅读文档主题和 ABlog 的文档。”"
 
 #: ../../README.rst:62
 msgid "Translation"
-msgstr ""
+msgstr "翻译"
 
 #: ../../README.rst:64
 msgid ""
@@ -75,6 +81,8 @@ msgid ""
 " ``translation`` branch is used, but the plan is for it to be merged, and"
 " to provide the infrastructure in the ``main`` branch."
 msgstr ""
+"Nuitka 网站的翻译非常受欢迎。我们团队为那些想要开发它的人服务，他们有推送存储库的权利。"
+"现在使用的是 ``translation`` 分支，但计划是将其合并，并在 ``main`` 分支中提供基础设施。"
 
 #: ../../README.rst:69
 msgid ""
@@ -82,10 +90,11 @@ msgid ""
 "that is not mentioned here, should be asked about if in doubt. Not all "
 "pages make sense to translate."
 msgstr ""
+"这里有要翻译的文件及其样式的表格。这里没有提到的一切，如果有疑问，都应该问一下。并不是所有的页面都有翻译意义。"
 
 #: ../../README.rst:75
 msgid "important"
-msgstr ""
+msgstr "重要"
 
 #: ../../README.rst:77
 msgid ""
@@ -93,6 +102,7 @@ msgid ""
 " if you agree it makes sense, if it can be better structured. This is "
 "very much needed unfortunately."
 msgstr ""
+"在翻译之前，我希望你也能检查一下内容，如果你认为它有意义，如果它可以更好地结构。不幸的是，这是非常需要的。"
 
 #: ../../README.rst:83
 msgid ""
