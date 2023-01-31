@@ -35,7 +35,7 @@ def build(c, opts=None, language=None, source=None, target=None, nitpick=False):
         target = f'{target}/{language}'
     if nitpick:
         opts += " -n -W -T"
-    cmd = f"pipenv run sphinx-build {opts} {source} {target}"
+    cmd = f"pdm run sphinx-build {opts} {source} {target}"
     c.run(cmd)
 
 
@@ -53,7 +53,7 @@ def update(c, language='en'):
     else:
         if not Path(target).exists():
             build(c, target=target, opts=opts)
-        c.run(f'pipenv run sphinx-intl update -p {target} -l {language}')
+        c.run(f'pdm run sphinx-intl update -p {target} -l {language}')
         # for DIR in ['pages', 'posts', 'shop']:
         #     rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
 
