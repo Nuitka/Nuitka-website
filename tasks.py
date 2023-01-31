@@ -16,6 +16,7 @@ def virtualenv(c):
     '''create and install env'''
     c.run(f'{sys.executable} -m pip install -U pdm')
     c.run(f'{sys.executable} -m pdm install -G doc')
+    c.run(f'{sys.executable} -m pdm config python.use_venv false -g')
 
 
 @task

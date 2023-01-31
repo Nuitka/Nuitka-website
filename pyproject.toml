@@ -42,6 +42,8 @@ doc = [
   "sphinx_plotly_directive",
   "sphinx-comments",
   "sphinxcontrib-mermaid",
+  "unidecode",
+  "lxml",
   # "plotly"
 ]
 
