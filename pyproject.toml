@@ -9,9 +9,10 @@ authors = [
     {name = "xinetzone", email = "xinzone@outlook.com"},
 ]
 dependencies = [
-  "d2py",
-  "attrs",
-  "importlib-metadata>=4.12"
+  "importlib-metadata>=4.12",
+  "unidecode",
+  "lxml",
+  "requests",
 ]
 requires-python = ">=3.10"
 readme = "README.rst"
@@ -42,9 +43,6 @@ doc = [
   "sphinx_plotly_directive",
   "sphinx-comments",
   "sphinxcontrib-mermaid",
-  "unidecode",
-  "lxml",
-  "requests",
   # "plotly"
 ]
 
