@@ -23,8 +23,8 @@ jobs:
         shell: bash
         run: |
           pip install --upgrade pip
-          pip install invoke
-          pip install .
+          pip install invoke pdm
+          
 
       - name: Site initialization
         run: |

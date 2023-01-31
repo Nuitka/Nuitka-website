@@ -15,8 +15,8 @@ os.environ["PIPENV_VERBOSITY"] = "-1"
 def virtualenv(c):
     '''create and install env'''
     c.run(f'{sys.executable} -m pip install -U pdm')
-    c.run(f'{sys.executable} -m pdm install')
     c.run(f'{sys.executable} -m pdm config python.use_venv false -g')
+    c.run(f'{sys.executable} -m pdm install')
 
 
 @task
