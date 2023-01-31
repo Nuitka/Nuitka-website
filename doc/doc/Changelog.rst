@@ -1,8 +1,77 @@
 
 
 ###########################
- Nuitka Release 1.4 (Draft)
+ Nuitka Release 1.5 (Draft)
 ###########################
+
+Bug Fixes
+=========
+
+-  Standalone: Added implicit dependencies for ``charset_normalizer``
+   package. Fixed in 1.4.1 already.
+
+-  Standalone: Added platform DLLs for ``sounddevice`` package. Fixed in
+   1.4.1 already.
+
+-  Plugins: The info from Qt bindings about other Qt bindings being
+   suppressed for import, was spawning multiple lines, breaking tests.
+   Merged to a single line until we do text wrap for info messages as
+   well. Fixed in 1.4.1 already.
+
+-  Plugins: Fix ``removeDllDependencies`` was broken and could not
+   longer be used to remove DLLs from inclusion. Fixed in 1.4.1 already.
+
+-  Tests: Ignore ld info output about mismatching architecture libraries
+   being ignored. Fixed in 1.4.1 already.
+
+Organisational
+==============
+
+-  Windows: Using the console on Python 3.4 to 3.7 is not working very
+   well with e.g. many Asian systems. Nuitka fails to setup the encoding
+   for stdin and stdout or this platform. It can then produce exceptions
+   on input or output of unicode data, that doesn't overlap with UTF-8.
+
+   We now inform the user of these older Python with a warning and
+   mnemonic, to either disable the console or to upgrade to Python 3.8
+   or higher, which normally won't be much of an issue for most users.
+   Added in 1.4.1 already.
+
+-  Debugging: Fixup debugging reference count output with Python3.4. For
+   Python 3.11 compatibility tests, actually it was useful to compare
+   with a version that doesn't have coroutines yet. Never tell me,
+   supporting old versions is not good.
+
+-  Deprecating support for Python 3.3, there is no apparent use of this
+   version, and it has gained specific bugs, that are indeed not worth
+   our time. Python 2.6 and Python 2.7 will continue to be supported
+   probably indefinitely.
+
+Summary
+=======
+
+This release is not done yet.
+
+
+###################
+ Nuitka Release 1.4
+###################
+
+This release contains a large amount of performance work, where
+specifically Python versions 3.7 or higher see regressions in relative
+performance to CPython fixed. Many cases of macros turned to functions
+have been found and resolved. For 3.10 specifically we take advantage of
+new opportunities for optimization. And generally avoiding DLL calls
+will benefit execution times on platform where the Python DLL is used,
+most prominently Windows.
+
+Then this also adds new features, specifically custom reports. Also
+tools to aid with adding Nuitka package configuration input data, to
+list DLLs and data files.
+
+With multidist we see a brand new ability to combine several programs
+into one, that will become very useful for packaging multiple binaries
+without the overhead of multiple distributions.
 
 Bug Fixes
 =========
@@ -119,6 +188,17 @@ Bug Fixes
    files unlike all other DLL suffixes.
 
 -  Standalone: Added missing implicit dependency of ``mplcairo``.
+
+-  Standalone: The main binary name on non-Windows didn't have a suffix
+   ``.bin`` unlike in accelerated mode. However, this didn't work well
+   for packages which have binaries colliding with the package name.
+   Therefore now the suffix is added in this case too.
+
+-  macOS: Workaround bug in ``platform_utils.paths``. It is guessing the
+   wrong path for included data files with Nuitka.
+
+-  Standalone: Added DLLs of ``sound_lib``, selecting by OS and
+   architecture.
 
 New Features
 ============
@@ -360,6 +440,24 @@ Optimization
    slow. And esp. for the small values, this benefits from not having to
    create them.
 
+-  Faster Python3 ``bytes`` value startup initialization.
+
+   On Python 3.10 or higher, we can create these values ourselves
+   without an API call, avoiding its overhead.
+
+   Also we no longer de-duplicate small bytes values through our cache,
+   because that is already done by the API and our replacement, so this
+   was just wasting time.
+
+-  Faster ``slice`` object values with Python 3.10 or higher
+
+   On Python 3.10 or higher, we can create these values ourselves
+   without an API call, avoiding its overhead.
+
+   These are important for Python3, because ``a[x:y]`` in the general
+   case has to use ``a[slice(x,y)]`` on that version, making this
+   somewhat relevant to performance in some cases.
+
 -  Faster ``str`` built-in with API calls
 
    For common cases, this avoids API calls. We mostly have this such
@@ -391,6 +489,11 @@ Optimization
    flow escapes for a variable. However, this is faster if solved with a
    virtual method in those variable classes, shifting the responsibility
    to inside there.
+
+-  For call codes the need to check the return value was not perfectly
+   annotated in all cases. This is now driven by the expression rather
+   than passed, and will result in better code generated in some corner
+   cases.
 
 Organisational
 ==============
@@ -442,6 +545,9 @@ Organisational
 -  Release: Mark macOS as supported in PyPI categories. This is of
    course true for a long time already.
 
+-  Release: Mark Android as supported in PyPI categories as well. With
+   some extra work, it can be used.
+
 -  User Manual: Added section pointing to and explaining compilation
    reports. This has become extremely useful even if still somewhat work
    in progress.
@@ -481,7 +587,40 @@ Tests
 -  Ignore Qt binding warnings in tests, some are less supported than
    ``PySide6`` or commercial ``PySide2``.
 
-This release is not done yet.
+Summary
+=======
+
+The focus of this release was first a major restructuring of how
+children are handled in the node tree. The generated code opens up the
+possibility of many more scalability improvements in the coming
+releases. The pure iteration speed for the node tree will make compile
+times for the Python part even shorter in coming releases. Scalability
+will be a continuous focus for some releases.
+
+Then the avoiding of API calls is a huge benefit for many platforms that
+are otherwise at a disadvantage. This is also only started. We will aim
+at getting more complex programs to do next to none of these, so far
+only some tests are working after program start without them, which is
+of course big progress. We will progress there with future releases as
+well.
+
+Catching up on problems that previous migrations have not discovered is
+also a huge step forward to restoring the performance supremacy, that
+was not there anymore in extreme cases.
+
+The Yaml package configuration work is showing its fruits. More people
+have been able to contribute changes for ``anti-bloat`` or missing
+dependencies than ever before.
+
+Some part of the Python 3.11 work have positively influenced things,
+e.g. with the frame cleanup. THe focus of the next release cycle shall
+be to add support for it. Right now, generator frames need a cleanup to
+be finished, to also become better and working with 3.11 at the same
+time. Where possible, work to support 3.11 was also conducted as a
+cleanup action, or reduction of the technical debts.
+
+All in all, it is fair to say that this release is a big leap forward in
+all kinds of ways.
 
 
 ###################
@@ -904,16 +1043,21 @@ It's a pity that 3.11 is not yet supported, but we will be getting
 there.
 
 
-###################
- Nuitka Release 1.2
-###################
+##############
+Older Releases
+##############
+
+These are older releases of Nuitka.
+
+Nuitka Release 1.2
+==================
 
 This release contains a large amount of new compatibility features and a
 few new optimization, while again consolidating what we have.
 Scalability should be better in many cases.
 
 Bug Fixes
-=========
+---------
 
 -  Standalone: Added implicit dependency of ``thinc`` backend. Fixed in
    1.1.1 already.
@@ -1061,7 +1205,7 @@ Bug Fixes
 -  macOS: Added support for ``pyobjc`` in version 9.0 or higher.
 
 New Features
-============
+------------
 
 -  Python3.11: For now prevent the execution with 3.11 and give a
    warning to the user for a not yet supported version. This can be
@@ -1093,8 +1237,12 @@ New Features
    ``opencv-python`` is best supported in version 4.6 or higher. It
    seems e.g. that video capture is not working with 4.5 at this time.
 
+-  Added ``--report-template`` which can be used to provide Jinja2
+   templates to create custom reports, and refer to built-in reports, at
+   this time e.g. a license reports.
+
 Optimization
-============
+------------
 
 -  Trust the absence of a few selected hard modules and convert those to
    static raises of import errors.
@@ -1222,7 +1370,7 @@ Optimization
    incomplete.
 
 Organisational
-==============
+--------------
 
 -  User Manual: Explain how to create 64/32 bits binaries on Windows,
    with there being no option to control it, this can otherwise be a bit
@@ -1284,7 +1432,7 @@ Organisational
    which is not too obvious.
 
 Cleanups
-========
+--------
 
 -  Moved PySide plugins DLL search extra paths to the Yaml
    configuration. In this way it is not dependent on the plugin being
@@ -1314,7 +1462,7 @@ Cleanups
    compiler.
 
 Tests
-=====
+-----
 
 -  Tests: Added test that applies anti-bloat configuration to all found
    modules.
@@ -1324,7 +1472,7 @@ Tests
    doesn't use that code.
 
 Summary
-=======
+-------
 
 This release is again mainly a consolidation of previous release, as
 well as finishing off existing features. Optimization added in previous
@@ -1349,12 +1497,6 @@ addressed. We should be able to use memory mapped view on this platform
 too, for faster unpacking of the payload, since it doesn't have to go
 through the file anymore.
 
-
-##############
-Older Releases
-##############
-
-These are older releases of Nuitka.
 
 Nuitka Release 1.1
 ==================

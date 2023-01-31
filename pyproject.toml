@@ -14,6 +14,8 @@ dependencies = [
   "lxml",
   "requests",
   "rstfmt",
+  "setuptools",
+  "wheel",
 ]
 requires-python = ">=3.10"
 readme = "README.rst"
@@ -31,7 +33,6 @@ Home = "http://nuitka.net/"
 
 [project.optional-dependencies]
 doc = [
-  "ablog",
   "myst-nb",
   # "xyzstyle",
   "matplotlib",
@@ -44,6 +45,10 @@ doc = [
   "sphinx_plotly_directive",
   "sphinx-comments",
   "sphinxcontrib-mermaid",
+  "sphinxcontrib-youtube",
+  "sphinx-favicon",
+  "sphinx_rtd_theme",
+  "ablog",
   # "plotly"
 ]
 
