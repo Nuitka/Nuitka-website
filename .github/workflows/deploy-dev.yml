@@ -1,0 +1,54 @@
+name: Deploy to GitHub Pages (Dev)
+
+on:
+  push:
+    branches:
+      # - main
+      # - translation
+      - new-tool
+
+jobs:
+  deploy-to-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+          cache: "pip"
+          cache-dependency-path: "pyproject.toml"
+
+      - name: 👷‍ init and preprocessing
+        shell: bash
+        run: |
+          pip install --upgrade pip
+          pip install invoke pdm
+          pdm config python.use_venv false -g
+
+      - name: Site initialization
+        run: |
+          invoke virtualenv
+          invoke run -t update-downloads
+          invoke run -t update-docs
+
+      - name: 🔧 Build HTML
+        run: |
+          invoke doc.clean
+          invoke doc
+          invoke intl -l zh_CN
+          invoke intl -l de_DE
+          invoke run -t post-process
+
+      - name: 🚀 Deploy to GitHub pages
+        uses: peaceiris/actions-gh-pages@v3.6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: output/
+
+      # - name: delete temp
+      #   run: |
+      #     rm -rf Nuitka-main/
+      #     rm -rf Nuitka-develop/
+      #     rm -rf Nuitka-factory/
+      #     rm -rf output/doctrees/

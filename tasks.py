@@ -14,8 +14,8 @@ os.environ["PIPENV_VERBOSITY"] = "-1"
 @task
 def virtualenv(c):
     '''create and install env'''
-    c.run(f'{sys.executable} -m pip install -U pipenv')
-    c.run(f'{sys.executable} -m pipenv install --dev')
+    c.run(f'{sys.executable} -m pip install -U pdm')
+    c.run(f'{sys.executable} -m pdm install -G doc')
 
 
 @task
@@ -23,7 +23,7 @@ def run(c, target='build-site'):
     '''
     :target: can be `update-docs`, `build-site`, `serve-site`
     '''
-    c.run(f'{sys.executable} -m pipenv run python update.py --{target}')
+    c.run(f'{sys.executable} -m pdm run python update.py --{target}')
 
 
 ns = Collection(intl, doc, run, virtualenv)
