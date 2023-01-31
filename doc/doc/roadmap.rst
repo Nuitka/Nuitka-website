@@ -11,21 +11,29 @@ This is the Nuitka roadmap, broken down by features.
 -  Data files, implicit imports, and DLL inclusion are specified in Yaml
    files now.
 
-   In this way, it is easy to extend by third parties. We could imagine
-   even supporting packages that provide their own configuration for
-   compilation with Nuitka through such files.
+   A post series is currently going on and has been lauched at post: [Nuitka
+   Package Config
+   Kickoff](https://nuitka.net/posts/nuitka-package-config-kickoff.html) and it
+   will continue to become the documentation that currently lives under [Nuitka
+   Package Config](https://nuitka.net/doc/nuitka-package-config.html) on the web
+   site only for rapid development independent of Nuitka releases.
 
-   A schema was created and helps editing in Visual Code, user files can
-   be provided.
-
-   A documentation was created, the next step is to make a series of
-   postings detailing each feature further.
+   The long term plan is to also include in the Nuitka release as part of
+   the documentation, much like User Manual and Developer Manual, that are
+   being maintained inside Nuitka repo.
 
 ************
  Standalone
 ************
 
 -  "Multidist" support (public)
+
+   .. note::
+
+      This is an experimental feature and available in the 1.4 release
+      series, checkout the User Manual to see how it is used. This is
+      only here until the things described are also perfectly documented
+      there.
 
    Allow combining multiple main programs into one, called "multidist".
    These will work with a dispatcher that decides from the binary name
@@ -88,12 +96,12 @@ This is the Nuitka roadmap, broken down by features.
    installation do not have to be redone over and over.
 
 ************
- Python3.11
+ Python 3.11
 ************
 
--  Basic tests appear to work mostly.
-
--  There is at least a memory leak with generators,
+-  Basic tests appear to work mostly, but frame handling has still bugs that
+   need to be resolved. The changes done for generator frames appear to not yet
+   fully compatible with 3.10 therefore this is still blocked from release.
 
 -  There is a lack of integration of compiled and uncompiled generators
    with each other, this needs porting still.
@@ -141,9 +149,6 @@ DLL usages.
 -  Implement the ``partial`` built-in and make it work with compiled
    functions. It could prepare calls much better, such that they do not
    come through keyword arguments unnecessarily.
-
--  Add support for ``list`` methods, things like ``append`` really
-   should be optimized as well in the mostly existing operation nodes.
 
 -  Loop trace analysis fails to deliver ``int`` types shapes. We would
    need that for optimizing loops.
@@ -214,7 +219,7 @@ binary and move it over the running binary, e.g. during restart.
    names and values would not be, depending on your choice!
 
 ******************************
- Features to be added for 1.3
+ Features to be added for 1.5
 ******************************
 
 [ ] Add download updating for standalone as well, onefile for windows works.
@@ -223,18 +228,13 @@ binary and move it over the running binary, e.g. during restart.
 
 [ ] Document commercial Windows Service usage with examples.
 
-[x] Document Yaml format with a series of postings with examples.
-
 [ ] Tuple unpacking for values that support indexing should be
    optimized.
 
 ******************************
- Features to be added for 1.4
+ Features to be added for 1.6
 ******************************
 
 [ ] Update for MinGW64 on Windows to use gcc 12.x based on.
 
 [ ] Initial support for ctypes based direct calls of C code.
-
-[ ] Add support for ``list`` methods, things like ``append`` really
-   should be optimized as well in the mostly existing operation nodes.
