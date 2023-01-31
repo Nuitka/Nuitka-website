@@ -197,6 +197,10 @@ Scalability should be better in many cases.
    ``opencv-python`` is best supported in version 4.6 or higher. It
    seems e.g. that video capture is not working with 4.5 at this time.
 
+-  Added ``--report-template`` which can be used to provide Jinja2
+   templates to create custom reports, and refer to built-in reports, at
+   this time e.g. a license reports.
+
 **************
  Optimization
 **************
