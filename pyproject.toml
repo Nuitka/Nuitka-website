@@ -13,7 +13,7 @@ dependencies = [
   "unidecode",
   "lxml",
   "requests",
-  "rstfmt",
+  "rstfmt==0.0.11",
   "setuptools",
   "wheel",
 ]
