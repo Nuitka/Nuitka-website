@@ -8,3 +8,10 @@ output.*
 .vscode/tags
 _build/
 *.mo
+
+# PDM
+.pdm.toml
+__pycache__/
+__pypackages__/
+dist/
+build/

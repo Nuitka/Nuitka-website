@@ -1,0 +1,56 @@
+[tool.pdm]
+version = { source = "file", path = "src/nuitka_tasks/version.py" }
+allow_prereleases = true
+
+[project]
+name = "nuitka-tasks"
+dynamic = ["version"]
+authors = [
+    {name = "xinetzone", email = "xinzone@outlook.com"},
+]
+dependencies = [
+  "d2py",
+  "attrs",
+  "importlib-metadata>=4.12"
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {file = "LICENSE"}
+
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"
+
+[project.urls]
+Home = "http://nuitka.net/"
+
+# [project.entry-points]
+# "sphinx.html_themes" = {tvm_book = "tvm_book"}
+
+[project.optional-dependencies]
+doc = [
+  "ablog",
+  "myst-nb",
+  # "xyzstyle",
+  "matplotlib",
+  "sphinx-copybutton",
+  "sphinxcontrib-bibtex",
+  "sphinx-thebe",
+  "sphinx-design",
+  "sphinx-automodapi",
+  "sphinx-sitemap",
+  "sphinx_plotly_directive",
+  "sphinx-comments",
+  "sphinxcontrib-mermaid",
+  # "plotly"
+]
+
+[tool.pdm.build]
+package-dir = "src"
+# includes = []
+# excludes = []
+# source-includes = ["tests/"]
+
+[pypi.extra]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple "
+# verify_ssl = false
