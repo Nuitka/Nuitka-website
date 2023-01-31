@@ -23,8 +23,7 @@ jobs:
         shell: bash
         run: |
           pip install --upgrade pip
-          pip install invoke pdm
-          pdm config python.use_venv false -g
+          pip install invoke
 
       - name: Site initialization
         run: |
