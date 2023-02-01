@@ -47,7 +47,8 @@ jobs:
         run: |
           invoke doc.clean
           invoke doc
-          invoke intl -l zh_CN, de_DE
+          invoke intl -l zh_CN 
+          invoke intl -l de_DE
           invoke run -t post-process
 
       - name: Setup Pages
