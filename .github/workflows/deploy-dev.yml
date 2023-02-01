@@ -7,6 +7,17 @@ on:
       # - translation
       - new-tool
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   deploy-to-pages:
     runs-on: ubuntu-latest
@@ -36,19 +47,23 @@ jobs:
         run: |
           invoke doc.clean
           invoke doc
-          invoke intl -l zh_CN
-          invoke intl -l de_DE
+          invoke intl -l zh_CN, de_DE
           invoke run -t post-process
 
-      - name: 🚀 Deploy to GitHub pages
-        uses: peaceiris/actions-gh-pages@v3.6.1
+      - name: Setup Pages
+        uses: actions/configure-pages@main
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: output/
+          # Upload entire repository
+          path: 'output/'
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@main
 
-      # - name: delete temp
-      #   run: |
-      #     rm -rf Nuitka-main/
-      #     rm -rf Nuitka-develop/
-      #     rm -rf Nuitka-factory/
-      #     rm -rf output/doctrees/
+      # - name: 🚀 Deploy to GitHub pages
+      #   uses: peaceiris/actions-gh-pages@v3.6.1
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: output/
+
