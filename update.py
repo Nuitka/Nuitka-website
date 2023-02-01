@@ -1048,7 +1048,7 @@ def updateTranslationStatusPage():
             table += [
                 [
                     str(path.relative_to("doc")).replace("\\", "/"),
-                    ", ".join(translations),
+                    ", ".join(sorted(translations)),
                 ]
             ]
 
