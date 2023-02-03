@@ -234,6 +234,31 @@ highest priority.
    Alternatively Bitcoin and USDT crypto currency transfers are also acceptable,
    please read the details here `details here .... <crypto.html>`__
 
+*************
+ Limitations
+*************
+
+When you buy Nuitka commercial, parts of the, mostly the plugins that implement the commercial only features
+are under a license that forbids you to distribute the Nuitka commercial source code. That should be obvious,
+but otherwise it does not limit your use of Nuitka at all.
+
+You can use Nuitka commercial on
+
+* All your machines, all OSes
+* All your software, deploy as many as you want
+* Even after ending the subscription (on that particular version you have)
+
+Basically you are as free with Nuitka commercial as with standard Nuitka. Only for distribution of
+that Nuitka commercial version to third parties, you are limited.
+
+*************
+ Delivery
+*************
+
+#. Pay via Stripe or Crypto currency and have that confirmed
+#. You get access to the private GitHub repo ``Nuitka-commercial`` which contains Nuitka plus commercial only parts.
+#. Optionally given more users in your GitHub organization access via token.
+#. Nuitka commercial can then be used as a drop in replacement of Nuitka with more options.
 
 ************
  Contact Us
