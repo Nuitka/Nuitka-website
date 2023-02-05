@@ -338,8 +338,8 @@ def updateDownloadPage():
 
     min_rhel = 6
     max_rhel = 8
-    min_fedora = 28
-    max_fedora = 35
+    min_fedora = 36
+    max_fedora = 36
 
     rhel_rpm = {}
     for rhel_number in range(min_rhel, max_rhel + 1):
@@ -369,8 +369,9 @@ def updateDownloadPage():
 
     opensuse_rpm = {}
 
+    min_leap_minor = 4
     max_leap_minor = 4
-    for leap_minor in range(0, max_leap_minor + 1):
+    for leap_minor in range(min_leap_minor, max_leap_minor + 1):
         stable, develop = checkOBS(f"openSUSE_Leap_15.{leap_minor}")
 
         opensuse_rpm["stable", leap_minor] = stable
@@ -402,8 +403,8 @@ def updateDownloadPage():
 
         return f"""Nuitka {version.split("-", 1)[0]}"""
 
-    def makeLeapText(rhel_number, release):
-        version = opensuse_rpm[release, rhel_number]
+    def makeLeapText(leap_number, release):
+        version = opensuse_rpm[release, leap_number]
 
         return f"""Nuitka {version.split("-", 1)[0]}"""
 
@@ -473,7 +474,7 @@ def updateDownloadPage():
             makeLeapText(leap_minor, "stable"),
             makeLeapText(leap_minor, "develop"),
         )
-        for leap_minor in range(0, max_leap_minor + 1)
+        for leap_minor in range(min_leap_minor, max_leap_minor + 1)
     ]
 
     suse_data.insert(
