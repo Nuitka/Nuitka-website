@@ -10,12 +10,12 @@ from _docs import doc, intl
 # to not confuse people with a pipenv warning that it may not be working.
 os.environ["PIPENV_VERBOSITY"] = "-1"
 
-
 @task
 def virtualenv(c):
     '''create and install env'''
-    # c.run(f'{sys.executable} -m pip install --upgrade pdm setuptools wheel')
-    c.run(f'{sys.executable} -m pdm config python.use_venv false -g')
+    c.run(f'{sys.executable} -m pip install --upgrade pdm setuptools wheel')
+    c.run("pdm config python.use_venv false") # enable {pep}`582` mode
+    # config: 
     c.run(f'{sys.executable} -m pdm install')
     c.run(f'{sys.executable} -m pdm install -G doc')
 
@@ -25,7 +25,7 @@ def run(c, target='build-site'):
     '''
     :target: can be `update-docs`, `build-site`, `serve-site`
     '''
-    c.run(f'{sys.executable} -m pdm run update.py --{target}')
+    c.run(f'{sys.executable} -m update.py --{target}')
 
 
 ns = Collection(intl, doc, run, virtualenv)
