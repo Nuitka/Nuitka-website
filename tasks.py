@@ -14,10 +14,10 @@ os.environ["PIPENV_VERBOSITY"] = "-1"
 def virtualenv(c):
     '''create and install env'''
     c.run(f'{sys.executable} -m pip install --upgrade pdm')
-    c.run("pdm config python.use_venv false") # enable {pep}`582` mode
+    c.run("pdm config python.use_venv false -g") # enable {pep}`582` mode
     # config: 
-    c.run(f'{sys.executable} -m pdm install')
-    c.run(f'{sys.executable} -m pdm install -G doc')
+    c.run(f'pdm install')
+    # c.run(f'{sys.executable} -m pdm install -G doc')
 
 
 @task
@@ -25,7 +25,7 @@ def run(c, target='build-site'):
     '''
     :target: can be `update-docs`, `build-site`, `serve-site`
     '''
-    c.run(f'{sys.executable} -m update.py --{target}')
+    c.run(f'{sys.executable} -m pdm run update.py --{target}')
 
 
 ns = Collection(intl, doc, run, virtualenv)

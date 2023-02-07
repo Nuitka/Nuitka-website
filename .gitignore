@@ -11,7 +11,7 @@ _build/
 
 # PDM
 .pdm.toml
-pdm.lock
+# pdm.lock
 __pycache__/
 __pypackages__/
 dist/
