@@ -13,7 +13,7 @@ os.environ["PIPENV_VERBOSITY"] = "-1"
 @task
 def virtualenv(c):
     '''create and install env'''
-    c.run(f'{sys.executable} -m pip install --upgrade pdm setuptools wheel')
+    c.run(f'{sys.executable} -m pip install --upgrade pdm')
     c.run("pdm config python.use_venv false") # enable {pep}`582` mode
     # config: 
     c.run(f'{sys.executable} -m pdm install')
