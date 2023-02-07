@@ -15,8 +15,8 @@ def virtualenv(c):
     '''create and install env'''
     c.run(f'{sys.executable} -m pip install --upgrade pdm')
     c.run("pdm config python.use_venv false -g") # enable {pep}`582` mode
-    # config: 
-    c.run(f'pdm install')
+    # config:
+    c.run('pdm install')
     # c.run(f'{sys.executable} -m pdm install -G doc')
 
 
