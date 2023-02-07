@@ -25,7 +25,7 @@ def run(c, target='build-site'):
     '''
     :target: can be `update-docs`, `build-site`, `serve-site`
     '''
-    c.run(f'{sys.executable} -m pdm run update.py --{target}')
+    c.run(f'{sys.executable} update.py --{target}')
 
 
 ns = Collection(intl, doc, run, virtualenv)
