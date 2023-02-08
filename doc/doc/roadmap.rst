@@ -76,12 +76,6 @@ This is the Nuitka roadmap, broken down by features.
  Onefile speed (public)
 ************************
 
--  Use memory mapped files on Windows and Linux for performance in
-   accessing the payload.
-
--  Generally use memory mapping for calculating the checksum of a file.
-   This is for all OSes, and should make cached mode faster to use.
-
 -  Use Windows NTFS and macOS HFS extended attributes to store caching
    status of a file inside of it. It might be possible to detect
    modification of the file in this way and spare us the checksum, which
@@ -99,9 +93,8 @@ This is the Nuitka roadmap, broken down by features.
  Python 3.11
 ************
 
--  Basic tests appear to work mostly, but frame handling has still bugs that
-   need to be resolved. The changes done for generator frames appear to not yet
-   fully compatible with 3.10 therefore this is still blocked from release.
+-  Basic tests appear to work mostly, only frame handling has still bugs with
+   coroutines that need to be resolved.
 
 -  There is a lack of integration of compiled and uncompiled generators
    with each other, this needs porting still.
@@ -221,6 +214,13 @@ binary and move it over the running binary, e.g. during restart.
 ******************************
  Features to be added for 1.5
 ******************************
+
+[x] Onefile: Use memory mapped files on Windows and Linux for performance in
+   accessing the payload.
+
+[x] Onefile: Generally use memory mapping for calculating the checksum of a file.
+   This is for all OSes, and should make cached mode faster to use on macOS and
+   Linux, Windows already did this.
 
 [ ] Add download updating for standalone as well, onefile for windows works.
 
