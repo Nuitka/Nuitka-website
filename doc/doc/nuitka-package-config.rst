@@ -90,7 +90,7 @@ Data Files
 .. code:: yaml
 
    data-files:
-     dest_path: '.'
+     dest_path: '.' # default, relative to package directory, normally not needed
      dirs:
        - 'dir1'
 
@@ -109,6 +109,26 @@ Data Files
 If a module needs data files, you can get Nuitka to copy them into the
 output with the following features.
 
+Examples
+--------
+
+The most simple form just adds a data folder. The data files are in a
+folder and lives inside the package directory.
+
+.. code:: yaml
+
+   - module-name: 'customtkinter'
+     data-files:
+        dirs:
+          - 'assets'
+
+.. note::
+
+   The ``dest_path`` is very unlikely necessary. It defaults to the
+   ``.`` relative path. It would have to be a strange package or some
+   code modification on top, that would require data files to live in
+   another spot in the standalone distribution.
+
 Features
 --------
 
@@ -120,7 +140,7 @@ Features
 |  ``empty_dirs``: all empty directories that should be copied
 |  ``empty_dir_structures``: all empty directory structures that should
    be copied
-|  ``when``: `when`_ is documented in a separate section
+|  ``when``: when_ is documented in a separate section
 
 Examples
 --------
@@ -139,6 +159,23 @@ This example includes a complete folder with data files in a package.
    The example is actually an imperfect solution, since dependent on
    architecture, files can be omitted. We are going to address this in
    an update later.
+
+This example will make sure an empty folder is created relative to a
+package.
+
+.. code:: yaml
+
+   - module-name: 'Crypto.Util._raw_api'
+     data-files:
+       empty_dirs:
+         - '.'
+
+.. note::
+
+   The reason this is necessary is that some packages expect to have
+   their directory as derived from ``__file__`` to exist. But for
+   compiled packages, unless there is extension packages or data files
+   copied into them, these directories do not exist.
 
 DLLs
 ====
@@ -184,7 +221,7 @@ Features
       installation
 
 |  ``dest_path``: target directory
-|     ``when``: `when`_ is documented in a separate section
+|     ``when``: when_ is documented in a separate section
 
 The recommended way goes by filename. The ``by_code`` version is still
 in flux and depends on compile time importing code, making it vulernable
@@ -259,7 +296,7 @@ Features
    removes the function
 |  ``append_result``: append the result of an expression to module code
 |  ``append_plain``: append plain text to the module code
-|  ``when``: `when`_ is documented in a separate section
+|  ``when``: when_ is documented in a separate section
 
 Examples
 --------
@@ -285,7 +322,7 @@ Features
 |  ``depends``: modules that are required by this module
 |  ``pre-import-code``: code to execute before a module is imported
 |  ``post-import-code``: code to execute after a module is imported
-|  ``when``: `when`_ is documented in a separate section
+|  ``when``: when_ is documented in a separate section
 
 Examples
 --------
@@ -336,7 +373,7 @@ Features
 |  ``macos_bundle``: Choose between ``yes``, ``no``, ``recommend``
 |  ``macos_bundle_as_onefile``: Choose between ``yes``, ``no``
 |  ``support_info``: Choose between ``info``, ``warning``, ``error``
-|  ``when``: `when`_ is documented in a separate section
+|  ``when``: when_ is documented in a separate section
 
 Examples
 --------
@@ -482,6 +519,7 @@ https://nuitka.net/blog/tag/package_config.html that explains some
 things in more detail and is going to cover this and expand it for some
 time.
 
-Then of course, there is also the current package configuration file, located at
+Then of course, there is also the current package configuration file,
+located at
 https://github.com/Nuitka/Nuitka/blob/develop/nuitka/plugins/standard/standard.nuitka-package.config.yml
 that is full of examples.
