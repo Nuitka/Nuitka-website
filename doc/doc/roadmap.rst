@@ -11,16 +11,17 @@ This is the Nuitka roadmap, broken down by features.
 -  Data files, implicit imports, and DLL inclusion are specified in Yaml
    files now.
 
-   A post series is currently going on and has been lauched at post: [Nuitka
-   Package Config
-   Kickoff](https://nuitka.net/posts/nuitka-package-config-kickoff.html) and it
-   will continue to become the documentation that currently lives under [Nuitka
-   Package Config](https://nuitka.net/doc/nuitka-package-config.html) on the web
+   A post series is currently going on and has been lauched at post:
+   [Nuitka Package Config
+   Kickoff](https://nuitka.net/posts/nuitka-package-config-kickoff.html)
+   and it will continue to become the documentation that currently lives
+   under [Nuitka Package
+   Config](https://nuitka.net/doc/nuitka-package-config.html) on the web
    site only for rapid development independent of Nuitka releases.
 
-   The long term plan is to also include in the Nuitka release as part of
-   the documentation, much like User Manual and Developer Manual, that are
-   being maintained inside Nuitka repo.
+   The long term plan is to also include in the Nuitka release as part
+   of the documentation, much like User Manual and Developer Manual,
+   that are being maintained inside Nuitka repo.
 
 ************
  Standalone
@@ -89,9 +90,9 @@ This is the Nuitka roadmap, broken down by features.
    result of a specific file, such that files from the Python
    installation do not have to be redone over and over.
 
-************
+*************
  Python 3.11
-************
+*************
 
 -  Basic tests appear all work now.
 
@@ -102,16 +103,19 @@ This is the Nuitka roadmap, broken down by features.
    code path, they will be slower in 3.11 until we do that.
 
 -  Execute Python 3.10 test suite in a compatible way with 3.11, so far
-   we got to ``test_compile.py`` and are making good progress, solving
+   we got to ``test_descr.py`` and are making good progress, solving
    issues one by one, deciding when to do 1.5 release based on when we
    hit a wall there.
 
 -  And and execute Python 3.11 test suite in a compatible way with 3.11
 
--  MSVC in debug mode hates the Python headers, probably because they can
-   not longer be used outside of C11 mode, and C++0x is not compatible enough
-   for it. We might have to require newer MSVC and implement C11 mode for the
-   new enough Windows SDK that allows it.
+-  MSVC in debug mode hates the Python headers, probably because they
+   can not longer be used outside of C11 mode, and C++0x is not
+   compatible enough for it. We might have to require newer MSVC and
+   implement C11 mode for the new enough Windows SDK that allows it.
+
+-  The function ``inspect.getframeinfo`` will need monkey patching to
+   support compiled frames.
 
 ************************
  Nuitka-Python (public)
@@ -229,15 +233,15 @@ binary and move it over the running binary, e.g. during restart.
    accessing the payload.
 
 [x] Onefile: Generally use memory mapping for calculating the checksum of a file.
-   This is for all OSes, and should make cached mode faster to use on macOS and
-   Linux, Windows already did this.
+   This is for all OSes, and should make cached mode faster to use on
+   macOS and Linux, Windows already did this.
 
-[ ] Add download updating for standalone as well, onefile for windows works.
+[ ] Add download updating for standalone as well, onefile for windows
+works.
 
 [ ] Document commercial file embedding publicly with examples.
 
 [ ] Document commercial Windows Service usage with examples.
-
 
 ******************************
  Features to be added for 1.6
