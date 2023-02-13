@@ -336,7 +336,7 @@ def updateDownloadPage():
 
         return max_release, max_prerelease
 
-    min_rhel = 6
+    min_rhel = 7
     max_rhel = 8
     min_fedora = 36
     max_fedora = 36
