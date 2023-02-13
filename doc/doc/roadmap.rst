@@ -93,15 +93,25 @@ This is the Nuitka roadmap, broken down by features.
  Python 3.11
 ************
 
--  Basic tests appear to work mostly, only frame handling has still bugs with
-   coroutines that need to be resolved.
+-  Basic tests appear all work now.
 
 -  There is a lack of integration of compiled and uncompiled generators
    with each other, this needs porting still.
 
--  Execute Python 3.10 test suite in a compatible way with 3.11
+-  Attribute lookups for types with a generic one need to update that
+   code path, they will be slower in 3.11 until we do that.
+
+-  Execute Python 3.10 test suite in a compatible way with 3.11, so far
+   we got to ``test_compile.py`` and are making good progress, solving
+   issues one by one, deciding when to do 1.5 release based on when we
+   hit a wall there.
 
 -  And and execute Python 3.11 test suite in a compatible way with 3.11
+
+-  MSVC in debug mode hates the Python headers, probably because they can
+   not longer be used outside of C11 mode, and C++0x is not compatible enough
+   for it. We might have to require newer MSVC and implement C11 mode for the
+   new enough Windows SDK that allows it.
 
 ************************
  Nuitka-Python (public)
@@ -228,8 +238,6 @@ binary and move it over the running binary, e.g. during restart.
 
 [ ] Document commercial Windows Service usage with examples.
 
-[ ] Tuple unpacking for values that support indexing should be
-   optimized.
 
 ******************************
  Features to be added for 1.6
@@ -238,3 +246,6 @@ binary and move it over the running binary, e.g. during restart.
 [ ] Update for MinGW64 on Windows to use gcc 12.x based on.
 
 [ ] Initial support for ctypes based direct calls of C code.
+
+[ ] Tuple unpacking for values that support indexing should be
+   optimized.
