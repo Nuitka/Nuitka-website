@@ -103,7 +103,7 @@ This is the Nuitka roadmap, broken down by features.
    code path, they will be slower in 3.11 until we do that.
 
 -  Execute Python 3.10 test suite in a compatible way with 3.11, so far
-   we got to ``test_descr.py`` and are making good progress, solving
+   we got to ``test_inspect.py`` and are making good progress, solving
    issues one by one, deciding when to do 1.5 release based on when we
    hit a wall there.
 
@@ -116,6 +116,10 @@ This is the Nuitka roadmap, broken down by features.
 
 -  The function ``inspect.getframeinfo`` will need monkey patching to
    support compiled frames.
+
+-  The ``test_inspect`` test is failing in ways that suggest that getting stacks
+   through compiled functions is not yet fully compatible. That will have to be
+   adapted.
 
 ************************
  Nuitka-Python (public)
