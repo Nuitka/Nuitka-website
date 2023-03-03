@@ -12,11 +12,9 @@ This is the Nuitka roadmap, broken down by features.
    files now.
 
    A post series is currently going on and has been lauched at post:
-   [Nuitka Package Config
-   Kickoff](https://nuitka.net/posts/nuitka-package-config-kickoff.html)
-   and it will continue to become the documentation that currently lives
-   under [Nuitka Package
-   Config](https://nuitka.net/doc/nuitka-package-config.html) on the web
+   `Nuitka Package Config Kickoff </posts/nuitka-package-config-kickoff.html>`__
+   and it will continue to improve the documentation that currently lives
+   under `Nuitka Package Config </doc/nuitka-package-config.html>`__ on the web
    site only for rapid development independent of Nuitka releases.
 
    The long term plan is to also include in the Nuitka release as part
@@ -96,16 +94,18 @@ This is the Nuitka roadmap, broken down by features.
 
 -  Basic tests appear all work now.
 
+-  Execute Python 3.10 test suite in a compatible way with 3.11, so far
+   we got almost through, with only very few, and probably unimportant
+   errors.
+
 -  There is a lack of integration of compiled and uncompiled generators
    with each other, this needs porting still.
 
--  Attribute lookups for types with a generic one need to update that
-   code path, they will be slower in 3.11 until we do that.
-
--  Execute Python 3.10 test suite in a compatible way with 3.11, so far
-   we got to ``test_inspect.py`` and are making good progress, solving
-   issues one by one, deciding when to do 1.5 release based on when we
-   hit a wall there.
+-  Attribute lookups for types with a generic one need to update that code path,
+   they will be much slower in 3.11 until we do that. That breaks the
+   performance. Probably not happening before 1.6 though as we want to cleanup
+   the code, potentially sharing improvements by generating code variants rather
+   that duplicating stuff.
 
 -  And and execute Python 3.11 test suite in a compatible way with 3.11
 
@@ -113,13 +113,6 @@ This is the Nuitka roadmap, broken down by features.
    can not longer be used outside of C11 mode, and C++0x is not
    compatible enough for it. We might have to require newer MSVC and
    implement C11 mode for the new enough Windows SDK that allows it.
-
--  The function ``inspect.getframeinfo`` will need monkey patching to
-   support compiled frames.
-
--  The ``test_inspect`` test is failing in ways that suggest that getting stacks
-   through compiled functions is not yet fully compatible. That will have to be
-   adapted.
 
 ************************
  Nuitka-Python (public)
@@ -134,6 +127,20 @@ DLL usages.
 **********************
  Performance (public)
 **********************
+
+-  Function inlining.
+
+   There is dead code in Nuitka capable of inlining functions, but it is not
+   used. It should be used on the complex call helpers when arguments are
+   constant, maybe even with hints towards loop unrolling, where there are
+   loops e.g. over dictionaries. And generally for functions that have code
+   that is not too complex, say ``return a+b``. For this, we could have a
+   generated tree visitor, that checks if the cost exceeds a specific value.
+
+   Overall this would remove some code in local functions, and then it would
+   also make class creations of at least Python3 more compact and compile time
+   optimizable, due to e.g. knowing the meta class and therefore class dictionary
+   type more often.
 
 -  Faster attribute setting.
 
@@ -240,16 +247,13 @@ binary and move it over the running binary, e.g. during restart.
    This is for all OSes, and should make cached mode faster to use on
    macOS and Linux, Windows already did this.
 
-[ ] Add download updating for standalone as well, onefile for windows
-works.
-
-[ ] Document commercial file embedding publicly with examples.
-
-[ ] Document commercial Windows Service usage with examples.
+[x] Experimental support of Python 3.11 on 3.10 language level.
 
 ******************************
  Features to be added for 1.6
 ******************************
+
+[ ] Full support of Python 3.11 version.
 
 [ ] Update for MinGW64 on Windows to use gcc 12.x based on.
 
@@ -257,3 +261,10 @@ works.
 
 [ ] Tuple unpacking for values that support indexing should be
    optimized.
+
+[ ] Add download updating for standalone as well, onefile for windows
+works.
+
+[ ] Document commercial file embedding publicly with examples.
+
+[ ] Document commercial Windows Service usage with examples.
