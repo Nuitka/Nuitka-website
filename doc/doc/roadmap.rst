@@ -221,10 +221,11 @@ binary and move it over the running binary, e.g. during restart.
  Complete Support for Python Version (3.10)
 ********************************************
 
--  Add support for all of the new case syntax of 3.10
+-  Add support for remaining ``match`` case syntax of 3.10
 
-   Right now it is not clear what is missing, need to investigate it by
-   attempting to manage the full test suite.
+   When mixing keyword and positional arguments in catching a type, Nuitka
+   asserts this. It is the last remaining cases missing to execute
+   ``test_patma.py`` completely.
 
 ***********************************
  Traceback Encryption (commercial)
