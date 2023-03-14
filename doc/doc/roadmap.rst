@@ -11,65 +11,16 @@ This is the Nuitka roadmap, broken down by features.
 -  Data files, implicit imports, and DLL inclusion are specified in Yaml
    files now.
 
-   A post series is currently going on and has been lauched at post:
-   `Nuitka Package Config Kickoff </posts/nuitka-package-config-kickoff.html>`__
-   and it will continue to improve the documentation that currently lives
-   under `Nuitka Package Config </doc/nuitka-package-config.html>`__ on the web
-   site only for rapid development independent of Nuitka releases.
+   A post series is currently going on and has been launched at post:
+   `Nuitka Package Config Kickoff
+   </posts/nuitka-package-config-kickoff.html>`__ and it will continue
+   to improve the documentation that currently lives under `Nuitka
+   Package Config </doc/nuitka-package-config.html>`__ on the web site
+   only for rapid development independent of Nuitka releases.
 
    The long term plan is to also include in the Nuitka release as part
    of the documentation, much like User Manual and Developer Manual,
    that are being maintained inside Nuitka repo.
-
-************
- Standalone
-************
-
--  "Multidist" support (public)
-
-   .. note::
-
-      This is an experimental feature and available in the 1.4 release
-      series, checkout the User Manual to see how it is used. This is
-      only here until the things described are also perfectly documented
-      there.
-
-   Allow combining multiple main programs into one, called "multidist".
-   These will work with a dispatcher that decides from the binary name
-   what it is. There will be one big binary with the ability to run each
-   program.
-
-   The CMD file for accelerated mode, demonstrates that it's possible to
-   load the CPython Windows DLL from another directory. We can leverage
-   that approach and produce CMD files that will call the binary in the
-   right fashion.
-
-   I believe we can make it so that all the scripts will still think of
-   themselves as ``__main__`` for the ``__name__`` during their
-   execution, so no code changes are needed. It's only that
-   ``sys.argv[0]`` vs. ``__file__`` for location.
-
-   Much like for onefile, you need to distinguish program location and
-   package location in this way. Note shared stuff living near the CMD
-   file will see that CMD file path in ``sys.argv[0]`` there, and shared
-   stuff, e.g. ``xmlschema`` module will find its data files in a
-   directory that is shared.
-
-   And to top it off, the fat binary of "multidist" may be in standalone
-   or onefile mode, at your choice. The disadvantage there being, that
-   onefile will be slower to unpack with a larger binary.
-
--  "Sharedist" support (undecided)
-
-   In this the programs are not combined, rather separate standalone
-   compilations are combined, produced shared and non-shared parts of
-   multiple distributions.
-
-   The plugins in Nuitka are cleaned up entirely, when comes to copying
-   DLLs and data files now.
-
--  Dejong Stacks: More robust parser that allows stdout and stderr in
-   same file with mixed outputs.
 
 ************************
  Onefile speed (public)
@@ -101,11 +52,11 @@ This is the Nuitka roadmap, broken down by features.
 -  There is a lack of integration of compiled and uncompiled generators
    with each other, this needs porting still.
 
--  Attribute lookups for types with a generic one need to update that code path,
-   they will be much slower in 3.11 until we do that. That breaks the
-   performance. Probably not happening before 1.6 though as we want to cleanup
-   the code, potentially sharing improvements by generating code variants rather
-   that duplicating stuff.
+-  Attribute lookups for types with a generic one need to update that
+   code path, they will be much slower in 3.11 until we do that. That
+   breaks the performance. Probably not happening before 1.6 though as
+   we want to cleanup the code, potentially sharing improvements by
+   generating code variants rather that duplicating stuff.
 
 -  And and execute Python 3.11 test suite in a compatible way with 3.11
 
@@ -130,17 +81,92 @@ DLL usages.
 
 -  Function inlining.
 
-   There is dead code in Nuitka capable of inlining functions, but it is not
-   used. It should be used on the complex call helpers when arguments are
-   constant, maybe even with hints towards loop unrolling, where there are
-   loops e.g. over dictionaries. And generally for functions that have code
-   that is not too complex, say ``return a+b``. For this, we could have a
-   generated tree visitor, that checks if the cost exceeds a specific value.
+   There is dead code in Nuitka capable of inlining functions, but it is
+   not used. It should be used on the complex call helpers when
+   arguments are constant, maybe even with hints towards loop unrolling,
+   where there are loops e.g. over dictionaries. And generally for
+   functions that have code that is not too complex, say ``return a+b``.
+   For this, we could have a generated tree visitor, that checks if the
+   cost exceeds a specific value.
 
-   Overall this would remove some code in local functions, and then it would
-   also make class creations of at least Python3 more compact and compile time
-   optimizable, due to e.g. knowing the meta class and therefore class dictionary
-   type more often.
+   Overall this would remove some code in local functions, and then it
+   would also make class creations of at least Python3 more compact and
+   compile time optimizable, due to e.g. knowing the meta class and
+   therefore class dictionary type more often.
+
+-  Static metaclass and class dictionaries for Python3
+
+   Changes in 1.5 allow this for the case of no base class being
+   specified. But if even only ``object`` is given a base class, then it
+   changes to not being compile time resolved, leading to not having an
+   idea what the ``__prepare__`` call is going to give for the class
+   dictionary, it could be something very strange, so all the things
+   become and remain untrusted.
+
+   The way forward, is to inline the helpers that select the metaclass
+   in Python3, and the 3.7+ iteration over all bases to build a new set
+   of bases, through potential ``__mro_entries__`` calls.
+
+   For these helpers, inlining can of course be done with compile time
+   knowledge of these bases, e.g. ``(object,)``, and we could write
+   Python code, that will attempt to resolve this where possible. The
+   other solution, is to inline the code when we know it will go away
+   through compile time optimization automatically.
+
+   Right now, these re-formulation have loops that using an iterator,
+   and then take out of it. This ties is with incomplete optimization
+   for known indexable types. In case of a tuple, as we have here (but
+   of course also list, etc.) the iteration can be replaced with
+   indexing operations, and the indexing can then be done from that
+   loop.
+
+   After a replacement, the loop will be driven by increases to that
+   index variable for the ``base = next(bases_iter)`` operation having
+   become ``base = bases[base_index]; base_index += 1``. The loop break
+   will be that the end of the tuple is reached, which is then a
+   comparison to the length of the tuple.
+
+   This optimization is a separate point and has been implemented on
+   streams before. I am getting ready to make new ones these weeks. Only
+   the releases are not yet replaced, i.e. it is working correctly, but
+   it was leaking references. That will be solvable. Once that finished,
+   there will be an a desire of course to specialize type and list index
+   lookups for generated code, but for this part of the plan, that is
+   not relevant, because for that we aim at full compile time resolution
+   of the help code to the metaclass and the list of actual bases (most
+   bases classes have no ``__mro_entries__`` only data classes might
+   pose work there).
+
+   But based on doing this first, the remaining issue is that loop
+   unrolling must be solved. For these helpers, we can force it. Since
+   the index integer is done with what will be very predictable things,
+   we will have during loop unrolling, a chance to know the iteration
+   count, since we know the length of the tuple, and not only the shape.
+
+   The function inlining of these helpers will be maybe instrumented to
+   do the loop unrolling instantly.
+
+   Once we know the meta class, we can actually consider the effect it
+   it on the class, and try to optimize the call to it with the
+   ``meta_class(name, bases, **kw_from_declarations)`` just type.
+   Specifically ``type`` but maybe even ``enum`` and things will be
+   something to handle pretty nicely, to the point that we have a
+   perfect understanding of the resulting class.
+
+   The gains from this will be mostly related to startup time. Class creation
+   code runs there a lot. Avoiding interactions with dictionary through mapping
+   methods can only be faster as well, and it will be a lot of code. Already in
+   1.5 a lot of code is avoided before this even happens generally.
+
+-  Compiled classes / objects
+
+   We might dare and replace the implementation of some metaclass like ``type``
+   with improved variants, esp. where ``__slots__`` are used, then we may just
+   be faster to resolve these and interact with compiled code and methods. It
+   would e.g. no longer be a compiled ``__init__`` being called, but potentially
+   things like assigning arguments to the slot values, will be implicitly done.
+
+   This is somewhat in the dark at this point, what can be done. First step of
 
 -  Faster attribute setting.
 
@@ -223,9 +249,9 @@ binary and move it over the running binary, e.g. during restart.
 
 -  Add support for remaining ``match`` case syntax of 3.10
 
-   When mixing keyword and positional arguments in catching a type, Nuitka
-   asserts this. It is the last remaining cases missing to execute
-   ``test_patma.py`` completely.
+   When mixing keyword and positional arguments in catching a type,
+   Nuitka asserts this. It is the last remaining cases missing to
+   execute ``test_patma.py`` completely.
 
 ***********************************
  Traceback Encryption (commercial)
@@ -237,18 +263,8 @@ binary and move it over the running binary, e.g. during restart.
    client name, etc. could be output in plain text, while the variable
    names and values would not be, depending on your choice!
 
-******************************
- Features to be added for 1.5
-******************************
-
-[x] Onefile: Use memory mapped files on Windows and Linux for performance in
-   accessing the payload.
-
-[x] Onefile: Generally use memory mapping for calculating the checksum of a file.
-   This is for all OSes, and should make cached mode faster to use on
-   macOS and Linux, Windows already did this.
-
-[x] Experimental support of Python 3.11 on 3.10 language level.
+-  Dejong Stacks: More robust parser that allows stdout and stderr in
+   same file with mixed outputs.
 
 ******************************
  Features to be added for 1.6
@@ -258,14 +274,19 @@ binary and move it over the running binary, e.g. during restart.
 
 [ ] Update for MinGW64 on Windows to use gcc 12.x based on.
 
-[ ] Initial support for ctypes based direct calls of C code.
-
-[ ] Tuple unpacking for values that support indexing should be
-   optimized.
-
 [ ] Add download updating for standalone as well, onefile for windows
 works.
 
 [ ] Document commercial file embedding publicly with examples.
 
 [ ] Document commercial Windows Service usage with examples.
+
+
+******************************
+ Features to be added for 1.7
+******************************
+
+[ ] Initial support for ctypes based direct calls of C code.
+
+[ ] Tuple unpacking for values that support indexing should be
+   optimized.
