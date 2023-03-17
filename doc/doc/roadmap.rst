@@ -35,9 +35,14 @@ This is the Nuitka roadmap, broken down by features.
    skipping a file content becomes easier and does not require
    decryption of the whole data.
 
--  One files are compressed individually, we might be able to cache the
-   result of a specific file, such that files from the Python
+-  All files are compressed individually, we might then be able to cache
+   the result of a specific file, such that files from the Python
    installation do not have to be redone over and over.
+
+-  Directly pass the memory mapped data to decompression to spare the
+   use of ``memcpy``.
+
+-  Write payload files as memory mapped too, that too should be faster.
 
 *************
  Python 3.11
@@ -153,20 +158,23 @@ DLL usages.
    something to handle pretty nicely, to the point that we have a
    perfect understanding of the resulting class.
 
-   The gains from this will be mostly related to startup time. Class creation
-   code runs there a lot. Avoiding interactions with dictionary through mapping
-   methods can only be faster as well, and it will be a lot of code. Already in
-   1.5 a lot of code is avoided before this even happens generally.
+   The gains from this will be mostly related to startup time. Class
+   creation code runs there a lot. Avoiding interactions with dictionary
+   through mapping methods can only be faster as well, and it will be a
+   lot of code. Already in 1.5 a lot of code is avoided before this even
+   happens generally.
 
 -  Compiled classes / objects
 
-   We might dare and replace the implementation of some metaclass like ``type``
-   with improved variants, esp. where ``__slots__`` are used, then we may just
-   be faster to resolve these and interact with compiled code and methods. It
-   would e.g. no longer be a compiled ``__init__`` being called, but potentially
-   things like assigning arguments to the slot values, will be implicitly done.
+   We might dare and replace the implementation of some metaclass like
+   ``type`` with improved variants, esp. where ``__slots__`` are used,
+   then we may just be faster to resolve these and interact with
+   compiled code and methods. It would e.g. no longer be a compiled
+   ``__init__`` being called, but potentially things like assigning
+   arguments to the slot values, will be implicitly done.
 
-   This is somewhat in the dark at this point, what can be done. First step of
+   This is somewhat in the dark at this point, what can be done. First
+   step of
 
 -  Faster attribute setting.
 
@@ -280,7 +288,6 @@ works.
 [ ] Document commercial file embedding publicly with examples.
 
 [ ] Document commercial Windows Service usage with examples.
-
 
 ******************************
  Features to be added for 1.7
