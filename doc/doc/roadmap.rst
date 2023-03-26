@@ -274,6 +274,19 @@ binary and move it over the running binary, e.g. during restart.
 -  Dejong Stacks: More robust parser that allows stdout and stderr in
    same file with mixed outputs.
 
+*************************************
+ Regression Testing User Compilation
+*************************************
+
+-  Creating more content in `Nuitka-Watch
+   <https://github.com/Nuitka/Nuitka-Watch>`_ and fine tuning the tools
+   to detect changes in the compilation due to upstream changes, as well
+   as changes due to newer Nuitka separately.
+
+-  Once in place, we should teach our users to have this in place for
+   doing it with their own code base, allowing them to see changes due
+   to new Nuitka or new PyPI packages individually.
+
 ******************************
  Features to be added for 1.6
 ******************************
