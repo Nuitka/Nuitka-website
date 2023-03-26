@@ -260,6 +260,28 @@ is even architecture dependant.
              - 'Tkhtml'
          when: 'win32 and arch_amd64'
 
+EXEs
+====
+
+To Nuitka, an "EXEs" *are* like DLLs_. Basically only a DLL with the
+executable bit set. So, for a given selector, you can just add
+``executable: yes`` with the default for a DLL configuration being
+``executable: no``.
+
+Examples
+--------
+
+.. code:: yaml
+
+   dlls:
+     - from_filenames:
+         prefixes:
+           - 'subprocess'
+         executable: 'yes'
+     - from_filenames:
+         prefixes:
+           - ''  # first match decides
+
 Anti-Bloat
 ==========
 
