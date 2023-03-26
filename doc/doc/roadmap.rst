@@ -280,10 +280,8 @@ binary and move it over the running binary, e.g. during restart.
 
 [ ] Full support of Python 3.11 version.
 
-[ ] Update for MinGW64 on Windows to use gcc 12.x based on.
-
-[ ] Add download updating for standalone as well, onefile for windows
-works.
+[x] Diff usable compilation reports with no user path or volatile
+performance data.
 
 [ ] Document commercial file embedding publicly with examples.
 
@@ -292,6 +290,11 @@ works.
 ******************************
  Features to be added for 1.7
 ******************************
+
+[ ] Update for MinGW64 on Windows to use gcc 12.x based on.
+
+[ ] Add download updating for standalone as well, onefile for windows
+works.
 
 [ ] Initial support for ctypes based direct calls of C code.
 
