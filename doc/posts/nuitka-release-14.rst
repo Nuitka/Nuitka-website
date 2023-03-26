@@ -66,8 +66,8 @@ without the overhead of multiple distributions.
 -  Python3.10+: Fix, was not supporting ``match`` cases where an
    alternative had no condition associated. Fixed in 1.3.5 already.
 
--  Windows: Identify ARM64 architecture Python properly. We do not yet
-   support it, but we should report it properly and some package
+-  Windows: Identify Windows ARM architecture Python properly. We do not
+   yet support it, but we should report it properly and some package
    configurations are already taking it already into account. Fixed in
    1.3.5 already.
 
