@@ -109,26 +109,6 @@ Data Files
 If a module needs data files, you can get Nuitka to copy them into the
 output with the following features.
 
-Examples
---------
-
-The most simple form just adds a data folder. The data files are in a
-folder and lives inside the package directory.
-
-.. code:: yaml
-
-   - module-name: 'customtkinter'
-     data-files:
-        dirs:
-          - 'assets'
-
-.. note::
-
-   The ``dest_path`` is very unlikely necessary. It defaults to the
-   ``.`` relative path. It would have to be a strange package or some
-   code modification on top, that would require data files to live in
-   another spot in the standalone distribution.
-
 Features
 --------
 
@@ -145,6 +125,29 @@ Features
 Examples
 --------
 
+Example 1
+^^^^^^^^^
+
+The most simple form just adds a data folder. The data files are in a
+folder and lives inside the package directory.
+
+.. code:: yaml
+
+   - module-name: 'customtkinter'
+     data-files:
+        dirs:
+          - 'assets'
+
+.. note::
+
+   A ``dest_path`` is very unlikely necessary. It defaults to the ``.``
+   relative path. It would have to be a strange package or some code
+   modification on top, that would require data files to live in another
+   spot in the standalone distribution.
+
+Example 2
+^^^^^^^^^
+
 This example includes a complete folder with data files in a package.
 
 .. code:: yaml
@@ -159,6 +162,9 @@ This example includes a complete folder with data files in a package.
    The example is actually an imperfect solution, since dependent on
    architecture, files can be omitted. We are going to address this in
    an update later.
+
+Example 3
+^^^^^^^^^
 
 This example will make sure an empty folder is created relative to a
 package.
@@ -230,6 +236,9 @@ to compile time issues in many ways.
 Examples
 --------
 
+Example 1
+^^^^^^^^^
+
 Very simple example, the normal case, include a DLL with a known prefix
 from its package directory.
 
@@ -240,6 +249,9 @@ from its package directory.
        - from_filenames:
            prefixes:
              - 'libvosk'
+
+Example 2
+^^^^^^^^^
 
 Another more complex example, in which the DLL lives in a subfolder, and
 is even architecture dependant.
@@ -259,6 +271,40 @@ is even architecture dependant.
            prefixes:
              - 'Tkhtml'
          when: 'win32 and arch_amd64'
+
+Example 3
+^^^^^^^^^
+
+Yet another example with architecture dependent DLLs all in one package,
+that we do not want to include all, and in fact, must not include all at
+the same time. This one selected by platform suffixes for DLLs.
+
+.. code:: yaml
+
+   - module-name: 'tls_client.cffi'
+
+   dlls:
+      - from_filenames:
+         relative_path: 'dependencies'
+         prefixes:
+            - 'tls-client'
+         suffixes:
+            - 'dll'
+         when: 'win32'
+      - from_filenames:
+         relative_path: 'dependencies'
+         prefixes:
+            - 'tls-client'
+         suffixes:
+            - 'so'
+         when: 'linux'
+      - from_filenames:
+         relative_path: 'dependencies'
+         prefixes:
+            - 'tls-client'
+         suffixes:
+            - 'dylib'
+         when: 'macos'
 
 EXEs
 ====
@@ -489,7 +535,8 @@ These variables are currently available:
 |  ``macos``: ``True`` if OS is MacOS
 |  ``win32``: ``True`` if OS is Windows
 |  ``linux``: ``True`` if OS is Linux
-|  ``anaconda``: ``True`` if Anaconda Python used
+|  ``anaconda``: ``True`` if Anaconda Python used, but see
+   ``is_conda_package`` below
 |  ``debian_python``: ``True`` if Debian Python used
 |  ``standalone``: ``True`` if standalone mode is activated
 |  ``module_mode``: ``True`` if module mode is activated
@@ -531,6 +578,18 @@ It returns ``None`` if the package isn't installed.
 Also, compilation modules, like ``no_asserts``, ``no_docstrings``, and
 ``no_annotations`` are available. These are for use in ``anti-bloat``
 where packages sometimes will not work unless helped somewhat.
+
+Due to differences in DLL and data file layout, conda packages (from
+Anaconda) will be different. But running ``anaconda`` is not sufficient,
+in case the package from from ``pip install`` rather than ``conda
+install``, so this allows to make a difference for this.
+
+It returns a boolean value. No need to check for ``anaconda``, that is
+implied of course.
+
+.. code:: python
+
+   is_conda_package("shapely")
 
 ********************
  Where else to look
