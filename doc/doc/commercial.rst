@@ -40,15 +40,16 @@ contains plugins to Nuitka that will achieve the following:
    .. grid-item-card::  Contained Data Files
       :class-item: nuitka-grid-security
 
-      Another facet of the data protection is data files. When your program
-      includes data files to work on, these are visible in the file system.
-      Sometimes, e.g. via QML files of Qt, your program behavior can be
-      changed by an attacker modifying these files.
+      Another aspect of data protection are your data files. When your program
+      includes data files to work on, these are normally visible in the file
+      system. This unnecessarily exposes your program, sometimes, e.g. via QML
+      files of Qt, your program behavior can be changed by an attacker modifying
+      these files, or they can copy their content easily.
 
-      Therefore Nuitka commercial allows you to include data files as part
+      Therefore Nuitka commercial allows you to embed data files as part
       of the program constants and protect it in the same way as other
       constants. Without these files accessible, the attacker will not
-      has these an an attack vector.
+      have these an an attack vector.
 
       `Read more.... <commercial/protect-data-files.html>`__
 
