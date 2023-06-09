@@ -46,7 +46,7 @@ only at threading performance, and LTO improvements on Windows.
  New Features
 **************
 
--  Pyton3.5+: Added support for onefile compression. This is using
+-  Python3.5+: Added support for onefile compression. This is using
    ``zstd`` which is known to give very good compression with very high
    decompression, much better than e.g. ``zlib``.
 

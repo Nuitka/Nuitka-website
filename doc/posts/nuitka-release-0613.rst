@@ -108,6 +108,11 @@ with lots of bug fixes and new features.
    useful for programs run as ``--windows-disable-console`` or with
    ``--enable-plugin=windows-service``.
 
+   .. note::
+
+      These options have since been renamed to ``--force-stdout`` and
+      ``--force-stderr`` and have been made to work on all OSes.
+
 -  Windows: Added option ``--windows-onefile-tempdir-spec`` (since
    renamed to ``--onefile-tempdir-spec``) to provide the temporary
    directory used with ``--windows-onefile-tempdir`` in onefile mode,

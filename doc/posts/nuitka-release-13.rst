@@ -420,7 +420,7 @@ LTO with MSVC with help this a lot, although for big compilations
 
 More ``anti-bloat`` work on more packages rounds up the work.
 
-For macOS specifically, the WebEngine support is cruical to some users,
+For macOS specifically, the WebEngine support is crucial to some users,
 and the new ``--macos-app-mode`` with more GUI friendly default resolves
 long standing problems in this area.
 

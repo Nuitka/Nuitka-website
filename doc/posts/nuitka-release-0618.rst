@@ -20,7 +20,7 @@ organisational changes.
  Bug Fixes
 ***********
 
--  Python3.6+: Fixes to asyncgen, need to raise ``StopAsyncInteration``
+-  Python3.6+: Fixes to asyncgen, need to raise ``StopAsyncIteration``
    rather than ``StopIteration`` in some situations to be fully
    compatible.
 
