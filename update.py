@@ -1044,7 +1044,7 @@ def updateTranslationStatusPage():
 
     table = [["Site", "Translations"]]
 
-    for path, translations in getTranslationStatus().items():
+    for path, translations in sorted(getTranslationStatus().items()):
         if translations:
             table += [
                 [
