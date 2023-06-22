@@ -39,9 +39,6 @@ This is the Nuitka roadmap, broken down by features.
    the result of a specific file, such that files from the Python
    installation do not have to be redone over and over.
 
--  Directly pass the memory mapped data to decompression to spare the
-   use of ``memcpy``.
-
 -  Write payload files as memory mapped too, that too should be faster.
 
 *************
@@ -54,31 +51,19 @@ This is the Nuitka roadmap, broken down by features.
    we got almost through, with only very few, and probably unimportant
    errors.
 
--  There is a lack of integration of compiled and uncompiled generators
-   with each other, this needs porting still.
-
 -  Attribute lookups for types with a generic one need to update that
    code path, they will be much slower in 3.11 until we do that. That
    breaks the performance. Probably not happening before 1.6 though as
    we want to cleanup the code, potentially sharing improvements by
    generating code variants rather that duplicating stuff.
 
--  And and execute Python 3.11 test suite in a compatible way with 3.11
-
--  MSVC in debug mode hates the Python headers, probably because they
-   can not longer be used outside of C11 mode, and C++0x is not
-   compatible enough for it. We might have to require newer MSVC and
-   implement C11 mode for the new enough Windows SDK that allows it.
-
 ************************
  Nuitka-Python (public)
 ************************
 
-This is currently under way and not yet described here. The current
-Nuitka release has support for using it. Most work is focused on Linux
-with Python 2.7 as well as Windows with Python 3.9 now with the aim of
-getting it capable to statically compile, avoiding extension modules and
-DLL usages.
+This is currently under way and not yet described here. The current Nuitka
+release has support for using it. Most work is focused on the aim of getting it
+capable to statically compile, avoiding extension modules and DLL usages.
 
 **********************
  Performance (public)
@@ -222,12 +207,18 @@ DLL usages.
    in this case we need to merge binaries into one with the same tools.
 
 *******************************
- Container Builds (commercial)
+ Container Builds (public + commercial)
 *******************************
 
 Providing containers with old Linux, and optimally compiled CPython with
 ``podman`` such that building with Nuitka on Fedora latest and Ubuntu
 latest can be done fully automatically and still run on very old Linux.
+
+The ``run-inside-nuitka-container`` kind of duplicates the effort, so we can
+provide more container files in the future, some of which can e.g. be geared
+towards making e.g. Nuitka-Python easy to use with Nuitka, and Nuitka optimized
+CPython that is portable for Linux easier to access.
+
 
 *******************
  Automatic Updates
@@ -237,19 +228,9 @@ The running application needs to check for updates, and update itself
 automatically, optionally after user prompt, on a restart, or after
 successful update.
 
-These are the steps needed to take.
-
-[x] Add path spec identifiers that are suitable for caching, like
-``%CACHE_DIR%``
-
-[x] Detect caching ability for a spec, and add a onefile mode modifier
-that will make it overwrite. Ideally volatile path elements are
-detected.
-
-[ ] Add download URL spec.
-
-[ ] Actually download the file in a thread of the onefile bootstrap
-binary and move it over the running binary, e.g. during restart.
+This has been implemented for onefile mode only. Unfortunately that
+is not good for macOS which often require app mode, i.e. standalone
+mode effectively with more than a single file.
 
 ********************************************
  Complete Support for Python Version (3.10)
@@ -287,27 +268,25 @@ binary and move it over the running binary, e.g. during restart.
    doing it with their own code base, allowing them to see changes due
    to new Nuitka or new PyPI packages individually.
 
+
 ******************************
- Features to be added for 1.6
+ Features to be added for 1.8
 ******************************
 
-[ ] Full support of Python 3.11 version.
-
-[x] Diff usable compilation reports with no user path or volatile
-performance data.
+[ ] Use performance potential for attribute access with Python 3.11 version.
 
 [ ] Document commercial file embedding publicly with examples.
 
 [ ] Document commercial Windows Service usage with examples.
 
-******************************
- Features to be added for 1.7
-******************************
-
 [ ] Update for MinGW64 on Windows to use gcc 12.x based on.
 
 [ ] Add download updating for standalone as well, onefile for windows
 works.
+
+******************************
+ Features to be added for 1.9
+******************************
 
 [ ] Initial support for ctypes based direct calls of C code.
 
