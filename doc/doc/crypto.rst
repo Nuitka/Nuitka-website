@@ -11,7 +11,9 @@
 You can pay with Bitcoin transfers and 2 forms of USDT, a stable coin.
 These shall be done to our wallet addresses as listed below.
 
-Prices should match what e.g. ``400 EUR in BTC`` gives in Google.
+Prices should match what e.g. ``400 EUR in USDT`` or ``400 EUR in BTC`` gives in
+Google. Notice that the full package is the minimal version sold via Crypto due
+to the handling overhead.
 
 ****************
  Wallet Address
@@ -34,8 +36,9 @@ USD. You can transfer to each of these 4 different flavors of USDT.
  Prices
 ********
 
-The amounts should match what e.g. ``400 EUR in BTC`` or ``250 EUR in
-USDT`` gives in Google at the given time.
+The amounts should match what e.g. ``400 EUR in BTC`` or ``400 EUR in
+USDT`` gives in Google at the given time. For sponsorship replace that
+with ``1000 EUR`` of course.
 
 ************
  Afterwards
@@ -45,6 +48,8 @@ Please fill out `this form
 <https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_
 after doing it, so we have your information, in a way that is safe from
 getting lost, and know what you meant to buy with it.
+
+I will need address information to know if VAT should be paid.
 
 ********
  Thanks
