@@ -35,7 +35,7 @@ and more cleanups. This release is otherwise milestone 2 work only,
 which will have to continue for some time more.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Lambda generators were not fully compatible, their simple form could

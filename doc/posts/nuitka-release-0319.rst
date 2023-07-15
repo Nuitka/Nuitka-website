@@ -15,7 +15,7 @@ support, and even new features. A lot things in this are justifying a
 new release.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  The man pages of ``nuitka`` and ``nuitka-python`` had no special

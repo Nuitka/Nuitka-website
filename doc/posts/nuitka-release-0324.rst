@@ -29,7 +29,7 @@ definitions are now mere simple functions. This and later function
 references, is the important and only progress towards type inference.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  The compiled method type can now be used with ``copy`` module. That

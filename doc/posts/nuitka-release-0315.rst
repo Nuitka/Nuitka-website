@@ -29,7 +29,7 @@ And there is a lot of cleanup going on, geared towards compatibility
 with line numbers in the frame object.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  The main module was using ``__main__`` in tracebacks, but it must be

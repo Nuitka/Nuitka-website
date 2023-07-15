@@ -154,6 +154,14 @@ without the overhead of multiple distributions.
 -  Standalone: Added DLLs of ``sound_lib``, selecting by OS and
    architecture.
 
+-  Fix, for package metadata as from ``importlib.metadata.metadata`` for
+   use at runtime we need to use both package name and distribution name
+   to create it, or else it failed to work. Packages like
+   ``opencv-python-headless`` can now with this too.
+
+-  Standalone: Added support for ``tkinterweb`` on Windows. Other
+   platforms will need work to be done later.
+
 **************
  New Features
 **************
@@ -209,14 +217,6 @@ without the overhead of multiple distributions.
 -  Plugins: Add support for extra global search paths to mimic
    ``sys.path`` manipulations in the Yaml configuration with new
    ``global-sys-path`` import hack.
-
--  Standalone: Added support for ``tkinterweb`` on Windows. Other
-   platforms will need work to be done later.
-
--  Fix, for package metadata as from ``importlib.metadata.metadata`` for
-   use at runtime we need to use both package name and distribution name
-   to create it, or else it failed to work. Packages like
-   ``opencv-python-headless`` can now with this too.
 
 -  Reports: Include used distributions of compiled packages and their
    versions.

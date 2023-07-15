@@ -26,7 +26,7 @@ This time there were 5 such hot fix releases, sometimes fixing multiple
 bugs.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  In case of syntax errors in the main program, an exception stack was

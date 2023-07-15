@@ -24,7 +24,7 @@ detection. And then for PySide we found a corruption issue, that got
 workarounds.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  The new dict ``in`` optimization was compile time crashing on code
@@ -262,6 +262,8 @@ workarounds.
 -  Standalone: Added missing implicit dependency for
    ``sentence_transformers`` package.
 
+-  macOS: Fix, added missing dependency for ``platform`` module.
+
 **************
  New Features
 **************
@@ -345,8 +347,6 @@ workarounds.
 -  Standalone: Added support for handling missing DLLs. Needed for macOS
    PySide6.5.0 from PyPI, which contains DLL references that are broken.
    With this feature, we can exclude DLLs that wouldn't work anyway.
-
--  macOS: Fix, added missing dependency for ``platform`` module.
 
 **************
  Optimization

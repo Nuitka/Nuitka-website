@@ -22,7 +22,7 @@ tests can be added as release tests to Nuitka. And once that is done,
 the next big Python application can come.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Local variables were released when an exception was raised that

@@ -40,7 +40,7 @@ diagrams, `even if weak ones
       ugly, to find a way to translate these to C++ ones.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Checking compiled code with ``instance(some_function,

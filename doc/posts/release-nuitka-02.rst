@@ -13,7 +13,7 @@ This is to inform you about the new stable release of `Nuitka
 Good day, this is a major step ahead, improvements everywhere.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Migrated the Python parser from the deprecated and problematic

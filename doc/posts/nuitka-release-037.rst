@@ -21,7 +21,7 @@ specifically designed for wrapping ``compiled_function`` and therefore
 more efficient at it.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  When using ``Python`` or ``Nuitka.py`` to execute some script, the

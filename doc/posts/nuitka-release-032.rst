@@ -20,7 +20,7 @@ release, Nuitka is approaching Python support for 2.7, and then there
 are some bug fixes.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Calling a function with ``**`` and using a non-dict for it was

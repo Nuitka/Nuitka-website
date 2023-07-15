@@ -21,7 +21,7 @@ This means an even higher level of compatibility has been achieved, then
 there is performance improvements, and ever cleaner structure.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 Generators

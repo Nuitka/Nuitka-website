@@ -36,7 +36,7 @@ for the optimization part there have been large amounts of changes.
    used by Nuitka, replaced it with out own code.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Default values were not "is" identical.

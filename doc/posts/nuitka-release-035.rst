@@ -25,7 +25,7 @@ history. He appears to try and compile Mercurial and Nuitka, and this
 resulted in important contributions.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Nicolas found a reference counting bug with nested parameter calls.

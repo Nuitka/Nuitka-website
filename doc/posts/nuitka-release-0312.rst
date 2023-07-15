@@ -27,7 +27,7 @@ already fixed in on the stable release before this release. And there
 were many of these.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  The order of evaluation for base classes and class dictionaries was

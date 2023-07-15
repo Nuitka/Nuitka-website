@@ -23,7 +23,7 @@ Also there are the usual few small bug fixes, and a bunch of
 organisational improvements, that make the release complete.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  The built-in ``next`` could causes a program crash when iterating

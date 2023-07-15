@@ -24,7 +24,7 @@ addressing all kinds of small issues that prevented it from entering the
 Debian repository. It's still not there, but it's making progress.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Fixed a packaging problem for Linux and x64 platform, the new

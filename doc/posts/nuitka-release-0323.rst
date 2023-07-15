@@ -27,7 +27,7 @@ attention, that this license will be better suited, than any copyright
 assignment could be.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  The compiled functions could not be used with ``multiprocessing`` or

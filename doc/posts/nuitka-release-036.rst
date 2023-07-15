@@ -18,7 +18,7 @@ analysis shall become "easy". It is a correctness and framework release,
 not a performance improvement at all.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Imports were not respecting the ``level`` yet. Code like this was not

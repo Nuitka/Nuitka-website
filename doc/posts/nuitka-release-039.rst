@@ -19,7 +19,7 @@ class attributes (not instance), faster unpacking, and more built-ins
 detected and more thoroughly optimizing them.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Exceptions raised inside with statements had references to the

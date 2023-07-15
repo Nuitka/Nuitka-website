@@ -20,7 +20,7 @@ first release to not only run itself under Python3, but for Nuitka to
 for Python2. For the common language subset, it's quite fine now.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  List contractions produced extra entries on the call stack, after

@@ -30,7 +30,7 @@ option useful. But also there have been a performance improvements,
 which end up giving us another boost for the "PyStone" benchmark.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Imports of modules local to packages now work correctly, closing the

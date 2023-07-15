@@ -15,7 +15,7 @@ areas of Nuitka. The focus was roundup and breaking new grounds with
 structural optimization enhancements.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Exceptions now correctly stack.

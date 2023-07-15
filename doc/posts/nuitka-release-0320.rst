@@ -16,7 +16,7 @@ compiler clang and a new platform supported. macOS X appears to work
 mostly, thanks for the patches from Pete Hunt.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  The use of a local variable name as an expression was not covered and

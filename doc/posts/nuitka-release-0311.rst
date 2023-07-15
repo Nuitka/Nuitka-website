@@ -20,7 +20,7 @@ surprise, it found many portability problems. So I chose to fix that
 first, the result being that Nuitka now works on ARM Linux too.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  The order of slice expressions was not correct on x86 as well, and I

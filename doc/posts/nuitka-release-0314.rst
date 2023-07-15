@@ -19,7 +19,7 @@ It is again the result of working towards compilation of a real program
 compiled types by the ``inspect`` module.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Fix for "Missing checks in parameter parsing with star list, star

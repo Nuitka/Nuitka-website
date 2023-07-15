@@ -34,7 +34,7 @@ be cleaner and more complete, addressing issues that prevented it from
 entering the Debian repository.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Fixed the handling of modules and packages of the same name, but with

@@ -21,7 +21,7 @@ optimization and node tree cleanups, as well as source cleanups. But not
 much else.
 
 ***********
- Bug fixes
+ Bug Fixes
 ***********
 
 -  Conditional statements with both branches empty were not optimized
