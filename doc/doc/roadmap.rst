@@ -61,9 +61,10 @@ This is the Nuitka roadmap, broken down by features.
  Nuitka-Python (public)
 ************************
 
-This is currently under way and not yet described here. The current Nuitka
-release has support for using it. Most work is focused on the aim of getting it
-capable to statically compile, avoiding extension modules and DLL usages.
+This is currently under way and not yet described here. The current
+Nuitka release has support for using it. Most work is focused on the aim
+of getting it capable to statically compile, avoiding extension modules
+and DLL usages.
 
 **********************
  Performance (public)
@@ -206,19 +207,18 @@ capable to statically compile, avoiding extension modules and DLL usages.
    So far we use macOS tools to split binaries that are universal, and
    in this case we need to merge binaries into one with the same tools.
 
-*******************************
+****************************************
  Container Builds (public + commercial)
-*******************************
+****************************************
 
 Providing containers with old Linux, and optimally compiled CPython with
 ``podman`` such that building with Nuitka on Fedora latest and Ubuntu
 latest can be done fully automatically and still run on very old Linux.
 
-The ``run-inside-nuitka-container`` kind of duplicates the effort, so we can
-provide more container files in the future, some of which can e.g. be geared
-towards making e.g. Nuitka-Python easy to use with Nuitka, and Nuitka optimized
-CPython that is portable for Linux easier to access.
-
+The ``run-inside-nuitka-container`` kind of duplicates the effort, so we
+can provide more container files in the future, some of which can e.g.
+be geared towards making e.g. Nuitka-Python easy to use with Nuitka, and
+Nuitka optimized CPython that is portable for Linux easier to access.
 
 *******************
  Automatic Updates
@@ -228,9 +228,9 @@ The running application needs to check for updates, and update itself
 automatically, optionally after user prompt, on a restart, or after
 successful update.
 
-This has been implemented for onefile mode only. Unfortunately that
-is not good for macOS which often require app mode, i.e. standalone
-mode effectively with more than a single file.
+This has been implemented for onefile mode only. Unfortunately that is
+not good for macOS which often require app mode, i.e. standalone mode
+effectively with more than a single file.
 
 ********************************************
  Complete Support for Python Version (3.10)
@@ -268,12 +268,12 @@ mode effectively with more than a single file.
    doing it with their own code base, allowing them to see changes due
    to new Nuitka or new PyPI packages individually.
 
-
 ******************************
  Features to be added for 1.8
 ******************************
 
-[ ] Use performance potential for attribute access with Python 3.11 version.
+[ ] Use performance potential for attribute access with Python 3.11
+version.
 
 [ ] Document commercial file embedding publicly with examples.
 
