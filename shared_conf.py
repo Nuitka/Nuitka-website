@@ -33,7 +33,7 @@ extensions = [
     "sphinx_design",
     #    "sphinx_inline_tabs",
     "sphinxcontrib.youtube",
-    "sphinx-favicon",
+    "sphinx_favicon",
     "sphinx_sitemap",
     # Disabled, loads to slow and cannot be limited to needing pages.
     # "sphinxcontrib.asciinema",
