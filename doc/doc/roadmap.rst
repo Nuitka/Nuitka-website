@@ -269,7 +269,7 @@ effectively with more than a single file.
    to new Nuitka or new PyPI packages individually.
 
 ******************************
- Features to be added for 1.8
+ Features to be added for 1.9
 ******************************
 
 [ ] Use performance potential for attribute access with Python 3.11
@@ -285,7 +285,7 @@ version.
 works.
 
 ******************************
- Features to be added for 1.9
+ Features to be added for 2.0
 ******************************
 
 [ ] Initial support for ctypes based direct calls of C code.
