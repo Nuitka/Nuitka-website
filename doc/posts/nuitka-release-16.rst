@@ -34,7 +34,7 @@ workarounds.
    .. code:: python
 
       # Was crashing
-      "value" in ``some_dict if condition else other_dict``
+      "value" in some_dict if condition else other_dict
 
    Fixed in 1.5.1 already.
 
