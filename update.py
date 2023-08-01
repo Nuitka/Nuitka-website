@@ -783,7 +783,7 @@ def runPostProcessing():
 
     search_html_filename = "output/search.html"
 
-    js_set_1 = ["jquery", "underscore", "doctools", "js/theme"]
+    js_set_1 = ["jquery", "_sphinx_javascript_frameworks_compat", "doctools", "js/theme"]
     js_set_1_contents = (
         "\n".join(
             getFileContents(f"output/_static/{js_name}.js") for js_name in js_set_1
