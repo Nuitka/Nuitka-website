@@ -121,7 +121,6 @@ from nuitka.utils.Rest import makeTable
 
 
 def updateDownloadPage():
-
     page_template = getTemplate(
         package_name=None, template_name="download.rst.j2", template_subdir="doc/doc"
     )
@@ -261,11 +260,12 @@ def updateDownloadPage():
         )
 
     def checkOBS(repo_name):
-        url = "https://download.opensuse.org/repositories/home:/kayhayen/%s/noarch/" % repo_name
-
-        command = (
-            "curl -s %s" % url
+        url = (
+            "https://download.opensuse.org/repositories/home:/kayhayen/%s/noarch/"
+            % repo_name
         )
+
+        command = "curl -s %s" % url
 
         output = subprocess.check_output(command.split())
         output = output.decode("utf8").split("\n")
@@ -282,7 +282,9 @@ def updateDownloadPage():
             if "experimental" in line:
                 continue
 
-            match = re.search(r'href="(?:\./)?nuitka-(.*).noarch\.rpm(?:\.mirrorlist)?"', line)
+            match = re.search(
+                r'href="(?:\./)?nuitka-(.*).noarch\.rpm(?:\.mirrorlist)?"', line
+            )
 
             try:
                 candidates.append(match.group(1))
@@ -320,7 +322,10 @@ def updateDownloadPage():
             if "unstable" not in line:
                 continue
 
-            match = re.search(r'href="(?:\./)?nuitka-unstable-(.*).noarch\.rpm(?:\.mirrorlist)?"', line)
+            match = re.search(
+                r'href="(?:\./)?nuitka-unstable-(.*).noarch\.rpm(?:\.mirrorlist)?"',
+                line,
+            )
 
             try:
                 candidates.append(match.group(1))
@@ -607,7 +612,6 @@ def updateReleasePosts():
     updateNuitkaFactory(update=True)
 
     with open("doc/doc/Changelog.rst", "w") as changelog_output:
-
         for title, lines in splitRestByChapter(
             open("Nuitka-factory/Changelog.rst").readlines()
         ):
@@ -783,7 +787,13 @@ def runPostProcessing():
 
     search_html_filename = "output/search.html"
 
-    js_set_1 = ["jquery", "_sphinx_javascript_frameworks_compat", "doctools", "js/theme"]
+    js_set_1 = [
+        "jquery",
+        "_sphinx_javascript_frameworks_compat",
+        "doctools",
+        "sphinx_highlight",
+        "js/theme",
+    ]
     js_set_1_contents = (
         "\n".join(
             getFileContents(f"output/_static/{js_name}.js") for js_name in js_set_1
@@ -1039,7 +1049,9 @@ def getTranslationStatus():
 
 def updateTranslationStatusPage():
     page_template = getTemplate(
-        package_name=None, template_name="translation-status.rst.j2", template_subdir="doc"
+        package_name=None,
+        template_name="translation-status.rst.j2",
+        template_subdir="doc",
     )
 
     table = [["Site", "Translations"]]
@@ -1053,9 +1065,7 @@ def updateTranslationStatusPage():
                 ]
             ]
 
-    template_context = {
-        "translation_table" : makeTable(table)
-    }
+    template_context = {"translation_table": makeTable(table)}
 
     output = page_template.render(name=page_template.name, **template_context)
 
