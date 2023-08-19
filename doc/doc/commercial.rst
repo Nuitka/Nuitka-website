@@ -267,4 +267,12 @@ that Nuitka commercial version to third parties, you are limited.
 
 Please use `this form to contact us
 <https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_
-with intent of buying Nuitka services
+with intent of buying Nuitka services, but still open questions. You can also
+ask for solving your deployment, where working in your environment the
+compilation is done by us, and we will be compensated for our time extra.
+
+.. important::
+
+   If all you want to do is to purchase, notice the purchase buttons above in
+   the `Pricing_` section. No need to fill out the form, Stripe collects all
+   needed information.
