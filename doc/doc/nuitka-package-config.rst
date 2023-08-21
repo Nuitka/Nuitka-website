@@ -350,6 +350,11 @@ Anti-Bloat
 If you want to replace code, for example to remove dependencies, you can
 do that here.
 
+.. note::
+
+   For avoiding optional modules imports, see the ``no-auto-follow``
+   that is applicable in implict imports section.
+
 Features
 --------
 
@@ -388,6 +393,8 @@ Features
 --------
 
 |  ``depends``: modules that are required by this module
+|  ``no-auto-follow``: list of modules not really required by this
+   module
 |  ``pre-import-code``: code to execute before a module is imported
 |  ``post-import-code``: code to execute after a module is imported
 |  ``when``: when_ is documented in a separate section
@@ -414,6 +421,24 @@ the package using an extension module and on the inside ``cv2``.
              os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = os.path.join(os.path.dirname(__file__), 'qt/plugins')
              os.environ['QT_QPA_FONTDIR'] = os.path.join(os.path.dirname(__file__), 'qt/fonts')
          when: 'linux and standalone'
+
+For the ``no-auto-follow`` this shows how to not follow to a module,
+even with ``--follow-imports`` being given just because of this module
+doing an import. If another one does the import, it will be followed
+into still, but this particular modules not not cause it. The message
+given is shown when that happens. If if is ``ignore``, nothing will be
+displayed.
+
+In this concrete example, ``tdqm`` would register with ``pandas``
+methods if possible, but handles it not being found gracefully. No need
+to include it just to do that, if ``pandas`` is otherwise unused.
+
+.. code:: yaml
+
+   - module-name: 'tqdm.std'
+     anti-bloat:
+       - no-auto-follow:
+           'pandas': 'ignore'
 
 Options
 =======
