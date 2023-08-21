@@ -274,5 +274,5 @@ compilation is done by us, and we will be compensated for our time extra.
 .. important::
 
    If all you want to do is to purchase, notice the purchase buttons above in
-   the `Pricing_` section. No need to fill out the form, Stripe collects all
-   needed information.
+   the Pricing_ section. There is no need to fill out the form, Stripe collects
+   all needed information.
