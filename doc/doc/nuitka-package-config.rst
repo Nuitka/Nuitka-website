@@ -520,9 +520,10 @@ in the import hacks category.
 when
 ====
 
-If this expression matches, the entry is executed, otherwise not. This
-expression is a normal string evaluated by Python's eval function.
-Nuitka provides variables for this.
+In the ``when`` part an expression is given and if it matches, the entry
+it is attached to is applied, otherwise not. This expression is a normal
+string evaluated by Python's eval function. Nuitka provides variables in
+the context for this.
 
 Example of an expression:
 
@@ -530,27 +531,66 @@ Example of an expression:
 
    macos and python3_or_higher
 
-These variables are currently available:
+These variables are available for quick tests. The idea being that
+actual code is never going to be necessary in these expressions.
+
+OS Indications
+--------------
+
+To check what OS is selected, we got these.
 
 |  ``macos``: ``True`` if OS is MacOS
 |  ``win32``: ``True`` if OS is Windows
 |  ``linux``: ``True`` if OS is Linux
+
+Compilation modes
+-----------------
+
+|  ``standalone``: ``True`` if standalone mode is activated with
+   ``--standalone`` or ``--onefile``
+|  ``module_mode``: ``True`` if module mode is activated with
+   ``--module``
+|  ``deployment``: ``True`` if deployment mode is activated with
+   ``--deployment``
+
+.. note::
+
+   For non-deployment changes, these can be annotated with the
+   ``deployment`` annotation. We need to be careful with general doing
+   changes in that way, because it makes testing harder, and changes
+   e.g. to make numpy not hide bugs of our packaging of its DLLs behind
+   a misleading error, are usually very good for deployment too.
+
+Python Flavors
+--------------
+
+To check the Python flavor, we got these.
+
 |  ``anaconda``: ``True`` if Anaconda Python used, but see
    ``is_conda_package`` below
 |  ``debian_python``: ``True`` if Debian Python used
-|  ``standalone``: ``True`` if standalone mode is activated
-|  ``module_mode``: ``True`` if module mode is activated
+
+More could be added, but these are the trouble makers that sometimes
+need special handling due to them modifying PyPI packages for themselves
+to use.
+
+Python Versions
+---------------
+
+For limiting to certain Python versions, we got Python3 indicators and
+more Python version specific ones:
+
 |  ``before_python3``: ``True`` if Python 2 used
 |  ``python3_or_higher``: ``True`` if Python 3 used
-
-There are also more Python version specific ones. For each Python
-version supported by Nuitka there are the following:
-
 |  ``python[major][minor]_or_higher``: e.g. ``python310_or_higher``
 |  ``before_python[major][minor]``: e.g. ``before_python310``
 
-The Anti-Bloat plugin provides you with additional variables. These are
-mainly intended for the ``anti-bloat`` section, but work everywhere now.
+Anti-Bloat
+----------
+
+The Anti-Bloat plugin provides you with additional variables from
+command line choices. These are mainly intended for the ``anti-bloat``
+section, but work everywhere now.
 
 |  ``use_setuptools``: ``True`` if ``--noinclude-setuptools-mode`` is
    not set to ``nofollow`` or ``error``
@@ -565,34 +605,19 @@ mainly intended for the ``anti-bloat`` section, but work everywhere now.
 
 All these are bools as well.
 
+Package Versions
+----------------
+
 To check the version of a package there is the ``version`` function,
 which you simply pass the name to and you then get the version as a
 tuple. An example:
 
 .. code:: python
 
-   version('shapely') < (1, 8, 1)
+   version("rich") is not None and version("rich") >= (10, 2, 2)
 
-It returns ``None`` if the package isn't installed.
-
-Also, compilation modules, like ``no_asserts``, ``no_docstrings``, and
-``no_annotations`` are available. These are for use in ``anti-bloat``
-where packages sometimes will not work unless helped somewhat.
-
-For development, there is a function ``experimental`` that you can use
-to check for the presence of flags given on the command line. So you can
-use
-
-.. code:: python
-
-   # bool, true if --experimental=some-flag-name given
-   experimental('some-flag-name')
-
-And for non-deployment changes, these can be annotated with the
-``deployment`` annotation. We need to be careful with general doing
-changes in that way, because it makes testing harder, and changes e.g.
-to make numpy not hide bugs of our packaging of its DLLs behind a
-misleading error, are usually very good for deployment too.
+It returns ``None`` if the package isn't installed, sometimes this need
+handling, e.g. in the configuration of another package.s
 
 Due to differences in DLL and data file layout, conda packages (from
 Anaconda) will be different. But running ``anaconda`` is not sufficient,
@@ -600,11 +625,32 @@ in case the package from from ``pip install`` rather than ``conda
 install``, so this allows to make a difference for this.
 
 It returns a boolean value. No need to check for ``anaconda``, that is
-implied of course.
+implied of course, and probably should never be used, but this instead.
 
 .. code:: python
 
    is_conda_package("shapely")
+
+Python Flags
+------------
+
+Also, the global (or module local in the future) compilation modules,
+like ``no_asserts``, ``no_docstrings``, and ``no_annotations`` are
+available. These are for use in ``anti-bloat`` where packages sometimes
+will not work unless helped somewhat.
+
+Experimental Settings
+---------------------
+
+For development, there is a function ``experimental`` that you can use
+to check for the presence of flags given on the command line. So you can
+use that to toggle a change on or off until you are happy with it, or
+attach it to an incomplete feature of Nuitka.
+
+.. code:: python
+
+   # bool, true if --experimental=some-flag-name given
+   experimental('some-flag-name')
 
 ********************
  Where else to look
