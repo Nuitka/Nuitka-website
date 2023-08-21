@@ -550,7 +550,7 @@ version supported by Nuitka there are the following:
 |  ``before_python[major][minor]``: e.g. ``before_python310``
 
 The Anti-Bloat plugin provides you with additional variables. These are
-only available in anti-bloat.
+mainly intended for the ``anti-bloat`` section, but work everywhere now.
 
 |  ``use_setuptools``: ``True`` if ``--noinclude-setuptools-mode`` is
    not set to ``nofollow`` or ``error``
@@ -563,7 +563,7 @@ only available in anti-bloat.
 |  ``use_dask``: ``True`` if ``--noinclude-dask-mode`` is not set to
    ``nofollow`` or ``error``
 
-All these are bools.
+All these are bools as well.
 
 To check the version of a package there is the ``version`` function,
 which you simply pass the name to and you then get the version as a
@@ -578,6 +578,21 @@ It returns ``None`` if the package isn't installed.
 Also, compilation modules, like ``no_asserts``, ``no_docstrings``, and
 ``no_annotations`` are available. These are for use in ``anti-bloat``
 where packages sometimes will not work unless helped somewhat.
+
+For development, there is a function ``experimental`` that you can use
+to check for the presence of flags given on the command line. So you can
+use
+
+.. code:: python
+
+   # bool, true if --experimental=some-flag-name given
+   experimental('some-flag-name')
+
+And for non-deployment changes, these can be annotated with the
+``deployment`` annotation. We need to be careful with general doing
+changes in that way, because it makes testing harder, and changes e.g.
+to make numpy not hide bugs of our packaging of its DLLs behind a
+misleading error, are usually very good for deployment too.
 
 Due to differences in DLL and data file layout, conda packages (from
 Anaconda) will be different. But running ``anaconda`` is not sufficient,
