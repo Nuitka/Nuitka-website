@@ -71,7 +71,7 @@ well. So you can install with ``pip`` as follows.
    python -m pip install -U nuitka
 
    # Develop version
-   pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
+   python -m pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
 
 .. note::
 
