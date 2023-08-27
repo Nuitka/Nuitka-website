@@ -9,6 +9,7 @@ from _docs import doc, intl
 # Visual Code e.g. picks it up and there is no harm in that. This is only
 # to not confuse people with a pipenv warning that it may not be working.
 os.environ["PIPENV_VERBOSITY"] = "-1"
+os.environ["PIPENV_IGNORE_VIRTUALENVS"]="1"
 
 
 @task
