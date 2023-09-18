@@ -11,13 +11,13 @@
 You can pay with Bitcoin transfers and 2 forms of USDT, a stable coin.
 These shall be done to our wallet addresses as listed below.
 
-Prices should match what e.g. ``400 EUR in USDT`` or ``400 EUR in BTC`` gives in
-Google. Notice that the full package is the minimal version sold via Crypto due
-to the handling overhead.
+Prices should match what e.g. ``400 EUR in USDT`` or ``400 EUR in BTC``
+gives in Google. Notice that the full package is the minimal version
+sold via Crypto due to the handling overhead.
 
-****************
- Wallet Address
-****************
+******************
+ Wallet Addresses
+******************
 
 There are different forms of USDT, a currency that has equality with the
 USD. You can transfer to each of these 4 different flavors of USDT.

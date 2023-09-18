@@ -232,34 +232,44 @@ highest priority.
    Click the buttons in the boxes above if Stripe payment works for you
    (bank transfer, credit card, SEPA debit charge, etc).
 
-   Alternatively Bitcoin and USDT crypto currency transfers are also acceptable,
-   please read the details here `details here .... <crypto.html>`__
+   Alternatively Bitcoin and USDT crypto currency transfers are also
+   acceptable, please read the details here `details here ....
+   <crypto.html>`__
 
 *************
  Limitations
 *************
 
-When you buy Nuitka commercial, parts of the, mostly the plugins that implement the commercial only features
-are under a license that forbids you to distribute the Nuitka commercial source code. That should be obvious,
-but otherwise it does not limit your use of Nuitka at all.
+When you buy Nuitka commercial, parts of the, mostly the plugins that
+implement the commercial only features are under a `license
+<commercial-license>`__ that forbids you to distribute the Nuitka
+commercial source code. That should be obvious, but otherwise it does
+not limit your use of Nuitka at all.
 
 You can use Nuitka commercial on
 
-* All your machines, all OSes
-* All your software, deploy as many as you want
-* Even after ending the subscription (on that particular version you have)
+-  All your machines, all OSes
 
-Basically you are as free with Nuitka commercial as with standard Nuitka. Only for distribution of
-that Nuitka commercial version to third parties, you are limited.
+-  All your software, deploy as many as you want
 
-*************
+-  Even after ending the subscription (on that particular version you
+   have)
+
+Basically you are as free with Nuitka commercial as with standard
+Nuitka. Only for distribution of that Nuitka commercial version to third
+parties, you are limited.
+
+**********
  Delivery
-*************
+**********
 
 #. Pay via Stripe or Crypto currency and have that confirmed
-#. You get access to the private GitHub repo ``Nuitka-commercial`` which contains Nuitka plus commercial only parts.
-#. Optionally given more users in your GitHub organization access via token.
-#. Nuitka commercial can then be used as a drop in replacement of Nuitka with more options.
+#. You get access to the private GitHub repo ``Nuitka-commercial`` which
+   contains Nuitka plus commercial only parts.
+#. Optionally given more users in your GitHub organization access via
+   token.
+#. Nuitka commercial can then be used as a drop in replacement of Nuitka
+   with more options.
 
 ************
  Contact Us
@@ -267,12 +277,13 @@ that Nuitka commercial version to third parties, you are limited.
 
 Please use `this form to contact us
 <https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_
-with intent of buying Nuitka services, but still open questions. You can also
-ask for solving your deployment, where working in your environment the
-compilation is done by us, and we will be compensated for our time extra.
+with intent of buying Nuitka services, but still open questions. You can
+also ask for solving your deployment, where working in your environment
+the compilation is done by us, and we will be compensated for our time
+extra.
 
 .. important::
 
-   If all you want to do is to purchase, notice the purchase buttons above in
-   the Pricing_ section. There is no need to fill out the form, Stripe collects
-   all needed information.
+   If all you want to do is to purchase, notice the purchase buttons
+   above in the Pricing_ section. There is no need to fill out the form,
+   Stripe collects all needed information.
