@@ -7,13 +7,14 @@
 #####################################
 
 This is the second part of a post series under the tag `package_config
-<https://nuitka.net/blog/tag/package_config.html>`__ that explains the Nuitka
-package configuration in more detail. To recap, Nuitka package configuration is
-the way Nuitka learns about hidden dependencies, needed DLLs, data files, and
-just generally avoids bloat in the compilation. The details are here on a dedicate page on the web site
-in `Nuitka Package Configuration
-<https://nuitka.net/doc/nuitka-package-config.html>`__ but reading on will be just fine.
-
+<https://nuitka.net/blog/tag/package_config.html>`__ that explains the
+Nuitka package configuration in more detail. To recap, Nuitka package
+configuration is the way Nuitka learns about hidden dependencies, needed
+DLLs, data files, and just generally avoids bloat in the compilation.
+The details are here on a dedicate page on the web site in `Nuitka
+Package Configuration
+<https://nuitka.net/doc/nuitka-package-config.html>`__ but reading on
+will be just fine.
 
 #################
  Problem Package
@@ -22,11 +23,12 @@ in `Nuitka Package Configuration
 Each post will feature one package that caused a particular problem. In
 this case, we are talking about the package ``customtkinter``.
 
-Problems are typically encountered in standalone mode only. Missing data files
-are typical issue there, and in this case, we already had a solution, but turns
-out, only working on Windows for a weird reason. We are going to look at that in
-some detail, and will see a workaround applied with the ``anti-bloat`` engine
-doing code modification on the fly.
+Problems are typically encountered in standalone mode only. Missing data
+files are typical issue there, and in this case, we already had a
+solution, but turns out, only working on Windows for a weird reason. We
+are going to look at that in some detail, and will see a workaround
+applied with the ``anti-bloat`` engine doing code modification on the
+fly.
 
 #################
  Initial Symptom
