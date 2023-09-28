@@ -6,8 +6,8 @@
  Factory Rationale
 *******************
 
-Both the ``master`` and ``develop`` branch are supposed to be working
-for people at all times. For experiments in the context of issues and
+Both the ``main`` and ``develop`` branch are supposed to be working for
+people at all times. For experiments in the context of issues and
 generally features not yet ready for prime time, there we have the
 factory branch.
 
