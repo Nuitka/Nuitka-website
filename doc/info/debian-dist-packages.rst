@@ -8,10 +8,10 @@
  The Problem in a few Words
 ****************************
 
-Python from Debian packages is not generally suitable for use on any other OS,
-because they are changed such, that they work only on Debian. Instead create a
-virtualenv and use a virtualenv with PyPI packages or Anaconda instead. These
-are designed to be used on all Linux OSes.
+Python from Debian packages is not generally suitable for use on any
+other OS, because they are changed such, that they work only on Debian.
+Instead create a virtualenv and use a virtualenv with PyPI packages or
+Anaconda instead. These are designed to be used on all Linux OSes.
 
 ************
  Background
@@ -87,18 +87,20 @@ That is of course not viable.
  Recommendation
 ****************
 
-For being portable on Linux, generally it is recommended to use a portable
-Python distribution.
+For being portable on Linux, generally it is recommended to use a
+portable Python distribution.
 
-One way is to use packages from PyPI over system Debian packages, but still with
-the Debian python. Nuitka will generally work well with these, even if in some
-cases, the latest version may not yet be supported right after its release. This
-however leaves you with the problem, that newest Debian Python will not run on
-older Linux systems, so you need to also solve that by building on old Debian,
-in a chroot, docker container, pbuilder, etc.
+One way is to use packages from PyPI over system Debian packages, but
+still with the Debian python. Nuitka will generally work well with
+these, even if in some cases, the latest version may not yet be
+supported right after its release. This however leaves you with the
+problem, that newest Debian Python will not run on older Linux systems,
+so you need to also solve that by building on old Debian, in a chroot,
+docker container, pbuilder, etc.
 
-The harder way is to use Anaconda over Debian Python. The advantage there is
-that similar to Debian, this has a set of supported packages, and even though
-they are usually a bit older, chances are that the version used there is also
-already well supported by Nuitka. And Anaconda will run on older Linux no
-problem, and therefore standalone distributions created with it will as well.
+The harder way is to use Anaconda over Debian Python. The advantage
+there is that similar to Debian, this has a set of supported packages,
+and even though they are usually a bit older, chances are that the
+version used there is also already well supported by Nuitka. And
+Anaconda will run on older Linux no problem, and therefore standalone
+distributions created with it will as well.
