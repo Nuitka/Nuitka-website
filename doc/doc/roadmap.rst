@@ -31,10 +31,6 @@ This is the Nuitka roadmap, broken down by features.
    modification of the file in this way and spare us the checksum, which
    will then be used only in case of a fallback being necessary.
 
--  Restructure the payload data stream in cached mode, such that
-   skipping a file content becomes easier and does not require
-   decryption of the whole data.
-
 -  All files are compressed individually, we might then be able to cache
    the result of a specific file, such that files from the Python
    installation do not have to be redone over and over.
@@ -45,17 +41,18 @@ This is the Nuitka roadmap, broken down by features.
  Python 3.11
 *************
 
--  Basic tests appear all work now.
-
--  Execute Python 3.10 test suite in a compatible way with 3.11, so far
-   we got almost through, with only very few, and probably unimportant
-   errors.
-
 -  Attribute lookups for types with a generic one need to update that
    code path, they will be much slower in 3.11 until we do that. That
-   breaks the performance. Probably not happening before 1.6 though as
-   we want to cleanup the code, potentially sharing improvements by
-   generating code variants rather that duplicating stuff.
+   breaks the performance. We want to cleanup the code, potentially
+   sharing improvements by generating code variants rather that
+   duplicating stuff.
+
+*************
+ Python 3.12
+*************
+
+-  Adding support for it only started, the C side of Nuitka doesn't yet
+   handle the changes to ``int`` and ``str`` representations.
 
 ************************
  Nuitka-Python (public)
@@ -269,7 +266,7 @@ effectively with more than a single file.
    to new Nuitka or new PyPI packages individually.
 
 ******************************
- Features to be added for 1.9
+ Features to be added for 2.0
 ******************************
 
 [ ] Use performance potential for attribute access with Python 3.11
@@ -279,13 +276,11 @@ version.
 
 [ ] Document commercial Windows Service usage with examples.
 
-[ ] Update for MinGW64 on Windows to use gcc 12.x based on.
-
 [ ] Add download updating for standalone as well, onefile for windows
 works.
 
 ******************************
- Features to be added for 2.0
+ Features to be added for 2.1
 ******************************
 
 [ ] Initial support for ctypes based direct calls of C code.
