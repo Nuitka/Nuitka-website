@@ -207,7 +207,7 @@ going to change soon. However this release improves all aspects.
 -  We now use symbolic identifiers in all PyLint annotations.
 
 -  The release scripts started to move into ``nuitka.tools.release`` so
-   they get PyLint checks, auto-format and proper code re-use.
+   they get PyLint checks, auto-format and proper code reuse.
 
 -  The use of ``INCREASE_REFCOUNT_X`` was removed, it got replaced with
    proper ``Py_XINCREF`` usages.

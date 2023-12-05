@@ -394,7 +394,7 @@ cases.
 -  Move import hacks to general mechanism in Yaml package configuration
    files. This is for extra paths from package names or from directory
    paths relative to the package. This removes special purpose code from
-   core code paths and allows their re-use.
+   core code paths and allows their reuse.
 
 -  Again more spelling cleanups have been done, to make the code cleaner
    to read and search.

@@ -152,7 +152,7 @@ Debian repository. It's still not there, but it's making progress.
  New Tests
 ***********
 
--  There is now a ``Crasher`` test, for tests that crashed Nuitka
+-  There is now a dedicated test for things that crashed Nuitka
    previously.
 
 -  Added a program test where the imported module does a ``sys.exit()``

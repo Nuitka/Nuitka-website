@@ -171,8 +171,8 @@ generators.
    default values with just those, removing more unused code.
 
 -  Put all statement related code and declarations for it in a dedicated
-   C block, making things slightly more easy for the C compiler to
-   re-use the stack space.
+   C block, making things slightly more easy for the C compiler to reuse
+   the stack space.
 
 -  Avoid linking against ``libpython`` in module mode on everything but
    Windows where it is really needed. No longer check for static Python,

@@ -240,8 +240,10 @@ bug fixes.
 -  Anaconda: Make it more clear how to install static libpython with
    precise command.
 
--  UI: Warn about using Debian package contents. These can be
-   non-portable to other OSes.
+-  UI: Warn about using module from Debian packages. These can be made
+   non-portable to other OSes. Read more on `the info page
+   <https://nuitka.net/info/debian-dist-packages.html>`__ for detailed
+   information.
 
 -  Quality: The auto-format now floats imports to the top for
    consistency. With few exceptions, it was already done like this. But

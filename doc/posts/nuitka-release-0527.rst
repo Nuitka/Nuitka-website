@@ -210,7 +210,7 @@ This release comes a lot of bug fixes and improvements.
 -  Valgrind test runners got changed to using proper tool namespace for
    their code and share it.
 
--  Made construct case generation code common testing code for re-use in
+-  Made construct case generation code common testing code for reuse in
    the speedcenter web site. The code also has minor beauty bugs which
    will then become fixable.
 

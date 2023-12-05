@@ -435,7 +435,9 @@ This is to inform you about the new stable release of `Nuitka
    to its limited results for portability.
 
 -  UI: Added mnemonic for unsupported Windows store Python, so we have a
-   place to give more information.
+   place to give more information. Read more on `the info page
+   <https://nuitka.net/info/unsupported-windows-app-store-python.html>`__
+   for detailed information.
 
 -  UI: Disable warning for ``numpy``/``scipy`` DLL non-identity
    conflicts. These are very common unfortunately and known to be

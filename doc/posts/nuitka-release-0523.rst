@@ -170,7 +170,7 @@ Also, it seems about time to add dedicated code for specific types to be
 as fast as C code. This opens up vast possibilities for acceleration and
 will lead us to zero overhead C bindings eventually. But initially the
 drive is towards enhanced ``import`` analysis, to become able to know
-the precide module expected to be imported, and derive type information
+the precise module expected to be imported, and derive type information
 from this.
 
 The coming work will attack to start whole program optimization, as well

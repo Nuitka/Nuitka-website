@@ -199,7 +199,7 @@ enhance the Python 3.8 compatibility.
 -  Visual Code recommended extensions are now defined as such in the
    project configuration and you will be prompted to install them.
 
--  Visual Code environents for ``Py38`` and ``Py27`` were added for
+-  Visual Code environments for ``Py38`` and ``Py27`` were added for
    easier switch.
 
 -  Catch usage of Python from the Microsoft App Store, it is not

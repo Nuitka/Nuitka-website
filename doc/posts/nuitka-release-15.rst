@@ -362,7 +362,10 @@ updates, and newly supported packages.
    We now inform the user of these older Python with a warning and
    mnemonic, to either disable the console or to upgrade to Python 3.8
    or higher, which normally won't be much of an issue for most users.
-   Added in 1.4.1 already.
+
+   Read more on `the info page
+   <https://nuitka.net/info/old-python-windows-console.html>`__ for
+   detailed information. Added in 1.4.1 already.
 
 -  Debugging: Fixup debugging reference count output with Python3.4. For
    Python 3.11 compatibility tests, actually it was useful to compare

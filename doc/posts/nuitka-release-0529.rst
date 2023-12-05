@@ -112,8 +112,8 @@ a lot of compatibility work.
    time and memory, and this shaved of 0.3% of Nuitka memory usage, as
    these can also become dangling.
 
--  Class dictionaries are now proper dictionarties in optimization,
-   using some dedicated code for name lookups that are transformed to
+-  Class dictionaries are now proper dictionaries in optimization, using
+   some dedicated code for name lookups that are transformed to
    dedicated locals dictionary or mapping (Python3) accesses. This
    currently does not fully optimize, but will in coming releases, and
    saves about 25% of memory compared to the old code.

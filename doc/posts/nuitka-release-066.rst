@@ -156,7 +156,7 @@ improvements.
 
       raise ImportError(path="lala", name="lele")  # now optimized
 
--  Added manual specialization for single argument calls, sovling a
+-  Added manual specialization for single argument calls, solving a
    TODO, as these will be very frequent.
 
 -  Memory: Use single child form of node class where possible, the

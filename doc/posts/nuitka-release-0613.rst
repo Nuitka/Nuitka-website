@@ -272,7 +272,7 @@ with lots of bug fixes and new features.
 
 -  Changed the interfacing of plugins with DLL dependency detection,
    cleaning up the interactions considerably with more unified code, and
-   faster executing due to cached plugin decisons.
+   faster executing due to cached plugin decisions.
 
 -  Integrate manually provided slot function for ``unicode`` and ``str``
    into the standard static code generation. Previously parts were
