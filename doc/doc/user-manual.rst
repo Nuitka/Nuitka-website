@@ -515,7 +515,7 @@ Finding files`_ as well.
 
    There are more platform-specific options, e.g. related to icons,
    splash screen, and version information, consider the ``--help``
-   output for the details of these and check the section `Tweaks_`.
+   output for the details of these and check the section `Tweaks`_.
 
 For the unpacking, by default a unique user temporary path one is used,
 and then deleted, however this default
