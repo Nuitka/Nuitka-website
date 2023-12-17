@@ -16,8 +16,8 @@ license, requirements, credits, etc.
 
 Nuitka is **the** Python compiler. It is written in Python. It is a
 seamless replacement or extension to the Python interpreter and compiles
-**every** construct that CPython 2.6, 2.7, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8,
-3.9, 3.10, 3.11 have, when itself run with that Python version.
+**every** construct that CPython 2.6, 2.7, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9,
+3.10, 3.11 have, when itself run with that Python version.
 
 It then executes uncompiled code and compiled code together in an
 extremely compatible manner.
@@ -90,15 +90,14 @@ Currently, this means, you need to use one of these compilers:
 Python
 ======
 
-Python Version 2.6, 2.7 or 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, 3.11
-are supported. If at any moment, there is a stable Python release that
-is not in this list, rest assured it is being worked on and will be
-added.
+Python Version 2.6, 2.7 or 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, 3.11 are
+supported. If at any moment, there is a stable Python release that is
+not in this list, rest assured it is being worked on and will be added.
 
 .. important::
 
-   For Python 3.3/3.4 and *only* those, we need other Python version as
-   a *compile time* dependency.
+   For Python 3.4 and *only* that version, we need other Python version
+   as a *compile time* dependency.
 
    Nuitka itself is fully compatible with all listed versions, but Scons
    as an internally used tool is not.
@@ -1002,6 +1001,39 @@ compensated to support Nuitka development for Linux, there you need to
 purchase it https://nuitka.net/doc/commercial.html but even a sponsor
 license will be cheaper than doing it yourself.
 
+Program crashes system (fork bombs)
+===================================
+
+A fork bomb is a program that starts itself over and over. This can
+easily happen, since ``sys.executable`` for compiled programs is not a
+Python interpreter, and packages that try to do multiprocessing in a
+better way, often relaunch themselves through this, and Nuitka needs and
+does have handling for these with known packages. However, you may
+encounter a situation where the detection of this fails. See deployment
+option above that is needed to disable this protection.
+
+When this fork bomb happens easily all memory, all CPU of the system
+that is available to the user is being used, and even the most powerful
+build system will go down in flames sometimes needing a hard reboot.
+
+For fork bombs, we can use ``--experimental=debug-self-forking`` and see
+what it does, and we have a trick, that prevents fork bombs from having
+any actual success in their bombing. Put this at the start of your
+program.
+
+.. code:: python
+
+   import os, sys
+
+   if "NUITKA_LAUNCH_TOKEN" not in os.environ:
+      sys.exit("Error, need launch token or else fork bomb suspected.")
+   else:
+      del os.environ["NUITKA_LAUNCH_TOKEN"]
+
+Actually Nuitka is trying to get ahold of them without the deployment
+option already, finding "-c" and "-m" options, but it may not be perfect
+or not work well with a package (anymore).
+
 Memory issues and compiler bugs
 ===============================
 
@@ -1478,7 +1510,7 @@ the 14.3 based version is recommended.
 +------------------+-------------+-------------------------------+
 | 14.0             | 2015        | 3.5, 3.6, 3.7, 3.8            |
 +------------------+-------------+-------------------------------+
-| 10.0             | 2010        | 3.3, 3.4                      |
+| 10.0             | 2010        | 3.4                           |
 +------------------+-------------+-------------------------------+
 | 9.0              | 2008        | 2.6, 2.7                      |
 +------------------+-------------+-------------------------------+

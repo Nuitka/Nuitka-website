@@ -725,7 +725,7 @@ def updateImportedPages():
 """
         )
 
-        user_manual_output.write(getFileContents("Nuitka-main/README.rst"))
+        user_manual_output.write(getFileContents("Nuitka-develop/README.rst"))
 
     with withFileOpenedAndAutoFormatted(
         "doc/doc/developer-manual.rst"
