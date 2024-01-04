@@ -87,3 +87,12 @@ with ``anti-bloat`` contributions.
 Alternatively for popular packages, report the issue, and we might do it
 for you, but there are guides on how to do this, and ideally you
 contribute yourself.
+
+If you do not care, you can add ``--noinclude-unittest-mode=allow`` or
+whatever options is triggering this.
+
+If you really do not care, and do not want to see the message you can
+disable the mnemonic with ``--nowarn-mnemonic=unwanted-module`` and
+carry on, the warning will no longer show itself, but the impact of
+including too much in your compilation will persist and new instances
+will not be reported.
