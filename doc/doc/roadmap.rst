@@ -37,6 +37,9 @@ This is the Nuitka roadmap, broken down by features.
    modification of the file in this way and spare us the checksum, which
    will then be used only in case of a fallback being necessary.
 
+   Example code for Windows can be found here:
+   https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Win7Samples/winui/shell/appplatform/PropertyEdit/PropertyEdit.cpp
+
 -  All files are compressed individually, we might then be able to cache
    the result of a specific file, such that files from the Python
    installation do not have to be redone over and over.
@@ -359,7 +362,7 @@ effectively with more than a single file.
    to new Nuitka or new PyPI packages individually.
 
 ******************************
- Features to be added for 2.0
+ Features to be added for 2.1
 ******************************
 
 [ ] Use performance potential for attribute access with Python 3.11
@@ -369,11 +372,13 @@ version.
 
 [ ] Document commercial Windows Service usage with examples.
 
+[ ] Document traceback encryption usage with examples.
+
 [ ] Add download updating for standalone as well, onefile for windows
 works.
 
 ******************************
- Features to be added for 2.1
+ Features to be added for 2.2
 ******************************
 
 [ ] Initial support for ctypes based direct calls of C code.
