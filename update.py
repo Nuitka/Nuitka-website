@@ -198,12 +198,12 @@ def updateDownloadPage():
         if filename.endswith(".msi"):
             continue
 
-        if not filename.endswith("_all.deb"):
+        if not filename.endswith(".zip.sig"):
             continue
 
         # print "FILE", filename
 
-        filename = filename[len("nuitka_") : -len("_all.deb")]
+        filename = filename[len("nuitka_") : -len(".zip.sig")]
 
         # print "VER", filename
 
