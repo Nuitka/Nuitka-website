@@ -231,6 +231,12 @@ install it from source code as described above, but also like any other
 Python program it can be installed via the normal ``python setup.py
 install`` routine.
 
+Notice for integration with GitHub workflows there is this
+`Nuitka-Action <https://github.com/Nuitka/Nuitka-Action>`__ that you
+should use that makes it really easy to integrate. You ought to start
+with a local compilation though, but this will be easiest for cross
+platform compilation with Nuitka.
+
 License
 =======
 
@@ -678,7 +684,7 @@ can add this to your ``setup.py``.
    To temporarily disable the compilation, you could the remove above
    line, or edit the value to ``False`` by or take its value from an
    environment variable if you so choose, e.g.
-   ``bool(os.environ.get("USE_NUITKA", "True"))``. This is up to you.
+   ``bool(os.getenv("USE_NUITKA", "True"))``. This is up to you.
 
 Or you could put it in your ``setup.cfg``
 
@@ -760,6 +766,81 @@ This allows to combine very different programs into one.
 
 This mode works with standalone, onefile, and mere acceleration. It does
 not work with module mode.
+
+Use Case 7 - Building with GitHub Workflows
+===========================================
+
+For integration with GitHub workflows there is this `Nuitka-Action
+<https://github.com/Nuitka/Nuitka-Action>`__ that you should use that
+makes it really easy to integrate. You ought to start with a local
+compilation though, but this will be easiest for cross platform
+compilation with Nuitka.
+
+This is an example workflow that builds on all 3 OSes
+
+.. code:: yaml
+
+   jobs:
+   build:
+      strategy:
+         matrix:
+         os: [macos-latest, ubuntu-latest, windows-latest]
+
+      runs-on: ${{ matrix.os }}
+
+      steps:
+         - name: Check-out repository
+         uses: actions/checkout@v3
+
+         - name: Setup Python
+         uses: actions/setup-python@v4
+         with:
+            python-version: '3.10'
+            cache: 'pip'
+            cache-dependency-path: |
+               **/requirements*.txt
+
+         - name: Install your Dependencies
+         run: |
+            pip install -r requirements.txt -r requirements-dev.txt
+
+         - name: Build Executable with Nuitka
+         uses: Nuitka/Nuitka-Action@main
+         with:
+            nuitka-version: main
+            script-name: your_main_program.py
+            # many more Nuitka options available, see action doc, but it's best
+            # to use nuitka-project: options in your code, so e.g. you can make
+            # a difference for macOS and create an app bundle there.
+            onefile: true
+
+         - name: Upload Artifacts
+         uses: actions/upload-artifact@v3
+         with:
+            name: ${{ runner.os }} Build
+            path: | # match what's created for the 3 OSes
+               build/*.exe
+               build/*.bin
+               build/*.app/**/*
+
+If you app is a GUI, e.g. ``your_main_program.py`` should contain these
+comments as explained in `Nuitka Options in the code`_ since on macOS
+this should then be a bundle.
+
+.. code:: python
+
+   # Compilation mode, standalone everywhere, except on macOS there app bundle
+   # nuitka-project-if: {OS} in ("Windows", "Linux", "FreeBSD"):
+   #    nuitka-project: --onefile
+   # nuitka-project-if: {OS} == "Darwin"
+   #    nuitka-project: --standalone
+   #    nuitka-project: --macos-create-app-bundle
+   #
+   # Debugging options, controlled via environment variable at compile time.
+   # nuitka-project-if: os.getenv("DEBUG_COMPILATION", "no") == "yes"
+   #     nuitka-project: --enable-console
+   # nuitka-project-else:
+   #     nuitka-project: --disable-console
 
 ********
  Tweaks
@@ -1221,6 +1302,20 @@ standalone binary.
    not make assumptions about the directory your program is started
    from.
 
+In case you mean to refer to the location of the ``.dist`` folder for
+files that are to reside near the binary, there is
+``__compiled__.containing_dir`` that also abstracts all differences with
+``--macos-create-app-bundle`` and the ``.app`` folder a having more
+nested structure.
+
+.. code:: python
+
+   # This will find a file *near* your app or dist folder
+   try:
+      open(os.path.join(__compiled__.containing_dir, "user-provided-file.txt"))
+   except NameError:
+      open(os.path.join(os.path.dirname(sys.argv[0]), "user-provided-file.txt"))
+
 Onefile: Finding files
 ======================
 
@@ -1241,6 +1336,12 @@ which you expect to be inside the onefile binary, access them like this.
    open(os.path.join(os.path.dirname(sys.argv[0]), "user-provided-file.txt"))
    # This will find a file *inside* your onefile.exe
    open(os.path.join(os.path.dirname(__file__), "user-provided-file.txt"))
+
+   # This will find a file *near* your onefile binary and work for standalone too
+   try:
+      open(os.path.join(__compiled__.containing_dir, "user-provided-file.txt"))
+   except NameError:
+      open(os.path.join(os.path.dirname(sys.argv[0]), "user-provided-file.txt"))
 
 Windows Programs without console give no errors
 ===============================================
@@ -1317,7 +1418,7 @@ variables, this is an example:
 
    # The PySide2 plugin covers qt-plugins
    # nuitka-project: --enable-plugin=pyside2
-   # nuitka-project: --include-qt-plugins=sensible,qml
+   # nuitka-project: --include-qt-plugins=qml
 
 The comments must be at the start of lines, and indentation inside of
 them is to be used, to end a conditional block, much like in Python.
