@@ -43,10 +43,10 @@ became almost amazing for deployment. This is in large part due to
 working on the Yaml configuration and these things. In 2024 I hope to
 get it really smooth.
 
-I actually made posts about the Yaml stuff, and I will resume it
+I actually made posts about the Yaml stuff, and I will resume the series
 shortly, basically it allows people to help improve the deployment side
 of Nuitka, e.g. missing DLLs and data files, hacks needed, etc. for
-packages, and it's quickly becoming better and complete.
+packages, and it's quickly becoming better and more complete.
 
 ***********
  Community
@@ -73,7 +73,7 @@ to advantage in in speed of Nuitka over pure Python again. The advantage
 compared on Python2 was not as present, and still is not, on Python3,
 but for 3.10 it's pretty good.
 
-The major breakthroughs have not happened. But I will be taking about
+The major breakthroughs have not happened. But I will be talking about
 the plans, these sure are exciting. Lots of things are in place, some
 are not, but I hope to get there.
 
@@ -81,9 +81,9 @@ are not, but I hope to get there.
  Current Evolutions
 ********************
 
-So things on my mind right now, for one, I guess, 4 plugin changes that
-I have yet to document in new postings. Two are visible here in this
-code.
+So many things on my mind right now, for one, I guess, 4 plugin changes
+that I have yet to document in new postings. Two are visible here in
+this code.
 
 .. code:: yaml
 
@@ -99,17 +99,17 @@ code.
 First, the checksum. Nuitka is going to warn you about checking your
 user yaml files for correctness in the future. Since it often finds
 structural problems, very much needed, since yaml is whitespace
-sensitive, and you never know what it is a list, a dict, etc. but the
+sensitive, and you never know what it is: a list, a dict, etc. but the
 schema we created, can tell.
 
 Second, ``variables`` are a new section, and in fact so new, they are
-not even documented. They can be used to query at compile time values
-from code. In this case we are using it to get at the backend to use, so
-we can tell it at runtime. Otherwise, it's hidden to Nuitka, and could
-e.g. still be subject to a changed decision from environment variables,
-something we typically do not want.
+not even documented. They can be used to query values from code at
+compile time. In this case we are using it to get at the backend to use,
+so we can tell it at runtime. Otherwise, it's hidden to Nuitka, and
+could e.g. still be subject to a changed decision from environment
+variables, something we typically do not want.
 
-For the third and forth thing, we need another example. Torch can use a
+For the third and fourth thing, we need another example. Torch can use a
 JIT to speed up some things, with a compilation very similar to what
 Nuitka does. That however needs a compiler and the source code on the
 target platform. Not an easy ask for all kinds of deployments. A new
@@ -117,9 +117,9 @@ feature makes this easier than before.
 
 .. code:: yaml
 
-   - module-name: 'torch' # checksum: ada8ede8
+   - module-name: 'torch' # checksum: 84315db6
      parameters:
-       - 'name': 'enable-jit'
+       - 'name': 'disable-jit'
          'values': 'value in ("yes", "no")'
      options:
        checks:
@@ -140,16 +140,17 @@ we can expect to be in the same environment with source code intact.
 With ``get_parameter`` you get the option value, and can be conditional
 on it in the ``when`` block. That is the 3rd new thing.
 
-The forth new thing, is the forcing of environment variables. We have so
-far done this, including in plugins like ``tk-inter`` manually with
+The fourth new thing, is the forcing of environment variables. We have
+so far done this, including in plugins like ``tk-inter`` manually with
 post-load-code. The above is the same, effectively doing
 ``os.environ["PYTORCH_JIT"] = "0"`` if the JIT is to be disabled.
 
 These changes are designed to avoid having to do plugins again.
-Historically for ``toga`` support, we should have been a new plugin, but
-now it's not, since the Yaml mechanism can cover retrieval of compile
-time values from modules. And for ``torch`` and the JIT, a plugin would
-have been needed to provide the command line control for that decision.
+Historically for ``toga`` support, we should have created a new plugin,
+but now it's not necessary anymore, since the Yaml mechanism can cover
+retrieval of compile time values from modules. And for ``torch`` and the
+JIT, a plugin would have been needed to provide the command line control
+for that decision.
 
 This increased power of the Yaml will make it even less often the case
 that a plugin must be written. But of course docs will have to be added
@@ -171,9 +172,9 @@ weeks. Limiting myself for now or I will never publish this.
  Twitter and Mastodon
 **********************
 
-I should be more active there, although often I fall prey to of not
-wanting to talk about unfinished things, so actually I do not post there
-as much.
+I should be more active there, although often I fail due to not wanting
+to talk about unfinished things, so actually I do not post there as
+much.
 
 -  `Follow @kayhayen on Twitter
    <https://twitter.com/kayhayen?ref_src=twsrc%5Etfw>`_
