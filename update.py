@@ -233,7 +233,7 @@ def updateDownloadPage():
     output = ""
 
     def extractDebVersion(path):
-        match = re.search(r"nuitka_(.*)_all\.deb", filename)
+        match = re.search(r"nuitka_(.*)_all\.deb", path)
 
         return match.group(1)
 
@@ -288,7 +288,7 @@ def updateDownloadPage():
 
             try:
                 candidates.append(match.group(1))
-            except Exception as e:
+            except Exception:
                 print("problem with line %r from '%s'" % (line, url))
                 raise
 
@@ -1000,13 +1000,7 @@ def runDeploymentCommand():
         "rss.xml",
     ]
 
-    branch = subprocess.check_output("git branch --show-current".split()).strip()
-
-    if branch == b"main" and os.path.exists("output/robots.txt-operational"):
-        os.unlink("output/robots.txt")
-        os.rename("output/robots.txt.operational", "output/robots.txt")
-
-    target_dir = "/var/www/" if branch == b"main" else "/var/www-staging/"
+    target_dir = "/var/www/"
     command = f'rsync -ravz {" ".join(f"--exclude={exclude}" for exclude in excluded)} --chown www-data:git --chmod Dg+x --delete-after output/ root@ssh.nuitka.net:{target_dir}'
 
     my_print(command)
