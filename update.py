@@ -825,6 +825,10 @@ jQuery(function () {
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
 
+        bread_crumbs_hr = doc.xpath("//div[@role='navigation']/hr")
+        if bread_crumbs_hr:
+            bread_crumbs_hr[0].getparent().remove(bread_crumbs_hr[0])
+
         if css_filenames := [
             os.path.normpath(
                 f'output/{os.path.relpath(os.path.dirname(filename), "output")}/{css_link.get("href")}'
@@ -1100,7 +1104,7 @@ When given, the pages are not checked with rest lint. Default %default.""",
     parser.add_option(
         "--post-process",
         action="store_true",
-        dest="postprocess",
+        dest="post_process",
         default=False,
         help="""\
 When given, the site is post processed with minify. Default %default.""",
@@ -1138,7 +1142,7 @@ When given, the site is deployed. Default %default.""",
     if options.check_pages:
         checkRestPages()
 
-    if options.postprocess:
+    if options.post_process:
         runPostProcessing()
 
     if options.serve:
