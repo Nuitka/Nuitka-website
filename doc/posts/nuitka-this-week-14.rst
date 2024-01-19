@@ -6,6 +6,10 @@
  Nuitka this week #14
 ######################
 
+This is a weekly update, or at least it's supposed to be of what's going on in
+Nuitka land, for you to learn about ongoing developments and important changes
+to the project.
+
 .. contents::
 
 **************************
