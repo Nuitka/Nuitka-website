@@ -1085,7 +1085,7 @@ When given, the rest files are updated and changelog is split into pages. Defaul
         dest="check_pages",
         default=False,
         help="""\
-When given, the pages are not checked with rest lint. Default %default.""",
+When given, the pages are checked with rest lint. Default %default.""",
     )
 
     parser.add_option(
