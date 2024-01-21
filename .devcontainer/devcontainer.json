@@ -3,10 +3,19 @@
 {
 	"name": "Ubuntu",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:jammy"
+ 	"image": "mcr.microsoft.com/devcontainers/base:jammy",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/apt-packages:1": {
+			"packages": "python3-dev,python3-pip"
+		},
+		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
+			"command": "python3 -m pip install requests unidecode lxml rstfmt==0.0.13"
+		},
+		"ghcr.io/hwaien/devcontainer-features/match-host-time-zone": {}
+	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
