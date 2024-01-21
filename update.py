@@ -750,10 +750,6 @@ def updateDocs():
     updateImportedPages()
 
 
-def runSphinxBuild():
-    assert 0 == os.system("cd doc && sphinx-build . ../output/ -a")
-
-
 _translations = ("zh_CN/", "de_DE/")
 
 
