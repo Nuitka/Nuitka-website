@@ -233,10 +233,6 @@ highest priority.
    Click the buttons in the boxes above if Stripe payment works for you
    (bank transfer, credit card, SEPA debit charge, etc).
 
-   Alternatively Bitcoin and USDT crypto currency transfers are also
-   acceptable, please read the details here `details here ....
-   <crypto.html>`__
-
 *************
  Limitations
 *************
