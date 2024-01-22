@@ -19,7 +19,7 @@ Right now, this is very much possible to improve. Your turn!
 *******
 
 This is used to build the Nuitka web site. Enhancements of all kinds are
-welcome. You will need python 3.9 and ``pipenv`` to build it.
+welcome. You will need python 3.10 and ``pipenv`` to build it.
 
 .. code:: bash
 
