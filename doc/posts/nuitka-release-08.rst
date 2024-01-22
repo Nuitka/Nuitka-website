@@ -216,7 +216,7 @@ features, and adds new ones.
       show-scons = true
 
       # options with single values, e.g. enable a plugin of Nuitka
-      enable-plugin = pyside2
+      enable-plugin = "pyside2"
 
       # options with several values, e.g. avoiding including modules, accepts
       # list argument.
