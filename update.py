@@ -949,7 +949,7 @@ jQuery(function () {
             dropdown_node = line_node.getparent()
             dropdown_node.clear()
 
-            for translated_filename in translated_filenames:
+            for translated_filename in sorted(translated_filenames):
                 if filename == translated_filename:
                     continue
 
