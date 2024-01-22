@@ -829,7 +829,7 @@ jQuery(function () {
         if css_filenames := [
             os.path.normpath(
                 f'output/{os.path.relpath(os.path.dirname(filename), "output")}/{css_link.get("href")}'
-            )
+            ).split("?")[0]
             for css_link in css_links
             if "combined_" not in css_link.get("href")
             if "copybutton" not in css_link.get("href") or has_highlight
