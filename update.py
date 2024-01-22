@@ -793,6 +793,7 @@ def runPostProcessing():
         "doctools",
         "sphinx_highlight",
         "js/theme",
+        "documentation_options"
     ]
     js_set_1_contents = (
         "\n".join(
@@ -896,16 +897,6 @@ jQuery(function () {
         for social_image in social_images:
             social_image.attrib["width"] = "24"
             social_image.attrib["height"] = "24"
-
-        for data_url in doc.xpath("//script[@data-url_root]"):
-            data_url.text = getFileContents(documentation_options_js_filename).replace(
-                """document.getElementById("documentation_options").getAttribute('data-url_root')""",
-                "'%s'" % data_url.attrib["data-url_root"],
-            )
-
-            del data_url.attrib["src"]
-            del data_url.attrib["id"]
-            del data_url.attrib["data-url_root"]
 
         for script_tag in doc.xpath("//script"):
             if "src" not in script_tag.attrib:
