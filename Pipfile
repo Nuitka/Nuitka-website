@@ -11,6 +11,7 @@ doc8 = "*"
 sphinx-autobuild = "*"
 black = "*"
 pipenv = "*"
+isort = "*"
 
 [packages]
 restructuredtext-lint = "*"
