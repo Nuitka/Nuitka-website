@@ -23,7 +23,7 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "sudo dpkg-reconfigure tzdata -f none",
 
-	"postStartCommand": "python3 -m pip install -U pipenv && python3 -m pipenv install --dev",
+	"postStartCommand": "./auto-update.sh",
 	// Configure tool-specific properties.
 	"customizations": {}
 
