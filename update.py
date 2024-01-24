@@ -958,9 +958,6 @@ jQuery(function () {
         with open(filename, "wb") as output:
             output.write(document_bytes)
 
-    if os.path.exists(documentation_options_js_filename):
-        os.unlink(documentation_options_js_filename)
-
     if os.path.exists(searchindex_js_filename):
         os.unlink(searchindex_js_filename)
 
