@@ -93,7 +93,7 @@ Additionally, you can purchase priority support.
    :hidden:
    :caption: Under construction
 
-   doc/welcome
+   pages/search
    pages/pyside2
    pages/pyqt5
    pages/donations

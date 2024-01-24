@@ -906,6 +906,10 @@ jQuery(function () {
 
             script_tag.attrib["async"] = ""
 
+            # Google search.
+            if "google" in script_tag.attrib["src"]:
+                continue
+
             if not has_highlight and "copybutton" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
             elif not has_highlight and "clipboard" in script_tag.attrib["src"]:
