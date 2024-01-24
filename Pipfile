@@ -9,9 +9,9 @@ watchdog = "*"
 pylint = "*"
 doc8 = "*"
 sphinx-autobuild = "*"
-black = "*"
 pipenv = "*"
 isort = "*"
+black = "==23.12.1"
 
 [packages]
 restructuredtext-lint = "*"
