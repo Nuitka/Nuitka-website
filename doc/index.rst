@@ -101,10 +101,3 @@ Additionally, you can purchase priority support.
 
 .. toctree::
    :hidden:
-
-
-.. raw:: html
-
-   <script src="https://cse.google.com/cse.js?cx=004578438070990188824:WMX-1800752890">
-   </script>
-   <div class="gcse-search"></div>
