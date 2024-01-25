@@ -178,16 +178,21 @@ The current configuration is in ``shared_conf.py`` and relatively empty,
 we might want to explore and document our choices for some of these
 options.
 
+*****************
+ Blog with ABlog
+*****************
+
+We are using a sphinx extension called ABlog that can create the RSS feeds
+and pages of the Nuitka blog.
+
+https://ablog.readthedocs.io/en/stable/manual/ablog-configuration-options.html
+
 *************
  New posting
 *************
 
 Create the ``*.rst`` file similar to e.g. ``doc/letting-go-of-c11.rst``
 and then execute this
-
-.. code:: bash
-
-   python3 -m invoke run -t update-docs
 
 *************
  Translation
