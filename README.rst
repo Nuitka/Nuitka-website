@@ -9,14 +9,120 @@
  Thanks
 ********
 
-Please help and improve this in all ways, typos, cooler tech, better
-looks, more information, etc. all is appreciated and necessary.
+Please help and improve this in all ways, typos, better looks, more
+information, etc. all is appreciated and necessary.
 
 Right now, this is very much possible to improve. Your turn!
 
 *******
  Usage
 *******
+
+Container
+=========
+
+The recommended way to edit this is using Visual Code and devcontainers.
+You will be amazed at how easy it actually is to contribute changes in
+this way. There is also a manual way described below, but this is the
+recommended approach.
+
+#. Have a GitHub account. This is free and easy, most if not all
+   developers these days have an account like this. Sign up if you want
+   to be able to submit your edits.
+
+   https://docs.github.com/en/get-started/quickstart/creating-an-account-on-github
+
+#. Download and install Visual Code. This page has a download button. It
+   won't matter if you are on Windows, macOS, or Linux, all will work
+   equally well. just install it for your OS.
+
+   https://code.visualstudio.com/
+
+#. Launch Visual Code.
+
+   .. note::
+
+      Cloning is a term used in version control, meaning you create a
+      local copy of a central repository and git is a tool used for it.
+      Do not worry much about those things, Visual Code hides it away
+      from you largely.
+
+   On its welcome page, there is a button "Clone Git repository" which
+   executes the command "Clone from GitHub" and there you paste
+   ``https://github.com/Nuitka/Nuitka-website.git`` and it will show a
+   description of the repo, and you confirm a target folder, where you
+   create a folder names "Nuitka-website.git", it then asks if you want
+   to open it, and yeah, you want to do that. It will also ask if you
+   trust the authors, and you can accept that. It then will be able to
+   do more convenience things for you.
+
+   Once you do that, it prompts you "Folder Contains a Dev Container
+   configuration file" and suggests to re-open. This is on a timeout,
+   after a minute, this goes away. Say yes, or re-open the project in
+   Visual Code.
+
+#. Container start
+
+   When starting, what it will do is to download a small container image
+   of Ubuntu, which is a popular Linux from Microsoft server and run a
+   few commands to customize the image, and become able to build and
+   render the pages of the web site.
+
+   .. note::
+
+      Do not worry, that this is Linux, you won't have to notice or do
+      anything different at all. The container image is automated and
+      Visual Code will deal with git for you.
+
+   After some time, it will prompt you to open a localhost (your
+   machine) 8080 port browser window in your standard browser, and you
+   can use it to navigate the website. Everything but the shop parts
+   will work, since these are not included in the repo, and secret
+   (using private keys).
+
+#. Making your change.
+
+   Once you edit a page, e.g. ``doc/index.rst`` what happens is that a
+   launches a rebuild of the website each time you modify. If you happen
+   to have a browser open with that page, once it completes it will
+   reload.
+
+   Some kinds of changes, e.g. to the CSS theme, or if you change what
+   JavaScript is included, may require a relaunch. You then use the
+   command "Dev Container: Rebuild container" and then it takes a short
+   moment, and is fully fresh again. For normal page edits of the
+   restructured text, no such issue exists.
+
+#. Staging your change
+
+   In the Visual Code there is a section "Source Control" where you may
+   already know your way, but it will display the list of changes you
+   made. What you do here, is to create commits. You add changes, and
+   can look at the difference, by clicking them, which opens new
+   windows. The staged parts then can be added with a message. You see
+   that there is an indication in your bottom bar, if you have those.
+
+#. Create a Pull Request.
+
+   By selecting the command GitHug Pull Requests: Create Pull Request,
+   visual code will guide you through the process of making a PR out of
+   your pull request.
+
+#. Communicate about your pull request. You will be informed of a URL,
+   and it will be e.g. like this: TBD and once your change has been
+   reviewed, you might get asked to make some changes to it, where you
+   open the project and just make them. And update the pull request, or
+   you get informed about the merge of it.
+
+#. Success.
+
+   None of this is strictly difficult. You almost have a bit of "what
+   you see is what you get" editing, but the website is text driven on
+   purpose, such that collaboration on it is very easy, and that we can
+   change to underlying tools easily.
+
+Manual
+======
 
 This is used to build the Nuitka web site. Enhancements of all kinds are
 welcome. You will need python 3.10 and ``pipenv`` to build it.
@@ -58,6 +164,19 @@ So the site is basically mostly an automation of importing a few files
 from the Nuitka git repository, splitting up e.g. the ``Changelog.rst``
 into pages, with otherwise using Sphinx to render it. Reference the
 Sphinx documentation and esp. the one for Read the Docs theme and ABlog.
+
+**************
+ Sphinx Theme
+**************
+
+We are using the customization of "read the docs" things theme. We use
+this
+
+https://sphinx-rtd-theme.readthedocs.io/en/stable/configuring.html
+
+The current configuration is in ``shared_conf.py`` and relatively empty,
+we might want to explore and document our choices for some of these
+options.
 
 *************
  New posting
