@@ -165,6 +165,16 @@ from the Nuitka git repository, splitting up e.g. the ``Changelog.rst``
 into pages, with otherwise using Sphinx to render it. Reference the
 Sphinx documentation and esp. the one for Read the Docs theme and ABlog.
 
+**************************
+ Restructured Text (REST)
+**************************
+
+Restructured text is a format very similar to Markdown, which some of
+you may already know, but with more features. You can check out the
+syntax here.
+
+https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+
 **************
  Sphinx Theme
 **************
