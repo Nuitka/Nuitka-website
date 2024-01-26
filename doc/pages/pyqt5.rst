@@ -9,8 +9,8 @@
 *********************************************
 
 While the ``pyqt5`` plugin of Nuitka enables using it, there are known
-bugs with callbacks and threading. You can workaround them, but they
-can be very limiting.
+bugs with callbacks and threading. You can workaround them, but they can
+be very limiting.
 
 ********************************************
  Solution in Nuitka Commercial with PySide2

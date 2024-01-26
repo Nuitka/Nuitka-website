@@ -1,6 +1,6 @@
-###############
+########
  Search
-###############
+########
 
 Search for this website is available currently through Google below.
 
