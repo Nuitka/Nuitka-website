@@ -197,10 +197,9 @@ import milestone to Nuitka for me.
 Funding
 =======
 
-Nuitka receives the occasional `donation
-</pages/donations.html>`_ and those make me very happy.
-As there is no support from organization like the PSF, I am all on my
-own there.
+Nuitka receives the occasional `donation </pages/donations.html>`_ and
+those make me very happy. As there is no support from organization like
+the PSF, I am all on my own there.
 
 This year I likely will travel to Europython 2015, and would ask you to
 support me with that, it's going to be expensive.
@@ -225,10 +224,10 @@ that has not changed. Things are going slower than necessary though, but
 that's probably very typical.
 
 But you can join and should do so now, just `follow this link
-</doc/user-manual.html#join-nuitka>`_ or become part of
-the mailing list (since closed) and help me there with request I make,
-e.g. review posts of mine, test out things, pick up small jobs, answer
-questions of newcomers, you know the drill probably.
+</doc/user-manual.html#join-nuitka>`_ or become part of the mailing list
+(since closed) and help me there with request I make, e.g. review posts
+of mine, test out things, pick up small jobs, answer questions of
+newcomers, you know the drill probably.
 
 Nuitka is about to make break through progress. And you can be a part of
 it. Now.

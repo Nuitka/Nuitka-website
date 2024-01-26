@@ -310,10 +310,9 @@ good.
 Funding
 =======
 
-Nuitka doesn't receive enough `donations
-</pages/donations.html>`_. There is no support from
-organizations like e.g. the PSF, which recently backed several projects
-by doubling donations given to them.
+Nuitka doesn't receive enough `donations </pages/donations.html>`_.
+There is no support from organizations like e.g. the PSF, which recently
+backed several projects by doubling donations given to them.
 
 I remember talking to a PSF board member during Europython 2013 about
 this, and the reaction was fully in line with the Europython 2012
@@ -341,10 +340,10 @@ necessary, and that has not changed. Things are going slower than
 necessary though, but that's probably very typical.
 
 But you can join now, just `follow this link
-</doc/user-manual.html#join-nuitka>`_ or become part of
-the mailing list (since closed) and help me there with request I make,
-e.g. review posts of mine, test out things, pick up small jobs, answer
-questions of newcomers, you know the drill probably.
+</doc/user-manual.html#join-nuitka>`_ or become part of the mailing list
+(since closed) and help me there with request I make, e.g. review posts
+of mine, test out things, pick up small jobs, answer questions of
+newcomers, you know the drill probably.
 
 ********
  Future

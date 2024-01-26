@@ -26,11 +26,10 @@ Actually I didn't mean for it to be released with that feature, but as
 parts of it seemed to work, I did so. But truth to be sad, that feature
 is not nearly as polished in that release as you would like it to.
 
-In current `development releases
-</pages/download.html>`__, of what is going to become
-0.5.0 really soon now, it's much better already. More things actually
-work. But it appears, there will be more ground to cover, and this is a
-lot of stuff to sort out.
+In current `development releases </pages/download.html>`__, of what is
+going to become 0.5.0 really soon now, it's much better already. More
+things actually work. But it appears, there will be more ground to
+cover, and this is a lot of stuff to sort out.
 
 So, this is mostly about asking you two things. Give that development
 release a try and report issues you have with it. And help me.
@@ -57,6 +56,5 @@ it seems like I am working to provide both. For standalone, more often,
 than seeking to avoid bugs as far as possible, I am going to rely on
 your participation.
 
-So join Nuitka. Now. `Download from here
-</pages/download.html>`__. Join the mailing list (since
-closed). And help if you can. And yes you can.
+So join Nuitka. Now. `Download from here </pages/download.html>`__. Join
+the mailing list (since closed). And help if you can. And yes you can.

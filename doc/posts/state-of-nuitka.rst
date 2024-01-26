@@ -220,11 +220,10 @@ there next year again.
 
 -  Please test the latest release of Nuitka.
 
--  Please consider `making a donation
-   </pages/donations.html>`_ to support my work on
-   Nuitka. I have continuous monthly costs of it, so it would be sweet
-   if it's with all my time spent working on it, at least not a
-   financial cost to me.
+-  Please consider `making a donation </pages/donations.html>`_ to
+   support my work on Nuitka. I have continuous monthly costs of it, so
+   it would be sweet if it's with all my time spent working on it, at
+   least not a financial cost to me.
 
 -  Please join the mailing list (since closed), and offer your help with
    tasks. Nuitka can seriously take more people developing, testing,

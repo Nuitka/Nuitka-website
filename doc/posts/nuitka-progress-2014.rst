@@ -168,10 +168,10 @@ Funding
 =======
 
 Nuitka receives some, bit not quite enough `donations
-</pages/donations.html>`_. There is no support from
-organizations like e.g. the PSF, and it seems I better not hold my
-breath for it. I will travel to Europython 2015, and would ask you to
-support me with that, it's going to be expensive.
+</pages/donations.html>`_. There is no support from organizations like
+e.g. the PSF, and it seems I better not hold my breath for it. I will
+travel to Europython 2015, and would ask you to support me with that,
+it's going to be expensive.
 
 In 2014, with donations, I bought a "Cubox i4-Pro", which is an ARM
 based machine with 4 cores, and 2GB RAM. Works from flash, and with the
@@ -198,10 +198,10 @@ that has not changed. Things are going slower than necessary though, but
 that's probably very typical.
 
 But you can join and should do so now, just `follow this link
-</doc/user-manual.html#join-nuitka>`_ or become part of
-the mailing list (since closed) and help me there with request I make,
-e.g. review posts of mine, test out things, pick up small jobs, answer
-questions of newcomers, you know the drill probably.
+</doc/user-manual.html#join-nuitka>`_ or become part of the mailing list
+(since closed) and help me there with request I make, e.g. review posts
+of mine, test out things, pick up small jobs, answer questions of
+newcomers, you know the drill probably.
 
 Nuitka is about to make break through progress. And you can be a part of
 it. Now.

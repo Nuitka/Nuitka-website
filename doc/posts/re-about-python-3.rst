@@ -36,10 +36,9 @@ a CPython2 interpreter and proxy objects for instances, where they talk
 to another with incompatible types (new ``bytes``/``unicode`` to old
 ``str``).
 
-Due to my work on that `Python compiler
-</pages/overview.html>`__ that should have existed 20
-years ago, I am familiar enough, to actually be able and create that
-kind of CPython2/CPython3 hybrid.
+Due to my work on that `Python compiler </pages/overview.html>`__ that
+should have existed 20 years ago, I am familiar enough, to actually be
+able and create that kind of CPython2/CPython3 hybrid.
 
 But the main problems with all of that are:
 

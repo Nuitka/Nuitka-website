@@ -182,10 +182,9 @@ expertise in Python.
 Funding
 =======
 
-Nuitka receives the occasional `donation
-</pages/donations.html>`_ and those make me very happy.
-As there is no support from organization like the PSF, I am all on my
-own there.
+Nuitka receives the occasional `donation </pages/donations.html>`_ and
+those make me very happy. As there is no support from organization like
+the PSF, I am all on my own there.
 
 This year I want to travel to Europython 2016. It would be sweet if
 aside of my free time it wouldn't also cost me money. So please consider
@@ -198,10 +197,10 @@ Nuitka is making more and more break through progress. And you can be a
 part of it. Now.
 
 You can join and should do so now, just `follow this link
-</doc/user-manual.html#join-nuitka>`_ or become part of
-the mailing list (since closed) and help me there with request I make,
-e.g. review posts of mine, test out things, pick up small jobs, answer
-questions of newcomers, you know the drill probably.
+</doc/user-manual.html#join-nuitka>`_ or become part of the mailing list
+(since closed) and help me there with request I make, e.g. review posts
+of mine, test out things, pick up small jobs, answer questions of
+newcomers, you know the drill probably.
 
 Videos
 ======
