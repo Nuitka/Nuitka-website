@@ -1,0 +1,3 @@
+#!/bin/sh
+
+python3 -m pipenv run python ./Nuitka-develop/bin/autoformat-nuitka-source $@

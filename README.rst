@@ -182,8 +182,8 @@ options.
  Blog with ABlog
 *****************
 
-We are using a sphinx extension called ABlog that can create the RSS feeds
-and pages of the Nuitka blog.
+We are using a sphinx extension called ABlog that can create the RSS
+feeds and pages of the Nuitka blog.
 
 https://ablog.readthedocs.io/en/stable/manual/ablog-configuration-options.html
 
