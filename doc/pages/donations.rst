@@ -7,6 +7,10 @@ Python conferences, web site costs, and generally to get rich, I am
 accepting donations via PayPal. The money received will be used to
 sponsor Nuitka development.
 
+********
+ PayPal
+********
+
 .. raw:: html
 
    <form action="https://www.paypal.com/donate" method="post" target="_blank">
@@ -17,3 +21,22 @@ sponsor Nuitka development.
 Alternatively Bitcoin transfers are also acceptable to the wallet
 address ``bc1qj9htss26ltk24prdl4zcea86yn8k6f7hcxlapg``. Please drop an
 email note after doing it.
+
+********
+ Crypto
+********
+
+Alternatively Bitcoin and UST transfers are also great for supporting
+the standard Nuitka project. There are different forms of USDT, a
+currency that has equality with the USD. You can transfer to each of
+these 4 different flavors of USDT.
+
++-------------+--------------------------------------------+
+| Coin Flavor | Wallet Address                             |
++=============+============================================+
+| USDT-ERC20  | 0xCa7dc3e7c42a20F3C6A047c164777e647916d9c5 |
++-------------+--------------------------------------------+
+| USDT-TRC20  | TCrSnp1bGHmFk2UddKoTbzYrxhzo8w4kyn         |
++-------------+--------------------------------------------+
+| Bitcoin     | bc1qj9htss26ltk24prdl4zcea86yn8k6f7hcxlapg |
++-------------+--------------------------------------------+
