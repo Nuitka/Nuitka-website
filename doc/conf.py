@@ -17,13 +17,6 @@ from update import importNuitka  # isort:skip
 
 nuitka = importNuitka()
 
-# Money patch ablog for non-deterministic output of blog tags
-
-def _our_split(a):
-    return nuitka.containers.OrderedSets.OrderedSet(s.strip() for s in (a or "").split(","))
-ablog.post._split = _our_split
-
-
 extensions += [
     # Blog extension
     "ablog",
