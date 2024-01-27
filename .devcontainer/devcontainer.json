@@ -35,7 +35,8 @@
 				"ms-python.python",
 				"ms-python.vscode-pylance",
 				"GitHub.vscode-pull-request-github",
-				"trond-snekvik.simple-rst"
+				"trond-snekvik.simple-rst",
+				"shuworks.vscode-table-formatter"
 			]
 		}
 	}

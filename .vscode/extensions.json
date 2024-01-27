@@ -1,8 +1,11 @@
 {
     "recommendations": [
-        "ms-python.python",
         "aeschli.vscode-css-formatter",
         "lextudio.restructuredtext",
-        "trond-snekvik.simple-rst"
+        "trond-snekvik.simple-rst",
+        "github.vscode-pull-request-github",
+        "jebbs.plantuml",
+        "ms-python.vscode-pylance",
+        "shuworks.vscode-table-formatter"
     ]
 }
