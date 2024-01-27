@@ -22,11 +22,15 @@ This is the Nuitka roadmap, broken down by features.
    of the documentation, much like User Manual and Developer Manual,
    that are being maintained inside Nuitka repo.
 
-   The standard Yaml files (if modified) should be checked at runtime of
-   Nuitka, for that we need to add some kind of checksum to it to detect
-   modification and issue a warning, if ``jsonschema`` is not available
-   for modification. Vendoring it seems unnecessarily much, and it's in
+   The standard Yaml files (if modified) should be checked at runtime of Nuitka,
+   for that we need to add some kind of checksum to it to detect modification
+   and issue a warning, if ``jsonschema`` is not available for modification.
+   Vendoring it seems unnecessarily much effort, and it's in
    ``requirements-devel.txt`` anyway.
+
+   Currently the checksums are added in the commit hook, but they are not
+   checked at runtime. We might want to limit checking to only used
+   configuration entries.
 
 ************************
  Onefile speed (public)
@@ -274,15 +278,8 @@ and DLL usages.
 
          return i # i <- Reference(version=2)
 
-   Currently, the loop analysis is so weak, that it marks some_indicator
-   as the merge of UnassignedTrace and AssignedTrace at loop start. It
-   therefore then doesn't detect that ``some_indicator`` would in fact
-   be safe to forward propagate and as a result is then not optimizing
-   it away when it gets assigned, but it does optimize the branch based
-   on it away. It then does a useless assignment to ``some_indicator``
-   that the C compiler detects for booleans and that e.g. triggers when
-   there is an else branch in exception handling, but it always or never
-   raises.
+   The loop analysis recently became strong enough to succeed in proper
+   type analyis. We should be able to proceed with this.
 
 ********************
  macOS enhancements
@@ -364,6 +361,8 @@ effectively with more than a single file.
 ******************************
  Features to be added for 2.1
 ******************************
+
+[ ] Onboard technical writer with user manual rewrite.
 
 [ ] Use performance potential for attribute access with Python 3.11
 version.
