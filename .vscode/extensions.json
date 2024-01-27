@@ -2,6 +2,7 @@
     "recommendations": [
         "ms-python.python",
         "aeschli.vscode-css-formatter",
-        "lextudio.restructuredtext"
+        "lextudio.restructuredtext",
+        "trond-snekvik.simple-rst"
     ]
 }
