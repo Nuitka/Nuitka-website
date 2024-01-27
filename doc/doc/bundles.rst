@@ -6,12 +6,11 @@
  Nuitka Bundles
 ################
 
-Nuitka can be purchased together as a bundle with other software.
+Nuitka can be purchased and used together as a bundle with other software.
 
-Right now, the offer available is Themida and WinLicense. Both of these
-are Oreans products, for which Nuitka Services acts as both a reseller,
-and as a integrator, i.e. there is a Nuitka plugin that allows
-additional features in Python code.
+Right now, the offer available is Themida and WinLicense. Both of these are
+Oreans products, for which Nuitka Services as an integrator, i.e. there is a
+Nuitka plugin that allows additional features in Python code.
 
 .. note::
 
@@ -26,7 +25,6 @@ additional features in Python code.
 
    -  Only works in Windows, for other platforms we are preparing
       alternative bundles.
-   -  Requires Visual Studio 2015 installation.
    -  Only works in Nuitka commercial, in fact Nuitka Themida is a
       superset of Nuitka commercial.
 
@@ -127,20 +125,19 @@ all automatically for you, and this for curious and advanced users only.
 
 Oreans charges differently for single develop and team licenses. Also
 with WinLicense, you get to use their C API to check license status at a
-higher price. When bundled with Nuitka commercial, we can give you both
-at a discount.
+higher price.
 
-+----------------------+----------------+----------------+----------+--------+
-| Product              | Original Price | Nuitka Themida | Combined | Bundle |
-+======================+================+================+==========+========+
-| Themida Developer    | 199            | 451            | 650      | 550    |
-+----------------------+----------------+----------------+----------+--------+
-| Themida Company      | 399            | 451            | 850      | 700    |
-+----------------------+----------------+----------------+----------+--------+
-| WinLicense Developer | 399            | 451            | 850      | 700    |
-+----------------------+----------------+----------------+----------+--------+
-| WinLicense Company   | 799            | 451            | 1250     | 1100   |
-+----------------------+----------------+----------------+----------+--------+
++----------------------+----------------+----------------+----------+
+| Product              | Oreans Price    | Nuitka Themida | Combined |
++======================+================+================+==========+
+| Themida Developer    | 199            | 451            | 650      |
++----------------------+----------------+----------------+----------+
+| Themida Company      | 399            | 451            | 850      |
++----------------------+----------------+----------------+----------+
+| WinLicense Developer | 399            | 451            | 850      |
++----------------------+----------------+----------------+----------+
+| WinLicense Company   | 799            | 451            | 1250     |
++----------------------+----------------+----------------+----------+
 
 .. note::
 
@@ -148,5 +145,5 @@ at a discount.
 
 .. note::
 
-   If you already own a Themida license, you can purchase Nuitka Themida
-   separately as well, but you loose out on the bundling.
+   If you already own a Themida or WinLicense license, you can purchase them
+   from Oreans Themida separately.
