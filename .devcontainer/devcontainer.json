@@ -9,7 +9,7 @@
 	// "features": {},
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/apt-packages:1": {
-			"packages": "python3-dev,python3-pip,bash-completion"
+			"packages": "python3-dev,python3-pip,bash-completion,optipng"
 		},
 		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
 			"command": "python3 -m pip install invoke pipenv"
@@ -25,7 +25,20 @@
 
 	"postStartCommand": "./auto-update.sh",
 	// Configure tool-specific properties.
-	"customizations": {}
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"samuelcolvin.jinjahtml",
+				"jebbs.plantuml",
+				"lextudio.restructuredtext",
+				"aeschli.vscode-css-formatter",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"GitHub.vscode-pull-request-github",
+				"trond-snekvik.simple-rst"
+			]
+		}
+	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"

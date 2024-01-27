@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "ms-python.python",
-        "aeschli.vscode-css-formatter"
+        "aeschli.vscode-css-formatter",
+        "lextudio.restructuredtext"
     ]
 }
