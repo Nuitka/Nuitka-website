@@ -96,9 +96,11 @@ def importNuitka():
     sys.path.insert(
         0, os.path.abspath(os.path.join(os.path.dirname(__file__), "Nuitka-develop"))
     )
-    import nuitka
+    import nuitka.containers.OrderedSets
 
     del sys.path[0]
+
+    return nuitka
 
 
 importNuitka()
@@ -789,7 +791,7 @@ def runPostProcessing():
         "doctools",
         "sphinx_highlight",
         "js/theme",
-        "documentation_options"
+        "documentation_options",
     ]
     js_set_1_contents = (
         "\n".join(

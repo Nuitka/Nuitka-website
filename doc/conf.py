@@ -8,14 +8,20 @@ sys.path.extend([DOC_ROOT.as_posix(), DOC_ROOT.parent.as_posix()])
 # isort:start
 
 # -- General configuration
-import ablog
+import ablog.post
 
 from shared_conf import *
 
 # For autodoc to work we need to import Nuitka
 from update import importNuitka  # isort:skip
 
-importNuitka()
+nuitka = importNuitka()
+
+# Money patch ablog for non-deterministic output of blog tags
+
+def _our_split(a):
+    return nuitka.containers.OrderedSets.OrderedSet(s.strip() for s in (a or "").split(","))
+ablog.post._split = _our_split
 
 
 extensions += [
