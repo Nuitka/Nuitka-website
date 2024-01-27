@@ -6,6 +6,8 @@
         "github.vscode-pull-request-github",
         "jebbs.plantuml",
         "ms-python.vscode-pylance",
-        "shuworks.vscode-table-formatter"
+        "shuworks.vscode-table-formatter",
+        "streetsidesoftware.code-spell-checker",
+        "redhat.vscode-xml"
     ]
 }

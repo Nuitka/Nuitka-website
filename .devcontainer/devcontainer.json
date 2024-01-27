@@ -36,7 +36,9 @@
 				"ms-python.vscode-pylance",
 				"GitHub.vscode-pull-request-github",
 				"trond-snekvik.simple-rst",
-				"shuworks.vscode-table-formatter"
+				"shuworks.vscode-table-formatter",
+				"streetsidesoftware.code-spell-checker",
+				"redhat.vscode-xml"
 			]
 		}
 	}
