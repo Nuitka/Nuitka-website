@@ -5,11 +5,11 @@ from shutil import rmtree
 from invoke import Collection, task
 
 
-@task(name='clean')
+@task(name="clean")
 def _clean(c):
     output = Path(c.sphinx.target)
     if output.exists():
-        print(f'delete {output}')
+        print(f"delete {output}")
         rmtree(output)
 
 
@@ -31,8 +31,8 @@ def build(c, opts=None, language=None, source=None, target=None, nitpick=False):
     source = source or c.sphinx.source
     target = target or c.sphinx.target
     if language:
-        opts = f'-D language={language}'
-        target = f'{target}/{language}'
+        opts = f"-D language={language}"
+        target = f"{target}/{language}"
     if nitpick:
         opts += " -n -W -T"
     cmd = f"pipenv run sphinx-build {opts} {source} {target}"
@@ -40,20 +40,20 @@ def build(c, opts=None, language=None, source=None, target=None, nitpick=False):
 
 
 @task
-def update(c, language='en'):
-    '''Update the POT file and invoke the `sphinx-intl` `update` command
+def update(c, language="en"):
+    """Update the POT file and invoke the `sphinx-intl` `update` command
 
     Only used with `invoke intl.update`
-    '''
+    """
     opts = "-b gettext"
-    target = Path(c.sphinx.target).parent / 'output/gettext'
-    if language == 'en':
+    target = Path(c.sphinx.target).parent / "output/gettext"
+    if language == "en":
         _clean(c)
         build(c, target=target, opts=opts)
     else:
         if not Path(target).exists():
             build(c, target=target, opts=opts)
-        c.run(f'pipenv run sphinx-intl update -p {target} -l {language}')
+        c.run(f"pipenv run sphinx-intl update -p {target} -l {language}")
         # for DIR in ['pages', 'posts', 'shop']:
         #     rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
 

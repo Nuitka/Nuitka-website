@@ -115,6 +115,7 @@ favicons = [
 # -- Options for EPUB output
 epub_show_urls = "footnote"
 
+
 # Enable our own CSS to be used.
 def setup(app):
     app.add_css_file("my_theme.css")
@@ -128,14 +129,14 @@ html_theme_options = {
 
 html_extra_path = [f"{ROOT}/files"]
 
-html_baseurl = 'https://nuitka.net/'
+html_baseurl = "https://nuitka.net/"
 
 sitemap_locales = [None]
 sitemap_url_scheme = "{lang}/{link}"
 
 # TODO: Not sure if I really like that, we should use relative URLs on the inside,
 # so this ought to be wrong anyway.
-extlinks = {'nuitka': ('/%s', None)}
+extlinks = {"nuitka": ("/%s", None)}
 
 html_static_path = [f"{ROOT}/_static"]
 
