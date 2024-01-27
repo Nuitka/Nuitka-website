@@ -128,8 +128,7 @@ html_theme_options = {
 
 html_extra_path = [f"{ROOT}/files"]
 
-# TODO: Make it configurable from the outside, for branch builds
-html_baseurl = 'https://nuitka.net'
+html_baseurl = 'https://nuitka.net/'
 
 sitemap_locales = [None]
 sitemap_url_scheme = "{lang}/{link}"
