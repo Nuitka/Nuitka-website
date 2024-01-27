@@ -6,11 +6,12 @@
  Nuitka Bundles
 ################
 
-Nuitka can be purchased and used together as a bundle with other software.
+Nuitka can be purchased and used together as a bundle with other
+software.
 
-Right now, the offer available is Themida and WinLicense. Both of these are
-Oreans products, for which Nuitka Services as an integrator, i.e. there is a
-Nuitka plugin that allows additional features in Python code.
+Right now, the offer available is Themida and WinLicense. Both of these
+are Oreans products, for which Nuitka Services as an integrator, i.e.
+there is a Nuitka plugin that allows additional features in Python code.
 
 .. note::
 
@@ -128,15 +129,15 @@ with WinLicense, you get to use their C API to check license status at a
 higher price.
 
 +----------------------+----------------+----------------+----------+
-| Product              | Oreans Price    | Nuitka Themida | Combined |
+| Product              | Oreans Price   | Nuitka Themida | Combined |
 +======================+================+================+==========+
-| Themida Developer    | 199            | 451            | 650      |
+| Themida Developer    | 199            | 500            | 699      |
 +----------------------+----------------+----------------+----------+
-| Themida Company      | 399            | 451            | 850      |
+| Themida Company      | 399            | 500            | 899      |
 +----------------------+----------------+----------------+----------+
-| WinLicense Developer | 399            | 451            | 850      |
+| WinLicense Developer | 399            | 500            | 899      |
 +----------------------+----------------+----------------+----------+
-| WinLicense Company   | 799            | 451            | 1250     |
+| WinLicense Company   | 799            | 500            | 1299     |
 +----------------------+----------------+----------------+----------+
 
 .. note::
@@ -145,5 +146,5 @@ higher price.
 
 .. note::
 
-   If you already own a Themida or WinLicense license, you can purchase them
-   from Oreans Themida separately.
+   If you already own a Themida or WinLicense license, you can purchase
+   them from Oreans Themida separately.
