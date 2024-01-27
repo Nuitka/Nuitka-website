@@ -769,6 +769,7 @@ def _getTranslationFileSet(filename):
     filename_translations = {
         os.path.join("output", translation, filename_translation)
         for translation in _translations
+        if os.path.exists(os.path.join("output", translation, filename_translation))
     }
 
     filename_translations.add(os.path.join("output", filename_translation))
@@ -929,8 +930,10 @@ jQuery(function () {
 
         file_language, translated_filenames = _getTranslationFileSet(filename)
 
+
         if len(translated_filenames) == 1:
-            assert False, doc.xpath('//footer/details["sd-dropdown"]')
+            for node in doc.xpath('//footer//details["sd-dropdown"]'):
+                node.getparent().remove(node)
         else:
             # assert False, (translated_files, filename)
             doc.xpath('//footer//details["sd-dropdown"]/summary')[
