@@ -41,6 +41,9 @@
 				"redhat.vscode-xml"
 			]
 		}
+	},
+	"containerEnv": {
+		"PIPENV_VERBOSITY": "-1"
 	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
