@@ -72,4 +72,5 @@
     ],
     "esbonio.server.enabled": true,
     "esbonio.sphinx.confDir": "",
+    "editor.wordWrap": "bounded",
 }
