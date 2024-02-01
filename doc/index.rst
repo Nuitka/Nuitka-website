@@ -21,9 +21,9 @@ Nuitka is the optimizing Python compiler written in Python that creates
 executables that run without an need for a separate installer. Data
 files can both be included or put alongside.
 
-It is easy to use and just works. It is fully compatible with Python2
-(2.6, 2.7) and Python3 (3.4 - 3.11), works on Windows, macOS, Linux and
-more, basically where Python works for you already.
+It is easy to use and just works. It is fully compatible with
+|SUPPORTED_PYTHONS|, works on Windows, macOS, Linux and more, basically where
+Python works for you already.
 
 Nuitka Standard
 ===============
@@ -101,3 +101,5 @@ Additionally, you can purchase priority support.
 
 .. toctree::
    :hidden:
+
+.. include:: variables.inc
