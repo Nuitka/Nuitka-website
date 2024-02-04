@@ -22,14 +22,14 @@ This is the Nuitka roadmap, broken down by features.
    of the documentation, much like User Manual and Developer Manual,
    that are being maintained inside Nuitka repo.
 
-   The standard Yaml files (if modified) should be checked at runtime of Nuitka,
-   for that we need to add some kind of checksum to it to detect modification
-   and issue a warning, if ``jsonschema`` is not available for modification.
-   Vendoring it seems unnecessarily much effort, and it's in
-   ``requirements-devel.txt`` anyway.
+   The standard Yaml files (if modified) should be checked at runtime of
+   Nuitka, for that we need to add some kind of checksum to it to detect
+   modification and issue a warning, if ``jsonschema`` is not available
+   for modification. Vendoring it seems unnecessarily much effort, and
+   it's in ``requirements-devel.txt`` anyway.
 
-   Currently the checksums are added in the commit hook, but they are not
-   checked at runtime. We might want to limit checking to only used
+   Currently the checksums are added in the commit hook, but they are
+   not checked at runtime. We might want to limit checking to only used
    configuration entries.
 
 ************************

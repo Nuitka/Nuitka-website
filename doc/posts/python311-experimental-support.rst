@@ -9,8 +9,8 @@
 In my `all in with Nuitka </posts/all-in-with-nuitka.html>`__ post and
 my first post `Python 3.11 and Nuitka </posts/python311-support.html>`__
 and then progress post `Python 3.11 and Nuitka Progress
-</posts/python311-progress.html>`__ , I promised to give you more updates
-on Python 3.11 and in general.
+</posts/python311-progress.html>`__ , I promised to give you more
+updates on Python 3.11 and in general.
 
 So this is where 3.11 is at, and the TLDR is, experimental support has
 arrives with Nuitka 1.5 release, follow develop branch for best support,

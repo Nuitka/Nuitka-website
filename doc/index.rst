@@ -22,8 +22,8 @@ executables that run without an need for a separate installer. Data
 files can both be included or put alongside.
 
 It is easy to use and just works. It is fully compatible with
-|SUPPORTED_PYTHONS|, works on Windows, macOS, Linux and more, basically where
-Python works for you already.
+|SUPPORTED_PYTHONS|, works on Windows, macOS, Linux and more, basically
+where Python works for you already.
 
 Nuitka Standard
 ===============
