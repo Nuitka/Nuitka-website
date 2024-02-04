@@ -2,14 +2,36 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
+    "presentation": {
+        "panel": "shared",
+    },
     "tasks": [
         {
-            "label": "auto-format",
+            "label": "auto-format documents and code",
             "type": "shell",
             "command": "./auto-format *.py doc/*.rst doc/*/*.rst",
             "options": {
-                "cwd": "${workspaceFolder}/client"
-            }
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "auto-format JPEG images",
+            "type": "shell",
+            "command": "./auto-format images/*.jpg doc/posts/images/*.jpg",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "auto-format PNG images",
+            "type": "shell",
+            "command": "./auto-format images/*.png doc/posts/images/*.png",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
         },
     ],
     "typescript.tsc.autoDetect": "off",
