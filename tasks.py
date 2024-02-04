@@ -18,6 +18,10 @@ def virtualenv(c):
     c.run(f"{sys.executable} -m pip install -U pipenv")
     c.run(f"{sys.executable} -m pipenv install --dev")
 
+    # Workaround pipenv failing to pin black version due to it being pre-release
+    # always.
+    c.run(f"{sys.executable} -m pipenv run python -m pip install black==23.12.1")
+
 
 @task
 def run(c, target="build-site"):

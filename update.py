@@ -930,7 +930,6 @@ jQuery(function () {
 
         file_language, translated_filenames = _getTranslationFileSet(filename)
 
-
         if len(translated_filenames) == 1:
             for node in doc.xpath('//footer//details["sd-dropdown"]'):
                 node.getparent().remove(node)
