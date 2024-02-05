@@ -1,8 +1,78 @@
 
 
 ###########################
- Nuitka Release 2.0 (Draft)
+ Nuitka Release 2.1 (Draft)
 ###########################
+
+Bug Fixes
+=========
+
+-  Windows: Using older MSVC before 14.3 was not working anymore. Fixed
+   in 2.0.1 already.
+
+-  Compatibility: The ``dill-compat`` plugin didn't work for functions
+   with closure variables taken. Fixed in 2.0.1 already.
+
+   .. code:: python
+
+      def get_local_closure(b):
+        def _local_multiply(x, y):
+          return x * y + b
+        return _local_multiply
+
+      fn = get_local_closure(1)
+      fn2 = dill.loads(dill.dumps(fn))
+      print(fn2(2, 3))
+
+-  Windows: Fix, sometimes ``kernel32.dll`` is actually reported as a
+   dependency, remove assertion against that. Fixed in 2.0.1 already.
+
+-  UI: The help output for ``--output-filename`` was not formatted
+   properly. Fixed in 2.0.1 already.
+
+New Features
+============
+
+-  Plugins: Added support for ``constants`` in Nuitka package
+   configurations. We can now using ``when`` clauses, define variable
+   values to be defined, e.g. to specify the DLL suffix, or the DLL
+   path, based on platform dependent properties.
+
+-  Plugins: Make ``relative_path``, ``suffix``, ``prefix`` in DLL Nuitka
+   package configurations allowed to be an expression rather than just a
+   constant value.
+
+Optimization
+============
+
+-  Scalability: The code trying avoid merge traces of merge traces, and
+   to instead flatten merge traces was only handling part of these
+   correctly, and correcting it reduced optimization time for some
+   functions from infinite to instant. Less memory usage should also
+   come out of this, even where this was not affecting compile time as
+   much. Added in 2.0.1 already.
+
+Organisational
+==============
+
+-  Quality: Added auto-format of PNG and JPEG images. This aims at
+   making it simpler to add images to our repositories, esp. Nuitka
+   Website. This now makes ``optipng`` and ``jpegoptim`` calls as
+   necessary. Previously this was manual steps for the website to be
+   applied.
+
+-  Release: Remove month from manpage generation, that's only noise in
+   diffs.
+
+Summary
+=======
+
+This release is not done yet.
+
+
+###################
+ Nuitka Release 2.0
+###################
 
 This release had focus on new features and new optimization. There is a
 really large amount of compatibility with things newly added, but also
@@ -1169,12 +1239,17 @@ For Python 3.12 work has begun, but there is more to do for it. At this
 time it's not clear how long it takes to add it. Stay tuned.
 
 
-###################
- Nuitka Release 1.8
-###################
+##############
+Older Releases
+##############
+
+These are older releases of Nuitka.
+
+Nuitka Release 1.8
+==================
 
 Bug Fixes
-=========
+---------
 
 -  Standalone: Added support for ``opentelemetry`` package. Added in
    1.7.1 already.
@@ -1401,7 +1476,7 @@ Bug Fixes
 -  Added support for newer ``PyOpenGL`` package.
 
 New Features
-============
+------------
 
 -  Plugins: Added support to specify embedding of metadata for given
    packages via the package configuration. With this, entry points,
@@ -1481,7 +1556,7 @@ New Features
    as ``CCFLAGS`` it seems.
 
 Optimization
-============
+------------
 
 -  Added type shape for built-in hash operation, these must indeed be of
    ``int`` type either way.
@@ -1584,7 +1659,7 @@ Optimization
    it's only useful if one of our Qt plugins is active.
 
 Organisational
-==============
+--------------
 
 -  User Manual: Make it clear in the example that renaming created
    extension modules to change their name does not work, such that the
@@ -1680,7 +1755,7 @@ Organisational
    project.
 
 Cleanups
-========
+--------
 
 -  Major Cleanup, do not treat technical modules special anymore
 
@@ -1732,7 +1807,7 @@ Cleanups
 -  Avoid potential slur word from one of the tests.
 
 Tests
-=====
+-----
 
 -  Sometimes the pickle from cached CPython executions cannot be read
    due to protocol version differences, then of course it's also not
@@ -1744,7 +1819,7 @@ Tests
    use that.
 
 Summary
-=======
+-------
 
 This is massive in terms of new features supported. The deployment mode
 being added, provides us with a framework to make new user experience
@@ -1756,12 +1831,6 @@ for reliability of Nuitka. We now really only have to deal with actual
 hidden dependencies in stdlib, and not just ones caused by us trying to
 exclude parts of it and missing internal dependencies.
 
-
-##############
-Older Releases
-##############
-
-These are older releases of Nuitka.
 
 Nuitka Release 1.7
 ==================

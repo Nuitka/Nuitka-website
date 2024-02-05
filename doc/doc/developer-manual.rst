@@ -69,8 +69,8 @@ well as private conversations or issue tracker.
 *****************
 
 For Nuitka we use semantic versioning, initially with a leading zero
-still, once we pass release ``0.9``, the scheme will indicate the ``10``
-through using ``1.0``.
+still, once we pass release ``1.9``, the scheme will indicate the ``10``
+through using ``2.0``.
 
 ***************
  Current State
@@ -933,10 +933,6 @@ the commands are also replicated here:
    convert -background none doc/Logo/Nuitka-Logo-Symbol.svg doc/images/Nuitka-Logo-Symbol.png
    convert -background none doc/Logo/Nuitka-Logo-Vertical.svg doc/images/Nuitka-Logo-Vertical.png
    convert -background none doc/Logo/Nuitka-Logo-Horizontal.svg doc/images/Nuitka-Logo-Horizontal.png
-
-   optipng -o2 doc/images/Nuitka-Logo-Symbol.png
-   optipng -o2 doc/images/Nuitka-Logo-Vertical.png
-   optipng -o2 doc/images/Nuitka-Logo-Horizontal.png
 
 Choice of the Target Language
 =============================
