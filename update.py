@@ -47,30 +47,6 @@ def _updateCheckout(branch, update):
             archive.extractall(".")
 
         os.unlink("nuitka.zip.tmp")
-
-        for filename in (
-            "README.rst",
-            "Developer_Manual.rst",
-        ):
-            filename = os.path.join(f"Nuitka-{branch}", filename)
-
-            with open(filename, "rb") as patched_file:
-                old_contents = new_contents = patched_file.read()
-
-            if filename.endswith(".rst"):
-                # Sphinx has its own TOC method.
-                new_contents = new_contents.replace(b".. contents::\n", b"")
-
-                # Logo inside doc removed.
-                new_contents = new_contents.replace(
-                    b"\n.. image:: doc/images/Nuitka-Logo-Symbol.png\n", b"\n"
-                )
-                new_contents = new_contents.replace(b"\n   :alt: Nuitka Logo", b"\n")
-
-            if old_contents != new_contents:
-                with open(filename, "wb") as out_file:
-                    out_file.write(new_contents)
-
     finally:
         os.chdir(old_cwd)
 
@@ -697,59 +673,9 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
                 output_file.write("".join(lines))
 
 
-def updateImportedPages():
-    # Make sure changelog is there.
-    updateNuitkaMain(update=True)
-    updateNuitkaDevelop(update=True)
-
-    with withFileOpenedAndAutoFormatted("doc/doc/Credits.rst") as credits_output:
-        credits_output.write(
-            """\
-.. meta::
-   :description: Why is Nuitka named like this, and who do we thank for it.
-   :keywords: python,scons,black,buildbot,isort,NeuroDebian,mingw64,valgrind
-
-"""
-        )
-
-        credits_output.write(getFileContents("Nuitka-develop/Credits.rst"))
-
-    with withFileOpenedAndAutoFormatted(
-        "doc/doc/user-manual.rst"
-    ) as user_manual_output:
-        # We can plug meta changes for website here, this could be better.
-        user_manual_output.write(
-            """\
-.. meta::
-   :description: User Manual of Nuitka with the details on how to use it
-   :keywords: python,compiler,nuitka,manual
-
-"""
-        )
-
-        user_manual_output.write(getFileContents("Nuitka-develop/README.rst"))
-
-    with withFileOpenedAndAutoFormatted(
-        "doc/doc/developer-manual.rst"
-    ) as developer_manual_output:
-        # We can plug meta changes for website here, this could be better.
-        developer_manual_output.write(
-            """\
-.. meta::
-   :description: Developer Manual of Nuitka with instructions geared to changing it
-   :keywords: python,compiler,nuitka,developer
-
-"""
-        )
-
-        developer_manual_output.write(
-            getFileContents("Nuitka-develop/Developer_Manual.rst")
-        )
-
 
 def updateDocs():
     updateReleasePosts()
-    updateImportedPages()
 
 
 _translations = ("zh_CN/", "de_DE/")
