@@ -12,14 +12,14 @@
 Welcome to the **Nuitka Contribution Manual**! Your input is highly valued, and your efforts can enhance the overall quality of our documentation. Please follow the guidelines below for a smooth contribution process.
 
 *******
- Dev Container Usage
+ Dev Container Usage (Recommended Way)
 *******
 
 Learn how to efficiently contribute to the **Nuitka** website using **Visual Studio Code** and **Dev containers**. You will be amazed at how easy it actually is to contribute changes in this way. There is a manual way for advanced users described below in the **Manual way** section.
 
 
 Before You Start
-=========
+================
 
 #. Download and install **Docker** using the `Docker website <https://www.docker.com/products/docker-desktop/>`_.
 
@@ -35,12 +35,40 @@ Before You Start
 #. Download and install **Visual Studio Code**. Go to the `Visual Studio Code website <https://code.visualstudio.com/>`_, and then select the **Download** button, which is universal for all the operating systems.
 
 Getting Started
-=========
+===============
+
+#. Open **Visual Studio Code**, and then, open terminal by selecting **Ctrl** + **`** on Windows or **Cmd** + **`** on Mac.
+
+#. On the terminal, enter the following commands:
+
+   .. code:: bash
+
+        git config --global user.name "Your Name"
+        git config --global user.email "your.email@example.com"
+
+   .. note::
+
+         Replace **Your Name** with your actual name and **your.email@example.com** with your email address.
+
+#. Go to `Nuitka GitHub <https://github.com/Nuitka/Nuitka-website.git>`_, and then, in the upper-right corner, select **Fork**.
+
+    .. image:: ../../images/select-fork-0.2.png
+       :alt: The screenshot of the GitHub page with the Fork button highlighted.
+       :width: 600px
+
+#. Submit all the messages about creating a fork.
+
+#. When you created the fork, go to your GitHub account and select your forked repository that called **Your-name/Nuitka-website**.
+
+#. Select **Code** (1), and then copy the **web URL** (2).
+    .. image:: ../../images/select-code-and-copy.png
+       :alt: The screenshot of the GitHub page with the Code button highlighted.
+       :width: 600px
 
 #. Open **Visual Studio Code**, and then, on the **Welcome** page, select **Clone Git Repository**.
 
-    .. image:: ../../images/select-clone-git-repo.png
-       :alt: The screenshot of the GitHub Welcome page with the Clone Git Repository feature highlighted
+    .. image:: ../../images/select-clone-git-repo-0.2.png
+       :alt: The screenshot of the Visual Studio Code Welcome page with the Clone Git Repository feature highlighted.
        :width: 600px
 
 
@@ -48,29 +76,22 @@ Getting Started
 
       Cloning is a term used in version control, meaning you create a
       local copy of a central repository and git is a tool used for it.
-      Do not worry much about those things, Visual Code hides it away
+      Do not worry much about those things, Visual Studio Code hides it away
       from you largely.
 
-#. In the **Provide repository url** box (1), paste the following link: ``https://github.com/Nuitka/Nuitka-website.git``, and then select **Clone from URL** (2).
+#. In the **Provide repository url** box (1), paste the link you pasted in the **step 6**, and then select **Clone from URL** (2).
 
-.. image:: ../../images/paste-the-link-to-clone-repo.png
-   :alt: The screenshot of the GitHub Welcome page with the Clone Git Repository feature highlighted
-   :width: 800px
+    .. image:: ../../images/paste-the-link-to-clone-repo-0.3.png
+       :alt: The screenshot of the Visual Studio Code Welcome page with the link pasted.
+       :width: 600px
 
-#. Then, you will see the description of the repo, and you confirm a target folder, where you create a folder names "Nuitka-website.git", it then asks if you want to open it, and yeah, you want to do that. It will also ask if you trust the authors, and you can accept that. It then will be able to do more convenience things for you.
+#. Confirm a target folder, and create a folder inside of it, named **Nuitka-website.git**.
+#. In the **Would you like to open the cloned repository** window, select **Open**.
+#. It the **Do you trust the authors** window, select **Yes, I trust the authors**.
+#. Once you do that, you will see the **Folder contains a Dev Container configuration file** window. Select **Reopen in Container**.
 
-   Once you do that, it prompts you "Folder Contains a Dev Container
-   configuration file" and suggests to re-open. This is on a timeout,
-   after a minute, this goes away. Say yes, or re-open the project in
-   Visual Code.
-
-
-#. Container start
-
-   When starting, what it will do is to download a small container image
-   of Ubuntu, which is a popular Linux from Microsoft server and run a
-   few commands to customize the image, and become able to build and
-   render the pages of the web site.
+   The Dev Container will start and download a small container image
+   of Ubuntu, which is a popular Linux from Microsoft server. Then, it will run a few commands to customize the image, and build and render the pages of the web site.
 
    .. note::
 
@@ -78,13 +99,14 @@ Getting Started
       anything different at all. The container image is automated and
       Visual Code will deal with git for you.
 
-   After some time, it will prompt you to open a localhost (your
-   machine) 8080 port browser window in your standard browser, and you
-   can use it to navigate the website. Everything but the shop parts
-   will work, since these are not included in the repo, and secret
+   After some time, it will prompt you to open a localhost in your standard browser, and you can use it to navigate the website. Everything but the shop parts will work, since these are not included in the repo, and secret
    (using private keys).
 
-#. Making your change.
+
+Make and Save Your Changes
+===========================
+
+#. **Make your change**
 
    Once you edit a page, e.g. ``doc/index.rst`` what happens is that a
    launches a rebuild of the website each time you modify. If you happen
@@ -97,7 +119,7 @@ Getting Started
    moment, and is fully fresh again. For normal page edits of the
    restructured text, no such issue exists.
 
-#. Staging your change
+#. **Stage your change**
 
    In the Visual Code there is a section "Source Control" where you may
    already know your way, but it will display the list of changes you
@@ -106,27 +128,31 @@ Getting Started
    windows. The staged parts then can be added with a message. You see
    that there is an indication in your bottom bar, if you have those.
 
-#. Create a Pull Request.
+#. **Create a Pull Request**
 
    By selecting the command GitHug Pull Requests: Create Pull Request,
    visual code will guide you through the process of making a PR out of
    your pull request.
 
-#. Communicate about your pull request. You will be informed of a URL,
+#. **Communicate about your pull request**
+
+   You will be informed of a URL,
    and it will be e.g. like this: TBD and once your change has been
    reviewed, you might get asked to make some changes to it, where you
    open the project and just make them. And update the pull request, or
    you get informed about the merge of it.
 
-#. Success.
+#. **Success**
 
    None of this is strictly difficult. You almost have a bit of "what
    you see is what you get" editing, but the website is text driven on
    purpose, such that collaboration on it is very easy, and that we can
    change to underlying tools easily.
 
-Manual way
-======
+
+*******
+ Dev Container Usage (Manual Way)
+*******
 
 This is used to build the Nuitka web site. Enhancements of all kinds are
 welcome. You will need python 3.10 and ``pipenv`` to build it.
