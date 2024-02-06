@@ -87,6 +87,14 @@ The order is sorted by time.
    retain its accelerating libraries, and Tkinter to include the TCL
    distribution on Windows.
 
+-  Ben Fässler (alias "Fire Cube"): Lots of work on Nuitka Package
+   configuration yaml configuration and mass migration of older Python
+   plugin code to it, introducing the YAML schema for Nuitka Package
+   configuration. Also added a well needed formatter that retains
+   comments. Introduced the options-nanny plugin, and last but not
+   least, helped with the website design, in particular polishing the
+   CSS for the subscribe buttons to look very good.
+
 *************************
  Projects used by Nuitka
 *************************

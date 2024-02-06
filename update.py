@@ -673,7 +673,6 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
                 output_file.write("".join(lines))
 
 
-
 def updateDocs():
     updateReleasePosts()
 
