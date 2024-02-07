@@ -88,14 +88,15 @@ Additionally, you can purchase priority support.
 
    doc/Credits
    pages/impressum
+   pages/pyside2
+   pages/pyqt5
 
 .. toctree::
    :hidden:
    :caption: Under construction
 
    pages/search
-   pages/pyside2
-   pages/pyqt5
+   pages/website-manual
    pages/donations
    pages/gsoc2019
 
