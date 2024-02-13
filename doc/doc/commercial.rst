@@ -35,7 +35,7 @@ contains plugins to Nuitka that will achieve the following:
       Compiling with Nuitka gives you protection of the code, but with the
       data being easily readable, it will be less effective.
 
-      `Read more.... <commercial/protect-constants-data.html>`__
+      :doc:`Read more.... <commercial/protect-constants-data>`
 
    .. grid-item-card::  Contained Data Files
       :class-item: nuitka-grid-security
@@ -51,7 +51,7 @@ contains plugins to Nuitka that will achieve the following:
       constants. Without these files accessible, the attacker will not
       have these an an attack vector.
 
-      `Read more.... <commercial/protect-data-files.html>`__
+      :doc:`Read more.... <commercial/protect-data-files>`
 
 
    .. grid-item-card:: Encrypted Tracebacks
@@ -88,7 +88,7 @@ contains plugins to Nuitka that will achieve the following:
 
       For select few packages, these are only supported with Nuitka commercial.
 
-      `Read more.... <commercial/commercial-only-packages.html>`__
+      :doc:`Read more.... <commercial/commercial-only-packages>`
 
 *******************************************
  Special needs (Commercial only use cases)
@@ -102,7 +102,7 @@ will have and that are effort to maintain.
    For this, there is a dedicated plugin in Nuitka that makes deployment
    of a practically unchanged program as a service very easy.
 
-   `Read more.... <commercial/windows-service.html>`__
+   :doc:`Read more.... <commercial/windows-service>`
 
 -  You might need to support special commercial grade software.
 
@@ -235,8 +235,8 @@ highest priority.
 *************
 
 When you buy Nuitka commercial, parts of the, mostly the plugins that
-implement the commercial only features are under a `license
-<commercial-license>`__ that forbids you to distribute the Nuitka
+implement the commercial only features are under a :doc:`license
+<commercial-license>` that forbids you to distribute the Nuitka
 commercial source code. That should be obvious, but otherwise it does
 not limit your use of Nuitka at all.
 
