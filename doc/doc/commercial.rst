@@ -63,7 +63,7 @@ contains plugins to Nuitka that will achieve the following:
       actually tell, why your software is crashing.
 
       Python tracebacks are good for this, but you cannot want them to be
-      readable to the user. This is very traceback encryption comes in.
+      readable to the user. This is where traceback encryption comes in.
       Nuitka with the commercial plugin will make sure to encrypt all
       traceback outputs. They still carry the information as you want, but
       *only you* will be able to decode them.
