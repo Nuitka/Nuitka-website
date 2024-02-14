@@ -33,9 +33,10 @@
 }
 
 .nuitka-grid-offer .sd-card {
-    display: flex;
     color: white;
     margin-bottom: 15px;
+    overflow-wrap: normal;
+    min-width: 20ch;
 }
 
 .nuitka-buy .sd-card-text:last-child {
