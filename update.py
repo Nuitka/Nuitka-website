@@ -712,12 +712,12 @@ def runPostProcessing():
     search_html_filename = "output/search.html"
 
     js_set_1 = [
+        "documentation_options",
         "jquery",
         "_sphinx_javascript_frameworks_compat",
         "doctools",
         "sphinx_highlight",
         "js/theme",
-        "documentation_options",
     ]
     js_set_1_contents = (
         "\n".join(
