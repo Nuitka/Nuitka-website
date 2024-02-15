@@ -1,22 +1,36 @@
-################
- Nuitka Website
-################
+#############################
+ Website Contribution Manual
+#############################
 
-.. image:: ../../images/nuitka-website-logo.png
-   :alt: Nuitka Logo
-
-**************
- Introduction
-**************
-
-Welcome to the **Nuitka Contribution Manual**! Your input is highly
+Welcome to the **Website Contribution Manual**! Your input is highly
 valued, and your efforts can enhance the overall quality of our
 documentation. Please follow the guidelines below for a smooth
 contribution process.
 
-***************************************
- Dev Container Usage (Recommended Way)
-***************************************
+----
+
+.. contents:: Table of Contents
+   :depth: 2
+
+----
+
+############################
+ Set Up Project Environment
+############################
+
+Setting up the project environment means configuring a working setup on
+your computer so you can edit the Nuitka website. To do so, use one of
+the following ways:
+
+-  :ref:`Recommended Way`
+
+-  :ref:`Manual Way`
+
+.. _recommended way:
+
+*****************
+ Recommended Way
+*****************
 
 Learn how to efficiently contribute to the **Nuitka** website using
 **Visual Studio Code** and **Dev containers**. You will be amazed at how
@@ -132,7 +146,7 @@ Getting Started
 
       Do not worry, that this is Linux, you won't have to notice or do
       anything different at all. The container image is automated and
-      Visual Code will deal with git for you.
+      **Visual Studio Code** will deal with git for you.
 
    After some time, it will prompt you to open a localhost in your
    standard browser, and you can use it to navigate the website.
@@ -144,52 +158,61 @@ Make and Save Your Changes
 
 #. **Make your change**
 
-   Once you edit a page, e.g. ``doc/index.rst`` what happens is that a
-   launches a rebuild of the website each time you modify. If you happen
-   to have a browser open with that page, once it completes it will
-   reload.
+   Pick the page you want to edit, for example, ``doc/index.rst``,
+   select **Ctrl** + **S** (or **Cmd** + **S** for Mac) to save changes
+   and rebuild the website. When the rebuild is over, you can preview
+   your changes in your local copy of the website in your browser. You
+   can find the link for the local copy of the Nuitka website in the
+   **Terminal** tab.
 
-   Some kinds of changes, e.g. to the CSS theme, or if you change what
-   JavaScript is included, may require a relaunch. You then use the
-   command "Dev Container: Rebuild container" and then it takes a short
-   moment, and is fully fresh again. For normal page edits of the
-   restructured text, no such issue exists.
+   Some kinds of changes, such as changes to the CSS theme, or
+   JavaScript may require a relaunch. Then use the **Dev Container:
+   Rebuild container** command. It will take a short moment to fully
+   refresh the project and implement your changes. For usual edits of
+   **.rst** pages, you don't need to relaunch or rebuild the container.
 
-#. **Stage your change**
+#. **Stage and Commit Your Change**
 
-   In the Visual Code there is a section "Source Control" where you may
-   already know your way, but it will display the list of changes you
-   made. What you do here, is to create commits. You add changes, and
-   can look at the difference, by clicking them, which opens new
-   windows. The staged parts then can be added with a message. You see
-   that there is an indication in your bottom bar, if you have those.
+   When you're ready to suggest your changes to the original **Nuitka
+   website**, you need to stage your changes. In the **Visual Studio
+   Code**, find the **Source Control** tab, where you will see the list
+   of changes you made. Select **+** next to each change you want to
+   stage. Then, in the **Message** box, enter the description to the
+   changes you staged. Then, select the **Commit** button. For more
+   details, refer to the `Commit guidelines
+   <https://code.visualstudio.com/docs/sourcecontrol/overview#_commit>`_.
+
+#. **Push Your Changes**
+
+   In the **Source Control** tab, select |three-dots|, and then select
+   **Push**.
+
+      .. |three-dots| image:: ../../images/select-three-dots.png
+         :alt: The screenshot of the three dots button.
+         :width: 30px
 
 #. **Create a Pull Request**
 
-   By selecting the command GitHug Pull Requests: Create Pull Request,
-   visual code will guide you through the process of making a PR out of
-   your pull request.
+   By selecting the command **GitHub Pull Requests: Create Pull
+   Request**, Visual Studio Code will guide you through the process of
+   making a PR out of your pull request.
 
-#. **Communicate about your pull request**
+#. **Communicate About Your Pull Request**
 
-   You will be informed of a URL, and it will be e.g. like this: TBD and
-   once your change has been reviewed, you might get asked to make some
-   changes to it, where you open the project and just make them. And
-   update the pull request, or you get informed about the merge of it.
+   Once your pull request is submitted, you'll receive a URL for
+   tracking its progress. If any changes are requested during the review
+   process, you'll be notified and can simply make the necessary updates
+   directly within the project. After making the changes, you'll either
+   update the pull request or be informed when it's merged.
 
-#. **Success**
+.. _manual way:
 
-   None of this is strictly difficult. You almost have a bit of "what
-   you see is what you get" editing, but the website is text driven on
-   purpose, such that collaboration on it is very easy, and that we can
-   change to underlying tools easily.
+************
+ Manual Way
+************
 
-**********************************
- Dev Container Usage (Manual Way)
-**********************************
-
-This is used to build the Nuitka web site. Enhancements of all kinds are
-welcome. You will need python 3.10 and ``pipenv`` to build it.
+This is used to build the Nuitka website. Enhancements of all kinds are
+welcome. You will need Python 3.10 and ``pipenv`` to build it.
 
 .. code:: bash
 
@@ -220,235 +243,70 @@ welcome. You will need python 3.10 and ``pipenv`` to build it.
    # Browse it (Windows)
    explorer http://localhost:8080
 
-*****************
- Usage of Sphinx
-*****************
+#############
+ How We Work
+#############
 
-So the site is basically mostly an automation of importing a few files
-from the Nuitka git repository, splitting up e.g. the ``Changelog.rst``
-into pages, with otherwise using Sphinx to render it. Reference the
-Sphinx documentation and esp. the one for Read the Docs theme and ABlog.
+In this section, we provide insights into our workflow and the tools we
+use to streamline our collaboration on the **Nuitka website**.
+
+********
+ Sphinx
+********
+
+The **Nuitka website** is powered by **Sphinx** — a documentation
+generation tool widely used in the software development community. We
+use **Sphinx** to automate the import of files from the Nuitka git
+repository and render them into user-friendly pages, as the one you are
+looking at. To get more details about Sphinx, see `Sphinx documentation
+<https://www.sphinx-doc.org/en/master/index.html>`__.
 
 **************************
- Restructured Text (REST)
+ reStructured Text (reST)
 **************************
 
-Restructured text is a format very similar to Markdown, which some of
-you may already know, but with more features. You can check out the
-syntax here.
-
-https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+**Sphinx** uses **reStructured text (reST)** as its markup language,
+which is similar to **Markdown** but more powerful. You will need
+**reST** to edit pages of the website. Check out the syntax in the
+`Sphinx documentation
+<https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__.
 
 **************
  Sphinx Theme
 **************
 
-We are using the customization of "read the docs" things theme. We use
-this
-
-https://sphinx-rtd-theme.readthedocs.io/en/stable/configuring.html
-
-The current configuration is in ``shared_conf.py`` and relatively empty,
-we might want to explore and document our choices for some of these
+We are using the customization of the `Read the Docs Sphinx Theme
+<https://sphinx-rtd-theme.readthedocs.io/en/stable/index.html>`_. The
+current configuration is in ``shared_conf.py`` file is pretty basic. We
+might want to explore and document our choices for some of these
 options.
 
-*****************
- Blog with ABlog
-*****************
+*************************
+ Sphinx Extension: Grids
+*************************
 
-We are using a sphinx extension called ABlog that can create the RSS
-feeds and pages of the Nuitka blog.
+We use `Grids
+<https://sphinx-design.readthedocs.io/en/latest/grids.html>`_, a
+component of the **Sphinx Design** extension, to build the layout of our
+website pages.
 
-https://ablog.readthedocs.io/en/stable/manual/ablog-configuration-options.html
+*************************
+ Sphinx Extension: ABlog
+*************************
 
-*************
- New posting
-*************
-
-Create the ``*.rst`` file similar to e.g. ``doc/letting-go-of-c11.rst``
-and then execute this
-
-*************
- Translation
-*************
-
-Translations of the Nuitka website are very welcome. We have a team for
-those want to work on it, with push rights to the repository. Right now
-a ``translation`` branch is used, but the plan is for it to be merged,
-and to provide the infrastructure in the ``main`` branch.
-
-Here is a table of the files to translate and their styles. Everything
-that is not mentioned here, should be asked about if in doubt. Not all
-pages make sense to translate.
-
-.. important::
-
-   Before translating, I would love you to also actually review the
-   content, if you agree it makes sense, if it can be better structured.
-   This is very much needed unfortunately.
-
-.. note::
-
-   There are plans to get rid of ``pages`` and ``doc`` sub-folders of
-   the site folder ``doc``. For URLs, these are plain bad, and would
-   e.g. be much better as ``python-compiler`` and the like. A plan will
-   be devised and put into place, but it will just move and renamed
-   pages.
-
-Directory ``posts/``
-====================
-
-At this time, the blog posts, esp. old ones should not be translated. I
-believe often new content will be created in post form, and then moved
-over to pages for translation. A current example are tutorial style
-pages including screenshots, which depending on how the e.g. Python
-installer look in your language, Explorer and shell prompt, even
-screenshots might have to be translated. This will come only later
-though.
-
-Page ``pages/donations.rst``
-============================
-
-Yes, please go ahead. Let me know if there is any need to hint Paypal,
-or when Paypal is not available in your country, what alternative ways
-we could use.
-
-Page ``pages/overview.rst``
-===========================
-
-Please hold off from this one. It currently is just a duplicate of
-content that is just the same in ``index.rst`` and not linked anywhere,
-so please ignore it for now.
-
-There is a plan to have a "feel good" cross road entry page, that will
-lead to the kind of page, that the home page is right now.
-
-Page ``pages/pyside2.rst``
-==========================
-
-Very important kind of page, of which I want to have more. Nuitka links
-itself to this from the plugin, and it's a landing page to inform users
-about troubles that can be expected. We want to have some boilerplate
-for this, and a general way of adding these. These user hint pages are
-where I think we ought to help the users from real Nuitka to find the
-information, and even localized for their needs.
-
-Page ``pages/support.rst``
-==========================
-
-This one is not mentioning the Discord server yet, I will add that soon
-though. Very important page that should be linked to from many places.
-
-Page ``pages/gsoc2019.rst``
-===========================
-
-This is historical information, translation makes no sense, not sure
-what to do with it. But if Nuitka were to do it again, we would
-translate it ideally for the next time.
-
-Page ``pages/impressum.rst``
-============================
-
-This one is required by law in my country, translators might want to add
-their information here. I cannot take responsibility for the content of
-translations, as I cannot verify it in many cases.
-
-Page ``pages/Presentations.rst``
-================================
-
-This one probably should get more love content wise. It's under
-construction. I want to go over the blog and link all information from
-there. But if you are aware of material in your language, please go
-ahead and add it.
-
-Page ``Streaming.rst``
-======================
-
-Since this about an English offer, not sure it makes sense, I will also
-update it in near future somewhat, but making clear it's going to be an
-English content, I think it ought to be translated on a basic level at
-the beginning of the page, and then have untranslated content?
-
-Page ``doc/api-doc.rst``
-========================
-
-Translation makes no sense and cannot be done currently anyway. The API
-doc is going to be generated with Spinx, Doxygen docs are without love.
-
-Page ``doc/commercial.rst`` and folder ``commercial``
-=====================================================
-
-Translation is very welcome. There will be more content added over time.
-For payment options, please check out if they work for your country and
-if not, help me find alternatives. I was e.g. rejected for AliPay in
-China, but maybe other things can work. And Russia e.g. has no Paypal
-(which I mean to add as an alternative still).
-
-Page ``doc/factory.rst``
-========================
-
-Very useful to have it translated.
-
-Page ``doc/welcome.rst``
-========================
-
-This is just a playground for me, do not translate, unless we want to
-play around with translation mechanics. We will want to e.g. have an
-intelligent language switcher at some point, and could try it out there.
-
-Page ``doc/Changelog.rst``
-==========================
-
-Do not translate, this is a bizarre amount of work.
-
-Page ``download.rst``
-=====================
-
-Very welcome, but beware that ``download.rst.j2`` is the real source.
-Tables are generated into the document, this is probably a harder case
-technically, so hold off until this is sorted out.
-
-Page ``developer-manual.rst``
-=============================
-
-Makes no sense to translate. But potentially there is content that
-belongs to user manual in there or should be split off.
-
-Page ``roadmap.rst``
-====================
-
-Much like changelog, not as much work, but also not as important.
-
-Page ``doc/user-manual.rst``
-============================
-
-This one is most important in my mind, optimization section needs a
-serious update from my side, maybe ignore that, until I get there.
-Review applies here very much. I think Tutorial parts might be factored
-out to separate documents.
-
-******************
- How to translate
-******************
-
-.. code:: bash
-
-   # Generate the .pot files
-   cd intl
-   make gettext
-
-   # Generate .po files from .pot
-   sphinx-intl update -p ../output/gettext -l your_language_code
-
-Under locales in the folder with the language code you will then have
-many .po files. In the .po file you can see ``msgid`` and below it
-``msgstr``. ``msgid`` contains the english original, in ``msgstr`` you
-can write the translation. If you then want to transfer your changes via
-PR, please commit **only** the files you have translated.
+We are using a **Sphinx** extension called **ABlog** to create the RSS
+feeds and pages of the **Nuitka blog**. To read about **ABlog**
+configuration options, see the `ABlog documentation
+<https://ablog.readthedocs.io/en/stable/manual/ablog-configuration-options.html>`_.
 
 ********************
  Image Optimization
 ********************
+
+We optimize all the images we insert in the website to enhance website
+performance and achieve better search engine rankings. To optimize
+images, open a new terminal in the **Visual Studio Code** and paste the
+following code:
 
 .. code:: bash
 
@@ -461,3 +319,28 @@ PR, please commit **only** the files you have translated.
    # is lossless.
    sudo apt-get install jpegoptim
    find . -iname *.jpg -a -type f -exec jpegoptim {} \;
+
+################################
+ Opportunities for Contribution
+################################
+
+In this section, you can see the ways to contribute to the **Nuitka
+website**.
+
+**********************
+ Create a New Posting
+**********************
+
+To create a new page on the **Nuitka website**, do the following:
+
+#. Open **Visual Studio Code**, and then go to the **Explorer** tab to
+   navigate to the directory of the project.
+
+#. Right-click on the directory where you want to create the new
+   posting, then select **New File**. Or select **Ctrl** + **Shift** +
+   **P**.
+
+#. Name the file with the **.rst** extension. For example,
+   **new-posting.rst**.
+
+#. Save the file by selecting **Ctrl** + **S**.
