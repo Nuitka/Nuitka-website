@@ -36,7 +36,6 @@
     color: white;
     margin-bottom: 15px;
     overflow-wrap: normal;
-    min-width: 20ch;
 }
 
 .nuitka-buy .sd-card-text:last-child {
@@ -215,48 +214,6 @@
     border-radius: 10px;
 }
 
-@media screen and (max-width:900px) {
-    .wy-body-for-nav {
-        background: #fcfcfc
-    }
-
-    .wy-nav-top {
-        display: block
-    }
-
-    .wy-nav-side {
-        left: -300px
-    }
-
-    .wy-nav-side.shift {
-        width: 85%;
-        left: 0
-    }
-
-    .wy-menu.wy-menu-vertical,
-    .wy-side-nav-search,
-    .wy-side-scroll {
-        width: auto
-    }
-
-    .wy-nav-content-wrap {
-        margin-left: 0
-    }
-
-    .wy-nav-content-wrap .wy-nav-content {
-        padding: 1.618em
-    }
-
-    .wy-nav-content-wrap.shift {
-        position: fixed;
-        min-width: 100%;
-        left: 85%;
-        top: 0;
-        height: 100%;
-        overflow: hidden
-    }
-}
-
 details.sd-dropdown {
     display: inline;
     vertical-align: top;
@@ -300,4 +257,23 @@ p.admonition-title {
 
 .wy-breadcrumbs {
     display: none;
+}
+
+@media(min-width: 1200px) {
+    .sd-container-xl,
+    .sd-container-lg,
+    .sd-container-md,
+    .sd-container-sm,
+    .sd-container {
+        max-width: 1340px
+    }
+}
+
+@media(min-width: 1192px) {
+    .sd-container-lg,
+    .sd-container-md,
+    .sd-container-sm,
+    .sd-container {
+        max-width: 1160px
+    }
 }

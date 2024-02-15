@@ -768,7 +768,8 @@ jQuery(function () {
 
             if not os.path.exists(output_filename):
                 merged_css = "\n".join(
-                    getFileContents(css_filename) for css_filename in css_filenames
+                    getFileContents(css_filename)
+                    for css_filename in sorted(css_filenames, key=lambda x: "my_" in x)
                 )
 
                 # Do not display fonts on mobile devices.
@@ -783,6 +784,13 @@ jQuery(function () {
                     r"@font-face{font-display:swap;\1}",
                     merged_css,
                     flags=re.S,
+                )
+
+                merged_css = merged_css.replace(
+                    "@media(min-width: 1200px)", "@media(min-width: 1500px)"
+                )
+                merged_css = merged_css.replace(
+                    "@media(min-width: 992px)", "@media(min-width: 1192px)"
                 )
 
                 # Strip comments and trailing whitespace (created by that in part)
