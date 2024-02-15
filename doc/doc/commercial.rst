@@ -201,9 +201,9 @@ highest priority.
 
          `Subscribe now </stripe/checkout-full-subscription>`__
 
-       - Nuitka Commercial **plus**
+       - Nuitka Commercial **included**
 
-       - Nuitka Priority
+       - Nuitka Priority **included**
 
 
    .. grid-item-card::  Sponsor
