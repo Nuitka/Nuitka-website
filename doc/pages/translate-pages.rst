@@ -1,13 +1,8 @@
-:orphan:
-
 #################
  Translate Pages
 #################
 
-Translations of the Nuitka website are very welcome. We have a team for
-those want to work on it, with push rights to the repository. Right now
-a ``translation`` branch is used, but the plan is for it to be merged,
-and to provide the infrastructure in the ``main`` branch.
+Translations of the Nuitka website are very welcome.
 
 Here is a table of the files to translate and their styles. Everything
 that is not mentioned here, should be asked about if in doubt. Not all
@@ -168,15 +163,24 @@ intelligent language switcher at some point, and could try it out there.
  Page ``doc/Changelog.rst``
 ****************************
 
-Do not translate, this is a bizarre amount of work.
+Do not translate, this is a bizarre amount of work, that may not be
+rewarding. For very complete translations, we can consider it though.
+
+**********************
+ Page ``roadmap.rst``
+**********************
+
+Much like changelog, not as much work, but also not as important and too
+much in flux, i.e. information there changes all the time, but should be
+up to date.
 
 ***********************
  Page ``download.rst``
 ***********************
 
-Very welcome, but beware that ``download.rst.j2`` is the real source.
-Tables are generated into the document, this is probably a harder case
-technically, so hold off until this is sorted out.
+Very welcome, but beware that ``download.rst.j2`` is the real source to
+translate. Tables are generated into the document, this is probably a
+harder case technically, so hold off until this is sorted out.
 
 *******************************
  Page ``developer-manual.rst``
@@ -184,12 +188,6 @@ technically, so hold off until this is sorted out.
 
 Makes no sense to translate. But potentially there is content that
 belongs to user manual in there or should be split off.
-
-**********************
- Page ``roadmap.rst``
-**********************
-
-Much like changelog, not as much work, but also not as important.
 
 ******************************
  Page ``doc/user-manual.rst``
