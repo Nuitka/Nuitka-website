@@ -291,13 +291,25 @@ feeds and pages of the **Nuitka blog**. To read about **ABlog**
 configuration options, see the `ABlog documentation
 <https://ablog.readthedocs.io/en/stable/manual/ablog-configuration-options.html>`_.
 
+Document Formatting
+===================
+
+In order to format the current document, in Visual Code, select the task
+``autoformat current file`` which will make automatic changes to the file
+for consistent header formatting, etc.
+
+All PRs should have their changed files formatted that way. We do not yet
+have a commit hook that does it.
+
 Image Optimization
 ==================
 
 We optimize all the images we insert in the website to enhance website
-performance and achieve better search engine rankings. To optimize
-images, open a new terminal in the **Visual Studio Code** and paste the
-following code:
+performance and achieve better search engine rankings. To optimize images, run
+the task ``autoformat PNG images`` or ``autoformat JPEG images`` or ``autoformat
+current file`` in Visual Code, the latter with the image being open.
+
+Otherwise if you are not in the Dev Container, open a new terminal in the and paste the following code snippet.
 
 .. code:: bash
 
