@@ -93,8 +93,6 @@ Getting Started
          :alt: The screenshot of the GitHub page with the Fork button highlighted.
          :width: 600px
 
-#. Submit all the messages about creating a fork.
-
 #. When you created the fork, go to your GitHub account and select your
    forked repository that called **Your-name/Nuitka-website**.
 
