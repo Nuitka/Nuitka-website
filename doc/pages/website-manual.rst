@@ -71,7 +71,7 @@ Getting Started
 ---------------
 
 #. Open **Visual Studio Code**, and then, open terminal by selecting
-   **Ctrl** + **`** on Windows or **Cmd** + **`** on Mac.
+   **Ctrl** + **`** or **Cmd** + **`** on Mac.
 
 #. On the terminal, enter the following commands:
 
@@ -328,9 +328,10 @@ To create a new page on the **Nuitka website**, do the following:
 
 #. Right-click on the directory where you want to create the new
    posting, then select **New File**. Or select **Ctrl** + **Shift** +
-   **P**.
+   **P** or (or **Cmd** + **Shift** + **p** for Mac).
 
 #. Name the file with the **.rst** extension. For example,
-   **new-posting.rst**.
+   **my-new-posting.rst**, obviously with a better name.
 
-#. Save the file by selecting **Ctrl** + **S**.
+#. Save the file by selecting **Ctrl** + **S** (or **Cmd** + **S** for
+   Mac).
