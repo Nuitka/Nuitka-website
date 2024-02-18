@@ -1,3 +1,5 @@
+set -ex
+
 python3 -m pip install -U invoke
 python3 -m invoke virtualenv
 # python3 -m invoke run -t update-docs

@@ -14,7 +14,6 @@ from pathlib import Path
 from urllib.request import urlretrieve
 
 import requests
-import unidecode
 from lxml import html
 
 # Which branches were already done.
@@ -546,6 +545,7 @@ def slugify(value):
     From Django's "django/template/defaultfilters.py".
     """
     if type(value) is str:
+        import unidecode
         value = unidecode.unidecode(value)
     value = str(_slugify_strip_re.sub("", value).strip().lower())
     return _slugify_hyphenate_re.sub("-", value)

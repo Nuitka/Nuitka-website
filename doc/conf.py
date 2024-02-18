@@ -8,8 +8,6 @@ sys.path.extend([DOC_ROOT.as_posix(), DOC_ROOT.parent.as_posix()])
 # isort:start
 
 # -- General configuration
-import ablog.post
-
 from shared_conf import *
 
 # For autodoc to work we need to import Nuitka
