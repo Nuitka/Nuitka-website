@@ -897,6 +897,7 @@ jQuery(function () {
         )
 
         document_bytes = document_bytes.replace(b"now &#187;", b"now&nbsp;&nbsp;&#187;")
+        document_bytes = document_bytes.replace(b"/ yr", b'<i class="sub">/ yr</i>')
 
         with open(filename, "wb") as output:
             output.write(document_bytes)

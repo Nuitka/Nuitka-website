@@ -160,7 +160,7 @@ highest priority.
 
        .. container:: nuitka-price
 
-           € 250
+           € 250 / yr
 
        .. container:: nuitka-buy
 
@@ -177,7 +177,7 @@ highest priority.
 
        .. container:: nuitka-price
 
-           € 250
+           € 250 / yr
 
        .. container:: nuitka-buy
 
@@ -195,7 +195,7 @@ highest priority.
 
        .. container:: nuitka-price
 
-           € 400
+           € 400 / yr
 
        .. container:: nuitka-buy
 
@@ -211,7 +211,7 @@ highest priority.
 
        .. container:: nuitka-price
 
-           € 1000
+           € 1000 / yr
 
        .. container:: nuitka-buy
 

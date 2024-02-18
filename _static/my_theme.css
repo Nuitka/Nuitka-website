@@ -111,14 +111,15 @@
     color: white;
     text-align: center;
     font-size: 14px;
-    vertical-align: 20px
+    vertical-align: 20px;
 }
 
-.nuitka-price p::after {
-    content: "/ yr";
-    font-size: 14px;
-    vertical-align: -10px
+.nuitka-price i {
+    font-style: normal;
+    font-size: 18px;
+    vertical-align: 3px;
 }
+
 
 .nuitka-grid-offer .sd-card-text {
     color: white;
