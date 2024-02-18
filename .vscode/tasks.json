@@ -7,6 +7,15 @@
     },
     "tasks": [
         {
+            "label": "auto-format current file",
+            "type": "shell",
+            "command": "./auto-format ${file}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "auto-format documents and code",
             "type": "shell",
             "command": "./auto-format *.py doc/*.rst doc/*/*.rst",
