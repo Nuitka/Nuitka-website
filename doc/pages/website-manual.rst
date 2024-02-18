@@ -14,9 +14,9 @@ contribution process.
 
 ----
 
-############################
+****************************
  Set Up Project Environment
-############################
+****************************
 
 Setting up the project environment means configuring a working setup on
 your computer so you can edit the Nuitka website. To do so, use one of
@@ -28,9 +28,8 @@ the following ways:
 
 .. _recommended way:
 
-*****************
- Recommended Way
-*****************
+Recommended Way
+===============
 
 Learn how to efficiently contribute to the **Nuitka** website using
 **Visual Studio Code** and **Dev containers**. You will be amazed at how
@@ -38,7 +37,7 @@ easy it actually is to contribute changes in this way. There is a manual
 way for advanced users described below in the **Manual way** section.
 
 Before You Start
-================
+----------------
 
 #. Download and install **Docker** using the `Docker website
    <https://www.docker.com/products/docker-desktop/>`_.
@@ -69,7 +68,7 @@ Before You Start
    systems.
 
 Getting Started
-===============
+---------------
 
 #. Open **Visual Studio Code**, and then, open terminal by selecting
    **Ctrl** + **`** on Windows or **Cmd** + **`** on Mac.
@@ -154,7 +153,7 @@ Getting Started
    in the repo, and secret (using private keys).
 
 Make and Save Your Changes
-==========================
+--------------------------
 
 #. **Make your change**
 
@@ -207,9 +206,8 @@ Make and Save Your Changes
 
 .. _manual way:
 
-************
- Manual Way
-************
+Manual Way
+==========
 
 This is used to build the Nuitka website. Enhancements of all kinds are
 welcome. You will need Python 3.10 and ``pipenv`` to build it.
@@ -243,16 +241,15 @@ welcome. You will need Python 3.10 and ``pipenv`` to build it.
    # Browse it (Windows)
    explorer http://localhost:8080
 
-#############
+*************
  How We Work
-#############
+*************
 
 In this section, we provide insights into our workflow and the tools we
 use to streamline our collaboration on the **Nuitka website**.
 
-********
- Sphinx
-********
+Sphinx
+======
 
 The **Nuitka website** is powered by **Sphinx** — a documentation
 generation tool widely used in the software development community. We
@@ -261,9 +258,8 @@ repository and render them into user-friendly pages, as the one you are
 looking at. To get more details about Sphinx, see `Sphinx documentation
 <https://www.sphinx-doc.org/en/master/index.html>`__.
 
-**************************
- reStructured Text (reST)
-**************************
+reStructured Text (reST)
+========================
 
 **Sphinx** uses **reStructured text (reST)** as its markup language,
 which is similar to **Markdown** but more powerful. You will need
@@ -271,9 +267,8 @@ which is similar to **Markdown** but more powerful. You will need
 `Sphinx documentation
 <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__.
 
-**************
- Sphinx Theme
-**************
+Sphinx Theme
+============
 
 We are using the customization of the `Read the Docs Sphinx Theme
 <https://sphinx-rtd-theme.readthedocs.io/en/stable/index.html>`_. The
@@ -281,27 +276,24 @@ current configuration is in ``shared_conf.py`` file is pretty basic. We
 might want to explore and document our choices for some of these
 options.
 
-*************************
- Sphinx Extension: Grids
-*************************
+Sphinx Extension: Grids
+=======================
 
 We use `Grids
 <https://sphinx-design.readthedocs.io/en/latest/grids.html>`_, a
 component of the **Sphinx Design** extension, to build the layout of our
 website pages.
 
-*************************
- Sphinx Extension: ABlog
-*************************
+Sphinx Extension: ABlog
+=======================
 
 We are using a **Sphinx** extension called **ABlog** to create the RSS
 feeds and pages of the **Nuitka blog**. To read about **ABlog**
 configuration options, see the `ABlog documentation
 <https://ablog.readthedocs.io/en/stable/manual/ablog-configuration-options.html>`_.
 
-********************
- Image Optimization
-********************
+Image Optimization
+==================
 
 We optimize all the images we insert in the website to enhance website
 performance and achieve better search engine rankings. To optimize
@@ -320,16 +312,15 @@ following code:
    sudo apt-get install jpegoptim
    find . -iname *.jpg -a -type f -exec jpegoptim {} \;
 
-################################
+********************************
  Opportunities for Contribution
-################################
+********************************
 
 In this section, you can see the ways to contribute to the **Nuitka
 website**.
 
-**********************
- Create a New Posting
-**********************
+Create a New Posting
+====================
 
 To create a new page on the **Nuitka website**, do the following:
 
