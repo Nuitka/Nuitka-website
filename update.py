@@ -896,6 +896,8 @@ jQuery(function () {
             doc, include_meta_content_type=True
         )
 
+        document_bytes = document_bytes.replace(b"now &#187;", b"now&nbsp;&nbsp;&#187;")
+
         with open(filename, "wb") as output:
             output.write(document_bytes)
 

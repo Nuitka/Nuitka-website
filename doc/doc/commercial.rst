@@ -164,7 +164,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-         `Subscribe now </stripe/checkout-commercial-subscription>`__
+         `Subscribe now » </stripe/checkout-commercial-subscription>`__
 
        - Commercial only Features
 
@@ -181,7 +181,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-         `Subscribe now </stripe/checkout-priority-subscription>`__
+         `Subscribe now » </stripe/checkout-priority-subscription>`__
 
        - Best Support
 
@@ -199,7 +199,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-         `Subscribe now </stripe/checkout-full-subscription>`__
+         `Subscribe now » </stripe/checkout-full-subscription>`__
 
        - Nuitka Commercial **included**
 
@@ -215,7 +215,7 @@ highest priority.
 
        .. container:: nuitka-buy
 
-         `Subscribe now </stripe/checkout-sponsor-subscription>`__
+         `Subscribe now » </stripe/checkout-sponsor-subscription>`__
 
        - Best Support
 
