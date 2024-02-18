@@ -11,6 +11,7 @@ contribution process.
 
 .. contents:: Table of Contents
    :depth: 2
+   :local:
 
 ----
 
@@ -22,11 +23,9 @@ Setting up the project environment means configuring a working setup on
 your computer so you can edit the Nuitka website. To do so, use one of
 the following ways:
 
--  :ref:`Recommended Way`
-
--  :ref:`Manual Way`
-
-.. _recommended way:
+.. contents:: Methods
+   :depth: 1
+   :local:
 
 Recommended Way
 ===============
@@ -201,8 +200,6 @@ Make and Save Your Changes
    process, you'll be notified and can simply make the necessary updates
    directly within the project. After making the changes, you'll either
    update the pull request or be informed when it's merged.
-
-.. _manual way:
 
 Manual Way
 ==========
