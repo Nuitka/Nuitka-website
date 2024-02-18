@@ -335,3 +335,8 @@ To create a new page on the **Nuitka website**, do the following:
 
 #. Save the file by selecting **Ctrl** + **S** (or **Cmd** + **S** for
    Mac).
+
+Translate Pages
+===============
+
+You can help :doc:`translate pages <translate-pages>` into your language.
