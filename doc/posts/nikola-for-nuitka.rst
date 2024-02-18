@@ -15,7 +15,7 @@ Well, the search has found a late hit. I had installed a work flow,
 where I was using the XMLRPC interface, but it was some effort, and
 somewhat limited.
 
-Then `Roberto Alsina <http://ralsina.com.ar>`_ announced `Nikola
+Then `Roberto Alsina <http://ralsina.com.ar>`__ announced `Nikola
 <http://nikola.ralsina.com.ar>`_ that was just what I wanted.
 
 I did migrate to it during the last days. Looking at the content in ReST

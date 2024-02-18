@@ -7,7 +7,7 @@
 ######################
 
 This is to inform you about the new stable release of `Nuitka
-<https://nuitka.net>`_. It is the extremely compatible Python compiler,
+<https://nuitka.net>`__. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
 
 This release of Nuitka continues the focus on performance. It also

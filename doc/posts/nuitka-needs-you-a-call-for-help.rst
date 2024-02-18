@@ -60,7 +60,7 @@ contained jobs that you may enjoy.
    </doc/developer-manual.html#language-conversions-to-make-things-simpler>`_
    so you can see how this is done.
 
-   Now check `PEP 380 <http://www.python.org/dev/peps/pep-0380/>`_ for
+   Now check `PEP 380 <http://www.python.org/dev/peps/pep-0380/>`__ for
    the details of it, and your task would be to come up with a
    re-formulation of ``yield from`` statements to the semantically
    equivalent.

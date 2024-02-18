@@ -38,7 +38,7 @@ default handling, I was just shocked:
    def f( some_arg = function1(), *, some_key_arg = function2() )
 
 What would you expect the evaluation order to be for defaults? I raised
-a CPython `"bug report" <http://bugs.python.org/issue16967>`_ about it.
+a CPython `"bug report" <http://bugs.python.org/issue16967>`__ about it.
 And I am kind of shocked this could be wrong.
 
 *************

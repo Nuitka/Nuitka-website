@@ -1762,8 +1762,8 @@ Mastodon and Twitter accounts, but obviously with not too many details,
 usually pointing to the website, but sometimes I also ask questions
 there.
 
-`@KayHayen on Mastodon <https://fosstodon.org/@kayhayen>`_. `@KayHayen
-on Twitter <https://twitter.com/KayHayen>`_.
+`@KayHayen on Mastodon <https://fosstodon.org/@kayhayen>`__. `@KayHayen
+on Twitter <https://twitter.com/KayHayen>`__.
 
 Report issues or bugs
 =====================

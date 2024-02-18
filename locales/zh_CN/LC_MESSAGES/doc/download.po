@@ -70,10 +70,10 @@ msgstr ""
 
 #: ../../doc/doc/download.rst:59
 msgid ""
-"There is `Nuitka on PyPI <http://pypi.python.org/pypi/Nuitka/>`_ as well."
+"There is `Nuitka on PyPI <http://pypi.python.org/pypi/Nuitka/>`__ as well."
 " So you can install with ``pip`` as follows."
 msgstr ""
-"PyPI 上也有 `Nuitka' <http://pypi.python.org/pypi/Nuitka/>`_。 所以你可以用 ``pip``"
+"PyPI 上也有 `Nuitka' <http://pypi.python.org/pypi/Nuitka/>`__。 所以你可以用 ``pip``"
 " 来安装，如下所示。"
 
 #: ../../doc/doc/download.rst:64
@@ -896,4 +896,3 @@ msgstr ""
 
 #~ msgid "Nuitka 0.6.20rc6"
 #~ msgstr ""
-

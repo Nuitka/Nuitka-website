@@ -57,7 +57,7 @@ Before You Start
          <https://git-scm.com/download/linux>`_ page, and then select
          the needed option based on your Linux distribution.
 
-#. Sign up on `GitHub <https://github.com>`_. An account on **GitHub**
+#. Sign up on `GitHub <https://github.com>`__. An account on **GitHub**
    is free and allows you to submit your changes to the repository. For
    more, see the `Sign-up instructions
    <https://docs.github.com/en/get-started/quickstart/creating-an-account-on-github>`_.
@@ -253,10 +253,9 @@ Sphinx
 
 The **Nuitka website** is powered by **Sphinx** — a documentation
 generation tool widely used in the software development community. We
-use **Sphinx** to automate the import of files from the Nuitka git
-repository and render them into user-friendly pages, as the one you are
-looking at. To get more details about Sphinx, see `Sphinx documentation
-<https://www.sphinx-doc.org/en/master/index.html>`__.
+use **Sphinx** to render user-friendly web pages for Nuitka, as the one
+you are looking at. To get more details about Sphinx, see `Sphinx
+documentation <https://www.sphinx-doc.org/en/master/index.html>`__.
 
 reStructured Text (reST)
 ========================
@@ -271,7 +270,7 @@ Sphinx Theme
 ============
 
 We are using the customization of the `Read the Docs Sphinx Theme
-<https://sphinx-rtd-theme.readthedocs.io/en/stable/index.html>`_. The
+<https://sphinx-rtd-theme.readthedocs.io/en/stable/index.html>`__. The
 current configuration is in ``shared_conf.py`` file is pretty basic. We
 might want to explore and document our choices for some of these
 options.

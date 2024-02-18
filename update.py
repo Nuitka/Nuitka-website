@@ -632,7 +632,7 @@ def updateReleasePosts():
                 [
                     """\
 This is to inform you about the new stable release
-of `Nuitka <https://nuitka.net>`_. It is the extremely
+of `Nuitka <https://nuitka.net>`__. It is the extremely
 compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
                     "\n",
                 ]

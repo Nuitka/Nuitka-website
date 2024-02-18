@@ -54,7 +54,7 @@ contains many things I am working on.
          science theory, biological evolution theory, science fiction
          (my pseudonym comes from novels by one of my favorite authors
          Frank Herbert) and of course programming (maintainer of
-         `PyMuPDF <https://github.com/pymupdf/PyMuPDF>`_, and Nuitka).
+         `PyMuPDF <https://github.com/pymupdf/PyMuPDF>`__, and Nuitka).
 
 ..
    TEASER_END
