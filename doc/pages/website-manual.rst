@@ -7,13 +7,10 @@ valued, and your efforts can enhance the overall quality of our
 documentation. Please follow the guidelines below for a smooth
 contribution process.
 
-----
-
 .. contents:: Table of Contents
    :depth: 2
    :local:
-
-----
+   :class: page-toc
 
 ****************************
  Set Up Project Environment

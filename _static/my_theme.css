@@ -272,3 +272,19 @@ p.admonition-title {
         max-width: 1160px
     }
 }
+
+.page-toc {
+    float: right;
+    border: groove var(--sd-color-muted);
+}
+
+.page-toc .topic-title {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.page-toc ul {
+    margin-bottom: 2px !important;
+    margin-right: 4px !important;
+}
