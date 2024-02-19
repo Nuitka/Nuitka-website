@@ -754,6 +754,9 @@ jQuery(function () {
         if bread_crumbs_hr:
             bread_crumbs_hr[0].getparent().remove(bread_crumbs_hr[0])
 
+        for caption_node in doc.xpath("//p[@class='caption' and @role='heading']"):
+            caption_node.attrib["aria-expanded"] = "true"
+
         if css_filenames := [
             os.path.normpath(
                 f'output/{os.path.relpath(os.path.dirname(filename), "output")}/{css_link.get("href")}'
