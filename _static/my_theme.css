@@ -293,3 +293,10 @@ p.admonition-title {
     margin-bottom: 2px !important;
     margin-right: 4px !important;
 }
+
+.page-toc ul li::marker {
+    content: "» ";
+    font-size: var(--icon-size);
+    box-sizing: border-box;
+    min-width: 0;
+}
