@@ -199,6 +199,11 @@
     border-radius: 10px;
 }
 
+.socialbutton.mastodon {
+    background-color: #563ACC;
+    border-radius: 10px;
+}
+
 .socialbutton.reddit {
     background-color: #333333;
     border-radius: 10px;
