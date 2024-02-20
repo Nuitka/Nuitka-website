@@ -300,3 +300,7 @@ p.admonition-title {
     box-sizing: border-box;
     min-width: 0;
 }
+
+.page-toc a:visited {
+    color: #2980b9;
+}
