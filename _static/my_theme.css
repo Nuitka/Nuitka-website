@@ -309,9 +309,16 @@ p.admonition-title {
 }
 
 .page-toc a:visited {
-    color: #2980b9;
+    color: #1C5E89;
+}
+.page-toc a {
+    color: #1C5E89;
 }
 
 p a:hover {
     text-decoration: underline;
+}
+
+p a {
+    color: #1C5E89;
 }
