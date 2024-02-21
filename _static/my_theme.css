@@ -278,11 +278,16 @@ p.admonition-title {
     }
 }
 
+@media screen and (min-width: 1000px) {
+    .page-toc {
+        float: right;
+        padding: 20px;
+        margin: 20px;
+    }
+}
+
 .page-toc {
-    float: right;
     border: 1px solid lightgray;
-    padding: 20px;
-    margin: 20px;
 }
 
 .page-toc .topic-title {
