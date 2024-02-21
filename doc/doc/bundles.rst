@@ -50,14 +50,16 @@ respect things in protection.
 File Embedding
 ==============
 
-While Nuitka commercial allows embedding of data files, with Nuitka
-Themida it is also possible to embed the CPython DLL, extension modules,
-and DLLs used by it into one single binary. This on its own making it
-much harder to attack with file replacements, editing.
+While Nuitka commercial already allows embedding of data files, with
+Nuitka Themida it is also possible to embed the CPython DLL, extension
+modules, and DLLs used by it into one single binary. That on its own is
+making it much harder to attack with file replacements, editing of data
+files, but there is still the possibility of switching the DLLs.
 
-With Nuitka Themida your binary is one file, without Nuitka
-``--onefile`` mode which does not protect these files. But Nuitka
-Themida makes it impossible to access these files.
+With Nuitka Themida your binary is one file exactly, but without the
+Nuitka ``--onefile`` binary that unpacks the final executable and DLLs
+to a temporary folder, that then does not protect those files. But
+Nuitka Themida makes it impossible to access these files.
 
 Enhanced anti-debugger
 ======================
