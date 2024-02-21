@@ -280,7 +280,9 @@ p.admonition-title {
 
 .page-toc {
     float: right;
-    border: groove var(--sd-color-muted);
+    border: 1px solid lightgray;
+    padding: 20px;
+    margin: 20px;
 }
 
 .page-toc .topic-title {
