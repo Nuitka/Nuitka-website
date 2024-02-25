@@ -834,10 +834,11 @@ jQuery(function () {
         logo_img.attrib["height"] = "209"
 
         logo_parent = logo_img.getparent()
-        logo_parent.remove(logo_img)
-        logo_div = html.fromstring("""<div class="logo_container"></div>""")
-        logo_div.append(logo_img)
-        logo_parent.append(logo_div)
+        if logo_parent.tag != "div":
+            logo_parent.remove(logo_img)
+            logo_div = html.fromstring("""<div class="logo_container"></div>""")
+            logo_div.append(logo_img)
+            logo_parent.append(logo_div)
 
         social_images = doc.xpath("//img[contains(@src, '/_static/icon-')]")
         assert len(social_images) == 4, (filename, social_images)
