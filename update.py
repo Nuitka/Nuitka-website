@@ -824,6 +824,10 @@ jQuery(function () {
             ) and "nuitka.net" not in link.attrib["href"]:
                 link.attrib["target"] = "_blank"
 
+        for link in doc.xpath("//link[@rel='canonical']"):
+            if link.attrib["href"].endswith("/index.html"):
+                link.attrib["href"] = link.attrib["href"][:-11]
+
         (logo_img,) = doc.xpath("//img[@class='logo']")
 
         logo_img.attrib["width"] = "208"
