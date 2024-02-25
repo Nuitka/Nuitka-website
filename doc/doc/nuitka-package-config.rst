@@ -2,6 +2,11 @@
  Nuitka Package Configuration
 ##############################
 
+.. contents:: Table of Contents
+   :depth: 3
+   :local:
+   :class: page-toc
+
 **************
  Introduction
 **************
@@ -28,14 +33,14 @@ entries for the standard library. In ``stdlib2`` there are only those
 for modules that are no longer available in Python3.
 
 If you want to use your own configuration, you can do so by passing the
-filename of your Yaml file to ``--user-package-configuration-file``.
+filename of your Yaml file via the
+``--user-package-configuration-file=my.nuitka-package.config.yml``
+option.
 
-.. note::
-
-   If this could be interesting for the whole user base of Nuitka,
-   please do a PR that adds it to the general files. In this way, not
-   every user has to repeat what you just did, and we can collectively
-   maintain it.
+If it could be interesting for the other parts of the user base of
+Nuitka, please do a PR that adds it to the general files. In this way,
+not every user has to repeat what you just did, and we can collectively
+maintain it.
 
 *****************************
  The YAML Configuration File
@@ -542,13 +547,58 @@ resolution, making it work. This makes the ``sys.path`` modification
 visible to Nuitka. Suffice to say that this is very unusual, thus it's
 in the import hacks category.
 
-when
-====
+Variables
+=========
 
-In the ``when`` part an expression is given and if it matches, the entry
-it is attached to is applied, otherwise not. This expression is a normal
-string evaluated by Python's eval function. Nuitka provides variables in
-the context for this.
+It is possible to use compile time package information in an expression
+like the e.g. when_ clauses, but also for some other values. They are
+then accessed via the ``get_variable`` function and reporting and
+caching traces their usage.
+
+.. note::
+
+   Where they are not currently working, we might have to add support
+   for that.
+
+.. code:: yaml
+
+   variables:
+     setup_code: 'import whatever'
+     declarations:
+       'variable1_name': 'whatever.something()'
+       'variable2_name': 'whatever.something2()'
+
+Constants
+=========
+
+.. code:: yaml
+
+   constants:
+     - declarations:
+         'suffix': '-Windows'
+       when: "win32"
+     - declarations:
+         'suffix': '-Linux'
+       when: "linux"
+     - declarations:
+         'suffix': '-MacOS'
+       when: "macos"
+
+It is possible to use compile time package information in an expression
+like the e.g. when_ clauses, but also for some other values that allow
+using an expression_, e.g. when constructing paths. They are then
+accessed via the ``get_variable`` function and reporting and caching
+traces their usage.
+
+They are most useful to avoid repeated usage of OS specific values
+without making using configuration repeated with different when_
+clauses, as those and then only there for defined constants.
+
+We do not yet have examples, we intend to use this to cleanup a few of
+the configurations that we already have or use it in the future.
+
+Expression
+==========
 
 Example of an expression:
 
@@ -693,6 +743,55 @@ attach it to an incomplete feature of Nuitka.
 
    # bool, true if --experimental=some-flag-name given
    experimental('some-flag-name')
+
+Variable/Constant Values
+------------------------
+
+For variables/constants to be used, they need to be defined within the
+package configuration as constants_ or variables_. They then become
+accessible, but variables are only evaluated if they are actually used.
+That means, if e.g. the when_ clause causes a variable to be unused,
+it's never evaluated.
+
+.. note::
+
+   Where an expression_ is not currently working, we might have to add
+   support for that, this is an ongoing effort.
+
+Examples
+--------
+
+The most simple form just picks up information from a package, in this
+instance, we ask the package about the backend it would use with the
+current configuration and all, and force the decision to be that by
+changing the very same function to be compiled into producing just that
+value without further investigation.
+
+This is a simple solution to a common problem, namely to persist such
+decisions from the original compiling environment to the target
+environment.
+
+Example 1
+^^^^^^^^^
+
+.. code:: yaml
+
+   - module-name: 'toga.platform'
+     variables:
+       setup_code: 'import toga.platform'
+       declarations:
+         'toga_backend_module_name': 'toga.platform.get_platform_factory(). __name__'
+     anti-bloat:
+       - change_function:
+           'get_platform_factory': "'importlib.import_module(%r)' % get_variable('toga_backend_module_name')"
+
+when
+====
+
+In the ``when`` part an expression_ is given and if it matches, the
+entry it is attached to is applied, otherwise not. This expression is a
+normal string evaluated by Python's eval function. Nuitka provides
+variables in the context for this.
 
 ********************
  Where else to look
