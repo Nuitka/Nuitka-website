@@ -599,6 +599,23 @@ More could be added, but these are the trouble makers that sometimes
 need special handling due to them modifying PyPI packages for themselves
 to use.
 
+Package Versions
+----------------
+
+To check the version of packages and distributions, we got these.
+
+|  ``version``: ``tuple of int`` get version of distribution
+|  ``get_dist_name``: ``str`` resolve package name to distribution
+
+For packages, that have multiple distribution names potentially, it's
+best to use it like this ``version(get_dist_name("cv2")) < (4,6)`` as
+often this can be one of many different names.
+
+.. note::
+
+   In many cases, package name and distribution name align, but that is
+   not always the case.
+
 Python Versions
 ---------------
 
