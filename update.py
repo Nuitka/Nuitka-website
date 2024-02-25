@@ -546,6 +546,7 @@ def slugify(value):
     """
     if type(value) is str:
         import unidecode
+
         value = unidecode.unidecode(value)
     value = str(_slugify_strip_re.sub("", value).strip().lower())
     return _slugify_hyphenate_re.sub("-", value)
@@ -788,9 +789,7 @@ jQuery(function () {
                     merged_css,
                     flags=re.S,
                 )
-                merged_css = merged_css.replace(
-                    "Lato", "ui-sans-serif"
-                )
+                merged_css = merged_css.replace("Lato", "ui-sans-serif")
                 merged_css = re.sub(
                     r"@font-face\{(.*?)\}",
                     r"@font-face{font-display:swap;\1}",
@@ -827,6 +826,24 @@ jQuery(function () {
         for link in doc.xpath("//link[@rel='canonical']"):
             if link.attrib["href"].endswith("/index.html"):
                 link.attrib["href"] = link.attrib["href"][:-11]
+
+        # Make internal links more canonical, no index.html, no trailing #
+        for link in doc.xpath("//a[not(contains(@classes, 'extern'))]"):
+            link_target = link.attrib["href"]
+
+            if link_target.startswith("http"):
+                continue
+
+            if link_target.endswith("/index.html"):
+                link_target = link_target[:-11]
+
+            if link_target.endswith("#"):
+                link_target = link_target[:-1]
+
+            if not link_target:
+                link_target = "/"
+
+            link.attrib["href"] = link_target
 
         (logo_img,) = doc.xpath("//img[@class='logo']")
 
