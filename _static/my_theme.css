@@ -322,3 +322,16 @@ p a:hover {
 p a {
     color: #1C5E89;
 }
+
+a[class~="headerlink"] {
+    color: #1C5E89;
+}
+
+a[class~="headerlink"]:hover {
+    color: #1C5E89;
+    text-decoration: underline;
+}
+
+a[class~="headerlink"]:visited  {
+    color: #1C5E89;
+}

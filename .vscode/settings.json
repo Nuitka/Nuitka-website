@@ -24,6 +24,7 @@
         "clcache",
         "conda",
         "ctypes",
+        "devcontainer",
         "devel",
         "distutils",
         "Doxygen",

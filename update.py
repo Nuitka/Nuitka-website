@@ -96,6 +96,8 @@ from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.Rest import makeTable
 
+in_devcontainer = os.getenv("REMOTE_CONTAINERS_DISPLAY_SOCK") is not None
+
 
 def updateDownloadPage():
     page_template = getTemplate(
@@ -704,10 +706,8 @@ def _getTranslationFileSet(filename):
 
 
 def runPostProcessing():
-    # Compress the CSS and JS files into one file.
-
-    documentation_options_js_filename = "output/_static/documentation_options.js"
-
+    # Compress the CSS and JS files into one file, clean up links, and
+    # do other touch ups.
     searchindex_js_filename = "output/searchindex.js"
 
     search_html_filename = "output/search.html"
@@ -755,9 +755,6 @@ jQuery(function () {
         if bread_crumbs_hr:
             bread_crumbs_hr[0].getparent().remove(bread_crumbs_hr[0])
 
-        for caption_node in doc.xpath("//p[@class='caption' and @role='heading']"):
-            caption_node.attrib["aria-expanded"] = "true"
-
         if css_filenames := [
             os.path.normpath(
                 f'output/{os.path.relpath(os.path.dirname(filename), "output")}/{css_link.get("href")}'
@@ -765,6 +762,7 @@ jQuery(function () {
             for css_link in css_links
             if "combined_" not in css_link.get("href")
             if "copybutton" not in css_link.get("href") or has_highlight
+            if "my_theme" not in css_link.get("href") or not in_devcontainer
         ]:
             output_filename = "/_static/css/combined_%s.css" % getHashFromValues(
                 *css_filenames
@@ -814,6 +812,9 @@ jQuery(function () {
 
             css_links[0].attrib["href"] = output_filename
             for css_link in css_links[1:]:
+                if in_devcontainer and "my_theme" in css_link.attrib["href"]:
+                    continue
+
                 css_link.getparent().remove(css_link)
 
         for link in doc.xpath("//a[not(contains(@classes, 'intern'))]"):
@@ -941,6 +942,14 @@ jQuery(function () {
 
     if os.path.exists(search_html_filename):
         os.unlink(search_html_filename)
+
+    if in_devcontainer:
+        my_theme_filename = "output/_static/my_theme.css"
+
+        assert os.path.exists(my_theme_filename), my_theme_filename
+        if not os.path.islink(my_theme_filename):
+            os.unlink(my_theme_filename)
+            os.symlink(os.path.abspath("_static/my_theme.css"), my_theme_filename)
 
 
 def runDeploymentCommand():
