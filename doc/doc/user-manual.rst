@@ -1765,12 +1765,12 @@ there.
 `@KayHayen on Mastodon <https://fosstodon.org/@kayhayen>`__. `@KayHayen
 on Twitter <https://twitter.com/KayHayen>`__.
 
-Report issues or bugs
-=====================
+Report issues
+=============
 
-Should you encounter any issues, bugs, or ideas, please visit the
-`Nuitka bug tracker <https://github.com/Nuitka/Nuitka/issues>`__ and
-report them.
+Should you encounter any issues, or ideas, please visit the `Nuitka
+issue tracker <https://github.com/Nuitka/Nuitka/issues>`__ and report
+them.
 
 Best practices for reporting bugs:
 
