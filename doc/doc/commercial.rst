@@ -265,6 +265,14 @@ parties, you are limited.
 #. Nuitka commercial can then be used as a drop in replacement of Nuitka
    with more options.
 
+********************
+ Vendor Information
+********************
+
+In case you need to fill out a form for your company with vendor
+information, please find the full set of information on this page
+:doc:`/pages/impressum`
+
 ************
  Contact Us
 ************
