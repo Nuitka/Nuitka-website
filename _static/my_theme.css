@@ -36,6 +36,10 @@ html {
     margin-bottom: 1.25rem;
 }
 
+.ci-search {
+    margin: 10px !important;
+}
+
 /* Stripe links should be forced to color standing out */
 .nuitka-buy a {
     vertical-align: bottom;
@@ -142,7 +146,7 @@ html {
 }
 
 .social-button {
-    width: 60px;
+    width: 45px;
     height: 45px;
     margin-bottom: 0;
     display: inline-block;
@@ -189,27 +193,27 @@ html {
 
 .social-button p.icon {
     text-align: center;
-    padding-top: 13px;
+    padding-top: 11px;
 }
 
 .social-button.twitter {
     background-color: #5BC2F0;
-    border-radius: 10px;
+    border-radius: 25px;
 }
 
 .social-button.mastodon {
     background-color: #563ACC;
-    border-radius: 10px;
+    border-radius: 25px;
 }
 
 .social-button.reddit {
     background-color: #333333;
-    border-radius: 10px;
+    border-radius: 25px;
 }
 
 .social-button.facebook {
     background-color: #435D96;
-    border-radius: 10px;
+    border-radius: 25px;
 }
 
 .language-switcher-container {
@@ -385,7 +389,7 @@ a[class~="headerlink"]:visited {
 .logo_container {
     display: flex;
     border-radius: 0;
-    vertical-align: center;
+    margin: auto !important;
 }
 
 .logo_container a {
@@ -430,7 +434,7 @@ a[class~="headerlink"]:visited {
 .top_link_nav {
     border: 2px solid lightgray;
     width: fit-content;
-    margin-bottom: 5px;
+    margin-bottom: 40px;
     padding-bottom: 0;
     border-radius: 3.6rem;
 }
@@ -449,6 +453,7 @@ a[class~="headerlink"]:visited {
 .top_link_nav li {
     list-style: none !important;
     width: fit-content;
+    margin: auto;
 }
 
 .top_link_nav a:visited {
