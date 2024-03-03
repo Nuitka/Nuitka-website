@@ -1,5 +1,8 @@
 set -ex
 
+# Remove old output
+rm -rf output
+
 python3 -m pip install -U invoke
 python3 -m invoke virtualenv
 # python3 -m invoke run -t update-docs
