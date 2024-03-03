@@ -359,10 +359,8 @@ effectively with more than a single file.
    to new Nuitka or new PyPI packages individually.
 
 ******************************
- Features to be added for 2.1
+ Features to be added for 2.2
 ******************************
-
-[ ] Onboard technical writer with user manual rewrite.
 
 [ ] Use performance potential for attribute access with Python 3.11
 version.
@@ -377,7 +375,7 @@ version.
 works.
 
 ******************************
- Features to be added for 2.2
+ Features to be added for 2.3
 ******************************
 
 [ ] Initial support for ctypes based direct calls of C code.
