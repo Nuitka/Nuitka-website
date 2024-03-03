@@ -51,11 +51,9 @@ Currently, this means, you need to use one of these compilers:
    is found, which is the recommended way of installing it, as Nuitka
    will also upgrade it for you.
 
--  Visual Studio 2022 or higher on Windows [#]_, older versions will
-   work, but only supported for commercial users. Configure to use the
-   English language pack for best results (Nuitka filters away garbage
-   outputs, but only for English language). It will be used by default
-   if installed.
+-  Visual Studio 2022 or higher on Windows [#]_. English language pack
+   for best results (Nuitka filters away garbage outputs, but only for
+   English language). It will be used by default if installed.
 
 -  On all other platforms, the ``gcc`` compiler of at least version 5.1,
    and below that the ``g++`` compiler of at least version 4.4 as an
@@ -71,10 +69,9 @@ Currently, this means, you need to use one of these compilers:
    Support for this C11 is given with gcc 5.x or higher or any clang
    version.
 
-   The MSVC compiler doesn't do it yet. But as a workaround, as the C++03
-   language standard is significantly overlapping with C11, it is then used
-   instead where the C compiler is too old. Nuitka used to require a C++
-   compiler in the past, but it changed.
+   The older MSVC compilers don't do it yet. But as a workaround, with
+   Python 3.10 or older, the C++03 language standard is significantly
+   overlapping with C11, it is then used instead.
 
 .. [#]
 
@@ -500,20 +497,74 @@ To copy some or all file in a directory, use the option
 patterns for the files, and a subdirectory where to put them, indicated
 by the trailing slash.
 
-To copy a whole folder with all files, you can use
-``--include-data-dir=/path/to/images=images`` which will copy all files
-including a potential subdirectory structure. You cannot filter here,
-i.e. if you want only a partial copy, remove the files beforehand.
+.. important::
 
-For package data, there is a better way, using
-``--include-package-data``, which detects data files of packages
-automatically and copies them over. It even accepts patterns in a shell
-style. It spares you the need to find the package directory yourself and
-should be preferred whenever available.
+   Nuitka does not consider data files code, do not include DLLs, or
+   Python files as data files, and expect them to work, they will not,
+   unless you really know what you are doing.
+
+In the following, non-code data files are all files, not matching on of
+these criterions.
+
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| Suffix     | Rationale                                                                              | Solution                                                                                               |
++============+========================================================================================+========================================================================================================+
+| ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code,    | Use ``--include-module`` on them instead                                                               |
+|            | there is no dependencies analyzed, and as a result it will just not work.              |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyc``   | Same as ``.py``.                                                                       | Use ``--include-module`` on them from their source code instead.                                       |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyo``   | Same as ``.pyc``.                                                                      | Use ``--include-module`` on them from their source code instead.                                       |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyw``   | Same as ``.py``.                                                                       | For including multiple programs, use multiple ``--main`` arguments instead.                            |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyi``   | These are ignored, because they are code-like and not needed at run time. For the      | Raise an issue if 3rd part software needs it.                                                          |
+|            | ``lazy`` package that actually would depend on them, we made a compile time solution   |                                                                                                        |
+|            | that removes the need.                                                                 |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyx``   | These are ignored, because they are Cython source code not used at run time            |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd  | Create Nuitka Package configuration for those, with ``dll`` section for the package that uses them.    |
+|            | party packages do actually used them as data, e.g. ``.NET`` packages, we solve that in | For rare cases, data-files section with special configuration might be the correct thing to do.        |
+|            | package configuration for it.                                                          |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.dylib`` | These are ignored, since they macOS extension modules or DLLs.                         | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.so``    | These are ignored, since they Linux, BSD, etc. extension modules or DLLs.              | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.exe``   | The are binaries to Windows.                                                           | You can add Nuitka Package configuration to include those as DLLs and mark them as ``executable: yes`` |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.bin``   | The are binaries to non-Windows, otherwise same as ``.exe``.                           |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+
+Also folders are ignored, these are ``site-packages``, ``dist-packages``
+and ``vendor-packages`` which would otherwise include a full virtualenv,
+which is never a good thing to happen. And the ``__pycache__`` folder is
+also always ignored. On non-MacOS the file ``.DS_Store`` is ignored too,
+and ``py.typed`` folders have only meaning to IDEs, and are ignored like
+``.pyi`` files .
+
+To copy a whole folder with all non-code files, you can use
+``--include-data-dir=/path/to/images=images`` which will place those in
+the destination, and if you want to use the ``--noinclude-data-files``
+option to remove them. Code files are as detailed above DLLs,
+executables, Python files, etc. and will be ignored. For those you can
+use the ``--include-data-files=/binaries/*.exe=binary/`` form to force
+them, but that is not recommended and known to cause issues at run-time.
+
+For package data, there is a better way, namely using
+``--include-package-data``, which detects all non-code data files of
+packages automatically and copies them over. It even accepts patterns in
+a shell style. It spares you the need to find the package directory
+yourself and should be preferred whenever available. Functionally it's
+very similar to ``--include-data-dir`` but it has the benefit to locate
+the correct folder for you.
 
 With data files, you are largely on your own. Nuitka keeps track of ones
 that are needed by popular packages, but it might be incomplete. Raise
-issues if you encounter something in these.
+issues if you encounter something in these. Even better, raise PRs with
+enhancements to the Nuitka package configuration. With want 3rd party
+software to just work out of the box.
 
 When that is working, you can use the onefile mode if you so desire.
 
@@ -1120,7 +1171,19 @@ Memory issues and compiler bugs
 
 In some cases, the C compilers will crash saying they cannot allocate
 memory or that some input was truncated, or similar error messages,
-clearly from it. There are several options you can explore here:
+clearly from it. These are example error messages, that are a sure sign
+of too low memory, there is no end to them.
+
+.. code::
+
+   # gcc
+   fatal error: error writing to -: Invalid argument
+   Killed signal terminated program
+   # MSVC
+   fatal error C1002: compiler is out of heap space in pass 2
+   fatal error C1001: Internal compiler error
+
+There are several options you can explore here.
 
 Ask Nuitka to use less memory
 -----------------------------
@@ -1517,6 +1580,24 @@ override it with setting the environment variable ``NUITKA_CACHE_DIR``
 to a base directory. This is for use in environments where the home
 directory is not persisted, but other paths are.
 
+There is also per cache control of these caches, here is a table of
+environment variables that you can set before starting the compilation,
+to make Nuitka store some of these caches in an entirely separate space.
+
++------------------+-----------------------------------+----------------------------------------+
+| Cache name       | Environment Variable              | Data Put there                         |
++==================+===================================+========================================+
+| downloads        | NUITKA_CACHE_DIR_DOWNLOADS        | Downloads made, e.g. dependency walker |
++------------------+-----------------------------------+----------------------------------------+
+| ccache           | NUITKA_CACHE_DIR_CCACHE           | Object files created by gcc            |
++------------------+-----------------------------------+----------------------------------------+
+| clcache          | NUITKA_CACHE_DIR_CLCACHE          | Object files created by MSVC           |
++------------------+-----------------------------------+----------------------------------------+
+| bytecode         | NUITKA_CACHE_DIR_BYTECODE         | Bytecode of demoted modules            |
++------------------+-----------------------------------+----------------------------------------+
+| dll-dependencies | NUITKA_CACHE_DIR_DLL_DEPENDENCIES | DLL dependencies                       |
++------------------+-----------------------------------+----------------------------------------+
+
 Runners
 =======
 
@@ -1600,31 +1681,33 @@ standalone compiled program.
 
 Depending on the used C compiler, you'll need the following redist
 versions on the target machines. However, notice that compilation using
-the 14.3 based version is recommended.
+the 14.3 based version is always recommended, working and best
+supported, unless you want to target Windows 7.
 
-+------------------+-------------+-------------------------------+
-| Visual C version | Redist Year | CPython                       |
-+==================+=============+===============================+
-| 14.3             | 2022        | 3.11                          |
-+------------------+-------------+-------------------------------+
-| 14.2             | 2019        | 3.5, 3.6, 3.7, 3.8, 3.9, 3.10 |
-+------------------+-------------+-------------------------------+
-| 14.1             | 2017        | 3.5, 3.6, 3.7, 3.8            |
-+------------------+-------------+-------------------------------+
-| 14.0             | 2015        | 3.5, 3.6, 3.7, 3.8            |
-+------------------+-------------+-------------------------------+
-| 10.0             | 2010        | 3.4                           |
-+------------------+-------------+-------------------------------+
-| 9.0              | 2008        | 2.6, 2.7                      |
-+------------------+-------------+-------------------------------+
++------------------+-------------+----------+
+| Visual C version | Redist Year | CPython  |
++==================+=============+==========+
+| 14.3             | 2022        | 3.11     |
++------------------+-------------+----------+
+| 14.2             | 2019        | 3.5-3.10 |
++------------------+-------------+----------+
+| 14.1             | 2017        | 3.5-3.8  |
++------------------+-------------+----------+
+| 14.0             | 2015        | 3.5-3.8  |
++------------------+-------------+----------+
+| 10.0             | 2010        | 3.4      |
++------------------+-------------+----------+
+| 9.0              | 2008        | 2.6, 2.7 |
++------------------+-------------+----------+
 
-When using MingGW64, you'll need the following redist versions:
+When using MingGW64 as downloaded by Nuitka, you'll need the following
+redist versions:
 
-+------------------+-------------+-------------------------------------+
-| MingGW64 version | Redist Year | CPython                             |
-+==================+=============+=====================================+
-| 8.1.0            | 2015        | 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, 3.11 |
-+------------------+-------------+-------------------------------------+
++----------------------------+-------------+---------------------+
+| MingGW64 version           | Redist Year | CPython             |
++============================+=============+=====================+
+| WinLibs automatic download | 2015        | 2.6, 2.7, 3.4- 3.11 |
++----------------------------+-------------+---------------------+
 
 Once the corresponding runtime libraries are installed on the target
 system, you may remove all ``api-ms-crt-*.dll`` files from your Nuitka
@@ -1762,15 +1845,15 @@ Mastodon and Twitter accounts, but obviously with not too many details,
 usually pointing to the website, but sometimes I also ask questions
 there.
 
-`@KayHayen on Mastodon <https://fosstodon.org/@kayhayen>`__. `@KayHayen
-on Twitter <https://twitter.com/KayHayen>`__.
+`@KayHayen on Mastodon <https://fosstodon.org/@kayhayen>`_. `@KayHayen
+on Twitter <https://twitter.com/KayHayen>`_.
 
-Report issues
-=============
+Report issues or bugs
+=====================
 
-Should you encounter any issues, or ideas, please visit the `Nuitka
-issue tracker <https://github.com/Nuitka/Nuitka/issues>`__ and report
-them.
+Should you encounter any issues, bugs, or ideas, please visit the
+`Nuitka bug tracker <https://github.com/Nuitka/Nuitka/issues>`__ and
+report them.
 
 Best practices for reporting bugs:
 
