@@ -65,6 +65,6 @@ the more readable code perform as well or better as the less readable
 variant.
 
 But yes, lets see what happens. Oh, and you will find its `latest
-version here </pages/download.html>`_.
+version here </doc/download.html>`_.
 
 Kay Hayen

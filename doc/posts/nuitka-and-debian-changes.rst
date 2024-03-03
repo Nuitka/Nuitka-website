@@ -18,6 +18,6 @@ discussion with my great sponsor Yaroslav Halchenko, we needed to
 consider if Nuitka is ready to be maintained in Debian Stable.
 
 And for that I have to admit, it is just not ready. You will be able to
-download packages from the `Downloads </pages/download.html>`_ and
+download packages from the `Downloads </doc/download.html>`_ and
 install them. They will still be in Debian Unstable, but they won't be
 in Debian Testing and the next Debian Stable.

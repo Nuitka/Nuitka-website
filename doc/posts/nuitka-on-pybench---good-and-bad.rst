@@ -61,7 +61,7 @@ stuff.
    wasteful. We need to be able to create code objects that can be used
    for all lines needed, and then we can re-use it and only have one
    frame object per function, which then can be re-used itself. There is
-   already some work for that in [current git](/pages/download.html)
+   already some work for that in [current git](/doc/download.html)
    (0.3.9 pre 2), but it's not yet complete at all.
 
 -  WithRaiseExcept: Same problem as TryRaiseExcept, the exception

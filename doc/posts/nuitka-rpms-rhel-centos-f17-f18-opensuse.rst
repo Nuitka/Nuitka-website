@@ -11,7 +11,7 @@ using `openSUSE Build Service
 <https://build.opensuse.org/package/show/home:kayhayen/Nuitka>`__, we
 can now enjoy RPMs for all major distributions.
 
-Check out the revamped `download page </pages/download.html>`_ as well.
+Check out the revamped `download page </doc/download.html>`_ as well.
 
 .. note::
 

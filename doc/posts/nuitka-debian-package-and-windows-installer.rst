@@ -8,7 +8,7 @@
 
 There is now a Windows installer and a Debian package of `Nuitka
 </pages/overview.html>`_ available on the `Download
-</pages/download.html>`_ page. Please try it out and give me feedback.
+</doc/download.html>`_ page. Please try it out and give me feedback.
 
 Specifically I do know that the Debian package won't work on Debian
 Squeeze, but only on Debian Wheezy (Testing) maybe it does on Ubuntu as

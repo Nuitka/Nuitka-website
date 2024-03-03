@@ -191,6 +191,5 @@ msgstr ""
 #: ../../doc/pages/overview.rst:111
 msgid ""
 "In the meantime you can find its `latest version here "
-"</pages/download.html>`_."
+"</doc/download.html>`_."
 msgstr ""
-

@@ -31,7 +31,7 @@ single executable if you want. It also does acceleration, just running
 faster in the same environment, and can produce extension modules as
 well. It is freely distributed under the Apache license.
 
-`Get Nuitka Standard </pages/download.html>`_
+`Get Nuitka Standard </doc/download.html>`_
 
 Nuitka Commercial
 =================

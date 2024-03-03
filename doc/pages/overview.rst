@@ -109,4 +109,4 @@ We have yet to start on milestones 5 and 6. There is still quite a way
 to go until we hit the "future".
 
 In the meantime you can find its `latest version here
-</pages/download.html>`_.
+</doc/download.html>`_.

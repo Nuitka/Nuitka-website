@@ -46,6 +46,6 @@ or Wikis, it appears to be not necessary to make that decision.
 .. note::
 
    The preferred for use, and most up to date repository will remain
-   `the one from Downloads </pages/download.html>`_.
+   `the one from Downloads </doc/download.html>`_.
 
 So fork away, like it, and stuff. Awaiting your pull requests...

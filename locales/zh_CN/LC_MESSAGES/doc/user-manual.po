@@ -372,7 +372,7 @@ msgid ""
 "Python program it can be installed via the normal ``python setup.py "
 "install`` routine."
 msgstr ""
-"对于大多数系统，在 Nuitka 的 `下载页面 <http://www.nuitka.net/pages/download.html>`__ "
+"对于大多数系统，在 Nuitka 的 `下载页面 <http://www.nuitka.net/doc/download.html>`__ "
 "上会有软件包。但你也可以像上面描述的那样从源代码中安装它，但也像其他 Python 程序一样，可以通过正常的 ``python setup.py "
 "install`` 程序来安装。"
 
@@ -2365,4 +2365,3 @@ msgstr "你可以在以下网站找到当前版本：https://nuitka.net/doc/user
 
 #~ msgid "And the current PDF under: https://nuitka.net/doc/README.pdf"
 #~ msgstr "当前 PDF 版本：https://nuitka.net/doc/README.pdf"
-

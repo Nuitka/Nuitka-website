@@ -81,7 +81,7 @@ We will be able to accommodate all time zones somehow.
 Nuitka setup is trivial and explained in the `User Manual
 </doc/user-manual.html>`_. Using Anaconda Python on Windows, or a normal
 Linux system, and you are good to go with a git clone of Nuitka in a
-minute. See `Download page </pages/download.html>`_ how to do that.
+minute. See `Download page </doc/download.html>`_ how to do that.
 
 Bug fixes and features are expected to be done via PRs on Github. We can
 guide you through that, it's easy. We are not very formal, but helpful.

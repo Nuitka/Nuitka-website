@@ -17,7 +17,7 @@ clarification of what it is now and what it wants to be.
 
 You may use the apt sources to track Nuitka or download the packages
 from the page where I offer the `latest version here
-</pages/download.html>`_.
+</doc/download.html>`_.
 
 Note: In fact, it's 0.3.19.1 now, which includes a hotfix release made
 after 0.3.19. The same is in Debian Unstable right now, waiting to

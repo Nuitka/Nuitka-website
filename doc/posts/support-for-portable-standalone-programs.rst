@@ -40,7 +40,7 @@ yet.
    executable for even easier deployment.
 
 You are more than welcome to experiment with it. To do so, download
-Nuitka from the `download page </pages/download.html>`_ and give it a
+Nuitka from the `download page </doc/download.html>`_ and give it a
 roll.
 
 .. note::
