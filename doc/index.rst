@@ -41,7 +41,7 @@ outputs, so that users of the executable cannot access these. This a
 private repository of plugins that you pay to get access to.
 Additionally, you can purchase priority support.
 
-`Find out more ... </doc/commercial.html>`__
+`Learn more about Nuitka commercial </doc/commercial.html>`_
 
 .. toctree::
    :hidden:
