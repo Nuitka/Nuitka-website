@@ -21,4 +21,4 @@
 
 .. |GIT_LOGO| image:: /images/git.jpg
 
-.. |SUPPORTED_PYTHONS| replace:: Python2 (2.6, 2.7) and Python3 (3.4 - 3.11)
+.. |SUPPORTED_PYTHONS| replace:: **Python 2** (2.6, 2.7) and **Python 3** (3.4 — 3.11)
