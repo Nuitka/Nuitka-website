@@ -58,6 +58,7 @@ Additionally, you can purchase priority support.
    doc/bundles
 
 .. toctree::
+   :titlesonly:
    :hidden:
    :caption: Release Information
 
