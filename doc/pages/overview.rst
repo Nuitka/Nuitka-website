@@ -35,7 +35,7 @@ Now
 
 Right now Nuitka is a good replacement for the Python interpreter. It
 compiles **every** language construct in all relevant CPython versions,
-and even the irrelevant ones like 2.6 and 3.3. It translates Python into
+and even the irrelevant ones like 2.6 and 3.4. It translates Python into
 a C program that then is linked against libpython to execute exactly
 like CPython. It is extremely compatible.
 
