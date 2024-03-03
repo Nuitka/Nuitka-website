@@ -38,7 +38,8 @@
 				"trond-snekvik.simple-rst",
 				"shuworks.vscode-table-formatter",
 				"streetsidesoftware.code-spell-checker",
-				"redhat.vscode-xml"
+				"redhat.vscode-xml",
+				"eamodio.gitlens"
 			]
 		}
 	},
