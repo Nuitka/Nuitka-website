@@ -68,6 +68,7 @@ html_logo = f"{ROOT}/doc/Nuitka-Logo-Symbol.svg"
 html_copy_source = False
 html_show_sourcelink = False
 html_show_sphinx = False
+html_title = project
 
 favicons = [
     {
