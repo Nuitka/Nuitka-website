@@ -2,9 +2,9 @@
  Nuitka Changelog
 ##################
 
-In this document, we track the per version changes and comments since Nuitka
-2.0 release and a draft of the change of upcoming new release, that contains
-information about hot-fixes of the current stable release.
+In this document, we track the per version changes and comments since
+Nuitka 2.0 release and a draft of the change of upcoming new release,
+that contains information about hot-fixes of the current stable release.
 
 .. contents:: Table of Contents
    :local:
@@ -38,6 +38,9 @@ Bug Fixes
 
 -  UI: The help output for ``--output-filename`` was not formatted
    properly. Fixed in 2.0.1 already.
+
+-  Standalone: Added support for the ``scapy`` package. Fixed in 2.0.2
+   already.
 
 New Features
 ============

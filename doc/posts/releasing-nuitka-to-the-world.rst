@@ -1,10 +1,10 @@
 .. post:: 2010/08/18 07:49
-   :tags: compiler, Nuitka, Python
+   :tags: compiler, Python, Nuitka
    :author: Kay Hayen
 
-###############################
- Releasing Nuitka to the World
-###############################
+####################################################
+ Nuitka Release 0.1 (Releasing Nuitka to the World)
+####################################################
 
 Obviously this is very exciting step for me. I am releasing Nuitka
 today. Finally. For a long time I knew I would, but actually doing it,
@@ -20,7 +20,7 @@ Nuitka, it will only get better, and then probably in sometimes dramatic
 steps. But I see this as a long term goal.
 
 I want to have infrastructure in the code place, before doing lots of
-possible optimizations that just make Nuitka unmaintainable. And I will
+possible optimization that just make Nuitka unmaintainable. And I will
 want to have a look at what others did so far in the domain of type
 inference and how to apply that for my project.
 
@@ -58,7 +58,7 @@ determine that the following will be much faster:
    def convertNauticalMilesToMeters(miles):
        return miles * 1852
 
-Still good? Well, probably next step you are going to inline the
+Still good? Well, probably next step you are going to in-line the
 function calls entirely. For optimization, you are making your code less
 readable. I do not all appreciate that. My first goal is there to make
 the more readable code perform as well or better as the less readable

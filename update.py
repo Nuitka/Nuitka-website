@@ -554,83 +554,45 @@ def slugify(value):
     return _slugify_hyphenate_re.sub("-", value)
 
 
-def splitRestByChapter(lines):
-    marker = "***"
+def _splitRestByChapter(lines):
+    marker = "****"
 
-    await_title = "outside"
+    section_markers = []
 
     for count, line in enumerate(lines):
-        line = line.rstrip("\n")
+        if line.startswith(marker) and lines[count + 2].startswith(marker):
+            section_markers.append((count, lines[count + 1].strip()))
 
-        if line.startswith(marker):
-            if await_title == "outside":
-                await_title = "title"
-            elif await_title == "marker":
-                await_title = "outside"
+    for count, (section_start_line, title) in enumerate(section_markers):
+        try:
+            end_line = section_markers[count + 1][0]
+        except IndexError:
+            end_line = None
 
-                for count2, line in enumerate(lines[count + 1 :]):
-                    count2 += count
-
-                    if line.startswith(marker):
-                        title = lines[count - 1].rstrip("\n")
-
-                        body = lines[count + 1 : count2]
-
-                        while body and not body[0].rstrip("\n"):
-                            del body[0]
-
-                        yield title, body
-                        break
-        elif await_title == "title":
-            await_title = "marker"
+        yield title, lines[section_start_line + 3 : end_line]
 
 
 def updateReleasePosts():
+    _updateReleasePosts("doc/doc/Changelog.rst")
+    _updateReleasePosts("doc/doc/Changelog-1.x.rst")
+    _updateReleasePosts("doc/doc/Changelog-0.x.rst")
+
+
+def _updateReleasePosts(changelog_filename):
     count = 0
-    sep = "#"
 
-    # Make sure changelog is there.
-    updateNuitkaFactory(update=True)
+    for title, lines in _splitRestByChapter(open(changelog_filename).readlines()):
+        title = title.lstrip()
+        count += 1
 
-    with open("doc/doc/Changelog.rst", "w") as changelog_output:
-        for title, lines in splitRestByChapter(
-            open("Nuitka-factory/Changelog.rst").readlines()
-        ):
-            if count == 3:
-                older = "Older Releases"
+        # Ignore draft for pages.
+        if "Draft" in title:
+            continue
 
-                changelog_output.write("\n\n" + sep * len(older) + "\n")
-                changelog_output.write(older + "\n")
-                changelog_output.write(sep * len(older) + "\n\n")
-                changelog_output.write("These are older releases of Nuitka.")
+        slug = slugify(title)
 
-                sep = "="
-
-            changelog_output.write("\n\n")
-            if sep != "=":
-                changelog_output.write(sep * len(title) + "\n")
-            else:
-                title = title.lstrip()
-
-            changelog_output.write(title + "\n")
-            changelog_output.write(sep * len(title) + "\n\n")
-
-            if sep == "=":
-                changelog_lines = [
-                    line.replace("=", "-") if line.startswith("===") else line
-                    for line in lines
-                ]
-            else:
-                changelog_lines = lines
-
-            changelog_output.writelines(changelog_lines)
-            count += 1
-
-            # Ignore draft for pages.
-            if "Draft" in title:
-                continue
-
-            # For the pages, use a leading sentence.
+        # For the pages except very first, use a leading sentence.
+        if "release-01-releasing" not in slug:
             lines = (
                 [
                     """\
@@ -641,39 +603,49 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
                 ]
                 + lines
             )
+        else:
+            lines.append(
+                """
 
-            slug = slugify(title)
+But yes, lets see what happens. Oh, and you will find its `latest
+version here </doc/download.html>`_.
 
-            if "release-038" in slug:
-                slug += "---windows-support"
+Kay Hayen
+"""
+            )
+        if "release-038" in slug:
+            slug += "---windows-support"
 
-            if "release-02" in slug:
-                slug = slug.replace("nuitka-release", "release-nuitka")
+        if "release-02" in slug:
+            slug = slug.replace("nuitka-release", "release-nuitka")
 
-            if "release-011" in slug:
-                slug = "minor-" + slug.replace("nuitka-release", "release-nuitka")
+        if "release-011" in slug:
+            slug = "minor-" + slug.replace("nuitka-release", "release-nuitka")
 
-            output_path = "doc/posts"
-            txt_path = os.path.join(output_path, f"{slug}.rst")
+        if "release-01-releasing" in slug:
+            slug = "releasing-nuitka-to-the-world"
 
-            if os.path.exists(txt_path):
-                pub_date = open(txt_path).readline().split(maxsplit=2)[2].strip()
-            else:
-                pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
-                pub_date = pub_date.strftime("%Y/%m/%d %H:%M")
+        output_path = "doc/posts"
+        txt_path = os.path.join(output_path, f"{slug}.rst")
 
-            lines = [
-                ".. post:: %s\n" % pub_date,
-                "   :tags: compiler, Python, Nuitka\n",
-                "   :author: Kay Hayen\n",
-                "\n",
-                title.strip() + "\n",
-                "~~~~~\n",
-                "\n",
-            ] + lines
+        if os.path.exists(txt_path):
+            pub_date = open(txt_path).readline().split(maxsplit=2)[2].strip()
+        else:
+            pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
+            pub_date = pub_date.strftime("%Y/%m/%d %H:%M")
 
-            with withFileOpenedAndAutoFormatted(txt_path) as output_file:
-                output_file.write("".join(lines))
+        lines = [
+            ".. post:: %s\n" % pub_date,
+            "   :tags: compiler, Python, Nuitka\n",
+            "   :author: Kay Hayen\n",
+            "\n",
+            title.strip() + "\n",
+            "~~~~~\n",
+            "\n",
+        ] + lines
+
+        with withFileOpenedAndAutoFormatted(txt_path) as output_file:
+            output_file.write("".join(lines))
 
 
 def updateDocs():
