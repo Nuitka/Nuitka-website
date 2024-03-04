@@ -213,8 +213,40 @@ New Features
    ``extension_suffix`` for use in expressions, to e.g. construct DLL
    suffix patterns from it.
 
+-  UI: Added more control over caching with per cache category
+   environment variables, as `documented in the User Manual.
+   <https://nuitka.net/doc/user-manual.html#control-where-caches-live>`_.
+
+-  Plugins: Added support for reporting module detections
+
+   The ``delvewheel`` plugin now puts the version of that packaging tool
+   used by a particular module in the report rather than tracing it to
+   the user, that in the normal case won't care. This is more for
+   debugging purposes of Nuitka.
+
 Optimization
 ============
+
+-  Scalability: Do not make loop analysis at all for very trusted value
+   traces, their point is to not change, and waiting for that to be
+   confirmed has no point.
+
+-  Use very trusted value traces in functions not just as mere assign
+   traces or else expected optimization will not be done on them in many
+   cases. With this a lot more cases of hard values are optimized
+   leading also to generally more compact and correct results in terms
+   of imports, metadata, code avoided on the wrong OS, etc.
+
+-  Scalability: When specializing assignments, make sure to have the
+   proper value trace immediately.
+
+   When changing to a hard value, the value trace was still an assign
+   trace and not very trusted for one for micro pass of the module.
+
+   This had the effect to need one more micro pass to get to benefiting
+   of the unescapable nature of those values, which meant more micro
+   passes than necessary and those being more complex due to escaped
+   traces, and therefore taking longer for affected modules.
 
 -  Scalability: The code trying avoid merge traces of merge traces, and
    to instead flatten merge traces was only handling part of these
@@ -223,9 +255,27 @@ Optimization
    come out of this, even where this was not affecting compile time as
    much. Added in 2.0.1 already.
 
+-  Scalability: Some codes that checked for variables were testing for
+   temporary variable and normal variable both one after another, making
+   some optimization steps and code generation slower than necessary due
+   to the extra calls.
+
+-  Scalability: A variable assignment from variable that were later
+   recognized to become a raise was not recognized as such, and this
+   then wasn't caught and propagated as it should, preventing more
+   optimization of the affected code. Make sure to convert more directly
+   when observing things to change, rather than doing it one pass later.
+
 -  The fix proper reuse of tuples released to the freelist with matching
    sizes causes less memory usage and faster performance for the 3.11
    version. Added in 2.0.2 already.
+
+-  Statically optimize ``sys.exit`` into exception raise of
+   ``SystemExit``.
+
+   This should make a bunch of dead code obvious to Nuitka, it can now
+   tell this aborts execution of a branch, potentially eliminating
+   imports, etc.
 
 -  macOS: Enable python static link library for Homebrew too. Added in
    2.0.1 already. Added in 2.0.3 already.
@@ -248,8 +298,29 @@ Optimization
 -  Anti-Bloat: Changes to avoid ``triton`` in newer ``torch`` as well.
    Added in 2.0.5 already.
 
+-  Anti-Bloat: Avoid ``setuptools`` via ``setuptools_scm`` in
+   ``pyarrow``.
+
+-  Anti-Bloat: Made more packages equivalent to using ``setuptools``
+   which we want to avoid, all of ``Cython``, ``cython``, ``pyximport``,
+   ``paddle.utils.cpp_extension``, ``torch.utils.cpp_extension`` were
+   added for better reports of the actual causes.
+
 Organisational
 ==============
+
+-  Moved the changelog of Nuitka to the website, just point to there
+   from Nuitka repo.
+
+-  UI: Proper error message from Nuitka when scons build fails with a
+   detail mnemonic page. Read more on :doc:`the info page
+   </info/scons-backend-failure>` for detailed information.
+
+-  Reject all MinGW64 that are not are now the ``winlibs`` that
+   downloaded, as these packages break very easily, we need to control
+   if it's a working set of ``ccache``, ``make``, ``binutils`` and gcc
+   with all the necessary workarounds and features like ``LTO`` working
+   on Windows properly.
 
 -  Quality: Added auto-format of PNG and JPEG images. This aims at
    making it simpler to add images to our repositories, esp. Nuitka
@@ -257,8 +328,18 @@ Organisational
    necessary. Previously this was manual steps for the website to be
    applied.
 
+-  User Manual: Be more clear about compiler version needs on Windows
+   for Python 3.11.
+
+-  User Manual: Added examples for error message with low C compiler
+   memory, such that maybe they can be found via search by users.
+
 -  Quality: Avoid empty ``no-auto-follow`` values, for silently ignoring
    it there is a dedicated string ``ignore`` that must be used.
+
+-  Quality: Enforce normalized paths for ``dest_path`` and
+   ``relative_path``. Users were uncertain if a leading dot made sense,
+   but we now disallow it for clarity.
 
 -  Release: Remove month from manpage generation, that's only noise in
    diffs.
@@ -281,6 +362,27 @@ Organisational
    Instead point people to PySide6 which is the better choice and is
    perfectly supported by Qt company and Nuitka.
 
+-  Removed version numbering, month of creation, etc. from the man pages
+   generated.
+
+-  Moved ``Credits.rst`` file to be on the website and maintain it there
+   rather than syncing of from the Nuitka repository.
+
+Cleanups
+========
+
+-  With ``sys.exit`` being optimized, we were able to make our trick to
+   avoid following ``nuitka`` because of accidentally finding the
+   ``setup`` as an import more simple.
+
+   .. code:: python
+
+      # Don't allow importing this, and make recognizable that
+      # the above imports are not to follow. Sometimes code imports
+      # setup and then Nuitka ends up including itself.
+      if __name__ != "__main__":
+         sys.exit("Cannot import 'setup' module of Nuitka")
+
 Tests
 =====
 
@@ -289,6 +391,9 @@ Tests
    systems that are not capable of handling them in the git, zip, pip
    tooling, so lets avoid them entirely now that Nuitka handles these
    just fine.
+
+-  Tests: More macOS standalone tests that need to be bundles were
+   getting the project configuration to do it.
 
 Summary
 =======
