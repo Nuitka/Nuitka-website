@@ -393,6 +393,10 @@ Organisational
 -  Moved ``Credits.rst`` file to be on the website and maintain it there
    rather than syncing of from the Nuitka repository.
 
+-  Bumped copyright year and split the license text such that it is now at
+   the bottom of the files rather than eating up the first page, this is aimed
+   at making the code more readable.
+
 Cleanups
 ========
 
