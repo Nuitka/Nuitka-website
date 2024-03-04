@@ -271,7 +271,7 @@ parties, you are limited.
 
 In case you need to fill out a form for your company with vendor
 information, please find the full set of information on this page
-:doc:`/pages/impressum`
+:doc:`/pages/impressum`.
 
 ************
  Contact Us
