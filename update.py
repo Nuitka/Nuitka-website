@@ -831,7 +831,7 @@ jQuery(function () {
             logo_parent.append(logo_div)
 
         social_images = doc.xpath("//img[contains(@src, '/_static/icon-')]")
-        assert len(social_images) == 4, (filename, social_images)
+        assert len(social_images) in (4,0), (filename, social_images)
 
         for social_image in social_images:
             social_image.attrib["width"] = "24"

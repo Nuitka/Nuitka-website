@@ -140,12 +140,10 @@ html {
 }
 
 .share-button-container {
+    float: right;
     text-align: center;
     margin: 0 0;
     padding: 0 0;
-    position: absolute;
-    top: 0;
-    right: 20px;
 }
 
 /* For share buttons to position into them absolute, this needs to be marked relative. */
@@ -338,4 +336,9 @@ a[class~="headerlink"]:hover {
 
 a[class~="headerlink"]:visited  {
     color: #1C5E89;
+}
+
+.ablog__postcard {
+    float: right;
+
 }
