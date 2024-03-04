@@ -182,6 +182,12 @@ Bug Fixes
 -  Actions: Fix, some yaml configs could fail to load plugins. Fixed in
    2.0.6 already.
 
+-  Standalone: Added support for newer ``torch`` packages that otherwise
+   require source code.
+
+-  Fix, inline copies of ``tqdm`` etc. left sub-modules behind, removing only
+   the top level ``sys.modules`` entry may not be enough.
+
 New Features
 ============
 
@@ -193,6 +199,15 @@ New Features
 -  Plugins: Make ``relative_path``, ``suffix``, ``prefix`` in DLL Nuitka
    package configurations allowed to be an expression rather than just a
    constant value.
+
+-  Plugins: Make not only booleans related to the python version
+   available, but also strings ``python_version_str`` and
+   ``python_version_full_str``, to use them when constructing e.g. DLL
+   paths in Nuitka package configuration.
+
+-  Plugins: Added helper function ``iterate_modules`` for producing the
+   submodules of a given package, for using in expressions of
+   Nuitka package configuration.
 
 -  macOS: Added support for Tcl/Tk detection on Homebrew Python.
 
@@ -334,12 +349,22 @@ Organisational
 -  User Manual: Added examples for error message with low C compiler
    memory, such that maybe they can be found via search by users.
 
+-  User Manual: Removed sections that are unnecessary or better
+   maintained as separate pages on the website.
+
 -  Quality: Avoid empty ``no-auto-follow`` values, for silently ignoring
    it there is a dedicated string ``ignore`` that must be used.
 
 -  Quality: Enforce normalized paths for ``dest_path`` and
    ``relative_path``. Users were uncertain if a leading dot made sense,
    but we now disallow it for clarity.
+
+-  Quality: Check more keys with expressions for syntax errors, to catch
+   these mistakes in configuration sooner.
+
+-  Quality: Scanning through all files with the auto-format tool should
+   now be faster, and CPython test suite directories (test submodules)
+   if present are ignored.
 
 -  Release: Remove month from manpage generation, that's only noise in
    diffs.
@@ -382,6 +407,13 @@ Cleanups
       # setup and then Nuitka ends up including itself.
       if __name__ != "__main__":
          sys.exit("Cannot import 'setup' module of Nuitka")
+
+-  Scons: Don't scan for ``ccache`` on Windows, the ``winlibs`` package
+   contains it nowadays, and since it's now required to be used, there
+   is no point for this code anymore.
+
+-  Minor cleanups coming from trying out ``ruff`` as a linter on Nuitka,
+   it found a few uses of not using ``not in``, but that was it.
 
 Tests
 =====
