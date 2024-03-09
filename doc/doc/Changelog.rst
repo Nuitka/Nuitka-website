@@ -185,8 +185,8 @@ Bug Fixes
 -  Standalone: Added support for newer ``torch`` packages that otherwise
    require source code.
 
--  Fix, inline copies of ``tqdm`` etc. left sub-modules behind, removing only
-   the top level ``sys.modules`` entry may not be enough.
+-  Fix, inline copies of ``tqdm`` etc. left sub-modules behind, removing
+   only the top level ``sys.modules`` entry may not be enough.
 
 New Features
 ============
@@ -206,8 +206,8 @@ New Features
    paths in Nuitka package configuration.
 
 -  Plugins: Added helper function ``iterate_modules`` for producing the
-   submodules of a given package, for using in expressions of
-   Nuitka package configuration.
+   submodules of a given package, for using in expressions of Nuitka
+   package configuration.
 
 -  macOS: Added support for Tcl/Tk detection on Homebrew Python.
 
@@ -331,11 +331,11 @@ Organisational
    detail mnemonic page. Read more on :doc:`the info page
    </info/scons-backend-failure>` for detailed information.
 
--  Reject all MinGW64 that are not are now the ``winlibs`` that
-   downloaded, as these packages break very easily, we need to control
-   if it's a working set of ``ccache``, ``make``, ``binutils`` and gcc
-   with all the necessary workarounds and features like ``LTO`` working
-   on Windows properly.
+-  Windows: Reject all MinGW64 that are not are not the ``winlibs`` that
+   Nuitka itself downloaded. As these packages break very easily, we
+   need to control if it's a working set of ``ccache``, ``make``,
+   ``binutils`` and gcc with all the necessary workarounds and features
+   like ``LTO`` working on Windows properly.
 
 -  Quality: Added auto-format of PNG and JPEG images. This aims at
    making it simpler to add images to our repositories, esp. Nuitka
@@ -393,9 +393,9 @@ Organisational
 -  Moved ``Credits.rst`` file to be on the website and maintain it there
    rather than syncing of from the Nuitka repository.
 
--  Bumped copyright year and split the license text such that it is now at
-   the bottom of the files rather than eating up the first page, this is aimed
-   at making the code more readable.
+-  Bumped copyright year and split the license text such that it is now
+   at the bottom of the files rather than eating up the first page, this
+   is aimed at making the code more readable.
 
 Cleanups
 ========
