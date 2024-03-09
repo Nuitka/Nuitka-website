@@ -676,25 +676,28 @@ def _getTranslationFileSet(filename):
 
     return language, filename_translations
 
+js_order = [
+    "documentation_options.js",
+    "jquery.js",
+    "_sphinx_javascript_frameworks_compat.js",
+    "doctools.js",
+    "sphinx_highlight.js",
+    "js/theme.js",
+    "clipboard.min.js",
+    "copybutton.js",
+]
 
-def runPostProcessing():
-    # Compress the CSS and JS files into one file, clean up links, and
-    # do other touch ups.
-    searchindex_js_filename = "output/searchindex.js"
 
-    search_html_filename = "output/search.html"
 
-    js_set_1 = [
-        "documentation_options",
-        "jquery",
-        "_sphinx_javascript_frameworks_compat",
-        "doctools",
-        "sphinx_highlight",
-        "js/theme",
-    ]
-    js_set_1_contents = (
+def _makeJsCombined(js_filenames):
+    js_filenames = list(js_filenames)
+    if "jquery.js" not in js_filenames:
+        js_filenames.append("jquery.js")
+    js_filenames.sort(key = lambda x: js_order.index(x))
+
+    js_set_contents = (
         "\n".join(
-            getFileContents(f"output/_static/{js_name}.js") for js_name in js_set_1
+            getFileContents(f"output/_static/{js_name}") for js_name in js_filenames
         )
         + """
 jQuery(function () {
@@ -703,11 +706,25 @@ jQuery(function () {
     """
     )
 
-    js_set_1_output_filename = "/_static/combined_%s.js" % getHashFromValues(
-        js_set_1_contents
+    js_set_output_filename = "/_static/combined_%s.js" % getHashFromValues(
+        js_set_contents
     )
 
-    putTextFileContents(f"output{js_set_1_output_filename}", js_set_1_contents)
+    putTextFileContents(f"output{js_set_output_filename}", js_set_contents)
+
+    return js_set_output_filename
+
+def runPostProcessing():
+    # Compress the CSS and JS files into one file, clean up links, and
+    # do other touch ups.
+    searchindex_js_filename = "output/searchindex.js"
+
+    if os.path.exists(searchindex_js_filename):
+        os.unlink(searchindex_js_filename)
+
+    search_html_filename = "output/search.html"
+    if os.path.exists(search_html_filename):
+        os.unlink(search_html_filename)
 
     for filename in getFileList("output", only_suffixes=".html"):
         doc = html.fromstring(getFileContents(filename, mode="rb"))
@@ -847,6 +864,8 @@ jQuery(function () {
                 blog_container.getparent().remove(blog_container)
                 h1.getparent().insert(h1.getparent().index(h1)+1, blog_container)
 
+        script_tag_first = None
+        js_filenames = []
         for script_tag in doc.xpath("//script"):
             if "src" not in script_tag.attrib:
                 if (
@@ -859,8 +878,15 @@ jQuery(function () {
 
             script_tag.attrib["async"] = ""
 
+            if "combined_" in script_tag.attrib["src"]:
+                script_tag_first = None
+                break
+
             # Google search.
             if "google" in script_tag.attrib["src"]:
+                continue
+
+            if script_tag.attrib["src"].startswith("http"):
                 continue
 
             if not has_highlight and "copybutton" in script_tag.attrib["src"]:
@@ -869,14 +895,15 @@ jQuery(function () {
                 script_tag.getparent().remove(script_tag)
             elif not has_inline_tabs and "design-tabs" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
-            elif (
-                any(js_name in script_tag.attrib["src"] for js_name in js_set_1)
-                and "combined" not in script_tag.attrib["src"]
-            ):
-                if js_set_1[0] in script_tag.attrib["src"]:
-                    script_tag.attrib["src"] = js_set_1_output_filename
+            else:
+                if script_tag_first is None:
+                    script_tag_first = script_tag
                 else:
                     script_tag.getparent().remove(script_tag)
+                    js_filenames.append(os.path.normpath(script_tag.attrib["src"]).split("?")[0].split("_static/")[1])
+
+        if script_tag_first is not None:
+            script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)
 
         file_language, translated_filenames = _getTranslationFileSet(filename)
 
@@ -918,12 +945,6 @@ jQuery(function () {
 
         with open(filename, "wb") as output:
             output.write(document_bytes)
-
-    if os.path.exists(searchindex_js_filename):
-        os.unlink(searchindex_js_filename)
-
-    if os.path.exists(search_html_filename):
-        os.unlink(search_html_filename)
 
     if in_devcontainer:
         my_theme_filename = "output/_static/my_theme.css"
