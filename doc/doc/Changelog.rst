@@ -10,8 +10,66 @@ that contains information about hot-fixes of the current stable release.
    :local:
 
 ****************************
- Nuitka Release 2.1 (Draft)
+ Nuitka Release 2.2 (Draft)
 ****************************
+
+This a draft of the release notes for 2.2, which is supposed to contains
+the usual additions of new packages supported out of the box and will
+aim at scalability.
+
+Bug Fixes
+=========
+
+-  Standalone: Added support for ``pypdfium2`` package. Fixed in 2.1.1
+   already.
+
+-  Standalone: Make ``cefpython3`` work on Linux. Fixed in 2.1.1
+   already.
+
+-  ArchLinux: Need to add linker option for it to be usable with their
+   current Arch Python package. Fixed in 2.1.1 already.
+
+-  Fix, ``ctypes.CDLL`` optimization was using mis-spelled argument name
+   for ``use_last_error``, such that keyword argument calls using it
+   were statically optimized into ``TypeError`` at compile-time. Fixed
+   in 2.1.1 already.
+
+-  Fix, ``list.insert`` was not properly annotating exceptions. Raises
+   by producing the inserted value raised or the index were not
+   annotated, and therefore could fail to be caught locally. Fixed in
+   2.1.1 already.
+
+New Features
+============
+
+-  For the experimental ``@pyqtSlot`` decorator, we also should handle
+   the ``@asyncSlot`` just the same. Added in 2.1.1 already.
+
+Optimization
+============
+
+-  ArchLinux: Enable static libpython by default, it is usable indeed.
+
+Organisational
+==============
+
+-  UI: Catch wrong values for ``--jobs`` value sooner, negative and
+   non-integer values error exit immediately. Added in 2.1.1 already.
+
+Summary
+=======
+
+This release is not yet done, but is supposed to focus again on
+scalability.
+
+********************
+ Nuitka Release 2.1
+********************
+
+This release had focus on new features and new optimization. There is a
+also a large amount of compatibility with things newly added to support
+anti-bloat better, and workaround problems with newer package versions
+that would otherwise need source code at run-time.
 
 Bug Fixes
 =========
@@ -434,7 +492,15 @@ Tests
 Summary
 =======
 
-This release is not done yet.
+This release added much needed tools for our Nuitka Package
+configuration, but also cleans up scalability and optimization that was
+supposed to work, but did not yet, or not anymore.
+
+The usability improved again, as it does always, but the big
+improvements for scalability that will implement existing algorithms
+more efficient, are yet to come, this release was mainly driven by the
+need to get ``torch`` to work in its latest version out of the box with
+stable Nuitka, but this couldn't be done as a hotfix
 
 ********************
  Nuitka Release 2.0
