@@ -830,12 +830,22 @@ jQuery(function () {
             logo_div.append(logo_img)
             logo_parent.append(logo_div)
 
-        social_images = doc.xpath("//img[contains(@src, '/_static/icon-')]")
-        assert len(social_images) in (4,0), (filename, social_images)
+        try:
+            h1 = doc.xpath("//h1")[0]
+        except IndexError:
+            pass
+        else:
+            social_container = doc.xpath("//div[@class='share-button-container']")[0]
+            social_container.getparent().remove(social_container)
+            h1.getparent().insert(h1.getparent().index(h1), social_container)
 
-        for social_image in social_images:
-            social_image.attrib["width"] = "24"
-            social_image.attrib["height"] = "24"
+            try:
+                blog_container = doc.xpath("//div[@class='blog-post-box']")[0]
+            except IndexError:
+                pass
+            else:
+                blog_container.getparent().remove(blog_container)
+                h1.getparent().insert(h1.getparent().index(h1)+1, blog_container)
 
         for script_tag in doc.xpath("//script"):
             if "src" not in script_tag.attrib:
