@@ -39,8 +39,19 @@ Bug Fixes
    annotated, and therefore could fail to be caught locally. Fixed in
    2.1.1 already.
 
+-  Standalone: Added support for ``selenium`` package. Fixed in 2.1.2
+   already.
+
+-  Standalone: Added support for ``hydra`` package. Fixed in 2.1.2
+   already.
+
 New Features
 ============
+
+-  For Nuitka package configuration, we now have ``change_class``
+   similar to ``change_function`` to replace a full class definition
+   with something else, this can be used to modify classes to become
+   stubs or even unusable.
 
 -  For the experimental ``@pyqtSlot`` decorator, we also should handle
    the ``@asyncSlot`` just the same. Added in 2.1.1 already.
@@ -49,6 +60,8 @@ Optimization
 ============
 
 -  ArchLinux: Enable static libpython by default, it is usable indeed.
+
+-  Anti-Bloat: Avoid ``unittest`` usage in ``antlr`` package.
 
 Organisational
 ==============
