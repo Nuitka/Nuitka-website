@@ -710,7 +710,10 @@ jQuery(function () {
         js_set_contents
     )
 
-    putTextFileContents(f"output{js_set_output_filename}", js_set_contents)
+    filename = f"output{js_set_output_filename}"
+
+    if not os.path.exists(filename):
+        putTextFileContents(filename, js_set_contents)
 
     return js_set_output_filename
 
