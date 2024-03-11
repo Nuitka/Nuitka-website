@@ -9,6 +9,9 @@
 This page is the recommended first read when you start using **Nuitka**.
 On this page, you will learn more about **Nuitka** fundamentals, such as
 license type, use cases, requirements, and credits.
+This page is the recommended first read when you start using **Nuitka**.
+On this page, you will learn more about **Nuitka** fundamentals, such as
+license type, use cases, requirements, and credits.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -54,43 +57,36 @@ compiler for C++03 [#]_.
 
 Currently, this means, you need to use one of these compilers:
 
--  The MinGW64 C11 compiler, on Windows, must be based on gcc 11.2 or
-   higher. It will be *automatically* downloaded if no usable C compiler
-   is found, which is the recommended way of installing it, as Nuitka
-   will also upgrade it for you.
+-  The **MinGW64 C11** compiler must be based on **gcc 11.2** or higher.
+   It will be automatically downloaded if no usable C compiler is found,
+   which is the recommended way of installing it, as Nuitka will also
+   upgrade it for you.
 
--  Visual Studio 2022 or higher on Windows [#]_. English language pack
-   for best results (Nuitka filters away garbage outputs, but only for
-   English language). It will be used by default if installed.
+-  The **Community** edition of `Visual Studio 2022
+   <https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx>`_
+   or higher. Older versions will work, but only supported for
+   commercial users. Use the default English language pack to enable
+   **Nuitka** to filter away irrelevant outputs.
 
--  On all other platforms, the ``gcc`` compiler of at least version 5.1,
-   and below that the ``g++`` compiler of at least version 4.4 as an
-   alternative.
+-  The **Clang-cl** compiler can be used if provided by the **Visual
+   Studio** installer.
 
--  The ``clang`` compiler on macOS X and most FreeBSD architectures.
+**For macOS**, use the **Clang** compiler. It's also compatible with
+most **FreeBSD** architectures.
 
--  On Windows, the ``clang-cl`` compiler on Windows can be used if
-   provided by the Visual Studio installer.
-
-.. [#]
-
-   Support for this C11 is given with gcc 5.x or higher or any clang
-   version.
-
-   The older MSVC compilers don't do it yet. But as a workaround, with
-   Python 3.10 or older, the C++03 language standard is significantly
-   overlapping with C11, it is then used instead.
+**For other platforms**, use the **GCC** compiler of at least version
+5.1, and below that the **G++** compiler of at least version 4.4 as an
+alternative.
 
 .. [#]
 
-   Download for free from
-   https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx
-   (the community editions work just fine).
+   Support for this **C11** is given with **gcc 5.x** or higher or any
+   **clang** version.
 
-   The latest version is recommended, but not required. On the other hand,
-   there is no need to except to support pre-Windows 10 versions, and they
-   might work for you, but support of these configurations is only
-   available to commercial users.
+   The **MSVC** compiler doesn't do it yet. But as a workaround, as the
+   C++03 language standard is significantly overlapping with C11, it is
+   then used instead where the C compiler is too old. Nuitka used to
+   require a C++ compiler in the past, but it changed.
 
 Python
 ======
