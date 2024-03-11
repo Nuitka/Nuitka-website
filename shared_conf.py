@@ -126,7 +126,7 @@ def setup(app):
 html_theme_options = {
     "prev_next_buttons_location": "none",
     "includehidden": True,
-    "titles_only": True
+    "titles_only": True,
 }
 
 html_extra_path = [f"{ROOT}/files"]

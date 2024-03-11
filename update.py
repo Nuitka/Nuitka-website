@@ -676,6 +676,7 @@ def _getTranslationFileSet(filename):
 
     return language, filename_translations
 
+
 js_order = [
     "documentation_options.js",
     "jquery.js",
@@ -688,12 +689,11 @@ js_order = [
 ]
 
 
-
 def _makeJsCombined(js_filenames):
     js_filenames = list(js_filenames)
     if "jquery.js" not in js_filenames:
         js_filenames.append("jquery.js")
-    js_filenames.sort(key = lambda x: js_order.index(x))
+    js_filenames.sort(key=lambda x: js_order.index(x))
 
     js_set_contents = (
         "\n".join(
@@ -716,6 +716,7 @@ jQuery(function () {
         putTextFileContents(filename, js_set_contents)
 
     return js_set_output_filename
+
 
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
@@ -865,7 +866,7 @@ def runPostProcessing():
                 pass
             else:
                 blog_container.getparent().remove(blog_container)
-                h1.getparent().insert(h1.getparent().index(h1)+1, blog_container)
+                h1.getparent().insert(h1.getparent().index(h1) + 1, blog_container)
 
         script_tag_first = None
         js_filenames = []
@@ -903,7 +904,11 @@ def runPostProcessing():
                     script_tag_first = script_tag
                 else:
                     script_tag.getparent().remove(script_tag)
-                    js_filenames.append(os.path.normpath(script_tag.attrib["src"]).split("?")[0].split("_static/")[1])
+                    js_filenames.append(
+                        os.path.normpath(script_tag.attrib["src"])
+                        .split("?")[0]
+                        .split("_static/")[1]
+                    )
 
         if script_tag_first is not None:
             script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)

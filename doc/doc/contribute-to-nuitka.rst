@@ -1,16 +1,16 @@
 :orphan:
 
-***********
+###########
  Donations
-***********
+###########
 
 Should you feel that you cannot help Nuitka directly, but still want to
 support, please consider `making a donation
 <https://nuitka.net/pages/donations.html>`__ and help this way.
 
-*************
+#############
  Join Nuitka
-*************
+#############
 
 You are more than welcome to join Nuitka development and help to
 complete the project in all minor and major ways.

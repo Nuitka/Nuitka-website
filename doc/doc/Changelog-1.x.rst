@@ -4,8 +4,8 @@
  Nuitka Changelog before 2.0
 #############################
 
-In this document, we track the per version changes of 1.x and comments of old
-Nuitka release before version 2.0 was released.
+In this document, we track the per version changes of 1.x and comments
+of old Nuitka release before version 2.0 was released.
 
 .. contents:: Table of Contents
    :local:
