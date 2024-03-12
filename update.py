@@ -785,6 +785,13 @@ def runPostProcessing():
                 )
                 merged_css = merged_css.replace("Lato", "ui-sans-serif")
                 merged_css = re.sub(
+                    r"@font-face\{([^)]*?Roboto Slab)(.*?)\}",
+                    r"",
+                    merged_css,
+                    flags=re.S,
+                )
+                merged_css = merged_css.replace("Roboto Slab", "Rockwell, 'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif")
+                merged_css = re.sub(
                     r"@font-face\{(.*?)\}",
                     r"@font-face{font-display:swap;\1}",
                     merged_css,
