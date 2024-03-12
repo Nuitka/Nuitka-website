@@ -741,6 +741,9 @@ def runPostProcessing():
         for search_link in doc.xpath("//link[@rel='search']"):
             search_link.getparent().remove(search_link)
 
+        for current_link in doc.xpath("//a[@class='current reference internal']"):
+            current_link.attrib["href"] = "/" + os.path.relpath(filename, "output")
+
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
 
@@ -854,7 +857,7 @@ def runPostProcessing():
 
                 top_link_nav = html.fromstring(
                     """\
-<nav class="top_link_nav">
+<nav class="top_link_nav" role='navigation'>
   <div class="logo_container">
     <a href="/" class="icon icon-home">
     <img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="28" height="28"
