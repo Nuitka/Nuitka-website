@@ -46,6 +46,7 @@ Additionally, you can purchase priority support.
 
 .. toctree::
    :hidden:
+   :caption: Nuitka the Python Compiler
 
    Download <doc/download>
    User Manual <doc/user-manual>

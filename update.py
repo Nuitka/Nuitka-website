@@ -888,6 +888,9 @@ def runPostProcessing():
                         top_nav.getparent().index(top_nav) + 1, blog_container
                     )
 
+        for node in doc.xpath("//div[@class='wy-side-nav-search']"):
+            node.getparent().remove(node)
+
         script_tag_first = None
         js_filenames = []
         for script_tag in doc.xpath("//script"):
