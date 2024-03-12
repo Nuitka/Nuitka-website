@@ -870,12 +870,14 @@ def runPostProcessing():
                 top_link_nav = html.fromstring(
                     """\
 <nav class="top_link_nav" role='navigation'>
-  <div class="logo_container">
-    <a href="/" class="icon icon-home">
-    <img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="28" height="28"
-    </a>
-  </div>
   <ul>
+    <li>
+        <div class="logo_container">
+            <a href="/" class="icon icon-home">
+            <img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="28" height="28"
+            </a>
+        </div>
+    </li>
     <li><a href="/doc/user-manual.html">Manual</a></li>
     <li><a href="/doc/commercial.html">Commercial</a></li>
     <li><a href="/blog.html">Blog</a></li>
@@ -972,14 +974,14 @@ def runPostProcessing():
                 node.getparent().remove(node)
         else:
             # assert False, (translated_files, filename)
-            doc.xpath('//details["language-switcher-container"]/summary')[
-                0
-            ].text = file_language
+            for summary_node in doc.xpath('//details["language-switcher-container"]/summary'):
 
-            link_node = doc.xpath("//details//@href")[0].getparent()
-            line_node = link_node.getparent()
-            dropdown_node = line_node.getparent()
-            dropdown_node.clear()
+                summary_node.text = file_language
+
+            for link_node in doc.xpath("//details//@href"):
+                line_node = link_node.getparent().getparent()
+                dropdown_node = line_node.getparent()
+                dropdown_node.clear()
 
             for translated_filename in sorted(translated_filenames):
                 if filename == translated_filename:

@@ -335,19 +335,20 @@ a[class~="headerlink"]:visited {
 }
 
 .logo_container {
-    display: inline-block;
-    margin: 0 20px;
-    border: 0;
+    display: flex;
     border-radius: 0;
-    max-width: 100%;
-    padding-right: 10px;
-}
-
-.logo {
     vertical-align: center;
 }
 
-@media (min-height: 17em) {
+.logo_container a {
+    display: inherit;
+}
+
+.logo {
+    display: inherit;
+}
+
+@media (min-height: 20em) {
     [id] {
         scroll-margin-top: 60px;
     }
@@ -366,6 +367,10 @@ a[class~="headerlink"]:visited {
         margin-top: 0;
         margin-bottom: 0;
     }
+}
+
+@media screen and (min-height: 20em) and (max-width: 1000px) {
+    /* Add mobile specifics here */
 }
 
 @media print {
@@ -388,7 +393,8 @@ a[class~="headerlink"]:visited {
     width: fit-content;
     justify-content: center;
     list-style: none !important;
-    margin-bottom: 4px !important;
+    padding-bottom: 0px !important;;
+    margin-bottom: 0px !important;
     margin-right: 20px;
 }
 
