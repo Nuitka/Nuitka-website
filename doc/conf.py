@@ -53,18 +53,7 @@ x_blog_feed_templates = {
 sitemap_locales = [None]
 sitemap_url_scheme = "{link}"
 
-# -- Options for HTML output
-html_theme = "sphinx_rtd_theme"
-html_copy_source = False
-html_show_sourcelink = False
-html_show_sphinx = False
-
-# -- Options for EPUB output
-epub_show_urls = "footnote"
-
 autodoc_member_order = "bysource"
-
-html_extra_path = [f"{ROOT}/files"]
 
 # Sphinx intl configuration
 gettext_compact = False
