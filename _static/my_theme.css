@@ -157,6 +157,12 @@ html {
     }
 }
 
+@media print {
+    .share-button-container {
+        display: none;
+    }
+}
+
 .socialbutton:hover {
     height: 70px;
     margin-bottom: 0;
@@ -366,6 +372,12 @@ a[class~="headerlink"]:visited {
     h1 {
         margin-top: 0;
         margin-bottom: 0;
+    }
+}
+
+@media print {
+    .top_link_nav {
+        display: none;
     }
 }
 
