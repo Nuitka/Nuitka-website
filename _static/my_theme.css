@@ -120,12 +120,12 @@ html {
     text-align: left;
 }
 
-.socialbutton-wrapper {
+.social-button-wrapper {
     height: 70px;
     text-align: center;
 }
 
-.socialbutton-wrapper a {
+.social-button-wrapper a {
     text-decoration: none;
 }
 
@@ -141,7 +141,7 @@ html {
     position: relative;
 }
 
-.socialbutton {
+.social-button {
     width: 60px;
     height: 45px;
     margin-bottom: 0;
@@ -163,12 +163,12 @@ html {
     }
 }
 
-.socialbutton:hover {
+.social-button:hover {
     height: 70px;
     margin-bottom: 0;
 }
 
-.socialbutton .shares {
+.social-button .shares {
     opacity: 0;
     transition: opacity 500ms;
     -webkit-transition: opacity 500ms;
@@ -177,37 +177,37 @@ html {
     margin-top: 7px;
 }
 
-.socialbutton:hover .shares {
+.social-button:hover .shares {
     opacity: 1;
 }
 
-.socialbutton p {
+.social-button p {
     margin: 0;
     padding: 0;
     border-radius: 15px;
 }
 
-.socialbutton p.icon {
+.social-button p.icon {
     text-align: center;
     padding-top: 13px;
 }
 
-.socialbutton.twitter {
+.social-button.twitter {
     background-color: #5BC2F0;
     border-radius: 10px;
 }
 
-.socialbutton.mastodon {
+.social-button.mastodon {
     background-color: #563ACC;
     border-radius: 10px;
 }
 
-.socialbutton.reddit {
+.social-button.reddit {
     background-color: #333333;
     border-radius: 10px;
 }
 
-.socialbutton.facebook {
+.social-button.facebook {
     background-color: #435D96;
     border-radius: 10px;
 }

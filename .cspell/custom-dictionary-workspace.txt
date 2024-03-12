@@ -1,2 +1,18 @@
 # Custom Dictionary Words
+ablog
+autobuild
+copybutton
+doctools
+extrafooter
+fontawesome
+headerlink
+Lato
+maxsplit
+notranslate
+pagename
+ravz
+Roboto
+SEPA
+shedskin
 stdlib
+unidecode

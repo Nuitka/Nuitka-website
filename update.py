@@ -261,6 +261,7 @@ def updateDownloadPage():
             if "experimental" in line:
                 continue
 
+            # spell-checker: ignore mirrorlist
             match = re.search(
                 r'href="(?:\./)?nuitka-(.*).noarch\.rpm(?:\.mirrorlist)?"', line
             )
@@ -683,22 +684,21 @@ js_order = [
     "_sphinx_javascript_frameworks_compat.js",
     "doctools.js",
     "sphinx_highlight.js",
-    "js/theme.js",
+    "theme.js",
     "clipboard.min.js",
     "copybutton.js",
+    "translations.js",
 ]
 
 
 def _makeJsCombined(js_filenames):
     js_filenames = list(js_filenames)
-    if "jquery.js" not in js_filenames:
-        js_filenames.append("jquery.js")
-    js_filenames.sort(key=lambda x: js_order.index(x))
+    if "_static/jquery.js" not in js_filenames:
+        js_filenames.append("_static/jquery.js")
+    js_filenames.sort(key=lambda x: js_order.index(os.path.basename(x)))
 
     js_set_contents = (
-        "\n".join(
-            getFileContents(f"output/_static/{js_name}") for js_name in js_filenames
-        )
+        "\n".join(getFileContents(f"output/{js_name}") for js_name in js_filenames)
         + """
 jQuery(function () {
     SphinxRtdTheme.Navigation.enable(true);
@@ -720,7 +720,7 @@ jQuery(function () {
 
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
-    # do other touch ups.
+    # do other touch ups. spell-checker: ignore searchindex
     searchindex_js_filename = "output/searchindex.js"
 
     if os.path.exists(searchindex_js_filename):
@@ -790,7 +790,10 @@ def runPostProcessing():
                     merged_css,
                     flags=re.S,
                 )
-                merged_css = merged_css.replace("Roboto Slab", "Rockwell, 'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif")
+                merged_css = merged_css.replace(
+                    "Roboto Slab",
+                    "Rockwell, 'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif",
+                )
                 merged_css = re.sub(
                     r"@font-face\{(.*?)\}",
                     r"@font-face{font-display:swap;\1}",
@@ -820,7 +823,7 @@ def runPostProcessing():
 
                 css_link.getparent().remove(css_link)
 
-        for link in doc.xpath("//a[not(contains(@classes, 'intern'))]"):
+        for link in doc.xpath("//a[not(contains(@class, 'intern'))]"):
             if (
                 link.attrib["href"].startswith("http:")
                 or link.attrib["href"].startswith("https:")
@@ -832,7 +835,7 @@ def runPostProcessing():
                 link.attrib["href"] = link.attrib["href"][:-11]
 
         # Make internal links more canonical, no index.html, no trailing #
-        for link in doc.xpath("//a[not(contains(@classes, 'extern'))]"):
+        for link in doc.xpath("//a[not(contains(@class, 'extern'))]"):
             link_target = link.attrib["href"]
 
             if link_target.startswith("http"):
@@ -937,11 +940,15 @@ def runPostProcessing():
                     script_tag_first = script_tag
                 else:
                     script_tag.getparent().remove(script_tag)
-                    js_filenames.append(
-                        os.path.normpath(script_tag.attrib["src"])
-                        .split("?")[0]
-                        .split("_static/")[1]
-                    )
+
+                    # Make script source absolute, so it's easier to find
+                    if not script_tag.attrib["src"].startswith("/"):
+                        script_tag.attrib["src"] = "/" + os.path.relpath(
+                            script_tag.attrib["src"],
+                            os.path.relpath("output", os.path.dirname(filename)),
+                        )
+
+                    js_filenames.append(script_tag.attrib["src"].split("?")[0][1:])
 
         if script_tag_first is not None:
             script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)
@@ -949,15 +956,17 @@ def runPostProcessing():
         file_language, translated_filenames = _getTranslationFileSet(filename)
 
         if len(translated_filenames) == 1:
-            for node in doc.xpath('//footer//details["language-switcher-container"]'):
+            for node in doc.xpath(
+                "//details[contains(@class, 'language-switcher-container')]"
+            ):
                 node.getparent().remove(node)
         else:
             # assert False, (translated_files, filename)
-            doc.xpath('//footer//details["language-switcher-container"]/summary')[
+            doc.xpath('//details["language-switcher-container"]/summary')[
                 0
             ].text = file_language
 
-            link_node = doc.xpath("//footer//details//@href")[0].getparent()
+            link_node = doc.xpath("//details//@href")[0].getparent()
             line_node = link_node.getparent()
             dropdown_node = line_node.getparent()
             dropdown_node.clear()
@@ -976,6 +985,10 @@ def runPostProcessing():
                 new_line_node = copy.deepcopy(line_node)
 
                 dropdown_node.append(new_line_node)
+
+            for node in doc.xpath('//footer/details["language-switcher-container"]'):
+                node.getparent().remove(node)
+                top_link_nav.append(node)
 
         document_bytes = b"<!DOCTYPE html>\n" + html.tostring(
             doc, include_meta_content_type=True
@@ -997,6 +1010,8 @@ def runPostProcessing():
 
 
 def runDeploymentCommand():
+    # spell-checker: ignore doctrees,buildinfo,apidoc
+
     excluded = [
         # Build information from Sphinx
         ".buildinfo",
@@ -1013,7 +1028,7 @@ def runDeploymentCommand():
         "volatile",
         # PDF documentation for current release
         "'doc/*.pdf'",
-        # Google ownership marker, do not touch.
+        # Google ownership marker, do not touch, spell-checker: ignore googlee
         "googlee5244704183a9a15.html",
         # Link into blog, for compatibility with old blog subscriptions.
         "rss.xml",
