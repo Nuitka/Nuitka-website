@@ -90,6 +90,7 @@ from nuitka.Tracing import my_print
 from nuitka.utils.FileOperations import (
     getFileContents,
     getFileList,
+    deleteFile,
     putTextFileContents,
 )
 from nuitka.utils.Hashing import getHashFromValues
@@ -720,15 +721,12 @@ jQuery(function () {
 
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
-    # do other touch ups. spell-checker: ignore searchindex
-    searchindex_js_filename = "output/searchindex.js"
+    # do other touch ups. spell-checker: ignore searchindex,searchtools
 
-    if os.path.exists(searchindex_js_filename):
-        os.unlink(searchindex_js_filename)
-
-    search_html_filename = "output/search.html"
-    if os.path.exists(search_html_filename):
-        os.unlink(search_html_filename)
+    for delete_filename in ("searchindex.js", "searchtools.js", "search.html"):
+        deleteFile(os.path.join("output", delete_filename), must_exist=False)
+        for translation in _translations:
+            deleteFile(os.path.join("output", translation, delete_filename), must_exist=False)
 
     for filename in getFileList("output", only_suffixes=".html"):
         doc = html.fromstring(getFileContents(filename, mode="rb"))
@@ -941,14 +939,22 @@ def runPostProcessing():
                 else:
                     script_tag.getparent().remove(script_tag)
 
+                    script_tag.attrib["src"] = script_tag.attrib["src"].split("?")[0]
                     # Make script source absolute, so it's easier to find
                     if not script_tag.attrib["src"].startswith("/"):
-                        script_tag.attrib["src"] = "/" + os.path.relpath(
-                            script_tag.attrib["src"],
-                            os.path.relpath("output", os.path.dirname(filename)),
-                        )
+                        while script_tag.attrib["src"].startswith("../"):
+                            script_tag.attrib["src"] = script_tag.attrib["src"][3:]
 
-                    js_filenames.append(script_tag.attrib["src"].split("?")[0][1:])
+                        for translation in _translations:
+                            if translation in filename:
+                                script_tag.attrib["src"] = (
+                                    "/" + translation + "/" + script_tag.attrib["src"]
+                                )
+                                break
+                        else:
+                            script_tag.attrib["src"] = "/" + script_tag.attrib["src"]
+
+                    js_filenames.append(script_tag.attrib["src"][1:])
 
         if script_tag_first is not None:
             script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)
