@@ -88,9 +88,9 @@ from nuitka.tools.quality.auto_format.AutoFormat import (
 from nuitka.tools.release.Documentation import checkRstLint
 from nuitka.Tracing import my_print
 from nuitka.utils.FileOperations import (
+    deleteFile,
     getFileContents,
     getFileList,
-    deleteFile,
     putTextFileContents,
 )
 from nuitka.utils.Hashing import getHashFromValues
@@ -310,7 +310,7 @@ def updateDownloadPage():
 
             try:
                 candidates.append(match.group(1))
-            except Exception as e:
+            except Exception:
                 print("problem with line %r from '%s'" % (line, url))
                 raise
 
@@ -417,19 +417,19 @@ def updateDownloadPage():
     centos_data = [
         (
             "CentOS 8",
-            makeRepoLinkText(f"CentOS_8"),
+            makeRepoLinkText("CentOS_8"),
             makeCentOSText(8, "stable"),
             makeCentOSText(8, "develop"),
         ),
         (
             "CentOS 7",
-            makeRepoLinkText(f"CentOS_7"),
+            makeRepoLinkText("CentOS_7"),
             makeCentOSText(7, "stable"),
             makeCentOSText(7, "develop"),
         ),
         (
             "CentOS 6",
-            makeRepoLinkText(f"CentOS_CentOS-6"),
+            makeRepoLinkText("CentOS_CentOS-6"),
             makeCentOSText(6, "stable"),
             makeCentOSText(6, "develop"),
         ),
@@ -442,7 +442,7 @@ def updateDownloadPage():
     rhel_data = [
         (
             f"RHEL {rhel_number}",
-            makeRepoLinkText(f"RedHat_RHEL-%d" % rhel_number),
+            makeRepoLinkText("RedHat_RHEL-%d" % rhel_number),
             makeRHELText(rhel_number, "stable"),
             makeRHELText(rhel_number, "develop"),
         )
@@ -467,7 +467,7 @@ def updateDownloadPage():
         0,
         (
             "SLE 15",
-            makeRepoLinkText(f"SLE_15"),
+            makeRepoLinkText("SLE_15"),
             makeVersionText(max_sle_150_release),
             makeVersionText(max_sle_150_prerelease),
         ),
@@ -726,7 +726,9 @@ def runPostProcessing():
     for delete_filename in ("searchindex.js", "searchtools.js", "search.html"):
         deleteFile(os.path.join("output", delete_filename), must_exist=False)
         for translation in _translations:
-            deleteFile(os.path.join("output", translation, delete_filename), must_exist=False)
+            deleteFile(
+                os.path.join("output", translation, delete_filename), must_exist=False
+            )
 
     for filename in getFileList("output", only_suffixes=".html"):
         doc = html.fromstring(getFileContents(filename, mode="rb"))
@@ -994,10 +996,13 @@ def runPostProcessing():
 
                 dropdown_node.append(new_line_node)
 
-        for node in doc.xpath("//details[contains(@class, 'language-switcher-container')]"):
+        for node in doc.xpath(
+            "//details[contains(@class, 'language-switcher-container')]"
+        ):
             node.getparent().remove(node)
 
-            if top_link_nav is not None:
+            # TODO: Enable language switcher later on
+            if top_link_nav is not None and False:
                 top_link_nav.append(node)
 
         document_bytes = b"<!DOCTYPE html>\n" + html.tostring(
