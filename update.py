@@ -855,21 +855,20 @@ def runPostProcessing():
                 top_link_nav = html.fromstring(
                     """\
 <nav class="top_link_nav">
+  <div class="logo_container">
+    <a href="/" class="icon icon-home">
+    <img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="28" height="28"
+    </a>
+  </div>
   <ul>
     <li><a href="/doc/user-manual.html">Manual</a></li>
     <li><a href="/doc/commercial.html">Commercial</a></li>
+    <li><a href="/blog.html">Blog</a></li>
     <li><a href="/pages/search.html">Search</a></li>
   </ul>
 </nav>"""
                 )
                 top_nav.append(top_link_nav)
-
-                logo_div = html.fromstring("""<div class="logo_container"></div>""")
-                logo_img = html.fromstring(
-                    '<img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="28" height="28"'
-                )
-                logo_div.append(logo_img)
-                top_link_nav.insert(0, logo_div)
 
                 social_container = doc.xpath("//div[@class='share-button-container']")[
                     0
