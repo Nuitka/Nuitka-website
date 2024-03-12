@@ -55,7 +55,6 @@ sitemap_url_scheme = "{link}"
 
 # -- Options for HTML output
 html_theme = "sphinx_rtd_theme"
-html_logo = "Nuitka-Logo-Symbol.svg"
 html_copy_source = False
 html_show_sourcelink = False
 html_show_sphinx = False

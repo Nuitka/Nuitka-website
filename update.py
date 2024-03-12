@@ -839,34 +839,43 @@ def runPostProcessing():
 
             link.attrib["href"] = link_target
 
-        (logo_img,) = doc.xpath("//img[@class='logo']")
+        has_top_nav = doc.xpath("//div[@class='top_nav']")
 
-        logo_img.attrib["width"] = "208"
-        logo_img.attrib["height"] = "209"
-
-        logo_parent = logo_img.getparent()
-        if logo_parent.tag != "div":
-            logo_parent.remove(logo_img)
-            logo_div = html.fromstring("""<div class="logo_container"></div>""")
-            logo_div.append(logo_img)
-            logo_parent.append(logo_div)
-
-        try:
-            h1 = doc.xpath("//h1")[0]
-        except IndexError:
-            pass
-        else:
-            social_container = doc.xpath("//div[@class='share-button-container']")[0]
-            social_container.getparent().remove(social_container)
-            h1.getparent().insert(h1.getparent().index(h1), social_container)
-
+        if not has_top_nav:
             try:
-                blog_container = doc.xpath("//div[@class='blog-post-box']")[0]
+                h1 = doc.xpath("//h1")[0]
             except IndexError:
                 pass
             else:
-                blog_container.getparent().remove(blog_container)
-                h1.getparent().insert(h1.getparent().index(h1) + 1, blog_container)
+                top_nav = html.fromstring("""<div class="top_nav"></div>""")
+
+                h1.getparent().insert(h1.getparent().index(h1), top_nav)
+                h1.getparent().remove(h1)
+
+                logo_div = html.fromstring("""<div class="logo_container"></div>""")
+                logo_img = html.fromstring(
+                    '<img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="32" height="32"'
+                )
+                logo_div.append(logo_img)
+                top_nav.append(logo_div)
+
+                social_container = doc.xpath("//div[@class='share-button-container']")[
+                    0
+                ]
+                social_container.getparent().remove(social_container)
+                top_nav.append(social_container)
+
+                top_nav.append(h1)
+
+                try:
+                    blog_container = doc.xpath("//div[@class='blog-post-box']")[0]
+                except IndexError:
+                    pass
+                else:
+                    blog_container.getparent().remove(blog_container)
+                    top_nav.getparent().insert(
+                        top_nav.getparent().index(top_nav) + 1, blog_container
+                    )
 
         script_tag_first = None
         js_filenames = []

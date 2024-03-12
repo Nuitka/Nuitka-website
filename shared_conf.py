@@ -64,7 +64,7 @@ blog_feed_length = None
 
 # -- Options for HTML output
 html_theme = "sphinx_rtd_theme"
-html_logo = f"{ROOT}/doc/Nuitka-Logo-Symbol.svg"
+html_logo = None
 html_copy_source = False
 html_show_sourcelink = False
 html_show_sphinx = False

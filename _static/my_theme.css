@@ -1,19 +1,9 @@
 html {
-    scroll-behavior:smooth
+    scroll-behavior: smooth
 }
 
 .wy-nav-content {
     max-width: 1000px !important;
-}
-
-.logo_container {
-    display: block;
-    margin: 0 auto;
-    border: 0;
-    border-radius: 0;
-    max-width: 100%;
-    width: 217.633px;
-    height: 208.533px;
 }
 
 .sd-col {
@@ -262,6 +252,7 @@ p.admonition-title {
 }
 
 @media(min-width: 1200px) {
+
     .sd-container-xl,
     .sd-container-lg,
     .sd-container-md,
@@ -272,6 +263,7 @@ p.admonition-title {
 }
 
 @media(min-width: 1192px) {
+
     .sd-container-lg,
     .sd-container-md,
     .sd-container-sm,
@@ -313,6 +305,7 @@ p.admonition-title {
 .page-toc a:visited {
     color: #1C5E89;
 }
+
 .page-toc a {
     color: #1C5E89;
 }
@@ -334,10 +327,44 @@ a[class~="headerlink"]:hover {
     text-decoration: underline;
 }
 
-a[class~="headerlink"]:visited  {
+a[class~="headerlink"]:visited {
     color: #1C5E89;
 }
 
 .blog-post-box {
     float: right;
+}
+
+.logo_container {
+    float: left;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 0;
+    max-width: 100%;
+    padding-right: 10px;
+}
+
+.logo {
+    vertical-align: center;
+}
+
+@media (min-height: 17em) {
+    [id] {
+        scroll-margin-top: 60px;
+    }
+
+    .top_nav {
+        position: sticky;
+        top: 0;
+        height: auto;
+        padding: 0;
+        padding-bottom: 2px;
+        z-index: 100;
+        background-color: white;
+    }
+
+    h1 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 }
