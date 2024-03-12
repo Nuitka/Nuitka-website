@@ -336,8 +336,8 @@ a[class~="headerlink"]:visited {
 }
 
 .logo_container {
-    float: left;
-    margin: 0 auto;
+    display: inline-block;
+    margin: 0 20px;
     border: 0;
     border-radius: 0;
     max-width: 100%;

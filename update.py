@@ -866,10 +866,10 @@ def runPostProcessing():
 
                 logo_div = html.fromstring("""<div class="logo_container"></div>""")
                 logo_img = html.fromstring(
-                    '<img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="32" height="32"'
+                    '<img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="28" height="28"'
                 )
                 logo_div.append(logo_img)
-                top_nav.append(logo_div)
+                top_link_nav.insert(0, logo_div)
 
                 social_container = doc.xpath("//div[@class='share-button-container']")[
                     0
