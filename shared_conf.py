@@ -49,19 +49,6 @@ intersphinx_disabled_domains = ["std"]
 
 templates_path = [f"{ROOT}/_templates"]
 
-# Options for ABlog
-
-# The "title" for the blog, used in active pages.  Default is ``'Blog'``.
-blog_title = "Nuitka Blog"
-
-# Base URL for the website, required for generating feeds.
-# e.g. blog_baseurl = "http://example.com/"
-blog_baseurl = "https://nuitka.net"
-blog_path = "blog"
-blog_feed_fulltext = True
-blog_feed_archives = True
-blog_feed_length = None
-
 # -- Options for HTML output
 html_theme = "sphinx_rtd_theme"
 html_logo = None
