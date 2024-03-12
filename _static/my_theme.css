@@ -368,3 +368,26 @@ a[class~="headerlink"]:visited {
         margin-bottom: 0;
     }
 }
+
+.top_link_nav {
+    border: 2px solid lightgray;
+    width: fit-content;
+    margin-bottom: 5px;
+    padding-bottom: 0;
+    border-radius: 3.6rem;
+}
+
+.top_link_nav ul {
+    display: inline-flex;
+    gap: 20px;
+    width: fit-content;
+    justify-content: center;
+    list-style: none !important;
+    margin-bottom: 4px !important;
+    margin-right: 20px;
+}
+
+.top_link_nav li {
+    list-style: none !important;
+    width: fit-content;
+}

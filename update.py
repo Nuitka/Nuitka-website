@@ -852,6 +852,18 @@ def runPostProcessing():
                 h1.getparent().insert(h1.getparent().index(h1), top_nav)
                 h1.getparent().remove(h1)
 
+                top_link_nav = html.fromstring(
+                    """\
+<nav class="top_link_nav">
+  <ul>
+    <li><a href="/doc/user-manual.html">Manual</a></li>
+    <li><a href="/doc/commercial.html">Commercial</a></li>
+    <li><a href="/pages/search.html">Search</a></li>
+  </ul>
+</nav>"""
+                )
+                top_nav.append(top_link_nav)
+
                 logo_div = html.fromstring("""<div class="logo_container"></div>""")
                 logo_img = html.fromstring(
                     '<img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="32" height="32"'
