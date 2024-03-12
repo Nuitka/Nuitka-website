@@ -852,6 +852,8 @@ def runPostProcessing():
 
         has_top_nav = doc.xpath("//div[@class='top_nav']")
 
+        top_link_nav = None
+
         if not has_top_nav:
             try:
                 h1 = doc.xpath("//h1")[0]
@@ -992,8 +994,10 @@ def runPostProcessing():
 
                 dropdown_node.append(new_line_node)
 
-            for node in doc.xpath('//footer/details["language-switcher-container"]'):
-                node.getparent().remove(node)
+        for node in doc.xpath("//details[contains(@class, 'language-switcher-container')]"):
+            node.getparent().remove(node)
+
+            if top_link_nav is not None:
                 top_link_nav.append(node)
 
         document_bytes = b"<!DOCTYPE html>\n" + html.tostring(
