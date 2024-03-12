@@ -949,11 +949,11 @@ def runPostProcessing():
         file_language, translated_filenames = _getTranslationFileSet(filename)
 
         if len(translated_filenames) == 1:
-            for node in doc.xpath('//footer//details["sd-dropdown"]'):
+            for node in doc.xpath('//footer//details["language-switcher-container"]'):
                 node.getparent().remove(node)
         else:
             # assert False, (translated_files, filename)
-            doc.xpath('//footer//details["sd-dropdown"]/summary')[
+            doc.xpath('//footer//details["language-switcher-container"]/summary')[
                 0
             ].text = file_language
 

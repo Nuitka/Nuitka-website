@@ -212,31 +212,24 @@ html {
     border-radius: 10px;
 }
 
-details.sd-dropdown {
+.language-switcher-container {
     display: inline;
     vertical-align: top;
     background: white;
-}
-
-details.sd-dropdown .sd-summary-title {
-    /* border: 10px solid blue !important; */
-    width: fit-content !important;
-    padding: 15px !important;
-    padding-right: 0px !important;
-    height: 45px;
-}
-
-details.sd-dropdown .switcher-body {
-    /* border: 10px solid greenyellow !important; */
-    width: fit-content !important;
-}
-
-details.sd-dropdown {
-    width: fit-content !important;
     padding: 0px !important;
 }
 
-details.sd-dropdown blockquote {
+.language-switcher-title {
+    border: 1px solid blue !important;
+    padding: 15px !important;
+    height: 45px;
+}
+
+.language-switcher-body {
+    border: 1px solid greenyellow !important;
+}
+
+.language-switcher-container blockquote {
     margin-left: 0px;
 }
 
