@@ -18,7 +18,7 @@
         {
             "label": "auto-format documents and code",
             "type": "shell",
-            "command": "./auto-format *.py doc/*.rst doc/*/*.rst",
+            "command": "./auto-format *.py doc/*.rst doc/*/*.rst doc/*.inc doc/*/*.inc",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
