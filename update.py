@@ -495,11 +495,26 @@ def updateDownloadPage():
         ]
     )
 
+    major, minor = plain_stable.split(".")[:2]
+    major = int(major)
+    minor = int(minor)
+
+    if minor == 9:
+        major += 1
+        minor = 0
+    else:
+        minor += 1
+
+    plain_stable_next = "%d.%d" % (major, minor)
+
     changeTextFileContents(
         "doc/dynamic.inc",
         """
-.. |NUITKA_VERSION| replace:: %s"""
-        % plain_stable,
+.. |NUITKA_VERSION| replace:: %s
+
+.. |NUITKA_VERSION_NEXT| replace:: %s
+"""
+        % (plain_stable, plain_stable_next),
     )
 
     changeTextFileContents("doc/doc/fedora-downloads.inc", fedora_table)
@@ -679,7 +694,8 @@ def _makeJsCombined(js_filenames):
 jQuery(function () {
     SphinxRtdTheme.Navigation.enable(true);
 });
-    """ + """
+    """
+        + """
 (function() {
 var id = '82f00db2-cffd-11ee-882e-0242ac130002';
 var ci_search = document.createElement('script');
@@ -865,7 +881,7 @@ def runPostProcessing():
     </li>
     <li><a href="/doc/user-manual.html">Manual</a></li>
     <li><a href="/doc/commercial.html">Commercial</a></li>
-    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/news.html">Blog</a></li>
     <li><div class="ci-search"></div></li>
   </ul>
 </nav>"""

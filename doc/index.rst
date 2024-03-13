@@ -6,13 +6,6 @@
  Nuitka the Python Compiler
 ############################
 
-*************
- Nuitka Blog
-*************
-
-.. postlist:: 5
-   :excerpts:
-
 ****************
  What is Nuitka
 ****************
@@ -62,10 +55,10 @@ Additionally, you can purchase priority support.
 .. toctree::
    :titlesonly:
    :hidden:
-   :caption: Release Information
+   :caption: News and Blog
 
-   doc/Changelog
-   Roadmap <doc/roadmap>
+   changelog/index
+   Blog <news>
 
 .. toctree::
    :hidden:
