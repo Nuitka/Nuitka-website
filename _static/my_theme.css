@@ -411,3 +411,15 @@ a[class~="headerlink"]:visited {
     font-weight: bold;
     color: #1C5E89;
 }
+
+.wy-menu-vertical {
+    width:250px; /* instead of 300 */
+}
+
+.wy-side-scroll {
+    width:270px; /* instead of 320 */
+}
+
+.wy-nav-side {
+    width:270px; /* instead of 320 */
+}
