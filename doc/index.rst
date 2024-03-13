@@ -96,7 +96,6 @@ Additionally, you can purchase priority support.
    :hidden:
    :caption: Under construction
 
-   pages/search
    pages/website-manual
    pages/donations
    pages/gsoc2019

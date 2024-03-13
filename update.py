@@ -679,7 +679,17 @@ def _makeJsCombined(js_filenames):
 jQuery(function () {
     SphinxRtdTheme.Navigation.enable(true);
 });
-    """
+    """ + """
+(function() {
+var id = '82f00db2-cffd-11ee-882e-0242ac130002';
+var ci_search = document.createElement('script');
+ci_search.type = 'text/javascript';
+ci_search.async = true;
+ci_search.src = 'https://cse.expertrec.com/api/js/ci_common.js?id=' + id;
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ci_search, s);
+})();
+"""
     )
 
     js_set_output_filename = "/_static/combined_%s.js" % getHashFromValues(
@@ -856,7 +866,7 @@ def runPostProcessing():
     <li><a href="/doc/user-manual.html">Manual</a></li>
     <li><a href="/doc/commercial.html">Commercial</a></li>
     <li><a href="/blog.html">Blog</a></li>
-    <li><a href="/pages/search.html">Search</a></li>
+    <li><div class="ci-search"></div></li>
   </ul>
 </nav>"""
                 )
