@@ -88,6 +88,7 @@ from nuitka.tools.quality.auto_format.AutoFormat import (
 from nuitka.tools.release.Documentation import checkRstLint
 from nuitka.Tracing import my_print
 from nuitka.utils.FileOperations import (
+    changeTextFileContents,
     deleteFile,
     getFileContents,
     getFileList,
@@ -101,10 +102,6 @@ in_devcontainer = os.getenv("REMOTE_CONTAINERS_DISPLAY_SOCK") is not None
 
 
 def updateDownloadPage():
-    page_template = getTemplate(
-        package_name=None, template_name="download.rst.j2", template_subdir="doc/doc"
-    )
-
     page_source = requests.get("https://nuitka.net/releases/").text
 
     tree = html.parse(StringIO(page_source))
@@ -498,40 +495,18 @@ def updateDownloadPage():
         ]
     )
 
-    template_context = {
-        "stable_version": plain_stable,
-        "fedora_table": fedora_table,
-        "centos_table": centos_table,
-        "rhel_table": rhel_table,
-        "suse_table": suse_table,
-        "source_table": source_table,
-    }
+    changeTextFileContents(
+        "doc/dynamic.inc",
+        """
+.. |NUITKA_VERSION| replace:: %s"""
+        % plain_stable,
+    )
 
-    download_page = page_template.render(name=page_template.name, **template_context)
-
-    variable = None
-    output = []
-
-    for line in download_page.rstrip().split("\n"):
-        if not line:
-            output.append(line)
-            continue
-
-        if variable is not None:
-            output.append("   " + templates[variable] % findings)
-        else:
-            output.append(line)
-
-        if line.startswith("..") and line.endswith("replace::"):
-            parts = line.split("|")
-            assert len(parts) == 3
-
-            variable = parts[1]
-        else:
-            variable = None
-
-    with withFileOpenedAndAutoFormatted("doc/doc/download.rst") as output_file:
-        output_file.write("\n".join(output) + "\n")
+    changeTextFileContents("doc/doc/fedora-downloads.inc", fedora_table)
+    changeTextFileContents("doc/doc/centos-downloads.inc", centos_table)
+    changeTextFileContents("doc/doc/rhel-downloads.inc", rhel_table)
+    changeTextFileContents("doc/doc/suse-downloads.inc", suse_table)
+    changeTextFileContents("doc/doc/source-downloads.inc", source_table)
 
 
 # slugify is copied from
@@ -974,8 +949,9 @@ def runPostProcessing():
                 node.getparent().remove(node)
         else:
             # assert False, (translated_files, filename)
-            for summary_node in doc.xpath('//details["language-switcher-container"]/summary'):
-
+            for summary_node in doc.xpath(
+                '//details["language-switcher-container"]/summary'
+            ):
                 summary_node.text = file_language
 
             for link_node in doc.xpath("//details//@href"):
