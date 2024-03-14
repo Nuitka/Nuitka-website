@@ -981,24 +981,27 @@ def runPostProcessing():
                 summary_node.text = file_language
 
             for link_node in doc.xpath("//details//@href"):
-                line_node = link_node.getparent().getparent()
+                link_node = link_node.getparent()
+                line_node = link_node.getparent()
                 dropdown_node = line_node.getparent()
-                dropdown_node.clear()
+                if dropdown_node is not None:
+                    dropdown_node.clear()
 
-            for translated_filename in sorted(translated_filenames):
-                if filename == translated_filename:
-                    continue
+                for translated_filename in sorted(translated_filenames):
+                    if filename == translated_filename:
+                        continue
 
-                language, _ = _getLanguageFromFilename(translated_filename)
+                    language, _ = _getLanguageFromFilename(translated_filename)
 
-                link_node.attrib["href"] = "/" + os.path.relpath(
-                    translated_filename, "output"
-                )
-                link_node.text = language
+                    link_node.attrib["href"] = "/" + os.path.relpath(
+                        translated_filename, "output"
+                    )
+                    link_node.text = language
 
-                new_line_node = copy.deepcopy(line_node)
+                    new_line_node = copy.deepcopy(line_node)
 
-                dropdown_node.append(new_line_node)
+                    if dropdown_node is not None:
+                        dropdown_node.append(new_line_node)
 
         for node in doc.xpath(
             "//details[contains(@class, 'language-switcher-container')]"
