@@ -566,8 +566,8 @@ def _splitRestByChapter(lines):
 
 def updateReleasePosts():
     _updateReleasePosts("doc/doc/Changelog.rst")
-    _updateReleasePosts("doc/doc/Changelog-1.x.rst")
-    _updateReleasePosts("doc/doc/Changelog-0.x.rst")
+    _updateReleasePosts("doc/changelog/Changelog-1.x.rst")
+    _updateReleasePosts("doc/changelog/Changelog-0.x.rst")
 
 
 def _updateReleasePosts(changelog_filename):
