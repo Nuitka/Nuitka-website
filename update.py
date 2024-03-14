@@ -59,6 +59,7 @@ def updateNuitkaMain(update):
 def updateNuitkaDevelop(update):
     _updateCheckout("develop", update=update)
 
+
 def importNuitka():
     # TODO: Add an option to use other branches.
     updateNuitkaDevelop(update=False)

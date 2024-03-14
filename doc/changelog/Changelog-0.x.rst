@@ -14,7 +14,6 @@ Nuitka release before version 1.0 was released.
    :local:
    :class: page-toc
 
-
 ********************
  Nuitka Release 0.9
 ********************

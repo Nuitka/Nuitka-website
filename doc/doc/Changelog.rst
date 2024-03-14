@@ -5,7 +5,10 @@
 .. include:: ../changelog/changes-hub.inc
 
 In this document, we track the per version changes and comments for
-|NUITKA_VERSION_MINOR| down to Nuitka 2.0 release. There is also a draft of the change of upcoming new release |NUITKA_VERSION_NEXT| that contains information about hot-fixes (|NUITKA_VERSION|) of the current stable release.
+|NUITKA_VERSION_MINOR| down to Nuitka 2.0 release. There is also a draft
+of the change of upcoming new release |NUITKA_VERSION_NEXT| that
+contains information about hot-fixes (|NUITKA_VERSION|) of the current
+stable release.
 
 .. contents:: Table of Contents
    :local:
@@ -60,11 +63,13 @@ New Features
 Optimization
 ============
 
--  ArchLinux: Enable static libpython by default, it is usable indeed. Added in 2.1.2 already.
+-  ArchLinux: Enable static libpython by default, it is usable indeed.
+   Added in 2.1.2 already.
 
 -  Anti-Bloat: Avoid ``unittest`` usage in ``antlr`` package.
 
--  Anti-Bloat: Avoid ``IPython`` in ``celery`` package. Added in 2.1.2 already.
+-  Anti-Bloat: Avoid ``IPython`` in ``celery`` package. Added in 2.1.2
+   already.
 
 Organisational
 ==============
