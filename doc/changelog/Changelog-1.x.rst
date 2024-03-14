@@ -4,11 +4,15 @@
  Nuitka Changelog before 2.0
 #############################
 
+.. include:: ../changelog/changes-hub.inc
+
 In this document, we track the per version changes of 1.x and comments
 of old Nuitka release before version 2.0 was released.
 
 .. contents:: Table of Contents
+   :depth: 1
    :local:
+   :class: page-toc
 
 ********************
  Nuitka Release 1.9

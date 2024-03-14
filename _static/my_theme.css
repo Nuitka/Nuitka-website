@@ -309,6 +309,54 @@ p.admonition-title {
     color: #1C5E89;
 }
 
+/* We want it on the right side bar, that doesn't yet exist.
+@media screen and (min-width: 1000px) {
+    .hub-toc {
+        float: right;
+        padding: 20px;
+        margin: 20px;
+    }
+}
+*/
+
+.hub-toc {
+    border: 1px solid lightgray;
+}
+
+.hub-toc .topic-title {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.hub-toc ul {
+    margin-bottom: 2px !important;
+    margin-right: 4px !important;
+}
+
+.hub-toc ul li::marker {
+    content: "» ";
+    font-size: var(--icon-size);
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.hub-toc a:visited {
+    color: #1C5E89;
+}
+
+.hub-toc a {
+    color: #1C5E89;
+}
+
+.hub-toc a:visited {
+    color: #1C5E89;
+}
+
+.hub-toc a {
+    color: #1C5E89;
+}
+
 p a:hover {
     text-decoration: underline;
 }

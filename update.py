@@ -59,11 +59,6 @@ def updateNuitkaMain(update):
 def updateNuitkaDevelop(update):
     _updateCheckout("develop", update=update)
 
-
-def updateNuitkaFactory(update):
-    _updateCheckout("factory", update=update)
-
-
 def importNuitka():
     # TODO: Add an option to use other branches.
     updateNuitkaDevelop(update=False)
@@ -499,6 +494,8 @@ def updateDownloadPage():
     major = int(major)
     minor = int(minor)
 
+    plain_stable_minor = "%d.%d" % (major, minor)
+
     if minor == 9:
         major += 1
         minor = 0
@@ -512,9 +509,11 @@ def updateDownloadPage():
         """
 .. |NUITKA_VERSION| replace:: %s
 
+.. |NUITKA_VERSION_MINOR| replace:: %s
+
 .. |NUITKA_VERSION_NEXT| replace:: %s
 """
-        % (plain_stable, plain_stable_next),
+        % (plain_stable, plain_stable_minor, plain_stable_next),
     )
 
     changeTextFileContents("doc/doc/fedora-downloads.inc", fedora_table)

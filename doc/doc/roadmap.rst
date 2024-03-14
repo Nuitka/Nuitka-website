@@ -2,7 +2,14 @@
  Nuitka Roadmap
 ################
 
+.. include:: ../changelog/changes-hub.inc
+
 This is the Nuitka roadmap, broken down by features.
+
+.. contents:: Table of Contents
+   :depth: 2
+   :local:
+   :class: page-toc
 
 ********************
  User Extensibility

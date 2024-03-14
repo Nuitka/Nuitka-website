@@ -14,11 +14,11 @@
 
                Read about changes for the upcoming release, which
                also includes hotfix information for the current
-               release.
+               release |NUITKA_VERSION|.
 
-               :doc:`/doc/Changelog`
+               :doc:`/changelog/Changelog-next`
 
-           .. grid-item-card:: Current release changes |NUITKA_VERSION|
+           .. grid-item-card:: Current release changes |NUITKA_VERSION_MINOR|
 
                Read about changes from the current release of Nuitka.
 
