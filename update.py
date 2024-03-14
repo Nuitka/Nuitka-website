@@ -505,8 +505,8 @@ def updateDownloadPage():
 
     plain_stable_next = "%d.%d" % (major, minor)
 
-    changeTextFileContents(
-        "doc/dynamic.inc",
+    with withFileOpenedAndAutoFormatted("doc/dynamic.inc") as output_file:
+        output_file.write(
         """
 .. |NUITKA_VERSION| replace:: %s
 
@@ -517,11 +517,16 @@ def updateDownloadPage():
         % (plain_stable, plain_stable_minor, plain_stable_next),
     )
 
-    changeTextFileContents("doc/doc/fedora-downloads.inc", fedora_table)
-    changeTextFileContents("doc/doc/centos-downloads.inc", centos_table)
-    changeTextFileContents("doc/doc/rhel-downloads.inc", rhel_table)
-    changeTextFileContents("doc/doc/suse-downloads.inc", suse_table)
-    changeTextFileContents("doc/doc/source-downloads.inc", source_table)
+    with withFileOpenedAndAutoFormatted("doc/doc/fedora-downloads.inc") as output_file:
+        output_file.write(fedora_table)
+    with withFileOpenedAndAutoFormatted("doc/doc/centos-downloads.inc") as output_file:
+        output_file.write(centos_table)
+    with withFileOpenedAndAutoFormatted("doc/doc/rhel-downloads.inc") as output_file:
+        output_file.write(rhel_table)
+    with withFileOpenedAndAutoFormatted("doc/doc/suse-downloads.inc") as output_file:
+        output_file.write(suse_table)
+    with withFileOpenedAndAutoFormatted("doc/doc/source-downloads.inc") as output_file:
+        output_file.write( source_table)
 
 
 # slugify is copied from
