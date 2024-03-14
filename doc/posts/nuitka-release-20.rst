@@ -636,3 +636,5 @@ Nuitka an ever more round package.
 The improved user dialog with less noisy messages and slightly better
 coloring, continues a trend, where Nuitka becomes more and more easy to
 use.
+
+.. include:: ../dynamic.inc
