@@ -257,7 +257,7 @@ parties, you are limited.
  Delivery
 **********
 
-#. Pay via Stripe or Crypto currency and have that confirmed
+#. Pay via Stripe and have that confirmed
 #. You get access to the private GitHub repo ``Nuitka-commercial`` which
    contains Nuitka plus commercial only parts.
 #. Optionally given more users in your GitHub organization access via
