@@ -6,6 +6,11 @@
  Nuitka Commercial
 ###################
 
+.. contents:: Table of Contents
+   :depth: 1
+   :local:
+   :class: page-toc
+
 As a commercial user of Python, you definitely need these 4 critical
 features that only Nuitka commercial offers. Protect your code, your
 data, your outputs, and tracebacks while still enjoying major
@@ -90,9 +95,9 @@ contains plugins to Nuitka that will achieve the following:
 
       :doc:`Read more.... <commercial/commercial-only-packages>`
 
-*******************************************
- Special needs (Commercial only use cases)
-*******************************************
+***************
+ Special needs
+***************
 
 In this instance, you have special wishes that only commercial customers
 will have and that are effort to maintain.
@@ -149,9 +154,11 @@ relatively free service you get on a daily basis.
 Naturally sponsors will be entitled to all access and treated with
 highest priority.
 
-*********
- Pricing
-*********
+.. _pricing:
+
+**********
+ Purchase
+**********
 
 .. grid:: 1 2 2 4
 
