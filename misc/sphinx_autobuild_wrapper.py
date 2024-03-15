@@ -1,8 +1,21 @@
 import os
+import signal
 import subprocess
+import sys
 
+import psutil
+import setproctitle
 import sphinx_autobuild.build
 from sphinx_autobuild.build import show
+
+
+def mySignalHandler(signal, frame):
+    process = psutil.Process(os.getpid())
+    for proc in process.children(recursive=True):
+        proc.kill()
+
+    print("Exiting for rebuild of whole site", file=sys.stderr)
+    sys.exit(27)
 
 
 def get_builder(watcher, sphinx_args, *, host, port, pre_build_commands):
@@ -29,12 +42,15 @@ def get_builder(watcher, sphinx_args, *, host, port, pre_build_commands):
 
         show(context=f"Serving on http://{host}:{port}")
 
+    signal.signal(signal.SIGUSR2, mySignalHandler)
+
     return build
 
 
 sphinx_autobuild.build.get_builder = get_builder
 
 if __name__ == "__main__":
+    setproctitle.setproctitle("sphinx-autobuild")
     from sphinx_autobuild.cli import main
 
     main()

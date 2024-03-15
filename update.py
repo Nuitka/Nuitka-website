@@ -84,7 +84,6 @@ from nuitka.tools.quality.auto_format.AutoFormat import (
 from nuitka.tools.release.Documentation import checkRstLint
 from nuitka.Tracing import my_print
 from nuitka.utils.FileOperations import (
-    changeTextFileContents,
     deleteFile,
     getFileContents,
     getFileList,
@@ -92,6 +91,7 @@ from nuitka.utils.FileOperations import (
 )
 from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
+from nuitka.utils.ReExecute import callExecProcess
 from nuitka.utils.Rest import makeTable
 
 in_devcontainer = os.getenv("REMOTE_CONTAINERS_DISPLAY_SOCK") is not None
@@ -507,15 +507,15 @@ def updateDownloadPage():
 
     with withFileOpenedAndAutoFormatted("doc/dynamic.inc") as output_file:
         output_file.write(
-        """
+            """
 .. |NUITKA_VERSION| replace:: %s
 
 .. |NUITKA_VERSION_MINOR| replace:: %s
 
 .. |NUITKA_VERSION_NEXT| replace:: %s
 """
-        % (plain_stable, plain_stable_minor, plain_stable_next),
-    )
+            % (plain_stable, plain_stable_minor, plain_stable_next),
+        )
 
     with withFileOpenedAndAutoFormatted("doc/doc/fedora-downloads.inc") as output_file:
         output_file.write(fedora_table)
@@ -526,7 +526,7 @@ def updateDownloadPage():
     with withFileOpenedAndAutoFormatted("doc/doc/suse-downloads.inc") as output_file:
         output_file.write(suse_table)
     with withFileOpenedAndAutoFormatted("doc/doc/source-downloads.inc") as output_file:
-        output_file.write( source_table)
+        output_file.write(source_table)
 
 
 # slugify is copied from
@@ -1078,12 +1078,25 @@ def checkRestPages():
 
 
 def runSphinxAutoBuild():
-    # Use sphinx_autobuild, but force misc/sphinx-build to be used.
-    # TODO: For Windows, a batch file would be needed that does the
-    # same thing.
-    os.system(
-        "python misc/sphinx_autobuild_wrapper.py doc output/ --watch misc --watch update.py --watch doc --watch intl --watch Pipenv.lock"
-    )
+    args = [
+        sys.executable,
+        sys.executable,
+        os.path.join(os.path.dirname(__file__), "misc", "sphinx_autobuild_wrapper.py"),
+        "doc",
+        "output",
+        "--watch",
+        "misc",
+        "--watch",
+        "update.py",
+        "--watch",
+        "doc",
+        "--watch",
+        "intl",
+        "--watch",
+        "Pipenv.lock",
+    ]
+
+    callExecProcess(args)
 
 
 def getTranslationStatus():

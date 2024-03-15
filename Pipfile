@@ -37,6 +37,7 @@ unicode = "==2.9"
 unidecode = "*"
 sphinx-intl = "==2.1.0"
 psutil = "*"
+setproctitle = "*"
 
 [requires]
 python_version = "3.10"

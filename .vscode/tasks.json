@@ -7,6 +7,18 @@
     },
     "tasks": [
         {
+            "label": "rebuild all pages",
+            "type": "shell",
+            "command": "killall -SIGUSR2 sphinx-autobuild",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "never"
+            }
+        },
+        {
             "label": "auto-format current file",
             "type": "shell",
             "command": "./auto-format ${file}",
