@@ -402,7 +402,7 @@ a[class~="headerlink"]:visited {
 
 @media (min-height: 20em) {
     [id] {
-        scroll-margin-top: 60px;
+        scroll-margin-top: 70px;
     }
 
     .top_nav {
@@ -413,11 +413,6 @@ a[class~="headerlink"]:visited {
         padding-bottom: 2px;
         z-index: 100;
         background-color: white;
-    }
-
-    h1 {
-        margin-top: 0;
-        margin-bottom: 0;
     }
 }
 
@@ -434,7 +429,7 @@ a[class~="headerlink"]:visited {
 .top_link_nav {
     border: 2px solid lightgray;
     width: fit-content;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     padding-bottom: 0;
     border-radius: 3.6rem;
 }

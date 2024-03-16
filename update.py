@@ -871,7 +871,6 @@ def runPostProcessing():
                 top_nav = html.fromstring("""<div class="top_nav"></div>""")
 
                 h1.getparent().insert(h1.getparent().index(h1), top_nav)
-                h1.getparent().remove(h1)
 
                 top_link_nav = html.fromstring(
                     """\
@@ -896,9 +895,7 @@ def runPostProcessing():
                     0
                 ]
                 social_container.getparent().remove(social_container)
-                top_nav.append(social_container)
-
-                top_nav.append(h1)
+                top_link_nav.append(social_container)
 
                 try:
                     blog_container = doc.xpath("//div[@class='blog-post-box']")[0]
