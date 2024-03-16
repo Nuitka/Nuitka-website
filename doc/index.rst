@@ -49,7 +49,7 @@ Additionally, you can purchase priority support.
    :hidden:
    :caption: Commercial Users
 
-   Purchase Now <commercial/purchase>
+   |SHOPPING_CART_SYMBOL| Purchase Now <commercial/purchase>
    Commercial Features <doc/commercial>
    doc/bundles
 
