@@ -416,6 +416,11 @@ a[class~="headerlink"]:visited {
     }
 }
 
+.ci-search {
+    width: 195.733px;
+    height: 30px;
+}
+
 @media screen and (min-height: 20em) and (max-width: 1000px) {
     /* Add mobile specifics here */
 }
