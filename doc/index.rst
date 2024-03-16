@@ -41,7 +41,7 @@ Additionally, you can purchase priority support.
    :hidden:
    :caption: Nuitka the Python Compiler
 
-   Download <doc/download>
+   Free Download <doc/download>
    User Manual <doc/user-manual>
    pages/support
 
@@ -49,7 +49,8 @@ Additionally, you can purchase priority support.
    :hidden:
    :caption: Commercial Users
 
-   doc/commercial
+   Purchase Now <commercial/purchase>
+   Commercial Features <doc/commercial>
    doc/bundles
 
 .. toctree::

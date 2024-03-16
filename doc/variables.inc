@@ -23,3 +23,7 @@
 .. |SUPPORTED_PYTHONS| replace::
 
    **Python 3** (3.4 — 3.11) and **Python 2** (2.6, 2.7)
+
+.. |SHOPPING_CART_SYMBOL| replace::
+
+   ``<i class="fa-solid fa-cart-shopping"></i>``

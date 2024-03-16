@@ -1,3 +1,5 @@
+:orphan:
+
 .. meta::
    :description: Protect your IP against reverse engineering with the Python compiler Nuitka and turn your Python code into binary. Protect code, data, outputs and tracebacks!
    :keywords: python,compiler,protection,reverse engineering,encrypted,tracebacks,obfuscate,obfuscation,obfuscator
@@ -6,12 +8,7 @@
  Nuitka Commercial
 ###################
 
-.. contents:: Table of Contents
-   :depth: 1
-   :local:
-   :class: page-toc
-
-As a commercial user of Python, you definitely need these 4 critical
+As a commercial user of Python, you definitely need these critical
 features that only Nuitka commercial offers. Protect your code, your
 data, your outputs, and tracebacks while still enjoying major
 convenience features for your application.
@@ -26,107 +23,139 @@ contains plugins to Nuitka that will achieve the following:
 
 .. grid:: 1 1 2 2
 
-   .. grid-item-card::  Program Constants Data
-      :class-item: nuitka-grid-security
+   .. grid-item::
 
-      Obfuscate contained program constants data
+       .. grid:: 1 1 1 1
+           :gutter: 1
 
-      Your encryption keys, your program texts, your library usages, all
-      expose textual information, that can be valuable input in Reverse
-      Engineering.
+           .. grid-item-card::  Program Constants Data
 
-      Normally these constants are plain and readable in the created
-      programs (and of course your Python source code or bytecode).
-      Compiling with Nuitka gives you protection of the code, but with the
-      data being easily readable, it will be less effective.
+               Obfuscate contained program constants data
 
-      :doc:`Read more.... <commercial/protect-constants-data>`
+               Your encryption keys, your program texts, your library usages, all
+               expose textual information, that can be valuable input in Reverse
+               Engineering.
 
-   .. grid-item-card::  Contained Data Files
-      :class-item: nuitka-grid-security
+               Normally these constants are plain and readable in the created
+               programs (and of course your Python source code or bytecode).
+               Compiling with Nuitka gives you protection of the code, but with the
+               data being easily readable, it will be less effective.
 
-      Another aspect of data protection are your data files. When your program
-      includes data files to work on, these are normally visible in the file
-      system. This unnecessarily exposes your program, sometimes, e.g. via QML
-      files of Qt, your program behavior can be changed by an attacker modifying
-      these files, or they can copy their content easily.
+               :doc:`Read more.... <commercial/protect-constants-data>`
 
-      Therefore Nuitka commercial allows you to embed data files as part
-      of the program constants and protect it in the same way as other
-      constants. Without these files accessible, the attacker will not
-      have these an an attack vector.
+           .. grid-item-card::  Contained Data Files
 
-      :doc:`Read more.... <commercial/protect-data-files>`
+               Another aspect of data protection are your data files. When your program
+               includes data files to work on, these are normally visible in the file
+               system. This unnecessarily exposes your program, sometimes, e.g. via QML
+               files of Qt, your program behavior can be changed by an attacker modifying
+               these files, or they can copy their content easily.
+
+               Therefore Nuitka commercial allows you to embed data files as part
+               of the program constants and protect it in the same way as other
+               constants. Without these files accessible, the attacker will not
+               have these an an attack vector.
+
+               :doc:`Read more.... <commercial/protect-data-files>`
+
+   .. grid-item::
+
+       .. grid:: 1 1 1 1
+           :gutter: 1
+
+           .. grid-item-card:: Encrypted Tracebacks
+
+               When your program is deployed and crashing, you could take
+               potentially successful steps against these tracebacks appearing. But
+               when you need to support your client, you need to be able to to
+               actually tell, why your software is crashing.
+
+               Python tracebacks are good for this, but you cannot want them to be
+               readable to the user. This is where traceback encryption comes in.
+               Nuitka with the commercial plugin will make sure to encrypt all
+               traceback outputs. They still carry the information as you want, but
+               *only you* will be able to decode them.
+
+               Symmetric encryption (and asymmetric encryption in a future update)
+               are available for you to use there.
+
+           .. grid-item-card:: Encrypted Outputs
+
+               If you need to query information from a machine, or just in general
+               want to have perfect protection, you can use the Nuitka plugin to
+               make sure it can only output encrypted information on standard output
+               and standard error.
+
+               This will allow you to decode outputs as necessary, and will make
+               sure it's not readable to anybody but you.
+
+******************************
+ Older OSes and Special Needs
+******************************
+
+.. grid:: 1 1 2 2
+
+   .. grid-item::
+
+       .. grid:: 1 1 1 1
+           :gutter: 1
+
+           .. grid-item-card::  Windows 7
+
+               Deploying your program to Windows 7, or even Windows XP. We
+               cannot make every program work on these (e.g. Qt6 requires even
+               newer Windows 10), but if it works with Python, using older
+               versions of packages, then Nuitka can make it portable.
+
+           .. grid-item-card::  RHEL 7 support
+
+               If your program works on RHEL 7 (CentOS 7), then Nuitka can make
+               it portable from and to that one too.
 
 
-   .. grid-item-card:: Encrypted Tracebacks
-      :class-item: nuitka-grid-security
+   .. grid-item::
 
-      When your program is deployed and crashing, you could take
-      potentially successful steps against these tracebacks appearing. But
-      when you need to support your client, you need to be able to to
-      actually tell, why your software is crashing.
+       .. grid:: 1 1 1 1
+           :gutter: 1
 
-      Python tracebacks are good for this, but you cannot want them to be
-      readable to the user. This is where traceback encryption comes in.
-      Nuitka with the commercial plugin will make sure to encrypt all
-      traceback outputs. They still carry the information as you want, but
-      *only you* will be able to decode them.
+           .. grid-item-card:: Commercial-only packages
 
-      Symmetric encryption (and asymmetric encryption in a future update)
-      are available for you to use there.
+               For select few packages, these are only supported with Nuitka commercial. This is because we made patches for older normally
+               unsupported packages like PySide2, or because the package is
+               for accepting payments, making their use clearly commercial.
 
-   .. grid-item-card:: Encrypted Outputs
-      :class-item: nuitka-grid-security
+               :doc:`Read more.... <commercial/commercial-only-packages>`
 
-      If you need to query information from a machine, or just in general
-      want to have perfect protection, you can use the Nuitka plugin to
-      make sure it can only output encrypted information on standard output
-      and standard error.
-
-      This will allow you to decode outputs as necessary, and will make
-      sure it's not readable to anybody but you.
-
-
-   .. grid-item-card:: Commercial-only packages
-      :class-item: nuitka-grid-security
-
-      For select few packages, these are only supported with Nuitka commercial.
-
-      :doc:`Read more.... <commercial/commercial-only-packages>`
-
-***************
- Special needs
-***************
+*************
+ Convenience
+*************
 
 In this instance, you have special wishes that only commercial customers
 will have and that are effort to maintain.
 
--  You might e.g. you want to deploy a Windows service
+.. grid:: 1 1 2 2
 
-   For this, there is a dedicated plugin in Nuitka that makes deployment
-   of a practically unchanged program as a service very easy.
+   .. grid-item::
 
-   :doc:`Read more.... <commercial/windows-service>`
+       .. grid:: 1 1 1 1
+           :gutter: 1
 
--  You might need to support special commercial grade software.
+           .. grid-item-card::  Windows Service
 
-   This can be done, but you might have to pay for the development time
-   this takes.
+               Deploying your program as a Windows service is trivial.
 
--  You might need to support very old OSes, e.g. RHEL 5.
+               For this, there is a dedicated plugin in Nuitka that makes deployment of a practically unchanged program as a service very easy.
 
-   Again, this can be done, but you might have to pay for the
-   development time this takes.
+               :doc:`Read more.... <commercial/windows-service>`
 
--  Automatic download, alerts to, applying updates of deployed software.
+       .. grid:: 1 1 1 1
+           :gutter: 1
 
-   This is not yet implemented, but will be added in a future update.
+           .. grid-item-card::  Automatic Updates
 
-   Support for these things will also be covered in the Nuitka
-   commercial package, and while you might not care necessarily about
-   hiding your source or data, but much rather you care about the
-   quality of deployment of your software.
+               Automatic download, alerts to, applying updates of deployed software.
+
+               This is not yet implemented, but will be added in a future update.
 
 **************************
  Priority Issue Solutions
@@ -160,82 +189,7 @@ highest priority.
  Purchase
 **********
 
-.. grid:: 1 2 2 4
-
-   .. grid-item-card::  Nuitka Commercial
-      :class-item: nuitka-grid-offer nuitka-offer-commercial
-
-       .. container:: nuitka-price
-
-           € 250 / yr
-
-       .. container:: nuitka-buy
-
-         `Subscribe now » </stripe/checkout-commercial-subscription>`__
-
-       - Commercial only Features
-
-       - All your applications
-
-       - Standard Support
-
-   .. grid-item-card::  Nuitka Priority
-      :class-item: nuitka-grid-offer nuitka-offer-priority
-
-       .. container:: nuitka-price
-
-           € 250 / yr
-
-       .. container:: nuitka-buy
-
-         `Subscribe now » </stripe/checkout-priority-subscription>`__
-
-       - Best Support
-
-       - Issues have **Priority**
-
-       - **No** Commercial features
-
-
-   .. grid-item-card::  Full Package
-      :class-item: nuitka-grid-offer nuitka-offer-full-package
-
-       .. container:: nuitka-price
-
-           € 400 / yr
-
-       .. container:: nuitka-buy
-
-         `Subscribe now » </stripe/checkout-full-subscription>`__
-
-       - Nuitka Commercial **included**
-
-       - Nuitka Priority **included**
-
-
-   .. grid-item-card::  Sponsor
-      :class-item: nuitka-grid-offer nuitka-offer-sponsor
-
-       .. container:: nuitka-price
-
-           € 1000 / yr
-
-       .. container:: nuitka-buy
-
-         `Subscribe now » </stripe/checkout-sponsor-subscription>`__
-
-       - Best Support
-
-       - Nuitka Commercial
-
-       - Roadmap Influence
-
-       - Use Cases Priority
-
-.. important::
-
-   Click the buttons in the boxes above if Stripe payment works for you
-   (bank transfer, credit card, SEPA debit charge, etc).
+.. include:: /commercial/purchase-grid.inc
 
 *************
  Limitations
