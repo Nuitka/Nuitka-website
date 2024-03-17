@@ -1018,7 +1018,9 @@ def runPostProcessing():
             doc, include_meta_content_type=True
         )
 
-        document_bytes = document_bytes.replace(b"|SHOPPING_CART_SYMBOL|", b'<i class="fa-solid fa-cart-shopping"></i>')
+        document_bytes = document_bytes.replace(
+            b"|SHOPPING_CART_SYMBOL|", b'<i class="fa-solid fa-cart-shopping"></i>'
+        )
 
         document_bytes = document_bytes.replace(b"now &#187;", b"now&nbsp;&nbsp;&#187;")
         document_bytes = document_bytes.replace(b"/ yr", b'<i class="sub">/ yr</i>')
