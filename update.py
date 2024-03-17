@@ -570,7 +570,7 @@ def _splitRestByChapter(lines):
 
 
 def updateReleasePosts():
-    _updateReleasePosts("doc/doc/Changelog.rst")
+    _updateReleasePosts("doc/changelog/Changelog.rst")
     _updateReleasePosts("doc/changelog/Changelog-1.x.rst")
     _updateReleasePosts("doc/changelog/Changelog-0.x.rst")
 

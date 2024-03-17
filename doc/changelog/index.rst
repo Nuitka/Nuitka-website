@@ -22,7 +22,7 @@
 
                Read about changes from the current release of Nuitka.
 
-               :doc:`/doc/Changelog`
+               :doc:`/changelog/Changelog`
 
            .. grid-item-card:: Roadmap
 
@@ -39,13 +39,13 @@
 
                Changes for the 1.x major release series.
 
-               :doc:`Changelog-1.x`
+               :doc:`/changelog/Changelog-1.x`
 
            .. grid-item-card:: Changelog of releases before 1.0
 
                Changes for the 0.x major release series.
 
-               :doc:`Changelog-0.x`
+               :doc:`/changelog/Changelog-0.x`
 
 .. include:: ../variables.inc
 

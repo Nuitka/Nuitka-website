@@ -3,7 +3,7 @@
 * :doc:`Release Information Hub </changelog/index>`
 
   - :doc:`/changelog/Changelog-next`
-  - :doc:`/doc/Changelog`
+  - :doc:`/changelog/Changelog`
   - :doc:`/changelog/Changelog-1.x`
   - :doc:`/changelog/Changelog-0.x`
-  - :doc:`/doc/roadmap`
+  - :doc:`/changelog/roadmap`

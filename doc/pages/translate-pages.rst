@@ -161,9 +161,9 @@ This is just a playground for me, do not translate, unless we want to
 play around with translation mechanics. We will want to e.g. have an
 intelligent language switcher at some point, and could try it out there.
 
-****************************
- Page ``doc/Changelog.rst``
-****************************
+**********************************
+ Page ``changelog/Changelog.rst``
+**********************************
 
 Do not translate, this is a bizarre amount of work, that may not be
 rewarding. For very complete translations, we can consider it though.
