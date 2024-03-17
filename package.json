@@ -1,0 +1,22 @@
+{
+  "name": "nuitka-website",
+  "version": "1.0.0",
+  "description": "Helper for managing website",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nuitka/Nuitka-website"
+  },
+  "author": "",
+  "license": "ASF2.0",
+  "dependencies": {
+    "postcss": "^8.4.35",
+    "postcss-cli": "^11.0.0"
+  }
+}
