@@ -28,7 +28,7 @@
 
                This is the roadmap of Nuitka, where we want to be in the next couple of releases.
 
-               :doc:`/doc/roadmap`
+               :doc:`/changelog/roadmap`
 
    .. grid-item::
 
