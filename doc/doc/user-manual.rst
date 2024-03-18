@@ -18,31 +18,11 @@ license type, use cases, requirements, and credits.
    :local:
    :class: page-toc
 
-Nuitka is **the** Python compiler. It is written in Python. It is a
-seamless replacement or extension to the Python interpreter and compiles
-**every** construct that Python 2 (2.6, 2.7) and Python 3 (3.4 - 3.11)
-have, when itself run with that Python version.
-
-It then executes uncompiled code and compiled code together in an
-extremely compatible manner.
-
-You can use all Python library modules and all extension modules freely.
-
-Nuitka translates the Python modules into a C level program that then
-uses ``libpython`` and static C files of its own to execute in the same
-way as CPython does.
-
-All optimization is aimed at avoiding overhead, where it's unnecessary.
-None is aimed at removing compatibility, although slight improvements
-will occasionally be done, where not every bug of standard Python is
-emulated, e.g. more complete error messages are given, but there is a
-full compatibility mode to disable even that.
-
 **************
  Requirements
 **************
 
-To ensure smooth operation of **Nuitka**, make sure to follow system
+To ensure smooth work of **Nuitka**, make sure to follow system
 requirements, that include the following components:
 
 .. contents::
@@ -55,7 +35,7 @@ C Compiler
 You need a C compiler with support for C11 or alternatively a C++
 compiler for C++03 [#]_.
 
-Currently, this means, you need to use one of these compilers:
+**For Windows**, use one of the following compilers:
 
 -  The **MinGW64 C11** compiler must be based on **gcc 11.2** or higher.
    It will be automatically downloaded if no usable C compiler is found,

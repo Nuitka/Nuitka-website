@@ -177,8 +177,9 @@ html {
     transition: opacity 500ms;
     -webkit-transition: opacity 500ms;
     color: #fff;
+    font-size: 12px;
     text-align: center;
-    margin-top: 7px;
+    font-weight: bold;
 }
 
 .social-button:hover .shares {
@@ -197,23 +198,59 @@ html {
 }
 
 .social-button.twitter {
-    background-color: #5BC2F0;
+    background-color: #fff;
     border-radius: 25px;
+    border: 1px solid black;
+}
+
+.social-button.twitter:hover {
+    background-color: #000;
+}
+
+.social-button.twitter:hover .icon img {
+    filter: brightness(0) invert(1);
 }
 
 .social-button.mastodon {
-    background-color: #563ACC;
+    background-color: #fff;
     border-radius: 25px;
+    border: 1px solid #6364FF ;
+}
+
+.social-button.mastodon:hover {
+    background-color: #6364FF;
+}
+
+.social-button.mastodon:hover .icon img {
+    filter: brightness(0) invert(1);
 }
 
 .social-button.reddit {
-    background-color: #333333;
+    background-color: #fff;
     border-radius: 25px;
+    border: 1px solid #FF5700;
+}
+
+.social-button.reddit:hover {
+    background-color: #FF5700;
+}
+
+.social-button.reddit:hover .icon img {
+    filter: brightness(0) invert(1);
 }
 
 .social-button.facebook {
-    background-color: #435D96;
+    background-color: #fff;
     border-radius: 25px;
+    border: 1px solid #1877F2;
+}
+
+.social-button.facebook:hover {
+    background-color: #1877F2;
+}
+
+.social-button.facebook:hover .icon img {
+    filter: brightness(0) invert(1);
 }
 
 .language-switcher-container {
