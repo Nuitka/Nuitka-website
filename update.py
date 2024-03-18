@@ -879,6 +879,7 @@ def runPostProcessing():
   <ul>
     <li>
         <div class="logo_container">
+            <a href="https://nuitka.net">
             <img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="28" height="28"
             </a>
         </div>

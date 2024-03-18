@@ -47,4 +47,4 @@ branches:
    <https://nuitka.net/doc/developer-manual.html>`__ explains the coding
    rules, branching model used, with feature branches and hotfix
    releases, the Nuitka design and much more. Consider reading it to
-   become a contributor.
+   become a contributor. This document is intended for Nuitka users.
