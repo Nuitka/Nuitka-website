@@ -290,6 +290,12 @@ and DLL usages.
    The loop analysis recently became strong enough to succeed in proper
    type analyis. We should be able to proceed with this.
 
+-  Cover all built-ins of Python
+
+   Currently a few built-ins, even as important as ``enumerate`` are not
+   yet implemented. We need to revisit this once we got integer type
+   specialization and loop iteration specialization both.
+
 ********************
  macOS enhancements
 ********************
