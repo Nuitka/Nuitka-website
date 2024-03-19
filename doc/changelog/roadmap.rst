@@ -367,6 +367,21 @@ effectively with more than a single file.
    doing it with their own code base, allowing them to see changes due
    to new Nuitka or new PyPI packages individually.
 
+**************************
+ Plugin API documentation
+**************************
+
+-  The API for plugins should be documented in Sphinx and be accessible
+   on the website.
+
+**********
+ Coverage
+**********
+
+-  The test runner is prepared to take coverage of Nuitka during
+   execution, and we have as job for it, but we don't yet render the
+   results anywhere.
+
 ******************************
  Features to be added for 2.2
 ******************************
