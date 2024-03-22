@@ -296,7 +296,7 @@ New Features
 
    So far it was impossible to distinguish non-standalone, i.e.
    accelerated mode and module compilation by looking at the
-   "__compiled__" attribute, so we add an indicator for module mode that
+   ``__compiled__`` attribute, so we add an indicator for module mode that
    closes this gap.
 
 -  Plugins: Added ``appdirs`` and ``importlib`` for use in Nuitka
