@@ -51,6 +51,28 @@ Bug Fixes
 -  Standalone: Added support for ``hydra`` package. Fixed in 2.1.2
    already.
 
+-  Standalone: Updated ``dotenv`` workaround for newer version. Fixed in
+   2.1.3 already.
+
+-  Fix, PySide6 slots were not moved between threads anymore. Need to
+   make function renames visible in owning class as well. Fixed in 2.1.3
+   already.
+
+-  Standalone: Added support for ``win32com.server.register``. Fixed in
+   2.1.3 already.
+
+-  Standalone: Handle "string" import errors of ``uvicorn`` gracefully.
+   Fixed in 2.1.3 already.
+
+-  Fix, the ``dill-compat`` plugin needs to still expose the compiled
+   type names as built-ins so pickle finds them.
+
+-  Standalone: Added support for ``gruut`` package. Fixed in 2.1.3
+   already.
+
+   Standalone: Added support for newer ``toga`` to also include
+   ``toga_winforms`` metadata. Fixed in 2.1.3 already.
+
 New Features
 ============
 
@@ -73,11 +95,29 @@ Optimization
 -  Anti-Bloat: Avoid ``IPython`` in ``celery`` package. Added in 2.1.2
    already.
 
+-  Anti-Bloat: Avoid using ``setuptools`` in ``transformers`` package
+   for more modules. Added in 2.1.3 already.
+
+-  Anti-Bloat: Avoid testing packages for newer ``tensorflow`` package
+   as well. Added in 2.1.3 already.
+
 Organisational
 ==============
 
 -  UI: Catch wrong values for ``--jobs`` value sooner, negative and
    non-integer values error exit immediately. Added in 2.1.1 already.
+
+-  UI: Nicer usage name when invoked with "-m nuitka"
+
+   The recommended form of calling of Nuitka should not have an ugly
+   invocation reference ``__main__.py`` instead put the ``-m nuitka``
+   notion there.
+
+Tests
+-----
+
+-  Tests: Fix, cannot assume ``setuptools`` to be installed, some RPM
+   based systems don't have it.
 
 Summary
 =======
