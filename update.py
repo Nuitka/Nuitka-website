@@ -750,6 +750,21 @@ def runPostProcessing():
         for current_link in doc.xpath("//a[@class='current reference internal']"):
             current_link.attrib["href"] = "/" + os.path.relpath(filename, "output")
 
+        for current_link in doc.xpath("//a[@class='reference internal']"):
+            if current_link.attrib["href"] == "index.html":
+                current_link.attrib["href"] = "/" + os.path.relpath(os.path.dirname(filename), "output")
+
+        for current_link in doc.xpath("//ul[contains(@class, 'hub-toc')]//a[@class='reference internal']"):
+            if current_link.attrib["href"] == "/":
+                parent_tag = current_link.getparent()
+                assert parent_tag.tag == "p", parent_tag
+                parent_tag.attrib["class"] = "hub-nav-current"
+                for child in current_link:
+                    current_link.remove(child)
+                    parent_tag.append(child)
+
+                parent_tag.remove(current_link)
+
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
 
