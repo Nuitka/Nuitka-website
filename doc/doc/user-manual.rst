@@ -32,8 +32,8 @@ requirements, that include the following components:
 C Compiler
 ==========
 
-You need a C compiler with support for **C11** or alternatively a **C++**
-compiler for **C++03** [#]_.
+You need a C compiler with support for **C11** or alternatively a
+**C++** compiler for **C++03** [#]_.
 
 **For Windows**, use one of the following compilers:
 
@@ -43,7 +43,10 @@ compiler for **C++03** [#]_.
    upgrade it for you.
 
 -  `Visual Studio 2022
-   <https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx>`_ or higher. Use the default English language pack to enable **Nuitka** to filter away irrelevant outputs and, therefore, have the best results.
+   <https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx>`_
+   or higher. Use the default English language pack to enable **Nuitka**
+   to filter away irrelevant outputs and, therefore, have the best
+   results.
 
 -  The **Clang-cl** compiler can be used if provided by the **Visual
    Studio** installer.
@@ -67,48 +70,88 @@ alternative.
 Python
 ======
 
-|SUPPORTED_PYTHONS| are supported. If a stable Python release isn't listed here, don't worry; it's being worked on and will be added soon.
+|SUPPORTED_PYTHONS| are supported. If a stable Python release isn't
+listed here, don't worry; it's being worked on and will be added soon.
 
 .. important::
-   You might need to download an additional Python version. To get to know more, read the following statements:
 
-- If you use **Python 3.4**, additionally install **Python 2** or **Python 3.5+**. You will need it during the compile time because **SCons** (which orchestrates the C compilation) does not support **Python 3.4**.
+   You might need to download an additional Python version. To get to
+   know more, read the following statements:
 
-- If you use the **Windows** opening system, don’t use **Python 2** because **clcache** doesn’t work with it. Install **Python 3.5+** instead. **Nuitka** finds these needed Python versions (for example, on **Windows** via registry) and you shouldn’t notice it as long as they are installed.
+-  If you use **Python 3.4**, additionally install **Python 2** or
+   **Python 3.5+**. You will need it during the compile time because
+   **SCons** (which orchestrates the C compilation) does not support
+   **Python 3.4**.
 
-- Other functionality is available when another Python has a certain package installed. For example, **Python 2.x** can use onefile compression if another Python with the **zstandard** package is installed.
+-  If you use the **Windows** opening system, don’t use **Python 2**
+   because **clcache** doesn’t work with it. Install **Python 3.5+**
+   instead. **Nuitka** finds these needed Python versions (for example,
+   on **Windows** via registry) and you shouldn’t notice it as long as
+   they are installed.
+
+-  Other functionality is available when another Python has a certain
+   package installed. For example, **Python 2.x** can use onefile
+   compression if another Python with the **zstandard** package is
+   installed.
 
 .. admonition:: Important considerations
 
-   - **Moving binaries to other machines:** The created binaries can be made executable independent of the Python installation, with ``--standalone`` and ``--onefile`` options.
+   -  **Moving binaries to other machines:** The created binaries can be
+      made executable independent of the Python installation, with
+      ``--standalone`` and ``--onefile`` options.
 
-   - **Binary filename suffix:** The created binaries have an ``.exe`` suffix on Windows. On other platforms they have no suffix for standalone mode, or ``.bin`` suffix, that you are free to remove or change, or specify with the ``-o`` option. The suffix for acceleration mode is added just to be sure that the original script name and the binary name do not ever collide, so we can safely overwrite the binary without destroying the original source file.
+   -  **Binary filename suffix:** The created binaries have an ``.exe``
+      suffix on Windows. On other platforms they have no suffix for
+      standalone mode, or ``.bin`` suffix, that you are free to remove
+      or change, or specify with the ``-o`` option. The suffix for
+      acceleration mode is added just to be sure that the original
+      script name and the binary name do not ever collide, so we can
+      safely overwrite the binary without destroying the original source
+      file.
 
-   - **It has to be standard Python implementation**: You need the standard Python implementation, called **CPython**, to execute **Nuitka** because it's closely tied to implementation details of it. You can also use **Homebrew** (for macOS) or **Anaconda Python**.
+   -  **It has to be standard Python implementation**: You need the
+      standard Python implementation, called **CPython**, to execute
+      **Nuitka** because it's closely tied to implementation details of
+      it. You can also use **Homebrew** (for macOS) or **Anaconda
+      Python**.
 
-   - **Python from Microsoft Store**: Don’t download Python from **Microsoft Store**, as it doesn’t work properly.
+   -  **Python from Microsoft Store**: Don’t download Python from
+      **Microsoft Store**, as it doesn’t work properly.
 
-   - **Pyenv on macOS:** It is known that macOS **pyenv** does not work. Use **Homebrew** instead for self-compiled Python installations. Note that standalone mode will be worse on these platforms and not be as backward compatible with older macOS versions.
+   -  **Pyenv on macOS:** It is known that macOS **pyenv** does not
+      work. Use **Homebrew** instead for self-compiled Python
+      installations. Note that standalone mode will be worse on these
+      platforms and not be as backward compatible with older macOS
+      versions.
 
 Operating System
 ================
 
-**Nuitka** supports the following operating systems: **Linux**, **FreeBSD**, **NetBSD**, **macOS**, and **Windows** (32 bits/64 bits/ARM).
+**Nuitka** supports the following operating systems: **Linux**,
+**FreeBSD**, **NetBSD**, **macOS**, and **Windows** (32 bits/64
+bits/ARM).
 
-Other Operating systems will work as well. The portability is expected to be generally good. However, specific adjustments might be necessary, such as modifying Nuitka's internal **SCons** usage or providing additional flags. Ensure that the Python version matches the architecture of the C compiler, or else you will get cryptic error messages.
+Other Operating systems will work as well. The portability is expected
+to be generally good. However, specific adjustments might be necessary,
+such as modifying Nuitka's internal **SCons** usage or providing
+additional flags. Ensure that the Python version matches the
+architecture of the C compiler, or else you will get cryptic error
+messages.
 
 Architecture
 ============
 
-Supported Architectures are **x86**, **x86_64** (**AMD64**), and **ARM**.
+Supported Architectures are **x86**, **x86_64** (**AMD64**), and
+**ARM**.
 
-Other architectures are expected to also work out of the box, as **Nuitka**
-is generally not using any hardware specifics. These are just the ones
-tested and known to be good. Generally, the architectures that **Debian** supports can be considered good and tested, too.
+Other architectures are expected to also work out of the box, as
+**Nuitka** is generally not using any hardware specifics. These are just
+the ones tested and known to be good. Generally, the architectures that
+**Debian** supports can be considered good and tested, too.
 
-*************
-Installation
-*************
+**************
+ Installation
+**************
 
 For most systems, there will be packages on the `download page
 <https://nuitka.net/doc/download.html>`__ of Nuitka. But you can also
@@ -122,18 +165,21 @@ should use that makes it really easy to integrate. You ought to start
 with a local compilation though, but this will be easiest for cross
 platform compilation with Nuitka.
 
-Read also about `Nuitka license <https://nuitka.net/doc/download.html>`_.
+Read also about `Nuitka license
+<https://nuitka.net/doc/download.html>`_.
 
 ********************
  Command Line Usage
 ********************
 
-To use **Nuitka** via the command line, select one of the following ways to ensure smooth execution.
+To use **Nuitka** via the command line, select one of the following ways
+to ensure smooth execution.
 
 Recommended way
-================
+===============
 
-To execute **Nuitka** in the recommended way, enter the following command:
+To execute **Nuitka** in the recommended way, enter the following
+command:
 
 .. code:: bash
 
@@ -141,12 +187,15 @@ To execute **Nuitka** in the recommended way, enter the following command:
 
 .. admonition:: Note
 
-   Replace ``<the_right_python>`` with the specific Python interpreter executable you want to use. For example, ``python3.9 -m nuitka``.
+   Replace ``<the_right_python>`` with the specific Python interpreter
+   executable you want to use. For example, ``python3.9 -m nuitka``.
 
-By executing this command, you can be absolutely certain which Python interpreter you are using, so it is easier to match with what Nuitka has.
+By executing this command, you can be absolutely certain which Python
+interpreter you are using, so it is easier to match with what Nuitka
+has.
 
 Direct way
-===========
+==========
 
 The next best way of executing Nuitka bare that is from a source
 checkout or archive, with no environment variable changes, most

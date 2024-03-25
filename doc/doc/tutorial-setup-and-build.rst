@@ -5,12 +5,12 @@
 This is basic steps if you have nothing installed, of course if you have
 any of the parts, just skip it.
 
-******
-Setup
-******
+*******
+ Setup
+*******
 
 Install Python
-===============
+==============
 
 -  Download and install Python from
    https://www.python.org/downloads/windows
@@ -21,18 +21,18 @@ Install Python
 -  Verify it's working using command ``python --version``.
 
 Install Nuitka
-===============
+==============
 
 -  ``python -m pip install nuitka``
 
 -  Verify using command ``python -m nuitka --version``
 
-*************************
-Write some code and test
-*************************
+**************************
+ Write some code and test
+**************************
 
 Create a folder for the Python code
-====================================
+===================================
 
 -  ``mkdir`` HelloWorld
 
@@ -52,7 +52,7 @@ Create a folder for the Python code
        main()
 
 Test your program
-==================
+=================
 
 Do as you normally would. Running Nuitka on code that works incorrectly
 is not easier to debug.
@@ -64,7 +64,7 @@ is not easier to debug.
 ----
 
 Build it using
-================
+==============
 
 .. code:: bash
 
@@ -78,12 +78,12 @@ Build it using
    both those questions.
 
 Run it
-=======
+======
 
 Execute the ``hello.exe`` created near ``hello.py``.
 
 Distribute
-===========
+==========
 
 To distribute, build with ``--standalone`` option, which will not output
 a single executable, but a whole folder. Copy the resulting
