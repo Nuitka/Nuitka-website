@@ -32,8 +32,8 @@ requirements, that include the following components:
 C Compiler
 ==========
 
-You need a C compiler with support for C11 or alternatively a C++
-compiler for C++03 [#]_.
+You need a C compiler with support for **C11** or alternatively a **C++**
+compiler for **C++03** [#]_.
 
 **For Windows**, use one of the following compilers:
 
@@ -42,11 +42,8 @@ compiler for C++03 [#]_.
    which is the recommended way of installing it, as Nuitka will also
    upgrade it for you.
 
--  The **Community** edition of `Visual Studio 2022
-   <https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx>`_
-   or higher. Older versions will work, but only supported for
-   commercial users. Use the default English language pack to enable
-   **Nuitka** to filter away irrelevant outputs.
+-  `Visual Studio 2022
+   <https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx>`_ or higher. Use the default English language pack to enable **Nuitka** to filter away irrelevant outputs and, therefore, have the best results.
 
 -  The **Clang-cl** compiler can be used if provided by the **Visual
    Studio** installer.
@@ -63,111 +60,93 @@ alternative.
    Support for this **C11** is given with **gcc 5.x** or higher or any
    **clang** version.
 
-   The **MSVC** compiler doesn't do it yet. But as a workaround, as the
-   C++03 language standard is significantly overlapping with C11, it is
-   then used instead where the C compiler is too old. Nuitka used to
-   require a C++ compiler in the past, but it changed.
+   The older **MSVC** compilers don't do it yet. But as a workaround, with
+   Python 3.10 or older, the C++03 language standard is significantly
+   overlapping with C11, it is then used instead.
 
 Python
 ======
 
-|SUPPORTED_PYTHONS| are supported. If at any moment, there is a stable
-Python release that is not in this list, rest assured it is being worked
-on and will be added.
+|SUPPORTED_PYTHONS| are supported. If a stable Python release isn't listed here, don't worry; it's being worked on and will be added soon.
 
 .. important::
+   You might need to download an additional Python version. To get to know more, read the following statements:
 
-   For Python 3.4 and *only* that version, we need other Python version
-   as a *compile time* dependency.
+- If you use **Python 3.4**, additionally install **Python 2** or **Python 3.5+**. You will need it during the compile time because **SCons** (which orchestrates the C compilation) does not support **Python 3.4**.
 
-   Nuitka itself is fully compatible with all listed versions, but Scons
-   as an internally used tool is not.
+- If you use the **Windows** opening system, don’t use **Python 2** because **clcache** doesn’t work with it. Install **Python 3.5+** instead. **Nuitka** finds these needed Python versions (for example, on **Windows** via registry) and you shouldn’t notice it as long as they are installed.
 
-   For these versions, you *need* a Python2 or Python 3.5 or higher
-   installed as well, but only during the compile time. That is for use
-   with Scons (which orchestrates the C compilation), which does not
-   support the same Python versions as Nuitka.
+- Other functionality is available when another Python has a certain package installed. For example, **Python 2.x** can use onefile compression if another Python with the **zstandard** package is installed.
 
-   In addition, on Windows, Python2 cannot be used because ``clcache``
-   does not work with it, there a Python 3.5 or higher needs to be
-   installed.
+.. admonition:: Important considerations
 
-   Nuitka finds these needed Python versions (e.g. on Windows via
-   registry) and you shouldn't notice it as long as they are installed.
+   - **Moving binaries to other machines:** The created binaries can be made executable independent of the Python installation, with ``--standalone`` and ``--onefile`` options.
 
-   Increasingly, other functionality is available when another Python
-   has a certain package installed. For example, onefile compression
-   will work for a Python 2.x when another Python is found that has the
-   ``zstandard`` package installed.
+   - **Binary filename suffix:** The created binaries have an ``.exe`` suffix on Windows. On other platforms they have no suffix for standalone mode, or ``.bin`` suffix, that you are free to remove or change, or specify with the ``-o`` option. The suffix for acceleration mode is added just to be sure that the original script name and the binary name do not ever collide, so we can safely overwrite the binary without destroying the original source file.
 
-.. admonition:: Moving binaries to other machines
+   - **It has to be standard Python implementation**: You need the standard Python implementation, called **CPython**, to execute **Nuitka** because it's closely tied to implementation details of it. You can also use **Homebrew** (for macOS) or **Anaconda Python**.
 
-   The created binaries can be made executable independent of the Python
-   installation, with ``--standalone`` and ``--onefile`` options.
+   - **Python from Microsoft Store**: Don’t download Python from **Microsoft Store**, as it doesn’t work properly.
 
-.. admonition:: Binary filename suffix
-
-   The created binaries have an ``.exe`` suffix on Windows. On other
-   platforms they have no suffix for standalone mode, or ``.bin``
-   suffix, that you are free to remove or change, or specify with the
-   ``-o`` option.
-
-   The suffix for acceleration mode is added just to be sure that the
-   original script name and the binary name do not ever collide, so we
-   can safely overwrite the binary without destroying the original
-   source file.
-
-.. admonition:: It **has to** be CPython, Anaconda Python, or Homebrew
-
-   You need the standard Python implementation, called "CPython", to
-   execute Nuitka because it is closely tied to implementation details
-   of it.
-
-.. admonition:: It **cannot be** from the Windows app store
-
-   It is known that Windows app store Python definitely does not work,
-   it's checked against.
-
-.. admonition:: It **cannot be** pyenv on macOS
-
-   It is known that macOS "pyenv" does **not** work. Use Homebrew
-   instead for self compiled Python installations. But note that
-   standalone mode will be worse on these platforms and not be as
-   backward compatible with older macOS versions.
+   - **Pyenv on macOS:** It is known that macOS **pyenv** does not work. Use **Homebrew** instead for self-compiled Python installations. Note that standalone mode will be worse on these platforms and not be as backward compatible with older macOS versions.
 
 Operating System
 ================
 
-Supported Operating Systems: Linux, FreeBSD, NetBSD, macOS, and Windows
-(32 bits/64 bits/ARM).
+**Nuitka** supports the following operating systems: **Linux**, **FreeBSD**, **NetBSD**, **macOS**, and **Windows** (32 bits/64 bits/ARM).
 
-Others will work as well. The portability is expected to be generally
-good, but the e.g. Nuitka's internal Scons usage may have to be adapted
-or need flags passed. Make sure to match Python and C compiler
-architecture, or else you will get cryptic error messages.
+Other Operating systems will work as well. The portability is expected to be generally good. However, specific adjustments might be necessary, such as modifying Nuitka's internal **SCons** usage or providing additional flags. Ensure that the Python version matches the architecture of the C compiler, or else you will get cryptic error messages.
 
 Architecture
 ============
 
-Supported Architectures are x86, x86_64 (amd64), and arm, likely many,
-many more.
+Supported Architectures are **x86**, **x86_64** (**AMD64**), and **ARM**.
 
-Other architectures are expected to also work, out of the box, as Nuitka
+Other architectures are expected to also work out of the box, as **Nuitka**
 is generally not using any hardware specifics. These are just the ones
-tested and known to be good. Feedback is welcome. Generally, the
-architectures that Debian supports can be considered good and tested,
-too.
+tested and known to be good. Generally, the architectures that **Debian** supports can be considered good and tested, too.
 
-*******
- Usage
-*******
+*************
+Installation
+*************
 
-Command Line
-============
+For most systems, there will be packages on the `download page
+<https://nuitka.net/doc/download.html>`__ of Nuitka. But you can also
+install it from source code as described above, but also like any other
+Python program it can be installed via the normal ``python setup.py
+install`` routine.
 
-The recommended way of executing Nuitka is ``<the_right_python> -m
-nuitka`` to be absolutely certain which Python interpreter you are
-using, so it is easier to match with what Nuitka has.
+Notice for integration with GitHub workflows there is this
+`Nuitka-Action <https://github.com/Nuitka/Nuitka-Action>`__ that you
+should use that makes it really easy to integrate. You ought to start
+with a local compilation though, but this will be easiest for cross
+platform compilation with Nuitka.
+
+Read also about `Nuitka license <https://nuitka.net/doc/download.html>`_.
+
+********************
+ Command Line Usage
+********************
+
+To use **Nuitka** via the command line, select one of the following ways to ensure smooth execution.
+
+Recommended way
+================
+
+To execute **Nuitka** in the recommended way, enter the following command:
+
+.. code:: bash
+
+   <the_right_python> -m nuitka
+
+.. admonition:: Note
+
+   Replace ``<the_right_python>`` with the specific Python interpreter executable you want to use. For example, ``python3.9 -m nuitka``.
+
+By executing this command, you can be absolutely certain which Python interpreter you are using, so it is easier to match with what Nuitka has.
+
+Direct way
+===========
 
 The next best way of executing Nuitka bare that is from a source
 checkout or archive, with no environment variable changes, most
@@ -189,693 +168,7 @@ Nuitka has a ``--help`` option to output what it can do:
 
 .. code:: bash
 
-   nuitka --help
-
-The ``nuitka-run`` command is the same as ``nuitka``, but with a
-different default. It tries to compile *and* directly execute a Python
-script:
-
-.. code:: bash
-
-   nuitka-run --help
-
-This option that is different is ``--run``, and passing on arguments
-after the first non-option to the created binary, so it is somewhat more
-similar to what plain ``python`` will do.
-
-Installation
-============
-
-For most systems, there will be packages on the `download page
-<https://nuitka.net/doc/download.html>`__ of Nuitka. But you can also
-install it from source code as described above, but also like any other
-Python program it can be installed via the normal ``python setup.py
-install`` routine.
-
-Notice for integration with GitHub workflows there is this
-`Nuitka-Action <https://github.com/Nuitka/Nuitka-Action>`__ that you
-should use that makes it really easy to integrate. You ought to start
-with a local compilation though, but this will be easiest for cross
-platform compilation with Nuitka.
-
-License
-=======
-
-Nuitka is licensed under the Apache License, Version 2.0; you may not
-use it except in compliance with the License.
-
-You may obtain a copy of the License at
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-*************************************
- Tutorial Setup and build on Windows
-*************************************
-
-This is basic steps if you have nothing installed, of course if you have
-any of the parts, just skip it.
-
-Setup
-=====
-
-Install Python
---------------
-
--  Download and install Python from
-   https://www.python.org/downloads/windows
-
--  Select one of ``Windows x86-64 web-based installer`` (64 bits Python,
-   recommended) or ``x86 executable`` (32 bits Python) installer.
-
--  Verify it's working using command ``python --version``.
-
-Install Nuitka
---------------
-
--  ``python -m pip install nuitka``
-
--  Verify using command ``python -m nuitka --version``
-
-Write some code and test
-========================
-
-Create a folder for the Python code
------------------------------------
-
--  ``mkdir`` HelloWorld
-
--  make a python file named **hello.py**
-
-.. code:: python
-
-   def talk(message):
-       return "Talk " + message
-
-
-   def main():
-       print(talk("Hello World"))
-
-
-   if __name__ == "__main__":
-       main()
-
-Test your program
------------------
-
-Do as you normally would. Running Nuitka on code that works incorrectly
-is not easier to debug.
-
-.. code:: bash
-
-   python hello.py
-
-----
-
-Build it using
---------------
-
-.. code:: bash
-
-   python -m nuitka hello.py
-
-.. note::
-
-   This will prompt you to download a C caching tool (to speed up
-   repeated compilation of generated C code) and a MinGW64 based C
-   compiler, unless you have a suitable MSVC installed. Say ``yes`` to
-   both those questions.
-
-Run it
-------
-
-Execute the ``hello.exe`` created near ``hello.py``.
-
-Distribute
-----------
-
-To distribute, build with ``--standalone`` option, which will not output
-a single executable, but a whole folder. Copy the resulting
-``hello.dist`` folder to the other machine and run it.
-
-You may also try ``--onefile`` which does create a single file, but make
-sure that the mere standalone is working, before turning to it, as it
-will make the debugging only harder, e.g. in case of missing data files.
-
-***********
- Use Cases
-***********
-
-Use Case 1 — Program compilation with all modules embedded
-==========================================================
-
-If you want to compile a whole program recursively, and not only the
-single file that is the main program, do it like this:
-
-.. code:: bash
-
-   python -m nuitka --follow-imports program.py
-
-.. note::
-
-   There are more fine-grained controls than ``--follow-imports``
-   available. Consider the output of ``nuitka --help``. Including fewer
-   modules into the compilation, but instead using normal Python for it,
-   will make it faster to compile.
-
-In case you have a source directory with dynamically loaded files, i.e.
-one which cannot be found by recursing after normal import statements
-via the ``PYTHONPATH`` (which would be the recommended way), you can
-always require that a given directory shall also be included in the
-executable:
-
-.. code:: bash
-
-   python -m nuitka --follow-imports --include-plugin-directory=plugin_dir program.py
-
-.. note::
-
-   If you don't do any dynamic imports, simply setting your
-   ``PYTHONPATH`` at compilation time is what you should do.
-
-   Use ``--include-plugin-directory`` only if you make ``__import__()``
-   calls that Nuitka cannot predict, and that come from a directory, for
-   everything from your Python installation, use ``--include-module`` or
-   ``--include-package``.
-
-.. note::
-
-   The resulting filename will be ``program.exe`` on Windows,
-   ``program.bin`` on other platforms, but ``--output-filename`` allows
-   changing that.
-
-.. note::
-
-   The resulting binary still depends on CPython and used C extension
-   modules being installed.
-
-   If you want to be able to copy it to another machine, use
-   ``--standalone`` and copy the created ``program.dist`` directory and
-   execute the ``program.exe`` (Windows) or ``program`` (other
-   platforms) put inside.
-
-Use Case 2 — Extension Module compilation
-=========================================
-
-If you want to compile a single extension module, all you have to do is
-this:
-
-.. code:: bash
-
-   python -m nuitka --module some_module.py
-
-The resulting file ``some_module.so`` can then be used instead of
-``some_module.py``.
-
-.. important::
-
-   The filename of the produced extension module must not be changed as
-   Python insists on a module name derived function as an entry point,
-   in this case ``PyInit_some_module`` and renaming the file will not
-   change that. Match the filename of the source code to what the binary
-   name should be.
-
-.. note::
-
-   If both the extension module and the source code of it are in the
-   same directory, the extension module is loaded. Changes to the source
-   code only have effect once you recompile.
-
-.. note::
-
-   The option ``--follow-import-to`` works as well, but the included
-   modules will only become importable *after* you imported the
-   ``some_module`` name. If these kinds of imports are invisible to
-   Nuitka, e.g. dynamically created, you can use ``--include-module`` or
-   ``--include-package`` in that case, but for static imports it should
-   not be needed.
-
-.. note::
-
-   An extension module can never include other extension modules. You
-   will have to create a wheel for this to be doable.
-
-.. note::
-
-   The resulting extension module can only be loaded into a CPython of
-   the same version and doesn't include other extension modules.
-
-Use Case 3 — Package compilation
-================================
-
-If you need to compile a whole package and embed all modules, that is
-also feasible, use Nuitka like this:
-
-.. code:: bash
-
-   python -m nuitka --module some_package --include-package=some_package
-
-.. note::
-
-   The inclusion of the package contents needs to be provided manually;
-   otherwise, the package is mostly empty. You can be more specific if
-   you like, and only include part of it, or exclude part of it, e.g.
-   with ``--nofollow-import-to='*.tests'`` you would not include the
-   unused test part of your code.
-
-.. note::
-
-   Data files located inside the package will not be embedded by this
-   process, you need to copy them yourself with this approach.
-   Alternatively, you can use the `file embedding of Nuitka commercial
-   <https://nuitka.net/doc/commercial/protect-data-files.html>`__.
-
-Use Case 4 — Program Distribution
-=================================
-
-For distribution to other systems, there is the standalone mode, which
-produces a folder for which you can specify ``--standalone``.
-
-.. code:: bash
-
-   python -m nuitka --standalone program.py
-
-Following all imports is default in this mode. You can selectively
-exclude modules by specifically saying ``--nofollow-import-to``, but
-then an ``ImportError`` will be raised when import of it is attempted at
-program run time. This may cause different behavior, but it may also
-improve your compile time if done wisely.
-
-For data files to be included, use the option
-``--include-data-files=<source>=<target>`` where the source is a file
-system path, but the target has to be specified relative. For the
-standalone mode, you can also copy them manually, but this can do extra
-checks, and for the onefile mode, there is no manual copying possible.
-
-To copy some or all file in a directory, use the option
-``--include-data-files=/etc/*.txt=etc/`` where you get to specify shell
-patterns for the files, and a subdirectory where to put them, indicated
-by the trailing slash.
-
-.. important::
-
-   Nuitka does not consider data files code, do not include DLLs, or
-   Python files as data files, and expect them to work, they will not,
-   unless you really know what you are doing.
-
-In the following, non-code data files are all files, not matching on of
-these criterions.
-
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| Suffix     | Rationale                                                                              | Solution                                                                                               |
-+============+========================================================================================+========================================================================================================+
-| ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code,    | Use ``--include-module`` on them instead                                                               |
-|            | there is no dependencies analyzed, and as a result it will just not work.              |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyc``   | Same as ``.py``.                                                                       | Use ``--include-module`` on them from their source code instead.                                       |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyo``   | Same as ``.pyc``.                                                                      | Use ``--include-module`` on them from their source code instead.                                       |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyw``   | Same as ``.py``.                                                                       | For including multiple programs, use multiple ``--main`` arguments instead.                            |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyi``   | These are ignored, because they are code-like and not needed at run time. For the      | Raise an issue if 3rd part software needs it.                                                          |
-|            | ``lazy`` package that actually would depend on them, we made a compile time solution   |                                                                                                        |
-|            | that removes the need.                                                                 |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyx``   | These are ignored, because they are Cython source code not used at run time            |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd  | Create Nuitka Package configuration for those, with ``dll`` section for the package that uses them.    |
-|            | party packages do actually used them as data, e.g. ``.NET`` packages, we solve that in | For rare cases, data-files section with special configuration might be the correct thing to do.        |
-|            | package configuration for it.                                                          |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dylib`` | These are ignored, since they macOS extension modules or DLLs.                         | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.so``    | These are ignored, since they Linux, BSD, etc. extension modules or DLLs.              | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.exe``   | The are binaries to Windows.                                                           | You can add Nuitka Package configuration to include those as DLLs and mark them as ``executable: yes`` |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.bin``   | The are binaries to non-Windows, otherwise same as ``.exe``.                           |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-
-Also folders are ignored, these are ``site-packages``, ``dist-packages``
-and ``vendor-packages`` which would otherwise include a full virtualenv,
-which is never a good thing to happen. And the ``__pycache__`` folder is
-also always ignored. On non-MacOS the file ``.DS_Store`` is ignored too,
-and ``py.typed`` folders have only meaning to IDEs, and are ignored like
-``.pyi`` files .
-
-To copy a whole folder with all non-code files, you can use
-``--include-data-dir=/path/to/images=images`` which will place those in
-the destination, and if you want to use the ``--noinclude-data-files``
-option to remove them. Code files are as detailed above DLLs,
-executables, Python files, etc. and will be ignored. For those you can
-use the ``--include-data-files=/binaries/*.exe=binary/`` form to force
-them, but that is not recommended and known to cause issues at run-time.
-
-For package data, there is a better way, namely using
-``--include-package-data``, which detects all non-code data files of
-packages automatically and copies them over. It even accepts patterns in
-a shell style. It spares you the need to find the package directory
-yourself and should be preferred whenever available. Functionally it's
-very similar to ``--include-data-dir`` but it has the benefit to locate
-the correct folder for you.
-
-With data files, you are largely on your own. Nuitka keeps track of ones
-that are needed by popular packages, but it might be incomplete. Raise
-issues if you encounter something in these. Even better, raise PRs with
-enhancements to the Nuitka package configuration. With want 3rd party
-software to just work out of the box.
-
-When that is working, you can use the onefile mode if you so desire.
-
-.. code:: bash
-
-   python -m nuitka --onefile program.py
-
-This will create a single binary, that extracts itself on the target,
-before running the program. But notice, that accessing files relative to
-your program is impacted, make sure to read the section `Onefile:
-Finding files`_ as well.
-
-.. code:: bash
-
-   # Create a binary that unpacks into a temporary folder
-   python -m nuitka --onefile program.py
-
-.. note::
-
-   There are more platform-specific options, e.g. related to icons,
-   splash screen, and version information, consider the ``--help``
-   output for the details of these and check the section Tweaks_.
-
-For the unpacking, by default a unique user temporary path one is used,
-and then deleted, however this default
-``--onefile-tempdir-spec="{TEMP}/onefile_{PID}_{TIME}"`` can be
-overridden with a path specification that is using then using a cached
-path, avoiding repeated unpacking, e.g. with
-``--onefile-tempdir-spec="{CACHE_DIR}/{COMPANY}/{PRODUCT}/{VERSION}"``
-which uses version information, and user-specific cache directory.
-
-.. note::
-
-   Using cached paths will be relevant, e.g. when Windows Firewall comes
-   into play because otherwise, the binary will be a different one to it
-   each time it is run.
-
-Currently, these expanded tokens are available:
-
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| Token          | What this Expands to                                      | Example                               |
-+================+===========================================================+=======================================+
-| {TEMP}         | User temporary file directory                             | C:\\Users\\...\\AppData\\Locals\\Temp |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {PID}          | Process ID                                                | 2772                                  |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {TIME}         | Time in seconds since the epoch.                          | 1299852985                            |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {PROGRAM}      | Full program run-time filename of executable.             | C:\\SomeWhere\\YourOnefile.exe        |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {PROGRAM_BASE} | No-suffix of run-time filename of executable.             | C:\\SomeWhere\\YourOnefile            |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {CACHE_DIR}    | Cache directory for the user.                             | C:\\Users\\SomeBody\\AppData\\Local   |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {COMPANY}      | Value given as ``--company-name``                         | YourCompanyName                       |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {PRODUCT}      | Value given as ``--product-name``                         | YourProductName                       |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {VERSION}      | Combination of ``--file-version`` & ``--product-version`` | 3.0.0.0-1.0.0.0                       |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {HOME}         | Home directory for the user.                              | /home/somebody                        |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {NONE}         | When provided for file outputs, ``None`` is used          | see notice below                      |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-| {NULL}         | When provided for file outputs, ``os.devnull`` is used    | see notice below                      |
-+----------------+-----------------------------------------------------------+---------------------------------------+
-
-.. important::
-
-   It is your responsibility to make the path provided unique, on
-   Windows a running program will be locked, and while using a fixed
-   folder name is possible, it can cause locking issues in that case,
-   where the program gets restarted.
-
-   Usually, you need to use ``{TIME}`` or at least ``{PID}`` to make a
-   path unique, and this is mainly intended for use cases, where e.g.
-   you want things to reside in a place you choose or abide your naming
-   conventions.
-
-.. important::
-
-   For disabling output and stderr with ``--force-stdout-spec`` and
-   ``--force-stderr-spec`` the values ``{NONE}`` and ``{NULL}`` achieve
-   it, but with different effect. With ``{NONE}``, the corresponding
-   handle becomes ``None``. As a result, e.g. ``sys.stdout`` will be
-   ``None``, which is different from ``{NULL}`` where it will be backed
-   by a file pointing to ``os.devnull``, i.e. you can write to it.
-
-   With ``{NONE}``, you may e.g. get ``RuntimeError: lost sys.stdout``
-   in case it does get used; with ``{NULL}`` that never happens.
-   However, some libraries handle this as input for their logging
-   mechanism, and on Windows this is how you are compatible with
-   ``pythonw.exe`` which is behaving like ``{NONE}``.
-
-Use Case 5 — Setuptools Wheels
-==============================
-
-If you have a ``setup.py``, ``setup.cfg`` or ``pyproject.toml`` driven
-creation of wheels for your software in place, putting Nuitka to use is
-extremely easy.
-
-Let's start with the most common ``setuptools`` approach, you can,
-having Nuitka installed of course, simply execute the target
-``bdist_nuitka`` rather than the ``bdist_wheel``. It takes all the
-options and allows you to specify some more, that are specific to
-Nuitka.
-
-.. code:: python
-
-   # For setup.py if you don't use other build systems:
-   setup(
-      # Data files are to be handled by setuptools and not Nuitka
-      package_data={"some_package": ["some_file.txt"]},
-      ...,
-      # This is to pass Nuitka options.
-      command_options={
-         'nuitka': {
-            # boolean option, e.g. if you cared for C compilation commands
-            '--show-scons': True,
-            # options without value, e.g. enforce using Clang
-            '--clang': None,
-            # options with single values, e.g. enable a plugin of Nuitka
-            '--enable-plugin': "pyside2",
-            # options with several values, e.g. avoiding including modules
-            '--nofollow-import-to' : ["*.tests", "*.distutils"],
-         },
-      },
-   )
-
-   # For setup.py with other build systems:
-   # The tuple nature of the arguments is required by the dark nature of
-   # "setuptools" and plugins to it, that insist on full compatibility,
-   # e.g. "setuptools_rust"
-
-   setup(
-      # Data files are to be handled by setuptools and not Nuitka
-      package_data={"some_package": ["some_file.txt"]},
-      ...,
-      # This is to pass Nuitka options.
-      ...,
-      command_options={
-         'nuitka': {
-            # boolean option, e.g. if you cared for C compilation commands
-            '--show-scons': ("setup.py", True),
-            # options without value, e.g. enforce using Clang
-            '--clang': ("setup.py", None),
-            # options with single values, e.g. enable a plugin of Nuitka
-            '--enable-plugin': ("setup.py", "pyside2"),
-            # options with several values, e.g. avoiding including modules
-            '--nofollow-import-to' : ("setup.py", ["*.tests", "*.distutils"]),
-         }
-      },
-   )
-
-If for some reason, you cannot or do not want to change the target, you
-can add this to your ``setup.py``.
-
-.. code:: python
-
-   # For setup.py
-   setup(
-      ...,
-      build_with_nuitka=True
-   )
-
-.. note::
-
-   To temporarily disable the compilation, you could the remove above
-   line, or edit the value to ``False`` by or take its value from an
-   environment variable if you so choose, e.g.
-   ``bool(os.getenv("USE_NUITKA", "True"))``. This is up to you.
-
-Or you could put it in your ``setup.cfg``
-
-.. code:: toml
-
-   [metadata]
-   build_with_nuitka = true
-
-And last, but not least, Nuitka also supports the new ``build`` meta, so
-when you have a ``pyproject.toml`` already, simple replace or add this
-value:
-
-.. code:: toml
-
-   [build-system]
-   requires = ["setuptools>=42", "wheel", "nuitka", "toml"]
-   build-backend = "nuitka.distutils.Build"
-
-   # Data files are to be handled by setuptools and not Nuitka
-   [tool.setuptools.package-data]
-   some_package = ['data_file.txt']
-
-   [tool.nuitka]
-   # These are not recommended, but they make it obvious to have effect.
-
-   # boolean option, e.g. if you cared for C compilation commands, leading
-   # dashes are omitted
-   show-scons = true
-
-   # options with single values, e.g. enable a plugin of Nuitka
-   enable-plugin = "pyside2"
-
-   # options with several values, e.g. avoiding including modules, accepts
-   # list argument.
-   nofollow-import-to = ["*.tests", "*.distutils"]
-
-.. note::
-
-   For the ``nuitka`` requirement above absolute paths like
-   ``C:\Users\...\Nuitka`` will also work on Linux, use an absolute path
-   with *two* leading slashes, e.g. ``//home/.../Nuitka``.
-
-.. note::
-
-   Whatever approach you take, data files in these wheels are not
-   handled by Nuitka at all, but by setuptools. You can, however, use
-   the data file embedding of Nuitka commercial. In that case, you
-   actually would embed the files inside the extension module itself,
-   and not as a file in the wheel.
-
-Use Case 6 — Multidist
-======================
-
-If you have multiple programs, that each should be executable, in the
-past you had to compile multiple times, and deploy all of these. With
-standalone mode, this, of course, meant that you were fairly wasteful,
-as sharing the folders could be done, but wasn't really supported by
-Nuitka.
-
-Enter ``Multidist``. There is an option ``--main`` that replaces or adds
-to the positional argument given. And it can be given multiple times.
-When given multiple times, Nuitka will create a binary that contains the
-code of all the programs given, but sharing modules used in them. They
-therefore do not have to be distributed multiple times.
-
-Let's call the basename of the main path, and entry point. The names of
-these must, of course, be different. Then the created binary can execute
-either entry point, and will react to what ``sys.argv[0]`` appears to
-it. So if executed in the right way (with something like ``subprocess``
-or OS API you can control this name), or by renaming or copying the
-binary, or symlinking to it, you can then achieve the miracle.
-
-This allows to combine very different programs into one.
-
-.. note::
-
-   This feature is still experimental. Use with care and report your
-   findings should you encounter anything that is undesirable behavior
-
-This mode works with standalone, onefile, and mere acceleration. It does
-not work with module mode.
-
-Use Case 7 — Building with GitHub Workflows
-===========================================
-
-For integration with GitHub workflows there is this `Nuitka-Action
-<https://github.com/Nuitka/Nuitka-Action>`__ that you should use that
-makes it really easy to integrate. You ought to start with a local
-compilation though, but this will be easiest for cross platform
-compilation with Nuitka.
-
-This is an example workflow that builds on all 3 OSes
-
-.. code:: yaml
-
-   jobs:
-   build:
-      strategy:
-         matrix:
-         os: [macos-latest, ubuntu-latest, windows-latest]
-
-      runs-on: ${{ matrix.os }}
-
-      steps:
-         - name: Check-out repository
-         uses: actions/checkout@v3
-
-         - name: Setup Python
-         uses: actions/setup-python@v4
-         with:
-            python-version: '3.10'
-            cache: 'pip'
-            cache-dependency-path: |
-               **/requirements*.txt
-
-         - name: Install your Dependencies
-         run: |
-            pip install -r requirements.txt -r requirements-dev.txt
-
-         - name: Build Executable with Nuitka
-         uses: Nuitka/Nuitka-Action@main
-         with:
-            nuitka-version: main
-            script-name: your_main_program.py
-            # many more Nuitka options available, see action doc, but it's best
-            # to use nuitka-project: options in your code, so e.g. you can make
-            # a difference for macOS and create an app bundle there.
-            onefile: true
-
-         - name: Upload Artifacts
-         uses: actions/upload-artifact@v3
-         with:
-            name: ${{ runner.os }} Build
-            path: | # match what's created for the 3 OSes
-               build/*.exe
-               build/*.bin
-               build/*.app/**/*
-
-If you app is a GUI, e.g. ``your_main_program.py`` should contain these
-comments as explained in `Nuitka Options in the code`_ since on macOS
-this should then be a bundle.
-
-.. code:: python
-
-   # Compilation mode, standalone everywhere, except on macOS there app bundle
-   # nuitka-project-if: {OS} in ("Windows", "Linux", "FreeBSD"):
-   #    nuitka-project: --onefile
-   # nuitka-project-if: {OS} == "Darwin":
-   #    nuitka-project: --standalone
-   #    nuitka-project: --macos-create-app-bundle
-   #
-   # Debugging options, controlled via environment variable at compile time.
-   # nuitka-project-if: os.getenv("DEBUG_COMPILATION", "no") == "yes"
-   #     nuitka-project: --enable-console
-   # nuitka-project-else:
-   #     nuitka-project: --disable-console
+   python -m nuitka --help
 
 ********
  Tweaks
