@@ -40,6 +40,19 @@ html {
     margin: 10px !important;
 }
 
+h1 {
+    margin-bottom: 10px !important;
+}
+
+h2 {
+    margin-bottom: 10px !important;
+    margin-top: 30px;
+}
+
+h3 {
+    margin-bottom: 10px !important;
+}
+
 /* Stripe links should be forced to color standing out */
 .nuitka-buy a {
     vertical-align: bottom;
@@ -125,6 +138,8 @@ html {
 }
 
 .social-button-wrapper {
+    padding-top: 7px;
+    padding-right: 20px;
     height: 70px;
     text-align: center;
 }
@@ -146,8 +161,8 @@ html {
 }
 
 .social-button {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     margin-bottom: 0;
     display: inline-block;
 
@@ -177,7 +192,7 @@ html {
     transition: opacity 500ms;
     -webkit-transition: opacity 500ms;
     color: #fff;
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
     font-weight: bold;
 }
@@ -194,7 +209,7 @@ html {
 
 .social-button p.icon {
     text-align: center;
-    padding-top: 11px;
+    padding-top: 5px;
 }
 
 .social-button.twitter {
