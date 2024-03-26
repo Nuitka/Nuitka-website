@@ -24,16 +24,16 @@
 
                :doc:`/changelog/Changelog`
 
+   .. grid-item::
+
+       .. grid:: 1 1 1 1
+           :gutter: 1
+
            .. grid-item-card:: Roadmap
 
                This is the roadmap of Nuitka, where we want to be in the next couple of releases.
 
                :doc:`/changelog/roadmap`
-
-   .. grid-item::
-
-       .. grid:: 1 1 1 1
-           :gutter: 1
 
            .. grid-item-card:: Changes of releases 1.0-1.9
 
@@ -46,6 +46,7 @@
                Changes for the 0.x major release series.
 
                :doc:`/changelog/Changelog-0.x`
+
 
 .. include:: ../variables.inc
 

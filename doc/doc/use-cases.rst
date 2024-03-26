@@ -1,9 +1,10 @@
-***********
+###########
  Use Cases
-***********
+###########
 
-Use Case 1 — Program compilation with all modules embedded
-==========================================================
+************************************************************
+ Use Case 1 — Program compilation with all modules embedded
+************************************************************
 
 If you want to compile a whole program recursively, and not only the
 single file that is the main program, do it like this:
@@ -55,8 +56,9 @@ executable:
    execute the ``program.exe`` (Windows) or ``program`` (other
    platforms) put inside.
 
-Use Case 2 — Extension Module compilation
-=========================================
+*******************************************
+ Use Case 2 — Extension Module compilation
+*******************************************
 
 If you want to compile a single extension module, all you have to do is
 this:
@@ -101,8 +103,9 @@ The resulting file ``some_module.so`` can then be used instead of
    The resulting extension module can only be loaded into a CPython of
    the same version and doesn't include other extension modules.
 
-Use Case 3 — Package compilation
-================================
+**********************************
+ Use Case 3 — Package compilation
+**********************************
 
 If you need to compile a whole package and embed all modules, that is
 also feasible, use Nuitka like this:
@@ -126,8 +129,9 @@ also feasible, use Nuitka like this:
    Alternatively, you can use the `file embedding of Nuitka commercial
    <https://nuitka.net/doc/commercial/protect-data-files.html>`__.
 
-Use Case 4 — Program Distribution
-=================================
+***********************************
+ Use Case 4 — Program Distribution
+***********************************
 
 For distribution to other systems, there is the standalone mode, which
 produces a folder for which you can specify ``--standalone``.
@@ -315,8 +319,9 @@ Currently, these expanded tokens are available:
    mechanism, and on Windows this is how you are compatible with
    ``pythonw.exe`` which is behaving like ``{NONE}``.
 
-Use Case 5 — Setuptools Wheels
-==============================
+********************************
+ Use Case 5 — Setuptools Wheels
+********************************
 
 If you have a ``setup.py``, ``setup.cfg`` or ``pyproject.toml`` driven
 creation of wheels for your software in place, putting Nuitka to use is
@@ -442,8 +447,9 @@ value:
    actually would embed the files inside the extension module itself,
    and not as a file in the wheel.
 
-Use Case 6 — Multidist
-======================
+************************
+ Use Case 6 — Multidist
+************************
 
 If you have multiple programs, that each should be executable, in the
 past you had to compile multiple times, and deploy all of these. With
@@ -474,8 +480,9 @@ This allows to combine very different programs into one.
 This mode works with standalone, onefile, and mere acceleration. It does
 not work with module mode.
 
-Use Case 7 — Building with GitHub Workflows
-===========================================
+*********************************************
+ Use Case 7 — Building with GitHub Workflows
+*********************************************
 
 For integration with GitHub workflows there is this `Nuitka-Action
 <https://github.com/Nuitka/Nuitka-Action>`__ that you should use that
