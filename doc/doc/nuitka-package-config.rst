@@ -571,19 +571,6 @@ caching traces their usage.
 Constants
 =========
 
-.. code:: yaml
-
-   constants:
-     - declarations:
-         'suffix': '-Windows'
-       when: "win32"
-     - declarations:
-         'suffix': '-Linux'
-       when: "linux"
-     - declarations:
-         'suffix': '-MacOS'
-       when: "macos"
-
 It is possible to use compile time package information in an expression
 like the e.g. when_ clauses, but also for some other values that allow
 using an expression_, e.g. when constructing paths. They are then
@@ -594,8 +581,60 @@ They are most useful to avoid repeated usage of OS specific values
 without making using configuration repeated with different when_
 clauses, as those and then only there for defined constants.
 
-We do not yet have examples, we intend to use this to cleanup a few of
-the configurations that we already have or use it in the future.
+Examples
+--------
+
+Example 1
+^^^^^^^^^
+
+The most simple use is e.g. to define values for per-platform usage on
+the outside.
+
+.. code:: yaml
+
+   constants:
+     - declarations:
+         'suffix': '_Windows'
+       when: "win32"
+     - declarations:
+         'suffix': '_Linux'
+       when: "linux"
+     - declarations:
+         'suffix': '_MacOS'
+       when: "macos"
+   implicit-imports:
+      depends:
+         - ""package_name_%s" % get_variable("suffix")'
+
+Example 2
+^^^^^^^^^
+
+This is an actual example, used for the ``torch`` package. For that
+module, we need to check modules for what they call "config" modules. We
+detect those by looking at their source code. In order to limit the
+amount of modules to import, to check for an attribute, we limit
+ourselves to modules that match a certain pattern, namely names of
+modules ending in ``.config`` or ``._config``, which are the only
+candidates. We can do that "offline", i.e. not import any code actually,
+and use that list in the ``variables`` section, that will then import
+those modules and see if they have it.
+
+The constant values are available inside of the variable declarations,
+so ``torch_config_module_candidates`` can be readily used. And the
+benefit of using ``iterate_modules`` is that it allows the relatively
+complex module name scan to not be done inside of there, or be repeated,
+in case there were multiple usages.
+
+.. code:: yaml
+
+   - module-name: 'torch.utils._config_module'
+     constants:
+       declarations:
+         'torch_config_module_candidates': '[m for m in iterate_modules("torch")     if m.split(".")[-1] in ("config", "_config")]'
+     variables:
+       setup_code: 'import importlib'
+       declarations:
+         'torch_config_modules': 'dict((m,importlib.import_module(m).    _compile_ignored_keys) for m in torch_config_module_candidates if hasattr    (importlib.import_module(m), "_compile_ignored_keys"))'
 
 Expression
 ==========
@@ -654,7 +693,10 @@ Package Versions
 
 To check the version of packages and distributions, we got these.
 
-|  ``version``: ``tuple of int`` get version of distribution
+|  ``version``: ``tuple of int`` get version of distribution (use for
+   comparisons)
+|  ``version_str``: ``str`` get version of distribution as a string (use
+   for replacements, outputs)
 |  ``get_dist_name``: ``str`` resolve package name to distribution
 
 For packages, that have multiple distribution names potentially, it's
@@ -730,6 +772,16 @@ Also, the global (or module local in the future) compilation modules,
 like ``no_asserts``, ``no_docstrings``, and ``no_annotations`` are
 available. These are for use in ``anti-bloat`` where packages sometimes
 will not work unless helped somewhat.
+
+Modules Available
+-----------------
+
+Checking if a module exists in the Python installation, or what
+submodules there are, can be used in some cases as well. This is a
+topic, where we probably want to add more things in the future.
+
+|  ``iterate_modules``: ``list of str`` full module names below a
+   package name
 
 Experimental Settings
 ---------------------
