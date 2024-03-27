@@ -493,7 +493,7 @@ a[class~="headerlink"]:visited {
 
 .top_link_nav ul {
     display: inline-flex;
-    gap: 20px;
+    gap: 1vw;
     width: fit-content;
     justify-content: center;
     list-style: none !important;
