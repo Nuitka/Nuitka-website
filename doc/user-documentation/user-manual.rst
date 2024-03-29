@@ -10,8 +10,8 @@ This page is the recommended first read when you start using **Nuitka**.
 On this page, you will learn more about **Nuitka** fundamentals, such as
 license type, use cases, requirements, and credits. This page is the
 recommended first read when you start using **Nuitka**. On this page,
-you will learn more about **Nuitka** fundamentals, such as license type,
-use cases, requirements, and credits.
+you will learn more about **Nuitka** fundamentals, such as requirements,
+installation guidelines, and tips.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -118,10 +118,10 @@ listed here, don't worry; it's being worked on and will be added soon.
    -  **Python from Microsoft Store**: Don’t download Python from
       **Microsoft Store**, as it doesn’t work properly.
 
-   -  **Pyenv on macOS:** It is known that macOS **pyenv** does not
+   -  **Pyenv on macOS:** It is known that **macOS** **pyenv** does not
       work. Use **Homebrew** instead for self-compiled Python
       installations. Note that standalone mode will be worse on these
-      platforms and not be as backward compatible with older macOS
+      platforms and not be as backward compatible with older **macOS**
       versions.
 
 Operating System
@@ -197,23 +197,28 @@ has.
 Direct way
 ==========
 
-The next best way of executing Nuitka bare that is from a source
-checkout or archive, with no environment variable changes, most
-noteworthy, you do not have to mess with ``PYTHONPATH`` at all for
-Nuitka. You just execute the ``nuitka`` and ``nuitka-run`` scripts
-directly without any changes to the environment. You may want to add the
-``bin`` directory to your ``PATH`` for your convenience, but that step
-is optional.
+Alternatively, you can run **Nuitka** directly from a source checkout or
+archive, without any need for altering environment variables.
+Importantly, you can execute Nuitka seamlessly without having to
+manipulate the ``PYTHONPATH`` variable. You just execute the ``nuitka``
+and ``nuitka-run`` scripts directly without any changes to the
+environment. You may want to add the ``bin`` directory to your ``PATH``
+for your convenience, but that step is optional.
 
-Moreover, if you want to execute with the right interpreter, in that
-case, be sure to execute ``<the_right_python> bin/nuitka`` and be good.
+Moreover, if you want to execute with the right interpreter, run the
+following command:
 
-.. admonition:: Pick the right Interpreter
+.. code:: bash
 
-   If you encounter a ``SyntaxError`` you absolutely most certainly have
+   <the_right_python> bin/nuitka
+
+.. admonition:: Note
+
+   If you encounter the **SyntaxError** message, you most certainly have
    picked the wrong interpreter for the program you are compiling.
 
-Nuitka has a ``--help`` option to output what it can do:
+Nuitka has a ``--help`` option to display its available functionalities.
+To view it, run the following command:
 
 .. code:: bash
 
@@ -223,81 +228,103 @@ Nuitka has a ``--help`` option to output what it can do:
  Tweaks
 ********
 
+This section includes customization options to enhance the appearance
+and functionality of compiled binaries.
+
 Icons
 =====
 
-For good looks, you may specify icons. On Windows, you can provide an
-icon file, a template executable, or a PNG file. All of these will work
-and may even be combined:
+The icon tweaks allow you to customize the visual appearance of the
+resulting executable file. This icon is what users will see when they
+look at the file on their computer or in their file explorer.
+
+On **Windows**, you can provide **PNG** file, an icon file, or a
+template executable. These create binaries with icons on **Windows** and
+may even be combined:
 
 .. code:: bash
 
-   # These create binaries with icons on Windows
    python -m nuitka --onefile --windows-icon-from-ico=your-icon.png program.py
    python -m nuitka --onefile --windows-icon-from-ico=your-icon.ico program.py
    python -m nuitka --onefile --windows-icon-template-exe=your-icon.ico program.py
 
-   # These create application bundles with icons on macOS
+These create application bundles with icons on **macOS**:
+
+.. code:: bash
+
    python -m nuitka --macos-create-app-bundle --macos-app-icon=your-icon.png program.py
    python -m nuitka --macos-create-app-bundle --macos-app-icon=your-icon.icns program.py
 
 .. note::
 
-   With Nuitka, you do not have to create platform-specific icons, but
-   instead it will convert e.g. PNG, but also other formats on the fly
-   during the build.
+   With **Nuitka**, you don't have to create platform-specific icons
+   manually. Instead, it seamlessly converts various formats, such as
+   **PNG** and others, on the go during the build process.
 
 MacOS Entitlements
 ==================
 
-Entitlements for an macOS application bundle can be added with the
-option, ``--macos-app-protected-resource``, all values are listed on
-`this page from Apple
-<https://developer.apple.com/documentation/bundleresources/information_property_list/protected_resources>`__
+Entitlements define the capabilities and permissions that the
+application has when running, such as access to audio, camera, or
+calendar. Entitlements for a **macOS** application bundle can be added
+with the following option:
 
-An example value would be
-``--macos-app-protected-resource=NSMicrophoneUsageDescription:Microphone
-access`` for requesting access to a Microphone. After the colon, the
-descriptive text is to be given.
+.. code:: bash
+
+   --macos-app-protected-resource
+
+For example, if you want to request access to a microphone, run the
+following command:
+
+.. code:: bash
+
+   --macos-app-protected-resource=NSMicrophoneUsageDescription:Microphone access
+
+See the full list in the `Protected resources
+<https://developer.apple.com/documentation/bundleresources/information_property_list/protected_resources>`_
+page.
 
 .. note::
 
-   Beware that in the likely case of using spaces in the description
-   part, you need to quote it for your shell to get through to Nuitka
-   and not be interpreted as Nuitka arguments.
+   If you have spaces in the entitlement description, make sure to quote
+   it. This prevents your shell from interpreting the spaces as separate
+   arguments for **Nuitka** and ensures that the description is
+   correctly passed through to **Nuitka**.
 
 Console Window
 ==============
 
-On Windows, the console is opened by programs unless you say so. Nuitka
-defaults to this, effectively being only good for terminal programs, or
-programs where the output is requested to be seen. There is a difference
-in ``pythonw.exe`` and ``python.exe`` along those lines. This is
-replicated in Nuitka with the option ``--disable-console``. Nuitka
-recommends you to consider this in case you are using ``PySide6`` e.g.
-and other GUI packages, e.g. ``wx``, but it leaves the decision up to
-you. In case, you know your program is console application, just using
-``--enable-console`` which will get rid of these kinds of outputs from
-Nuitka.
+On Windows, the console is opened by programs by default. You can change
+it anytime. Nuitka follows this default behavior, making it primarily
+suitable for terminal-based programs or those where output visibility is
+essential. There is a difference between **pythonw.exe** and
+**python.exe** along those lines. This is replicated in **Nuitka** with
+the option ``--disable-console``.
+
+**Nuitka** recommends this option, especially when using **GUI**
+packages like **PySide6** or **wx**. In case, you know your program is
+console application, use ``--enable-console`` which will get rid of
+these kinds of outputs from **Nuitka**.
 
 .. note::
 
-   The ``pythonw.exe`` is never good to be used with Nuitka, as you
-   cannot see its output.
+   Avoid using **pythonw.exe** with **Nuitka**, as you won't see its
+   output.
 
 Splash screen
 =============
 
-Splash screens are useful when program startup is slow. Onefile startup
-itself is not slow, but your program may be, and you cannot really know
-how fast the computer used will be, so it might be a good idea to have
-them. Luckily, with Nuitka, they are easy to add for Windows.
+Splash screens are useful when program startup is slow. **Onefile**
+startup itself is fast, but your program might need more time. Moreover,
+you can't be sure how fast the computer used will be, so it might be a
+good idea to have splash screens. Luckily, with Nuitka, they are easy to
+add for **Windows**.
 
-For the splash screen, you need to specify it as a PNG file, and then
-make sure to disable the splash screen when your program is ready, e.g.
-has completed the imports, prepared the window, connected to the
-database, and wants the splash screen to go away. Here we are using the
-project syntax to combine the code with the creation, compile this:
+For the splash screen, you need to specify it as a **PNG** file. Make
+sure to disable the splash screen when your program is ready, meaning it
+has completed the imports, prepared the window, or connected to the
+database. To combine the code with the creation, compile the following
+project syntax:
 
 .. code:: python
 
@@ -327,25 +354,25 @@ project syntax to combine the code with the creation, compile this:
 Reports
 =======
 
-For analysis of your program and Nuitka packaging, there is the
+For analysis of your program and **Nuitka** packaging, there is the
 `Compilation Report`_ available. You can also make custom reports by
-providing your template, with a few of them built-in to Nuitka. These
-reports carry all the detail information, e.g. when a module was
-attempted to be imported, but not found, you can see where that happens.
-For bug reporting, it is very much recommended to provide the report.
+providing your template, with a few of them built-in to **Nuitka**.
+These reports carry all the detail information, for example, when a
+module was attempted to be imported, but not found, you can see where
+that happens. For bug reporting, it's very much recommended to provide
+the report.
 
 Version Information
 ===================
 
 You can attach copyright and trademark information, company name,
-product name, and so on to your compilation. This is then used in
-version information for the created binary on Windows, or application
-bundle on macOS. If you find something that is lacking, please let us
-know.
+product name, and other elements to your compilation. You will see it in
+the version information for the created binary on **Windows** or the
+application bundle on **macOS**.
 
-******************
- Typical Problems
-******************
+********************************
+ Solutions to the Common Issues
+********************************
 
 Deployment Mode
 ===============
@@ -1114,81 +1141,6 @@ the name as a filename, and Nuitka will pick that one instead.
 
    The community can and should contribute more report types and help
    enhancing the existing ones for good looks.
-
-*************
- Performance
-*************
-
-This chapter gives an overview, of what to currently expect in terms of
-performance from Nuitka. It's a work in progress and is updated as we
-go. The current focus for performance measurements is Python 2.7, but
-3.x is going to follow later.
-
-pystone results
-===============
-
-The results are the top value from this kind of output, running pystone
-1000 times and taking the minimal value. The idea is that the fastest
-run is most meaningful, and eliminates usage spikes.
-
-.. code:: bash
-
-   echo "Uncompiled Python2"
-   for i in {1..100}; do BENCH=1 python2 tests/benchmarks/pystone.py ; done | sort -rn | head -n 1
-   python2 -m nuitka --lto=yes --pgo tests/benchmarks/pystone.py
-   echo "Compiled Python2"
-   for i in {1..100}; do BENCH=1 ./pystone.bin ; done | sort -n | head -rn 1
-
-   echo "Uncompiled Python3"
-   for i in {1..100}; do BENCH=1 python3 tests/benchmarks/pystone3.py ; done | sort -rn | head -n 1
-   python3 -m nuitka --lto=yes --pgo tests/benchmarks/pystone3.py
-   echo "Compiled Python3"
-   for i in {1..100}; do BENCH=1 ./pystone3.bin ; done | sort -rn | head -n 1
-
-+-------------------+-------------------+----------------------+---------------------+
-| Python            | Uncompiled        | Compiled LTO         | Compiled PGO        |
-+===================+===================+======================+=====================+
-| Debian Python 2.7 | 137497.87 (1.000) | 460995.20 (3.353)    | 503681.91 (3.663)   |
-+-------------------+-------------------+----------------------+---------------------+
-| Nuitka Python 2.7 | 144074.78 (1.048) | 479271.51 (3.486)    | 511247.44 (3.718)   |
-+-------------------+-------------------+----------------------+---------------------+
-
-Report issues or bugs
-=====================
-
-Should you encounter any issues, bugs, or ideas, please visit the
-`Nuitka bug tracker <https://github.com/Nuitka/Nuitka/issues>`__ and
-report them.
-
-Best practices for reporting bugs:
-
--  Please always include the following information in your report, for
-   the underlying Python version. You can easily copy&paste this into
-   your report. It does contain more information than you think. Do not
-   write something manually. You may always add, of course,
-
-   .. code:: bash
-
-      python -m nuitka --version
-
--  Try to make your example minimal. That is, try to remove code that
-   does not contribute to the issue as much as possible. Ideally, come
-   up with a small reproducing program that illustrates the issue, using
-   ``print`` with different results when the program runs compiled or
-   native.
-
--  If the problem occurs spuriously (i.e. not each time), try to set the
-   environment variable ``PYTHONHASHSEED`` to ``0``, disabling hash
-   randomization. If that makes the problem go away, try increasing in
-   steps of 1 to a hash seed value that makes it happen every time,
-   include it in your report.
-
--  Do not include the created code in your report. Given proper input,
-   it's redundant, and it's not likely that I will look at it without
-   the ability to change the Python or Nuitka source and re-run it.
-
--  Do not send screenshots of text, that is bad and lazy. Instead,
-   capture text outputs from the console.
 
 ***************************
  Unsupported functionality

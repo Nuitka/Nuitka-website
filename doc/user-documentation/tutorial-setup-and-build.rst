@@ -1,5 +1,5 @@
 #####################################
- Tutorial Setup and build on Windows
+ Tutorial Setup and Build on Windows
 #####################################
 
 This is basic steps if you have nothing installed, of course if you have
