@@ -1,6 +1,8 @@
+/* TODO: This breaks Google Chrome due to an unresolved bug of its
 html {
     scroll-behavior: smooth
 }
+*/
 
 .wy-nav-content {
     max-width: 1000px !important;
