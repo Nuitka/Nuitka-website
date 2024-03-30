@@ -894,7 +894,7 @@ def runPostProcessing():
     <li>
         <div class="logo_container">
             <a href="/">
-            <img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Logo" width="28" height="28"
+            <img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Nuitka Logo" width="28" height="28"
             </a>
         </div>
     </li>
