@@ -43,7 +43,8 @@ Additionally, you can purchase priority support.
 
    Free Download <doc/download>
    User Manual <doc/user-manual>
-   pages/support
+   Get Supported <pages/support>
+   Contribute <pages/contribute>
 
 .. toctree::
    :hidden:
@@ -60,22 +61,15 @@ Additionally, you can purchase priority support.
 
    changelog/index
    Blog <news>
+   Videos <pages/Presentations>
+   Streaming <pages/Streaming>
 
 .. toctree::
    :hidden:
    :caption: More documentation
 
    Developer Manual <doc/developer-manual>
-   Nuitka Package Configuration <doc/nuitka-package-config>
    API doc <doc/api-doc>
-   doc/factory
-
-.. toctree::
-   :hidden:
-   :caption: Media
-
-   Presentations <pages/Presentations>
-   Streaming <pages/Streaming>
 
 .. toctree::
    :hidden:
@@ -85,16 +79,5 @@ Additionally, you can purchase priority support.
    pages/impressum
    pages/pyside2
    pages/pyqt5
-
-.. toctree::
-   :hidden:
-   :caption: Under construction
-
-   pages/website-manual
-   pages/donations
-   pages/gsoc2019
-
-.. toctree::
-   :hidden:
 
 .. include:: variables.inc

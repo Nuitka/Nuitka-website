@@ -1,9 +1,9 @@
 ###########
- Donations
+ Donation
 ###########
 
 Nuitka is an effort, mainly driven in my spare time. For travels to
-Python conferences, web site costs, and generally to get rich, I am
+Python conferences, web site costs, etc. I am
 accepting donations via PayPal. The money received will be used to
 sponsor Nuitka development.
 
