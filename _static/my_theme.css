@@ -1,8 +1,6 @@
-/* TODO: This breaks Google Chrome due to an unresolved bug of its
 html {
     scroll-behavior: smooth
 }
-*/
 
 .wy-nav-content {
     max-width: 1000px !important;
@@ -524,7 +522,9 @@ a[class~="headerlink"]:visited {
 }
 
 .wy-side-scroll {
-    width:270px; /* instead of 320 */
+    width: 270px; /* instead of 320 */
+    overflow-y: hidden;
+    height: auto;
 }
 
 .wy-nav-side {
