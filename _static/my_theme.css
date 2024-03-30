@@ -522,11 +522,11 @@ a[class~="headerlink"]:visited {
 }
 
 .wy-side-scroll {
-    width: 270px; /* instead of 320 */
+    width: 250px; /* instead of 320 */
     overflow-y: hidden;
     height: auto;
 }
 
 .wy-nav-side {
-    width:270px; /* instead of 320 */
+    width:250px; /* instead of 320 */
 }
