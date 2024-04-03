@@ -44,7 +44,7 @@ Additionally, you can purchase priority support.
    Free Download <doc/download>
    User Manual <doc/user-manual>
    User Documentation <user-documentation/index>
-   Get Supported <pages/support>
+   Get Support <pages/support>
    Contribute <pages/contribute>
 
 .. toctree::
