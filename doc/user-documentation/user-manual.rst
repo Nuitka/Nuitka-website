@@ -316,6 +316,8 @@ Default not done.
 
 ----
 
+.. _tweaks:
+
 ********
  Tweaks
 ********
@@ -824,6 +826,8 @@ nested structure.
    except NameError:
       open(os.path.join(os.path.dirname(sys.argv[0]), "user-provided-file.txt"))
 
+.. _onefile-finding-files:
+
 Onefile: Finding files
 ======================
 
@@ -909,6 +913,8 @@ object for Python to use.
 ******
  Tips
 ******
+
+.. _nuitka-project-options:
 
 Nuitka Options in the code
 ==========================

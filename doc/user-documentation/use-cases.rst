@@ -236,8 +236,8 @@ When that is working, you can use the onefile mode if you so desire.
 
 This will create a single binary, that extracts itself on the target,
 before running the program. But notice, that accessing files relative to
-your program is impacted, make sure to read the section `Onefile:
-Finding files`_ as well.
+your program is impacted, make sure to read the section
+:ref:`onefile-finding-files` as well.
 
 .. code:: bash
 
@@ -248,7 +248,7 @@ Finding files`_ as well.
 
    There are more platform-specific options, e.g. related to icons,
    splash screen, and version information, consider the ``--help``
-   output for the details of these and check the section Tweaks_.
+   output for the details of these and check the section :ref:`tweaks`.
 
 For the unpacking, by default a unique user temporary path one is used,
 and then deleted, however this default
@@ -539,8 +539,8 @@ This is an example workflow that builds on all 3 OSes
                build/*.bin
                build/*.app/**/*
 
-If you app is a GUI, e.g. ``your_main_program.py`` should contain these
-comments as explained in `Nuitka Options in the code`_ since on macOS
+If your app is a GUI, e.g. ``your_main_program.py`` should contain these
+comments as explained in :ref:`nuitka-project-options` since on macOS
 this should then be a bundle.
 
 .. code:: python
