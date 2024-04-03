@@ -66,13 +66,6 @@ Additionally, you can purchase priority support.
 
 .. toctree::
    :hidden:
-   :caption: More documentation
-
-   Developer Manual <doc/developer-manual>
-   API doc <doc/api-doc>
-
-.. toctree::
-   :hidden:
    :caption: Other
 
    doc/Credits

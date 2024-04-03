@@ -40,4 +40,8 @@ Nuitka become even better.
    and ask how you can help. You can help with only Python skills, and
    with C and Python skills, you will be perfect.
 
+   Recommended reading is the :doc:`Developer Manual
+   </doc/developer-manual>` and you may find the :doc:`API doc
+   </doc/api-doc>` useful.
+
 .. include:: ../variables.inc

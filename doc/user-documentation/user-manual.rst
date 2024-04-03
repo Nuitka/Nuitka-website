@@ -245,7 +245,7 @@ modules are not data files and never included like this. Can use
 patterns the filenames as indicated below. Data files of packages are
 not included by default, but package configuration can do it. This will
 only include non-DLL, non-extension modules, i.e. actual data files.
-After a ":" optionally a filename pattern can be given as well,
+After a ``:`` optionally a filename pattern can be given as well,
 selecting only matching files.
 
 Examples:

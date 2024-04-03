@@ -1,3 +1,5 @@
+:orphan:
+
 .. meta::
    :description: Developer Manual of Nuitka with instructions geared to changing it
    :keywords: python,compiler,nuitka,developer
@@ -4652,15 +4654,3 @@ Caching of Python level compilation
 While the C compilation result is already cached with `ccache` and
 friends now, we need to also cover our bases and save the resulting node
 tree of potential expensive optimization on the module level.
-
-*************************
- Updates for this Manual
-*************************
-
-This document is written in REST. That is an ASCII format which is
-readable to human, but easily used to generate PDF or HTML documents.
-
-You will find the current source under:
-https://github.com/Nuitka/Nuitka/blob/develop/Developer_Manual.rst
-
-And the current PDF under: https://nuitka.net/doc/Developer_Manual.pdf
