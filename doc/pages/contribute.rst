@@ -32,7 +32,7 @@ Nuitka become even better.
 
    Adding support for packages with missing DLLs or missing data files
    is very easy thanks to :doc:`Nuitka Package Configuration
-   </doc/nuitka-package-config>`.
+   </user-documentation/nuitka-package-config>`.
 
 #. Add more Nuitka Optimization
 

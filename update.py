@@ -902,7 +902,7 @@ def runPostProcessing():
             </a>
         </div>
     </li>
-    <li><a href="/doc/user-manual.html">Manual</a></li>
+    <li><a href="/user-documentation/user-manual.html">Manual</a></li>
     <li><a href="/doc/commercial.html">Commercial</a></li>
     <li><a href="/news.html">Blog</a></li>
     <li><div class="ci-search"></div></li>

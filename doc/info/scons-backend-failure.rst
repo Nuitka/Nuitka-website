@@ -37,7 +37,8 @@ recommendations below.
 
 Make sure to only use a supported C compiler. Nuitka is not ready to
 just use any of them, esp. not on Windows, but also quite generally.
-Check the respective section in :doc:`/doc/user-manual` out.
+Check the respective section in :doc:`/user-documentation/user-manual`
+out.
 
 But when you have C compiler errors, they can come from lack of disc
 space, from lack of memory, or other external factors.
