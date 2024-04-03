@@ -42,7 +42,6 @@ Additionally, you can purchase priority support.
    :caption: Nuitka the Python Compiler
 
    Free Download <doc/download>
-   User Manual <doc/user-manual>
    User Documentation <user-documentation/index>
    Get Support <pages/support>
    Contribute <pages/contribute>

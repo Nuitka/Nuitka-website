@@ -752,9 +752,13 @@ def runPostProcessing():
 
         for current_link in doc.xpath("//a[@class='reference internal']"):
             if current_link.attrib["href"] == "index.html":
-                current_link.attrib["href"] = "/" + os.path.relpath(os.path.dirname(filename), "output")
+                current_link.attrib["href"] = "/" + os.path.relpath(
+                    os.path.dirname(filename), "output"
+                )
 
-        for current_link in doc.xpath("//ul[contains(@class, 'hub-toc')]//a[@class='reference internal']"):
+        for current_link in doc.xpath(
+            "//ul[contains(@class, 'hub-toc')]//a[@class='reference internal']"
+        ):
             if current_link.attrib["href"] == "/":
                 parent_tag = current_link.getparent()
                 assert parent_tag.tag == "p", parent_tag

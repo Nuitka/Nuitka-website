@@ -47,7 +47,6 @@
 
                :doc:`/changelog/Changelog-0.x`
 
-
 .. include:: ../variables.inc
 
 .. include:: ../dynamic.inc
