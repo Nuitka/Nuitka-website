@@ -224,6 +224,77 @@ To view it, run the following command:
 
    python -m nuitka --help
 
+***********
+Data Files
+***********
+
+Data files are all the files of your Python program except for code. These files might be images, configuration files, or text documents. Nuitka offers several options to handle these data files during the compilation.
+
+----
+
+``--include-package-data=PACKAGE``
+===============================
+
+Include data files for the given package name. DLLs and extension modules are not data files and never included like this. Can use patterns the filenames as indicated below. Data files of packages are not included by default, but package configuration can do it. This will only include non-DLL, non-extension modules, i.e. actual data files. After a ":" optionally a filename pattern can be given as well, selecting only matching files.
+
+Examples:
+   -  ``--include-package-data=package_name`` (all files)
+
+   -  ``--include-package-data=package_name=*.txt`` (only certain type)
+
+   -  ``--include-package-data=package_name=some_filename.dat`` (concrete file)
+
+Default empty.
+
+----
+
+``--include-data-files=DESC``
+==========================
+
+Include data files by filenames in the distribution.
+
+There are many allowed forms.
+   -  ``--include-data-files=/path/to/file/.txt=folder_name/some.txt`` will copy a single file and complain if it's multiple.
+
+   -  ``--include-data-files=/path/to/files/.txt=folder_name/`` will put all matching files into that folder.
+
+   -  For recursive copy there is a form with 3 values ``--include-data-files=/path/to/scan=folder_name=**/*.txt`` that will preserve directory structure.
+
+Default empty.
+
+----
+
+``--include-data-dir=DIRECTORY``
+===============================
+
+Include data files from complete directory in the distribution. This is recursive, meaning it includes files from subdirectories as well.
+
+- Use patterns with ``--include-data-files`` if you want non-recursive inclusion. For example, ``--include-data-dir=/path/some_dir=data/some_dir`` illustrates how to include a directory and its contents in the distribution.
+
+- Use ``--noinclude-data-files`` to remove all non-code files.
+
+Default empty.
+
+----
+
+``--include-onefile-external-data=PATTERN``
+===========================================
+
+Include the specified data file patterns outside of the onefile binary, rather than on the inside. Makes only sense in case of ``--onefile`` compilation. First files have to be specified as included somehow, then this refers to target paths.
+
+Default empty.
+
+----
+
+``--list-package-data=LIST_PACKAGE_DATA``
+=========================================
+
+Output the data files found for a given package name.
+
+Default not done.
+
+----
+
 ********
  Tweaks
 ********
