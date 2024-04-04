@@ -24,6 +24,6 @@
 
    **Python 3** (3.4 — 3.11) and **Python 2** (2.6, 2.7)
 
-.. |SHOPPING_CART_SYMBOL| replace::
+.. |SHOPPING_CART_SYMBOL| raw:: html
 
-   ``<i class="fa-solid fa-cart-shopping"></i>``
+   <i class="fa fa-shopping-cart" aria-hidden="true"></i>

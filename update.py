@@ -1038,7 +1038,7 @@ def runPostProcessing():
         )
 
         document_bytes = document_bytes.replace(
-            b"|SHOPPING_CART_SYMBOL|", b'<i class="fa-solid fa-cart-shopping"></i>'
+            b"|SHOPPING_CART_SYMBOL|", b'<i class="fa fa-shopping-cart" aria-hidden="true"></i>'
         )
 
         document_bytes = document_bytes.replace(b"now &#187;", b"now&nbsp;&nbsp;&#187;")
