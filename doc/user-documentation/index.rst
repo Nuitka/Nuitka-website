@@ -35,7 +35,7 @@
 
            .. grid-item-card:: Performance
 
-               This chapter gives an overview, of what to expect in terms of performance from Nuitka. The current focus for performance measurements is Python 2.7.
+               This chapter gives an overview, of what to expect in terms of performance from Nuitka.
 
                :doc:`/user-documentation/performance`
 
