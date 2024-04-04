@@ -229,7 +229,7 @@ h3 {
 .social-button.mastodon {
     background-color: #fff;
     border-radius: 25px;
-    border: 1px solid #6364FF ;
+    border: 1px solid #6364FF;
 }
 
 .social-button.mastodon:hover {
@@ -475,7 +475,15 @@ a[class~="headerlink"]:visited {
 
 @media screen and (min-height: 20em) and (max-width: 1000px) {
     /* Add mobile specifics here */
+
+    .logo_container {
+        display: none;
     }
+
+    .ci-search {
+        display: none;
+    }
+}
 
 @media print {
     .top_link_nav {
@@ -498,7 +506,7 @@ a[class~="headerlink"]:visited {
     width: fit-content;
     justify-content: center;
     list-style: none !important;
-    padding-bottom: 0px !important;;
+    padding-bottom: 0px !important;
     margin-bottom: 0px !important;
     margin-right: 20px;
 }
@@ -519,15 +527,18 @@ a[class~="headerlink"]:visited {
 }
 
 .wy-menu-vertical {
-    width:250px; /* instead of 300 */
+    /* instead of 300 */
+    width: 250px;
 }
 
 .wy-side-scroll {
-    width: 250px; /* instead of 320 */
+    /* instead of 320 */
+    width: 250px;
     overflow-y: hidden;
     height: auto;
 }
 
 .wy-nav-side {
-    width:250px; /* instead of 320 */
+    width: 250px;
+    /* instead of 320 */
 }
