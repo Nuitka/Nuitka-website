@@ -475,7 +475,7 @@ a[class~="headerlink"]:visited {
 
 @media screen and (min-height: 20em) and (max-width: 1000px) {
     /* Add mobile specifics here */
-}
+    }
 
 @media print {
     .top_link_nav {
@@ -493,6 +493,7 @@ a[class~="headerlink"]:visited {
 
 .top_link_nav ul {
     display: inline-flex;
+    flex-wrap: wrap;
     gap: 1vw;
     width: fit-content;
     justify-content: center;
