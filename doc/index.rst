@@ -61,7 +61,6 @@ Additionally, you can purchase priority support.
 
    changelog/index
    Blog <news>
-   Videos <pages/Presentations>
    Streaming <pages/Streaming>
 
 .. toctree::
