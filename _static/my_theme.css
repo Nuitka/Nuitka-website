@@ -545,4 +545,17 @@ a[class~="headerlink"]:visited {
 
 .hub-card {
     display: flex;
+    position: relative;
+}
+
+.hub-card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.hub-card:hover {
+    background-color: red;
 }

@@ -769,10 +769,8 @@ def runPostProcessing():
 
                 parent_tag.remove(current_link)
 
-        current_hub_cards = list(doc.xpath(
-                "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-body')]"))
-
-        for current_hub_card in current_hub_cards:
+        for current_hub_card in doc.xpath(
+                "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-body')]"):
 
             has_arrow_div = current_hub_card.xpath("div[@class='hub-circle-button']")
 
@@ -790,6 +788,19 @@ def runPostProcessing():
                 )
 
                 current_hub_card.attrib["class"] = current_hub_card.attrib["class"] + " hub-card"
+
+        for current_hub_title in doc.xpath(
+            "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-title')]"):
+
+            for count, first_child in enumerate(current_hub_title):
+                assert count == 0
+
+                if first_child.tag == "a":
+                    for sub_child in first_child:
+                        first_child.remove(sub_child)
+                        current_hub_title.insert(0, sub_child)
+
+                    first_child.attrib["class"] = current_hub_card.attrib["class"] + " hub-card-link"
 
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
