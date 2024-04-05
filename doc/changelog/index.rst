@@ -4,6 +4,7 @@
 
 .. grid:: 1 1 2 2
    :gutter: 1
+   :class-container: hub-card-set release-information-hub
 
    .. grid-item::
 

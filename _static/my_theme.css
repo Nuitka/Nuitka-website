@@ -542,3 +542,7 @@ a[class~="headerlink"]:visited {
     width: 250px;
     /* instead of 320 */
 }
+
+.hub-card {
+    display: flex;
+}

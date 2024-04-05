@@ -769,6 +769,28 @@ def runPostProcessing():
 
                 parent_tag.remove(current_link)
 
+        current_hub_cards = list(doc.xpath(
+                "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-body')]"))
+
+        for current_hub_card in current_hub_cards:
+
+            has_arrow_div = current_hub_card.xpath("div[@class='hub-circle-button']")
+
+            if not has_arrow_div:
+                hub_card_div = html.fromstring("""<div class="hub-card-contents"></div>""")
+
+                for child in current_hub_card:
+                    current_hub_card.remove(child)
+                    hub_card_div.append(child)
+
+                current_hub_card.append(hub_card_div)
+
+                current_hub_card.append(
+                    html.fromstring("""<div class="hub-circle-button"><i class="fa fa-arrow-circle-right" aria-hidden="true" style="font-size: 25px;"></i></div>""")
+                )
+
+                current_hub_card.attrib["class"] = current_hub_card.attrib["class"] + " hub-card"
+
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
 
