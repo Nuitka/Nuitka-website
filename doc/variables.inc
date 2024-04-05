@@ -27,3 +27,11 @@
 .. |SHOPPING_CART_SYMBOL| raw:: html
 
    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+.. |BOTTOM_ARROW_ICON| raw:: html
+
+   <i class="fa fa-arrow-circle-right" aria-hidden="true" style="font-size: 25px;"></i>
+
+.. |LINK_ON_CARDS| ..raw:: html
+
+   <a href="https://www.google.com/?client=safari"></a>
