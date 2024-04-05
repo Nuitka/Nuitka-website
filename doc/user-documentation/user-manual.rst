@@ -385,6 +385,21 @@ page.
    arguments for **Nuitka** and ensures that the description is
    correctly passed through to **Nuitka**.
 
+Windows UAC Configuration
+==========================
+
+``--windows-uac-admin``
+
+Request **Windows User Account Control** (**UAC**), to grant admin rights on execution. (Windows only). By default, this option is turned off.
+
+----
+
+``--windows-uac-uiaccess``
+
+Request **Windows User Account Control** (**UAC**), to enforce running from a few folders only, remote desktop access. (Windows only). By default, this option is turned off.
+
+----
+
 Console Window
 ==============
 
