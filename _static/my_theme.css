@@ -10,6 +10,10 @@ html {
     margin-bottom: 2rem;
 }
 
+.sd-w-100 {
+    width: 95% !important;
+}
+
 .nuitka-offer-full-package .sd-card {
     background-color: #403472;
 }
@@ -135,6 +139,10 @@ h3 {
 .nuitka-grid-offer .sd-card-text {
     color: white;
     text-align: left;
+}
+
+.sd-card-title {
+    font-size: 20px;
 }
 
 .social-button-wrapper {
@@ -557,5 +565,6 @@ a[class~="headerlink"]:visited {
 }
 
 .hub-card:hover {
-    background-color: red;
+    background-color: #ececec;
+    mix-blend-mode: multiply;
 }

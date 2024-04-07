@@ -1,7 +1,7 @@
 :orphan:
 
 ##################
- Nuitka Changelog
+ Current Release
 ##################
 
 .. include:: ../changelog/changes-hub.inc

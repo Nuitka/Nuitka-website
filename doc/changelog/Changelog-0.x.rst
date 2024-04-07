@@ -1,7 +1,7 @@
 :orphan:
 
 #############################
- Nuitka Changelog before 1.0
+ Releases 0.1 — 0.9
 #############################
 
 .. include:: ../changelog/changes-hub.inc

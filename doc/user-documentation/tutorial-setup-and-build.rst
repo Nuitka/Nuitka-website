@@ -1,8 +1,8 @@
 :orphan:
 
-#####################################
- Tutorial Setup and Build on Windows
-#####################################
+##########################
+ Tutorial Setup and Build
+##########################
 
 This is basic steps if you have nothing installed, of course if you have
 any of the parts, just skip it.

@@ -4,7 +4,7 @@
  Performance
 #############
 
-This chapter gives an overview, of what to currently expect in terms of
+This page gives an overview, of what to currently expect in terms of
 performance from Nuitka. It's a work in progress and is updated as we
 go. The current focus for performance measurements is Python 2.7, but
 3.x is going to follow later.
