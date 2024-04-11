@@ -770,12 +770,15 @@ def runPostProcessing():
                 parent_tag.remove(current_link)
 
         for current_hub_card in doc.xpath(
-                "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-body')]"):
+            "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-body')]"
+        ):
 
             has_arrow_div = current_hub_card.xpath("div[@class='hub-circle-button']")
 
             if not has_arrow_div:
-                hub_card_div = html.fromstring("""<div class="hub-card-contents"></div>""")
+                hub_card_div = html.fromstring(
+                    """<div class="hub-card-contents"></div>"""
+                )
 
                 for child in current_hub_card:
                     current_hub_card.remove(child)
@@ -784,13 +787,18 @@ def runPostProcessing():
                 current_hub_card.append(hub_card_div)
 
                 current_hub_card.append(
-                    html.fromstring("""<div class="hub-circle-button"><i class="fa fa-arrow-circle-right" aria-hidden="true" style="font-size: 25px;"></i></div>""")
+                    html.fromstring(
+                        """<div class="hub-circle-button"><i class="fa fa-arrow-circle-right" aria-hidden="true" style="font-size: 25px;"></i></div>"""
+                    )
                 )
 
-                current_hub_card.attrib["class"] = current_hub_card.attrib["class"] + " hub-card"
+                current_hub_card.attrib["class"] = (
+                    current_hub_card.attrib["class"] + " hub-card"
+                )
 
         for current_hub_title in doc.xpath(
-            "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-title')]"):
+            "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-title')]"
+        ):
 
             for count, first_child in enumerate(current_hub_title):
                 assert count == 0
@@ -800,7 +808,9 @@ def runPostProcessing():
                         first_child.remove(sub_child)
                         current_hub_title.insert(0, sub_child)
 
-                    first_child.attrib["class"] = current_hub_card.attrib["class"] + " hub-card-link"
+                    first_child.attrib["class"] = (
+                        current_hub_card.attrib["class"] + " hub-card-link"
+                    )
 
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
@@ -1071,7 +1081,8 @@ def runPostProcessing():
         )
 
         document_bytes = document_bytes.replace(
-            b"|SHOPPING_CART_SYMBOL|", b'<i class="fa fa-shopping-cart" aria-hidden="true"></i>'
+            b"|SHOPPING_CART_SYMBOL|",
+            b'<i class="fa fa-shopping-cart" aria-hidden="true"></i>',
         )
 
         document_bytes = document_bytes.replace(b"now &#187;", b"now&nbsp;&nbsp;&#187;")

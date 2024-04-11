@@ -1,20 +1,23 @@
 :orphan:
 
-******
+######
  Tips
-******
+######
 
 .. contents:: Table of Contents
    :depth: 1
    :local:
    :class: page-toc
 
-On this page, you'll find helpful tips and techniques for optimizing your experience with Nuitka. From maximizing compilation efficiency to managing dependencies and runtime considerations.
+On this page, you'll find helpful tips and techniques for optimizing
+your experience with Nuitka. From maximizing compilation efficiency to
+managing dependencies and runtime considerations.
 
 .. _nuitka-project-options:
 
-Nuitka Options in the code
-==========================
+****************************
+ Nuitka Options in the code
+****************************
 
 One clean way of providing options to Nuitka, that you will always use
 for your program, is to put them into the main file you compile. There
@@ -72,8 +75,9 @@ options or user package configuration yaml files,
    # nuitka-project: --include-data-files={MAIN_DIRECTORY}/my_icon.png=my_icon.png
    # nuitka-project: --user-package-configuration-file={MAIN_DIRECTORY}/user.nuitka-package.config.yml
 
-Python command line flags
-=========================
+***************************
+ Python command line flags
+***************************
 
 For passing things like ``-O`` or ``-S`` to Python, to your compiled
 program, there is a command line option name ``--python-flag=`` which
@@ -81,8 +85,9 @@ makes Nuitka emulate these options.
 
 The most important ones are supported, more can certainly be added.
 
-Caching compilation results
-===========================
+*****************************
+ Caching compilation results
+*****************************
 
 The C compiler, when invoked with the same input files, will take a long
 time and much CPU to compile over and over. Make sure you are having
@@ -118,8 +123,9 @@ deployments, but we can take ``ccache`` from there.
    eval $(/opt/homebrew/bin/brew shellenv)
    brew install ccache
 
-Control where Caches live
-=========================
+***************************
+ Control where Caches live
+***************************
 
 The storage for cache results of all kinds, downloads, cached
 compilation results from C and Nuitka, is done in a platform dependent
@@ -146,8 +152,9 @@ to make Nuitka store some of these caches in an entirely separate space.
 | dll-dependencies | NUITKA_CACHE_DIR_DLL_DEPENDENCIES | DLL dependencies                       |
 +------------------+-----------------------------------+----------------------------------------+
 
-Runners
-=======
+*********
+ Runners
+*********
 
 Avoid running the ``nuitka`` binary, doing ``python -m nuitka`` will
 make a 100% sure you are using what you think you are. Using the wrong
@@ -157,8 +164,9 @@ Nuitka with Python2 on Python3 code and vice versa. By explicitly
 calling the same Python interpreter binary, you avoid that issue
 entirely.
 
-Fastest C Compilers
-===================
+*********************
+ Fastest C Compilers
+*********************
 
 The fastest binaries of ``pystone.exe`` on Windows with 64 bits Python
 proved to be significantly faster with MinGW64, roughly 20% better
@@ -172,8 +180,9 @@ more often already installed, that is recommended to use for now.
 
 Differences in C compilation times have not yet been examined.
 
-Unexpected Slowdowns
-====================
+**********************
+ Unexpected Slowdowns
+**********************
 
 Using the Python DLL, like standard CPython does, can lead to unexpected
 slowdowns, e.g. in uncompiled code that works with Unicode strings. This
@@ -191,8 +200,9 @@ created with ``pyenv``.
    On Anaconda, you may need to execute ``conda install
    libpython-static``
 
-Standalone executables and dependencies
-=======================================
+*****************************************
+ Standalone executables and dependencies
+*****************************************
 
 The process of making standalone executables for Windows traditionally
 involves using an external dependency walker to copy necessary libraries
@@ -203,8 +213,9 @@ manually copy things into the folder, esp. not DLLs, as that's not going
 to work. Instead, make bug reports to get these handled by Nuitka
 properly.
 
-Windows errors with resources
-=============================
+*******************************
+ Windows errors with resources
+*******************************
 
 On Windows, the Windows Defender tool and the Windows Indexing Service
 both scan the freshly created binaries, while Nuitka wants to work with
@@ -212,8 +223,9 @@ it, e.g. adding more resources, and then preventing operations randomly
 due to holding locks. Make sure to exclude your compilation stage from
 these services.
 
-Windows standalone program redistribution
-=========================================
+*******************************************
+ Windows standalone program redistribution
+*******************************************
 
 Whether compiling with MingW or MSVC, the standalone programs have
 external dependencies to Visual C Runtime libraries. Nuitka tries to
@@ -261,8 +273,9 @@ Once the corresponding runtime libraries are installed on the target
 system, you may remove all ``api-ms-crt-*.dll`` files from your Nuitka
 compiled dist folder.
 
-Detecting Nuitka at run time
-============================
+******************************
+ Detecting Nuitka at run time
+******************************
 
 Nuitka does *not* ``sys.frozen`` unlike other tools because it usually
 triggers inferior code for no reason. For Nuitka, we have the module
@@ -270,8 +283,9 @@ attribute ``__compiled__`` to test if a specific module was compiled,
 and the function attribute ``__compiled__`` to test if a specific
 function was compiled.
 
-Providing extra Options to Nuitka C compilation
-===============================================
+*************************************************
+ Providing extra Options to Nuitka C compilation
+*************************************************
 
 Nuitka will apply values from the environment variables ``CCFLAGS``,
 ``LDFLAGS`` during the compilation on top of what it determines to be
@@ -279,8 +293,9 @@ necessary. Beware, of course, that is this is only useful if you know
 what you are doing, so should this pose issues, raise them only with
 perfect information.
 
-Producing a 32 bit binary on a 64 bit Windows system
-====================================================
+******************************************************
+ Producing a 32 bit binary on a 64 bit Windows system
+******************************************************
 
 Nuitka will automatically target the architecture of the Python you are
 using. If this is 64 bit, it will create a 64 bit binary, if it is 32

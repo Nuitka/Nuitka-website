@@ -1,8 +1,8 @@
 :orphan:
 
-##################
+#################
  Current Release
-##################
+#################
 
 .. include:: ../changelog/changes-hub.inc
 
