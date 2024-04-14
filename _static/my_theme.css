@@ -481,17 +481,6 @@ a[class~="headerlink"]:visited {
     height: 30px;
 }
 
-@media screen and (min-height: 20em) and (max-width: 1000px) {
-    /* Add mobile specifics here */
-
-    .logo_container {
-        display: none;
-    }
-
-    .ci-search {
-        display: none;
-    }
-}
 
 @media print {
     .top_link_nav {
@@ -567,4 +556,30 @@ a[class~="headerlink"]:visited {
 .hub-card:hover {
     background-color: #ececec;
     mix-blend-mode: multiply;
+}
+
+@media screen and (min-height: 20em) and (max-width: 1000px) {
+    /* Add mobile specifics here */
+
+    .top_link_nav li {
+        list-style: none !important;
+        width: fit-content;
+        margin: auto;
+    }
+
+    .top_link_nav li.no_mobile {
+        display: none;
+    }
+
+    .top_link_nav {
+        border: none;
+        width: fit-content;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-radius: none;
+    }
+
+    .wy-nav-content {
+        padding-top: 2px !important;
+    }
 }
