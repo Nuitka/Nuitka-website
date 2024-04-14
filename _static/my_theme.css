@@ -543,6 +543,24 @@ a[class~="headerlink"]:visited {
 .hub-card {
     display: flex;
     position: relative;
+    border-top-right-radius: 10px;
+    box-shadow: 0 14px 26px rgba(0,0,0,0.04);
+    transition: all 0.3s ease-out;
+
+    /* TODO: Use our own color scheme, this is CCCCCC but somewhat transparent. */
+    --box-shadow-color: rgba(204, 204, 204, 0.48);
+}
+
+.hub-card:hover {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    box-shadow: 0 24px 36px rgba(0,0,0,0.11),
+      0 24px 46px var(--box-shadow-color);
+}
+
+.hub-card:active {
+    transform: scale(1) translateZ(0);
+    box-shadow: 0 15px 24px rgba(0,0,0,0.11),
+      0 15px 24px var(--box-shadow-color);
 }
 
 .hub-card-link {
@@ -553,10 +571,6 @@ a[class~="headerlink"]:visited {
     width: 100%;
 }
 
-.hub-card:hover {
-    background-color: #ececec;
-    mix-blend-mode: multiply;
-}
 
 @media screen and (min-height: 20em) and (max-width: 1000px) {
     /* Add mobile specifics here */
