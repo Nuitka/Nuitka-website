@@ -952,27 +952,10 @@ def runPostProcessing():
                 pass
             else:
                 top_nav = html.fromstring("""<div class="top_nav"></div>""")
-
                 h1.getparent().insert(h1.getparent().index(h1), top_nav)
 
-                top_link_nav = html.fromstring(
-                    """\
-<nav class="top_link_nav" role='navigation'>
-  <ul>
-    <li>
-        <div class="logo_container">
-            <a href="/">
-            <img src="/_static/Nuitka-Logo-Symbol.svg" class="logo" alt="Nuitka Logo" width="28" height="28"
-            </a>
-        </div>
-    </li>
-    <li><a href="/user-documentation/user-manual.html">Manual</a></li>
-    <li><a href="/doc/commercial.html">Commercial</a></li>
-    <li><a href="/news.html">Blog</a></li>
-    <li><div class="ci-search"></div></li>
-  </ul>
-</nav>"""
-                )
+                top_link_nav, = doc.xpath("//nav[@class='top_link_nav']")
+                top_link_nav.getparent().remove(top_link_nav)
                 top_nav.append(top_link_nav)
 
                 social_container = doc.xpath("//div[@class='share-button-container']")[
