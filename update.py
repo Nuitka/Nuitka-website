@@ -736,8 +736,29 @@ def runPostProcessing():
                 os.path.join("output", translation, delete_filename), must_exist=False
             )
 
-    for filename in getFileList("output", only_suffixes=".html"):
+    # Force working on the root document first.
+    file_list = getFileList("output", only_suffixes=".html")
+    file_list.remove("output/index.html")
+    file_list.insert(0, "output/index.html")
+
+    root_doc = None
+    for filename in file_list:
         doc = html.fromstring(getFileContents(filename, mode="rb"))
+
+        if root_doc is None:
+            root_doc = doc
+
+        # Repair favicon extension not cooperation with ablog extension,
+        # copy over the root_doc links.
+        fav_icons = doc.xpath("//head/link[@rel='icon']")
+
+        if not fav_icons:
+            head_node, = doc.xpath("head")
+            for fav_icon in root_doc.xpath("//head/link[@rel='icon']"):
+                fav_icon = copy.deepcopy(fav_icon)
+                fav_icon.attrib["href"] = "/" + fav_icon.attrib["href"]
+
+                head_node.append(fav_icon)
 
         # Check copybutton.js
         has_highlight = doc.xpath("//div[@class='highlight']")
@@ -800,9 +821,7 @@ def runPostProcessing():
             "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-title')]"
         ):
 
-            for count, first_child in enumerate(current_hub_title):
-                assert count == 0
-
+            for first_child in current_hub_title:
                 if first_child.tag == "a":
                     for sub_child in first_child:
                         first_child.remove(sub_child)
@@ -811,6 +830,8 @@ def runPostProcessing():
                     first_child.attrib["class"] = (
                         current_hub_card.attrib["class"] + " hub-card-link"
                     )
+
+                break
 
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
