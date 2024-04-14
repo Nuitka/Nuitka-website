@@ -12,6 +12,9 @@ sphinx-autobuild = "==2021.3.14"
 pipenv = "*"
 isort = "*"
 black = "==24.2.0"
+asciinema-automation = "*"
+ordered-set = "*"
+zstandard = "*"
 
 [packages]
 restructuredtext-lint = "*"
@@ -38,6 +41,7 @@ unidecode = "*"
 sphinx-intl = "==2.1.0"
 psutil = "*"
 setproctitle = "*"
+"sphinxcontrib.asciinema" = "*"
 
 [requires]
 python_version = "3.10"

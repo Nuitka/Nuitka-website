@@ -3,9 +3,13 @@
 Nuitka-factory
 Nuitka-develop
 Nuitka-main
+Nuitka-Tests
 output
 output.*
 .vscode/tags
 _build/
 *.mo
 node_modules
+*.bin
+*.dist
+*.build

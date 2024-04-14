@@ -25,6 +25,9 @@ def get_builder(watcher, sphinx_args, *, host, port, pre_build_commands):
         """Generate the documentation using ``sphinx``."""
         if not watcher.filepath:
             return
+        if watcher.filepath.endswith(".cast"):
+            return
+
         show(context=f"Detected change: {watcher.filepath}")
 
         show(context="python3 -m invoke doc")

@@ -836,6 +836,10 @@ def runPostProcessing():
         css_links = doc.xpath("//link[@rel='stylesheet']")
         assert css_links
 
+        # Remove version trick from links, we don't need it really.
+        for css_link in css_links:
+            css_link.attrib["href"] = css_link.get("href").split("?")[0]
+
         bread_crumbs_hr = doc.xpath("//div[@role='navigation']/hr")
         if bread_crumbs_hr:
             bread_crumbs_hr[0].getparent().remove(bread_crumbs_hr[0])
@@ -843,11 +847,12 @@ def runPostProcessing():
         if css_filenames := [
             os.path.normpath(
                 f'output/{os.path.relpath(os.path.dirname(filename), "output")}/{css_link.get("href")}'
-            ).split("?")[0]
+            )
             for css_link in css_links
             if "combined_" not in css_link.get("href")
             if "copybutton" not in css_link.get("href") or has_highlight
             if "my_theme" not in css_link.get("href") or not in_devcontainer
+            if "asciinema" not in css_link.get("href")
         ]:
             output_filename = "/_static/css/combined_%s.css" % getHashFromValues(
                 *css_filenames
@@ -908,6 +913,9 @@ def runPostProcessing():
             css_links[0].attrib["href"] = output_filename
             for css_link in css_links[1:]:
                 if in_devcontainer and "my_theme" in css_link.attrib["href"]:
+                    continue
+
+                if "asciinema" in css_link.attrib["href"]:
                     continue
 
                 css_link.getparent().remove(css_link)
@@ -977,15 +985,31 @@ def runPostProcessing():
         for node in doc.xpath("//div[@class='wy-side-nav-search']"):
             node.getparent().remove(node)
 
+        # Detect if asciinema is used in the page
+        has_asciinema = False
+        for script_tag in doc.xpath("//script"):
+            if script_tag.text and "AsciinemaPlayer" in script_tag.text:
+                has_asciinema = True
+
         script_tag_first = None
         js_filenames = []
         for script_tag in doc.xpath("//script"):
-            if "src" not in script_tag.attrib:
+            if "src" in script_tag.attrib:
+                script_tag.attrib["src"] = script_tag.get("src").split("?")[0]
+            else:
                 if (
                     script_tag.text
                     and "SphinxRtdTheme.Navigation.enable(true);" in script_tag.text
                 ):
                     script_tag.getparent().remove(script_tag)
+
+                # Wait before executing Asciinema script tags, so the async load
+                # of its Javascript can complete still.
+                if (
+                    script_tag.text
+                    and "AsciinemaPlayer" in script_tag.text
+                ):
+                    script_tag.attrib["defer"] = "true"
 
                 continue
 
@@ -997,6 +1021,12 @@ def runPostProcessing():
 
             # Google search.
             if "google" in script_tag.attrib["src"]:
+                continue
+
+            if "asciinema" in script_tag.attrib["src"]:
+                if not has_asciinema:
+                    script_tag.getparent().remove(script_tag)
+
                 continue
 
             if script_tag.attrib["src"].startswith("http"):
@@ -1014,7 +1044,6 @@ def runPostProcessing():
                 else:
                     script_tag.getparent().remove(script_tag)
 
-                    script_tag.attrib["src"] = script_tag.attrib["src"].split("?")[0]
                     # Make script source absolute, so it's easier to find
                     if not script_tag.attrib["src"].startswith("/"):
                         while script_tag.attrib["src"].startswith("../"):

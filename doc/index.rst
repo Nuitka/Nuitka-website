@@ -37,6 +37,12 @@ Additionally, you can purchase priority support.
 
 `Learn more about Nuitka commercial </doc/commercial.html>`_
 
+Quick Demo
+==========
+
+.. asciinema:: ./casts/welcome-demo.cast
+
+
 .. toctree::
    :hidden:
    :caption: Nuitka the Python Compiler
