@@ -15,25 +15,26 @@ Nuitka is the optimizing Python compiler written in Python that creates executab
 Nuitka is fully compatible with |SUPPORTED_PYTHONS|, works on **Windows**,
 **macOS**, **Linux** and more—essentially, wherever Python is already compatible with your system.
 
-Nuitka Standard
-===============
+.. raw:: html
 
-The standard edition bundles your code, dependencies and data into a
-single executable if you want. It also does acceleration, just running
-faster in the same environment, and can produce extension modules as
-well. It is freely distributed under the Apache license.
+   <div class="key-features-slide">
+      <div class="text-container">
+         <p class="step-number yellow">A</p>
+         <p class="feature-sub-heading">IP Protection*</p>
+         <p class="feature-main-text">Secure your source code by not deploying it, protect your data files with deployment, avoid readable strings.</p>
+         <p class="step-number blue">B</p>
+         <p class="feature-sub-heading">Performance</p>
+         <p class="feature-main-text">Speed up your program runtime and launch.</p>
+         <p class="step-number grey">C</p>
+         <p class="feature-sub-heading">Deployment</p>
+         <p class="feature-main-text">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+         <p>* for commercial users only</p>
+      </div>
+   </div>
 
-`Get Nuitka Standard </doc/download.html>`_
-
-Nuitka Commercial
-=================
-
-The commercial edition additionally protects your code, data and
-outputs, so that users of the executable cannot access these. This a
-private repository of plugins that you pay to get access to.
-Additionally, you can purchase priority support.
-
-`Learn more about Nuitka commercial </doc/commercial.html>`_
+.. image:: ../images/key-features-circle.svg
+   :alt: circle with key features listed
+   :width: 350px
 
 Quick Demo
 ==========

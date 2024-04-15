@@ -36,8 +36,26 @@ commercial subscriber.
        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQ8gKXjTPukmeULWnjqSWWOKzopxEQ-LqfPYbvHE4wEPuYTnj3JmYFc8fm-EriAYgXzEbI-kWwaaQN/embed?rm=minimal&start=true&loop=true&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
    </div>
 
-You may also learn more about `Nuitka Commercial
-</doc/commercial.html>`__ offering.
+|
+Nuitka Standard
+===============
+
+The standard edition bundles your code, dependencies and data into a
+single executable if you want. It also does acceleration, just running
+faster in the same environment, and can produce extension modules as
+well. It is freely distributed under the Apache license.
+
+`Get Nuitka Standard </doc/download.html>`_
+
+Nuitka Commercial
+=================
+
+The commercial edition additionally protects your code, data and
+outputs, so that users of the executable cannot access these. This a
+private repository of plugins that you pay to get access to.
+Additionally, you can purchase priority support.
+
+`Learn more about Nuitka commercial </doc/commercial.html>`_
 
 The current release is Nuitka |NUITKA_VERSION|. Stable releases are
 supported with hot fixes, indicated by the last of the 4 digits.
