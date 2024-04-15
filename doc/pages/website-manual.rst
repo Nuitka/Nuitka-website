@@ -22,7 +22,7 @@ Setting up the project environment means configuring a working setup on
 your computer so you can edit the Nuitka website. To do so, use one of
 the following ways:
 
-.. contents:: Methods
+.. contents::
    :depth: 1
    :local:
 
@@ -43,7 +43,7 @@ Before You Start
 #. Download and install **Git** on your computer. For doing that, select
    one of the following ways:
 
-      -  For Mac: Download **Xcode** using `App Store
+      -  For Mac: download **Xcode** using `App Store
          <https://apps.apple.com/ua/app/xcode/id497799835?l=uk&mt=12>`_.
 
       -  For Windows: go to the `Git for Windows
@@ -318,6 +318,28 @@ the and paste the following code snippet.
    # is lossless.
    sudo apt-get install jpegoptim
    find . -iname *.jpg -a -type f -exec jpegoptim {} \;
+
+Color Palette
+==============
+
+If you create any visuals for **Nuitka**, such as presentation slides, diagrams, or even screenshots, keep in mind the following brand colors:
+
+primary colors:
+   - Blue #599DD2
+
+   - Yellow #FFD43B
+
+   - Grey #CCCCCC
+
+secondary colors:
+   - Dark Blue #2A3990
+
+   - Green #00916E
+
+Writing Style Guide
+====================
+
+When writing any text on the **Nuitka** website, especially step-by-step guidelines, strive to follow the `Microsoft Style Guide <https://learn.microsoft.com/en-us/style-guide/welcome/>`_.
 
 ********************************
  Opportunities for Contribution
