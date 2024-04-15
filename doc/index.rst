@@ -15,8 +15,6 @@ Nuitka is the optimizing Python compiler written in Python that creates executab
 Nuitka is fully compatible with |SUPPORTED_PYTHONS|, works on **Windows**,
 **macOS**, **Linux** and more—essentially, wherever Python is already compatible with your system.
 
-.. image:: ../images/key-features.svg
-
 Nuitka Standard
 ===============
 
