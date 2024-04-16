@@ -15,6 +15,7 @@ black = "==24.2.0"
 asciinema-automation = "*"
 ordered-set = "*"
 zstandard = "*"
+esbonio = "*"
 
 [packages]
 restructuredtext-lint = "*"
