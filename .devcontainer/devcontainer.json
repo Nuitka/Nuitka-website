@@ -39,7 +39,8 @@
 				"shuworks.vscode-table-formatter",
 				"streetsidesoftware.code-spell-checker",
 				"redhat.vscode-xml",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"swyddfa.esbonio"
 			]
 		}
 	},
