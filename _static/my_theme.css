@@ -610,6 +610,7 @@ a[class~="headerlink"]:visited {
 .key-features-slide{
     margin-bottom: 100px;
     margin-top: 50px;
+    position: relative;
 }
 
 .text-container {
@@ -648,4 +649,37 @@ a[class~="headerlink"]:visited {
 
 .grey {
     background-color: #ccc;
+}
+
+.captions-on-circle {
+    position: absolute;
+    float: right;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.captions-on-circle p {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.ip-protection-caption {
+    top: 65%;
+    left: 52%;
+}
+
+.performance-caption {
+    top: 57%;
+    left: 71%;
+}
+
+.deployment-caption {
+    top: 80%;
+    left: 68%;
+}
+
+.asterisk-caption {
+    padding-top: 30px;
+    color: grey;
 }

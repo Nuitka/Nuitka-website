@@ -28,8 +28,17 @@ Nuitka is fully compatible with |SUPPORTED_PYTHONS|, works on **Windows**,
          <p class="step-number grey">C</p>
          <p class="feature-sub-heading">Deployment</p>
          <p class="feature-main-text">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
-         <p>* for commercial users only</p>
+         <p class="asterisk-caption">* for commercial users only</p>
       </div>
+   </div>
+   <div class="captions-on-circle ip-protection-caption">
+      <p>IP Protection</p>
+   </div>
+   <div class="captions-on-circle performance-caption">
+      <p>Performance</p>
+   </div>
+   <div class="captions-on-circle deployment-caption">
+      <p>Deployment</p>
    </div>
 
 .. image:: ../images/key-features-circle.svg
