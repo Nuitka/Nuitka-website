@@ -103,6 +103,33 @@ Bug Fixes
 -  Standalone: Added missing metadata of ``numpy`` for ``xarray``
    package. Fixed in 2.1.4 already.
 
+-  Standalone: Added support for newer ``scipy``. Fixed in 2.1.5
+   already.
+
+-  Standalone: Fix, older gcc could give warning about C code to work
+   with ``PYTHONPATH`` and that caused build errors on older systems.
+   Fixed in 2.1.5 already.
+
+-  Fix, ``locals`` representing nodes could not be cloned, and as a
+   result, some code re-formulations failed to compile in ``try``
+   constructs. Fixed in 2.1.5 already.
+
+-  Standalone: Added data files for ``names`` package. Fixed in 2.1.5
+   already.
+
+-  Standalone: Added data files for ``randomname`` package. Fixed in
+   2.1.5 already.
+
+-  Standalone: Fix, the standalone standard library scan was not fully
+   ignoring git folders, sub folders were still looked at and could
+   cause issues. Fixed in 2.1.5 already.
+
+-  Standalone: Added support for newer ``transformers``. Fixed in 2.1.5
+   already.
+
+-  Standalone: Add support for newer ``bitsandbytes``. Fixed in 2.1.5
+   already.
+
 New Features
 ============
 
@@ -144,17 +171,23 @@ Optimization
 -  Anti-Bloat: Avoid ``setuptools`` in ``deepspeed`` package. Added in
    2.1.4 already.
 
+-  Anti-Bloat: Avoid ``setuptools`` in ``transformers`` package. Added
+   in 2.1.4 already.
+
+-  Anti-Bloat: Avoid ``scipy`` usage causing ``torch`` or ``cupy``
+   usage. Added in 2.1.4 already.
+
 Organisational
 ==============
 
 -  UI: Catch wrong values for ``--jobs`` value sooner, negative and
    non-integer values error exit immediately. Added in 2.1.1 already.
 
--  UI: Nicer usage name when invoked with "-m nuitka"
+-  UI: Nicer usage name when invoked with ``python -m nuitka``
 
    The recommended form of calling of Nuitka should not have an ugly
-   invocation reference ``__main__.py`` instead put the ``-m nuitka``
-   notion there.
+   invocation reference ``__main__.py`` instead put the ``python -m
+   nuitka`` notion there.
 
 -  Plugins: Remove obsolete plugins from standard plugin documentation.
    Removed in 2.1.4 already.
@@ -163,6 +196,10 @@ Organisational
    at all, this is misleading, often it doesn't work for that
    configuration, and it's only a distraction, since debugging Python
    reference counts is not about performance. Changed in 2.1.4 already.
+
+-  UI: Catch newlines in spec values. They break code C code generation
+   potentially and they also are likely copy&paste mistakes, that won't
+   do what the user expects. Added in 2.1.4 already.
 
 Tests
 -----
