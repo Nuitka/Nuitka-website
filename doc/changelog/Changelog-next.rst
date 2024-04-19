@@ -70,8 +70,38 @@ Bug Fixes
 -  Standalone: Added support for ``gruut`` package. Fixed in 2.1.3
    already.
 
-   Standalone: Added support for newer ``toga`` to also include
+-  Standalone: Added support for newer ``toga`` to also include
    ``toga_winforms`` metadata. Fixed in 2.1.3 already.
+
+-  Standalone: Added support for newer ``tensorflow`` package. Fixed in
+   2.1.4 already.
+
+-  Standalone: Fix, ``matplotlib`` needs emit dependency on the backend
+   included, otherwise it could be missing at run-time in some cases.
+   Fixed in 2.1.4 already.
+
+-  Onefile: Respect ``XDG_CACHE_HOME`` variable on non-Windows
+   platforms. The cached location might not be configured to be
+   ``~/.cache`` on some systems, respect that. Fixed in 2.1.4 already.
+
+-  Python2: Some cases of ``list.insert`` were not properly handling all
+   index types. Fixed in 2.1.4 already.
+
+-  Fix, optimized ``list.remove`` failed to handle tuple arguments
+   properly. Removing tuple values from lists, could give errors. Fixed
+   in 2.1.4 already.
+
+-  Standalone: Added missing implicit dependencies for
+   ``pyarrow.datasets``. Fixed in 2.1.4 already.
+
+-  Standalone: Added support for ``dask.dataframe`` module. Fixed in
+   2.1.4 already.
+
+-  Standalone: Added DLLs for ``tensorrt_libs`` package. Fixed in 2.1.4
+   already.
+
+-  Standalone: Added missing metadata of ``numpy`` for ``xarray``
+   package. Fixed in 2.1.4 already.
 
 New Features
 ============
@@ -83,6 +113,10 @@ New Features
 
 -  For the experimental ``@pyqtSlot`` decorator, we also should handle
    the ``@asyncSlot`` just the same. Added in 2.1.1 already.
+
+-  Added new kind of warning of ``plugin`` category and use it in the
+   Nuitka Package configuration to inform ``matplotlib`` users to select
+   a GUI backend via plugin selection. Added in 2.1.4 already.
 
 Optimization
 ============
@@ -99,7 +133,16 @@ Optimization
    for more modules. Added in 2.1.3 already.
 
 -  Anti-Bloat: Avoid testing packages for newer ``tensorflow`` package
-   as well. Added in 2.1.3 already.
+   as well. Added in 2.1.4 already.
+
+-  Optimization: Avoid recompiling ``azure`` package which is not
+   performance relevant. Added in 2.1.4 already.
+
+-  Avoid GUI plugin owned packages from backend plugins unless the
+   corresponding plugin is actually active. Added in 2.1.4 already.
+
+-  Anti-Bloat: Avoid ``setuptools`` in ``deepspeed`` package. Added in
+   2.1.4 already.
 
 Organisational
 ==============
@@ -112,6 +155,14 @@ Organisational
    The recommended form of calling of Nuitka should not have an ugly
    invocation reference ``__main__.py`` instead put the ``-m nuitka``
    notion there.
+
+-  Plugins: Remove obsolete plugins from standard plugin documentation.
+   Removed in 2.1.4 already.
+
+-  UI: For Python debug mode compilation, do not about static libpython
+   at all, this is misleading, often it doesn't work for that
+   configuration, and it's only a distraction, since debugging Python
+   reference counts is not about performance. Changed in 2.1.4 already.
 
 Tests
 -----
