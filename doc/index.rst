@@ -10,10 +10,13 @@
  What is Nuitka
 ****************
 
-Nuitka is the optimizing Python compiler written in Python that creates executables that run without a separate installer. Data files can both be included or put alongside.
+Nuitka is the optimizing Python compiler written in Python that creates
+executables that run without a separate installer. Data files can both
+be included or put alongside.
 
-Nuitka is fully compatible with |SUPPORTED_PYTHONS|, works on **Windows**,
-**macOS**, **Linux** and more—essentially, wherever Python is already compatible with your system.
+Nuitka is fully compatible with |SUPPORTED_PYTHONS|, works on
+**Windows**, **macOS**, **Linux** and more—essentially, wherever Python
+is already compatible with your system.
 
 .. raw:: html
 
@@ -27,7 +30,7 @@ Nuitka is fully compatible with |SUPPORTED_PYTHONS|, works on **Windows**,
          <p class="feature-main-text">Speed up your program runtime and launch.</p>
          <p class="step-number grey">C</p>
          <p class="feature-sub-heading">Deployment</p>
-         <p class="feature-main-text">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+         <p class="feature-main-text">Streamline the deployment process by generating optimized, stand-alone executables. </p>
          <p class="asterisk-caption">* for commercial users only</p>
       </div>
    </div>

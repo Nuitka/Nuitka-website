@@ -133,7 +133,7 @@ Operating System
 **FreeBSD**, **NetBSD**, **macOS**, and **Windows** (32 bits/64
 bits/ARM).
 
-Other Operating systems will work as well. The portability is expected
+Other operating systems will work as well. The portability is expected
 to be generally good. However, specific adjustments might be necessary,
 such as modifying Nuitka's internal **SCons** usage or providing
 additional flags. Ensure that the Python version matches the
@@ -165,7 +165,7 @@ Notice for integration with GitHub workflows there is this
 `Nuitka-Action <https://github.com/Nuitka/Nuitka-Action>`__ that you
 should use that makes it really easy to integrate. You ought to start
 with a local compilation though, but this will be easiest for cross
-platform compilation with Nuitka.
+platform compilation with **Nuitka**.
 
 Read also about `Nuitka license
 <https://nuitka.net/doc/download.html>`_.
@@ -201,7 +201,7 @@ Direct way
 
 Alternatively, you can run **Nuitka** directly from a source checkout or
 archive, without any need for altering environment variables.
-Importantly, you can execute Nuitka seamlessly without having to
+Importantly, you can execute **Nuitka** seamlessly without having to
 manipulate the ``PYTHONPATH`` variable. You just execute the ``nuitka``
 and ``nuitka-run`` scripts directly without any changes to the
 environment. You may want to add the ``bin`` directory to your ``PATH``
@@ -232,7 +232,7 @@ To view it, run the following command:
 
 Data files are all the files of your Python program except for code.
 These files might be images, configuration files, or text documents.
-Nuitka offers several options to handle these data files during the
+**Nuitka** offers several options to handle these data files during the
 compilation.
 
 ----
@@ -240,13 +240,13 @@ compilation.
 ``--include-package-data=PACKAGE``
 ==================================
 
-Include data files for the given package name. DLLs and extension
-modules are not data files and never included like this. Can use
-patterns the filenames as indicated below. Data files of packages are
-not included by default, but package configuration can do it. This will
-only include non-DLL, non-extension modules, i.e. actual data files.
-After a ``:`` optionally a filename pattern can be given as well,
-selecting only matching files.
+Include data files for the given package name. Dynamic-link libraries
+and extension modules are not data files and never included like this.
+Can use patterns the filenames as indicated below. Data files of
+packages are not included by default, but package configuration can do
+it. This will only include non-DLL, non-extension modules, i.e. actual
+data files. After a ``:`` optionally a filename pattern can be given as
+well, selecting only matching files.
 
 Examples:
    -  ``--include-package-data=package_name`` (all files)
@@ -391,15 +391,15 @@ Windows UAC Configuration
 ``--windows-uac-admin``
 
 Request **Windows User Account Control** (**UAC**), to grant admin
-rights on execution. (Windows only). By default, this option is turned
-off.
+rights on execution. (**Windows** only). By default, this option is
+turned off.
 
 ----
 
 ``--windows-uac-uiaccess``
 
 Request **Windows User Account Control** (**UAC**), to enforce running
-from a few folders only, remote desktop access. (Windows only). By
+from a few folders only, remote desktop access. (**Windows** only). By
 default, this option is turned off.
 
 ----
@@ -408,11 +408,11 @@ Console Window
 ==============
 
 On Windows, the console is opened by programs by default. You can change
-it anytime. Nuitka follows this default behavior, making it primarily
-suitable for terminal-based programs or those where output visibility is
-essential. There is a difference between **pythonw.exe** and
-**python.exe** along those lines. This is replicated in **Nuitka** with
-the option ``--disable-console``.
+it anytime. **Nuitka** follows this default behavior, making it
+primarily suitable for terminal-based programs or those where output
+visibility is essential. There is a difference between **pythonw.exe**
+and **python.exe** along those lines. This is replicated in **Nuitka**
+with the option ``--disable-console``.
 
 **Nuitka** recommends this option, especially when using **GUI**
 packages like **PySide6** or **wx**. In case, you know your program is
@@ -430,8 +430,8 @@ Splash screen
 Splash screens are useful when program startup is slow. **Onefile**
 startup itself is fast, but your program might need more time. Moreover,
 you can't be sure how fast the computer used will be, so it might be a
-good idea to have splash screens. Luckily, with Nuitka, they are easy to
-add for **Windows**.
+good idea to have splash screens. Luckily, with **Nuitka**, they are
+easy to add for **Windows**.
 
 For the splash screen, you need to specify it as a **PNG** file. Make
 sure to disable the splash screen when your program is ready, meaning it
@@ -490,51 +490,53 @@ application bundle on **macOS**.
 Deployment Mode
 ===============
 
-By default, Nuitka compiles without ``--deployment`` which leaves a set
-of safe guards and helpers on, that are aimed at debugging wrong uses of
-Nuitka.
+By default, **Nuitka** compiles without the ``--deployment`` flag,
+keeping a set of safety guards and helpers active to troubleshoot any
+misuses of **Nuitka**. You can learn more about this feature and its
+benefits in the paragraphs below.
 
-This is a new feature, and implements a bunch of protections and
-helpers, that are documented here.
+If you want to disable all these helpers, read more in the `Disabling
+All`_ section.
 
-Fork bombs (self-execution)
+Fork Bombs (Self-execution)
 ---------------------------
 
-So after compilation, ``sys.executable`` is the compiled binary. In case
-of packages like ``multiprocessing``, ``joblib``, or ``loky`` what these
-typically do is to expect to run from a full ``python`` with
-``sys.executable`` and then to be able to use its options like ``-c
-command`` or ``-m module_name`` and then be able to launch other code
-temporarily or permanently as a service daemon.
+So after compilation, ``sys.executable`` is the compiled binary. Certain
+Python packages like ``multiprocessing``, ``joblib``, or ``loky``
+typically expect to run from a full ``Python`` environment with
+``sys.executable``. They expect to use the ``-c command`` or ``-m
+module_name`` options to be able to launch other code temporarily or
+permanently as a service daemon.
 
-With Nuitka however, this executes your program again, and puts these
-arguments, in ``sys.argv`` where you maybe ignore them, and then you
-fork yourself again to launch the helper daemons. Sometimes this ends up
-spawning CPU count processes that spawn CPU count processes that... this
-is called a fork bomb, and with almost all systems, that freezes them
-easily to death.
+However, with **Nuitka**, this executes your program again, and puts
+these arguments in ``sys.argv`` where you maybe ignore them, and then
+you fork yourself again to launch the helper daemons. This can lead to
+unintentional forking, potentially resulting in a **fork bomb** scenario
+where multiple processes spawn recursively, causing system freeze.
 
-That is why e.g. this happens with default Nuitka:
+For example, running a Nuitka-compiled program may trigger the following
+error:
 
 .. code::
 
    ./hello.dist/hello.bin -l fooL -m fooM -n fooN -o fooO -p
    Error, the program tried to call itself with '-m' argument. Disable with '--no-deployment-flag=self-execution'.
 
-Your program may well have its own command line parsing, and not use an
-unsupported package that does attempt to re-execute. In this case, you
-need at *compile time* to use ``--no-deployment-flag=self-execution``
-which disables this specific guard.
+To avoid this issue, ensure your program handles command line parsing
+correctly and avoids using unsupported packages that attempt
+re-execution. Additionally, you can disable this specific behavior at
+compile time by using the ``--no-deployment-flag=self-execution`` flag.
 
 Misleading Messages
 -------------------
 
-Some packages output what they think is helpful information about what
-the reason of a failed import might mean. With compiled programs there
-are very often just plain wrong. We try and repair those in
-non-deployment mode. Here is an example, where we change a message that
-asks to pip install (which is not the issue) to point the user to the
-include command that makes an ``imageio`` plugin work.
+Some Python packages generate misleading error messages when they
+encounter import failures. These messages may suggest actions, which may
+not be the appropriate solution in the context of compiled programs.
+**Nuitka** tries to correct them in non-deployment mode. Here is an
+example, where **Nuitka** changes a message that asks to pip install
+(which is not the issue) to point the user to the include command that
+makes an ``imageio`` plugin work.
 
 .. code:: yaml
 
@@ -556,67 +558,61 @@ Disabling All
 
 All these helpers can of course be disabled at once with
 ``--deployment`` but keep in mind that for debugging, you may want to
-re-enable it. You might want to use Nuitka Project options and an
+re-enable it. You might want to use **Nuitka Project** options and an
 environment variable to make this conditional.
 
 Should you disable them all?
 
-We believe, disabling should only happen selectively, but with PyPI
-upgrades, your code changes, all of these issues can sneak back in. The
-space saving of deployment mode is currently negligible, so attempt to
-not do it, but review what exists, and if you know that it cannot affect
-you, or if it does, you will not need it. Some of the future ones, will
-clearly be geared at beginner level usage.
+We recommend selective disabling, but with **PyPI** upgrades and your
+code changes, these issues can resurface. The space saved by deployment
+mode is minimal, so we advise not to disable them. Instead, review each
+feature, and if you know that it won't affect you, or you won't need it,
+then disable it. Some upcoming features will be geared at beginner-level
+usage.
 
-Windows Virus scanners
+Windows Virus Scanners
 ======================
 
-Binaries compiled on Windows with default settings of Nuitka and no
-further actions taken might be recognized by some AV vendors as malware.
-This is avoidable, but only in Nuitka commercial there is actual support
-and instructions for how to do it, seeing this as a typical commercial
-only need. https://nuitka.net/doc/commercial.html
+If you compile binaries using **Nuitka's** default settings on
+**Windows** without additional steps, some antivirus vendors may flag
+them as malware. You can avoid this by purchasing the `Nuitka Commercial
+<https://nuitka.net/doc/commercial.html>`_ plan. In this case, you will
+get instructions and support on that matter.
 
 Linux Standalone
 ================
 
-For Linux standalone it is pretty difficult to build a binary that works
-on other Linux versions. This is mainly because on Linux, much software
-is built specifically targeted to concrete DLLs. Things like glibc used,
-are then encoded into the binary built, and it will not run with an
-older glibc, just to give one critical example.
+For **Linux** standalone it's difficult to build a binary that works on
+other **Linux** versions. This is mainly because on Linux, much software
+is built specifically targeted to concrete dynamic-link libraries.
 
-The solution is to build on the oldest OS that you want to see
-supported. Picking that and setting it up can be tedious, so can be
-login, and keeping it secure, as it's something you put your source code
-on.
+The solution is to compile your application on the oldest **Linux**
+version you intend to support. However, this process can be exhausting,
+involving setup complexities and security considerations since it
+involves exposing your source code.
 
-To aid that, Nuitka commercial has container based builds, that you can
-use. This uses dedicated optimized Python builds, targets CentOS 7 and
-supports even newest Pythons and very old OSes that way using recent C
-compiler chains all turn key solution. The effort needs to be
-compensated to support Nuitka development for Linux, there you need to
-purchase it https://nuitka.net/doc/commercial.html but even a sponsor
-license will be cheaper than doing it yourself.
+We recommend purchasing `Nuitka Commercial
+<https://nuitka.net/doc/commercial.html>`_ plan, to overcome this issue
+without extra efforts. **Nuitka Commercial** has container-based builds,
+that you can use. This uses dedicated optimized Python builds, targeting
+**CentOS 7** and supporting even newest Pythons and very old operating
+systems. This solution streamlines the process by integrating recent C
+compiler chains.
 
-Program crashes system (fork bombs)
+Program Crashes System (Fork Bombs)
 ===================================
 
-A fork bomb is a program that starts itself over and over. This can
-easily happen, since ``sys.executable`` for compiled programs is not a
+A fork bomb is a program that spawn recursively, causing system crash.
+This can happen, since ``sys.executable`` for compiled programs is not a
 Python interpreter, and packages that try to do multiprocessing in a
-better way, often relaunch themselves through this, and Nuitka needs and
-does have handling for these with known packages. However, you may
-encounter a situation where the detection of this fails. See deployment
-option above that is needed to disable this protection.
+better way, often relaunch themselves. **Nuitka** handles it with known
+packages. However, you may encounter a situation where the detection of
+this fails. To disable this protection, read about `Fork Bombs
+(Self-execution)`_ option.
 
-When this fork bomb happens easily all memory, all CPU of the system
-that is available to the user is being used, and even the most powerful
-build system will go down in flames sometimes needing a hard reboot.
-
-For fork bombs, we can use ``--experimental=debug-self-forking`` and see
-what it does, and we have a trick, that prevents fork bombs from having
-any actual success in their bombing. Put this at the start of your
+To handle fork bombs, use the ``--experimental=debug-self-forking``
+option to check fork bombs behavior. To minimize risks associated with
+fork bombs, put the following code snippet at the beginning of your
 program.
 
 .. code:: python
@@ -628,9 +624,14 @@ program.
    else:
       del os.environ["NUITKA_LAUNCH_TOKEN"]
 
-Actually Nuitka is trying to get ahold of them without the deployment
-option already, finding "-c" and "-m" options, but it may not be perfect
-or not work well with a package (anymore).
+This code checks for the presence of a specific environment variable
+**(NUITKA_LAUNCH_TOKEN)**. If it's not found, the program exits with an
+error message. Otherwise, it removes the **NUITKA_LAUNCH_TOKEN** from
+the environment, neutralizing any potential fork bomb threat.
+
+**Nuitka** tries to handle fork bombs without the deployment option,
+finding **"-c"** and **"-m"** options. However, the detection may not be
+perfect or not work well with a package (anymore).
 
 Memory issues and compiler bugs
 ===============================
