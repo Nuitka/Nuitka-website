@@ -130,6 +130,24 @@ Bug Fixes
 -  Standalone: Add support for newer ``bitsandbytes``. Fixed in 2.1.5
    already.
 
+-  Scons: Fix, when locating binaries, do not use directories but only
+   files.
+
+   A directory named ``gcc`` could be confused for being a ``gcc``
+   binary, but that is of course non-sense. Fixed in 2.1.6 already.
+
+-  Windows: Fix, by default scan only for ``.bin`` and ``.exe`` binaries
+   for Nuitka package configuration EXE dependency patterns. This was
+   the intended value, but it had not taken effect yet. Fixed in 2.1.6
+   already.
+
+-  Fix, the ``__compiled__.containing_dir`` should be an absolute path.
+   For it to be useful after a change of directory is done in the
+   program that is necessary. Fixed in 2.1.6 already.
+
+-  Standalone: Added support for more parts of ``networkx`` package.
+   Fixed in 2.1.6 already.
+
 New Features
 ============
 
