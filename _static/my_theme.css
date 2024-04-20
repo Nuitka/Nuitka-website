@@ -629,7 +629,7 @@ a[class~="headerlink"]:visited {
     background-color: #ccc;
 }
 
-.captions-on-circle {
+.fp-circle-image-caption {
     position: absolute;
     z-index: 1;
     text-align: center;
@@ -637,22 +637,22 @@ a[class~="headerlink"]:visited {
     font-weight: bold;
 }
 
-.captions-on-circle p {
+.fp-circle-image-caption p {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     font-size: 0.8rem;
 }
 
-.ip-protection-caption {
+.fp-circle-caption-ip-protection {
     top: 57%;
     left: 5%;
 }
 
-.performance-caption {
+.fp-circle-image-caption-performance {
     top: 25%;
     left: 52%;
 }
 
-.deployment-caption {
+.fp-circle-image-caption-deployment {
     top: 80%;
     left: 40%;
 }
