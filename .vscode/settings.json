@@ -85,4 +85,5 @@
             "scope": "workspace"
         }
     },
+    "editor.defaultFormatter": "vscode.css-language-features",
 }
