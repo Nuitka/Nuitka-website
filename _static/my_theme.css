@@ -1,3 +1,9 @@
+:root {
+    --our-color-yellow: #ffd43b;
+    --our-color-blue: #599dd2;
+    --our-color-grey: #ccc;
+}
+
 html {
     scroll-behavior: smooth
 }
@@ -573,7 +579,7 @@ a[class~="headerlink"]:visited {
 
 
 
-.feature-sub-heading {
+.fp-circle-text-sub-heading {
     font-weight: bold;
     margin-bottom: 6px;
     font-size: 20px;
@@ -599,7 +605,7 @@ a[class~="headerlink"]:visited {
     height: fit-content;
 }
 
-.step-number {
+.fp-circle-text-heading {
     flex: 0 0 auto;
     margin-right: 20px;
     margin-bottom: 0;
@@ -617,16 +623,16 @@ a[class~="headerlink"]:visited {
     padding-left: 55px;
 }
 
-.yellow {
-    background-color: #ffd43b;
+.fp-circle-text-heading-A {
+    background-color: var(--our-color-yellow);
 }
 
-.blue {
-    background-color: #599dd2;
+.fp-circle-text-heading-B {
+    background-color: var(--our-color-blue)
 }
 
-.grey {
-    background-color: #ccc;
+.fp-circle-text-heading-C {
+    background-color: var(--our-color-grey)
 }
 
 .fp-circle-image-caption {
