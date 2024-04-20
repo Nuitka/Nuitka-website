@@ -23,15 +23,14 @@ is already compatible with your system.
    <div class="key-features-slide">
       <div class="text-container">
          <p class="step-number yellow">A</p>
-         <p class="feature-sub-heading">IP Protection*</p>
-         <p class="feature-main-text">Secure your source code by not deploying it, protect your data files with deployment, avoid readable strings.</p>
+         <p class="feature-sub-heading">IP Protection</p>
+         <p class="feature-main-text">Secure your source code by not deploying it, for commercial users only, protect your data files in deployment, avoid readable strings in binaries.</p>
          <p class="step-number blue">B</p>
          <p class="feature-sub-heading">Performance</p>
          <p class="feature-main-text">Speed up your program runtime and launch.</p>
          <p class="step-number grey">C</p>
          <p class="feature-sub-heading">Deployment</p>
          <p class="feature-main-text">Streamline the deployment process by generating optimized, stand-alone executables. </p>
-         <p class="asterisk-caption">* for commercial users only</p>
       </div>
    </div>
    <div class="captions-on-circle ip-protection-caption">
