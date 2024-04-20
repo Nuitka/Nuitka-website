@@ -320,26 +320,26 @@ the and paste the following code snippet.
    find . -iname *.jpg -a -type f -exec jpegoptim {} \;
 
 Color Palette
-==============
+=============
 
-If you create any visuals for **Nuitka**, such as presentation slides, diagrams, or even screenshots, keep in mind the following brand colors:
+If you create any visuals for **Nuitka**, such as presentation slides,
+diagrams, or even screenshots, keep in mind the following brand colors:
 
 primary colors:
-   - Blue #599DD2
-
-   - Yellow #FFD43B
-
-   - Grey #CCCCCC
+   -  Blue #599DD2
+   -  Yellow #FFD43B
+   -  Grey #CCCCCC
 
 secondary colors:
-   - Dark Blue #2A3990
-
-   - Green #00916E
+   -  Dark Blue #2A3990
+   -  Green #00916E
 
 Writing Style Guide
-====================
+===================
 
-When writing any text on the **Nuitka** website, especially step-by-step guidelines, strive to follow the `Microsoft Style Guide <https://learn.microsoft.com/en-us/style-guide/welcome/>`_.
+When writing any text on the **Nuitka** website, especially step-by-step
+guidelines, strive to follow the `Microsoft Style Guide
+<https://learn.microsoft.com/en-us/style-guide/welcome/>`_.
 
 ********************************
  Opportunities for Contribution

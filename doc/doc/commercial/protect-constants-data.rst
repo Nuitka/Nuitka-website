@@ -4,9 +4,9 @@
  Protect Program Constants Data
 ################################
 
-Consider this example information, to learn what this is about. Only Nuitka
-commercial offers the full protection, and this illustrates the issue
-with standard Python the best.
+Consider this example information, to learn what this is about. Only
+Nuitka commercial offers the full protection, and this illustrates the
+issue with standard Python the best.
 
 .. code:: bash
 
