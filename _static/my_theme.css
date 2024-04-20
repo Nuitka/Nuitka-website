@@ -607,18 +607,23 @@ a[class~="headerlink"]:visited {
     line-height: 35px;
 }
 
-.key-features-slide{
+.fp-circle-card {
+    display: flex;
     margin-bottom: 100px;
     margin-top: 50px;
-    position: relative;
 }
 
-.text-container {
+.fp-circle-text-container {
     display: flex;
     flex-wrap: wrap;
-    float: left;
     margin-right: 50px;
     width: 45%;
+}
+
+.fp-circle-image-container {
+    position: relative;
+    width: 35%;
+    height: fit-content;
 }
 
 .step-number {
@@ -635,7 +640,7 @@ a[class~="headerlink"]:visited {
     color: #fff;
 }
 
-.feature-main-text{
+.feature-main-text {
     padding-left: 55px;
 }
 
@@ -653,7 +658,6 @@ a[class~="headerlink"]:visited {
 
 .captions-on-circle {
     position: absolute;
-    float: right;
     z-index: 1;
     text-align: center;
     color: white;
@@ -662,19 +666,20 @@ a[class~="headerlink"]:visited {
 
 .captions-on-circle p {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    font-size: 0.8rem;
 }
 
 .ip-protection-caption {
-    top: 65%;
-    left: 52%;
+    top: 57%;
+    left: 5%;
 }
 
 .performance-caption {
-    top: 57%;
-    left: 71%;
+    top: 25%;
+    left: 52%;
 }
 
 .deployment-caption {
     top: 80%;
-    left: 68%;
+    left: 40%;
 }
