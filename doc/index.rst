@@ -6,6 +6,9 @@
  Nuitka the Python Compiler
 ############################
 
+.. raw:: html
+   :file: fp-card-circle.html
+
 ****************
  What is Nuitka
 ****************
@@ -18,15 +21,10 @@ Nuitka is fully compatible with |SUPPORTED_PYTHONS|, works on
 **Windows**, **macOS**, **Linux** and more—essentially, wherever Python
 is already compatible with your system.
 
-.. raw:: html
-   :file: fp-card-circle.html
-
-
 Quick Demo
 ==========
 
 .. asciinema:: ./casts/welcome-demo.cast
-
 
 .. toctree::
    :hidden:
