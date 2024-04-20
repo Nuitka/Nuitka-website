@@ -753,7 +753,7 @@ def runPostProcessing():
         fav_icons = doc.xpath("//head/link[@rel='icon']")
 
         if not fav_icons:
-            head_node, = doc.xpath("head")
+            (head_node,) = doc.xpath("head")
             for fav_icon in root_doc.xpath("//head/link[@rel='icon']"):
                 fav_icon = copy.deepcopy(fav_icon)
                 fav_icon.attrib["href"] = "/" + fav_icon.attrib["href"]
@@ -962,7 +962,7 @@ def runPostProcessing():
                 top_nav = html.fromstring("""<div class="top_nav"></div>""")
                 h1.getparent().insert(h1.getparent().index(h1), top_nav)
 
-                top_link_nav, = doc.xpath("//nav[@class='top_link_nav']")
+                (top_link_nav,) = doc.xpath("//nav[@class='top_link_nav']")
                 top_link_nav.getparent().remove(top_link_nav)
                 top_nav.append(top_link_nav)
 
@@ -1005,10 +1005,7 @@ def runPostProcessing():
 
                 # Wait before executing Asciinema script tags, so the async load
                 # of its Javascript can complete still.
-                if (
-                    script_tag.text
-                    and "AsciinemaPlayer" in script_tag.text
-                ):
+                if script_tag.text and "AsciinemaPlayer" in script_tag.text:
                     script_tag.attrib["defer"] = "true"
 
                 continue

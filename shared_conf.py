@@ -127,10 +127,10 @@ sitemap_url_scheme = "{lang}/{link}"
 extlinks = {"nuitka": ("/%s", None)}
 
 sphinxcontrib_asciinema_defaults = {
-    'theme': 'asciinema',
-#    'preload': 0,
-#    'font-size': '1rem',
-    'path': 'doc/casts'
+    "theme": "asciinema",
+    #    'preload': 0,
+    #    'font-size': '1rem',
+    "path": "doc/casts",
 }
 
 html_static_path = [f"{ROOT}/_static"]
