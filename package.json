@@ -16,7 +16,8 @@
   "author": "",
   "license": "ASF2.0",
   "dependencies": {
-    "postcss": "^8.4.35",
+    "cssnano": "^6.1.2",
+    "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0"
   }
 }
