@@ -765,6 +765,12 @@ def runPostProcessing():
 
         has_inline_tabs = doc.xpath("//*[@class='sd-tab-label']")
 
+        # Detect if asciinema is used in the page
+        has_asciinema = False
+        for script_tag in doc.xpath("//script"):
+            if script_tag.text and "AsciinemaPlayer" in script_tag.text:
+                has_asciinema = True
+
         for search_link in doc.xpath("//link[@rel='search']"):
             search_link.getparent().remove(search_link)
 
@@ -915,7 +921,7 @@ def runPostProcessing():
                 if in_devcontainer and "my_theme" in css_link.attrib["href"]:
                     continue
 
-                if "asciinema" in css_link.attrib["href"]:
+                if "asciinema" in css_link.attrib["href"] and has_asciinema:
                     continue
 
                 css_link.getparent().remove(css_link)
@@ -984,12 +990,6 @@ def runPostProcessing():
 
         for node in doc.xpath("//div[@class='wy-side-nav-search']"):
             node.getparent().remove(node)
-
-        # Detect if asciinema is used in the page
-        has_asciinema = False
-        for script_tag in doc.xpath("//script"):
-            if script_tag.text and "AsciinemaPlayer" in script_tag.text:
-                has_asciinema = True
 
         script_tag_first = None
         js_filenames = []
