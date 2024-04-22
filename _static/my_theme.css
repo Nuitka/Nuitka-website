@@ -644,6 +644,12 @@ ol.fp-circle-text-list {
     min-width: 24ch;
 }
 
+/* TODO: Doesn't necessarily look good.
+img.fp-circle-image {
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+*/
+
 .fp-circle-text-heading {
     flex: 0 0 auto;
     margin-bottom: 0;
