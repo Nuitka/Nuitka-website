@@ -627,19 +627,21 @@ ol.fp-circle-text-list {
 .fp-circle-card {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .fp-circle-text-container {
     display: flex;
     flex-wrap: wrap;
     margin-right: 50px;
-    width: 45%;
+    width: 30ch;
+    min-width: 26ch;
 }
 
 .fp-circle-image-container {
     position: relative;
-    width: 35%;
-    height: fit-content;
+    width: auto;
+    min-width: 24ch;
 }
 
 .fp-circle-text-heading {
@@ -706,6 +708,10 @@ ol.fp-circle-text-list {
         padding-top: 2px !important;
     }
 
+}
+
+@media screen and (min-height: 20em) and (max-width: 600px) {
+
     .fp-circle-main-text-body {
         padding-left: 0;
     }
@@ -716,11 +722,11 @@ ol.fp-circle-text-list {
 
     .fp-circle-text-container {
         margin-right: 0px;
-        width: 100%;
+        width: auto;
     }
 
     .fp-circle-image-container {
-        width: 100%;
+        width: auto;
         height: fit-content;
         padding-bottom: 1rem;
     }
