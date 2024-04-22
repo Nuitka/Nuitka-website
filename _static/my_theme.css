@@ -4,9 +4,11 @@
     --our-color-grey: #ccc;
 }
 
+/* Google Chrome still hates our menu
 html {
     scroll-behavior: smooth
 }
+*/
 
 .wy-nav-content {
     max-width: 1000px !important;
