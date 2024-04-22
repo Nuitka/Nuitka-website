@@ -619,18 +619,17 @@ program.
 
    import os, sys
 
-   if "NUITKA_LAUNCH_TOKEN" not in os.environ:
-      sys.exit("Error, need launch token or else fork bomb suspected.")
-   else:
-      del os.environ["NUITKA_LAUNCH_TOKEN"]
+   if "NUITKA_LAUNCH_TOKEN" in os.environ:
+      sys.exit("Error, launch token must not be present or else fork bomb suspected.")
+   os.environ["NUITKA_LAUNCH_TOKEN"] = "1"
 
-This code checks for the presence of a specific environment variable
-**(NUITKA_LAUNCH_TOKEN)**. If it's not found, the program exits with an
-error message. Otherwise, it removes the **NUITKA_LAUNCH_TOKEN** from
-the environment, neutralizing any potential fork bomb threat.
+This code checks for the presence of the environment variable
+``NUITKA_LAUNCH_TOKEN`` and if found, the program exits with an error
+message. Otherwise, it sets the ``NUITKA_LAUNCH_TOKEN`` in the
+environment, so afterwards, the potential fork bomb can be discovered.
 
 **Nuitka** tries to handle fork bombs without the deployment option,
-finding **"-c"** and **"-m"** options. However, the detection may not be
+finding ``-c`` and ``-m`` options. However, the detection may not be
 perfect or not work well with a package (anymore).
 
 Memory issues and compiler bugs
