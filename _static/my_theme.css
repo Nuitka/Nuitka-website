@@ -579,14 +579,49 @@ a[class~="headerlink"]:visited {
     width: 100%;
 }
 
+ol.fp-circle-text-list {
+    list-style: none !important;
+    margin-left: none !important;
+    ;
+}
 
+.fp-circle-text-list li {
+    list-style: none !important;
+    margin-left: none !important;
+    ;
+
+    counter-increment: fp-circle-heading-item;
+    margin-bottom: 5px;
+}
+
+.fp-circle-text-list li:before {
+    margin-right: 10px;
+    content: counter(fp-circle-heading-item, upper-alpha);
+    background: var(--our-color-yellow);
+    border-radius: 100%;
+    color: white;
+    width: 1.2em;
+    text-align: center;
+    display: inline-block;
+}
+
+.fp-circle-text-list li:nth-of-type(1):before {
+    background: var(--our-color-yellow);
+}
+
+.fp-circle-text-list li:nth-of-type(2):before {
+    background: var(--our-color-blue);
+}
+
+.fp-circle-text-list li:nth-of-type(3):before {
+    background: var(--our-color-grey);
+}
 
 .fp-circle-text-sub-heading {
-    font-weight: bold;
     margin-bottom: 6px;
+    margin-left: 5px !important;
     font-size: 20px;
-    flex: 1 1 auto;
-    line-height: 35px;
+    font-weight: bold;
 }
 
 .fp-circle-card {
@@ -609,32 +644,12 @@ a[class~="headerlink"]:visited {
 
 .fp-circle-text-heading {
     flex: 0 0 auto;
-    margin-right: 20px;
     margin-bottom: 0;
-    border-radius: 50%;
-    font-size: 20px;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    line-height: 35px;
-    font-weight: bold;
-    color: #fff;
 }
 
 .fp-circle-main-text-body {
-    padding-left: 55px;
-}
-
-.fp-circle-text-heading-A {
-    background-color: var(--our-color-yellow);
-}
-
-.fp-circle-text-heading-B {
-    background-color: var(--our-color-blue)
-}
-
-.fp-circle-text-heading-C {
-    background-color: var(--our-color-grey)
+    padding-left: 4ch;
+    font-weight: normal;
 }
 
 .fp-circle-image-caption {
