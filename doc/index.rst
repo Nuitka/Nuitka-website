@@ -21,10 +21,11 @@ Nuitka is fully compatible with |SUPPORTED_PYTHONS|, works on
 **Windows**, **macOS**, **Linux** and more—essentially, wherever Python
 is already compatible with your system.
 
-Quick Demo
-==========
+..
+   Quick Demo
+   ==========
 
-.. asciinema:: ./casts/welcome-demo.cast
+   .. asciinema:: ./casts/welcome-demo.cast
 
 .. toctree::
    :hidden:
