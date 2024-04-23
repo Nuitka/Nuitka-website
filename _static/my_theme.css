@@ -624,6 +624,13 @@ ol.fp-circle-text-list {
     font-weight: bold;
 }
 
+.fp-circle-text-list strong {
+    margin-bottom: 6px;
+    margin-left: 5px !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .fp-circle-card {
     display: flex;
     align-items: center;
