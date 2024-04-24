@@ -649,8 +649,10 @@ ol.fp-circle-text-list {
 }
 
 .fp-circle-image-container {
+    flex-grow: 1;
+    container-type: inline-size;
     position: relative;
-    width: auto;
+    max-width: 380px;
     min-width: 24ch;
 }
 
@@ -681,11 +683,12 @@ img.fp-circle-image {
 .fp-circle-image-caption p {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     font-size: 0.8rem;
+    font-size: 5.5cqw;
 }
 
 .fp-circle-caption-ip-protection {
-    top: 47%;
-    left: 7%;
+    top: 49%;
+    left: 2%;
 }
 
 .fp-circle-image-caption-performance {
@@ -722,6 +725,21 @@ img.fp-circle-image {
 
     .wy-nav-content {
         padding-top: 2px !important;
+    }
+
+    .fp-circle-caption-ip-protection {
+        top: 49%;
+        left: 3%;
+    }
+
+    .fp-circle-image-caption-performance {
+        top: 20%;
+        left: 52%;
+    }
+
+    .fp-circle-image-caption-deployment {
+        top: 70%;
+        left: 40%;
     }
 
 }
