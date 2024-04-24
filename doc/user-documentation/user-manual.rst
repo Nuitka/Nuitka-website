@@ -159,12 +159,13 @@ Operating System
 **FreeBSD**, **NetBSD**, **macOS**, and **Windows** (32 bits/64
 bits/ARM).
 
-Other operating systems will work as well. The portability is expected
-to be generally good. However, specific adjustments might be necessary,
-such as modifying Nuitka's internal **SCons** usage or providing
-additional flags. Ensure that the Python version matches the
-architecture of the C compiler, or else you will get cryptic error
-messages.
+The portability is excellent, therefore other operating systems will
+work as well.
+
+However, specific adjustments might be necessary, such as modifying
+Nuitka's internal **SCons** usage or providing additional flags. Ensure
+that the Python version matches the architecture of the C compiler, or
+else you will get cryptic error messages.
 
 Architecture
 ============
