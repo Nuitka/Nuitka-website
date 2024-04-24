@@ -105,7 +105,7 @@ of bug fixes and new features.
    these might have to disable it.
 
 -  Plugins: Added APIs for final processing of the result and onefile
-   post processing.
+   post-processing.
 
 -  Onefile: On Windows, the Python process terminates with
    ``KeyboardInterrupt`` when the user sends CTRL-break, CTRL-C,

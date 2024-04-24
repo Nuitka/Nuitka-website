@@ -13,11 +13,11 @@ This is to inform you about the new stable release of `Nuitka
 This time there are many bug fixes, some important scalability work, and
 again improved compatibility and cleanups.
 
-The release cycle had a focus on fixing the bug reports I received. I
-have also continued to look at CPython3 compatibility, and this is the
-first version to support Python3 somewhat, at least some of the basic
-tests programs run (of course via ``2to3`` conversion) without trouble.
-I don't know when, but it seems that it's going to work one day.
+The release cycle focused on fixing the bug reports I received. I have
+also continued to look at CPython3 compatibility, and this is the first
+version to support Python3 somewhat, at least some of the basic tests
+programs run (of course via ``2to3`` conversion) without trouble. I
+don't know when, but it seems that it's going to work one day.
 
 Also there has an effort to make the Debian packaging cleaner,
 addressing all kinds of small issues that prevented it from entering the

@@ -6,7 +6,7 @@
 
 .. include:: ../changelog/changes-hub.inc
 
-In this document, we track the per version changes and comments for the
+In this document, we track the per-version changes and comments for the
 upcoming Nuitka |NUITKA_VERSION_NEXT| as a draft about hot-fixes of the
 current stable release as |NUITKA_VERSION| as well.
 
@@ -20,9 +20,9 @@ current stable release as |NUITKA_VERSION| as well.
    contains the usual additions of new packages supported out of the box
    and will aim at scalability.
 
-This release had a focus on compatibility, but also some important
-optimization progress for loops. The main line of changes are for
-support of 3.12 in the next release.
+This release focused on compatibility and some important optimization
+progress for loops. The main line of changes is to be able to support
+Python 3.12 in the next release.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -38,10 +38,10 @@ Bug Fixes
 -  Standalone: Make ``cefpython3`` work on Linux. Fixed in 2.1.1
    already.
 
--  ArchLinux: Need to add linker option for it to be usable with their
-   current Arch Python package. Fixed in 2.1.1 already.
+-  ArchLinux: Added platform linker option for it to be usable with
+   their current Arch Python package. Fixed in 2.1.1 already.
 
--  Fix, ``ctypes.CDLL`` optimization was using mis-spelled argument name
+-  Fix, ``ctypes.CDLL`` optimization was using misspelled argument name
    for ``use_last_error``, such that keyword argument calls using it
    were statically optimized into ``TypeError`` at compile-time. Fixed
    in 2.1.1 already.
@@ -127,8 +127,8 @@ Bug Fixes
    2.1.5 already.
 
 -  Standalone: Fix, the standalone standard library scan was not fully
-   ignoring git folders, sub folders were still looked at and could
-   cause issues. Fixed in 2.1.5 already.
+   ignoring git folders, subfolders were still looked at and could cause
+   issues. Fixed in 2.1.5 already.
 
 -  Standalone: Added support for newer ``transformers``. Fixed in 2.1.5
    already.
@@ -142,10 +142,10 @@ Bug Fixes
    A directory named ``gcc`` could be confused for being a ``gcc``
    binary, but that is of course non-sense. Fixed in 2.1.6 already.
 
--  Windows: Fix, by default scan only for ``.bin`` and ``.exe`` binaries
-   for Nuitka package configuration EXE dependency patterns. This was
-   the intended value, but it had not taken effect yet. Fixed in 2.1.6
-   already.
+-  Windows: Fix, by default, scan only for ``.bin`` and ``.exe``
+   binaries for Nuitka package configuration EXE dependency patterns.
+   This was the intended value, but it had not taken effect yet. Fixed
+   in 2.1.6 already.
 
 -  Fix, the ``__compiled__.containing_dir`` should be an absolute path.
    For it to be useful after a change of directory is done in the
@@ -168,9 +168,10 @@ Bug Fixes
 -  Standalone: Added missing dependency of ``sspilib`` that prevented
    ``requests-ntlm`` from working on Windows.
 
--  Python3.5+: Add support for using diction ary un-packings in class
-   declarations. This is rarely used feature, that will practically
-   never be used, but was found missing by tests recently.
+-  Python3.5+: Add support for using dictionary un-packings in class
+   declarations. This is a rarely used feature, that will practically
+   never be used in actual code, but was found missing by tests
+   recently.
 
 -  Python3.11: Fix, code objects ``co_qualname`` attribute was not
    actually the qualified name, but the name only.
@@ -331,8 +332,8 @@ Organisational
    Python level change but only C changes and no expectation of
    producing a usable result.
 
-   Because no post processing is applied, and as a consequence this is
-   not usable to produce binaries that work. In the future we might
+   Because no post-processing is applied, and as a consequence this is
+   not usable to produce binaries that work. In the future, we might
    expand this to be able to run post-processing still.
 
 -  Debugging: Disabling all freelists is now honored for more code,

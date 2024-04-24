@@ -18,9 +18,9 @@ controllable, which means a lot for scalability of projects that use a
 lot of packages that use other packages, because now you can choose
 which ones to embed and which ones one.
 
-The release cycle had a focus on improving the quality of the test
-scripts, the packaging, and generally to prepare the work on "type
-inference" in a new feature branch.
+The release cycle focused on improving the quality of the test scripts,
+the packaging, and generally to prepare the work on "type inference" in
+a new feature branch.
 
 I have also continued to work towards CPython3.2 compatibility, and this
 version, while not there, supports Python3 with a large subset of the

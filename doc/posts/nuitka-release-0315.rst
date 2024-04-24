@@ -14,12 +14,12 @@ This is to inform you about the new stable release of Nuitka. This time
 again many organisational improvements, some bug fixes, much improved
 compatibility and cleanups.
 
-This release cycle had a focus on packaging Nuitka for easier
-consumption, i.e. automatic packaging, making automatic uploads,
-improvement documentation, and generally cleaning things up, so that
-Nuitka becomes more compatible and ultimately capable to run the "hg"
-test suite. It's not there yet, but this is a huge jump for usability of
-Nuitka and its compatibility, again.
+This release cycle focused on packaging Nuitka for easier consumption,
+i.e. automatic packaging, making automatic uploads, improvement
+documentation, and generally cleaning things up, so that Nuitka becomes
+more compatible and ultimately capable to run the "hg" test suite. It's
+not there yet, but this is a huge jump for usability of Nuitka and its
+compatibility, again.
 
 Then lots of changes that make Nuitka approach Python3 support, the
 generated C++ for at least one large example is compiling with this new

@@ -221,7 +221,7 @@ welcome. You will need Python 3.10 and ``pipenv`` to build it.
    python3 -m invoke intl -l de_DE
    ...
 
-   # Post processing, e.g. adds language switcher, compact
+   # post-processing, e.g. adds language switcher, compact
    # JS/CSS, adapts external links, and more.
    python3 -m invoke run -t post-process
 

@@ -6,7 +6,7 @@
 
 .. include:: ../changelog/changes-hub.inc
 
-In this document, we track the per version changes and comments of old
+In this document, we track the per-version changes and comments of old
 Nuitka release before version 1.0 was released.
 
 .. contents:: Table of Contents
@@ -3520,7 +3520,7 @@ New Features
    these might have to disable it.
 
 -  Plugins: Added APIs for final processing of the result and onefile
-   post processing.
+   post-processing.
 
 -  Onefile: On Windows, the Python process terminates with
    ``KeyboardInterrupt`` when the user sends CTRL-break, CTRL-C,
@@ -4927,7 +4927,7 @@ Bug Fixes
    provided keyword only, and were not giving the compatible error
    message when missing.
 
--  Windows: Find ``win32com`` DLLs too, even if they live in sub folders
+-  Windows: Find ``win32com`` DLLs too, even if they live in subfolders
    of ``site-packages``, and otherwise not found. They are used by other
    DLLs that are found.
 
@@ -5674,7 +5674,7 @@ Cleanups
 -  Moved commandline parsing helper functions from common code helpers
    to the main program where of course their only usage is.
 
--  Moved post processing of the created standalone binary from main
+-  Moved post-processing of the created standalone binary from main
    control to the freezer code.
 
 -  Avoid using ``chmod`` binary to remove executable bit from created
@@ -14741,9 +14741,9 @@ controllable, which means a lot for scalability of projects that use a
 lot of packages that use other packages, because now you can choose
 which ones to embed and which ones one.
 
-The release cycle had a focus on improving the quality of the test
-scripts, the packaging, and generally to prepare the work on "type
-inference" in a new feature branch.
+The release cycle focused on improving the quality of the test scripts,
+the packaging, and generally to prepare the work on "type inference" in
+a new feature branch.
 
 I have also continued to work towards CPython3.2 compatibility, and this
 version, while not there, supports Python3 with a large subset of the
@@ -14972,11 +14972,11 @@ discover improvements and regressions more clearly.
 This time there are many bug fixes, some important scalability work, and
 again improved compatibility and cleanups.
 
-The release cycle had a focus on fixing the bug reports I received. I
-have also continued to look at CPython3 compatibility, and this is the
-first version to support Python3 somewhat, at least some of the basic
-tests programs run (of course via ``2to3`` conversion) without trouble.
-I don't know when, but it seems that it's going to work one day.
+The release cycle focused on fixing the bug reports I received. I have
+also continued to look at CPython3 compatibility, and this is the first
+version to support Python3 somewhat, at least some of the basic tests
+programs run (of course via ``2to3`` conversion) without trouble. I
+don't know when, but it seems that it's going to work one day.
 
 Also there has an effort to make the Debian packaging cleaner,
 addressing all kinds of small issues that prevented it from entering the
@@ -15172,12 +15172,12 @@ This is to inform you about the new stable release of Nuitka. This time
 again many organisational improvements, some bug fixes, much improved
 compatibility and cleanups.
 
-This release cycle had a focus on packaging Nuitka for easier
-consumption, i.e. automatic packaging, making automatic uploads,
-improvement documentation, and generally cleaning things up, so that
-Nuitka becomes more compatible and ultimately capable to run the "hg"
-test suite. It's not there yet, but this is a huge jump for usability of
-Nuitka and its compatibility, again.
+This release cycle focused on packaging Nuitka for easier consumption,
+i.e. automatic packaging, making automatic uploads, improvement
+documentation, and generally cleaning things up, so that Nuitka becomes
+more compatible and ultimately capable to run the "hg" test suite. It's
+not there yet, but this is a huge jump for usability of Nuitka and its
+compatibility, again.
 
 Then lots of changes that make Nuitka approach Python3 support, the
 generated C++ for at least one large example is compiling with this new

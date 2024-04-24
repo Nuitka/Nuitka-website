@@ -10,11 +10,11 @@ This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`__. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
 
-This release has had a focus on improved startup time and compatibility
-with lazy loaders which has resulted in some optimization. There are
-also the usual amounts of bug fixes. For macOS and Linux there are lots
-of improvements that should make standalone mode for them robust with
-many more configurations.
+This release has focused on improved startup time and compatibility with
+lazy loaders which has resulted in some optimization. There are also the
+usual amounts of bug fixes. For macOS and Linux there are lots of
+improvements that should make standalone mode for them robust with many
+more configurations.
 
 ***********
  Bug Fixes

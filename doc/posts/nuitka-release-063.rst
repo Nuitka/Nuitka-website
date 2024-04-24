@@ -114,7 +114,7 @@ optimization was on hold.
 -  Moved commandline parsing helper functions from common code helpers
    to the main program where of course their only usage is.
 
--  Moved post processing of the created standalone binary from main
+-  Moved post-processing of the created standalone binary from main
    control to the freezer code.
 
 -  Avoid using ``chmod`` binary to remove executable bit from created

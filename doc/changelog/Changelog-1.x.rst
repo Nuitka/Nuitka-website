@@ -6,7 +6,7 @@
 
 .. include:: ../changelog/changes-hub.inc
 
-In this document, we track the per version changes of 1.x and comments
+In this document, we track the per-version changes of 1.x and comments
 of old Nuitka release before version 2.0 was released.
 
 .. contents:: Table of Contents
@@ -18,11 +18,11 @@ of old Nuitka release before version 2.0 was released.
  Nuitka Release 1.9
 ********************
 
-This release has had a focus on improved startup time and compatibility
-with lazy loaders which has resulted in some optimization. There are
-also the usual amounts of bug fixes. For macOS and Linux there are lots
-of improvements that should make standalone mode for them robust with
-many more configurations.
+This release has focused on improved startup time and compatibility with
+lazy loaders which has resulted in some optimization. There are also the
+usual amounts of bug fixes. For macOS and Linux there are lots of
+improvements that should make standalone mode for them robust with many
+more configurations.
 
 Bug Fixes
 =========

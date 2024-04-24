@@ -28,7 +28,7 @@ improvements.
    provided keyword only, and were not giving the compatible error
    message when missing.
 
--  Windows: Find ``win32com`` DLLs too, even if they live in sub folders
+-  Windows: Find ``win32com`` DLLs too, even if they live in subfolders
    of ``site-packages``, and otherwise not found. They are used by other
    DLLs that are found.
 
