@@ -110,7 +110,7 @@ The order is sorted by time.
    making it easy supporting to get Nuitka off the ground. Your compiler
    was the first usable for Nuitka and with very little effort.
 
--  The `Scons project <https://www.scons.org>`__
+-  The `SCons project <https://www.scons.org>`__
 
    Thanks for tackling the difficult points and providing a Python
    environment to make the build results. This is such a perfect fit to
