@@ -69,6 +69,8 @@ supported with hot fixes, indicated by the last of the 4 digits.
 
    During releases package builds can lag behind for a couple of days.
 
+.. _nuitka-standard-license:
+
 *********
  License
 *********

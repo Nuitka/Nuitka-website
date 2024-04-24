@@ -133,8 +133,8 @@ possible.
    -  **It has to be a standard Python implementation:** You need a form
       of standard Python implementation, called **CPython**, to execute
       **Nuitka** because it's closely tied to the implementation details
-      of it. Ideally you use the ``official Python
-      <https://python.org>`` only.
+      of it. Ideally you use the `official Python
+      <https://python.org>`__ only.
 
    -  **Homebrew (for macOS) is supported, but not ideal:** The
       resulting binaries are not as portable and specifically not
@@ -173,29 +173,30 @@ Architecture
 Supported Architectures are **x86**, **x86_64** (**AMD64**), and
 **ARM**.
 
-Other architectures are expected to also work out of the box, as
-**Nuitka** is generally not using any hardware specifics. These are just
-the ones tested and known to be good. Generally, the architectures that
-**Debian** supports can be considered good and tested, too.
+**Nuitka** generally does not use any hardware specifics and produces
+portable C code. Therefore, many other architectures work out of the box
+as well.
+
+Generally, the architectures that **Debian** or **RHEL** support can be
+considered good and tested, too, e.g. **RISC-V**, etc. won't give you
+any issues.
 
 **************
  Installation
 **************
 
 For most systems, there will be packages on the `download page
-<https://nuitka.net/doc/download.html>`__ of Nuitka. But you can also
-install it from source code as described above, but also like any other
-Python program it can be installed via the normal ``python setup.py
+<https://nuitka.net/doc/download.html>`__ of Nuitka. You can also
+install it from the source code via the standard ``python setup.py
 install`` routine.
 
-Notice for integration with GitHub workflows there is this
+Notice for integration with GitHub workflows, there is this
 `Nuitka-Action <https://github.com/Nuitka/Nuitka-Action>`__ that you
-should use that makes it really easy to integrate. You ought to start
-with a local compilation though, but this will be easiest for cross
-platform compilation with **Nuitka**.
+should use that makes it easy to integrate. You ought to start with a
+local compilation to iron out issues, but for deployment to multiple
+platforms, **Nuitka-Action** will make that very easy with **Nuitka**.
 
-Read also about `Nuitka license
-<https://nuitka.net/doc/download.html>`_.
+Read also about the :ref:`Nuitka License <nuitka-standard-license>`.
 
 ********************
  Command Line Usage
