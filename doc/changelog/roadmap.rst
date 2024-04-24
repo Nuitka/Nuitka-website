@@ -389,7 +389,7 @@ effectively with more than a single file.
    results anywhere.
 
 ******************************
- Features to be added for 2.2
+ Features to be added for 2.3
 ******************************
 
 [ ] Use performance potential for attribute access with Python 3.11
@@ -405,7 +405,7 @@ version.
 works.
 
 ******************************
- Features to be added for 2.3
+ Features to be added for 2.4
 ******************************
 
 [ ] Initial support for ctypes based direct calls of C code.
