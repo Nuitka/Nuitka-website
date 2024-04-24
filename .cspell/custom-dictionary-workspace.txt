@@ -6,6 +6,7 @@ copybutton
 doctools
 extrafooter
 fontawesome
+freelists
 headerlink
 Lato
 maxsplit
