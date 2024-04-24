@@ -366,37 +366,31 @@ There are several allowed forms.
    the most useful being ``{MAIN_DIRECTORY}`` that will allow you refer
    to where the compiled program lives and use relative paths to that.
 
-``--include-data-dir=DIRECTORY``
-================================
+Data files by directories ``--include-data-dir=DIRECTORY``
+==========================================================
 
-Include data files from complete directory in the distribution. This is
-recursive, meaning it includes files from subdirectories as well.
+Include data files from a complete directory in the distribution. This
+is recursive, meaning it includes files from subdirectories as well.
 
 -  Use patterns with ``--include-data-files`` if you want non-recursive
-   inclusion. For example,
-   ``--include-data-dir=/path/some_dir=data/some_dir`` illustrates how
-   to include a directory and its contents in the distribution.
+   inclusion.
 
--  Use ``--noinclude-data-files`` to remove all non-code files.
+-  With ``--include-data-dir=/path/some_dir=data/some_dir`` you can
+   include a data directory as a whole in the distribution.
 
-Default empty.
+-  Use the ``--noinclude-data-files`` to remove files that matched, but
+   you want to exclude them. In this fashion, those options work in
+   reverse to ``--include-data-files``.
 
-``--include-onefile-external-data=PATTERN``
-===========================================
+Copy data files near the onefile ``--include-onefile-external-data=PATTERN``
+============================================================================
 
 Include the specified data file patterns outside of the onefile binary,
-rather than on the inside. Makes only sense in case of ``--onefile``
-compilation. First files have to be specified as included somehow, then
-this refers to target paths.
-
-Default empty.
-
-``--list-package-data=LIST_PACKAGE_DATA``
-=========================================
-
-Output the data files found for a given package name.
-
-Default not done.
+rather than on the inside. It of course only makes sense in case of
+``--onefile`` compilation. First files have to be specified as included
+somehow, then this refers to target paths, and rather than copying to
+the distribution, the path then refers to alongside the onefile
+executable produced.
 
 .. _tweaks:
 
