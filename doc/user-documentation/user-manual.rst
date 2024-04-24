@@ -220,20 +220,21 @@ command:
    Replace ``<the_right_python>`` with the specific Python interpreter
    executable you want to use. For example, ``python3.9 -m nuitka``.
 
-By executing this command, you can be absolutely certain which Python
-interpreter you are using, so it is easier to match with what Nuitka
-has.
+By executing this command, you can know with certainty which Python
+interpreter you are using with Nuitka and your uncompiled program.
 
 Direct way
 ==========
 
-Alternatively, you can run **Nuitka** directly from a source checkout or
-archive, without any need for altering environment variables.
-Importantly, you can execute **Nuitka** seamlessly without having to
-manipulate the ``PYTHONPATH`` variable. You just execute the ``nuitka``
-and ``nuitka-run`` scripts directly without any changes to the
-environment. You may want to add the ``bin`` directory to your ``PATH``
-for your convenience, but that step is optional.
+Alternatively, you can run **Nuitka** directly from a source checkout
+(or archive) without altering environment variables. You can execute
+**Nuitka** seamlessly without having to manipulate the ``PYTHONPATH``
+variable.
+
+Simply execute the ``nuitka`` script directly without changing the
+environment. You could add the ``bin`` directory to your ``PATH`` for
+convenience, but that is optional; just use a qualified path to execute
+it.
 
 Moreover, if you want to execute with the right interpreter, run the
 following command:
@@ -263,18 +264,70 @@ These files might be images, configuration files, or text documents.
 **Nuitka** offers several options to handle these data files during the
 compilation.
 
-----
+.. _code-is-not-data-files:
 
-``--include-package-data=PACKAGE``
-==================================
+Code is not Data Files
+======================
 
-Include data files for the given package name. Dynamic-link libraries
-and extension modules are not data files and never included like this.
-Can use patterns the filenames as indicated below. Data files of
-packages are not included by default, but package configuration can do
-it. This will only include non-DLL, non-extension modules, i.e. actual
-data files. After a ``:`` optionally a filename pattern can be given as
-well, selecting only matching files.
+.. important::
+
+   Code is not Data Files
+
+   Nuitka does not consider code to be data files and will not include
+   DLLs or Python files as data files. Because code files without proper
+   treatment will not work on other systems unless you really know what
+   you are doing.
+
+In the following table, we list code file types.
+
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| Suffix     | Rationale                                                                              | Solution                                                                                               |
++============+========================================================================================+========================================================================================================+
+| ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code,    | Use ``--include-module`` on them instead                                                               |
+|            | there is no dependencies analyzed, and as a result it will just not work.              |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyc``   | Same as ``.py``.                                                                       | Use ``--include-module`` on them from their source code instead.                                       |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyo``   | Same as ``.pyc``.                                                                      | Use ``--include-module`` on them from their source code instead.                                       |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyw``   | Same as ``.py``.                                                                       | For including multiple programs, use multiple ``--main`` arguments instead.                            |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyi``   | These are ignored, because they are code-like and not needed at run time. For the      | Raise an issue if 3rd part software needs it.                                                          |
+|            | ``lazy`` package that actually would depend on them, we made a compile time solution   |                                                                                                        |
+|            | that removes the need.                                                                 |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyx``   | These are ignored, because they are Cython source code not used at run time            |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd  | Create Nuitka Package configuration for those, with ``dll`` section for the package that uses them.    |
+|            | party packages do actually used them as data, e.g. ``.NET`` packages, we solve that in | For rare cases, data-files section with special configuration might be the correct thing to do.        |
+|            | package configuration for it.                                                          |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.dylib`` | These are ignored, since they macOS extension modules or DLLs.                         | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.so``    | These are ignored, since they Linux, BSD, etc. extension modules or DLLs.              | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.exe``   | The are binaries to Windows.                                                           | You can add Nuitka Package configuration to include those as DLLs and mark them as ``executable: yes`` |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.bin``   | The are binaries to non-Windows, otherwise same as ``.exe``.                           |                                                                                                        |
++------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+
+Package data ``--include-package-data=PACKAGE``
+===============================================
+
+Include data files for the given package name. Data files of packages
+are not included by default, but package configuration should do it, or
+this option can be used. If you find you need to do it for a third-party
+package, feel free to let us know through an :ref:`issue report
+<github-issue-tracker>` as we strive to make most packages work out of
+the box.
+
+DLLs and Python extension modules are not data files and are, by
+default, never included by this option. See
+:ref:`code-is-not-data-files` for more information about why.
+
+You can use patterns for the filenames as indicated. After a ``:``
+optionally, a filename pattern may be specified as well, selecting only
+matching files.
 
 Examples:
    -  ``--include-package-data=package_name`` (all files)
@@ -282,29 +335,36 @@ Examples:
    -  ``--include-package-data=package_name=some_filename.dat``
       (concrete file)
 
-Default empty.
+Data files by file patterns ``--include-data-files``
+====================================================
 
-----
+Include data files by filenames in the distribution. Generally do not
+use this for package data; see above for that there is
+``--include-package-data`` that is easier to use and more likely
+correct.
 
-``--include-data-files=DESC``
-=============================
+There are several allowed forms.
 
-Include data files by filenames in the distribution.
+   -  ``--include-data-files=/path/to/file/some.txt=folder_name/some.txt``
+      will copy a single file.
 
-There are many allowed forms.
-   -  ``--include-data-files=/path/to/file/.txt=folder_name/some.txt``
-      will copy a single file and complain if it's multiple.
+   -  ``--include-data-files=/path/to/file/*.txt=folder_name/some.txt``
+      will copy a single file and complain if it's multiple sources, the
+      use of a pattern is entirely for convenience here.
 
-   -  ``--include-data-files=/path/to/files/.txt=folder_name/`` will put
-      all matching files into that folder.
+   -  ``--include-data-files=/path/to/files/*.txt=folder_name/`` will
+      put all matching files into that folder.
 
-   -  For recursive copy there is a form with 3 values
+   -  For a recursive copy, there is a form with three separated values
       ``--include-data-files=/path/to/scan=folder_name=**/*.txt`` that
-      will preserve directory structure.
+      will preserve the directory structure and only copy files
+      matching.
 
-Default empty.
+.. note::
 
-----
+   You can also use variables here if you use Nuitka project options,
+   the most useful being ``{MAIN_DIRECTORY}`` that will allow you refer
+   to where the compiled program lives and use relative paths to that.
 
 ``--include-data-dir=DIRECTORY``
 ================================
@@ -321,8 +381,6 @@ recursive, meaning it includes files from subdirectories as well.
 
 Default empty.
 
-----
-
 ``--include-onefile-external-data=PATTERN``
 ===========================================
 
@@ -333,16 +391,12 @@ this refers to target paths.
 
 Default empty.
 
-----
-
 ``--list-package-data=LIST_PACKAGE_DATA``
 =========================================
 
 Output the data files found for a given package name.
 
 Default not done.
-
-----
 
 .. _tweaks:
 
@@ -422,15 +476,11 @@ Request **Windows User Account Control** (**UAC**), to grant admin
 rights on execution. (**Windows** only). By default, this option is
 turned off.
 
-----
-
 ``--windows-uac-uiaccess``
 
 Request **Windows User Account Control** (**UAC**), to enforce running
 from a few folders only, remote desktop access. (**Windows** only). By
 default, this option is turned off.
-
-----
 
 Console Window
 ==============

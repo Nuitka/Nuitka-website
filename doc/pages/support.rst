@@ -22,6 +22,8 @@ You want to sponsor Nuitka development, as it is a cool project to make
 Python a fast programming language, please head here and pledge your
 support. `Donations </pages/donations.html>`_.
 
+.. _github-issue-tracker:
+
 **********************
  Github Issue Tracker
 **********************

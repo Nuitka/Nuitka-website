@@ -113,7 +113,7 @@ be on the customer disk for inspection:
 As you can see from below code, the traditional Python file handling
 just works, and we took large efforts to get standard ``open`` to work
 seamlessly. It is not the easiest way to use data files, but a very
-common usage in third party packages and the idea of Nuitka commercial
+common usage in third-party packages and the idea of Nuitka commercial
 is to make work, what worked before, see below for the more modern
 approaches.
 

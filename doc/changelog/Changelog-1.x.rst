@@ -960,7 +960,7 @@ Optimization
    too.
 
 -  Anti-Bloat: Avoid ``pandas`` and ``matplotlib`` for ``sklearn``
-   package. Availability checks of third party packages should be
+   package. Availability checks of third-party packages should be
    counted as real usage.
 
 -  Anti-Bloat: Avoid ``IPython`` in newer ``keras`` module too.

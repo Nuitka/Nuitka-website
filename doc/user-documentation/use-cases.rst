@@ -163,48 +163,15 @@ by the trailing slash.
 
    Nuitka does not consider data files code, do not include DLLs, or
    Python files as data files, and expect them to work, they will not,
-   unless you really know what you are doing.
+   unless you really know what you are doing. Refer to
+   :ref:`code-is-not-data-files` for more details.
 
-In the following, non-code data files are all files, not matching on of
-these criterions.
-
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| Suffix     | Rationale                                                                              | Solution                                                                                               |
-+============+========================================================================================+========================================================================================================+
-| ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code,    | Use ``--include-module`` on them instead                                                               |
-|            | there is no dependencies analyzed, and as a result it will just not work.              |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyc``   | Same as ``.py``.                                                                       | Use ``--include-module`` on them from their source code instead.                                       |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyo``   | Same as ``.pyc``.                                                                      | Use ``--include-module`` on them from their source code instead.                                       |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyw``   | Same as ``.py``.                                                                       | For including multiple programs, use multiple ``--main`` arguments instead.                            |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyi``   | These are ignored, because they are code-like and not needed at run time. For the      | Raise an issue if 3rd part software needs it.                                                          |
-|            | ``lazy`` package that actually would depend on them, we made a compile time solution   |                                                                                                        |
-|            | that removes the need.                                                                 |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyx``   | These are ignored, because they are Cython source code not used at run time            |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd  | Create Nuitka Package configuration for those, with ``dll`` section for the package that uses them.    |
-|            | party packages do actually used them as data, e.g. ``.NET`` packages, we solve that in | For rare cases, data-files section with special configuration might be the correct thing to do.        |
-|            | package configuration for it.                                                          |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dylib`` | These are ignored, since they macOS extension modules or DLLs.                         | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.so``    | These are ignored, since they Linux, BSD, etc. extension modules or DLLs.              | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.exe``   | The are binaries to Windows.                                                           | You can add Nuitka Package configuration to include those as DLLs and mark them as ``executable: yes`` |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.bin``   | The are binaries to non-Windows, otherwise same as ``.exe``.                           |                                                                                                        |
-+------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-
-Also folders are ignored, these are ``site-packages``, ``dist-packages``
-and ``vendor-packages`` which would otherwise include a full virtualenv,
-which is never a good thing to happen. And the ``__pycache__`` folder is
-also always ignored. On non-MacOS the file ``.DS_Store`` is ignored too,
-and ``py.typed`` folders have only meaning to IDEs, and are ignored like
-``.pyi`` files .
+Also some folders are ignored, these are ``site-packages``,
+``dist-packages`` and ``vendor-packages`` which would otherwise include
+a full virtualenv, which is never a good thing to happen. And the
+``__pycache__`` folder is also always ignored. On non-MacOS the file
+``.DS_Store`` is ignored too, and ``py.typed`` folders have only meaning
+to IDEs, and are ignored like ``.pyi`` files .
 
 To copy a whole folder with all non-code files, you can use
 ``--include-data-dir=/path/to/images=images`` which will place those in

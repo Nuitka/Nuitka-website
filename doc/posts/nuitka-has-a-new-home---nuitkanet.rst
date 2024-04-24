@@ -74,7 +74,7 @@ agreement?" I did. It basically says (from Google code):
 
    13. INDEMNITY
 
-   You agree to hold harmless and indemnify Google, and its subsidiaries, affiliates, officers, agents, employees, advertisers, licensors, suppliers or partners, (collectively "Google and Partners") from and against any third party claim arising from or in any way related to your use of Google services, violation of the Terms or any other actions connected with use of Google services, including any liability or expense arising from all claims, losses, damages (actual and consequential), suits, judgments, litigation costs and attorneys' fees, of every kind and nature. In such a case, Google will provide you with written notice of such claim, suit or action.
+   You agree to hold harmless and indemnify Google, and its subsidiaries, affiliates, officers, agents, employees, advertisers, licensors, suppliers or partners, (collectively "Google and Partners") from and against any third-party claim arising from or in any way related to your use of Google services, violation of the Terms or any other actions connected with use of Google services, including any liability or expense arising from all claims, losses, damages (actual and consequential), suits, judgments, litigation costs and attorneys' fees, of every kind and nature. In such a case, Google will provide you with written notice of such claim, suit or action.
 
 No thank you, instead I will run my own server, then I get to pay the
 attorneys of my discretion - in the admittedly unlikely event that
