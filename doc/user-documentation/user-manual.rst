@@ -22,8 +22,8 @@ recommended first read when you start using **Nuitka**.
  Requirements
 **************
 
-To ensure smooth work of **Nuitka**, make sure to follow system
-requirements, that include the following components:
+To ensure smooth work of **Nuitka**, make sure to follow the system
+requirements that include the following components:
 
 .. contents::
    :depth: 1
@@ -32,15 +32,10 @@ requirements, that include the following components:
 C Compiler
 ==========
 
-You need a C compiler with support for **C11** or alternatively a
-**C++** compiler for **C++03** [#]_.
+You need a C compiler with support for **C11** or for older Python only,
+a **C++** compiler for **C++03** [#]_.
 
 **For Windows**, use one of the following compilers:
-
--  The **MinGW64 C11** compiler must be based on **gcc 11.2** or higher.
-   It will be automatically downloaded if no usable C compiler is found,
-   which is the recommended way of installing it, as Nuitka will also
-   upgrade it for you.
 
 -  `Visual Studio 2022
    <https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx>`_
@@ -48,51 +43,73 @@ You need a C compiler with support for **C11** or alternatively a
    to filter away irrelevant outputs and, therefore, have the best
    results.
 
--  The **Clang-cl** compiler can be used if provided by the **Visual
-   Studio** installer.
+   Using ``--msvc=latest`` enforces using this compiler.
 
-**For macOS**, use the **Clang** compiler. It's also compatible with
-most **FreeBSD** architectures.
+-  The **MinGW64** compiler (used with ``--mingw64``) option, must be
+   the one Nuitka downloads, and it enforces that because there was very
+   frequent breakage with the complete tooling used.
+
+   Nuitka will offer to automatically download it if no usable C
+   compiler is found. Using ``--mingw64`` enforces using this compiler.
+
+-  The **Clang-cl** compiler can be used if provided by the **Visual
+   Studio** installer or Using ``--clang`` on Windows enforces the one
+   from Visual Studio.
+
+-  The **Clang** compiler can be used from from the **MinGW64**
+   download.
+
+   Using ``--mingw64 --clang`` enforces using this **Clang**.
+
+**For Linux**, use either the **GCC** from the system or an installed
+**clang**.
+
+**For macOS**, use the system **Clang** compiler. Install XCode via
+Apple Store to be covered.
+
+**For FreeBSD** on most architectures, use **Clang** or **GCC**, ideally
+matching the system compiler.
 
 **For other platforms**, use the **GCC** compiler of at least version
-5.1, and below that the **G++** compiler of at least version 4.4 as an
-alternative.
+5.1 or higher. Use back-ports such as EPEL or SCL.
 
 .. [#]
 
-   Support for this **C11** is given with **gcc 5.x** or higher or any
-   **clang** version.
+   Support for this **C11** is given with **GCC 5.1** or higher and all
+   **Clang** versions
 
    The older **MSVC** compilers don't do it yet. But as a workaround, with
-   Python 3.10 or older, the C++03 language standard is significantly
-   overlapping with C11, it is then used instead.
+   Python 3.10 or older, the **C++03** language standard is significantly
+   enough overlapping with **C11**, such that it is then used instead.
 
 Python
 ======
 
 |SUPPORTED_PYTHONS| are supported. If a stable Python release isn't
-listed here, don't worry; it's being worked on and will be added soon.
+listed here, don't worry; it's being worked on and added as soon as
+possible.
 
-.. important::
+.. admonition:: Special cases need 2 Python installations
 
-   You might need to download an additional Python version. To get to
-   know more, read the following statements:
+   In some scenarios, you might need to download an additional Python
+   version. To get to know more, read the following statements:
 
--  If you use **Python 3.4**, additionally install **Python 2** or
-   **Python 3.5+**. You will need it during the compile time because
+-  If you use **Python 3.4**, additionally install either **Python 2**
+   or **Python 3.5+**. You will need it during the compile time because
    **SCons** (which orchestrates the C compilation) does not support
-   **Python 3.4**.
+   **Python 3.4**, but **Nuitka** does for some commercial users
+   targeting Windows XP.
 
--  If you use the **Windows** opening system, don’t use **Python 2**
-   because **clcache** doesn’t work with it. Install **Python 3.5+**
+-  If you use the **Windows** opening system, don't use **Python 2**
+   because **clcache** doesn't work with it. Install **Python 3.5+**
    instead. **Nuitka** finds these needed Python versions (for example,
-   on **Windows** via registry) and you shouldn’t notice it as long as
+   on **Windows** via registry) and you shouldn't notice it as long as
    they are installed.
 
 -  Other functionality is available when another Python has a certain
    package installed. For example, **Python 2.x** can use onefile
    compression if another Python with the **zstandard** package is
-   installed.
+   installed as well.
 
 .. admonition:: Important considerations
 
@@ -101,28 +118,39 @@ listed here, don't worry; it's being worked on and will be added soon.
       ``--standalone`` and ``--onefile`` options.
 
    -  **Binary filename suffix:** The created binaries have an ``.exe``
-      suffix on Windows. On other platforms they have no suffix for
-      standalone mode, or ``.bin`` suffix, that you are free to remove
-      or change, or specify with the ``-o`` option. The suffix for
-      acceleration mode is added just to be sure that the original
+      suffix on Windows. On other platforms, they have either no suffix
+      in standalone mode or the ``.bin`` suffix, that you are free to
+      remove or change, or specify with the ``-o`` option. The suffix
+      for acceleration mode is added to make sure that the original
       script name and the binary name do not ever collide, so we can
-      safely overwrite the binary without destroying the original source
-      file.
+      safely overwrite the binary without destroying the source file.
 
-   -  **It has to be standard Python implementation**: You need the
-      standard Python implementation, called **CPython**, to execute
-      **Nuitka** because it's closely tied to implementation details of
-      it. You can also use **Homebrew** (for macOS) or **Anaconda
-      Python**.
+   -  **Module mode filenames:** Python Extension modules cannot be
+      renamed without breaking them, the filename and the module name
+      have to match, so you must to change the source filename to get
+      the desired result.
 
-   -  **Python from Microsoft Store**: Don’t download Python from
-      **Microsoft Store**, as it doesn’t work properly.
+   -  **It has to be a standard Python implementation:** You need a form
+      of standard Python implementation, called **CPython**, to execute
+      **Nuitka** because it's closely tied to the implementation details
+      of it. Ideally you use the ``official Python
+      <https://python.org>`` only.
+
+   -  **Homebrew (for macOS) is supported, but not ideal:** The
+      resulting binaries are not as portable and specifically not
+      backward portable.
+
+   -  **Anaconda Python is supported:** The Anaconda distribution is
+      making special adaptations for some ``conda`` packages that lead
+      to errors and might have to be reported as issues, such that
+      special treatment can be added.
+
+   -  **Python from Microsoft Store**: Don't download Python from
+      **Microsoft Store**, as it doesn't work properly.
 
    -  **Pyenv on macOS:** It is known that **macOS** **pyenv** does not
       work. Use **Homebrew** instead for self-compiled Python
-      installations. Note that standalone mode will be worse on these
-      platforms and not be as backward compatible with older **macOS**
-      versions.
+      installations.
 
 Operating System
 ================
