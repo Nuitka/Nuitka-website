@@ -26,7 +26,7 @@
 
 Dear Nuitka for Deployment User,
 
-see how to get started with deploying your software using Nuitka, it’s
+see how to get started with deploying your software using Nuitka, it's
 easy and we are there to guide you and help you through it. Many people
 say it works out of the box, but if your software is very complex, we
 can help you getting it done.
