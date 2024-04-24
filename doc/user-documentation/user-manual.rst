@@ -9,11 +9,9 @@
 ####################
 
 This page is the recommended first read when you start using **Nuitka**.
-On this page, you will learn more about **Nuitka** fundamentals, such as
-license type, use cases, requirements, and credits. This page is the
-recommended first read when you start using **Nuitka**. On this page,
-you will learn more about **Nuitka** fundamentals, such as requirements,
-installation guidelines, and tips.
+
+This page will teach you more about **Nuitka** fundamentals and is the
+recommended first read when you start using **Nuitka**.
 
 .. contents:: Table of Contents
    :depth: 1
