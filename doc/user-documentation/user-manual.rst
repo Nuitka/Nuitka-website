@@ -463,7 +463,10 @@ rights on execution with ``--windows-uac-admin`` (**Windows** only). By
 default, **Nuitka** compiles programs to run without special privileges.
 
 Request **Windows User Account Control** (**UAC**), to enforce prompting
-on the remote desktop with ``--windows-uac-uiaccess``. (**Windows** only).
+on the remote desktop with ``--windows-uac-uiaccess`` (**Windows**
+only). See `Microsoft Documentation
+<https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/user-account-control-allow-uiaccess-applications-to-prompt-for-elevation-without-using-the-secure-desktop>`__
+on the topic for details about this.
 
 Console Window
 ==============
