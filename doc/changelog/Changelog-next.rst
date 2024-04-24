@@ -14,9 +14,15 @@ current stable release as |NUITKA_VERSION| as well.
  Nuitka Release 2.2 (Draft)
 ****************************
 
-This a draft of the release notes for 2.2, which is supposed to contains
-the usual additions of new packages supported out of the box and will
-aim at scalability.
+.. note::
+
+   This a draft of the release notes for 2.2, which is supposed to
+   contains the usual additions of new packages supported out of the box
+   and will aim at scalability.
+
+This release had a focus on compatibility, but also some important
+optimization progress for loops. The main line of changes are for
+support of 3.12 in the next release.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -148,8 +154,52 @@ Bug Fixes
 -  Standalone: Added support for more parts of ``networkx`` package.
    Fixed in 2.1.6 already.
 
+-  Windows: Fix working with UNC paths and re-parse points at compile
+   time.
+
+   Now Nuitka should work with mapped and even unmapped to drive paths
+   like ``\\some-hostname\unc-test`` as they are common in some VM
+   setups.
+
+-  Windows: Make sure the download path is an external use path in scons
+   as well, otherwise the home directory could be an unusable path for
+   MinGW64, causing it to not find files.
+
+-  Standalone: Added missing dependency of ``sspilib`` that prevented
+   ``requests-ntlm`` from working on Windows.
+
+-  Python3.5+: Add support for using diction ary un-packings in class
+   declarations. This is rarely used feature, that will practically
+   never be used, but was found missing by tests recently.
+
+-  Python3.11: Fix, code objects ``co_qualname`` attribute was not
+   actually the qualified name, but the name only.
+
+-  Anaconda: Fix, must not consider Anaconda'S ``lib`` directory system
+   DLLs that are not included.
+
+-  Fix, cannot trust dynamic hard modules as much otherwise,
+   ``huggingface_hub.utils.tqdm`` ended up being a module, and not the
+   class it's supposed to be.
+
+-  macOS: Fix, on newer macOS the ``libc++`` and ``libz`` DLLs cannot be
+   found anymore, we need to actively ignore that.
+
+-  Fix, support for newer ``zaber_motion`` was not really working.
+
 New Features
 ============
+
+-  Added experimental support for Python 3.12, this is passing basic
+   tests, but known to crash a lot at runtime still, you are recommended
+   to use pre-releases of Nuitka, as official support is not going to
+   happen before 2.3 release.
+
+-  Standalone: Added support for ``tensorflow.function`` JIT
+
+   This adds support to preserve the source code of decorated functions
+   and provide it at runtime to ``tensorflow`` JIT so it can do its
+   tracing executions.
 
 -  For Nuitka package configuration, we now have ``change_class``
    similar to ``change_function`` to replace a full class definition
@@ -163,8 +213,28 @@ New Features
    Nuitka Package configuration to inform ``matplotlib`` users to select
    a GUI backend via plugin selection. Added in 2.1.4 already.
 
+-  Zig: Added support for ``zig`` as CC value. Due to it not supporting
+   C11 fully yet, we need to use the C++ workaround, and cannot compile
+   for Python 3.11 or higher yet.
+
 Optimization
 ============
+
+-  Use ``set`` specific API in contains tests, rather than generic
+   sequence one.
+
+-  Lower ``value in something`` tests for known ``set`` and ``list``
+   values to use ``frozenset`` and ``tuple`` respectively.
+
+-  Recognize exact type shapes on loop variables where possible. This
+   enables appends to list to be optimized to their dedicated nodes
+   among other things, with those often being a lot faster than generic
+   code. This speeds up e.g. list append tests by a larger amount.
+
+-  Optimization: Have dedicated helper for ``list.remove``, such that it
+   is not using a Python DLL call where that is slow, also the code was
+   causing problems previously, that cannot happen in this form, and our
+   form does actually work faster in general too.
 
 -  ArchLinux: Enable static libpython by default, it is usable indeed.
    Added in 2.1.2 already.
@@ -195,8 +265,36 @@ Optimization
 -  Anti-Bloat: Avoid ``scipy`` usage causing ``torch`` or ``cupy``
    usage. Added in 2.1.4 already.
 
+-  Anti-Bloat: Recognize ``keras`` testing modules as ``unittest``
+   bloat.
+
+-  Faster code generation due to enhancements in how identifiers are
+   cached for module names, and the indentation codes.
+
+-  Optimization: Handle ``no_docstrings`` issue for ``torio`` package.
+
+-  Anti-Bloat: Avoid ``IPython`` from ``imgui_bundle`` package.
+
+-  Anti-Bloat: Remove testing module usage when ``dask`` is used.
+
 Organisational
 ==============
+
+-  UI: Catch conflicts between data files and EXE/DLLs/extension module
+   filenames. Previously you could overwrite binaries with data files,
+   this is now recognized.
+
+-  Onefile: Avoid using program name without suffix inside the dist
+   folder, as that avoids collisions with data file directories of the
+   same name, e.g. if the package and main binary have the same name,
+   they would clash previously, but adding a ``.bin`` suffix to the
+   binary avoids that entirely.
+
+-  UI: Don't force ``{VERSION}`` in specs to be resolved to four digits.
+
+   That just makes it hard to use for users, who will be surprised to
+   see ``1.0`` become ``1.0.0.0`` when that is only needed for Windows
+   version information really.
 
 -  UI: Catch wrong values for ``--jobs`` value sooner, negative and
    non-integer values error exit immediately. Added in 2.1.1 already.
@@ -206,6 +304,8 @@ Organisational
    The recommended form of calling of Nuitka should not have an ugly
    invocation reference ``__main__.py`` instead put the ``python -m
    nuitka`` notion there.
+
+-  UI: Reorder options for plugins group to be more useful.
 
 -  Plugins: Remove obsolete plugins from standard plugin documentation.
    Removed in 2.1.4 already.
@@ -219,16 +319,58 @@ Organisational
    potentially and they also are likely copy&paste mistakes, that won't
    do what the user expects. Added in 2.1.4 already.
 
+-  Quality: Updated to latest version of black.
+
+-  Quality: Fix, ``isort`` and ``black`` can corrupt outputs, catch
+   that.
+
+-  Debugging: Generate Scons debug script
+
+   This can be used to quickly re-execute a Scons compilation without
+   running Nuitka again, this is best used in cases, where there is no
+   Python level change but only C changes and no expectation of
+   producing a usable result.
+
+   Because no post processing is applied, and as a consequence this is
+   not usable to produce binaries that work. In the future we might
+   expand this to be able to run post-processing still.
+
+-  Debugging: Disabling all freelists is now honored for more code,
+   tuples and empty dictionaries as well.
+
+-  UI: Add macOS version to help output, that is actually making a lot
+   of differences many times.
+
+-  Reports: Add OS release to reports as well.
+
+-  Watch: Reporting more problems, catching more errors, basic ability
+   to create PRs from changes added, but not yet used automatically.
+
 Tests
------
+=====
 
 -  Tests: Fix, cannot assume ``setuptools`` to be installed, some RPM
    based systems don't have it.
 
+-  Run commercial code signing test only on Windows.
+
+-  Allow the Azure agent folders for standalone file access tests as
+   well, it's like a home directory for the purposes of those tests.
+
+-  Make sure optimization tests are named to make it clear that they are
+   tests.
+
+Cleanups
+========
+
+-  Remove useless ``--execute-with-pythonpath`` option, we don't use
+   that anymore at all.
+
 Summary
 =======
 
-This release is not yet done, but is supposed to focus again on
-scalability.
+The JIT mechanism added for ``tensorflow`` should be possible to
+generalize and will be applied to other JITs, like maybe ``numba`` in
+the future as well.
 
 .. include:: ../dynamic.inc
