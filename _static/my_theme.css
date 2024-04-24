@@ -588,7 +588,6 @@ ol.fp-circle-text-list {
 .fp-circle-text-list li {
     list-style: none !important;
     margin-left: none !important;
-    ;
 
     counter-increment: fp-circle-heading-item;
     margin-bottom: 5px;
@@ -600,7 +599,9 @@ ol.fp-circle-text-list {
     background: var(--our-color-yellow);
     border-radius: 100%;
     color: white;
-    width: 1.2em;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8em;
     text-align: center;
     display: inline-block;
 }
@@ -663,7 +664,7 @@ img.fp-circle-image {
 }
 
 .fp-circle-main-text-body {
-    padding-left: 4ch;
+    padding-left: 5ch;
     font-weight: normal;
 }
 
