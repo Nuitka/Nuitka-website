@@ -404,11 +404,11 @@ and functionality of compiled binaries.
 Icons
 =====
 
-The icon tweaks allow you to customize the visual appearance of the
+The icon tweak allows you to customize the visual appearance of the
 resulting executable file. This icon is what users will see when they
-look at the file on their computer or in their file explorer.
+look at the file in their file explorer and in the taskbar or dock.
 
-On **Windows**, you can provide **PNG** file, an icon file, or a
+On **Windows**, you can provide a **PNG** file, an icon file, or a
 template executable. These create binaries with icons on **Windows** and
 may even be combined:
 
@@ -429,7 +429,7 @@ These create application bundles with icons on **macOS**:
 
    With **Nuitka**, you don't have to create platform-specific icons
    manually. Instead, it seamlessly converts various formats, such as
-   **PNG** and others, on the go during the build process.
+   **PNG** and others on the go during the build process.
 
 MacOS Entitlements
 ==================
@@ -437,44 +437,33 @@ MacOS Entitlements
 Entitlements define the capabilities and permissions that the
 application has when running, such as access to audio, camera, or
 calendar. Entitlements for a **macOS** application bundle can be added
-with the following option:
+with the option ``--macos-app-protected-resource`` (**macOS** only).
 
-.. code:: bash
+For example, if you want to request access to a microphone, use the
+following option value
+``--macos-app-protected-resource="NSMicrophoneUsageDescription:Microphone
+access"`` giving the Apple identifier, and a human readable one.
 
-   --macos-app-protected-resource
-
-For example, if you want to request access to a microphone, run the
-following command:
-
-.. code:: bash
-
-   --macos-app-protected-resource=NSMicrophoneUsageDescription:Microphone access
-
-See the full list in the `Protected resources
-<https://developer.apple.com/documentation/bundleresources/information_property_list/protected_resources>`_
+See the complete list in the `Protected resources
+<https://developer.apple.com/documentation/bundleresources/information_property_list/protected_resources>`__
 page.
 
 .. note::
 
    If you have spaces in the entitlement description, make sure to quote
-   it. This prevents your shell from interpreting the spaces as separate
-   arguments for **Nuitka** and ensures that the description is
-   correctly passed through to **Nuitka**.
+   the argument value. That prevents your shell from interpreting the
+   spaces as separate arguments for **Nuitka** and make sure that the
+   description is correctly passed through to **Nuitka**.
 
 Windows UAC Configuration
 =========================
 
-``--windows-uac-admin``
-
 Request **Windows User Account Control** (**UAC**), to grant admin
-rights on execution. (**Windows** only). By default, this option is
-turned off.
+rights on execution with ``--windows-uac-admin`` (**Windows** only). By
+default, **Nuitka** compiles programs to run without special privileges.
 
-``--windows-uac-uiaccess``
-
-Request **Windows User Account Control** (**UAC**), to enforce running
-from a few folders only, remote desktop access. (**Windows** only). By
-default, this option is turned off.
+Request **Windows User Account Control** (**UAC**), to enforce prompting
+on the remote desktop with ``--windows-uac-uiaccess``. (**Windows** only).
 
 Console Window
 ==============
