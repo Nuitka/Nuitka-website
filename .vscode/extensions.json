@@ -8,6 +8,7 @@
         "ms-python.vscode-pylance",
         "shuworks.vscode-table-formatter",
         "streetsidesoftware.code-spell-checker",
-        "redhat.vscode-xml"
+        "redhat.vscode-xml",
+        "swyddfa.esbonio"
     ]
 }
