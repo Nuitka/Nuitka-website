@@ -617,7 +617,7 @@ ol.fp-circle-text-list {
 }
 
 .fp-circle-text-list li:nth-of-type(3):before {
-    background: var(--our-color-grey);
+    background: var(--our-color-dark-blue);
 }
 
 .fp-circle-text-sub-heading {
