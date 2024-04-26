@@ -178,8 +178,8 @@ portable C code. Therefore, many other architectures work out of the box
 as well.
 
 Generally, the architectures that **Debian** or **RHEL** support can be
-considered good and tested, too, e.g. **RISC-V**, etc. won't give you
-any issues.
+considered good and tested, too; for example, **RISC-V** won't pose any
+issues.
 
 **************
  Installation
@@ -557,6 +557,53 @@ product name, and other elements to your compilation. You will see it in
 the version information for the created binary on **Windows** or the
 application bundle on **macOS**.
 
+.. note::
+
+   For some version options, you can put any text you choose here, but
+   make sure to quote the new lines appropriately for the shell to see
+   this as one argument.
+
+Product Name
+------------
+
+With the ``--product-name`` option, you specify the product's name to
+use in version information. Defaults to the base filename of the created
+binary; for example, when compiling ``MySoftware.py``, it becomes
+``MySoftware``, but you can override it as you choose.
+
+Product Version
+---------------
+
+For **Windows**, there is a distinction between file and product
+version, and **Nuitka** will, where applicable, also combine the two
+into a single one if you specify both.
+
+Use ``--product-version`` and ``--file-version`` to provide full version
+information. It must be up to 4 numbers; for example, ``1.0.0.0``
+and``1.0`` will also be accepted. For **Windows** version information,
+**Nuitka** adds zeros automatically. Non-numbers are not allowed here.
+
+File Description
+----------------
+
+You can also describe the created binary for use in the version
+information with the option ``--file-description``, by default on
+**Windows**, because it's mandatory in version information **Nuitka**
+uses the binary filename, so for example, ``MySoftware.py`` becomes
+``MySoftware.exe``, but it's better for you to provide one.
+
+Copyright
+---------
+
+You can specify legal copyright information to display in the version
+information with the ``--copyright`` option.
+
+Trademarks
+----------
+
+You can specify legal trademark information to display in the version
+information with the ``--trademark`` option.
+
 ********************************
  Solutions to the Common Issues
 ********************************
@@ -625,7 +672,8 @@ And much more
 -------------
 
 The deployment mode is relatively new and has constantly more features
-added, e.g. something for ``FileNotFoundError`` should be coming soon.
+added, for example, something for ``FileNotFoundError`` should be coming
+soon.
 
 Disabling All
 -------------
@@ -792,8 +840,8 @@ so that's a natural choice right there.
 Dynamic ``sys.path``
 ====================
 
-If your script modifies ``sys.path``, e.g. inserts directories with
-source code relative to it, Nuitka will not be able to see those.
+If your script modifies ``sys.path``, for example inserts directories
+with source code relative to it, Nuitka will not be able to see those.
 However, if you set the ``PYTHONPATH`` to the resulting value, it will
 be able to compile it and find the used modules from these paths as
 well.
@@ -802,11 +850,11 @@ Manual Python File Loading
 ==========================
 
 A very frequent pattern with private code is that it scans plugin
-directories of some kind, and e.g. uses ``os.listdir``, then considers
-Python filenames, and then opens a file and does ``exec`` on them. This
-approach works for Python code, but for compiled code, you should use
-this much cleaner approach, that works for pure Python code and is a lot
-less vulnerable.
+directories of some kind, and for example uses ``os.listdir``, then
+considers Python filenames, and then opens a file and does ``exec`` on
+them. This approach works for Python code, but for compiled code, you
+should use this much cleaner approach, that works for pure Python code
+and is a lot less vulnerable.
 
 .. code:: python
 
@@ -826,9 +874,9 @@ Missing data files in standalone
 ================================
 
 If your program fails to find data file, it can cause all kinds of
-different behavior, e.g. a package might complain it is not the right
-version because a ``VERSION`` file check defaulted to an unknown. The
-absence of icon files or help texts, may raise strange errors.
+different behavior, for example a package might complain it is not the
+right version because a ``VERSION`` file check defaulted to an unknown.
+The absence of icon files or help texts, may raise strange errors.
 
 Often the error paths for files not being present are even buggy and
 will reveal programming errors like unbound local variables. Please look
@@ -875,12 +923,12 @@ these.
 A major weapon in fighting dependency creep should be applied, namely
 the ``anti-bloat`` plugin, which offers interesting abilities, that can
 be put to use and block unneeded imports, giving an error for where they
-occur. Use it e.g. like this ``--noinclude-pytest-mode=nofollow
---noinclude-setuptools-mode=nofollow`` and e.g. also
+occur. Use it for example like this ``--noinclude-pytest-mode=nofollow
+--noinclude-setuptools-mode=nofollow`` and for example also
 ``--noinclude-custom-mode=setuptools:error`` to get the compiler to
 error out for a specific package. Make sure to check its help output. It
-can take for each module of your choice, e.g. forcing also that e.g.
-``PyQt5`` is considered uninstalled for standalone mode.
+can take for each module of your choice, for example forcing also that
+for example ``PyQt5`` is considered uninstalled for standalone mode.
 
 It's also driven by a configuration file, ``anti-bloat.yml`` that you
 can contribute to, removing typical bloat from packages. Please don't
@@ -897,8 +945,8 @@ standalone binary.
 .. important::
 
    What you should **not** do, is use the current directory
-   ``os.getcwd``, or assume that this is the script directory, e.g. with
-   paths like ``data/``.
+   ``os.getcwd``, or assume that this is the script directory, for
+   example with paths like ``data/``.
 
    If you did that, it was never good code. Links, to a program,
    launching from another directory, etc. will all fail in bad ways. Do
@@ -1018,9 +1066,9 @@ data file paths, DLLs, and reasons why things are included or not.
 At this time, the report contains absolute paths in some places, with
 your private information. The goal is to make this blended out by
 default because we also want to become able to compare compilation
-reports from different setups, e.g. with updated packages, and see the
-changes to Nuitka. The report is, however, recommended for your bug
-reporting.
+reports from different setups, for example with updated packages, and
+see the changes to Nuitka. The report is, however, recommended for your
+bug reporting.
 
 Also, another form is available, where the report is free form and
 according to a Jinja2 template of yours, and one that is included in
