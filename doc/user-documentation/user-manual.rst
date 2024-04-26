@@ -477,8 +477,8 @@ output visibility or easy debugging of program errors, which is
 essential.
 
 In Python, there is also a difference between **pythonw.exe** and
-**python.exe** along those lines. **Nuitka** replicates that
-with the option ``--disable-console``.
+**python.exe** along those lines. **Nuitka** replicates that with the
+option ``--disable-console``.
 
 **Nuitka** itself recommends this option, especially when using **GUI**
 packages like **PySide6** or **wx**, but it may not cover all those
@@ -488,21 +488,21 @@ cases. In case you know your program is a console application, use
 
 .. note::
 
-   You cannot use **pythonw.exe** with **Nuitka**, as you won't be able to see its
-   output.
+   You cannot use **pythonw.exe** with **Nuitka**, as you won't be able
+   to see its output.
 
 Splash screen
 =============
 
-Splash screens are helpful when program startup is slow. The
-startup of **Nuitka** in **Onefile** is fast, but your program might need more time. Moreover,
-you can't be sure how fast the computer used will be, so it might be a
-good idea to have splash screens. Luckily, with **Nuitka**, they are
-easy to add for **Windows**.
+Splash screens are helpful when program startup is slow. The startup of
+**Nuitka** in **Onefile** is fast, but your program might need more
+time. Moreover, you can't be sure how fast the computer used will be, so
+it might be a good idea to have splash screens. Luckily, with
+**Nuitka**, they are easy to add for **Windows**.
 
 For the splash screen, you need to specify it as a **PNG** file. Make
-sure to turn off the splash screen when your program is ready, meaning it
-has completed the imports, prepared the window, or connected to the
+sure to turn off the splash screen when your program is ready, meaning
+it has completed the imports, prepared the window, or connected to the
 database. To combine the code with the creation, compile the following
 project syntax:
 
@@ -534,13 +534,20 @@ project syntax:
 Reports
 =======
 
-For analysis of your program and **Nuitka** packaging, there is the
-`Compilation Report`_ available. You can also make custom reports by
-providing your template, with a few of them built-in to **Nuitka**.
-These reports carry all the detail information, for example, when a
-module was attempted to be imported, but not found, you can see where
-that happens. For bug reporting, it's very much recommended to provide
-the report.
+For analysis of your program and **Nuitka** packaging, the
+:ref:`Compilation Report <compilation-report>` is available. You can
+also make custom reports by providing your template or using one
+built-in to **Nuitka**. These reports carry all the detailed
+information; for example, when a module is imported but not found, you
+can see where that happens.
+
+.. note::
+
+   We highly recommend that you provide the Compilation Report when
+   reporting issues. This report, with its detailed information, is a
+   reliable tool for troubleshooting. It allows you to share precise
+   insights into your program's compilation, aiding in the swiftly
+   resolving any issues that may arise.
 
 Version Information
 ===================
@@ -995,6 +1002,8 @@ have to call the main function yourself.
 To support this, the CPython ``runpy`` and/or ``ExtensionFileLoader``
 would need improving such that Nuitka could supply its compiled module
 object for Python to use.
+
+.. _compilation-report:
 
 ********************
  Compilation Report
