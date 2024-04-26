@@ -471,21 +471,24 @@ on the topic for details about this.
 Console Window
 ==============
 
-On Windows, the console is opened by programs by default. You can change
-it anytime. **Nuitka** follows this default behavior, making it
-primarily suitable for terminal-based programs or those where output
-visibility is essential. There is a difference between **pythonw.exe**
-and **python.exe** along those lines. This is replicated in **Nuitka**
+On **Windows**, programs can open a console by default. You can change
+that with the ``--disable-console`` option. That makes them suitable for
+output visibility or easy debugging of program errors, which is
+essential.
+
+In Python, there is also a difference between **pythonw.exe** and
+**python.exe** along those lines. **Nuitka** replicates that
 with the option ``--disable-console``.
 
-**Nuitka** recommends this option, especially when using **GUI**
-packages like **PySide6** or **wx**. In case, you know your program is
-console application, use ``--enable-console`` which will get rid of
-these kinds of outputs from **Nuitka**.
+**Nuitka** itself recommends this option, especially when using **GUI**
+packages like **PySide6** or **wx**, but it may not cover all those
+cases. In case you know your program is a console application, use
+``--enable-console``, which will get rid of these kinds of outputs from
+**Nuitka**.
 
 .. note::
 
-   Avoid using **pythonw.exe** with **Nuitka**, as you won't see its
+   You cannot use **pythonw.exe** with **Nuitka**, as you won't be able to see its
    output.
 
 Splash screen
