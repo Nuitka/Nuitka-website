@@ -494,14 +494,14 @@ cases. In case you know your program is a console application, use
 Splash screen
 =============
 
-Splash screens are useful when program startup is slow. **Onefile**
-startup itself is fast, but your program might need more time. Moreover,
+Splash screens are helpful when program startup is slow. The
+startup of **Nuitka** in **Onefile** is fast, but your program might need more time. Moreover,
 you can't be sure how fast the computer used will be, so it might be a
 good idea to have splash screens. Luckily, with **Nuitka**, they are
 easy to add for **Windows**.
 
 For the splash screen, you need to specify it as a **PNG** file. Make
-sure to disable the splash screen when your program is ready, meaning it
+sure to turn off the splash screen when your program is ready, meaning it
 has completed the imports, prepared the window, or connected to the
 database. To combine the code with the creation, compile the following
 project syntax:
