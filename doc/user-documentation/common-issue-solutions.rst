@@ -288,22 +288,24 @@ reduces the amount of memory by a factor up to 8.
  Dynamic ``sys.path``
 **********************
 
-If your script modifies ``sys.path``, for example inserts directories
-with source code relative to it, Nuitka will not be able to see those.
-However, if you set the ``PYTHONPATH`` to the resulting value, it will
-be able to compile it and find the used modules from these paths as
-well.
+If your script modifies ``sys.path`` at runtime, for example, inserts
+directories with source code relative to it, **Nuitka** will not be able
+to see those. However, if you set the ``PYTHONPATH`` to the resulting
+value, it will be able to compile it and find the used modules from
+these paths as well.
 
 ****************************
  Manual Python File Loading
 ****************************
 
-A very frequent pattern with private code is that it scans plugin
-directories of some kind, and for example uses ``os.listdir``, then
+A widespread pattern with private code is that it scans plugin
+directories of some kind, and for example, uses ``os.listdir``, then
 considers Python filenames, and then opens a file and does ``exec`` on
-them. This approach works for Python code, but for compiled code, you
-should use this much cleaner approach, that works for pure Python code
-and is a lot less vulnerable.
+them.
+
+This approach only works for Python source code, but for compiled code,
+you should use this much cleaner approach that works for pure Python
+code and is a lot less vulnerable.
 
 .. code:: python
 
@@ -323,22 +325,27 @@ and is a lot less vulnerable.
  Missing data files in standalone
 **********************************
 
-If your program fails to find data file, it can cause all kinds of
-different behavior, for example a package might complain it is not the
-right version because a ``VERSION`` file check defaulted to an unknown.
-The absence of icon files or help texts, may raise strange errors.
+If your program fails to find a data file, it can cause different
+problematic behavior; for example, a package might complain that it is
+not the correct version, because a ``VERSION`` read from the file
+usually, was not found and instead a default value is used. The absence
+of icon files may cause visual issues only or texts that cannot be found
+in a file, which may also raise strange errors.
 
-Often the error paths for files not being present are even buggy and
-will reveal programming errors like unbound local variables. Please look
-carefully at these exceptions, keeping in mind that this can be the
-cause. If your program works without standalone, chances are data files
-might be the cause.
+Often, the error handling code paths for files that are not present are
+even buggy and will reveal programming errors like unbound local
+variables. Please look carefully at these exceptions, considering this
+can be the cause. If your program works without the ``--standalone`` and
+only ``--follow-imports``, data files are likely the cause.
 
-The most common error indicating file absence is of course an uncaught
-``FileNotFoundError`` with a filename. You should figure out what
+The most common error indicating file absence is, of course, an uncaught
+``FileNotFoundError`` with a filename. You should figure out what Python
 package is missing files and then use ``--include-package-data``
 (preferably), or ``--include-data-dir``/``--include-data-files`` to
 include them.
+
+You can read all about data files in :ref:`data-files`; there is much
+more detail to learn than is covered here.
 
 *********************************
  Missing DLLs/EXEs in standalone

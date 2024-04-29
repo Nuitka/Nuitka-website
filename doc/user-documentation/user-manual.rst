@@ -255,6 +255,8 @@ To view it, run the following command:
 
    python -m nuitka --help
 
+.. _data-files:
+
 ************
  Data Files
 ************
