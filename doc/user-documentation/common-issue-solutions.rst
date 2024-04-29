@@ -33,6 +33,8 @@ If you want to disable all these helpers, read more in the `Disabling
 All`_ section. Following is the list of currently implemented helpers
 you can also deactivate individually by name, and you might have to.
 
+.. _fork-bombs:
+
 Fork Bombs (Self-execution)
 ===========================
 
@@ -119,7 +121,9 @@ need it, turn it off.
 Some Antivirus Vendors may flag compile binaries using **Nuitka's**
 default settings on **Windows** as malware. That happens a lot if you
 compile without additional steps. You can avoid this by purchasing the
-:doc:`Nuitka Commercial </doc/commercial>` plan and following the instructions given. You can solve it with those instructions and support, but there are no guarantees.
+:doc:`Nuitka Commercial </doc/commercial>` plan and following the
+instructions given. You can solve it with those instructions and
+support, but there are no guarantees.
 
 ******************
  Linux Standalone
@@ -135,28 +139,32 @@ version that you intend to support. However, this process can be
 exhausting, involving setup complexities and security considerations
 since it exposes source code.
 
-We recommend purchasing :doc:`Nuitka Commercial </doc/commercial>` plan,
-to overcome this issue without extra efforts. **Nuitka Commercial** has
-container-based builds, that you can use. This uses dedicated optimized
-Python builds, targeting **CentOS 7** and supporting even newest Pythons
-and very old operating systems. This solution streamlines the process by
-integrating recent C compiler chains.
+We recommend purchasing :doc:`Nuitka Commercial </doc/commercial>` plan
+to overcome this issue without extra effort. **Nuitka Commercial** has
+container-based builds that you can use. This container uses dedicated
+optimized Python builds, targeting **CentOS 7** and supporting even the
+newest Pythons and old operating systems. This solution streamlines the
+process by integrating recent C compiler chains.
 
 *************************************
  Program Crashes System (Fork Bombs)
 *************************************
 
-A fork bomb is a program that spawn recursively, causing system crash.
-This can happen, since ``sys.executable`` for compiled programs is not a
-Python interpreter, and packages that try to do multiprocessing in a
-better way, often relaunch themselves. **Nuitka** handles it with known
-packages. However, you may encounter a situation where the detection of
-this fails. To disable this protection, read about `Fork Bombs
-(Self-execution)`_ option.
+A fork bomb is a program that spawns recursively, causing a system lock
+and ultimately crashing it in short order. That happens since
+``sys.executable`` for a compiled program is not the Python interpreter
+it usually is, and packages that try to do multiprocessing in a better
+way relaunch themselves. That starts the process all over again unless
+taken care of.
 
-To handle fork bombs, use the ``--experimental=debug-self-forking``
-option to check fork bombs behavior. To minimize risks associated with
-fork bombs, put the following code snippet at the beginning of your
+**Nuitka** handles it for all packages known to do that; for example,
+``joblib``. However, you may encounter a situation where the detection
+of this fails. To turn off this protection, read about the
+:ref:`fork-bombs` option.
+
+To debug fork bombs, use the ``--experimental=debug-self-forking``
+option to check program fork behavior. To minimize risks associated with
+fork bombs, put the following code snippet at the very beginning of your
 program.
 
 .. code:: python
@@ -168,13 +176,16 @@ program.
    os.environ["NUITKA_LAUNCH_TOKEN"] = "1"
 
 This code checks for the presence of the environment variable
-``NUITKA_LAUNCH_TOKEN`` and if found, the program exits with an error
-message. Otherwise, it sets the ``NUITKA_LAUNCH_TOKEN`` in the
-environment, so afterwards, the potential fork bomb can be discovered.
+``NUITKA_LAUNCH_TOKEN`` and the program reacts with an error exit.
+Otherwise, it sets the ``NUITKA_LAUNCH_TOKEN`` in the environment, so
+afterward, the potential fork bomb is detected, should the program
+re-execute itself.
 
-**Nuitka** tries to handle fork bombs without the deployment option,
-finding ``-c`` and ``-m`` options. However, the detection may not be
-perfect or not work well with a package (anymore).
+**Nuitka** handles fork bombs without the deployment option if it finds
+``-c`` and ``-m`` options, as typically used with the Python interpreter
+to execute code. However, the detection may need improvement to work
+well with a new package (or a previously working package in a newer
+version).
 
 *********************************
  Memory issues and compiler bugs
