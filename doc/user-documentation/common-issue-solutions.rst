@@ -59,19 +59,20 @@ error:
 
 To avoid this issue, ensure your program handles command line parsing
 correctly and avoids using unsupported packages that attempt
-re-execution. Additionally, you can disable this specific behavior at
+re-execution. Additionally, you can turn off this specific behavior at
 compile time by using the ``--no-deployment-flag=self-execution`` flag.
 
 Misleading Messages
 ===================
 
 Some Python packages generate misleading error messages when they
-encounter import failures. These messages may suggest actions, which may
-not be the appropriate solution in the context of compiled programs.
-**Nuitka** tries to correct them in non-deployment mode. Here is an
-example, where **Nuitka** changes a message that asks to pip install
-(which is not the issue) to point the user to the include command that
-makes an ``imageio`` plugin work.
+encounter import failures. These messages sometimes suggest actions that
+may not be the appropriate solution for compiled programs. **Nuitka**
+tries to correct them in non-deployment mode. Here is an example where
+**Nuitka** changes a message that asks to ``pip install ...`` a package.
+That, of course, is not the issue, and instead, **Nuitka** makes the
+program point the user to the ``--include-module`` option that makes an
+``imageio`` plugin work.
 
 .. code:: yaml
 
@@ -85,57 +86,61 @@ makes an ``imageio`` plugin work.
 And much more
 =============
 
-The deployment mode is relatively new and has constantly more features
-added, for example, something for ``FileNotFoundError`` should be coming
-soon.
+The non-deployment mode of **Nuitka** is constantly evolving and adding
+more features, for example, something for ``FileNotFoundError`` should
+be added; there are plenty of ideas.
 
 Disabling All
 =============
 
-All these helpers can of course be disabled at once with
-``--deployment`` but keep in mind that for debugging, you may want to
-re-enable it. You might want to use **Nuitka Project** options and an
-environment variable to make this conditional.
+All these helpers can, of course, will be removed at once when using the
+``--deployment`` option of **Nuitka**, but remember that you may want to
+re-enable it for debugging. To make this easy to toggle, you should use
+:ref:`Nuitka Project Options <nuitka-project-options>` and check an
+environment variable in them.
 
-Should you disable them all?
+.. code:: python
 
-We recommend selective disabling, but with **PyPI** upgrades and your
+   # nuitka-project-if: os.getenv("DEPLOYMENT") == "yes":
+   #  nuitka-project: --deployment
+
+Why should you not disable them all during development?
+
+We recommend selective disabling, as with **PyPI** upgrades and your
 code changes, these issues can resurface. The space saved by deployment
 mode is minimal, so we advise not to disable them. Instead, review each
-feature, and if you know that it won't affect you, or you won't need it,
-then disable it. Some upcoming features will be geared at beginner-level
-usage.
+feature, and if you know, it won't affect your software or you won't
+need it, turn it off.
 
 ************************
  Windows Virus Scanners
 ************************
 
-If you compile binaries using **Nuitka's** default settings on
-**Windows** without additional steps, some antivirus vendors may flag
-them as malware. You can avoid this by purchasing the `Nuitka Commercial
-<https://nuitka.net/doc/commercial.html>`_ plan. In this case, you will
-get instructions and support on that matter.
+Some Antivirus Vendors may flag compile binaries using **Nuitka's**
+default settings on **Windows** as malware. That happens a lot if you
+compile without additional steps. You can avoid this by purchasing the
+:doc:`Nuitka Commercial </doc/commercial>` plan and following the instructions given. You can solve it with those instructions and support, but there are no guarantees.
 
 ******************
  Linux Standalone
 ******************
 
-For **Linux** standalone it's difficult to build a binary that works on
-other **Linux** versions. This is mainly because on Linux, much software
-is built specifically targeted to concrete dynamic-link libraries.
+For **Linux** standalone, building a binary that works on other
+**Linux** versions is challenging. Because on Linux, much software is
+explicitly built targeted to concrete dynamic-link libraries, it then
+often does not run on other Linux flavors at all.
 
 The solution is to compile your application on the oldest **Linux**
-version you intend to support. However, this process can be exhausting,
-involving setup complexities and security considerations since it
-involves exposing your source code.
+version that you intend to support. However, this process can be
+exhausting, involving setup complexities and security considerations
+since it exposes source code.
 
-We recommend purchasing `Nuitka Commercial
-<https://nuitka.net/doc/commercial.html>`_ plan, to overcome this issue
-without extra efforts. **Nuitka Commercial** has container-based builds,
-that you can use. This uses dedicated optimized Python builds, targeting
-**CentOS 7** and supporting even newest Pythons and very old operating
-systems. This solution streamlines the process by integrating recent C
-compiler chains.
+We recommend purchasing :doc:`Nuitka Commercial </doc/commercial>` plan,
+to overcome this issue without extra efforts. **Nuitka Commercial** has
+container-based builds, that you can use. This uses dedicated optimized
+Python builds, targeting **CentOS 7** and supporting even newest Pythons
+and very old operating systems. This solution streamlines the process by
+integrating recent C compiler chains.
 
 *************************************
  Program Crashes System (Fork Bombs)
