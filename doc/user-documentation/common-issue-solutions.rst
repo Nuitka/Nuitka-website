@@ -191,10 +191,10 @@ version).
  Memory issues and compiler bugs
 *********************************
 
-In some cases, the C compilers will crash saying they cannot allocate
-memory or that some input was truncated, or similar error messages,
-clearly from it. These are example error messages, that are a sure sign
-of too low memory, there is no end to them.
+Sometimes the C compilers will crash, saying they cannot allocate
+memory, that some input was truncated, or similar error messages caused
+by that. These are example error messages that are a sure sign of memory
+being too low; there is no end to them.
 
 .. code::
 
@@ -205,7 +205,7 @@ of too low memory, there is no end to them.
    fatal error C1002: compiler is out of heap space in pass 2
    fatal error C1001: Internal compiler error
 
-There are several options you can explore here.
+There are several approaches you can explore here.
 
 Ask Nuitka to use less memory
 =============================
@@ -217,59 +217,72 @@ at the cost of increased compile time.
 Avoid 32 bit C compiler/assembler memory limits
 ===============================================
 
-Do not use a 32 bit compiler, but a 64 bit one. If you are using Python
-with 32 bits on Windows, you most definitely ought to use MSVC as the C
-compiler, and not MinGW64. The MSVC is a cross-compiler, and can use
-more memory than gcc on that platform. If you are not on Windows, that
-is not an option, of course. Also, using the 64 bit Python will work.
+Do not use a 32-bit compiler, but a 64-bit one. If you use Python with
+32 bits on **Windows**, you should use **MSVC** as the C compiler, not
+MinGW64. The **MSVC** is a cross-compiler and can use more memory than
+**MinGW64** on that platform. Also, using the 64-bit Python will work.
 
 Use a minimal virtualenv
 ========================
 
-When you compile from a living installation, that may well have many
-optional dependencies of your software installed. Some software will
-then have imports on these, and Nuitka will compile them as well. Not
-only may these be just the troublemakers, they also require more memory,
-so get rid of that. Of course, you do have to check that your program
-has all the needed dependencies before you attempt to compile, or else
-the compiled program will equally not run.
+When you compile from an installation used for many packages and
+programs, you may have many optional dependencies of your software
+installed. Some software will then have imports on these, and Nuitka
+will compile them as well. Not only may these be just the troublemakers,
+but they also require more memory, so get rid of that. Of course, you do
+have to check that your program has all the needed dependencies before
+you attempt to compile, or else the compiled program will equally not
+run.
 
 Use LTO compilation or not
 ==========================
 
-With ``--lto=yes`` or ``--lto=no`` you can switch the C compilation to
-only produce bytecode, and not assembler code and machine code directly,
-but make a whole program optimization at the end. This will change the
-memory usage pretty dramatically, and if your error is coming from the
-assembler, using LTO will most definitely avoid that.
+Link time optimization (**LTO**) is a technique modern compilers allow
+for. With ``--lto=yes`` or ``--lto=no``, you can switch the C
+compilation to only produce bytecode, and not assembler code and machine
+code directly, but make a whole program optimization at the end.
 
-Switch the C compiler to clang
+Using **LTO** will change memory usage dramatically, and if your error
+is coming from the assembler, using LTO will most likely avoid that. On
+the other hand, **LTO** does much more work during linking and can
+itself be the cause of the memory shortage.
+
+There is no clear answer to whether ** LTO ** or not is better for
+memory usage, but you can attempt switching.
+
+Switch the C compiler to Clang
 ==============================
 
-People have reported that programs that fail to compile with gcc due to
-its bugs or memory usage work fine with clang on Linux. On Windows, this
-could still be an option, but it needs to be implemented first for the
-automatic downloaded gcc, that would contain it. Since MSVC is known to
-be more memory effective anyway, you should go there, and if you want to
-use Clang, there is support for the one contained in MSVC.
+Some **Nuitka** users have reported that programs that fail to compile
+with **GCC** due to its bugs or memory usage work fine with **Clang** on
+Linux. On **Windows**, since **MSVC** is known to be more memory
+effective, you should go there first. But adding the option ``--clang``
+to your compilation may help you.
 
-Add a larger swap file to your embedded Linux
-=============================================
+Add a larger swap file to your embedded **Linux**
+=================================================
 
 On systems with not enough RAM, you need to use swap space. Running out
 of it is possibly a cause, and adding more swap space, or one at all,
 might solve the issue, but beware that it will make things extremely
-slow when the compilers swap back and forth, so consider the next tip
-first or on top of it.
+slow when the compilers swap back and forth, so consider the following
+tip first or on top of it.
+
+Refer to your systems instructions on how to add swap space to a
+**Linux** installation.
 
 Limit the amount of compilation jobs
 ====================================
 
-With the ``--jobs`` option of Nuitka, it will not start many C compiler
-instances at once, each competing for the scarce resource of RAM. By
-picking a value of one, only one C compiler instance will be running,
-and on an 8 core system, that reduces the amount of memory by factor 8,
-so that's a natural choice right there.
+With the ``--jobs`` option of **Nuitka**, it will not start many C
+compiler instances at once, each competing for the scarce resource of
+RAM. For example, picking a value of ``1`` on an eight-core system
+reduces the amount of memory by a factor up to 8.
+
+.. note::
+
+   The ``--low-memory`` option reduces the number of started C compiler
+   instances to one already.
 
 **********************
  Dynamic ``sys.path``
