@@ -370,10 +370,10 @@ page.
  Dependency creep in standalone
 ********************************
 
-Some packages are a single import, but to Nuitka mean that more than a
-thousand packages (literally) are to be included. The prime example of
-Pandas, which does want to plug and use just about everything you can
-imagine. Multiple frameworks for syntax highlighting everything
+Some packages are a single import, but to **Nuitka** means that more
+than a thousand packages (literally) are to be included. The prime
+example of Pandas, which does want to plug and use just about everything
+you can imagine. Multiple frameworks for syntax highlighting everything
 imaginable take time.
 
 Nuitka will have to learn effective caching to deal with this in the
@@ -435,8 +435,8 @@ nested structure.
 ************************
 
 There is a difference between ``sys.argv[0]`` and ``__file__`` of the
-main module for the onefile mode, that is caused by using a bootstrap to
-a temporary location. The first one will be the original executable
+main module for the onefile mode, which is caused by using a bootstrap
+to a temporary location. The first one will be the original executable
 path, whereas the second one will be the temporary or permanent path the
 bootstrap executable unpacks to. Data files will be in the later
 location, your original environment files will be in the former

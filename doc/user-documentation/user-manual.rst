@@ -119,8 +119,8 @@ possible.
 
    -  **Binary filename suffix:** The created binaries have an ``.exe``
       suffix on Windows. On other platforms, they have either no suffix
-      in standalone mode or the ``.bin`` suffix, that you are free to
-      remove or change, or specify with the ``-o`` option. The suffix
+      in standalone mode or the ``.bin`` suffix, which you are free to
+      remove or change with the ``--output-filename`` option. The suffix
       for acceleration mode is added to make sure that the original
       script name and the binary name do not ever collide, so we can
       safely overwrite the binary without destroying the source file.
@@ -388,7 +388,7 @@ Copy data files near the onefile ``--include-onefile-external-data=PATTERN``
 ============================================================================
 
 Include the specified data file patterns outside of the onefile binary,
-rather than on the inside. It of course only makes sense in case of
+rather than on the inside. It of course only makes sense in the case of
 ``--onefile`` compilation. First files have to be specified as included
 somehow, then this refers to target paths, and rather than copying to
 the distribution, the path then refers to alongside the onefile
