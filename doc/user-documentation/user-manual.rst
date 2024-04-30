@@ -185,12 +185,11 @@ issues.
  Installation
 **************
 
-For most systems, there will be packages on the `download page
-<https://nuitka.net/doc/download.html>`__ of Nuitka. You can also
-install it from the source code via the standard ``python setup.py
-install`` routine.
+For most systems, there will be packages on the :doc:`/doc/download` of
+**Nuitka**. You can also install it from the source code via the
+standard ``python setup.py install`` routine.
 
-Notice for integration with GitHub workflows, there is this
+Notice for integration with **GitHub Workflows**, there is this
 `Nuitka-Action <https://github.com/Nuitka/Nuitka-Action>`__ that you
 should use that makes it easy to integrate. You ought to start with a
 local compilation to iron out issues, but for deployment to multiple

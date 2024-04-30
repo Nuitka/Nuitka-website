@@ -352,19 +352,22 @@ more detail to learn than is covered here.
  Missing DLLs/EXEs in standalone
 *********************************
 
-Nuitka has plugins that deal with copying DLLs. For NumPy, SciPy,
-Tkinter, etc.
+**Nuitka** has plugins and configurations to deal with copying **DLLs**
+needed by some packages. It covers **NumPy**, **SciPy**, **Tkinter**, and
+practically all popular packages.
 
-These need special treatment to be able to run on other systems.
-Manually copying them is not enough and will give strange errors.
-Sometimes newer versions of packages, esp. NumPy can be unsupported. In
-this case, you will have to raise an issue and use the older one.
+The **DLLs** need special treatment to be able to run on other systems,
+merely copying them is not working and will give strange errors at
+runtime.
 
-If you want to manually add a DLL or an EXE because it is your project
-only, you will have to use user Yaml files describing where they can be
-found. This is described in detail with examples in the `Nuitka Package
-Configuration <https://nuitka.net/doc/nuitka-package-config.html>`__
-page.
+Sometimes, newer versions of packages, such as **NumPy**, can be
+unsupported. In this situation, you will have to raise an issue so
+we can also add support for it.
+
+If you want to manually add a DLL or an EXE because it is your project only, you must use user Yaml files describing their location.
+
+The reference for the syntax to use with examples is in the :doc:`Nuitka
+Package Configuration </user-documentation/nuitka-package-config>` page.
 
 ********************************
  Dependency creep in standalone
