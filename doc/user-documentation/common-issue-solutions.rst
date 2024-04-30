@@ -507,11 +507,13 @@ method, that is specific to them, so use this instead.
 
 A package can be compiled with Nuitka, no problem, but when it comes to
 executing it, ``python -m compiled_module`` is not going to work and
-give the error ``No code object available for AssertsTest`` because the
-compiled module is not source code, and Python will not just load it.
-The closest would be ``python -c "import compile_module"`` and you might
-have to call the main function yourself.
+give the error ``No code object available for AssertsTest``.
 
-To support this, the CPython ``runpy`` and/or ``ExtensionFileLoader``
+Because the compiled module is not source code, and **Python** will not
+just load it with the ``-m`` implementation. The closest to it is
+``python -c "import compile_module"`` and you might have to call the
+main function yourself.
+
+To support this, the **Python** ``runpy`` and/or ``ExtensionFileLoader``
 would need improving such that Nuitka could supply its compiled module
 object for Python to use.
