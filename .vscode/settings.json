@@ -33,6 +33,7 @@
         "Europython",
         "gsoc",
         "Hayen",
+        "imageio",
         "importlib",
         "Impressum",
         "isort",
@@ -89,4 +90,10 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
+    "grammarly.selectors": [
+        {
+            "language": "restructuredtext",
+            "scheme": "file"
+        }
+    ],
 }

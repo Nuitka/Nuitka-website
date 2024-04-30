@@ -45,7 +45,7 @@ typically expect to run from a full ``Python`` environment with
 module_name`` options to be able to launch other code temporarily or
 permanently as a service daemon.
 
-However, with **Nuitka**, this executes your program again, and puts
+However, with **Nuitka**, this executes your program again and puts
 these arguments in ``sys.argv`` where you maybe ignore them, and then
 you fork yourself again to launch the helper daemons. This can lead to
 unintentional forking, potentially resulting in a **fork bomb** scenario
@@ -95,7 +95,7 @@ be added; there are plenty of ideas.
 Disabling All
 =============
 
-All these helpers can, of course, will be removed at once when using the
+Of course, all these helpers are removed at once when using the
 ``--deployment`` option of **Nuitka**, but remember that you may want to
 re-enable it for debugging. To make this easy to toggle, you should use
 :ref:`Nuitka Project Options <nuitka-project-options>` and check an
@@ -214,7 +214,7 @@ There is a dedicated option ``--low-memory`` which influences decisions
 of Nuitka, such that it avoids high usage of memory during compilation
 at the cost of increased compile time.
 
-Avoid 32 bit C compiler/assembler memory limits
+Avoid 32-bit C compiler/assembler memory limits
 ===============================================
 
 Do not use a 32-bit compiler, but a 64-bit one. If you use Python with
@@ -271,7 +271,7 @@ tip first or on top of it.
 Refer to your systems instructions on how to add swap space to a
 **Linux** installation.
 
-Limit the amount of compilation jobs
+Limit the number of compilation jobs
 ====================================
 
 With the ``--jobs`` option of **Nuitka**, it will not start many C
@@ -303,7 +303,7 @@ directories of some kind, and for example, uses ``os.listdir``, then
 considers Python filenames, and then opens a file and does ``exec`` on
 them.
 
-This approach only works for Python source code, but for compiled code,
+This approach only works for Python source code but for compiled code,
 you should use this much cleaner approach that works for pure Python
 code and is a lot less vulnerable.
 
@@ -328,9 +328,10 @@ code and is a lot less vulnerable.
 If your program fails to find a data file, it can cause different
 problematic behavior; for example, a package might complain that it is
 not the correct version, because a ``VERSION`` read from the file
-usually, was not found and instead a default value is used. The absence
-of icon files may cause visual issues only or texts that cannot be found
-in a file, which may also raise strange errors.
+usually, was not found and instead, a default value is used. The absence
+of files containing for example icons may cause visual issues only or
+texts that cannot be found in a file, which may also raise strange
+errors.
 
 Often, the error handling code paths for files that are not present are
 even buggy and will reveal programming errors like unbound local
@@ -339,12 +340,12 @@ can be the cause. If your program works without the ``--standalone`` and
 only ``--follow-imports``, data files are likely the cause.
 
 The most common error indicating file absence is, of course, an uncaught
-``FileNotFoundError`` with a filename. You should figure out what Python
-package is missing files and then use ``--include-package-data``
+``FileNotFoundError`` with a filename. You should figure out what the Python
+package is that is missing files and then use ``--include-package-data``
 (preferably), or ``--include-data-dir``/``--include-data-files`` to
 include them.
 
-You can read all about data files in :ref:`data-files`; there is much
+You can read all about data files in :ref:`data-files`; there are much
 more detail to learn than is covered here.
 
 *********************************
@@ -356,8 +357,8 @@ Tkinter, etc.
 
 These need special treatment to be able to run on other systems.
 Manually copying them is not enough and will give strange errors.
-Sometimes newer version of packages, esp. NumPy can be unsupported. In
-this case, you will have to raise an issue, and use the older one.
+Sometimes newer versions of packages, esp. NumPy can be unsupported. In
+this case, you will have to raise an issue and use the older one.
 
 If you want to manually add a DLL or an EXE because it is your project
 only, you will have to use user Yaml files describing where they can be
