@@ -51,8 +51,8 @@ you fork yourself again to launch the helper daemons. This can lead to
 unintentional forking, potentially resulting in a **fork bomb** scenario
 where multiple processes spawn recursively, causing system freeze.
 
-For example, running a Nuitka-compiled program may trigger the following
-error:
+For example, running a program compiled with **Nuitka** may trigger the
+following error:
 
 .. code::
 
@@ -340,10 +340,10 @@ can be the cause. If your program works without the ``--standalone`` and
 only ``--follow-imports``, data files are likely the cause.
 
 The most common error indicating file absence is, of course, an uncaught
-``FileNotFoundError`` with a filename. You should figure out what the Python
-package is that is missing files and then use ``--include-package-data``
-(preferably), or ``--include-data-dir``/``--include-data-files`` to
-include them.
+``FileNotFoundError`` with a filename. You should figure out what the
+Python package is that is missing files and then use
+``--include-package-data`` (preferably), or
+``--include-data-dir``/``--include-data-files`` to include them.
 
 You can read all about data files in :ref:`data-files`; there are much
 more detail to learn than is covered here.
@@ -459,7 +459,7 @@ which you expect to be inside the onefile binary, access them like this.
       open(os.path.join(os.path.dirname(sys.argv[0]), "user-provided-file.txt"))
 
 *************************************************
- Windows Programs without console give no errors
+ Windows Programs with no console give no errors
 *************************************************
 
 For debugging purposes, remove ``--disable-console`` or use the options
@@ -484,8 +484,8 @@ own code, here is what you can do:
       result.__name__ = name
       return result
 
-Compiled functions cannot be used to create uncompiled ones from, so the
-above code will not work. However, there is a dedicated ``clone``
+Compiled functions cannot be used to create uncompiled ones from them,
+so the above code will not work. However, there is a dedicated ``clone``
 method, that is specific to them, so use this instead.
 
 .. code:: python
