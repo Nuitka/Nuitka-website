@@ -20,9 +20,9 @@ current stable release as |NUITKA_VERSION| as well.
    contains the usual additions of new packages supported out of the box
    and will aim at scalability.
 
-This release focused on compatibility and some important optimization
-progress for loops. The main line of change is to be able to support
-Python 3.12 in the next release.
+This release focused on compatibility and significant optimization
+progress for loops, such as list operations within. The main line of
+change is to be able to support Python 3.12 in the next release.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -38,18 +38,17 @@ Bug Fixes
 -  Standalone: Make ``cefpython3`` work on Linux. Fixed in 2.1.1
    already.
 
--  ArchLinux: Added platform linker option for it to be usable with
-   their current Arch Python package. Fixed in 2.1.1 already.
+-  ArchLinux: Added platform linker option to be usable with their
+   current Arch Python package. Fixed in 2.1.1 already.
 
--  Fix, ``ctypes.CDLL`` optimization was using misspelled argument name
-   for ``use_last_error``, such that keyword argument calls using it
-   were statically optimized into ``TypeError`` at compile-time. Fixed
-   in 2.1.1 already.
+-  Fix, ``ctypes.CDLL`` optimization used a misspelled argument name for
+   ``use_last_error``, such that keyword argument calls were statically
+   optimized into ``TypeError`` at compile-time. Fixed in 2.1.1 already.
 
 -  Fix, ``list.insert`` was not properly annotating exceptions. Raises
-   by producing the inserted value raised or the index were not
-   annotated, and therefore could fail to be caught locally. Fixed in
-   2.1.1 already.
+   by producing the inserted value raised or the index was not annotated
+   and, therefore, could fail to be caught locally. Fixed in 2.1.1
+   already.
 
 -  Standalone: Added support for ``selenium`` package. Fixed in 2.1.2
    already.
@@ -60,8 +59,8 @@ Bug Fixes
 -  Standalone: Updated ``dotenv`` workaround for newer version. Fixed in
    2.1.3 already.
 
--  Fix, PySide6 slots failed to be moved between threads. For that we
-   need to make function renames visible in the owning class as well.
+-  Fix, **PySide6** slots failed to be moved between threads. For that
+   we need to make function renames visible in the owning class as well.
    Fixed in 2.1.3 already.
 
 -  Standalone: Added support for ``win32com.server.register``. Fixed in
@@ -189,6 +188,24 @@ Bug Fixes
 
 -  Fix, support for newer ``zaber_motion`` was not really working.
 
+-  Standalone: Added required data files for ``pyviz_comms``.
+
+-  Standalone: Added required data files for ``panel`` package.
+
+-  Standalone: Added required data files for ``bokeh`` package.
+
+-  Standalone: Fixup ``scipy`` for Anaconda.
+
+-  Fix, need to make parent module usages more explicit.
+
+   Otherwise, plugin mechanisms like ``no-follow`` from a parent module
+   cannot affect its child modules, as they can end up being followed to
+   only after them.
+
+-  Fix, the ``dill-compat`` plugin in module mode cannot assume the main
+   module name to be the one from compile time, need to look the actual
+   one up at runtime.
+
 New Features
 ============
 
@@ -218,6 +235,11 @@ New Features
 -  Zig: Added support for ``zig`` as CC value. Due to it not supporting
    C11 fully yet, we need to use the C++ workaround and cannot compile
    for Python 3.11 or higher yet.
+
+-  For the ``__compiled__`` value, we now have a ``__compiled__.main``
+   that is the name of the compiled module. For modules, **Nuitka**
+   determines this at run time; in other modes, it is the name of the
+   main module.
 
 Optimization
 ============
@@ -279,6 +301,10 @@ Optimization
 
 -  Anti-Bloat: Remove testing module usage when ``dask`` is used.
 
+-  Anti-Bloat: Avoid ``unitest`` usage in ``tf_keras`` package as well.
+
+-  Anti-Bloat: Avoid ``IPython`` from ``bokeh`` package.
+
 Organisational
 ==============
 
@@ -312,13 +338,18 @@ Organisational
 -  Plugins: Remove obsolete plugins from standard plugin documentation.
    Removed in 2.1.4 already.
 
--  UI: For Python debug mode compilation, do not about static libpython
-   at all, this is misleading as often it doesn't work for that
+-  UI: The Windows release was coming from the compiling **Python** and
+   as such wrong, for example, **Windows 11** always showed up as
+   **Windows 10**, and some older versions of **Python** didn't know
+   Windows 10, yet, so this could be confusing in issue analysis.
+
+-  UI: Do not warn about static libpython for Python debug mode
+   compilation. It is misleading as often it doesn't work for that
    configuration, and it's only a distraction since debugging Python
    reference counts is not about performance. Changed in 2.1.4 already.
 
 -  UI: Catch newlines in spec values. They break code C code generation
-   potentially, they also are likely copy&paste mistakes that won't do
+   potentially; they also are likely copy&paste mistakes that won't do
    what the user expects. Added in 2.1.4 already.
 
 -  Quality: Updated to the latest version of black.
@@ -340,14 +371,19 @@ Organisational
 -  Debugging: Disabling all freelists is now honored for more code,
    tuples and empty dictionaries as well.
 
--  UI: Add macOS version to help output, which is actually making a lot
-   of differences many times.
+-  UI: Add macOS version to help output, which is sometimes vital for
+   issue analysis.
 
--  Reports: Add OS release to reports as well.
+-  Reports: Add the OS release to reports as well.
 
--  Watch: Reporting more problems, catching more errors, and added
-   ability to create PRs from changes, but that is not yet used
+-  Reports: Exclude parent path imports from compilation reports for
+   module usages that are found and end up not being excluded.
+
+-  Watch: Reporting more problems, catching more errors, and adding the
+   ability to create PRs from changes. However, it does not yet do it
    automatically.
+
+-  Visual Code: Have plugins C files in the include path as well.
 
 Tests
 =====
@@ -357,8 +393,8 @@ Tests
 
 -  Run commercial code signing test only on Windows.
 
--  Allow the Azure agent folders for standalone file access tests as
-   well. For the purposes of those tests, it's the home directory.
+-  Allow for standalone testing file access to the Azure agent folders.
+   For tests on Azure, it's like the home directory.
 
 -  Make sure optimization tests are named to make it clear that they are
    tests.
@@ -375,5 +411,9 @@ Summary
 The JIT mechanism added for ``tensorflow`` should be possible to
 generalize and will be applied to other JITs, like ``numba`` and others
 in the future as well.
+
+The road to Python 3.12 is not fully complete, but the end feels closer
+now, and the subsequent release hopefully will add the official support
+for it.
 
 .. include:: ../dynamic.inc
