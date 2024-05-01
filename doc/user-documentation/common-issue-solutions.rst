@@ -373,6 +373,8 @@ only, you must use user Yaml files to describe their location.
 The reference for the syntax to use with examples is in the :doc:`Nuitka
 Package Configuration </user-documentation/nuitka-package-config>` page.
 
+.. _anti-bloat:
+
 ********************************
  Dependency creep in standalone
 ********************************
