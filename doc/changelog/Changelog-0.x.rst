@@ -203,7 +203,7 @@ Cleanups
 -  Windows: Avoid useless bytecode of inline copy used by Python3 when
    installing for Python2, this spams just a lot of errors.
 
-Organisational
+Organizational
 ==============
 
 -  Removed MSI installers from the download page. The MSI installers are
@@ -606,7 +606,7 @@ Cleanups
    doesn't rely on C implementation specific behavior, although it
    appears to be universal.
 
-Organisational
+Organizational
 ==============
 
 -  UI: Warning tests are now wrapped to multiple lines if necessary.
@@ -923,7 +923,7 @@ Optimization
    imports would not be use them at run time, but lead to more modules
    being included than necessary.
 
-Organisational
+Organizational
 ==============
 
 -  There is now a `Discord server for Nuitka community
@@ -1372,7 +1372,7 @@ Optimization
    exclude from compilation if use for it. Currently that is not the
    default, but it should become that.
 
-Organisational
+Organizational
 ==============
 
 -  Migrated the Nuitka blog from Nikola to Sphinx based ABlog and made
@@ -1562,7 +1562,7 @@ This release has a focus on new features of all kinds, and then also new
 kinds of performance improvements, some of which enable static
 optimization of what normally would be dynamic imports, while also
 polishing plugins and adding also many new features and a huge amount of
-organisational changes.
+organizational changes.
 
 Bug Fixes
 =========
@@ -1911,7 +1911,7 @@ Optimization
 -  Faster calls of uncompiled code with Python3.9 or higher avoiding DLL
    call overhead.
 
-Organisational
+Organizational
 ==============
 
 -  Commercial: There are ``Buy Now`` buttons available now for the
@@ -2366,7 +2366,7 @@ Optimization
 -  Enable LTO automatically for Anaconda with CondaCC on non-Windows,
    also allowing more optimization.
 
-Organisational
+Organizational
 ==============
 
 -  Added section in the User Manual on how to deal with memory issues
@@ -2435,7 +2435,7 @@ Cleanups
    esp. for immutable value
 
 -  Enhanced auto-format for rest documents, bullet list spacing is now
-   consistent and spelling of organisational is unified automatically.
+   consistent and spelling of organizational is unified automatically.
 
 -  Moved icon conversion functionality to separate module, so it can be
    reused for other platforms more easily.
@@ -2603,7 +2603,7 @@ Cleanups
 
 -  More cleanup of the scons files, sharing more common code.
 
-Organisational
+Organizational
 ==============
 
 -  Under the name Nuitka-Python we are now also developing a fork of
@@ -2764,7 +2764,7 @@ Optimization
 
 -  Added support for ``GenericAlias`` objects as compile time constants.
 
-Organisational
+Organizational
 ==============
 
 -  Enhanced GitHub issue raising instructions.
@@ -2998,7 +2998,7 @@ Optimization
 -  Make ``pkgutil`` a hard import too, this is in preparation of more
    optimization for its functions.
 
-Organisational
+Organizational
 ==============
 
 -  Upstream patches for ``PySide6`` have been contributed and merged
@@ -3250,7 +3250,7 @@ Optimization
    ``pkgutil`` rather than filesystem, with much cleaner code in the
    plugin. The plugin is also now enabled by default.
 
-Organisational
+Organizational
 ==============
 
 -  Removed support for ``pefile`` dependency walker choice and inline
@@ -3573,7 +3573,7 @@ Optimization
 -  Scons: Enhanced gcc version detection with improved caching behavior,
    this avoids querying the same gcc binary twice.
 
-Organisational
+Organizational
 ==============
 
 -  The description of Nuitka on PyPI was absent for a while. Added back
@@ -3827,7 +3827,7 @@ Optimization
    linker option hacks, and the fallback to generated C code. In fact
    everything but Windows uses this now.
 
-Organisational
+Organizational
 ==============
 
 -  Windows: For Scons we now require a Python 3.5 or higher to be
@@ -4290,7 +4290,7 @@ Cleanups
    appropriate, e.g. when counting source code lines, rather than adding
    ``count+1`` on every usage, making code more readable.
 
-Organisational
+Organizational
 ==============
 
 -  Do not recommend Anaconda on Windows anymore, it seems barely
@@ -4479,7 +4479,7 @@ Cleanups
    up and now named tuples are used. Backward compatibility is
    maintained though.
 
-Organisational
+Organizational
 ==============
 
 -  The use of the logging module was replaced with more of our custom
@@ -4703,7 +4703,7 @@ Optimization
 -  Added shortcuts for interactions between compiled generator variants,
    to avoid calls to their C methods with argument passing, etc.
 
-Organisational
+Organizational
 ==============
 
 -  Updated Developer Manual with changes that happened, removing the
@@ -4852,7 +4852,7 @@ Optimization
    Debian packages, since there we consider it forbidden to include
    software as a duplicate.
 
-Organisational
+Organizational
 ==============
 
 -  Added recommended plugins for Visual Code, replacing the list in the
@@ -4911,7 +4911,7 @@ to see actual performance improvements in the next release again.
 **********************
 
 This release contains huge amounts of crucial bug fixes all across the
-board. There is also new optimization and many organisational
+board. There is also new optimization and many organizational
 improvements.
 
 Bug Fixes
@@ -5163,7 +5163,7 @@ Tests
 
 -  Execute the Python3 tests for macOS on Travis too.
 
-Organisational
+Organizational
 ==============
 
 -  The donation sponsored machine called ``donatix`` had to be replaced
@@ -5202,7 +5202,7 @@ seems not far away.
 **********************
 
 This release contains many bug fixes all across the board. There is also
-new optimization and many organisational improvements.
+new optimization and many organizational improvements.
 
 Bug Fixes
 =========
@@ -5304,7 +5304,7 @@ Optimization
 -  Packages: Do not export entry points for all included packages, only
    for the main package name it is importable as.
 
-Organisational
+Organizational
 ==============
 
 -  Added support for Visual Studio 2019 as a C compiler backend.
@@ -5377,7 +5377,7 @@ we might eventually focus on making them better.
 Again, GSoC 2019 is also showing effects, and will definitely continue
 to do soin the next release.
 
-Many use cases have been improved, and on an organisational level, the
+Many use cases have been improved, and on an organizational level, the
 adoption of Visual Studio Code seems an huge improvement to have a well
 configured IDE out of the box too.
 
@@ -5390,7 +5390,7 @@ of the infrastructure getting there.
 **********************
 
 This release contains many bug fixes all across the board. There is also
-new optimization and many organisational improvements.
+new optimization and many organizational improvements.
 
 Bug Fixes
 =========
@@ -5464,7 +5464,7 @@ New Features
 
 -  Python3.8: Initial compatibility changes to get basic tests to work.
 
-Organisational
+Organizational
 ==============
 
 -  Nuitka is participating in the GSoC 2019 with 2 students, Batakrishna
@@ -5575,7 +5575,7 @@ infrastructure for it is in place.
  Nuitka Release 0.6.3
 **********************
 
-This has a focus on organisational improvements. With more and more
+This has a focus on organizational improvements. With more and more
 people joining Nuitka, normal developers as well as many GSoC 2019
 students, the main focus was to open up the development tools and
 processes, and to improve documentation.
@@ -5627,7 +5627,7 @@ New Features
 -  Added support for FreeBSD/PowerPC arch which still uses ``gcc`` and
    not ``clang``.
 
-Organisational
+Organizational
 ==============
 
 -  Nuitka is participating in the GSoC 2019.
@@ -5707,7 +5707,7 @@ Tests
 Summary
 =======
 
-With the many organisational changes in place, my normal work is
+With the many organizational changes in place, my normal work is
 expected to resume for after and yield quicker improvements now.
 
 It is also important that people are now enabled to contribute to the
@@ -5722,7 +5722,7 @@ contributed!
  Nuitka Release 0.6.2
 **********************
 
-This release has a huge focus on organisational things. Nuitka is
+This release has a huge focus on organizational things. Nuitka is
 growing in terms of contributors and supported platforms.
 
 Bug Fixes
@@ -5778,7 +5778,7 @@ Optimization
 -  Minor refinements of specialized code variants reducing them more
    often the actual needed code.
 
-Organisational
+Organizational
 ==============
 
 -  The Nuitka GitHub Organisation that was created a while ago and owns
@@ -5952,7 +5952,7 @@ Optimization
 -  Loop variables no longer loose type information, but instead collect
    the set of possible type shapes allowing optimization for them.
 
-Organisational
+Organizational
 ==============
 
 -  Corrected download link for Arch AUR link of develop package.
@@ -6133,7 +6133,7 @@ New Features
    missed optimization chances in Nuitka. This features is still in its
    infancy. Subsequent releases will add more like these.
 
-Organisational
+Organizational
 ==============
 
 -  Disabled comments on the web site, we are going to use Twitter
@@ -6344,7 +6344,7 @@ Bug Fixes
 -  Python3: Smarter hashing of unicode values avoids increased memory
    usage from cached converted forms in debug mode.
 
-Organisational
+Organizational
 ==============
 
 -  The issue tracker on GitHub is now the one that should be used with
@@ -6591,7 +6591,7 @@ Cleanups
 -  Have a dedicated helper function for single argument calls in static
    code that does not require an array of objects as an argument.
 
-Organisational
+Organizational
 ==============
 
 -  There are now ``requirements-devel.txt`` and ``requirements.txt``
@@ -6784,7 +6784,7 @@ Cleanups
 
 -  Removed some Python 3.2 only codes.
 
-Organisational
+Organizational
 ==============
 
 -  For better bug reports, the ``--version`` output now contains also
@@ -6966,7 +6966,7 @@ Cleanups
 -  Have a dedicated node for reraise statements instead of checking for
    all the arguments to be non-present.
 
-Organisational
+Organizational
 ==============
 
 -  There is now a pull request template for GitHub when used.
@@ -7121,7 +7121,7 @@ Optimization
 -  Fix, removed obsolete ``--nofreeze-stdlib`` which only complicated
    using the ``--recurse-stdlib`` which should be used instead.
 
-Organisational
+Organizational
 ==============
 
 -  The ``nuitka`` Python package is now installed into the public
@@ -7364,7 +7364,7 @@ Tests
 -  Added test that covers using test runners like ``nose`` and
    ``py.test`` with Nuitka compiled extension modules.
 
-Organisational
+Organizational
 ==============
 
 -  Added support for Scons 3.0 and running Scons with Python3.5 or
@@ -7673,7 +7673,7 @@ Tests
 -  Rebased Python 3.6 test suite to 3.6.1 as that is the Python
    generally used now.
 
-Organisational
+Organizational
 ==============
 
 -  Added inline copy of ``appdirs`` package from PyPI.
@@ -7928,7 +7928,7 @@ Tests
 -  Made standalone binaries robust against GTK theme access, checking
    the Python binary (some site.py files do that),
 
-Organisational
+Organizational
 ==============
 
 -  Added repository for Ubuntu Zesty (17.04) for download.
@@ -7978,7 +7978,7 @@ already had, as well as preparing the big jump in speed.
 ***********************
 
 This release contains a huge amount of bug fixes, lots of optimization
-gains, and many new features. It also presents many organisational
+gains, and many new features. It also presents many organizational
 improvements, and many cleanups.
 
 Bug Fixes
@@ -8096,7 +8096,7 @@ Optimization
 -  Not passing ``locals`` to import calls make it less code and faster
    too.
 
-Organisational
+Organizational
 ==============
 
 -  This release also prepares Python 3.6 support, it includes full
@@ -8380,7 +8380,7 @@ Optimization
 
 -  Python3: Added support for the ``ascii`` built-in.
 
-Organisational
+Organizational
 ==============
 
 -  The movement to pure C got the final big push. All C++ only idoms of
@@ -8612,7 +8612,7 @@ Cleanups
 -  Converted import sorting helper script to Python and made it run
    fast.
 
-Organisational
+Organizational
 ==============
 
 -  The Buildbot infrastructure for Nuitka was updated to Buildbot 0.8.12
@@ -8884,7 +8884,7 @@ Cleanups
 -  Parameter specifications got simplified to work without variables
    where it is possible.
 
-Organisational
+Organizational
 ==============
 
 -  Nuitka is now available on the social code platforms gitlab as well.
@@ -8963,7 +8963,7 @@ Optimization
 -  When creating frame codes, avoid working with strings, but use proper
    emission for less memory churn during code generation.
 
-Organisational
+Organizational
 ==============
 
 -  Updated the key for the Debian/Ubuntu repositories to remain valid
@@ -9161,7 +9161,7 @@ Cleanups
 -  Compiled types were mixing uses of ``compiled_`` prefixes, something
    with a space, sometimes with an underscore.
 
-Organisational
+Organizational
 ==============
 
 -  Improved support for Python3.5 missing compatibility with new
@@ -9344,7 +9344,7 @@ Tests
 
 -  Checked more in-place operations for speed.
 
-Organisational
+Organizational
 ==============
 
 -  Many improvements to the coverage taking. We can hope to see public
@@ -9554,7 +9554,7 @@ Optimization
 -  Built-in references can now be converted to strings at compile time,
    e.g. when printed.
 
-Organisational
+Organizational
 ==============
 
 -  Removed gitorious mirror of the git repository, they shut down.
@@ -9785,7 +9785,7 @@ New Features
    checks with the ``is`` operation, about the only thing we cannot
    detect.
 
-Organisational
+Organizational
 ==============
 
 -  Added repository for Ubuntu Vivid (15.04) for download. Removed
@@ -9954,7 +9954,7 @@ New Features
    initialisation before any Python code runs, to ease finding bugs in
    this domain as well.
 
-Organisational
+Organizational
 ==============
 
 -  Changed default for file reference mode to ``original`` unless
@@ -10181,7 +10181,7 @@ Testing
    cycles involving compiled functions, or usage of ``__closure__``
    attribute, were reactivated.
 
-Organisational
+Organizational
 ==============
 
 -  Since Google Code has shutdown, it has been removed from the Nuitka
@@ -10305,7 +10305,7 @@ Cleanup
    These are checked at program exit for corruption. This may help
    uncover bugs.
 
-Organisational
+Organizational
 ==============
 
 -  Speedcenter has been enhanced with better graphing and has more
@@ -10400,7 +10400,7 @@ Bug Fixes
    the current directory remained in the search path, which could lead
    to looking at the wrong files.
 
-Organisational
+Organizational
 ==============
 
 -  The ``getattr`` built-in is now optimized for compile time constants
@@ -10425,7 +10425,7 @@ New Features
    do not want the C++ compiler to create any binary, but only to
    measure what would have been used.
 
-Organisational
+Organizational
 ==============
 
 -  Renamed the debug option ``--c++-only`` to ``--recompile-c++-only``
@@ -10529,7 +10529,7 @@ Cleanup
    attached during tree building and therefore better preserved, as well
    as that code no longer polluting code generation as much.
 
-Organisational
+Organizational
 ==============
 
 -  No more packages for openSUSE 12.1/12.2/12.3 and Fedora 17/18/19 as
@@ -10602,7 +10602,7 @@ Optimization
 
 -  Added support for ``bytearray`` built-in.
 
-Organisational
+Organizational
 ==============
 
 -  Added support for OpenBSD with fiber implementation from library, as
@@ -10735,7 +10735,7 @@ Optimization
 
 -  Micro optimization to ``dict`` built-in for simpler code generation.
 
-Organisational
+Organizational
 ==============
 
 -  Added support for ARM "hard float" architecture.
@@ -10965,7 +10965,7 @@ Cleanups
 -  The ``locals`` built-in code now uses code generation for accessing
    local variable values instead having its own stuff.
 
-Organisational
+Organizational
 ==============
 
 -  The Python version 3.4 is now officially supported. There are a few
@@ -11051,7 +11051,7 @@ Bug Fixes
    generators running concurrently (>1500), one cannot be started
    anymore. Raising an ``MemoryError`` now.
 
-Organisational
+Organizational
 ==============
 
 -  Added support for MinGW64. Currently needs to be run with ``PATH``
@@ -11171,7 +11171,7 @@ Cleanups
 -  Use ``intptr_t`` over ``unsigned long`` to store fiber code pointers,
    increasing portability.
 
-Organisational
+Organizational
 ==============
 
 -  Providing own Debian/Ubuntu repositories for all relevant
@@ -11330,7 +11330,7 @@ Bug Fixes
 -  Compatibility: Using ``open`` with no arguments is now giving the
    same error.
 
-Organisational
+Organizational
 ==============
 
 -  Replying to email from the issue tracker works now.
@@ -11627,7 +11627,7 @@ Optimization
    not other variable types. This is preparatory for introducing SSA for
    local variables.
 
-Organisational
+Organizational
 ==============
 
 -  The option ``--exe`` is now ignored and creating an executable is the
@@ -11772,7 +11772,7 @@ Optimization
 -  Module variables are now accessed even faster, the gain for "PyStone"
    is only 0.1% and mostly the result of leaner code.
 
-Organisational
+Organizational
 ==============
 
 -  The "standalone mode" code (formerly known as "portable mode" has
@@ -11988,7 +11988,7 @@ Cleanups
 
 -  As usual lots of cleanups related to line length issues and PyLint.
 
-Organisational
+Organizational
 ==============
 
 -  Added support for Gentoo Linux.
@@ -12107,7 +12107,7 @@ Cleanups
 -  Moved some of the constraint collection code mess into proper places.
    It still remains a mess.
 
-Organisational
+Organizational
 ==============
 
 -  Added ``LICENSE.txt`` file with Apache License 2.0 text to make it
@@ -12329,7 +12329,7 @@ New Tests
    ``SyntaxError`` and therefore not actually active. Correcting that
    improved the coverage of generator testing.
 
-Organisational
+Organizational
 ==============
 
 -  The portable code is still delayed.
@@ -12459,7 +12459,7 @@ Optimization
    Using threads for fibers was causing only overhead and with this API,
    MSVC had less issues too.
 
-Organisational
+Organizational
 ==============
 
 -  Accepting `Donations <https://nuitka.net/pages/donations.html>`__ via
@@ -12774,7 +12774,7 @@ New Tests
 -  Running the "CPython3.2" test suite with Python3.3 based Nuitka works
    and found a few minor issues.
 
-Organisational
+Organizational
 ==============
 
 -  The `Downloads <https://nuitka.net/doc/download.html>`__ page now
@@ -12946,7 +12946,7 @@ New Tests
 
 -  Added test to cover default value identity.
 
-Organisational
+Organizational
 ==============
 
 -  The upload of `Nuitka to PyPI
@@ -13208,7 +13208,7 @@ New Tests
 -  Added tests to cover evaluation order of arguments when raising
    exceptions.
 
-Organisational
+Organizational
 ==============
 
 -  Changed my email from GMX over to Gmail, the old one will still
@@ -13337,7 +13337,7 @@ Optimization
    See above, this code is now the typical pattern for each ``or`` and
    ``and``, so this was much needed now.
 
-Organisational
+Organizational
 ==============
 
 -  The remaining uses of C++11 have been removed. Code generated with
@@ -13502,7 +13502,7 @@ New Features
    more correctly and attributes are now interned strings, so that
    monkey patching classes works.
 
-Organisational
+Organizational
 ==============
 
 -  Migrated "bin/benchmark.sh" to Python as "misc/run-valgrind.py" and
@@ -13651,7 +13651,7 @@ New Features
    available. As it is the case for non-compiled functions in CPython,
    no code objects are stored, only names of module level variables.
 
-Organisational
+Organizational
 ==============
 
 -  Using the Apache License 2.0 for all of Nuitka now.
@@ -13863,7 +13863,7 @@ Optimization
 
       print "1+1= 2"
 
-Organisational
+Organizational
 ==============
 
 -  Enhanced Python3 support, enabling support for most basic tests.
@@ -13922,7 +13922,7 @@ temporary variables, complex unpacking statement were reduced to more
 simple ones, etc.
 
 Also there are the usual few small bug fixes, and a bunch of
-organisational improvements, that make the release complete.
+organizational improvements, that make the release complete.
 
 Bug Fixes
 =========
@@ -14004,7 +14004,7 @@ Optimization
    is no closure taken. This avoids useless ``malloc`` calls and speeds
    up repeated generator object creation.
 
-Organisational
+Organizational
 ==============
 
 -  Changed the Scons build file database to reside in the build
@@ -14277,7 +14277,7 @@ Optimization
    constant" values. These will play a more important role, once value
    propagation makes them more frequent.
 
-Organisational
+Organizational
 ==============
 
 -  Created a "change log" from the previous release announcements. It's
@@ -14528,7 +14528,7 @@ Cleanups
 
 -  As always, some PyLint work, and some minor ``TODO`` were solved.
 
-Organisational
+Organizational
 ==============
 
 -  Added more information to the `Developer Manual
@@ -14685,7 +14685,7 @@ Cleanups
    ``type('a')``, which was unlikely to cause a problem, but an
    important ``TODO`` item still.
 
-Organisational
+Organizational
 ==============
 
 -  The `"Download" <https://nuitka.net/doc/download.html>`__ page is now
@@ -14734,7 +14734,7 @@ possible, and to immediately benefit from such improvements.
 ***********************
 
 This is to inform you about the new stable release of Nuitka. This time
-there are a few bug fixes, lots of very important organisational work,
+there are a few bug fixes, lots of very important organizational work,
 and yet again improved compatibility and cleanups. Also huge is the
 advance in making ``--deep`` go away and making the recursion of Nuitka
 controllable, which means a lot for scalability of projects that use a
@@ -14806,7 +14806,7 @@ Optimization
    as well. Also use the cPickle protocol, the use of ``pickle`` was not
    really necessary anymore.
 
-Organisational
+Organizational
 ==============
 
 -  Added a `Developer Manual
@@ -14942,7 +14942,7 @@ useful not only for hot fix, but also for creating the branch
 still flowing.
 
 The few hot fixes didn't require a new release, but the many
-organisational improvements and the new features did warrant the new
+organizational improvements and the new features did warrant the new
 release, because of e.g. the much better test handling in this release
 and the improved recursion control.
 
@@ -15071,7 +15071,7 @@ New Features
    which case it is preserved. This allows to make sure that a binary is
    in fact containing everything required.
 
-Organisational
+Organizational
 ==============
 
 -  The help output of Nuitka was polished a lot more. It is now more
@@ -15169,7 +15169,7 @@ its direction, but it won't be enough yet.
 ***********************
 
 This is to inform you about the new stable release of Nuitka. This time
-again many organisational improvements, some bug fixes, much improved
+again many organizational improvements, some bug fixes, much improved
 compatibility and cleanups.
 
 This release cycle focused on packaging Nuitka for easier consumption,
@@ -15228,7 +15228,7 @@ New Features
    is. Lets just say, it was the last absurd language feature out there,
    plus that didn't work. It now works perfect.
 
-Organisational
+Organizational
 ==============
 
 -  You can now download a Windows installer and a Debian package that
@@ -15342,7 +15342,7 @@ change too.
 ***********************
 
 This is to inform you about the new stable release of Nuitka. This time
-it contains mostly organisational improvements, some bug fixes, improved
+it contains mostly organizational improvements, some bug fixes, improved
 compatibility and cleanups.
 
 It is again the result of working towards compilation of a real program
@@ -15412,7 +15412,7 @@ New Tests
 
 -  Cover evaluation order of simple slices in ``OrderCheck`` too.
 
-Organisational
+Organizational
 ==============
 
 -  There is a new issue tracker available (since migrated and removed)
@@ -15554,7 +15554,7 @@ New Tests
 -  New test to cover package local imports made by the "__init__.py" of
    the package.
 
-Organisational
+Organizational
 ==============
 
 -  Drop "compile_itself.sh" in favor of the new "compile_itself.py",
@@ -15581,7 +15581,7 @@ meaningful benchmarks and resume work on optimization.
 ***********************
 
 This is to inform you about the new release of Nuitka many bug fixes,
-and substantial improvements especially in the organisational area.
+and substantial improvements especially in the organizational area.
 There is a new `User Manual <https://nuitka.net/doc/user-manual.html>`__
 (`PDF <https://nuitka.net/doc/user-manual.pdf>`__), with much improved
 content, a ``sys.meta_path`` based import mechanism for ``--deep`` mode,
@@ -15701,7 +15701,7 @@ New Tests
 
 -  Added test to cover evaluation order of class definitions.
 
-Organisational
+Organizational
 ==============
 
 -  Migrated the "README.txt" from org-mode to ReStructured Text, which
@@ -15831,7 +15831,7 @@ New Tests
    code) is now part of the release tests, so non-portable code of
    Nuitka gets caught.
 
-Organisational
+Organizational
 ==============
 
 -  Support for ARM Linux. I will make a separate posting on the
@@ -16030,7 +16030,7 @@ New Tests
 
       print len(range(9))
 
-Organisational
+Organizational
 ==============
 
 -  Changed "README.txt" to no longer say that "Scons" is a requirement.
@@ -16302,7 +16302,7 @@ New Tests
 -  Enhanced ``Constants`` test to cover repeated mutation of mutable
    tuple constants, this covers the bug mentioned.
 
-Organisational
+Organizational
 ==============
 
 -  Added a credits section to the "README.txt" where I give credit to
@@ -16458,7 +16458,7 @@ New Tests
    version needed changes to stand the speed of Nuitka. These will be
    subject of a later posting.
 
-Organisational
+Organizational
 ==============
 
 -  There is now a "tests/benchmarks/micro" directory to contain tiny
@@ -16607,7 +16607,7 @@ New Tests
 -  Errors messages of methods are now covered by the ``ParameterErrors``
    test as well.
 
-Organisational
+Organizational
 ==============
 
 -  A new script "benchmark.sh" (now called "run-valgrind.py") script now
@@ -16743,7 +16743,7 @@ New Tests
 
 -  Imports of upper level packages are covered now too.
 
-Organisational
+Organizational
 ==============
 
 -  Updated the "README.txt" with the current plan on optimization.
@@ -16967,7 +16967,7 @@ New Tests
    disabled though, because it requires entirely different rules to be
    done right, it has been pushed back to the next release.
 
-Organisational
+Organizational
 ==============
 
 -  The ``g++-nuitka`` script is no more. With the help of the Scons
@@ -17148,7 +17148,7 @@ New Tests
 
 -  Extended the built-in tests to cover ``type()`` as well.
 
-Organisational
+Organizational
 ==============
 
 -  There is now a new environment variable ``NUITKA_SCONS`` which should
@@ -17302,7 +17302,7 @@ New Tests
 
 -  The Python 2.7 test suite has been added.
 
-Organisational
+Organizational
 ==============
 
 -  One can now run multiple "compare_with_cpython" instances in
@@ -17426,7 +17426,7 @@ New Tests
 -  The deep program test case, now also have a module in a sub-package
    to cover this case as well.
 
-Organisational
+Organizational
 ==============
 
 -  The `gitweb interface <https://nuitka.net/gitweb>`__ (since disabled)
@@ -17974,7 +17974,7 @@ Bug Fixes
    loops do no longer prevent the execution of finally blocks inside the
    loop.
 
-Organisational
+Organizational
 ==============
 
 -  I now maintain the "README.txt" in org-mode, and intend to use it as

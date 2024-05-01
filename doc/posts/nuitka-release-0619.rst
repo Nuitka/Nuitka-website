@@ -305,7 +305,7 @@ optimization, and doing a lot of bug fixes.
    default, but it should become that.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Migrated the Nuitka blog from Nikola to Sphinx based ABlog and made

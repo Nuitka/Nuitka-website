@@ -141,7 +141,7 @@ important performance improvement.
 -  Added support for ``GenericAlias`` objects as compile time constants.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Enhanced GitHub issue raising instructions.

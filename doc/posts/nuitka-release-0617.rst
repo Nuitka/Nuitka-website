@@ -268,7 +268,7 @@ polishing plugins and adding many new features.
    also allowing more optimization.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added section in the User Manual on how to deal with memory issues
@@ -338,7 +338,7 @@ polishing plugins and adding many new features.
    esp. for immutable value
 
 -  Enhanced auto-format for rest documents, bullet list spacing is now
-   consistent and spelling of organisational is unified automatically.
+   consistent and spelling of organizational is unified automatically.
 
 -  Moved icon conversion functionality to separate module, so it can be
    reused for other platforms more easily.

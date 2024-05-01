@@ -143,7 +143,7 @@ cases, but this is mostly to clean up open ends.
    with a space, sometimes with an underscore.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Improved support for Python3.5 missing compatibility with new

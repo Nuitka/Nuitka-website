@@ -150,7 +150,7 @@ development period, and therefore contains a huge jump ahead.
    same error.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Replying to email from the issue tracker works now.

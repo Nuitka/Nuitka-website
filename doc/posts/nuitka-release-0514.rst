@@ -185,7 +185,7 @@ as well as major cleanups of code base.
    e.g. when printed.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Removed gitorious mirror of the git repository, they shut down.

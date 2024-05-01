@@ -116,7 +116,7 @@ more efficient at it.
    test as well.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  A new script "benchmark.sh" (now called "run-valgrind.py") script now

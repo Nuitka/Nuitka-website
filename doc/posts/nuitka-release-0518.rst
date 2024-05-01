@@ -90,7 +90,7 @@ compilation and the final C compilation faster.
    where it is possible.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Nuitka is now available on the social code platforms gitlab as well.

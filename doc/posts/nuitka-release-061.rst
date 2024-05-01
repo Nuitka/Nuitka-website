@@ -136,7 +136,7 @@ new optimization work, and even more bug fixes.
    the set of possible type shapes allowing optimization for them.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Corrected download link for Arch AUR link of develop package.

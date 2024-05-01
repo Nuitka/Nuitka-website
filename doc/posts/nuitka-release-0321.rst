@@ -20,7 +20,7 @@ temporary variables, complex unpacking statement were reduced to more
 simple ones, etc.
 
 Also there are the usual few small bug fixes, and a bunch of
-organisational improvements, that make the release complete.
+organizational improvements, that make the release complete.
 
 ***********
  Bug Fixes
@@ -105,7 +105,7 @@ organisational improvements, that make the release complete.
    up repeated generator object creation.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Changed the Scons build file database to reside in the build

@@ -68,7 +68,7 @@ there is the usual range of corrections.
    emission for less memory churn during code generation.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Updated the key for the Debian/Ubuntu repositories to remain valid

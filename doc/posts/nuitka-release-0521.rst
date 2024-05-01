@@ -73,7 +73,7 @@ the common case, and covering more standalone use cases.
    fast.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The Buildbot infrastructure for Nuitka was updated to Buildbot 0.8.12

@@ -88,7 +88,7 @@ much else.
    important ``TODO`` item still.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The `"Download" <https://nuitka.net/doc/download.html>`__ page is now

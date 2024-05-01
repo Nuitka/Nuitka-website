@@ -254,7 +254,7 @@ Cleanups
    tuple constants, this covers the bug mentioned.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added a credits section to the "README.txt" where I give credit to

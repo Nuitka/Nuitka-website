@@ -11,7 +11,7 @@ This is to inform you about the new stable release of `Nuitka
 `"download now" </doc/download.html>`_.
 
 This release contains many bug fixes all across the board. There is also
-new optimization and many organisational improvements.
+new optimization and many organizational improvements.
 
 ***********
  Bug Fixes
@@ -88,7 +88,7 @@ new optimization and many organisational improvements.
 -  Python3.8: Initial compatibility changes to get basic tests to work.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Nuitka is participating in the GSoC 2019 with 2 students, Batakrishna

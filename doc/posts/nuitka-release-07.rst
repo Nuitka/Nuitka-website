@@ -247,7 +247,7 @@ and bug fixes in all areas.
    being included than necessary.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  There is now a `Discord server for Nuitka community

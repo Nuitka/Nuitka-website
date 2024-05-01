@@ -258,7 +258,7 @@ diagrams, `even if weak ones
    exceptions.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Changed my email from GMX over to Gmail, the old one will still

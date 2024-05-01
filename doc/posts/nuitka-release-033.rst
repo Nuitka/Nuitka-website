@@ -118,7 +118,7 @@ Others
 -  The Python 2.7 test suite has been added.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  One can now run multiple "compare_with_cpython" instances in

@@ -198,7 +198,7 @@ structure will hold.
    improved the coverage of generator testing.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The portable code is still delayed.

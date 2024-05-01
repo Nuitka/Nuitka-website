@@ -157,7 +157,7 @@ accompanied with optimization changes towards value tracing.
    all the arguments to be non-present.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  There is now a pull request template for GitHub when used.

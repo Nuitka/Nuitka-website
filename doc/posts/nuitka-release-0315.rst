@@ -11,7 +11,7 @@ This is to inform you about the new stable release of `Nuitka
 `"download now" </doc/download.html>`_.
 
 This is to inform you about the new stable release of Nuitka. This time
-again many organisational improvements, some bug fixes, much improved
+again many organizational improvements, some bug fixes, much improved
 compatibility and cleanups.
 
 This release cycle focused on packaging Nuitka for easier consumption,
@@ -73,7 +73,7 @@ with line numbers in the frame object.
    plus that didn't work. It now works perfect.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  You can now download a Windows installer and a Debian package that

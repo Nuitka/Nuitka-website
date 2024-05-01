@@ -176,7 +176,7 @@ mode by a lot.
 -  Removed some Python 3.2 only codes.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  For better bug reports, the ``--version`` output now contains also

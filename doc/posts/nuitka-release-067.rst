@@ -78,7 +78,7 @@ they are now becoming more common.
    software as a duplicate.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added recommended plugins for Visual Code, replacing the list in the

@@ -338,7 +338,7 @@ as many new optimization and bug fixes.
    ``count+1`` on every usage, making code more readable.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Do not recommend Anaconda on Windows anymore, it seems barely

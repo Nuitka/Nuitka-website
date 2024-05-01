@@ -11,7 +11,7 @@ This is to inform you about the new stable release of `Nuitka
 `"download now" </doc/download.html>`_.
 
 This release contains huge amounts of crucial bug fixes all across the
-board. There is also new optimization and many organisational
+board. There is also new optimization and many organizational
 improvements.
 
 ***********
@@ -269,7 +269,7 @@ improvements.
 -  Execute the Python3 tests for macOS on Travis too.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The donation sponsored machine called ``donatix`` had to be replaced

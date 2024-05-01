@@ -187,7 +187,7 @@ for Python2. For the common language subset, it's quite fine now.
       print "1+1= 2"
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Enhanced Python3 support, enabling support for most basic tests.

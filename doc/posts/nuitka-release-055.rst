@@ -176,7 +176,7 @@ but should work now.
    local variable values instead having its own stuff.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The Python version 3.4 is now officially supported. There are a few

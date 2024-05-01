@@ -390,7 +390,7 @@ more configurations.
 -  Quality: Use latest ``isort`` and ``rstchk`` versions.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Python3.12: Mark as unsupported for now, it does not yet compile on

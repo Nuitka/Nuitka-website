@@ -70,7 +70,7 @@ made to improve the compatibility.
    anymore. Raising an ``MemoryError`` now.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added support for MinGW64. Currently needs to be run with ``PATH``

@@ -53,7 +53,7 @@ assignment could be.
    no code objects are stored, only names of module level variables.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Using the Apache License 2.0 for all of Nuitka now.

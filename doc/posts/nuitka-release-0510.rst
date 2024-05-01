@@ -109,7 +109,7 @@ now faster or got looked at and optimized.
    uncover bugs.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Speedcenter has been enhanced with better graphing and has more

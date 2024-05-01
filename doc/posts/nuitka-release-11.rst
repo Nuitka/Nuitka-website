@@ -291,7 +291,7 @@ cases.
    without need.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  UI: Output the ``.cmd`` file created (if any) on Windows, e.g. when

@@ -114,7 +114,7 @@ mostly, thanks for the patches from Pete Hunt.
    propagation makes them more frequent.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Created a "change log" from the previous release announcements. It's

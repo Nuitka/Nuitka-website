@@ -119,7 +119,7 @@ form in Nuitka.
    MSVC had less issues too.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Accepting `Donations <https://nuitka.net/pages/donations.html>`__ via

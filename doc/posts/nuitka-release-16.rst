@@ -427,7 +427,7 @@ workarounds.
    code being recognized as such.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  GitHub: Added marketplace action designed to cross platform build

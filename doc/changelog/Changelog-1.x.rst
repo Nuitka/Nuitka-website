@@ -394,7 +394,7 @@ Optimization
 
 -  Quality: Use latest ``isort`` and ``rstchk`` versions.
 
-Organisational
+Organizational
 ==============
 
 -  Python3.12: Mark as unsupported for now, it does not yet compile on
@@ -971,7 +971,7 @@ Optimization
 -  Anti-Bloat: Avoid using Qt bindings for ``pandas.io.clipboard`` as
    it's only useful if one of our Qt plugins is active.
 
-Organisational
+Organizational
 ==============
 
 -  User Manual: Make it clear in the example that renaming created
@@ -1458,7 +1458,7 @@ Optimization
    using a simple ``--include-module=socket`` will restore this. This
    approach is more robust and less invasive.
 
-Organisational
+Organizational
 ==============
 
 -  Added ``run-inside-nuitka-container`` for use in CI scripts. With
@@ -1996,7 +1996,7 @@ Optimization
    allowing exceptions to fully bubble up. This should lead to more dead
    code being recognized as such.
 
-Organisational
+Organizational
 ==============
 
 -  GitHub: Added marketplace action designed to cross platform build
@@ -2490,7 +2490,7 @@ Optimization
    somewhat relevant, since it could keep code alive in side effects at
    least for no good reason and this allows a proper reduction.
 
-Organisational
+Organizational
 ==============
 
 -  Project: Require the useful stuff for installation of Nuitka already.
@@ -3137,7 +3137,7 @@ Optimization
    than passed, and will result in better code generated in some corner
    cases.
 
-Organisational
+Organizational
 ==============
 
 -  Release: Make clear we require ``wheel`` and ``setuptools`` to
@@ -3520,7 +3520,7 @@ Optimization
 -  Anti-Bloat: Avoid ``keras`` testing framework when using that
    package.
 
-Organisational
+Organizational
 ==============
 
 -  Plugins: The ``numpy`` plugin functionality was moved to Nuitka
@@ -4004,7 +4004,7 @@ Optimization
 -  Anti-Bloat: Initial work to avoid ``pytest`` in patsy, it is however
    incomplete.
 
-Organisational
+Organizational
 ==============
 
 -  User Manual: Explain how to create 64/32 bits binaries on Windows,
@@ -4413,7 +4413,7 @@ Optimization
    of dependencies with Python versions before 3.6, causing cache misses
    without need.
 
-Organisational
+Organizational
 ==============
 
 -  UI: Output the ``.cmd`` file created (if any) on Windows, e.g. when
@@ -4933,7 +4933,7 @@ Optimization
    specific tests, need not be considered for all other variable types
    as well.
 
-Organisational
+Organizational
 ==============
 
 -  Plugins: Major changes to the Yaml file content, cleaning up some of

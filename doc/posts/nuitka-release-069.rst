@@ -143,7 +143,7 @@ with this release yet.
    maintained though.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The use of the logging module was replaced with more of our custom

@@ -43,7 +43,8 @@ This page lists the many ways absolutely everybody can help and make
    usages of packages in your deployment, join and help us reduce
    optional dependencies.
 
-   See the problem described in :ref:`anti-bloat` and our solutions for it.
+   See the problem described in :ref:`anti-bloat` and our solutions for
+   it.
 
 #. Add more Nuitka Optimization
 

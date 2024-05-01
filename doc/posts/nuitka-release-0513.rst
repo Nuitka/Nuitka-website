@@ -130,7 +130,7 @@ propagation as they still could apply to real code.
    detect.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added repository for Ubuntu Vivid (15.04) for download. Removed

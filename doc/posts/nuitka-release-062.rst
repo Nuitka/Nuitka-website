@@ -10,7 +10,7 @@ This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`__. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
 
-This release has a huge focus on organisational things. Nuitka is
+This release has a huge focus on organizational things. Nuitka is
 growing in terms of contributors and supported platforms.
 
 ***********
@@ -70,7 +70,7 @@ growing in terms of contributors and supported platforms.
    often the actual needed code.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The Nuitka GitHub Organisation that was created a while ago and owns

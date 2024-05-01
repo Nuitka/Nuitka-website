@@ -125,7 +125,7 @@ generators.
    usage from cached converted forms in debug mode.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The issue tracker on GitHub is now the one that should be used with

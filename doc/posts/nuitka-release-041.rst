@@ -161,7 +161,7 @@ for the optimization part there have been large amounts of changes.
 -  Added test to cover default value identity.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The upload of `Nuitka to PyPI

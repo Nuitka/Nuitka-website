@@ -324,7 +324,7 @@ contractions in loops has finally been solved.
    approach is more robust and less invasive.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added ``run-inside-nuitka-container`` for use in CI scripts. With

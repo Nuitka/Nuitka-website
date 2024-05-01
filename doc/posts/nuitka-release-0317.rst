@@ -11,7 +11,7 @@ This is to inform you about the new stable release of `Nuitka
 `"download now" </doc/download.html>`_.
 
 This is to inform you about the new stable release of Nuitka. This time
-there are a few bug fixes, lots of very important organisational work,
+there are a few bug fixes, lots of very important organizational work,
 and yet again improved compatibility and cleanups. Also huge is the
 advance in making ``--deep`` go away and making the recursion of Nuitka
 controllable, which means a lot for scalability of projects that use a
@@ -87,7 +87,7 @@ entering the Debian repository.
    really necessary anymore.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added a `Developer Manual
@@ -226,7 +226,7 @@ useful not only for hot fix, but also for creating the branch
 still flowing.
 
 The few hot fixes didn't require a new release, but the many
-organisational improvements and the new features did warrant the new
+organizational improvements and the new features did warrant the new
 release, because of e.g. the much better test handling in this release
 and the improved recursion control.
 

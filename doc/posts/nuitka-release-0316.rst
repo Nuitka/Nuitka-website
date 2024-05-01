@@ -116,7 +116,7 @@ Debian repository. It's still not there, but it's making progress.
    in fact containing everything required.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The help output of Nuitka was polished a lot more. It is now more

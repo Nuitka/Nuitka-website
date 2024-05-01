@@ -336,7 +336,7 @@ updates, and newly supported packages.
    least for no good reason and this allows a proper reduction.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Project: Require the useful stuff for installation of Nuitka already.

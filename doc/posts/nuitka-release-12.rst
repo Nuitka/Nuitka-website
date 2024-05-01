@@ -331,7 +331,7 @@ Scalability should be better in many cases.
    incomplete.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  User Manual: Explain how to create 64/32 bits binaries on Windows,

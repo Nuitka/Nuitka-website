@@ -86,7 +86,7 @@ first, the result being that Nuitka now works on ARM Linux too.
    Nuitka gets caught.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Support for ARM Linux. I will make a separate posting on the

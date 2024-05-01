@@ -424,7 +424,7 @@ This is to inform you about the new stable release of `Nuitka
    it's only useful if one of our Qt plugins is active.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  User Manual: Make it clear in the example that renaming created

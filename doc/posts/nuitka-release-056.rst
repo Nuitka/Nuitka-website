@@ -107,7 +107,7 @@ on all fronts.
 -  Micro optimization to ``dict`` built-in for simpler code generation.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added support for ARM "hard float" architecture.

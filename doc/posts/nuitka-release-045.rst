@@ -100,7 +100,7 @@ recursion options, and so on. So it's mostly a consolidation release.
    It still remains a mess.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added ``LICENSE.txt`` file with Apache License 2.0 text to make it

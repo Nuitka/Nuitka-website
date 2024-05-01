@@ -11,7 +11,7 @@ This is to inform you about the new stable release of `Nuitka
 `"download now" </doc/download.html>`_.
 
 This release contains many bug fixes all across the board. There is also
-new optimization and many organisational improvements.
+new optimization and many organizational improvements.
 
 ***********
  Bug Fixes
@@ -117,7 +117,7 @@ new optimization and many organisational improvements.
    for the main package name it is importable as.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added support for Visual Studio 2019 as a C compiler backend.
@@ -193,7 +193,7 @@ we might eventually focus on making them better.
 Again, GSoC 2019 is also showing effects, and will definitely continue
 to do soin the next release.
 
-Many use cases have been improved, and on an organisational level, the
+Many use cases have been improved, and on an organizational level, the
 adoption of Visual Studio Code seems an huge improvement to have a well
 configured IDE out of the box too.
 

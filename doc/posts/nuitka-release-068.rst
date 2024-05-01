@@ -185,7 +185,7 @@ enhance the Python 3.8 compatibility.
    to avoid calls to their C methods with argument passing, etc.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Updated Developer Manual with changes that happened, removing the

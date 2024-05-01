@@ -188,7 +188,7 @@ a dedicated structure for that representing an in-lined function.
    ``py.test`` with Nuitka compiled extension modules.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added support for Scons 3.0 and running Scons with Python3.5 or

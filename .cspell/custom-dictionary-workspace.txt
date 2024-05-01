@@ -11,7 +11,6 @@ headerlink
 Lato
 maxsplit
 notranslate
-organisational
 pagename
 ravz
 Roboto

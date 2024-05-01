@@ -106,7 +106,7 @@ are some bug fixes.
    to cover this case as well.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The `gitweb interface <https://nuitka.net/gitweb>`__ (since disabled)

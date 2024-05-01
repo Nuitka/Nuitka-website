@@ -134,7 +134,7 @@ a lot of compatibility work.
    using the ``--recurse-stdlib`` which should be used instead.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The ``nuitka`` Python package is now installed into the public

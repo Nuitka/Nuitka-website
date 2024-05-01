@@ -90,7 +90,7 @@ this is more of a service release.
    increasing portability.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Providing own Debian/Ubuntu repositories for all relevant

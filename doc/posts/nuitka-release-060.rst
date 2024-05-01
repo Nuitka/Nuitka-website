@@ -126,7 +126,7 @@ changed.
    infancy. Subsequent releases will add more like these.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Disabled comments on the web site, we are going to use Twitter

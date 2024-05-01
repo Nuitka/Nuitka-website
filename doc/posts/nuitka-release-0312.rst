@@ -11,7 +11,7 @@ This is to inform you about the new stable release of `Nuitka
 `"download now" </doc/download.html>`_.
 
 This is to inform you about the new release of Nuitka many bug fixes,
-and substantial improvements especially in the organisational area.
+and substantial improvements especially in the organizational area.
 There is a new `User Manual <https://nuitka.net/doc/user-manual.html>`__
 (`PDF <https://nuitka.net/doc/user-manual.pdf>`__), with much improved
 content, a ``sys.meta_path`` based import mechanism for ``--deep`` mode,
@@ -135,7 +135,7 @@ were many of these.
 -  Added test to cover evaluation order of class definitions.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Migrated the "README.txt" from org-mode to ReStructured Text, which

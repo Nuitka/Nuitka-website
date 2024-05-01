@@ -210,7 +210,7 @@ resulted in important contributions.
    done right, it has been pushed back to the next release.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The ``g++-nuitka`` script is no more. With the help of the Scons

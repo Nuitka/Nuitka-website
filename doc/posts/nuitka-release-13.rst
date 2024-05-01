@@ -266,7 +266,7 @@ improvements, many of which have been in hotfixes.
    package.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Plugins: The ``numpy`` plugin functionality was moved to Nuitka

@@ -200,7 +200,7 @@ bug fixes.
    installing for Python2, this spams just a lot of errors.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Removed MSI installers from the download page. The MSI installers are

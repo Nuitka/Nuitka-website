@@ -124,7 +124,7 @@ which end up giving us another boost for the "PyStone" benchmark.
 -  Extended the built-in tests to cover ``type()`` as well.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  There is now a new environment variable ``NUITKA_SCONS`` which should

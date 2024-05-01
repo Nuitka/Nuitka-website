@@ -118,7 +118,7 @@ coroutine work for compatibility with uncompiled ones is most important.
    code that does not require an array of objects as an argument.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  There are now ``requirements-devel.txt`` and ``requirements.txt``

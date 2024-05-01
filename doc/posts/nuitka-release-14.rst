@@ -452,7 +452,7 @@ without the overhead of multiple distributions.
    cases.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Release: Make clear we require ``wheel`` and ``setuptools`` to

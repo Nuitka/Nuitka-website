@@ -121,7 +121,7 @@ bugs.
    the package.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Drop "compile_itself.sh" in favor of the new "compile_itself.py",

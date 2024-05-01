@@ -56,7 +56,7 @@ options to control the recursion into modules are added.
    to looking at the wrong files.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The ``getattr`` built-in is now optimized for compile time constants
@@ -83,7 +83,7 @@ options to control the recursion into modules are added.
    measure what would have been used.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Renamed the debug option ``--c++-only`` to ``--recompile-c++-only``

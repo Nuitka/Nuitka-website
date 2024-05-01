@@ -76,7 +76,7 @@ attacking long standing issues.
    as that code no longer polluting code generation as much.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  No more packages for openSUSE 12.1/12.2/12.3 and Fedora 17/18/19 as

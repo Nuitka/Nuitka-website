@@ -108,7 +108,7 @@ cleanups, and some important performance improvements as well.
    is only 0.1% and mostly the result of leaner code.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The "standalone mode" code (formerly known as "portable mode" has

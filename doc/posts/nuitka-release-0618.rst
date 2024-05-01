@@ -14,7 +14,7 @@ This release has a focus on new features of all kinds, and then also new
 kinds of performance improvements, some of which enable static
 optimization of what normally would be dynamic imports, while also
 polishing plugins and adding also many new features and a huge amount of
-organisational changes.
+organizational changes.
 
 ***********
  Bug Fixes
@@ -367,7 +367,7 @@ organisational changes.
    call overhead.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Commercial: There are ``Buy Now`` buttons available now for the

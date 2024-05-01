@@ -162,7 +162,7 @@ tasks in the summary, but first out to the many details.
 -  Checked more in-place operations for speed.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Many improvements to the coverage taking. We can hope to see public

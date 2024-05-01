@@ -120,7 +120,7 @@ only at threading performance, and LTO improvements on Windows.
 -  More cleanup of the scons files, sharing more common code.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Under the name Nuitka-Python we are now also developing a fork of

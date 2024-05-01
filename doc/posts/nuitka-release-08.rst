@@ -338,7 +338,7 @@ features, and adds new ones.
    appears to be universal.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  UI: Warning tests are now wrapped to multiple lines if necessary.

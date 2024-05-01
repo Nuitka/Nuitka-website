@@ -453,7 +453,7 @@ platform specified new abilities and corrections.
 -  Anti-Bloat: Avoid ``nose`` in ``pywt`` package.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  UI: Change template paths over from ``%VAR%`` to ``{VAR}``.

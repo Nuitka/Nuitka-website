@@ -327,7 +327,7 @@ that would otherwise need source code at run-time.
    added for better reports of the actual causes.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Moved the changelog of Nuitka to the website, just point to there

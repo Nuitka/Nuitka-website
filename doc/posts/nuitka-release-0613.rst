@@ -189,7 +189,7 @@ with lots of bug fixes and new features.
    plugin. The plugin is also now enabled by default.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Removed support for ``pefile`` dependency walker choice and inline

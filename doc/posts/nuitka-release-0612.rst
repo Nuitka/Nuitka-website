@@ -160,7 +160,7 @@ of bug fixes and new features.
    this avoids querying the same gcc binary twice.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The description of Nuitka on PyPI was absent for a while. Added back

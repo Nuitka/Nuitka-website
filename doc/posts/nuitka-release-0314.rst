@@ -11,7 +11,7 @@ This is to inform you about the new stable release of `Nuitka
 `"download now" </doc/download.html>`_.
 
 This is to inform you about the new stable release of Nuitka. This time
-it contains mostly organisational improvements, some bug fixes, improved
+it contains mostly organizational improvements, some bug fixes, improved
 compatibility and cleanups.
 
 It is again the result of working towards compilation of a real program
@@ -87,7 +87,7 @@ compiled types by the ``inspect`` module.
 -  Cover evaluation order of simple slices in ``OrderCheck`` too.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  There is a new issue tracker available (since migrated and removed)

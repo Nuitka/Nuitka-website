@@ -111,7 +111,7 @@ changed to become run time dependent values.
    this domain as well.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Changed default for file reference mode to ``original`` unless

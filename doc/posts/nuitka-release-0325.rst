@@ -105,7 +105,7 @@ the next big Python application can come.
    ``and``, so this was much needed now.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The remaining uses of C++11 have been removed. Code generated with

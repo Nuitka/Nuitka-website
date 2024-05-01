@@ -102,7 +102,7 @@ new release.
 -  As always, some PyLint work, and some minor ``TODO`` were solved.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added more information to the `Developer Manual

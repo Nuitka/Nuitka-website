@@ -177,7 +177,7 @@ in the main file should prove to be very useful.
    optimization for its functions.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Upstream patches for ``PySide6`` have been contributed and merged

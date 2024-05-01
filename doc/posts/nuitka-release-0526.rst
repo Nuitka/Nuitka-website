@@ -232,7 +232,7 @@ going to change soon. However this release improves all aspects.
    the Python binary (some site.py files do that),
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Added repository for Ubuntu Zesty (17.04) for download.

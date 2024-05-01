@@ -11,7 +11,7 @@ This is to inform you about the new stable release of `Nuitka
 `"download now" </doc/download.html>`_.
 
 This release contains a huge amount of bug fixes, lots of optimization
-gains, and many new features. It also presents many organisational
+gains, and many new features. It also presents many organizational
 improvements, and many cleanups.
 
 ***********
@@ -133,7 +133,7 @@ improvements, and many cleanups.
    too.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  This release also prepares Python 3.6 support, it includes full

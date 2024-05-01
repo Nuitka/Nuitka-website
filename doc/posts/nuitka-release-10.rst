@@ -378,7 +378,7 @@ way forward.
    as well.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Plugins: Major changes to the Yaml file content, cleaning up some of

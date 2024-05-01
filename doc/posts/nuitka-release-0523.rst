@@ -101,7 +101,7 @@ debut of type shapes and value shapes, giving way to "shape tracing".
 -  Python3: Added support for the ``ascii`` built-in.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  The movement to pure C got the final big push. All C++ only idoms of

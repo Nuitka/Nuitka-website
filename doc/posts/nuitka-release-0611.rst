@@ -188,7 +188,7 @@ fixes and new features.
    everything but Windows uses this now.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Windows: For Scons we now require a Python 3.5 or higher to be

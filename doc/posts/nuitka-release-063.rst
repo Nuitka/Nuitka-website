@@ -10,7 +10,7 @@ This is to inform you about the new stable release of `Nuitka
 <https://nuitka.net>`__. It is the extremely compatible Python compiler,
 `"download now" </doc/download.html>`_.
 
-This has a focus on organisational improvements. With more and more
+This has a focus on organizational improvements. With more and more
 people joining Nuitka, normal developers as well as many GSoC 2019
 students, the main focus was to open up the development tools and
 processes, and to improve documentation.
@@ -66,7 +66,7 @@ optimization was on hold.
    not ``clang``.
 
 ****************
- Organisational
+ Organizational
 ****************
 
 -  Nuitka is participating in the GSoC 2019.
@@ -149,7 +149,7 @@ optimization was on hold.
  Summary
 *********
 
-With the many organisational changes in place, my normal work is
+With the many organizational changes in place, my normal work is
 expected to resume for after and yield quicker improvements now.
 
 It is also important that people are now enabled to contribute to the
