@@ -47,7 +47,7 @@ a **C++** compiler for **C++03** [#]_.
 
 -  The **MinGW64** compiler (used with ``--mingw64``) option, must be
    the one Nuitka downloads, and it enforces that because there were
-   very frequent breakage with the complete tooling used.
+   frequent breakage with the complete tooling used.
 
    Nuitka will offer to automatically download it if no usable C
    compiler is found. Using ``--mingw64`` enforces using this compiler.
@@ -103,13 +103,13 @@ possible.
 -  If you use the **Windows** opening system, don't use **Python 2**
    because **clcache** doesn't work with it. Install **Python 3.5+**
    instead. **Nuitka** finds these needed Python versions (for example,
-   on **Windows** via registry) and you shouldn't notice it as long as
+   on **Windows** via registry); you shouldn't notice that as long as
    they are installed.
 
--  Other functionality is available when another Python has a certain
-   package installed. For example, **Python 2.x** can use onefile
-   compression if another Python with the **zstandard** package is
-   installed as well.
+-  Other functionality is only available when another **Python** has a
+   specific package installed. For example, **Python2.x** can only
+   achieve onefile compression if another **Python3** with the
+   **zstandard** package is available.
 
 .. admonition:: Important considerations
 
@@ -119,11 +119,12 @@ possible.
 
    -  **Binary filename suffix:** The created binaries have an ``.exe``
       suffix on Windows. On other platforms, they have either no suffix
-      in standalone mode or the ``.bin`` suffix, which you are free to
-      remove or change with the ``--output-filename`` option. The suffix
-      for acceleration mode is added to make sure that the original
-      script name and the binary name do not ever collide, so we can
-      safely overwrite the binary without destroying the source file.
+      in standalone mode or the ``.bin`` suffix, which you can remove or
+      change with the ``--output-filename`` option. **Nuitka** adds the
+      suffix for onefile and acceleration mode to make sure that the
+      original script name and the binary name cannot ever collide, so
+      we can safely overwrite the binary without destroying the source
+      file.
 
    -  **Module mode filenames:** Python Extension modules cannot be
       renamed without breaking them, the filename and the module name

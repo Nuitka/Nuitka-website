@@ -4,12 +4,12 @@
  Solutions to the Common Issues
 ################################
 
-This page is the recommended read if you find **Nuitka** is not working
-out of the box for you. There are typical issues encountered and their
-solutions.
+We recommend this page if you find **Nuitka** is not working out of the
+box for you. There are typical issues encountered and their solutions.
 
-This page can also teach you more about **Nuitka** advanced concepts and
-is a recommended read for all levels of **Nuitka** users.
+This page can also teach you more about **Nuitka** advanced concepts;
+therefore, we recommend reading it for all levels of **Nuitka** users.
+It helps a lot to avoid issues and avoid non-optimal results.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -47,9 +47,10 @@ permanently as a service daemon.
 
 However, with **Nuitka**, this executes your program again and puts
 these arguments in ``sys.argv`` where you maybe ignore them, and then
-you fork yourself again to launch the helper daemons. This can lead to
-unintentional forking, potentially resulting in a **fork bomb** scenario
-where multiple processes spawn recursively, causing system freeze.
+you fork yourself again to launch the helper daemons. That leads to
+unintentionally repeated forking, potentially resulting in a scenario
+called **fork bomb**, where multiple processes spawn recursively,
+causing system freeze.
 
 For example, running a program compiled with **Nuitka** may trigger the
 following error:
@@ -73,8 +74,8 @@ may not be the appropriate solution for compiled programs. **Nuitka**
 tries to correct them in non-deployment mode. Here is an example where
 **Nuitka** changes a message that asks to ``pip install ...`` a package.
 That, of course, is not the issue, and instead, **Nuitka** makes the
-program point the user to the ``--include-module`` option that makes an
-``imageio`` plugin work.
+program point the user to the ``--include-module`` option to use. With
+that, the ``imageio`` plugin will work.
 
 .. code:: yaml
 
@@ -129,10 +130,10 @@ support, but there are no guarantees.
  Linux Standalone
 ******************
 
-For **Linux** standalone, building a binary that works on other
-**Linux** versions is challenging. Because on Linux, much software is
-explicitly built targeted to concrete dynamic-link libraries, it then
-often does not run on other Linux flavors at all.
+For **Linux** standalone, building a binary that works on older
+**Linux** versions is challenging. Because on **Linux**, the **Python**
+software is explicitly constructed to link against concrete **DLLs**. As
+a consequence, it often does not run on other Linux flavors.
 
 The solution is to compile your application on the oldest **Linux**
 version that you intend to support. However, this process can be
@@ -184,17 +185,20 @@ re-execute itself.
 **Nuitka** handles fork bombs without the deployment option if it finds
 ``-c`` and ``-m`` options, as typically used with the Python interpreter
 to execute code. However, the detection may need improvement to work
-well with a new package (or a previously working package in a newer
+well, with a new package (or a previously working package in a newer
 version).
 
 *********************************
  Memory issues and compiler bugs
 *********************************
 
-Sometimes the C compilers will crash, saying they cannot allocate
-memory, that some input was truncated, or similar error messages caused
-by that. These are example error messages that are a sure sign of memory
-being too low; there is no end to them.
+Sometimes, the C compilers will crash with unspecific errors. It may be
+saying they cannot allocate memory, that some assembly input was
+truncated, or other similar error messages. All of these can be caused
+by using more memory than is available.
+
+These are example error messages that are a sure sign of memory being
+too low; there is no end to them.
 
 .. code::
 
@@ -281,18 +285,17 @@ reduces the amount of memory by a factor up to 8.
 
 .. note::
 
-   The ``--low-memory`` option reduces the number of started C compiler
-   instances to one already.
+   The ``--low-memory`` option implies ``--jobs=1`` already.
 
-**********************
- Dynamic ``sys.path``
-**********************
+*********************************
+ Dynamic ``sys.path`` at runtime
+*********************************
 
-If your script modifies ``sys.path`` at runtime, for example, inserts
-directories with source code relative to it, **Nuitka** will not be able
-to see those. However, if you set the ``PYTHONPATH`` to the resulting
-value, it will be able to compile it and find the used modules from
-these paths as well.
+If your program (or some used modules) modify ``sys.path`` at runtime,
+for example, inserting directories with source code relative to it,
+**Nuitka** will not be able to see those. However, if you set the
+``PYTHONPATH`` to the resulting value, **Nuitka** will be able to locate
+the modules used from there as well.
 
 ****************************
  Manual Python File Loading
@@ -309,7 +312,7 @@ code and is a lot less vulnerable.
 
 .. code:: python
 
-   # Using a package name, to locate the plugins. This is also a sane
+   # Using a package name to locate the plugins. Also, a good approach
    # way to organize them into a directory.
    scan_path = scan_package.__path__
 
@@ -327,11 +330,11 @@ code and is a lot less vulnerable.
 
 If your program fails to find a data file, it can cause different
 problematic behavior; for example, a package might complain that it is
-not the correct version, because a ``VERSION`` read from the file
-usually, was not found and instead, a default value is used. The absence
-of files containing for example icons may cause visual issues only or
-texts that cannot be found in a file, which may also raise strange
-errors.
+not the correct version because a ``VERSION`` read from the file usually
+was not found, and instead, it uses a default value. The absence of
+files containing, for example, icons may cause visual issues only or
+databases, or texts missing in a file, which may also raise all kinds of
+strange errors.
 
 Often, the error handling code paths for files that are not present are
 even buggy and will reveal programming errors like unbound local
@@ -353,18 +356,19 @@ more detail to learn than is covered here.
 *********************************
 
 **Nuitka** has plugins and configurations to deal with copying **DLLs**
-needed by some packages. It covers **NumPy**, **SciPy**, **Tkinter**, and
-practically all popular packages.
+needed by some packages. It covers **NumPy**, **SciPy**, **Tkinter**,
+and practically all popular packages.
 
 The **DLLs** need special treatment to be able to run on other systems,
 merely copying them is not working and will give strange errors at
 runtime.
 
 Sometimes, newer versions of packages, such as **NumPy**, can be
-unsupported. In this situation, you will have to raise an issue so
-we can also add support for it.
+unsupported. In this situation, you will have to raise an issue so we
+can also add support for it.
 
-If you want to manually add a DLL or an EXE because it is your project only, you must use user Yaml files describing their location.
+If you want to manually add a DLL or an EXE because it is your project
+only, you must use user Yaml files to describe their location.
 
 The reference for the syntax to use with examples is in the :doc:`Nuitka
 Package Configuration </user-documentation/nuitka-package-config>` page.
@@ -374,28 +378,28 @@ Package Configuration </user-documentation/nuitka-package-config>` page.
 ********************************
 
 Some packages are a single import, but to **Nuitka** means that more
-than a thousand packages (literally) are to be included. The prime
-example of Pandas, which does want to plug and use just about everything
+than a thousand packages (literally) are included as its dependency. One
+example is **IPython**, which does want to plug and use just about everything
 you can imagine. Multiple frameworks for syntax highlighting everything
 imaginable take time.
 
 Nuitka will have to learn effective caching to deal with this in the
-future. Presently, you will have to deal with huge compilation times for
+future. Presently, you will have to deal with substantial compilation times for
 these.
 
 A major weapon in fighting dependency creep should be applied, namely
-the ``anti-bloat`` plugin, which offers interesting abilities, that can
+the ``anti-bloat`` plugin, which offers interesting abilities that can
 be put to use and block unneeded imports, giving an error for where they
 occur. Use it for example like this ``--noinclude-pytest-mode=nofollow
---noinclude-setuptools-mode=nofollow`` and for example also
+--noinclude-setuptools-mode=nofollow`` and, for example also
 ``--noinclude-custom-mode=setuptools:error`` to get the compiler to
 error out for a specific package. Make sure to check its help output. It
-can take for each module of your choice, for example forcing also that
+can take for each module of your choice, for example, forcing also that
 for example ``PyQt5`` is considered uninstalled for standalone mode.
 
-It's also driven by a configuration file, ``anti-bloat.yml`` that you
-can contribute to, removing typical bloat from packages. Please don't
-hesitate to enhance it and make PRs towards Nuitka with it.
+It's also driven by a configuration file, ``standard.nuitka-package.config.yml`` that you
+can contribute to, removing typical bloat from packages. Please join us
+to enhance it and make PRs towards **Nuitka** enhancing it for more and more packages to compile without serious bloat.
 
 ***************************
  Standalone: Finding files
