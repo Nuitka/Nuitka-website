@@ -75,7 +75,7 @@ contained jobs that you may enjoy.
 
 -  Windows - MSVC support needs low level code help
 
-   .. admonition:: update
+   .. admonition:: Update
 
       This is now done.
 

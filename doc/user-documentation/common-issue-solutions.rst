@@ -131,9 +131,10 @@ support, but there are no guarantees.
 ******************
 
 For **Linux** standalone, building a binary that works on older
-**Linux** versions is challenging. Because on **Linux**, the **Python**
-software is explicitly constructed to link against concrete **DLLs**. As
-a consequence, it often does not run on other Linux flavors.
+**Linux** versions is challenging. Because on **Linux**, distributors
+build **Python** software to link against the concrete system explicitly
+**DLLs**. As a consequence, it often does not run on other Linux
+flavors.
 
 The solution is to compile your application on the oldest **Linux**
 version that you intend to support. However, this process can be
@@ -215,8 +216,8 @@ Ask Nuitka to use less memory
 =============================
 
 There is a dedicated option ``--low-memory`` which influences decisions
-of Nuitka, such that it avoids high usage of memory during compilation
-at the cost of increased compile time.
+of **Nuitka**, such that it avoids high usage of memory during
+compilation at the cost of increased compile time.
 
 Avoid 32-bit C compiler/assembler memory limits
 ===============================================
@@ -231,7 +232,7 @@ Use a minimal virtualenv
 
 When you compile from an installation used for many packages and
 programs, you may have many optional dependencies of your software
-installed. Some software will then have imports on these, and Nuitka
+installed. Some software will then have imports on these, and **Nuitka**
 will compile them as well. Not only may these be just the troublemakers,
 but they also require more memory, so get rid of that. Of course, you do
 have to check that your program has all the needed dependencies before
@@ -381,47 +382,62 @@ Package Configuration </user-documentation/nuitka-package-config>` page.
 
 Some packages are a single import, but to **Nuitka** means that more
 than a thousand packages (literally) are included as its dependency. One
-example is **IPython**, which does want to plug and use just about everything
-you can imagine. Multiple frameworks for syntax highlighting everything
-imaginable take time.
+example is **IPython**, which does want to plug and use just about
+everything you can imagine. Multiple frameworks for syntax highlighting
+everything imaginable take time.
 
 Nuitka will have to learn effective caching to deal with this in the
-future. Presently, you will have to deal with substantial compilation times for
-these.
+future. Presently, you will have to deal with substantial compilation
+times for these.
 
 A major weapon in fighting dependency creep should be applied, namely
 the ``anti-bloat`` plugin, which offers interesting abilities that can
 be put to use and block unneeded imports, giving an error for where they
 occur. Use it for example like this ``--noinclude-pytest-mode=nofollow
---noinclude-setuptools-mode=nofollow`` and, for example also
+--noinclude-setuptools-mode=nofollow`` and, for example, also
 ``--noinclude-custom-mode=setuptools:error`` to get the compiler to
 error out for a specific package. Make sure to check its help output. It
 can take for each module of your choice, for example, forcing also that
 for example ``PyQt5`` is considered uninstalled for standalone mode.
 
-It's also driven by a configuration file, ``standard.nuitka-package.config.yml`` that you
-can contribute to, removing typical bloat from packages. Please join us
-to enhance it and make PRs towards **Nuitka** enhancing it for more and more packages to compile without serious bloat.
+A configuration file drives it, ``standard.nuitka-package.config.yml``
+that you can contribute to, removing typical bloat from packages. Please
+join us in enhancing it and making PRs towards **Nuitka** for more and
+more packages to compile without severe bloat.
 
 ***************************
  Standalone: Finding files
 ***************************
 
-The standard code that normally works, also works, you should refer to
+The standard code that normally works also works; you should refer to
 ``os.path.dirname(__file__)`` or use all the packages like ``pkgutil``,
 ``pkg_resources``, ``importlib.resources`` to locate data files near the
 standalone binary.
 
 .. important::
 
-   What you should **not** do, is use the current directory
-   ``os.getcwd``, or assume that this is the script directory, for
+   What you should **not** do is use the current directory
+   ``os.getcwd``, or assume that ``.`` is the script directory for
    example with paths like ``data/``.
 
-   If you did that, it was never good code. Links, to a program,
-   launching from another directory, etc. will all fail in bad ways. Do
-   not make assumptions about the directory your program is started
-   from.
+   If you did that, it was never good code. Links to a program,
+   launching it from another directory, or code changing the current
+   directory will all cause failures. Do not make assumptions about the
+   directory from which your program starts.
+
+.. admonition:: Tip
+
+   Want to catch these errors before compiling?
+
+   Using the terminal, create a sub-directory, move one directory up,
+   and then run your program like this ``python ../main.py`` and correct
+   all the errors you will encounter compared to ``python main.py``.
+
+   It goes a long way to not having issues after compilation in
+   standalone mode to do this, but make sure to refer to
+   ``os.path.dirname(__file__)`` for files to be part of your compiled
+   program installation, and for files that are to reside next to the
+   compiled program use ``os.path.dirname(sys.argv[0])``.
 
 In case you mean to refer to the location of the ``.dist`` folder for
 files that are to reside near the binary, there is
@@ -445,13 +461,12 @@ nested structure.
 
 There is a difference between ``sys.argv[0]`` and ``__file__`` of the
 main module for the onefile mode, which is caused by using a bootstrap
-to a temporary location. The first one will be the original executable
-path, whereas the second one will be the temporary or permanent path the
-bootstrap executable unpacks to. Data files will be in the later
-location, your original environment files will be in the former
-location.
+to a temporary location. The first will be the original executable path,
+whereas the second will be the temporary or permanent path the bootstrap
+executable unpacks to. Data files will be in the later location; your
+original environment files will be in the former location.
 
-Given 2 files, one which you expect to be near your executable, and one
+Given two files, one which you expect to be near your executable and one
 which you expect to be inside the onefile binary, access them like this.
 
 .. code:: python
@@ -473,16 +488,34 @@ which you expect to be inside the onefile binary, access them like this.
 
 For debugging purposes, remove ``--disable-console`` or use the options
 ``--force-stdout-spec`` and ``--force-stderr-spec`` with paths as
-documented for ``--onefile-tempdir-spec`` above. These can be relative
-to the program or absolute, so you can see the outputs given.
+documented for ``--onefile-tempdir-spec`` above. These can be program
+relative, absolute paths, or temp directories.
+
+.. admonition:: Example
+
+   You may, for example, use
+   ``--force-stdout-spec={PROGRAM_BASE}.out.txt`` and
+   ``--force-stderr-spec={PROGRAM_BASE}.err.txt`` and use :ref:`Nuitka
+   Project Options <nuitka-project-options>` to enable them with
+   environment variables in your compilation.
+
+   .. code:: python
+
+      # nuitka-project-if: os.getenv("DEBUG") == "yes":
+      #  nuitka-project: --force-stdout-spec={PROGRAM_BASE}.out.txt
+      #  nuitka-project: --force-stderr-spec={PROGRAM_BASE}.err.txt
+
+Use these options to capture the errors and outputs and check them; they
+will contain **Python** tracebacks and, generally, the information you
+would use to debug your program.
 
 ***********************************
  Deep copying uncompiled functions
 ***********************************
 
-Sometimes people use this kind of code, which for packages on PyPI, we
-deal with by doing source code patches on the fly. If this is in your
-own code, here is what you can do:
+Sometimes, people use this kind of code, which we deal with for packages
+on PyPI by doing source code patches on the fly. If this is in your
+code, here is what you can do:
 
 .. code:: python
 
@@ -493,9 +526,9 @@ own code, here is what you can do:
       result.__name__ = name
       return result
 
-Compiled functions cannot be used to create uncompiled ones from them,
+Code cannot use compiled functions to create uncompiled ones from them,
 so the above code will not work. However, there is a dedicated ``clone``
-method, that is specific to them, so use this instead.
+method that is specific to them, so use this instead.
 
 .. code:: python
 
@@ -514,9 +547,10 @@ method, that is specific to them, so use this instead.
  Modules: Extension modules are not executable directly
 ********************************************************
 
-A package can be compiled with Nuitka, no problem, but when it comes to
-executing it, ``python -m compiled_module`` is not going to work and
-give the error ``No code object available for AssertsTest``.
+You can compile modules and packages with **Nuitka**, no problem, but
+when it comes to executing it, ``python -m compiled_module`` is not
+going to work and give the error ``No code object available for
+<module_name>``.
 
 Because the compiled module is not source code, and **Python** will not
 just load it with the ``-m`` implementation. The closest to it is
@@ -524,5 +558,5 @@ just load it with the ``-m`` implementation. The closest to it is
 main function yourself.
 
 To support this, the **Python** ``runpy`` and/or ``ExtensionFileLoader``
-would need improving such that Nuitka could supply its compiled module
-object for Python to use.
+would need improving such that **Nuitka** could supply its compiled
+module object for Python to use.
