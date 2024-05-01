@@ -31,7 +31,11 @@ This release is not done yet.
 Bug Fixes
 =========
 
--  Standalone: Added support for ``python-magic-bin`` package.
+-  Standalone: Added support for ``python-magic-bin`` package. Fixed in
+   2.2.1 already.
+
+-  Fix, when multiple compilations started simultaneously, the cache
+   directory creation could fail. Fixed in 2.2.1 already.
 
 New Features
 ============
@@ -62,10 +66,18 @@ Optimization
    object and populate it directly, avoiding the overhead of calling of
    the ``StopIteration`` type.
 
+-  Optimization: For Python3.8+, call uncompiled functions via vector
+   calls.
+
+   We avoid an API call that ends up being slower than using the same
+   function via the vector call directly.
+
 Organizational
 ==============
 
--  No changes yet.
+-  Detect ``patchelf`` usage in buggy version ``0.18.0`` and ask the
+   user to upgrade or downgrade it, as this specific version is known to
+   be broken.
 
 Tests
 =====
