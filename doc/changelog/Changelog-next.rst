@@ -34,8 +34,17 @@ Bug Fixes
 -  Standalone: Added support for ``python-magic-bin`` package. Fixed in
    2.2.1 already.
 
--  Fix, when multiple compilations started simultaneously, the cache
-   directory creation could fail. Fixed in 2.2.1 already.
+-  Fix: The cache directory creation could fail when multiple
+   compilations started simultaneously. Fixed in 2.2.1 already.
+
+-  macOS: For ``arm64`` builds, DLLs can also have an architecture
+   dependent suffix; check that as well. Makes the ``soundfile``
+   dependency scan work. Fixed in 2.2.1 already.
+
+-  Fix: Modules where lazy loaders handling adds hard imports when a
+   module is first processed did not affect the current module,
+   potentially causing it not to resolve hidden imports. Fixed in 2.2.1
+   already.
 
 New Features
 ============
