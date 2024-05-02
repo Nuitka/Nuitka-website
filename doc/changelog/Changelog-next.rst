@@ -46,6 +46,16 @@ Bug Fixes
    potentially causing it not to resolve hidden imports. Fixed in 2.2.1
    already.
 
+-  macOS: The use of ``libomp`` in ``numba`` needs to cause the
+   extension module not to be included and not to look elsewhere. Fixed
+   in 2.2.1 already.
+
+-  Python3.6+: Fix, added support for keyword arguments of
+   ``ModuleNotFoundError``. Fixed in 2.2.1 already.
+
+-  macOS: Detect more versioned DLLs and ``arm64`` specific filenames.
+   Fixed in 2.2.1 already.
+
 New Features
 ============
 
