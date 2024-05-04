@@ -1,25 +1,25 @@
 :orphan:
 
 .. meta::
-   :description: Protect your IP against reverse engineering with the Python compiler Nuitka and turn your Python code into binary. Protect code, data, outputs and tracebacks!
+   :description: Protect your IP against reverse engineering with the Python compiler Nuitka and turn your Python code into binary. Protect code, data, outputs, and tracebacks!
    :keywords: python,compiler,protection,reverse engineering,encrypted,tracebacks,obfuscate,obfuscation,obfuscator
 
 ###################
  Nuitka Commercial
 ###################
 
-As a commercial user of Python, you definitely need these critical
-features that only Nuitka commercial offers. Protect your code, your
-data, your outputs, and tracebacks while still enjoying major
-convenience features for your application.
+As a commercial user of Python, you need these critical features only
+**Nuitka Commercial** offers. Protect your **code**, **data**,
+**outputs**, and **tracebacks** while still enjoying major convenience
+features for your application.
 
 ************************************
  Protection vs. Reverse Engineering
 ************************************
 
 Hiding your source code and contained keys is crucial to your IP
-protection. For this, you need the Nuitka commercial package. It
-contains plugins to Nuitka that will achieve the following:
+protection. For this, you need the **Nuitka Commercial** package. It
+includes plugins that achieve the following:
 
 .. grid:: 1 1 2 2
 
@@ -33,28 +33,27 @@ contains plugins to Nuitka that will achieve the following:
                Obfuscate contained program constants data
 
                Your encryption keys, your program texts, your library usages, all
-               expose textual information, that can be valuable input in Reverse
+               expose textual information that can be valuable input in Reverse
                Engineering.
 
-               Normally these constants are plain and readable in the created
-               programs (and of course your Python source code or bytecode).
-               Compiling with Nuitka gives you protection of the code, but with the
-               data being easily readable, it will be less effective.
+               With **Nuitka**, these constants are plain and readable in the compiled
+               programs, just like in your **Python** source code or its bytecode.
+
+               Compiling with **Nuitka** protects the source code, but with the
+               data still being easily readable, it will be less effective than **Nuitka Commercial**, which goes all the way.
 
                :doc:`Read more.... <commercial/protect-constants-data>`
 
            .. grid-item-card::  Contained Data Files
 
-               Another aspect of data protection are your data files. When your program
-               includes data files to work on, these are normally visible in the file
-               system. This unnecessarily exposes your program, sometimes, e.g. via QML
+               Another aspect of data protection is your data files. When your program
+               includes data files to work with, these have to be visible in the file
+               system. These files unnecessarily expose your program to risks. For example, via QML
                files of Qt, your program behavior can be changed by an attacker modifying
                these files, or they can copy their content easily.
 
-               Therefore Nuitka commercial allows you to embed data files as part
-               of the program constants and protect it in the same way as other
-               constants. Without these files accessible, the attacker will not
-               have these an an attack vector.
+               Therefore, **Nuitka Commercial** allows you to embed data files as part
+               of the program constants and protect them that way. Without these files, the attacker cannot use them as an attack vector.
 
                :doc:`Read more.... <commercial/protect-data-files>`
 
@@ -67,13 +66,12 @@ contains plugins to Nuitka that will achieve the following:
 
                When your program is deployed and crashing, you could take
                potentially successful steps against these tracebacks appearing. But
-               when you need to support your client, you need to be able to to
-               actually tell, why your software is crashing.
+               when you need to support your client, you must be able to tell why your software is crashing.
 
-               Python tracebacks are good for this, but you cannot want them to be
-               readable to the user. This is where traceback encryption comes in.
-               Nuitka with the commercial plugin will make sure to encrypt all
-               traceback outputs. They still carry the information as you want, but
+               Python tracebacks are suitable for this, but you cannot want them to be
+               readable to the user. At this point, traceback encryption comes in handy.
+               **Nuitka Commercial** allows you to encrypt all
+               traceback outputs. They still carry the information you want, but
                *only you* will be able to decode them.
 
                Symmetric encryption (and asymmetric encryption in a future update)
@@ -81,13 +79,13 @@ contains plugins to Nuitka that will achieve the following:
 
            .. grid-item-card:: Encrypted Outputs
 
-               If you need to query information from a machine, or just in general
+               If you need to query information from a machine or just in general
                want to have perfect protection, you can use the Nuitka plugin to
                make sure it can only output encrypted information on standard output
                and standard error.
 
-               This will allow you to decode outputs as necessary, and will make
-               sure it's not readable to anybody but you.
+               You will be able to decode outputs as necessary, and we will make
+               sure, it's not readable to anybody but you.
 
 ******************************
  Older OSes and Special Needs
@@ -102,15 +100,21 @@ contains plugins to Nuitka that will achieve the following:
 
            .. grid-item-card::  Windows 7
 
-               Deploying your program to Windows 7, or even Windows XP. We
-               cannot make every program work on these (e.g. Qt6 requires even
-               newer Windows 10), but if it works with Python, using older
-               versions of packages, then Nuitka can make it portable.
+               Deploy to **Windows 7** or even **Windows XP**
+
+               We cannot make your program work those OSes unless it already
+               does. For example, Qt6 requires even a newer Windows 10 version, not just any.
+
+               But if it works with **Python** on these OSes, using older
+               versions of packages and older toolchain, **Nuitka Commercial**
+               allows you to make it portable.
 
            .. grid-item-card::  RHEL 7 support
 
-               If your program works on RHEL 7 (CentOS 7), then Nuitka can make
-               it portable from and to that one too.
+               Deploy to **Linux** with a portable build result
+
+               If your program works on RHEL 7 (CentOS 7), then **Nuitka Commercial** can make it portable across all Linux versions,
+               using a container build.
 
 
    .. grid-item::
@@ -120,9 +124,9 @@ contains plugins to Nuitka that will achieve the following:
 
            .. grid-item-card:: Commercial-only packages
 
-               For select few packages, these are only supported with Nuitka commercial. This is because we made patches for older normally
-               unsupported packages like PySide2, or because the package is
-               for accepting payments, making their use clearly commercial.
+               For a select few packages, these are supported only with **Nuitka Commercial**. For example, we made patches for older
+               packages like PySide2, or because the package is
+               for accepting payments for your commercial product.
 
                :doc:`Read more.... <commercial/commercial-only-packages>`
 
@@ -131,7 +135,9 @@ contains plugins to Nuitka that will achieve the following:
 *************
 
 In this instance, you have special wishes that only commercial customers
-will have and that are effort to maintain.
+will have, and that are all effort to implement yourself, but come with
+**Nuitka Commercial** included. The time saved for development may
+already justify the investment.
 
 .. grid:: 1 1 2 2
 
@@ -142,9 +148,9 @@ will have and that are effort to maintain.
 
            .. grid-item-card::  Windows Service
 
-               Deploying your program as a Windows service is trivial.
+               Deploying your program as a **Windows Service** becomes trivial.
 
-               For this, there is a dedicated plugin in Nuitka that makes deployment of a practically unchanged program as a service very easy.
+               For this, **Nuitka Commercial** has a dedicated plugin that makes deploying your practically unchanged program as a **Window Service** very easy.
 
                :doc:`Read more.... <commercial/windows-service>`
 
@@ -153,34 +159,36 @@ will have and that are effort to maintain.
 
            .. grid-item-card::  Automatic Updates
 
-               Automatic download, alerts to, applying updates of deployed software.
+               Support for automatic downloads, alerts to them, and automatic applying updates of your deployed software.
 
-               This is not yet implemented, but will be added in a future update.
+               The feature has not yet been fully implemented; we will add it in future updates.
 
 **************************
  Priority Issue Solutions
 **************************
 
-You might have an issue that blocks you from using Nuitka, which you
-want to use though, because of performance gains, the IP protection,
+You might have an issue that blocks you from using **Nuitka**, which you
+want to use. Your interest might be performance gains and IP protection,
 with or without the commercial plugins.
 
 The Nuitka Priority package gives you access to elevated priority of
-your issues. If you subscribe to this, reported issues will be solved
-with highest priority, to enable you using Nuitka.
+your issues. If you subscribe to this, your reported issues will be
+solved with the highest priority, enabling you to use **Nuitka** as
+quickly as possible.
 
 *************
  Sponsorship
 *************
 
-You are happy in using Nuitka and you want to benefit it, because it
-solves a crucial part of your workflow in deployment. You may or may not
-need the priority package or the commercial package. You can pay the
-relatively large amount and help Nuitka development in general. And you
-can know that it remains active and supported and pay back to the
-relatively free service you get on a daily basis.
+You are happy with using **Nuitka** and want to benefit more because it
+solves a crucial part of your deployment workflow. You may or may not
+need the priority package or the commercial package.
 
-Naturally sponsors will be entitled to all access and treated with
+You can pay this relatively large amount and help **Nuitka** development
+in general. And you can know that you get the best support or reward for
+the high-quality service you got with **Nuitka**.
+
+Naturally, sponsors will be entitled to all access and treated with
 highest priority.
 
 .. _pricing:
@@ -195,43 +203,43 @@ highest priority.
  Limitations
 *************
 
-When you buy Nuitka commercial, parts of the, mostly the plugins that
-implement the commercial only features are under a :doc:`license
-<commercial-license>` that forbids you to distribute the Nuitka
-commercial source code. That should be obvious, but otherwise it does
-not limit your use of Nuitka at all.
+When you buy **Nuitka Commercial**, parts of the code - mostly the
+plugins that implement the commercial features - are under a
+:doc:`license <commercial-license>` that forbids you to distribute the
+**Nuitka Commercial** source code. That should be obvious, but otherwise
+it does not limit your use of **Nuitka Commercial** at all.
 
-You can use Nuitka commercial on
+You can use **Nuitka Commercial** on
 
--  All your machines, all OSes
+-  **All** your machines, and **all** OSes
 
--  All your software, deploy as many as you want
+-  **All** your software, deploy as many products and copies as you want
 
--  Even after ending the subscription (on that particular version you
-   have)
+-  Even **after ending the subscription** you can continue using what
+   you have had in the end.
 
-Basically you are as free with Nuitka commercial as with standard
-Nuitka. Only for distribution of that Nuitka commercial version to third
-parties, you are limited.
+Essentially, you are as free with **Nuitka Commercial** as with standard
+**Nuitka**. You are only prohibited to distribute **Nuitka Commercial**
+version to third parties.
 
 **********
  Delivery
 **********
 
 #. Pay via Stripe and have that confirmed
-#. You get access to the private GitHub repo ``Nuitka-commercial`` which
-   contains Nuitka plus commercial only parts.
-#. Optionally given more users in your GitHub organization access via
-   token.
-#. Nuitka commercial can then be used as a drop in replacement of Nuitka
-   with more options.
+#. You get access to the private GitHub repo called
+   ``Nuitka-commercial`` which contains **Nuitka Commercial**.
+#. Optionally, you can give more users in your GitHub organization
+   access via access tokens.
+#. **Nuitka Commercial** is a drop-in replacement of **Nuitka** with
+   only more options.
 
 ********************
  Vendor Information
 ********************
 
-In case you need to fill out a form for your company with vendor
-information, please find the full set of information on this page
+In case you need to fill out a form for your company with the vendor
+information, please find the complete set of information on this page
 :doc:`/pages/impressum`.
 
 ************
@@ -240,10 +248,12 @@ information, please find the full set of information on this page
 
 Please use `this form to contact us
 <https://docs.google.com/forms/d/e/1FAIpQLSeGVpDqhuD0-hkcbsxzQD85PmDdZ_Z31HBIk3ttojcpbSlagg/viewform?usp=sf_link>`_
-with intent of buying Nuitka services, but still open questions. You can
-also ask for solving your deployment, where working in your environment
-the compilation is done by us, and we will be compensated for our time
-extra.
+with the intent of buying Nuitka services, but you still have open
+questions.
+
+You can also ask us to solve your deployment, where working in your
+environment, we set up the compilation, debug it, and you will
+compensate us for our time spent.
 
 .. important::
 
