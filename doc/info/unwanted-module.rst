@@ -15,28 +15,29 @@ be due to an explosion in module count. DLLs from unwanted modules can
 also cause an increase in size.
 
 Nuitka wants you to be aware of the issue so you are not disappointed by
-endless compile time or too large a distribution size.
+too long of a compile-time or too large of a distribution size.
 
 ************
  Background
 ************
 
-**Nuitka** gives this warning for some modules only. The worst offender is e.g.
-``IPython`` which will use just about every syntax highlighting,
-language parsing, rendering, and other frameworks, leading to
-a compilation that then requires a very long time.
+**Nuitka** gives this warning for some modules only. The worst offender
+currently is ``IPython`` which will use just about every syntax
+highlighting, language parsing, rendering, and more frameworks, leading
+to a compilation that takes a very long time. However, many packages
+import ``IPython`` and offers ways to integrate with it.
 
-Another end of the spectrum are packages like ``Numba`` that are not
-supported for JIT in standalone mode of Nuitka, but still pull in the
-dependencies that themselves require huge DLLs, while they are not going
-to be usable anyway.
+Another example is ``Numba``. **Nuitka** does not support its JIT in
+standalone mode of **Nuitka**, but still pull in the dependencies that
+themselves require huge DLLs, while they are not going to be usable
+anyway.
 
 Nuitka follows imports when you say so, and in standalone mode
-specifically it is the default to do so. You can exclude specific
+specifically, it is the default to do so. You can exclude specific
 packages or modules manually by inhibiting them with
 ``--nofollow-import-to=module_name``, but that may not work, in which
 case, ``anti-bloat`` work is needed to eradicate this kind of imports.
-For common packages these exist. You appear to have come across code
+For common packages, these exist. You appear to have come across code
 that is not yet dealt with.
 
 .. note::
@@ -44,13 +45,14 @@ that is not yet dealt with.
    Checkout the `Nuitka Package Configuration
    <https://nuitka.net/doc/nuitka-package-config.html>`__. page to find
    out how to help with ``anti-bloat`` additions. There are plenty of
-   examples, and if you need help, feel free to ask.
+   examples; if you need help, feel free to ask.
 
 *********
  Example
 *********
 
-This is an artificial example where we import unittest.
+This is an example where we import ``unittest`` to demonstrate the
+issue.
 
 .. code::
 
