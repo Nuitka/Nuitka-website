@@ -5,25 +5,26 @@
 ##################
 
 ****************************
- The Problem in a few Words
+ The Problem in a Few Words
 ****************************
 
-Some specific modules can cause a lot of dependencies to be pulled in,
-and will make compile time and distribution size relatively large. This
-might be an explosion in modules count, or it might be DLLs being
-included in standalone mode, that should not have to it.
+Some specific modules have a lot of dependencies, which then become part
+of the compilation. That will make compile time much longer and
+distribution size much bigger than necessary. The time increases might
+be due to an explosion in module count. DLLs from unwanted modules can
+also cause an increase in size.
 
-Nuitka wants you to be aware of this, so you are not disappointed from
-endless compile time or too large distribution size.
+Nuitka wants you to be aware of the issue so you are not disappointed by
+endless compile time or too large a distribution size.
 
 ************
  Background
 ************
 
-This warning is given for ever more modules. The worst offender is e.g.
+**Nuitka** gives this warning for some modules only. The worst offender is e.g.
 ``IPython`` which will use just about every syntax highlighting,
-language parsing, rendering, and what not framework, leading to
-compilations that require very long times.
+language parsing, rendering, and other frameworks, leading to
+a compilation that then requires a very long time.
 
 Another end of the spectrum are packages like ``Numba`` that are not
 supported for JIT in standalone mode of Nuitka, but still pull in the
