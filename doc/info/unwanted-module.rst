@@ -37,8 +37,9 @@ specifically, it is the default to do so. You can exclude specific
 packages or modules manually by inhibiting them with
 ``--nofollow-import-to=module_name``, but that may not work, in which
 case, ``anti-bloat`` work is needed to eradicate this kind of imports.
-For common packages, these exist. You appear to have come across code
-that is not yet dealt with.
+For common packages, these exist.
+
+You appear to have come across code that is not yet dealt with.
 
 .. note::
 
@@ -51,7 +52,7 @@ that is not yet dealt with.
  Example
 *********
 
-This is an example where we import ``unittest`` to demonstrate the
+Here is an example output where we import ``unittest`` to demonstrate the
 issue.
 
 .. code::
@@ -59,14 +60,16 @@ issue.
    Nuitka-Plugins:WARNING: anti-bloat: Undesirable import of 'unittest' at 'Mini.py:1' encountered. It may slow down compilation.
    Nuitka-Plugins:WARNING:     Complex topic! More information can be found at https://nuitka.net/info/unwanted-module.html
 
-For ``unittest`` the warning is given, because it appears you are
-including test code in your compilation, which is never a good thing.
-Maybe you forced inclusion of a whole package, which will also pull in
-its tests, and you should exclude those then. Maybe you mixed test code
-and application code, and it's normal for you. You can disable the
+For ``unittest`` **Nuitka** gives the warning, because it appears you are
+including test code in your compilation, which is never a good thing. Often
+it has extra dependencies, and it can be a lot of code too.
+
+Maybe you forced the inclusion of a whole package, which will also pull in
+its tests, and you should exclude those then. Perhaps you mixed test code
+and application code, and it's normal for you. You can turn off the
 warning for specific ones with options like
-``--noinclude-unittest-mode=allow`` that exist for every of these
-warnings. Naturally then you are subject to all the disadvantages
+``--noinclude-unittest-mode=allow`` that exists for each of these
+warnings. Naturally, you are subject to all the disadvantages
 mentioned.
 
 *************
