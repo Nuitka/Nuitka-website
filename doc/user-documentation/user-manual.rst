@@ -255,6 +255,67 @@ To view it, run the following command:
 
    python -m nuitka --help
 
+.. _nuitka-project-options:
+
+************************
+ Nuitka Project Options
+************************
+
+One clean way to provide options to Nuitka, which you can always use for
+your program, is to put them into the main file you compile. There is
+even support for conditional options and options using pre-defined
+variables. Checkout this example:
+
+.. code:: python
+
+   # Compilation mode, support OS-specific options
+   # nuitka-project-if: {OS} in ("Windows", "Linux", "Darwin", "FreeBSD"):
+   #    nuitka-project: --onefile
+   # nuitka-project-else:
+   #    nuitka-project: --standalone
+
+   # The PySide6 plugin covers qt-plugins
+   # nuitka-project: --enable-plugin=pyside6
+   # nuitka-project: --include-qt-plugins=qml
+
+The comments must be at the start of lines, and the indentation inside
+of them marks an end of blocks, much like in Python. There are currently
+no other keywords than the used ones demonstrated above.
+
+You can put arbitrary Python expressions there, and if you want to
+access the version information of a package, for example, you could use
+``__import__("module_name").__version__`` if that would be the condition
+to decide whether to enable or disable specific Nuitka settings. The
+only thing Nuitka does before executing it as Python expressions is
+expanding ``{variable}`` for a pre-defined set of variables:
+
+Table with supported variables:
+
++------------------+--------------------------------+------------------------------------------+
+| Variable         | What this Expands to           | Example                                  |
++==================+================================+==========================================+
+| {OS}             | Name of the OS used            | Linux, Windows, Darwin, FreeBSD, OpenBSD |
++------------------+--------------------------------+------------------------------------------+
+| {Version}        | Version of Nuitka              | e.g. (1, 6, 0)                           |
++------------------+--------------------------------+------------------------------------------+
+| {Commercial}     | Version of Nuitka Commercial   | e.g. (2, 1, 0)                           |
++------------------+--------------------------------+------------------------------------------+
+| {Arch}           | Architecture used              | x86_64, arm64, etc.                      |
++------------------+--------------------------------+------------------------------------------+
+| {MAIN_DIRECTORY} | Directory of the compiled file | some_dir/maybe_relative                  |
++------------------+--------------------------------+------------------------------------------+
+| {Flavor}         | Variant of Python              | e.g. Debian Python, Anaconda Python      |
++------------------+--------------------------------+------------------------------------------+
+
+The use of ``{MAIN_DIRECTORY}`` is recommended when you want to specify
+a filename relative to the main script, e.g. for use in data file
+options or user package configuration yaml files,
+
+.. code:: python
+
+   # nuitka-project: --include-data-files={MAIN_DIRECTORY}/my_icon.png=my_icon.png
+   # nuitka-project: --user-package-configuration-file={MAIN_DIRECTORY}/user.nuitka-package.config.yml
+
 .. _data-files:
 
 ************

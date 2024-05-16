@@ -13,67 +13,28 @@ On this page, you'll find helpful tips and techniques for optimizing
 your experience with Nuitka. From maximizing compilation efficiency to
 managing dependencies and runtime considerations.
 
-.. _nuitka-project-options:
-
 ****************************
  Nuitka Options in the code
 ****************************
 
-One clean way of providing options to Nuitka, that you will always use
-for your program, is to put them into the main file you compile. There
-is even support for conditional options, and options using pre-defined
-variables, this is an example:
+You can create a build script or directly track the Nuitka
+command line options inside the source code. The latter is
+a much cleaner approach than a build script that constructs a command line to invoke Nuitka.
+
+In your build script, you use ``python -m nuitka some_script.py
+--output-dir=dist`` and put only options that are not generally
+relevant; in the main ``script.py`` you have lines like these.
 
 .. code:: python
 
-   # Compilation mode, support OS-specific options
-   # nuitka-project-if: {OS} in ("Windows", "Linux", "Darwin", "FreeBSD"):
-   #    nuitka-project: --onefile
-   # nuitka-project-else:
-   #    nuitka-project: --standalone
-
-   # The PySide2 plugin covers qt-plugins
-   # nuitka-project: --enable-plugin=pyside2
+   # The PySide6 plugin covers qt-plugins
+   # nuitka-project: --enable-plugin=pyside6
    # nuitka-project: --include-qt-plugins=qml
 
-The comments must be at the start of lines, and indentation inside of
-them is to be used, to end a conditional block, much like in Python.
-There are currently no other keywords than the used ones demonstrated
-above.
-
-You can put arbitrary Python expressions there, and if you wanted to
-e.g. access a version information of a package, you could simply use
-``__import__("module_name").__version__`` if that would be required to
-e.g. enable or disable certain Nuitka settings. The only thing Nuitka
-does that makes this not Python expressions, is expanding ``{variable}``
-for a pre-defined set of variables:
-
-Table with supported variables:
-
-+------------------+--------------------------------+------------------------------------------+
-| Variable         | What this Expands to           | Example                                  |
-+==================+================================+==========================================+
-| {OS}             | Name of the OS used            | Linux, Windows, Darwin, FreeBSD, OpenBSD |
-+------------------+--------------------------------+------------------------------------------+
-| {Version}        | Version of Nuitka              | e.g. (1, 6, 0)                           |
-+------------------+--------------------------------+------------------------------------------+
-| {Commercial}     | Version of Nuitka Commercial   | e.g. (2, 1, 0)                           |
-+------------------+--------------------------------+------------------------------------------+
-| {Arch}           | Architecture used              | x86_64, arm64, etc.                      |
-+------------------+--------------------------------+------------------------------------------+
-| {MAIN_DIRECTORY} | Directory of the compiled file | some_dir/maybe_relative                  |
-+------------------+--------------------------------+------------------------------------------+
-| {Flavor}         | Variant of Python              | e.g. Debian Python, Anaconda Python      |
-+------------------+--------------------------------+------------------------------------------+
-
-The use of ``{MAIN_DIRECTORY}`` is recommended when you want to specify
-a filename relative to the main script, e.g. for use in data file
-options or user package configuration yaml files,
-
-.. code:: python
-
-   # nuitka-project: --include-data-files={MAIN_DIRECTORY}/my_icon.png=my_icon.png
-   # nuitka-project: --user-package-configuration-file={MAIN_DIRECTORY}/user.nuitka-package.config.yml
+You can have conditions, you can evaluate environment variables, you can
+use locations relative to the main script, and many more things. For
+reference, check out the page :ref:`nuitka-project-options`, which contains
+all the information.
 
 ***************************
  Python command line flags
