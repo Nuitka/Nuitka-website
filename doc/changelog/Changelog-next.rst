@@ -21,7 +21,14 @@ current stable release as |NUITKA_VERSION| as well.
    supported out of the box and will also aim at scalability if
    possible.
 
-This release is not done yet.
+This release bumps the long-awaited 3.12 support to a complete level.
+This means Nuitka now behaves identically to CPython 3.12 for the
+largest part.
+
+In terms of bug fixes, it's also huge. Especially for Unicode paths and
+software with Unicode extension module names and Unicode program names,
+and even non-UTF8 code names, there have been massive amounts of
+improvements.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -110,6 +117,20 @@ Bug Fixes
 
 New Features
 ============
+
+-  Support for Python 3.12 is finally there. We focused on scalability
+   first and because we did things the correct way immediately, rather
+   than rushing to get it working and improving only later.
+
+   As a result, the correctness and performance with previous Python
+   releases is improved as well.
+
+   Some things got delayed, though. We need to do more work to take
+   advantage of other core changes. Concerning exceptions normalized at
+   creation time, the created module code doesn't take advantage at all
+   yet. Also, more efficient two-digit long handling is possible with
+   Python 3.12, but not implemented. These are both changes that will
+   take some time, but they are still before we have them.
 
 -  Plugins: Added support to include directories entirely unchanged by
    adding ``raw_dir`` values for ``data-files`` section, see
