@@ -222,13 +222,13 @@ supported, unless you want to target Windows 7.
 +------------------+-------------+-----------+
 
 When using MingGW64 as downloaded by Nuitka, you'll need the following
-redist versions:
+redist versions (same for all versions):
 
-+----------------------------+-------------+---------------------+
-| MingGW64 version           | Redist Year | CPython             |
-+============================+=============+=====================+
-| WinLibs automatic download | 2015        | 2.6, 2.7, 3.4- 3.11 |
-+----------------------------+-------------+---------------------+
++----------------------------+-------------+--------------------+
+|      MingGW64 version      | Redist Year |      CPython       |
++============================+=============+====================+
+| WinLibs automatic download | 2015        | 2.6, 2.7, 3.4-3.12 |
++----------------------------+-------------+--------------------+
 
 Once the corresponding runtime libraries are installed on the target
 system, you may remove all ``api-ms-crt-*.dll`` files from your Nuitka
