@@ -73,8 +73,13 @@ This is the Nuitka roadmap, broken down by features.
  Python 3.12
 *************
 
--  Adding support for it only started, the C side of Nuitka doesn't yet
-   handle the changes to ``int`` and ``str`` representations.
+-  Change code generation to not use triple ``type, value, traceback``
+   for exception handling anymore. Currently we use conversions back and
+   forth, that slow down.
+
+-  Use special code for 2 digits code in the long operation templates.
+   Currently only single digit is optimized, but with Python 3.12, we
+   can do better now.
 
 ************************
  Nuitka-Python (public)
@@ -389,7 +394,7 @@ effectively with more than a single file.
    results anywhere.
 
 ******************************
- Features to be added for 2.3
+ Features to be added for 2.4
 ******************************
 
 [ ] Use performance potential for attribute access with Python 3.11
@@ -405,7 +410,7 @@ version.
 works.
 
 ******************************
- Features to be added for 2.4
+ Features to be added for 2.5
 ******************************
 
 [ ] Initial support for ctypes based direct calls of C code.
