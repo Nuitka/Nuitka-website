@@ -56,6 +56,26 @@ Bug Fixes
 -  macOS: Detect more versioned DLLs and ``arm64`` specific filenames.
    Fixed in 2.2.1 already.
 
+-  Fix, was not annotating exception exit when converting import to hard
+   submodule import. Fixed in 2.2.2 already.
+
+-  Fix, branches that became empty still need to be merged.
+
+   Otherwise, propagated assignment statements will not be seen by
+   usages outside the branch and become unassigned instead. Fixed in
+   2.2.2 already.
+
+-  Windows: Fix, uninstalled self-compiled Python didn't have proper
+   installation prefix added for DLL scan, resulting in runtime DLLs not
+   picked up from there. Fixed in 2.2.2 already.
+
+-  Standalone: Added support for newer ``PySide6`` version 6.7, needed
+   correction on macOS and has new kind of data files. Fixed in 2.2.3
+   already.
+
+-  Standalone: More complete support for ``pyocd`` package. Fixed in
+   2.2.3 already.
+
 New Features
 ============
 
@@ -90,6 +110,9 @@ Optimization
 
    We avoid an API call that ends up being slower than using the same
    function via the vector call directly.
+
+-  Anti-Bloat: Avoid using ``dask`` from the ``sparse`` module. Added in
+   2.2.2 already.
 
 Organizational
 ==============
