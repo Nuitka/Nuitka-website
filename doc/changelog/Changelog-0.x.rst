@@ -4559,7 +4559,7 @@ Bug Fixes
    was not followed yet.
 
 -  Windows: Use short paths, these work much better to load extension
-   modules and TCL parts of TkInter cannot handle unicode paths at all.
+   modules and TCL parts of TkInter cannot handle Unicode paths at all.
    This makes Nuitka work in locations, where normal Python cannot.
 
 -  Windows: Fixup dependency walker in unicode input directories.
@@ -4807,7 +4807,7 @@ Bug Fixes
    openSUSE versions 15 and higher.
 
 -  Windows: Using short path names to interact with Scons avoids
-   problems with unicode paths in all cases.
+   problems with Unicode paths in all cases.
 
 -  macOS: The usage of ``install_name_tool`` could sometimes fail due to
    length limits, we now increase it at link time.
@@ -5586,7 +5586,7 @@ optimization was on hold.
 Bug Fixes
 =========
 
--  Windows: Added support for running compiled binaries in unicode path
+-  Windows: Added support for running compiled binaries in Unicode path
    names.
 
 -  Standalone: Added support for crytodomex and pycparser packages.
@@ -9443,7 +9443,7 @@ Bug Fixes
 -  Fix, the dump from ``--xml`` no longer contains functions that have
    become unused during analysis.
 
--  Standalone: Creating or running programs from inside unicode paths
+-  Standalone: Creating or running programs from inside Unicode paths
    was not working on Windows. Fixed in 0.5.13.7 already.
 
 -  Namespace package support was not yet complete, importing the parent

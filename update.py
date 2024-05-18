@@ -1271,7 +1271,7 @@ When given, the pages are checked with rest lint. Default %default.""",
         dest="post_process",
         default=False,
         help="""\
-When given, the site is post processed with minify. Default %default.""",
+When given, the site is post processed. Default %default.""",
     )
 
     parser.add_option(

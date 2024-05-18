@@ -76,6 +76,38 @@ Bug Fixes
 -  Standalone: More complete support for ``pyocd`` package. Fixed in
    2.2.3 already.
 
+-  Module: Fix, the create ``.pyi`` files were incomplete.
+
+   The list of imported modules created in the finalization step was
+   incomplete, we now go over the actual done modules and mark all
+   non-included modules as dependencies.
+
+-  Scons: Fix, need to avoid using Unicode paths towards the linker on
+   Windows. Instead, use a temporary output filename and correct it by
+   renaming after Scons has completed.
+
+-  Windows: Avoid passing Unicode paths to the dependency walker on
+   Windows, as it cannot handle those. Also, the temporary filenames in
+   the build folder must be short filenames, as it cannot handle them in
+   case that is a Unicode path.
+
+-  Scons: For ``ccache`` on Windows, the log filename must be short path
+   too, if the build folder is a Unicode path.
+
+-  Windows: Make sure the Scons build executes inside a short path as
+   well, so that a potential Unicode path is visible to the C compiler
+   when resolving the current directory.
+
+-  Windows: The encoding of Unicode paths for accelerated mode values of
+   ``__file__`` was not making sure that hex sequences were correctly
+   terminated, so in some cases, it produced ambiguous C literals.
+
+-  Windows: Execute binaries created with ``--windows-uac-admin`` with
+   and ``--run`` options with proper UAC prompt.
+
+-  Fix, need to allow for non-UTF8 Unicode in variable names, function
+   names, class names, and method names.
+
 New Features
 ============
 
@@ -87,16 +119,25 @@ New Features
 -  UI: The new command line option ``--include-raw-dir`` was added to
    allow including directories entirely unchanged.
 
+-  Module: Added support for creating modules with Unicode names. Needs
+   a different DLL entry function name and to make use of two phase
+   initialization for the created extension module.
+
 Optimization
 ============
+
+-  Python3: Avoid API calls for allocators
+
+   This is most effective with Python 3.11 or higher but also many other
+   types like ``bytes``, ``dict`` keys, ``float`` objects, and ``list``
+   are faster to create with all Python3 versions.
 
 -  Python3.5+: Directly use the **Python** allocator functions for
    object creation, avoiding the DLL API calls. The coverage is complete
    with Python3.11 or higher, but many object types like ``float``,
    ``dict``, ``list``, ``bytes`` benefit even before that version.
 
--  Optimization: Faster creation of ``StopIteration`` objects for
-   **Python3**.
+-  Python3: Faster creation of ``StopIteration`` objects.
 
    With Python 3.12, the object is created directly and set as the
    current exception without normalization checks.
@@ -105,11 +146,20 @@ Optimization
    object and populate it directly, avoiding the overhead of calling of
    the ``StopIteration`` type.
 
--  Optimization: For Python3.8+, call uncompiled functions via vector
-   calls.
+-  Python3.8+: Call uncompiled functions via vector calls.
 
    We avoid an API call that ends up being slower than using the same
    function via the vector call directly.
+
+-  Added specialization for ``os.path.normpath``. We might benefit from
+   compile time analysis of it once we want to detect file accesses.
+
+-  Avoid using module constants accessor for global constant values
+
+   For example, with ``()`` we used the module-level accessor for no
+   reason, as it is already available as a global value. As a result
+   constant blobs shrink, and the compiled code becomes slightly smaller
+   as well.
 
 -  Anti-Bloat: Avoid using ``dask`` from the ``sparse`` module. Added in
    2.2.2 already.
@@ -117,20 +167,59 @@ Optimization
 Organizational
 ==============
 
+-  UI: Major change in console handling.
+
+   Compiled programs on Windows now have a third mode, besides console
+   or not. You can now create GUI applications that attach to an
+   available console and output there.
+
+   The new option ``--console`` controls this and allows to enforce
+   console with the ``force`` value and disable using it with the
+   ``disable`` value, the ``attach`` value activates the new behavior.
+
+   .. note::
+
+      Redirection of outputs to a file in ``attach`` mode only works if
+      it is launched correctly, for example, interactively in a shell,
+      but some forms of invocation will not work; prominently,
+      ``subprocess.call`` without inheritable outputs will still output
+      to a terminal.
+
+   On macOS, the distinction doesn't exist anymore; technically it
+   wasn't valid for a while already; you need to use bundles for
+   non-console applications though, by default otherwise a console is
+   forced by macOS itself.
+
 -  Detect ``patchelf`` usage in buggy version ``0.18.0`` and ask the
    user to upgrade or downgrade it, as this specific version is known to
    be broken.
 
+-  UI: Make clear that the ``--nofollow-import-to`` option accepts
+   patters.
+
+-  UI: Added warning for module mode and usage of the options to force
+   outputs as they don't have any effect.
+
+-  UI: Check the success of Scons in creating the expected binary
+   immediately after running it and not only in post-processing which is
+   late.
+
 Tests
 =====
 
--  No changes yet.
+-  Use :ref:`Nuitka Project Options <nuitka-project-options>` for the
+   user plugin test rather than passing by environment variables to the
+   test runner.
 
 Cleanups
 ========
 
 -  Solved a TODO about using unified code for setting the
-   ``StopIteration``.
+   ``StopIteration``, coroutines, generators and asyncgen used to be
+   different.
+
+-  Unified how the result filename is passed to Scons for modules and
+   executables to use the same ``result_exe`` key.
 
 Summary
 =======
