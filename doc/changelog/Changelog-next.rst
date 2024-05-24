@@ -22,8 +22,7 @@ current stable release as |NUITKA_VERSION| as well.
    possible.
 
 This release bumps the long-awaited 3.12 support to a complete level.
-This means Nuitka now behaves identically to CPython 3.12 for the
-largest part.
+Now, Nuitka behaves identically to CPython 3.12 for the most part.
 
 In terms of bug fixes, it's also huge. Especially for Unicode paths and
 software with Unicode extension module names and Unicode program names,
@@ -66,40 +65,41 @@ Bug Fixes
 -  Fix, was not annotating exception exit when converting import to hard
    submodule import. Fixed in 2.2.2 already.
 
--  Fix, branches that became empty still need to be merged.
+-  Fix, branches that became empty may still have traces that need to be
+   merged.
 
-   Otherwise, propagated assignment statements will not be seen by
-   usages outside the branch and become unassigned instead. Fixed in
-   2.2.2 already.
+   Otherwise, usages outside the branch will not see propagated
+   assignment statements. As a result, these falsely became unassigned
+   instead. Fixed in 2.2.2 already.
 
 -  Windows: Fix, uninstalled self-compiled Python didn't have proper
    installation prefix added for DLL scan, resulting in runtime DLLs not
    picked up from there. Fixed in 2.2.2 already.
 
--  Standalone: Added support for newer ``PySide6`` version 6.7, needed
-   correction on macOS and has new kind of data files. Fixed in 2.2.3
-   already.
-
--  Standalone: More complete support for ``pyocd`` package. Fixed in
+-  Standalone: Added support for newer ``PySide6`` version 6.7. It
+   needed correction on macOS and has a new data file type. Fixed in
    2.2.3 already.
 
--  Module: Fix, the create ``.pyi`` files were incomplete.
+-  Standalone: Complete support for ``pyocd`` package. Fixed in 2.2.3
+   already.
+
+-  Module: Fix, the created ``.pyi`` files were incomplete.
 
    The list of imported modules created in the finalization step was
    incomplete, we now go over the actual done modules and mark all
    non-included modules as dependencies.
 
 -  Scons: Fix, need to avoid using Unicode paths towards the linker on
-   Windows. Instead, use a temporary output filename and correct it by
-   renaming after Scons has completed.
+   Windows. Instead, use a temporary output filename and rename it to
+   the actual filename after Scons has completed.
 
 -  Windows: Avoid passing Unicode paths to the dependency walker on
    Windows, as it cannot handle those. Also, the temporary filenames in
-   the build folder must be short filenames, as it cannot handle them in
+   the build folder must be in short paths, as it cannot handle them in
    case that is a Unicode path.
 
--  Scons: For ``ccache`` on Windows, the log filename must be short path
-   too, if the build folder is a Unicode path.
+-  Scons: For ``ccache`` on Windows, the log filename must be a short
+   path too, if the build folder is a Unicode path.
 
 -  Windows: Make sure the Scons build executes inside a short path as
    well, so that a potential Unicode path is visible to the C compiler
@@ -127,10 +127,10 @@ New Features
 
    Some things got delayed, though. We need to do more work to take
    advantage of other core changes. Concerning exceptions normalized at
-   creation time, the created module code doesn't take advantage at all
-   yet. Also, more efficient two-digit long handling is possible with
-   Python 3.12, but not implemented. These are both changes that will
-   take some time, but they are still before we have them.
+   creation time, the created module code doesn't yet take advantage.
+   Also, more efficient two-digit long handling is possible with Python
+   3.12, but not implemented. These are both changes that will take some
+   time, but they are still before we have them.
 
 -  Plugins: Added support to include directories entirely unchanged by
    adding ``raw_dir`` values for ``data-files`` section, see
@@ -141,7 +141,7 @@ New Features
    allow including directories entirely unchanged.
 
 -  Module: Added support for creating modules with Unicode names. Needs
-   a different DLL entry function name and to make use of two phase
+   a different DLL entry function name and to make use of two-phase
    initialization for the created extension module.
 
 Optimization
@@ -177,10 +177,10 @@ Optimization
 
 -  Avoid using module constants accessor for global constant values
 
-   For example, with ``()`` we used the module-level accessor for no
+   For example, with ``()``, we used the module-level accessor for no
    reason, as it is already available as a global value. As a result
    constant blobs shrink, and the compiled code becomes slightly smaller
-   as well.
+   too .
 
 -  Anti-Bloat: Avoid using ``dask`` from the ``sparse`` module. Added in
    2.2.2 already.
@@ -208,7 +208,7 @@ Organizational
 
    On macOS, the distinction doesn't exist anymore; technically it
    wasn't valid for a while already; you need to use bundles for
-   non-console applications though, by default otherwise a console is
+   non-console applications, though, by default otherwise a console is
    forced by macOS itself.
 
 -  Detect ``patchelf`` usage in buggy version ``0.18.0`` and ask the
@@ -222,8 +222,8 @@ Organizational
    outputs as they don't have any effect.
 
 -  UI: Check the success of Scons in creating the expected binary
-   immediately after running it and not only in post-processing which is
-   late.
+   immediately after running it and not only in post-processing, which
+   is late.
 
 Tests
 =====
@@ -236,11 +236,11 @@ Cleanups
 ========
 
 -  Solved a TODO about using unified code for setting the
-   ``StopIteration``, coroutines, generators and asyncgen used to be
+   ``StopIteration``, coroutines, generators, and asyncgen used to be
    different.
 
--  Unified how the result filename is passed to Scons for modules and
-   executables to use the same ``result_exe`` key.
+-  Unified how the binary result filename is passed to Scons for modules
+   and executables to use the same ``result_exe`` key.
 
 Summary
 =======
