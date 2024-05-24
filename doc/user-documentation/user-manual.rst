@@ -49,8 +49,8 @@ a **C++** compiler for **C++03** [#]_.
    the one Nuitka downloads, and it enforces that because there were
    frequent breakage with the complete tooling used.
 
-   Nuitka will offer to automatically download it if no usable C
-   compiler is found. Using ``--mingw64`` enforces using this compiler.
+   Nuitka will offer to download it unless it finds Visual Studio. Using
+   ``--mingw64`` enforces using this compiler.
 
 -  The **Clang-cl** compiler can be used if provided by the **Visual
    Studio** installer or Using ``--clang`` on Windows enforces the one
@@ -106,8 +106,8 @@ possible.
    on **Windows** via registry); you shouldn't notice that as long as
    they are installed.
 
--  Other functionality is only available when another **Python** has a
-   specific package installed. For example, **Python2.x** can only
+-  Other functionality is only available when another **Python**
+   installs a specific package. For example, **Python2.x** can only
    achieve onefile compression if another **Python3** with the
    **zstandard** package is available.
 
@@ -157,11 +157,11 @@ Operating System
 ================
 
 **Nuitka** supports the following operating systems: **Linux**,
-**FreeBSD**, **NetBSD**, **macOS**, and **Windows** (32 bits/64
-bits/ARM).
+**FreeBSD**, **NetBSD**, **OpenBSD**, **macOS**, and **Windows** (32
+bits/64 bits/ARM).
 
-The portability is excellent, therefore other operating systems will
-work as well.
+The portability of the generated code is excellent. Therefore, other
+operating systems will work as well.
 
 However, specific adjustments might be necessary, such as modifying
 Nuitka's internal **SCons** usage or providing additional flags. Ensure
@@ -237,7 +237,7 @@ convenience, but that is optional; just use a qualified path to execute
 it.
 
 Moreover, if you want to execute with the right interpreter, run the
-following command:
+following command.
 
 .. code:: bash
 
@@ -279,8 +279,8 @@ variables. Checkout this example:
    # nuitka-project: --include-qt-plugins=qml
 
 The comments must be at the start of lines, and the indentation inside
-of them marks an end of blocks, much like in Python. There are currently
-no other keywords than the used ones demonstrated above.
+them marks an end of blocks, much like in Python. There are currently no
+other keywords than the ones demonstrated above.
 
 You can put arbitrary Python expressions there, and if you want to
 access the version information of a package, for example, you could use
@@ -308,8 +308,9 @@ Table with supported variables:
 +------------------+--------------------------------+------------------------------------------+
 
 The use of ``{MAIN_DIRECTORY}`` is recommended when you want to specify
-a filename relative to the main script, e.g. for use in data file
-options or user package configuration yaml files,
+a filename relative to the main script, for example, for use in the data
+file options or to locate user package configuration files near the main
+script,
 
 .. code:: python
 
@@ -343,46 +344,45 @@ Code is not Data Files
 
 In the following table, we list code file types.
 
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| Suffix     | Rationale                                                                             | Solution                                                                                               |
-+============+=======================================================================================+========================================================================================================+
-| ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code,   | Use ``--include-module`` on them instead                                                               |
-|            | there is no dependencies analyzed, and as a result it will just not work.             |                                                                                                        |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyc``   | Same as ``.py``.                                                                      | Use ``--include-module`` on them from their source code instead.                                       |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyo``   | Same as ``.pyc``.                                                                     | Use ``--include-module`` on them from their source code instead.                                       |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyw``   | Same as ``.py``.                                                                      | For including multiple programs, use multiple ``--main`` arguments instead.                            |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyi``   | These are ignored, because they are code-like and not needed at run time. For the     | Raise an issue if 3rd part software needs it.                                                          |
-|            | ``lazy`` package that actually would depend on them, we made a compile time solution  |                                                                                                        |
-|            | that removes the need.                                                                |                                                                                                        |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyx``   | These are ignored, because they are Cython source code not used at run time           |                                                                                                        |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd | Create Nuitka Package configuration for those, with ``dll`` section for the package that uses them.    |
-|            | party packages do use them as data, e.g. ``.NET`` packages, we solve that in package  | For rare cases, a ``data-files`` section with special configuration might be the correct thing to do.  |
-|            | configuration for it.                                                                 |                                                                                                        |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dylib`` | These are ignored since they are macOS extension modules or DLLs.                     | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.so``    | These are ignored, since they are Linux, BSD, etc. extension modules or DLLs.         | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.exe``   | They are binaries on Windows.                                                         | You can add Nuitka Package configuration to include those as DLLs and mark them as ``executable: yes`` |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.bin``   | They are binaries to non-Windows, otherwise same as ``.exe``.                         |                                                                                                        |
-+------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| Suffix     | Rationale                                                                                 | Solution                                                                                               |
++============+===========================================================================================+========================================================================================================+
+| ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code, so    | Use ``--include-module`` on them instead                                                               |
+|            | dependencies are not analyzed, and it will not work.                                      |                                                                                                        |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyc``   | Same as ``.py``.                                                                          | Use ``--include-module`` on their source code instead.                                                 |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyo``   | Same as ``.pyc``.                                                                         | Use ``--include-module`` on their source code instead.                                                 |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyw``   | Same as ``.py``.                                                                          | For including multiple programs, use multiple ``--main`` arguments instead.                            |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyi``   | Ignored because they are code-like and usually unnecessary at run time. For the ``lazy``  | Raise an issue if 3rd part software needs it.                                                          |
+|            | package that actually would depend on them, we made a solution need.                      |                                                                                                        |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyx``   | Ignored, because they are source code not used at run time                                |                                                                                                        |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd     | Create Nuitka Package configuration for those, with ``dll`` section for the package that uses them.    |
+|            | party packages use them as data, for example, ``.NET`` packages, we solve that in package | For rare cases, a ``data-files`` section with special configuration might be the correct thing to do.  |
+|            | configuration for it.                                                                     |                                                                                                        |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.dylib`` | Ignored since they are macOS extension modules or DLLs.                                   | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.so``    | Ignored since they are Linux/BSD extension modules or DLLs.                               | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.exe``   | They are binaries on Windows.                                                             | You can add Nuitka Package configuration to include those as DLLs and mark them as ``executable: yes`` |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.bin``   | Same as ``.exe`` on Windows.                                                              |                                                                                                        |
++------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 Package data ``--include-package-data=PACKAGE``
 ===============================================
 
-Include data files for the given package name. Data files of packages
-are not included by default, but package configuration should do it, or
-this option can be used. If you find you need to do it for a third-party
-package, feel free to let us know through an :ref:`issue report
-<github-issue-tracker>` as we strive to make most packages work out of
-the box.
+Include data files for the given package name. **Nuitka** omits data
+files of packages by default but relies on package configuration to do
+it. If that is not the case, use this option with the package name. If
+you find you need to do it for a third-party package, feel free to let
+us know through an :ref:`issue report <github-issue-tracker>` as we
+strive to make most packages work out of the box.
 
 DLLs and Python extension modules are not data files and are, by
 default, never included by this option. See
@@ -441,19 +441,19 @@ is recursive, meaning it includes files from subdirectories as well.
 -  With ``--include-data-dir=/path/some_dir=data/some_dir`` you can
    include a data directory as a whole in the distribution.
 
--  Use the ``--noinclude-data-files`` to remove files that matched, but
-   you want to exclude them. In this fashion, those options work in
-   reverse to ``--include-data-files``.
+-  Use the ``--noinclude-data-files`` to remove matching files, but you
+   want to exclude them. In this fashion, those options reverse
+   ``--include-data-files`` and other options.
 
 Copy data files near the onefile ``--include-onefile-external-data=PATTERN``
 ============================================================================
 
-Include the specified data file patterns outside of the onefile binary,
-rather than on the inside. It of course only makes sense in the case of
-``--onefile`` compilation. First files have to be specified as included
-somehow, then this refers to target paths, and rather than copying to
-the distribution, the path then refers to alongside the onefile
-executable produced.
+Include the specified data file patterns outside of the onefile binary
+rather than on the inside. Of course, using it only makes sense in the
+case of ``--onefile`` compilation. First, files have to be specified as
+included somehow. Then ``--include-onefile-external-data`` refers to
+target paths, and rather than copying to the distribution, the path
+refers to alongside the onefile executable produced.
 
 .. _tweaks:
 
@@ -499,13 +499,13 @@ MacOS Entitlements
 
 Entitlements define the capabilities and permissions that the
 application has when running, such as access to audio, camera, or
-calendar. Entitlements for a **macOS** application bundle can be added
-with the option ``--macos-app-protected-resource`` (**macOS** only).
+calendar. Add entitlements for a **macOS** application bundle with the
+option ``--macos-app-protected-resource`` (**macOS** only).
 
 For example, if you want to request access to a microphone, use the
 following option value
 ``--macos-app-protected-resource="NSMicrophoneUsageDescription:Microphone
-access"`` giving the Apple identifier, and a human-readable one.
+access"`` giving both the Apple identifier and a human-readable one.
 
 See the complete list in the `Protected resources
 <https://developer.apple.com/documentation/bundleresources/information_property_list/protected_resources>`__
@@ -513,10 +513,9 @@ page.
 
 .. note::
 
-   If you have spaces in the entitlement description, make sure to quote
-   the argument value. That prevents your shell from interpreting the
-   spaces as separate arguments for **Nuitka** and make sure that the
-   description is correctly passed through to **Nuitka**.
+   If you have spaces in the entitlement description, quote the argument
+   value. That prevents your shell from interpreting the spaces as two
+   separate arguments for **Nuitka** causing.
 
 Windows UAC Configuration
 =========================
@@ -607,7 +606,7 @@ can see where that happens.
 .. note::
 
    We highly recommend that you provide the Compilation Report when
-   reporting issues. This report, with its detailed information, is a
+   reporting issues. With its detailed information, this report is a
    reliable tool for troubleshooting. It allows you to share precise
    insights into your program's compilation, aiding in swiftly resolving
    any issues that may arise.
@@ -622,9 +621,9 @@ application bundle on **macOS**.
 
 .. note::
 
-   For some version options, you can put any text you choose here, but
-   make sure to quote the new lines appropriately for the shell to see
-   this is one argument.
+   For some version information options, you can put any text you choose
+   here, but make sure to quote the new lines appropriately for the
+   shell to see this is one argument.
 
 Product Name
 ------------
@@ -642,8 +641,8 @@ version, and **Nuitka** will, where applicable, also combine the two
 into a single one if you specify both.
 
 Use ``--product-version`` and ``--file-version`` to provide full version
-information. It must be up to 4 numbers; for example, ``1.0.0.0``
-and``1.0`` will also be accepted. For **Windows** version information,
+information. It must be up to 4 numbers; for example, ``1.0.0.0`` and
+``1.0`` will also be accepted. For **Windows** version information,
 **Nuitka** adds zeros automatically. Non-numbers are not allowed here.
 
 File Description
@@ -675,38 +674,32 @@ information with the ``--trademark`` option.
 
 When you use ``--report=compilation-report.xml`` Nuitka will create an
 XML file with detailed information about the compilation and packaging
-process. This is growing in completeness with every release and exposes
-module usage attempts, timings of the compilation, plugin influences,
-data file paths, DLLs, and reasons why things are included or not.
-
-At this time, the report contains absolute paths in some places, with
-your private information. The goal is to make this blended out by
-default because we also want to become able to compare compilation
-reports from different setups, for example with updated packages, and
-see the changes to Nuitka. The report is, however, recommended for your
-bug reporting.
+process. The report is growing in completeness with every release and
+exposes module usage attempts, timings of the compilation, plugin
+influences, data file paths, DLLs, and reasons why things are included
+and why not.
 
 Also, another form is available, where the report is free form and
-according to a Jinja2 template of yours and one that is included in
-Nuitka. The same information used to produce the XML file is accessible.
-However, right now, this is not yet documented, but we plan to add a
-table with the data. For a reader of the source code who is familiar
-with Jinja2, however, it will be easy to do it.
+according to a Jinja2 template of yours and or one that **Nuitka**
+includes. The same information used to produce the XML file is
+accessible. No documentation of it is available yet. However, it will be
+relatively easy for a source code reader familiar with Jinja2.
 
 If you have a template, you can use it like this
-``--report-template=your_template.rst.j2:your_report.rst`` and of
-course, the usage of restructured text, is only an example. You can use
-Markdown, your own XML, or whatever you see fit. Nuitka will just expand
-the template with the compilation report data.
+``--report-template=your_template.rst.j2:your_report.rst``. Using a
+restructured text filename is only an example. You can use Markdown,
+your own XML, or whatever you see fit. **Nuitka** will expand the
+template with the compilation report data.
 
-Currently, the following reports are included in Nuitka. You just use
-the name as a filename, and Nuitka will pick that one instead.
+Currently, the following reports are available in **Nuitka** itself. You
+use their name rather than a filename, and Nuitka will pick that one
+instead.
 
-+---------------+--------------+--------------------------------------------------------+
-| Report Name   | Status       | Purpose                                                |
-+===============+==============+========================================================+
-| LicenseReport | experimental | Distributions used in a compilation with license texts |
-+---------------+--------------+--------------------------------------------------------+
++---------------+--------+--------------------------------------------------------+
+| Report Name   | Status | Purpose                                                |
++===============+========+========================================================+
+| LicenseReport | stable | Distributions used in a compilation with license texts |
++---------------+--------+--------------------------------------------------------+
 
 .. note::
 
@@ -727,6 +720,6 @@ it.
 PDB
 ===
 
-There is no tracing of compiled functions to attach a debugger to.
+There is no tracing of compiled functions to which to attach a debugger.
 
 .. include:: ../variables.inc

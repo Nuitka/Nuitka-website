@@ -37,10 +37,10 @@ git
    # Commercial version (subscribers only)
    git clone --branch staging https://github.com/Nuitka/Nuitka-commercial.git
 
-Either just run ``bin/nuitka`` from the checkout, and it will use the
-install found near it, or run ``python setup.py develop`` as that will
-create a ``.pth`` file that is kind of like a symlink, that means if you
-update the git, Nuitka is automatically updated in your environment too.
+Either run ``bin/nuitka`` from the checkout, and it will use the Nuitka
+code right next to it, or run ``python setup.py develop``to create a
+``.pth`` file that works like a symlink. That means if you update the
+git, Nuitka is automatically updated in your environment, too.
 
 Of course ``python setup.py install`` also works, but copies **Nuitka**
 into the environment and needs to be redone for every git update.
@@ -68,7 +68,7 @@ hotfix or the new pre-release at that point.
 
 Usually, there is a new hotfix every one or two weeks. But before a new
 **Nuitka** release comes out, they might stop for a while, as with the
-new release being so close wouldn't matter much.
+next release being so close wouldn't matter much.
 
 For invasive fixes that are critical, they can become release triggers,
 certainly, if **Nuitka Commercial** customers with priority support are
@@ -90,8 +90,8 @@ course, also reward the responsive support given.
 *****************
 
 The ``factory`` branch of **Nuitka** may include all kinds of stupid
-mistakes; for example, not being executable with all **Python** versions,
-crashing and not working at all.
+mistakes; for example, not being executable with all **Python**
+versions, crashing and not working at all.
 
 They also frequently change without notice and nearly always as a ``git
 rebase``. So please use it only for the issue at hand or even more than
@@ -103,8 +103,8 @@ instead once possible. To keep using ``factory`` is asking for trouble,
 and it may have issues you have not noticed yet.
 
 The recommendation about the ``staging`` branch of **Nuitka Commercial**
-is slightly less strict, but it's best to treat it the same,
-even if attempts are made to keep it more stable, there will be mistakes.
+is slightly less strict, but it's best to treat it the same, even if
+with the best efforts to keep it more stable, there will be mistakes.
 
 .. |Factory Status| image:: https://github.com/Nuitka/Nuitka/actions/workflows/testing.yml/badge.svg?branch=factory
    :target: https://github.com/Nuitka/Nuitka/actions/workflows/testing.yml?query=branch%3Afactory
