@@ -178,9 +178,9 @@ Optimization
 -  Avoid using module constants accessor for global constant values
 
    For example, with ``()``, we used the module-level accessor for no
-   reason, as it is already available as a global value. As a result
+   reason, as it is already available as a global value. As a result,
    constant blobs shrink, and the compiled code becomes slightly smaller
-   too .
+   too.
 
 -  Anti-Bloat: Avoid using ``dask`` from the ``sparse`` module. Added in
    2.2.2 already.
