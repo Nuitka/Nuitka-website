@@ -115,6 +115,15 @@ Bug Fixes
 -  Fix, need to allow for non-UTF8 Unicode in variable names, function
    names, class names, and method names.
 
+-  Python3.10+: Fix, ``match`` statements that captured the rest of mapping
+   checks were not working yet.
+
+   .. code:: python
+
+      match value:
+         case {"key1": 5, **rest}:
+            ... # rest was not assigned here
+
 New Features
 ============
 
@@ -122,15 +131,26 @@ New Features
    first and because we did things the correct way immediately, rather
    than rushing to get it working and improving only later.
 
-   As a result, the correctness and performance with previous Python
-   releases is improved as well.
+   As a result, the correctness and performance of **Nuitka** with
+   previous Python releases are improved as well.
 
    Some things got delayed, though. We need to do more work to take
    advantage of other core changes. Concerning exceptions normalized at
    creation time, the created module code doesn't yet take advantage.
    Also, more efficient two-digit long handling is possible with Python
-   3.12, but not implemented. These are both changes that will take some
-   time, but they are still before we have them.
+   3.12, but not implemented. It will take more time before we have
+   these changes completed.
+
+-  Experimental support for Python 3.13 beta 1 is also there, and
+   potentially surprising, but we will try and follow its release cycle
+   closely and aim to support it at the time of release.
+
+   **Nuitka** has followed all of its core changes so far, and basic
+   tests are passing; the accelerated, module, standalone, and onefile
+   modes all work as expected. The only thing delayed is the uncompiled
+   generator integration, where we need to replicate the exact CPython
+   behavior. We need to have perfect integration only for working with the
+   ``asyncio`` loop, so we wait with it until release candidates appear.
 
 -  Plugins: Added support to include directories entirely unchanged by
    adding ``raw_dir`` values for ``data-files`` section, see

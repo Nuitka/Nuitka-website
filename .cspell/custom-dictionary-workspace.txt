@@ -1,6 +1,7 @@
 # Custom Dictionary Words
 ablog
 asciinema
+asyncio
 autobuild
 copybutton
 doctools
