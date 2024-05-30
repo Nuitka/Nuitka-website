@@ -52,34 +52,36 @@ You appear to have come across code that is not yet dealt with.
  Example
 *********
 
-Here is an example output where we import ``unittest`` to demonstrate the
-issue.
+Here is an example output where we import ``unittest`` to demonstrate
+the issue.
 
 .. code::
 
    Nuitka-Plugins:WARNING: anti-bloat: Undesirable import of 'unittest' at 'Mini.py:1' encountered. It may slow down compilation.
    Nuitka-Plugins:WARNING:     Complex topic! More information can be found at https://nuitka.net/info/unwanted-module.html
 
-For ``unittest`` **Nuitka** gives the warning, because it appears you are
-including test code in your compilation, which is never a good thing. Often
-it has extra dependencies, and it can be a lot of code too.
+For ``unittest`` **Nuitka** gives the warning because it appears you are
+including test code in your compilation, which is never good. It often
+has extra dependencies and can also be a lot of code.
 
-Maybe you forced the inclusion of a whole package, which will also pull in
-its tests, and you should exclude those then. Perhaps you mixed test code
-and application code, and it's normal for you. You can turn off the
-warning for specific ones with options like
+Maybe you forced the inclusion of a whole package, which will also pull
+in its tests, and you should exclude those then. Be selective about
+inclusion and understand that ``--include-package`` will force **Nuitka** to include all submodules, many of which are unnecessary, and that
+``--include-module`` should be preferred, as it only forces a single module.
+
+Perhaps you mixed test code and application code, and it's normal for
+you. You can turn off the warning for specific ones with options like
 ``--noinclude-unittest-mode=allow`` that exists for each of these
-warnings. Naturally, you are subject to all the disadvantages
-mentioned.
+warnings. Naturally, you are subject to all the disadvantages mentioned.
 
 *************
  Consequence
 *************
 
 While you can ignore these warnings, it's best to at least attempt to
-disable the following into the named module. Otherwise the warning can
-be disabled or ignored, it is not an error of any kind, just a strong
-pointer to get this resolved.
+turn off the following in the named module. Otherwise, you can turn the
+warning off or ignore it. It is not an error of any kind; it is just an
+indicator pointer to get this resolved.
 
 ****************
  Recommendation
@@ -87,18 +89,18 @@ pointer to get this resolved.
 
 For best results, you should compile with
 ``--noinclude-default-mode=error`` and help to get your compilation
-error free by removing the problematic imports from 3rd party software
+error-free by removing the problematic imports from 3rd party software
 with ``anti-bloat`` contributions.
 
-Alternatively for popular packages, report the issue, and we might do it
+Alternatively, for popular packages, report the issue, and we might do it
 for you, but there are guides on how to do this, and ideally you
 contribute yourself.
 
 If you do not care, you can add ``--noinclude-unittest-mode=allow`` or
-whatever options is triggering this.
+whatever options are triggering this.
 
-If you really do not care, and do not want to see the message you can
+If you do not care and do not want to see the message, you can
 disable the mnemonic with ``--nowarn-mnemonic=unwanted-module`` and
 carry on, the warning will no longer show itself, but the impact of
-including too much in your compilation will persist and new instances
+including too much in your compilation will persist, and new instances
 will not be reported.
