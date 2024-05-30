@@ -62,10 +62,10 @@ Bug Fixes
 -  macOS: Detect more versioned DLLs and ``arm64`` specific filenames.
    Fixed in 2.2.1 already.
 
--  Fix, was not annotating exception exit when converting import to hard
-   submodule import. Fixed in 2.2.2 already.
+-  Fix, was not annotating exception exit when converting an import to a
+   hard submodule import. Fixed in 2.2.2 already.
 
--  Fix, branches that became empty may still have traces that need to be
+-  Fix, branches that became empty can still have traces that need to be
    merged.
 
    Otherwise, usages outside the branch will not see propagated
@@ -115,8 +115,8 @@ Bug Fixes
 -  Fix, need to allow for non-UTF8 Unicode in variable names, function
    names, class names, and method names.
 
--  Python3.10+: Fix, ``match`` statements that captured the rest of mapping
-   checks were not working yet.
+-  Python3.10+: Fix, ``match`` statements that captured the rest of
+   mapping checks were not working yet.
 
    .. code:: python
 
@@ -149,8 +149,9 @@ New Features
    tests are passing; the accelerated, module, standalone, and onefile
    modes all work as expected. The only thing delayed is the uncompiled
    generator integration, where we need to replicate the exact CPython
-   behavior. We need to have perfect integration only for working with the
-   ``asyncio`` loop, so we wait with it until release candidates appear.
+   behavior. We need to have perfect integration only for working with
+   the ``asyncio`` loop, so we wait with it until release candidates
+   appear.
 
 -  Plugins: Added support to include directories entirely unchanged by
    adding ``raw_dir`` values for ``data-files`` section, see
