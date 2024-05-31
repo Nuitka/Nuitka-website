@@ -1,1 +1,1 @@
-../doc/dynamic.inc
+../site/dynamic.inc

@@ -3,7 +3,7 @@ import sys
 
 from invoke import Collection, task
 
-from _docs import doc, intl
+from _docs import site, intl
 
 # Disable pipenv warning, we run potentially inside the virtualenv already,
 # Visual Code e.g. picks it up and there is no harm in that. This is only
@@ -31,4 +31,4 @@ def run(c, target="build-site"):
     c.run(f"{sys.executable} -m pipenv run python update.py --{target}")
 
 
-ns = Collection(intl, doc, run, virtualenv)
+ns = Collection(intl, site, run, virtualenv)

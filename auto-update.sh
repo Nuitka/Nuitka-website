@@ -10,7 +10,7 @@ do
     rm -rf output
 
     # python3 -m invoke run -t update-docs
-    python3 -m invoke doc
+    python3 -m invoke site
     # python3 -m invoke intl -l zh_CN
     # python3 -m invoke intl -l de_DE
     python3 -m invoke run -t post-process

@@ -214,7 +214,7 @@ welcome. You will need Python 3.10 and ``pipenv`` to build it.
    python3 -m invoke virtualenv
 
    # Now lets build the site, to see if it's all correct.
-   python3 -m invoke doc
+   python3 -m invoke site
 
    # Optionally build the localized sites.
    python3 -m invoke intl -l zh_CN

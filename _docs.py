@@ -70,8 +70,8 @@ def _site(name, help_part):
     return coll
 
 
-# Usage doc/API site (published as e.g. docs.myproject.org)
+# Sites
 intl = _site("intl", "the translations sub-site.")
-doc = _site("doc", "the main site.")
+site = _site("site", "the main site.")
 
-ns = Collection(intl, doc)
+ns = Collection(intl, site)

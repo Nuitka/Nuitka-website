@@ -1191,7 +1191,7 @@ def runSphinxAutoBuild():
         "Pipenv.lock",
     ]
 
-    callExecProcess(args)
+    callExecProcess(args, uac=False)
 
 
 def getTranslationStatus():

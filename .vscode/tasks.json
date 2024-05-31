@@ -30,7 +30,7 @@
         {
             "label": "auto-format documents and code",
             "type": "shell",
-            "command": "./auto-format *.py doc/*.rst doc/*/*.rst doc/*.inc doc/*/*.inc",
+            "command": "./auto-format *.py site/*.rst site/*/*.rst site/*.inc site/*/*.inc",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -39,7 +39,7 @@
         {
             "label": "auto-format JPEG images",
             "type": "shell",
-            "command": "./auto-format images/*.jpg doc/posts/images/*.jpg",
+            "command": "./auto-format images/*.jpg site/posts/images/*.jpg",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
