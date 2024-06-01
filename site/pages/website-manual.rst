@@ -29,10 +29,11 @@ the following ways:
 Recommended Way
 ===============
 
-Learn how to efficiently contribute to the **Nuitka** website using
+Learn how to contribute to the **Nuitka** website efficiently with
 **Visual Studio Code** and **Dev containers**. You will be amazed at how
-easy it actually is to contribute changes in this way. There is a manual
-way for advanced users described below in the **Manual way** section.
+easy it is to contribute to changes to the **Nuitka** website in this
+way. A manual way for advanced users is described below in the `Manual
+way`_ section.
 
 Before You Start
 ----------------
@@ -40,8 +41,8 @@ Before You Start
 #. Download and install **Docker** using the `Docker website
    <https://www.docker.com/products/docker-desktop/>`_.
 
-#. Download and install **Git** on your computer. For doing that, select
-   one of the following ways:
+#. Download and install **Git** on your computer. To do that, select one
+   of the following ways:
 
       -  For Mac: download **Xcode** using `App Store
          <https://apps.apple.com/ua/app/xcode/id497799835?l=uk&mt=12>`_.
@@ -56,8 +57,8 @@ Before You Start
          the needed option based on your Linux distribution.
 
 #. Sign up on `GitHub <https://github.com>`__. An account on **GitHub**
-   is free and allows you to submit your changes to the repository. For
-   more, see the `Sign-up instructions
+   is free and allows you to submit your changes to the **Nuitka**
+   website repository. For more, see the `Sign-up instructions
    <https://docs.github.com/en/get-started/quickstart/creating-an-account-on-github>`_.
 
 #. Download and install **Visual Studio Code**. Go to the `Visual Studio
@@ -68,7 +69,7 @@ Before You Start
 Getting Started
 ---------------
 
-#. Open **Visual Studio Code**, and then, open terminal by selecting
+#. Open **Visual Studio Code**, and then open a terminal by selecting
    **Ctrl** + **`** or **Cmd** + **`** on Mac.
 
 #. On the terminal, enter the following commands:
@@ -91,10 +92,10 @@ Getting Started
          :alt: The screenshot of the GitHub page with the Fork button highlighted.
          :width: 600px
 
-#. When you created the fork, go to your GitHub account and select your
+#. After you create the fork, go to your GitHub account and select your
    forked repository that called **Your-name/Nuitka-website**.
 
-#. Select **Code** (1), and then copy the **web URL** (2).
+#. Select **Code** (1), then copy the **web URL** (2).
       .. image:: ../../images/select-code-and-copy.png
          :alt: The screenshot of the GitHub page with the Code button highlighted.
          :width: 600px
@@ -109,44 +110,42 @@ Getting Started
    .. note::
 
       Cloning is a term used in version control, meaning you create a
-      local copy of a central repository and git is a tool used for it.
-      Do not worry much about those things, Visual Studio Code hides it
-      away from you largely.
+      local copy of a central repository, and git is the tool used for
+      it. Do not worry much about those things, **Visual Studio Code**
+      hides it away from you, essentially.
 
-#. In the **Provide repository url** box (1), paste the link you pasted
+#. In the **Provide repository URL** box (1), paste the link you pasted
    in the **step 6**, and then select **Clone from URL** (2).
 
       .. image:: ../../images/paste-the-link-to-clone-repo.png
-         :alt: The screenshot of the Visual Studio Code Welcome page with the link pasted.
+         :alt: Screenshot of the Visual Studio Code "Welcome page" with the link pasted.
          :width: 600px
 
-#. Confirm a target folder, and create a folder inside of it, named
+#. Confirm a target folder, and create a folder inside of it named
    **Nuitka-website.git**.
 
 #. In the **Would you like to open the cloned repository** window,
    select **Open**.
 
-#. It the **Do you trust the authors** window, select **Yes, I trust the
+#. In the **Do you trust the authors** window, select **Yes, I trust the
    authors**.
 
 #. Once you do that, you will see the **Folder contains a Dev Container
    configuration file** window. Select **Reopen in Container**.
 
    The Dev Container will start and download a small container image of
-   Ubuntu, which is a popular Linux from Microsoft server. Then, it will
-   run a few commands to customize the image, and build and render the
-   pages of the web site.
+   **Ubuntu**, which is a popular **Linux** variant. Then, it will run a
+   few commands to customize the image and build and render the website
+   pages.
 
-   .. note::
+   .. important::
 
-      Do not worry, that this is Linux, you won't have to notice or do
-      anything different at all. The container image is automated and
-      **Visual Studio Code** will deal with git for you.
+      Do not worry if you are unfamiliar with **Linux**. You won't have
+      to notice or do anything different at all. The container image is
+      automated, and **Visual Studio Code** will deal with git for you.
 
-   After some time, it will prompt you to open a localhost in your
-   standard browser, and you can use it to navigate the website.
-   Everything but the shop parts will work, since these are not included
-   in the repo, and secret (using private keys).
+   After some time, it will prompt you to open a ``localhost`` port in
+   your standard browser, and you can use it to navigate the website.
 
 Make and Save Your Changes
 --------------------------
@@ -156,25 +155,25 @@ Make and Save Your Changes
    Pick the page you want to edit, for example, ``doc/index.rst``,
    select **Ctrl** + **S** (or **Cmd** + **S** for Mac) to save changes
    and rebuild the website. When the rebuild is over, you can preview
-   your changes in your local copy of the website in your browser. You
-   can find the link for the local copy of the Nuitka website in the
-   **Terminal** tab.
+   your changes in your browser and see your changed local copy of the
+   website. You can also find the URL for the local copy of the Nuitka
+   website in the **Terminal** tab and click on it.
 
-   Some kinds of changes, such as changes to the CSS theme, or
-   JavaScript may require a relaunch. Then use the **Dev Container:
-   Rebuild container** command. It will take a short moment to fully
-   refresh the project and implement your changes. For usual edits of
-   **.rst** pages, you don't need to relaunch or rebuild the container.
+   Some changes, such as changes to the CSS theme or JavaScript,
+   may require a relaunch. Then, use the **Dev Container: Rebuild
+   container** command. It will take a moment to refresh the project and
+   implement your changes fully. For usual edits of **.rst** pages, you
+   don't need to relaunch or rebuild the container.
 
 #. **Stage and Commit Your Change**
 
    When you're ready to suggest your changes to the original **Nuitka
    website**, you need to stage your changes. In the **Visual Studio
-   Code**, find the **Source Control** tab, where you will see the list
-   of changes you made. Select **+** next to each change you want to
-   stage. Then, in the **Message** box, enter the description to the
-   changes you staged. Then, select the **Commit** button. For more
-   details, refer to the `Commit guidelines
+   Code**, find the **Source Control** tab, where you will see your
+   changes. Select **+** next to each change you want to stage. Then, in
+   the **Message** box, enter the description of the changes you staged.
+   Then, select the **Commit** button. For more details, refer to the
+   `Commit guidelines
    <https://code.visualstudio.com/docs/sourcecontrol/overview#_commit>`_.
 
 #. **Push Your Changes**
@@ -194,17 +193,18 @@ Make and Save Your Changes
 
 #. **Communicate About Your Pull Request**
 
-   Once your pull request is submitted, you'll receive a URL for
-   tracking its progress. If any changes are requested during the review
-   process, you'll be notified and can simply make the necessary updates
-   directly within the project. After making the changes, you'll either
-   update the pull request or be informed when it's merged.
+   Once your pull request is submitted, you'll receive a URL to track
+   its progress. If we request changes during the review process, GitHub
+   notifies you, and you can make the necessary updates directly within
+   the project. After making the changes, you'll either update the pull
+   request or be informed when it's merged.
 
 Manual Way
 ==========
 
-This is used to build the Nuitka website. Enhancements of all kinds are
-welcome. You will need Python 3.10 and ``pipenv`` to build it.
+This section described how to build the **Nuitka** website manually.
+Enhancements of all kinds are welcome. You will need Python 3.10 and
+``pipenv`` to build it.
 
 .. code:: bash
 
@@ -247,7 +247,7 @@ Sphinx
 
 The **Nuitka website** is powered by **Sphinx** — a documentation
 generation tool widely used in the software development community. We
-use **Sphinx** to render user-friendly web pages for Nuitka, as the one
+use **Sphinx** to render user-friendly web pages for Nuitka, which
 you are looking at. To get more details about Sphinx, see `Sphinx
 documentation <https://www.sphinx-doc.org/en/master/index.html>`__.
 
@@ -256,7 +256,7 @@ reStructured Text (reST)
 
 **Sphinx** uses **reStructured text (reST)** as its markup language,
 which is similar to **Markdown** but more powerful. You will need
-**reST** to edit pages of the website. Check out the syntax in the
+**reST** to edit the website pages. Check out the syntax in the
 `Sphinx documentation
 <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__.
 
@@ -265,7 +265,7 @@ Sphinx Theme
 
 We are using the customization of the `Read the Docs Sphinx Theme
 <https://sphinx-rtd-theme.readthedocs.io/en/stable/index.html>`__. The
-current configuration is in ``shared_conf.py`` file is pretty basic. We
+current configuration in ``shared_conf.py`` file is pretty basic. We
 might want to explore and document our choices for some of these
 options.
 
@@ -274,7 +274,7 @@ Sphinx Extension: Grids
 
 We use `Grids
 <https://sphinx-design.readthedocs.io/en/latest/grids.html>`_, a
-component of the **Sphinx Design** extension, to build the layout of our
+component of the **Sphinx Design** extension to build the layout of our
 website pages.
 
 Sphinx Extension: ABlog
@@ -288,7 +288,7 @@ configuration options, see the `ABlog documentation
 Document Formatting
 ===================
 
-In order to format the current document, in Visual Code, select the task
+To format the current document, in **Visual Studio Code**, select the task
 ``autoformat current file`` which will make automatic changes to the
 file for consistent header formatting, etc.
 
@@ -298,24 +298,24 @@ yet have a commit hook that does it.
 Image Optimization
 ==================
 
-We optimize all the images we insert in the website to enhance website
+We optimize all the images we insert in the website to enhance the website
 performance and achieve better search engine rankings. To optimize
 images, run the task ``autoformat PNG images`` or ``autoformat JPEG
 images`` or ``autoformat current file`` in Visual Code, the latter with
 the image being open.
 
-Otherwise if you are not in the Dev Container, open a new terminal in
+Otherwise, if you are not in the Dev Container, open a new terminal in
 the and paste the following code snippet.
 
 .. code:: bash
 
-   # Optimize PNG files like this, normally not needed, this
-   # is lossless.
+   # Optimize PNG files like this, usually already done unless you
+   # added new ones.
    sudo apt-get install optipng
    find . -iname *.png -a -type f -exec optipng -o7 -zm1-9 {} \;
 
-   # Optimize JPEG files like this, normally not needed, this
-   # is lossless.
+   # Optimize JPEG files like this, usually already done unless you
+   # added new ones.
    sudo apt-get install jpegoptim
    find . -iname *.jpg -a -type f -exec jpegoptim {} \;
 
@@ -325,12 +325,12 @@ Color Palette
 If you create any visuals for **Nuitka**, such as presentation slides,
 diagrams, or even screenshots, keep in mind the following brand colors:
 
-primary colors:
+Primary colors:
    -  Blue #599DD2
    -  Yellow #FFD43B
    -  Grey #CCCCCC
 
-secondary colors:
+Secondary colors:
    -  Dark Blue #2A3990
    -  Green #00916E
 
@@ -354,7 +354,10 @@ Create a New Posting
 To create a new page on the **Nuitka website**, do the following:
 
 #. Open **Visual Studio Code**, and then go to the **Explorer** tab to
-   navigate to the directory of the project.
+   see the directory of the project.
+
+#. Content is below the ``site`` directory with more directories for
+   different kinds of pages.
 
 #. Right-click on the directory where you want to create the new
    posting, then select **New File**. Or select **Ctrl** + **Shift** +
