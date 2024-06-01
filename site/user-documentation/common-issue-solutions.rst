@@ -206,6 +206,8 @@ too low; there is no end to them.
    # gcc
    fatal error: error writing to -: Invalid argument
    Killed signal terminated program
+   {standard input}: Assembler messages:
+   {standard input}: Warning: end of file not at end of a line; newline inserted
    # MSVC
    fatal error C1002: compiler is out of heap space in pass 2
    fatal error C1001: Internal compiler error
