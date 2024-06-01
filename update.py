@@ -505,7 +505,7 @@ def updateDownloadPage():
 
     plain_stable_next = "%d.%d" % (major, minor)
 
-    with withFileOpenedAndAutoFormatted("doc/dynamic.inc") as output_file:
+    with withFileOpenedAndAutoFormatted("site/dynamic.inc") as output_file:
         output_file.write(
             """
 .. |NUITKA_VERSION| replace:: %s
@@ -517,15 +517,15 @@ def updateDownloadPage():
             % (plain_stable, plain_stable_minor, plain_stable_next),
         )
 
-    with withFileOpenedAndAutoFormatted("doc/doc/fedora-downloads.inc") as output_file:
+    with withFileOpenedAndAutoFormatted("site/doc/fedora-downloads.inc") as output_file:
         output_file.write(fedora_table)
-    with withFileOpenedAndAutoFormatted("doc/doc/centos-downloads.inc") as output_file:
+    with withFileOpenedAndAutoFormatted("site/doc/centos-downloads.inc") as output_file:
         output_file.write(centos_table)
-    with withFileOpenedAndAutoFormatted("doc/doc/rhel-downloads.inc") as output_file:
+    with withFileOpenedAndAutoFormatted("site/doc/rhel-downloads.inc") as output_file:
         output_file.write(rhel_table)
-    with withFileOpenedAndAutoFormatted("doc/doc/suse-downloads.inc") as output_file:
+    with withFileOpenedAndAutoFormatted("site/doc/suse-downloads.inc") as output_file:
         output_file.write(suse_table)
-    with withFileOpenedAndAutoFormatted("doc/doc/source-downloads.inc") as output_file:
+    with withFileOpenedAndAutoFormatted("site/doc/source-downloads.inc") as output_file:
         output_file.write(source_table)
 
 
@@ -570,9 +570,9 @@ def _splitRestByChapter(lines):
 
 
 def updateReleasePosts():
-    _updateReleasePosts("doc/changelog/Changelog.rst")
-    _updateReleasePosts("doc/changelog/Changelog-1.x.rst")
-    _updateReleasePosts("doc/changelog/Changelog-0.x.rst")
+    _updateReleasePosts("site/changelog/Changelog.rst")
+    _updateReleasePosts("site/changelog/Changelog-1.x.rst")
+    _updateReleasePosts("site/changelog/Changelog-0.x.rst")
 
 
 def _updateReleasePosts(changelog_filename):
@@ -622,7 +622,7 @@ Kay Hayen
         if "release-01-releasing" in slug:
             slug = "releasing-nuitka-to-the-world"
 
-        output_path = "doc/posts"
+        output_path = "site/posts"
         txt_path = os.path.join(output_path, f"{slug}.rst")
 
         if os.path.exists(txt_path):
@@ -1231,7 +1231,7 @@ def updateTranslationStatusPage():
 
     output = page_template.render(name=page_template.name, **template_context)
 
-    with withFileOpenedAndAutoFormatted("doc/translation-status.rst") as output_file:
+    with withFileOpenedAndAutoFormatted("site/translation-status.rst") as output_file:
         output_file.write(output + "\n")
 
 
