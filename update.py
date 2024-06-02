@@ -1196,11 +1196,11 @@ def runSphinxAutoBuild():
 
 def getTranslationStatus():
     status = {}
-    for path in Path("doc").rglob("*.rst"):
+    for path in Path("site").rglob("*.rst"):
         translations = []
         for locale in Path("locales").glob("*"):
             if Path(
-                locale, "LC_MESSAGES", f"{str(path.relative_to('doc'))[:-3]}po"
+                locale, "LC_MESSAGES", f"{str(path.relative_to('site'))[:-3]}po"
             ).exists():
                 translations.append(locale.name)
 
@@ -1213,7 +1213,7 @@ def updateTranslationStatusPage():
     page_template = getTemplate(
         package_name=None,
         template_name="translation-status.rst.j2",
-        template_subdir="doc",
+        template_subdir="site",
     )
 
     table = [["Site", "Translations"]]
@@ -1222,7 +1222,7 @@ def updateTranslationStatusPage():
         if translations:
             table += [
                 [
-                    str(path.relative_to("doc")).replace("\\", "/"),
+                    str(path.relative_to("site")).replace("\\", "/"),
                     ", ".join(sorted(translations)),
                 ]
             ]
