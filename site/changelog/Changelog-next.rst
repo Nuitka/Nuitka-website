@@ -17,9 +17,8 @@ current stable release as |NUITKA_VERSION| as well.
 .. note::
 
    This a draft of the release notes for 2.3, which is supposed to add
-   Python 3.12 support, and the usual additions of new packages
-   supported out of the box and will also aim at scalability if
-   possible.
+   Python 3.12 support and the usual additions of new packages supported
+   out of the box and will also aim at scalability if possible.
 
 This release bumps the long-awaited 3.12 support to a complete level.
 Now, Nuitka behaves identically to CPython 3.12 for the most part.
@@ -124,6 +123,28 @@ Bug Fixes
          case {"key1": 5, **rest}:
             ... # rest was not assigned here
 
+-  Windows: When deleting build folders, make sure the retries leading
+   to a complete deletion always.
+
+-  Python2: Fix, could crash with non-``unicode`` program paths on
+   Windows.
+
+-  Avoid giving ``SyntaxWarning`` from reading source code
+
+   For example, the standard ``site`` module of Python 3.12 gives
+   warnings about illegal escape sequences that nobody cares about
+   apparently.
+
+-  Fix, the ``matplotlib`` warnings by ``options-nanny`` were still
+   given even if the ``no-qt`` plugin was used, since the variable name
+   referenced there was not actually set yet by that plugin.
+
+-  Windows: Fix, when using the uninstalled self-compiled Python, we
+   need ``python.exe`` to find DLL dependencies. Otherwise it doesn't
+   locate the MSVC runtime and Python DLL properly.
+
+-  Standalone: Added support for ``freetype`` package.
+
 New Features
 ============
 
@@ -165,14 +186,16 @@ New Features
    a different DLL entry function name and to make use of two-phase
    initialization for the created extension module.
 
+-  Added support for OpenBSD standalone mode.
+
 Optimization
 ============
 
 -  Python3: Avoid API calls for allocators
 
-   This is most effective with Python 3.11 or higher but also many other
-   types like ``bytes``, ``dict`` keys, ``float`` objects, and ``list``
-   are faster to create with all Python3 versions.
+   Most effective with Python 3.11 or higher but also many other types
+   like ``bytes``, ``dict`` keys, ``float``, and ``list`` objects are
+   faster to create with all Python3 versions.
 
 -  Python3.5+: Directly use the **Python** allocator functions for
    object creation, avoiding the DLL API calls. The coverage is complete
@@ -188,10 +211,18 @@ Optimization
    object and populate it directly, avoiding the overhead of calling of
    the ``StopIteration`` type.
 
+-  Python3.10+: When accessing freelists, we were not passing for
+   ``tstate`` but locally getting the interpreter object, which can be
+   slower by a few percent in some configurations. We now use the free
+   lists more efficient with ``tuple``, ``list``, and ``dict`` objects.
+
 -  Python3.8+: Call uncompiled functions via vector calls.
 
    We avoid an API call that ends up being slower than using the same
    function via the vector call directly.
+
+-  Python3.4+: Avoid using ``_PyObject_LengthHint`` API calls in
+   ``list.extend`` and have our variant that is faster to call.
 
 -  Added specialization for ``os.path.normpath``. We might benefit from
    compile time analysis of it once we want to detect file accesses.
@@ -201,7 +232,7 @@ Optimization
    For example, with ``()``, we used the module-level accessor for no
    reason, as it is already available as a global value. As a result,
    constant blobs shrink, and the compiled code becomes slightly smaller
-   too.
+   , too.
 
 -  Anti-Bloat: Avoid using ``dask`` from the ``sparse`` module. Added in
    2.2.2 already.
@@ -243,8 +274,16 @@ Organizational
    outputs as they don't have any effect.
 
 -  UI: Check the success of Scons in creating the expected binary
-   immediately after running it and not only in post-processing, which
-   is late.
+   immediately after running it and not only once we reach
+   post-processing.
+
+-  UI: Detect empty user package configuration files
+
+-  UI: Do not output module ``ast`` when a plugin reports an error for
+   the module, for example, a forbidden import.
+
+-  Actions: Update from deprecated action versions to the latest
+   versions.
 
 Tests
 =====
@@ -252,6 +291,10 @@ Tests
 -  Use :ref:`Nuitka Project Options <nuitka-project-options>` for the
    user plugin test rather than passing by environment variables to the
    test runner.
+
+-  Added a new search mode, ``skip, `` to complement ``resume`` which resumes right
+      after the last test ``resume`` stopped on. We can use that while
+      support for a Python version is not complete.
 
 Cleanups
 ========
