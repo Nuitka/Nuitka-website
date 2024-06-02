@@ -46,10 +46,22 @@ Bug Fixes
    ``__len__``. Fixed in 2.3.1 already.
 
 -  Python3.10+: Fix, ``match`` sequence with final star arguments failed
-   in some cases to capture the rest and left the assigned value empty. Fixed in 2.3.1 already.
+   in some cases to capture the rest and left the assigned value empty.
+   Fixed in 2.3.1 already.
 
 -  Standalone: Added data file for older ``bokeh`` version. Fixed in
    2.3.1 already.
+
+-  Python3.8+: Fix, calls to variable args functions now need to be done
+   differently, or else they can crash, as was observed with 3.10 in PGO
+   instrumentation, at least.
+
+-  PGO: Fix, using ``nuitka-run`` did not execute the program created.
+
+-  Standalone: Fix, avoid using ``os`` module before setting up our meta
+   path based loader.
+
+-  Standalone: Support older ``pandas`` versions as well.
 
 New Features
 ============
@@ -59,8 +71,19 @@ New Features
 Optimization
 ============
 
+-  Statically optimize constant subscripts of variables with immutable
+ constant values.
+
 -  Anti-Bloat: Avoid using ``unittest`` in ``keras`` package. Added in
    2.3.1 already.
+
+-  Standalone: Statically optimize by OS in ``sysconfig``.
+
+   Consequently, standalone distributions can exclude OS-specific
+   packages such as ``_aix_support`` and ``_osx_support``.
+
+-  Anti-Bloat: Avoid ``distutils`` from ``_oxs_support`` (used by
+   ``sysconfig``) module on macOS.
 
 Organizational
 ==============
@@ -72,6 +95,8 @@ Organizational
    will be more thorough with properly annotated retries on Windows. For
    the dist folder, mention the running program as a probable cause.
 
+-  Quality: Check ``replacements`` and ``replacements_plain`` Nuitka package configuration values.
+
 Tests
 =====
 
@@ -79,6 +104,13 @@ Tests
 
 Cleanups
 ========
+
+-  Avoid using ``anti-bloat`` configuration values ``replacements``
+   where ``replacements_plain`` is good enough.
+
+-  Avoid Python3 and Python3.5+ specific Jinja2 modules on versions
+   before that, and consequently avoid warning about the ``SyntaxError``
+   given.
 
 -  Minor spelling cleanups.
 
