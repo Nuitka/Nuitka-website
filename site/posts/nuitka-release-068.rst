@@ -38,7 +38,7 @@ enhance the Python 3.8 compatibility.
    was not followed yet.
 
 -  Windows: Use short paths, these work much better to load extension
-   modules and TCL parts of TkInter cannot handle unicode paths at all.
+   modules and TCL parts of TkInter cannot handle Unicode paths at all.
    This makes Nuitka work in locations, where normal Python cannot.
 
 -  Windows: Fixup dependency walker in unicode input directories.

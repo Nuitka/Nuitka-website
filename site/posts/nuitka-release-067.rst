@@ -30,7 +30,7 @@ they are now becoming more common.
    openSUSE versions 15 and higher.
 
 -  Windows: Using short path names to interact with Scons avoids
-   problems with unicode paths in all cases.
+   problems with Unicode paths in all cases.
 
 -  macOS: The usage of ``install_name_tool`` could sometimes fail due to
    length limits, we now increase it at link time.

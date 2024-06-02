@@ -71,7 +71,7 @@ as well as major cleanups of code base.
 -  Fix, the dump from ``--xml`` no longer contains functions that have
    become unused during analysis.
 
--  Standalone: Creating or running programs from inside unicode paths
+-  Standalone: Creating or running programs from inside Unicode paths
    was not working on Windows. Fixed in 0.5.13.7 already.
 
 -  Namespace package support was not yet complete, importing the parent

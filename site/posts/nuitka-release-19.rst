@@ -75,7 +75,7 @@ more configurations.
    dislike a lot. Fixed in 1.8.4 already.
 
 -  Windows: Fix, need to use short path for the Python installation
-   prefix, as it might be unicode path as well. Fixed in 1.8.4 already.
+   prefix, as it might be Unicode path as well. Fixed in 1.8.4 already.
 
 -  Fix, output spec ``%NONE%`` was not compiling anymore. Fixed in 1.8.4
    already.

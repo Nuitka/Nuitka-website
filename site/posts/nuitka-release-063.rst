@@ -22,7 +22,7 @@ optimization was on hold.
  Bug Fixes
 ***********
 
--  Windows: Added support for running compiled binaries in unicode path
+-  Windows: Added support for running compiled binaries in Unicode path
    names.
 
 -  Standalone: Added support for crytodomex and pycparser packages.
