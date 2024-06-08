@@ -73,5 +73,6 @@ def _site(name, help_part):
 # Sites
 intl = _site("intl", "the translations sub-site.")
 site = _site("site", "the main site.")
+bundle = _site("bundle", "package documentation bundle.")
 
-ns = Collection(intl, site)
+ns = Collection(intl, site, bundle)
