@@ -9,18 +9,12 @@
 In this document, we track the per-version changes and comments for
 |NUITKA_VERSION_MINOR| down to Nuitka 2.0 release.
 
-.. note::
-
-   The draft of the change of the upcoming new release
-   |NUITKA_VERSION_NEXT| contains information about hot-fixes
-   (|NUITKA_VERSION|) of the current stable release.
-
 .. contents:: Table of Contents
    :local:
 
-****************************
- Nuitka Release 2.3 (Draft)
-****************************
+********************
+ Nuitka Release 2.3
+********************
 
 This release bumps the long-awaited 3.12 support to a complete level.
 Now, Nuitka behaves identically to CPython 3.12 for the most part.
@@ -311,15 +305,23 @@ Cleanups
 Summary
 =======
 
-This release marks a huge step in catching up with compatibility of Python. After being late with 3.12 support, we will now be early with 3.13 support if all goes well.
+This release marks a huge step in catching up with compatibility of
+Python. After being late with 3.12 support, we will now be early with
+3.13 support if all goes well.
 
-The many Unicode support related changes also enhanced Nuitka to generate 2 phase loading extension modules, which also will be needed for sub-interpreter support later on.
+The many Unicode support related changes also enhanced Nuitka to
+generate 2 phase loading extension modules, which also will be needed
+for sub-interpreter support later on.
 
-From here on, we need to re-visit compatibility. A few more obscured 3.10 features are missing, the 3.11 compatibility is not yet complete, and we need to take advantage of the new caching possibilities to enhance performance for example with attribute lookups to where it can be with the core changes there.
+From here on, we need to re-visit compatibility. A few more obscured
+3.10 features are missing, the 3.11 compatibility is not yet complete,
+and we need to take advantage of the new caching possibilities to
+enhance performance for example with attribute lookups to where it can
+be with the core changes there.
 
-For the coming releases until 3.13 is released, we hope to focus on scalability
-a lot more and get a much needed big improvement there, and complete these other
-tasks on the side.
+For the coming releases until 3.13 is released, we hope to focus on
+scalability a lot more and get a much needed big improvement there, and
+complete these other tasks on the side.
 
 ********************
  Nuitka Release 2.2
