@@ -94,6 +94,38 @@ Bug Fixes
 -  Standalone: Fix, importing newer ``pkg_resources`` was crashing.
    Fixed in 2.3.3 already.
 
+-  Python3.11+: Added support for ``dill-compat``. Fixed in 2.3.4
+   already.
+
+-  Standalone: Added support for the newer ``kivy`` version and added
+   macOS support as well. Fixed in 2.3.4 already.
+
+-  Standalone: Support locating Windows icons for ``pywebview``. Fixed
+   in 2.3.4 already.
+
+-  Standalone: Added support for ``spacy`` related packages. Fixed in
+   2.3.4 already.
+
+-  Python3.12: Our workaround for ``cv2`` support cannot use the ``imp``
+   module anymore. Fixed in 2.3.4 already.
+
+-  Added support for ``__init__`` files that are extension modules.
+   Architecture checks for macOS were false negatives for them, and the
+   case insensitive import scan failed to find them on Windows. Fixed in
+   2.3.4 already.
+
+-  Standalone: Added implicit dependencies of ``lxml.sax`` module. Fixed
+   in 2.3.4 already.
+
+-  Standalone: Added implicit dependencies for ``zeroconf`` package.
+   Fixed in 2.3.4 already.
+
+-  Standalone: Added missing dependencies for standard library extension
+   modules, mainly exhibited on macOS. Fixed in 2.3.4 already.
+
+-  Windows: Fix build failures on mapped network drives. Fixed in 2.3.4
+   already.
+
 New Features
 ============
 
@@ -106,6 +138,11 @@ New Features
    used. That allows for the non-use of inline copy, which can be
    interesting for experiments with newer Scons releases. Added in 2.3.2
    already.
+
+-  Debugging: A new non-deployment handler was added when segmentation
+   faults occurred. The crashing program then outputs a message pointing
+   to a page with helpful information unless the deployment mode is
+   active.
 
 Optimization
 ============
@@ -154,8 +191,10 @@ Organizational
 Tests
 =====
 
--  macOS: Make actually use of ``ctypes`` in its standalone test to be
-   sure it actually works fine.
+-  macOS: Make actual use of ``ctypes`` in its standalone test to ensure
+   correctness on that OS, too.
+
+-  Make compile extension module test work on macOS, too.
 
 Cleanups
 ========
@@ -164,8 +203,11 @@ Cleanups
    where ``replacements_plain`` is good enough.
 
 -  Avoid Python3 and Python3.5+ specific Jinja2 modules on versions
-   before that, and consequently avoid warning about the ``SyntaxError``
-   given.
+   before that, and consequently, avoid warning about the
+   ``SyntaxError`` given.
+
+-  Moved code object extraction of ``dill-compat`` plugin from Python
+   module template to C code helper for shared usage and better editing.
 
 -  Minor spelling cleanups.
 
