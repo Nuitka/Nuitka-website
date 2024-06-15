@@ -23,7 +23,7 @@ current stable release as |NUITKA_VERSION| as well.
    The main focus shall be scalability and a few open issues for
    performance enhancements that later Python versions enable us to.
 
-This release is not done yet.
+This release is not complete yet.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -47,8 +47,8 @@ Bug Fixes
    ``__len__``. Fixed in 2.3.1 already.
 
 -  Python3.10+: Fix, ``match`` sequence with final star arguments failed
-   in some cases to capture the rest and left the assigned value empty.
-   Fixed in 2.3.1 already.
+   in some cases to capture the rest. The assigned value then was
+   empty.when it shouldn't have been. Fixed in 2.3.1 already.
 
 -  Standalone: Added data file for older ``bokeh`` version. Fixed in
    2.3.1 already.
@@ -59,9 +59,6 @@ Bug Fixes
 
 -  PGO: Fix, using ``nuitka-run`` did not execute the program created.
    Fixed in 2.3.1 already.
-
--  Standalone: Fix, avoid using ``os`` module before setting up our meta
-   path based loader. Fixed in 2.3.1 already.
 
 -  Standalone: Support older ``pandas`` versions as well.
 
@@ -75,16 +72,40 @@ Bug Fixes
    the matched value type ``__match_args`` that is not necessarily the
    same.
 
-   Also, properly annotating the exception exit of subscript matches
-   now; the subscript value can raise an exception.
+   Also, properly annotating the exception exit of subscript matches;
+   the subscript value can indeed raise an exception.
 
    Collect keyword and positional match values in one go and detect
    duplicate attributes used, which we previously did not.
 
+-  Scons: Fix, do not crash when ``clang`` is not reporting its version
+   correctly. It happened if **Clang** usage was required with
+   ``--clang`` option but not installed. Fixed in 2.3.2 already.
+
+-  Debian: Fix, detecting the **Debian** flavor of Python was not
+   working anymore, and as a result, the intended defaults were no
+   longer applied by **Nuitka**, leading to incorrect suggestions that
+   didn't work. Fixed in 2.3.3 already.
+
+-  Ubuntu: Fix, the static link library for Python 3.12 is not usable
+   unless we provide parts of **HACL** for the ``sha2`` module so as not
+   to cause link errors. Fixed in 2.3.3 already.
+
+-  Standalone: Fix, importing newer ``pkg_resources`` was crashing.
+   Fixed in 2.3.3 already.
+
 New Features
 ============
 
--  None yet.
+-  Experimental support for Python 3.13 beta 2. We try and follow its
+   release cycle closely and aim to support it at the time of Python
+   release.
+
+-  Scons: Added experimental option
+   ``--experimental=force-system-scons`` to enforce system Scons to be
+   used. That allows for the non-use of inline copy, which can be
+   interesting for experiments with newer Scons releases. Added in 2.3.2
+   already.
 
 Optimization
 ============
