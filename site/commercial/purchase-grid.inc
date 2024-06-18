@@ -1,3 +1,8 @@
+.. important::
+
+   Click the buttons in the boxes above for Stripe payment (bank
+   transfer, credit card, SEPA debit charge, etc).
+
 .. grid:: 1 2 2 4
    :gutter: 2
 
@@ -70,8 +75,3 @@
        - Roadmap Influence
 
        - Use Cases Priority
-
-.. important::
-
-   Click the buttons in the boxes above if Stripe payment works for you
-   (bank transfer, credit card, SEPA debit charge, etc).

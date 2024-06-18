@@ -32,6 +32,10 @@ html {
     background-color: #78c933;
 }
 
+.nuitka-offer-themida .sd-card {
+    background-color: rgb(169, 78, 78);
+}
+
 .nuitka-offer-priority .sd-card {
     background-color: #007dd6;
 }
