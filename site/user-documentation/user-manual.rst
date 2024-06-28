@@ -70,6 +70,9 @@ Apple Store to be covered.
 **For FreeBSD** on most architectures, use **Clang** or **GCC**, ideally
 matching the system compiler.
 
+**For Android** install the required packages using ``pkg install
+patchelf ccache binutils ldd termux-elf-cleaner``.
+
 **For other platforms**, use the **GCC** compiler of at least version
 5.1 or higher. Use back-ports such as EPEL or SCL.
 
@@ -144,7 +147,8 @@ possible.
    -  **Anaconda Python is supported:** The Anaconda distribution is
       making special adaptations for some ``conda`` packages that lead
       to errors and might have to be reported as issues, such that
-      special treatment can be added.
+      special treatment can needed, but we add them as soon as they are
+      reported.
 
    -  **Python from Microsoft Store**: Don't download Python from
       **Microsoft Store**, as it doesn't work properly.
@@ -156,9 +160,9 @@ possible.
 Operating System
 ================
 
-**Nuitka** supports the following operating systems: **Linux**,
-**FreeBSD**, **NetBSD**, **OpenBSD**, **macOS**, and **Windows** (32
-bits/64 bits/ARM).
+**Nuitka** supports the following operating systems: **Android**,
+**Linux**, **FreeBSD**, **NetBSD**, **OpenBSD**, **macOS**, and
+**Windows** (32 bits/64 bits/ARM).
 
 The portability of the generated code is excellent. Therefore, other
 operating systems will work as well.
@@ -188,7 +192,15 @@ issues.
 
 For most systems, there will be packages on the :doc:`/doc/download` of
 **Nuitka**. You can also install it from the source code via the
-standard ``python setup.py install`` routine.
+standard ``python setup.py install`` routine or even run it directly
+from the source without installation.
+
+.. note::
+
+   All of **Nuitka** dependencies are optional. The PyPI package
+   installs the ones we cannot include as inline copies, but for example
+   ``zstandard`` can be detected as installed in different Python
+   installation with no issues.
 
 Notice for integration with **GitHub Workflows**, there is this
 `Nuitka-Action <https://github.com/Nuitka/Nuitka-Action>`__ that you
