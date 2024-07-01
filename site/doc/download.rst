@@ -106,7 +106,7 @@ well. So you can install with ``pip`` as follows.
 
 .. note::
 
-   Do this this the python binary, you want to be compiled against.
+   Do this with the python binary, you want to be compiled against.
 
 *********
  Sources
