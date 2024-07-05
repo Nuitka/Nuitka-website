@@ -5,7 +5,7 @@
 #############################
 
 ****************************
- The Problem in a few Words
+ The Problem in a Few Words
 ****************************
 
 Python from Debian packages is not generally suitable for use on any

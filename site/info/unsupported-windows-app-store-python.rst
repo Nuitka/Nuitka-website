@@ -5,7 +5,7 @@
 ######################################
 
 ****************************
- The Problem in a few Words
+ The Problem in a Few Words
 ****************************
 
 Python on Windows can be installed via the Windows app store. While this

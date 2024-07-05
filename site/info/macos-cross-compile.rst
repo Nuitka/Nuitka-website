@@ -5,7 +5,7 @@
 ###############################################
 
 ****************************
- The Problem in a few Words
+ The Problem in a Few Words
 ****************************
 
 Python on macOS runs on 2 arches, x86_64 and arm. From CPython there is

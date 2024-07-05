@@ -18,6 +18,8 @@ recommended first read when you start using **Nuitka**.
    :local:
    :class: page-toc
 
+.. _nuitka-requirements:
+
 **************
  Requirements
 **************

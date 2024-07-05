@@ -5,7 +5,7 @@
 ###################################
 
 ****************************
- The Problem in a few Words
+ The Problem in a Few Words
 ****************************
 
 Windows versions Python 3.4-3.7 compilation results share a problem with
