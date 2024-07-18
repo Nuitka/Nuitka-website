@@ -70,6 +70,7 @@
         "runpy",
         "Scons",
         "Setuptools",
+        "SIGSEGV",
         "Tkinter",
         "traceback",
         "tracebacks",
