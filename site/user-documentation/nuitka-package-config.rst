@@ -664,6 +664,7 @@ Compilation modes
 
 |  ``standalone``: ``True`` if standalone mode is activated with
    ``--standalone`` or ``--onefile``
+|  ``onefile``: ``True`` if onefile mode is activated with ``--onefile``
 |  ``module_mode``: ``True`` if module mode is activated with
    ``--module``
 |  ``deployment``: ``True`` if deployment mode is activated with
@@ -676,6 +677,19 @@ Compilation modes
    changes in that way, because it makes testing harder, and changes
    e.g. to make numpy not hide bugs of our packaging of its DLLs behind
    a misleading error, are usually very good for deployment too.
+
+.. note::
+
+   Most configuration will be standalone specific and not onefile
+   specific, so do not use this except in very special circumstances.
+   For example if a package is doing something that breaks in only
+   onefile mode.
+
+For onefile there is an indication the case where paths are always
+the same or static.
+
+|  ``onefile_cached``: ``True`` if onefile temporary file spec is
+   allowing caching to happen, with ``--onefile``
 
 Python Flavors
 --------------
