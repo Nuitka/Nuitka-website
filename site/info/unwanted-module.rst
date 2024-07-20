@@ -66,8 +66,10 @@ has extra dependencies and can also be a lot of code.
 
 Maybe you forced the inclusion of a whole package, which will also pull
 in its tests, and you should exclude those then. Be selective about
-inclusion and understand that ``--include-package`` will force **Nuitka** to include all submodules, many of which are unnecessary, and that
-``--include-module`` should be preferred, as it only forces a single module.
+inclusion and understand that ``--include-package`` will force
+**Nuitka** to include all submodules, many of which are unnecessary, and
+that ``--include-module`` should be preferred, as it only forces a
+single module.
 
 Perhaps you mixed test code and application code, and it's normal for
 you. You can turn off the warning for specific ones with options like
@@ -92,15 +94,15 @@ For best results, you should compile with
 error-free by removing the problematic imports from 3rd party software
 with ``anti-bloat`` contributions.
 
-Alternatively, for popular packages, report the issue, and we might do it
-for you, but there are guides on how to do this, and ideally you
+Alternatively, for popular packages, report the issue, and we might do
+it for you, but there are guides on how to do this, and ideally you
 contribute yourself.
 
 If you do not care, you can add ``--noinclude-unittest-mode=allow`` or
 whatever options are triggering this.
 
-If you do not care and do not want to see the message, you can
-disable the mnemonic with ``--nowarn-mnemonic=unwanted-module`` and
-carry on, the warning will no longer show itself, but the impact of
-including too much in your compilation will persist, and new instances
-will not be reported.
+If you do not care and do not want to see the message, you can disable
+the mnemonic with ``--nowarn-mnemonic=unwanted-module`` and carry on,
+the warning will no longer show itself, but the impact of including too
+much in your compilation will persist, and new instances will not be
+reported.

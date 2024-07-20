@@ -16,11 +16,11 @@ well as third-party C code can cause this.
  Background
 ************
 
-After compilation, the machine code, when making memory accesses, should stay
-within the boundaries of memory owned by the process. When unexpected situations
-or corruptions occur, then the OS level protection steps in and stops a program
-with ``SIGSEGV`` which you have just hit - if a compiled program to this page
-pointed you.
+After compilation, the machine code, when making memory accesses, should
+stay within the boundaries of memory owned by the process. When
+unexpected situations or corruptions occur, then the OS level protection
+steps in and stops a program with ``SIGSEGV`` which you have just hit -
+if a compiled program to this page pointed you.
 
 *************
  Consequence
@@ -36,11 +36,11 @@ find it.
 
 Nuitka has a compilation flag ``--debug`` that you should use to compile
 your program when this happens. It generates far worse program code,
-with a lot of checks added. This will find where the **Nuitka** created code
-finds its assumptions are violated. This should turn the "segfault" into
-an "assertion" error on the C level, often catching the error where it
-first happens, whereas the segfault happens on usage but not when data
-was originally corrupted.
+with a lot of checks added. This will find where the **Nuitka** created
+code finds its assumptions are violated. This should turn the "segfault"
+into an "assertion" error on the C level, often catching the error where
+it first happens, whereas the segfault happens on usage but not when
+data was originally corrupted.
 
 It's rare that the above step doesn't find bugs in **Nuitka** if that's
 where they are. The crash can also be within an extension modules that

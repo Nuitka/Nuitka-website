@@ -159,8 +159,8 @@ Make and Save Your Changes
    website. You can also find the URL for the local copy of the Nuitka
    website in the **Terminal** tab and click on it.
 
-   Some changes, such as changes to the CSS theme or JavaScript,
-   may require a relaunch. Then, use the **Dev Container: Rebuild
+   Some changes, such as changes to the CSS theme or JavaScript, may
+   require a relaunch. Then, use the **Dev Container: Rebuild
    container** command. It will take a moment to refresh the project and
    implement your changes fully. For usual edits of **.rst** pages, you
    don't need to relaunch or rebuild the container.
@@ -247,8 +247,8 @@ Sphinx
 
 The **Nuitka website** is powered by **Sphinx** — a documentation
 generation tool widely used in the software development community. We
-use **Sphinx** to render user-friendly web pages for Nuitka, which
-you are looking at. To get more details about Sphinx, see `Sphinx
+use **Sphinx** to render user-friendly web pages for Nuitka, which you
+are looking at. To get more details about Sphinx, see `Sphinx
 documentation <https://www.sphinx-doc.org/en/master/index.html>`__.
 
 reStructured Text (reST)
@@ -256,8 +256,8 @@ reStructured Text (reST)
 
 **Sphinx** uses **reStructured text (reST)** as its markup language,
 which is similar to **Markdown** but more powerful. You will need
-**reST** to edit the website pages. Check out the syntax in the
-`Sphinx documentation
+**reST** to edit the website pages. Check out the syntax in the `Sphinx
+documentation
 <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__.
 
 Sphinx Theme
@@ -288,9 +288,9 @@ configuration options, see the `ABlog documentation
 Document Formatting
 ===================
 
-To format the current document, in **Visual Studio Code**, select the task
-``autoformat current file`` which will make automatic changes to the
-file for consistent header formatting, etc.
+To format the current document, in **Visual Studio Code**, select the
+task ``autoformat current file`` which will make automatic changes to
+the file for consistent header formatting, etc.
 
 All PRs should have their changed files formatted that way. We do not
 yet have a commit hook that does it.
@@ -298,11 +298,11 @@ yet have a commit hook that does it.
 Image Optimization
 ==================
 
-We optimize all the images we insert in the website to enhance the website
-performance and achieve better search engine rankings. To optimize
-images, run the task ``autoformat PNG images`` or ``autoformat JPEG
-images`` or ``autoformat current file`` in Visual Code, the latter with
-the image being open.
+We optimize all the images we insert in the website to enhance the
+website performance and achieve better search engine rankings. To
+optimize images, run the task ``autoformat PNG images`` or ``autoformat
+JPEG images`` or ``autoformat current file`` in Visual Code, the latter
+with the image being open.
 
 Otherwise, if you are not in the Dev Container, open a new terminal in
 the and paste the following code snippet.
