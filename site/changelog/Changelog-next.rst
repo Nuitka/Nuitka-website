@@ -33,11 +33,7 @@ This release is not complete yet.
 Bug Fixes
 =========
 
--  Python3.12: Added annotations of official support for **Nuitka** PyPI
-   package and test runner options that were still missing. Fixed in
-   2.3.1 already.
-
--  UI: Fix, correct reversed ``disable`` / ``force`` and wrong option
+-  UI: Fix, we had reversed ``disable`` / ``force`` and wrong option
    name recommendation for ``--windows-console-mode`` when the user used
    old-style options.
 
@@ -50,19 +46,12 @@ Bug Fixes
    in some cases to capture the rest. The assigned value then was
    empty.when it shouldn't have been. Fixed in 2.3.1 already.
 
--  Standalone: Added data file for older ``bokeh`` version. Fixed in
-   2.3.1 already.
-
 -  Python3.8+: Fix, calls to variable args functions now need to be done
    differently, or else they can crash, as was observed with 3.10 in PGO
    instrumentation, at least. Fixed in 2.3.1 already.
 
--  PGO: Fix, using ``nuitka-run`` did not execute the program created.
-   Fixed in 2.3.1 already.
-
--  Standalone: Support older ``pandas`` versions as well.
-
--  Standalone: Added data files for ``panel`` package.
+-  PGO: Fix, using ``nuitka-run`` did not execute the program created as
+   expected. Fixed in 2.3.1 already.
 
 -  Linux: Support extension modules used as DLLs by other DLLs or
    extension modules. That makes newer ``tensorflow`` and potentially
@@ -96,14 +85,8 @@ Bug Fixes
 -  Standalone: Fix, importing newer ``pkg_resources`` was crashing.
    Fixed in 2.3.3 already.
 
--  Python3.11+: Added support for ``dill-compat``. Fixed in 2.3.4
-   already.
-
--  Standalone: Added support for the newer ``kivy`` version and added
-   macOS support as well. Fixed in 2.3.4 already.
-
--  Standalone: Include all ``kivy.uix`` packages with ``kivy``, so their
-   typical config driven usage is not too hard.
+-  Python3.11+: Added support for newer Python with ``dill-compat``. Fixed in
+   2.3.4 already.
 
 -  Standalone: Support locating Windows icons for ``pywebview``. Fixed
    in 2.3.4 already.
@@ -111,19 +94,13 @@ Bug Fixes
 -  Standalone: Added support for ``spacy`` related packages. Fixed in
    2.3.4 already.
 
--  Python3.12: Our workaround for ``cv2`` support cannot use the ``imp``
+-  Python3.12: Fix, our workaround for ``cv2`` support cannot use the ``imp``
    module anymore. Fixed in 2.3.4 already.
 
--  Added support for ``__init__`` files that are extension modules.
-   Architecture checks for macOS were false negatives for them, and the
-   case insensitive import scan failed to find them on Windows. Fixed in
-   2.3.4 already.
-
--  Standalone: Added implicit dependencies of ``lxml.sax`` module. Fixed
-   in 2.3.4 already.
-
--  Standalone: Added implicit dependencies for ``zeroconf`` package.
-   Fixed in 2.3.4 already.
+-  Compatibility: Added support for ``__init__`` files that are extension
+   modules. Architecture checks for macOS were false negatives for them, and the
+   case insensitive import scan failed to find them on Windows. Fixed in 2.3.4
+   already.
 
 -  Standalone: Added missing dependencies for standard library extension
    modules, mainly exhibited on macOS. Fixed in 2.3.4 already.
@@ -136,26 +113,11 @@ Bug Fixes
    bytecode calls them or how they import them and it could crash when
    attempting it. Fixed in 2.3.6 already.
 
--  Standalone: Added support for ``numpy`` version 2. Fixed in 2.3.7
-   already.
-
--  Standalone: More complete support for ``tables`` package. Fixed in
-   2.3.8 already.
-
 -  Fix, fork bomb in ``cpuinfo`` package no longer happens. Fixed in
    2.3.8 already.
 
--  Standalone: Added implicit dependencies for ``scipy.signal`` package.
-   Fixed in 2.3.8 already.
-
--  Standalone: Added support for ``moviepy`` and ``imageio_ffmeg``
-   packages. Fixed in 2.3.8 already.
-
 -  Nuitka-Python: Fix, cannot ask for shared library prefixes. Fixed in
    2.3.8 already.
-
--  Standalone: Added support for newer ``scipy``. Fixed in 2.3.10
-   already.
 
 -  Standalone: Make sure ``keras`` package dependency for ``tensorflow``
    is visible. Fixed in 2.3.10 already.
@@ -199,8 +161,6 @@ Bug Fixes
    dependencies of the running Python binary rather than encoding what
    CPython does. Doing that covers other Python flavors as well.
 
--  Standalone: Added data files for ``bpy`` package.
-
 -  Fix, need to prefer extension modules over Python code for packages.
 
 -  Fix, immutable constant values are not to be treated as very trusted.
@@ -212,8 +172,6 @@ Bug Fixes
 -  Python3: Added ``.name`` and ``.path`` attributes to Nuitka loader
    objects for enhanced compatibility with code that expects source code
    loaders.
-
--  Standalone: Added support for ``nes_py`` and ``gym_tetris`` packages.
 
 -  Fix, the ``sys.argv[0]`` needs to be absolute for best usability.
 
@@ -232,13 +190,6 @@ Bug Fixes
 -  macOS: Enforce using system ``codesign`` as the Anaconda one is not
    working for us.
 
--  Standalone: Added support for ``dash`` and ``plotly``.
-
--  Standalone: Added support for ``usb1`` package.
-
--  Standalone: Added support for ``azure.cognitiveservices.speech``
-   package.
-
 -  Fix, we need to read ``.pyi`` files as source code. Otherwise unicode
    characters can cause crashes.
 
@@ -251,19 +202,77 @@ Bug Fixes
 -  Fix, need to hold a reference of the iterable while converting it to
    ``list``.
 
--  Standalone: Added implicit dependencies for ``tinycudann`` package.
-
 -  Plugins: Fix, this wasn't properly ignoring ``None`` values in load
    descriptions as intended.
 
 -  macOS: Need to allow DLLs from all Homebrew paths.
 
--  Standalone: Added support for newer ``win32com.server.register``.
-
 -  Reports: Do not crash during report writing for very early errors.
 
 -  Python3.11+: Fix, need to make sure we have ``split`` as a constant
    value when using exception groups.
+
+-  Debian: More robust against problematic distribution folders with no
+   metadata, these apparently can happen with OS upgrades.
+
+-  Fix, was leaking exception in case of ``--python-flag=-m`` mode that
+   could cause errors.
+
+-  Compatibility: Close standard file handles on process forks as CPython does.
+   This should enhance things for compilations using ``attach`` on Windows.
+
+Package Support
+===============
+
+-  Standalone: Added data file for older ``bokeh`` version. Fixed in
+   2.3.1 already.
+
+-  Standalone: Support older ``pandas`` versions as well.
+
+-  Standalone: Added data files for ``panel`` package.
+
+-  Standalone: Added support for the newer ``kivy`` version and added
+   macOS support as well. Fixed in 2.3.4 already.
+
+-  Standalone: Include all ``kivy.uix`` packages with ``kivy``, so their
+   typical config driven usage is not too hard.
+
+-  Standalone: Added implicit dependencies of ``lxml.sax`` module. Fixed
+   in 2.3.4 already.
+
+-  Standalone: Added implicit dependencies for ``zeroconf`` package.
+   Fixed in 2.3.4 already.
+
+-  Standalone: Added support for ``numpy`` version 2. Fixed in 2.3.7
+   already.
+
+-  Standalone: More complete support for ``tables`` package. Fixed in
+   2.3.8 already.
+
+-  Standalone: Added implicit dependencies for ``scipy.signal`` package.
+   Fixed in 2.3.8 already.
+
+-  Standalone: Added support for ``moviepy`` and ``imageio_ffmeg``
+   packages. Fixed in 2.3.8 already.
+
+-  Standalone: Added support for newer ``scipy``. Fixed in 2.3.10
+   already.
+
+-  Standalone: Added data files for ``bpy`` package. For full support more work
+   will be needed.
+
+-  Standalone: Added support for ``nes_py`` and ``gym_tetris`` packages.
+
+-  Standalone: Added support for ``dash`` and ``plotly``.
+
+-  Standalone: Added support for ``usb1`` package.
+
+-  Standalone: Added support for ``azure.cognitiveservices.speech``
+   package.
+
+-  Standalone: Added implicit dependencies for ``tinycudann`` package.
+
+-  Standalone: Added support for newer ``win32com.server.register``.
 
 -  Standalone: Added support for ``jaxtyping`` package.
 
@@ -273,15 +282,6 @@ Bug Fixes
 
 -  Standalone: Added support for newer ``paddleocr``.
 
--  Debian: More robust against problematic distribution folders with no
-   metadata, these apparently can happen with OS upgrades.
-
--  Fix, was leaking exception in case of ``--python-flag=-m`` mode that
-   could cause errors.
-
--  Compatibility: Do close standard file handles on process forks the
-   same way Python does. This should enhance things for compilations
-   using ``attach`` on Windows.
 
 New Features
 ============
@@ -487,6 +487,10 @@ Optimization
 
 Organizational
 ==============
+
+-  Python3.12: Added annotations of official support for **Nuitka** PyPI
+   package and test runner options that were still missing. Fixed in
+   2.3.1 already.
 
 -  UI: Change runner scripts. The ``nuitka3`` is no more. Instead, we
    have ``nuitka2`` where it applies. Also, we now use CMD files rather
