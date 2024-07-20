@@ -62,6 +62,8 @@ Bug Fixes
 
 -  Standalone: Support older ``pandas`` versions as well.
 
+-  Standalone: Added data files for ``panel`` package.
+
 -  Linux: Support extension modules used as DLLs by other DLLs or
    extension modules. That makes newer ``tensorflow`` and potentially
    more packages work again. Fixed in 2.3.1 already.
@@ -99,6 +101,9 @@ Bug Fixes
 
 -  Standalone: Added support for the newer ``kivy`` version and added
    macOS support as well. Fixed in 2.3.4 already.
+
+-  Standalone: Include all ``kivy.uix`` packages with ``kivy``, so their typical
+   config driven usage is not too hard.
 
 -  Standalone: Support locating Windows icons for ``pywebview``. Fixed
    in 2.3.4 already.
@@ -170,12 +175,26 @@ Bug Fixes
 -  Fix, was not using proper result value for ``SET_ATTRIBUTE`` to check
    success in a few corner cases. Fixed in 2.3.10 already.
 
+-  Windows: Retry deleting dist and build folders, allowing users to recognize
+   still running programs and not crashing on Anti-Virus software still locking
+   parts of them.
+
+-  Fix, ``dict.fromkeys`` didn't give compatible error messages for no args
+   given.
+
+-  Fix, output correct unsupported exception messages for in-place operations
+
+   For in-place ``**``, it was also more different, since it must not mention
+   the ``pow`` function.
+
 New Features
 ============
 
--  Experimental support for Python 3.13 beta 2. We try to follow its
-   release cycle closely and aim to support it at the time of CPython
-   release.
+-  Experimental support for Python 3.13 beta 3. We try to follow its release
+   cycle closely and aim to support it at the time of CPython release. We also
+   detect no-GIL Python and can make use of it. The GIL status is output in the
+   ``--version`` format and the GIL usage is available as a new ``{GIL}``
+   variable for project options.
 
 -  Scons: Added experimental option
    ``--experimental=force-system-scons`` to enforce system Scons to be
@@ -188,6 +207,14 @@ New Features
    to a page with helpful information unless the deployment mode is
    active.
 
+-  Begin merging changes for WASI support. Parts of the C changes were merged
+   and for other parts, command line option ``--target=wasi`` was added, and we
+   are starting to address cross platform compilation for it. More work will be
+   necessary to fully merge it, right not it doesn't work at all yet.
+
+-  PGO: Added support for using it in standalone mode as well, so once we use it
+   more, it will immediately be practical.
+
 Optimization
 ============
 
@@ -196,6 +223,8 @@ Optimization
 
 -  Python3.8+: Calls of C functions are faster and more compact code
    using vector calls, too.
+
+-  Python3.10+: Mark our compiled types as immutable.
 
 -  Anti-Bloat: Avoid using ``unittest`` in ``keras`` package. Added in
    2.3.1 already.
@@ -249,6 +278,14 @@ Optimization
 Organizational
 ==============
 
+-  UI: Change runner scripts. The ``nuitka3`` is no more. Instead, we have
+   ``nuitka2`` where it applies. Also, we now use CMD files rather than batch
+   files.
+
+-  UI: Check filenames for data files for illegal paths on the respective
+   platforms. Some user errors with data file options become more apparent this
+   way.
+
 -  Added badges to the ``README.rst`` of **Nuitka** to display package
    support and more. Added in 2.3.1 already.
 
@@ -269,8 +306,23 @@ Organizational
 
 -  UI: Detect "rye python" on macOS. Added in 2.3.8 already.
 
--  UI: Be forgiving about release candidates, seems Ubuntu ships and
-   keeps them around for LTS releases even. Changed in 2.3.8 already.
+-  UI: Be forgiving about release candidates; Ubuntu shipped one in a LTS
+   release. Changed in 2.3.8 already.
+
+-  Debugging: Allow fine-grained debug control for immortal checks
+
+   Can use ``--no-debug-immortal-assumptions`` to allow for corrupted immortal
+   objects, which might be done by non-Nuitka code and then break the debug
+   mode.
+
+-  UI: Avoid leaking compile time Nuitka environment variables to the child
+   processes.
+
+   They were primarily visible with ``--run``, but we should avoid it for
+   everything.
+
+   For non-Windows, we now recognize if we are the exact re-execution and
+   otherwise, reject them.
 
 Tests
 =====
@@ -279,6 +331,15 @@ Tests
    correctness on that OS, too.
 
 -  Make compile extension module test work on macOS, too.
+
+-  Avoid using ``2to3`` in our tests since newer Python no longer contains it
+   by default, we split up tests with mixed contents into two tests instead.
+
+-  Python3.11+: Make large constants test executable for as well. We no longer
+   can easily create those values on the fly and output them due to security
+   enhancements.
+
+-  Python3.3: Remove support from the test runner as well.
 
 Cleanups
 ========
@@ -293,9 +354,16 @@ Cleanups
 -  Moved code object extraction of ``dill-compat`` plugin from Python
    module template to C code helper for shared usage and better editing.
 
--  Also call ``va_end`` for standards compliance when using
-   ``va_start``. Some C compilers may actually need that, so we better
-   do it even if what we saw so far doesn't need it.
+-  Also call ``va_end`` for standards compliance when using ``va_start``. Some C
+   compilers may need that, so we better do it even if what we have seen so far
+   doesn't need it.
+
+-  Don't pass main filename to the tree building anymore, and make
+   ``nuitka.Options`` functions usage explicit when importing.
+
+-  Change comments that still mentioned 3.3 as where a change in Python
+   happened since we no longer support this version. Now, what's first seen in
+   3.4 is a Python3 change.
 
 -  Minor spelling cleanups.
 
