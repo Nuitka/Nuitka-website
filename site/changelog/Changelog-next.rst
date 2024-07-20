@@ -85,8 +85,8 @@ Bug Fixes
 -  Standalone: Fix, importing newer ``pkg_resources`` was crashing.
    Fixed in 2.3.3 already.
 
--  Python3.11+: Added support for newer Python with ``dill-compat``. Fixed in
-   2.3.4 already.
+-  Python3.11+: Added support for newer Python with ``dill-compat``.
+   Fixed in 2.3.4 already.
 
 -  Standalone: Support locating Windows icons for ``pywebview``. Fixed
    in 2.3.4 already.
@@ -94,13 +94,13 @@ Bug Fixes
 -  Standalone: Added support for ``spacy`` related packages. Fixed in
    2.3.4 already.
 
--  Python3.12: Fix, our workaround for ``cv2`` support cannot use the ``imp``
-   module anymore. Fixed in 2.3.4 already.
+-  Python3.12: Fix, our workaround for ``cv2`` support cannot use the
+   ``imp`` module anymore. Fixed in 2.3.4 already.
 
--  Compatibility: Added support for ``__init__`` files that are extension
-   modules. Architecture checks for macOS were false negatives for them, and the
-   case insensitive import scan failed to find them on Windows. Fixed in 2.3.4
-   already.
+-  Compatibility: Added support for ``__init__`` files that are
+   extension modules. Architecture checks for macOS were false negatives
+   for them, and the case insensitive import scan failed to find them on
+   Windows. Fixed in 2.3.4 already.
 
 -  Standalone: Added missing dependencies for standard library extension
    modules, mainly exhibited on macOS. Fixed in 2.3.4 already.
@@ -218,8 +218,9 @@ Bug Fixes
 -  Fix, was leaking exception in case of ``--python-flag=-m`` mode that
    could cause errors.
 
--  Compatibility: Close standard file handles on process forks as CPython does.
-   This should enhance things for compilations using ``attach`` on Windows.
+-  Compatibility: Close standard file handles on process forks as
+   CPython does. This should enhance things for compilations using
+   ``attach`` on Windows.
 
 Package Support
 ===============
@@ -258,8 +259,8 @@ Package Support
 -  Standalone: Added support for newer ``scipy``. Fixed in 2.3.10
    already.
 
--  Standalone: Added data files for ``bpy`` package. For full support more work
-   will be needed.
+-  Standalone: Added data files for ``bpy`` package. For full support
+   more work will be needed.
 
 -  Standalone: Added support for ``nes_py`` and ``gym_tetris`` packages.
 
@@ -281,7 +282,6 @@ Package Support
 -  Standalone: Added workaround for ``torch`` submodule import function.
 
 -  Standalone: Added support for newer ``paddleocr``.
-
 
 New Features
 ============
@@ -420,31 +420,10 @@ Optimization
 -  macOS: Should use static libpython with Anaconda as it works there
    too, and reduces issues with Python3.12 and extension module imports.
 
--  Anti-Bloat: Avoid using ``unittest`` in ``keras`` package. Added in
-   2.3.1 already.
-
 -  Standalone: Statically optimize by OS in ``sysconfig``.
 
    Consequently, standalone distributions can exclude OS-specific
    packages such as ``_aix_support`` and ``_osx_support``.
-
--  Anti-Bloat: Avoid ``distutils`` from ``_oxs_support`` (used by
-   ``sysconfig``) module on macOS.
-
--  Avoid compiling large ``opcua`` modules that generate huge C files
-   much like ``asyncua`` package. Added in 2.3.1 already.
-
--  Anti-Bloat: Avoid ``shiboken2`` and ``shiboken6`` modules from
-   ``matplotlib`` package when the ``no-qt`` plugin is used. Added in
-   2.3.6 already.
-
--  Anti-Bloat: Changes for not using ``pydoc`` and ``distutils`` in
-   ``numpy`` version 2. Added in 2.3.7 already.
-
--  Anti-Bloat: Avoid ``numpy`` and ``packaging`` dependencies from
-   ``PIL`` package.
-
--  Anti-Bloat: Avoid using ``webbrowser`` module from ``pydoc``.
 
 -  Avoid changing code names for complex call helpers
 
@@ -457,33 +436,54 @@ Optimization
    using renumbered function the second time around a compilation
    happens. Added in 2.3.10 already.
 
--  Anti-Bloat: Avoid using ``pydoc`` for ``werkzeug`` package. Fixed in
-   2.3.10 already.
-
--  Anti-Bloat: Avoid using ``pydoc`` for ``site`` module. Fixed in
-   2.3.10 already.
-
--  Anti-Bloat: Avoid ``pydoc`` from ``xmlrpc.server``. Fixed in 2.3.10
-   already.
-
--  Anti-Bloat: Added ``no_docstrings`` support for numpy2 as well. Fixed
-   in 2.3.10 already.
-
 -  Avoid using C-API when creating ``__path__`` value.
-
--  Anti-Bloat: Recognize ``numpy.distutils`` as ``setuptools`` bloat.
-
--  Anti-Bloat: Add ``pydoc`` bloat mode.
 
 -  Faster indentation of generated code.
 
--  Anti-Bloat: Avoid ``pydoc`` in ``joblib.memory``.
+Anti-Bloat
+==========
 
--  Anti-Bloat: Avoid ``setuptools`` in ``gsplat`` package.
+-  Add new ``pydoc`` bloat mode to trigger warnings when using it.
 
--  Anti-Bloat: Avoid ``dask`` and ``jax`` in ``scipy`` package.
+-  Recognize usage of ``numpy.distutils`` as ``setuptools`` bloat for
+   more direct reporting.
 
--  Anti-Bloat: Avoid using ``matplotlib`` for ``networkx`` package.
+-  Avoid compiling large ``opcua`` modules that generate huge C files
+   much like ``asyncua`` package. Added in 2.3.1 already.
+
+-  Avoid ``shiboken2`` and ``shiboken6`` modules from ``matplotlib``
+   package when the ``no-qt`` plugin is used. Added in 2.3.6 already.
+
+-  Changes for not using ``pydoc`` and ``distutils`` in ``numpy``
+   version 2. Added in 2.3.7 already.
+
+-  Avoid ``numpy`` and ``packaging`` dependencies from ``PIL`` package.
+
+-  Avoid using ``webbrowser`` module from ``pydoc``.
+
+-  Avoid using ``unittest`` in ``keras`` package. Added in 2.3.1
+   already.
+
+-  Avoid ``distutils`` from ``_oxs_support`` (used by ``sysconfig``)
+   module on macOS.
+
+-  Avoid using ``pydoc`` for ``werkzeug`` package. Fixed in 2.3.10
+   already.
+
+-  Avoid using ``pydoc`` for ``site`` module. Fixed in 2.3.10 already.
+
+-  Avoid ``pydoc`` from ``xmlrpc.server``. Fixed in 2.3.10 already.
+
+-  Added ``no_docstrings`` support for numpy2 as well. Fixed in 2.3.10
+   already.
+
+-  Avoid ``pydoc`` in ``joblib.memory``.
+
+-  Avoid ``setuptools`` in ``gsplat`` package.
+
+-  Avoid ``dask`` and ``jax`` in ``scipy`` package.
+
+-  Avoid using ``matplotlib`` for ``networkx`` package.
 
 Organizational
 ==============
@@ -555,8 +555,8 @@ Organizational
 -  Watch: Delete the existing ``virtualenv`` in case of errors updating
    or upgrading it.
 
--  Watch: Keep track of Nuitka compiled program exit code in result
-   files, too.
+-  Watch: Keep track of Nuitka compiled program exit code in newly added
+   result files, too.
 
 -  Watch: Redo compilations in case of previous errors when executing
    the compile program.
@@ -596,7 +596,8 @@ Cleanups
    simpler.
 
 -  Avoid using ``anti-bloat`` configuration values ``replacements``
-   where ``replacements_plain`` is good enough.
+   where ``replacements_plain`` is good enough. A lot of config pre-date
+   its addition.
 
 -  Avoid Python3 and Python3.5+ specific Jinja2 modules on versions
    before that, and consequently, avoid warning about the
