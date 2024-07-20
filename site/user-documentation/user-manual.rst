@@ -308,6 +308,8 @@ Table with supported variables:
 +------------------+--------------------------------+------------------------------------------+
 | Variable         | What this Expands to           | Example                                  |
 +==================+================================+==========================================+
+| {MAIN_DIRECTORY} | Directory of the compiled file | some_dir/maybe_relative                  |
++------------------+--------------------------------+------------------------------------------+
 | {OS}             | Name of the OS used            | Linux, Windows, Darwin, FreeBSD, OpenBSD |
 +------------------+--------------------------------+------------------------------------------+
 | {Version}        | Version of Nuitka              | e.g. (1, 6, 0)                           |
@@ -316,7 +318,7 @@ Table with supported variables:
 +------------------+--------------------------------+------------------------------------------+
 | {Arch}           | Architecture used              | x86_64, arm64, etc.                      |
 +------------------+--------------------------------+------------------------------------------+
-| {MAIN_DIRECTORY} | Directory of the compiled file | some_dir/maybe_relative                  |
+| {GIL}            | Python with or without GIL     | boolean                                  |
 +------------------+--------------------------------+------------------------------------------+
 | {Flavor}         | Variant of Python              | e.g. Debian Python, Anaconda Python      |
 +------------------+--------------------------------+------------------------------------------+
