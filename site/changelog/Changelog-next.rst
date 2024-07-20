@@ -126,11 +126,55 @@ Bug Fixes
 -  Windows: Fix build failures on mapped network drives. Fixed in 2.3.4
    already.
 
+-  Python3.12: Fix, need to set frame ``prev_inst`` or else ``f_lasti`` is
+   random. Some packages; for example PySide6; use this to check what bytecode
+   calls them or how they import them and it could crash when attempting it.
+   Fixed in 2.3.6 already.
+
+-  Standalone: Added support for ``numpy`` version 2. Fixed in 2.3.7
+   already.
+
+-  Standalone: More complete support for ``tables`` package. Fixed in
+   2.3.8 already.
+
+-  Fix, fork bomb in ``cpuinfo`` package no longer happens. Fixed in
+   2.3.8 already.
+
+-  Standalone: Added implicit dependencies for ``scipy.signal`` package.
+   Fixed in 2.3.8 already.
+
+-  Standalone: Added support for ``moviepy`` and ``imageio_ffmeg``
+   packages. Fixed in 2.3.8 already.
+
+-  Nuitka-Python: Fix, cannot ask for shared library prefixes. Fixed in
+   2.3.8 already.
+
+-  Standalone: Added support for newer ``scipy``. Fixed in 2.3.10
+   already.
+
+-  Standalone: Make sure ``keras`` package dependency for ``tensorflow``
+   is visible. Fixed in 2.3.10 already.
+
+-  Linux: Fix, for static executables we should ignore errors setting a DLL load
+   path. Fixed in 2.3.10 already.
+
+-  Compatibility: Fix, nuitka resource readers also need to have
+   ``.parent`` attribute. Fixed in 2.3.10 already.
+
+-  Fix, need to force no-locale language outputs for tools outputs on
+   non-Windows. Our previous methods were not forcing enough.
+
+   For non-Windows this makes Nuitka work on systems with locales active for
+   message outputs only. Fixed in 2.3.10 already.
+
+-  Fix, was not using proper result value for ``SET_ATTRIBUTE`` to check
+   success in a few corner cases. Fixed in 2.3.10 already.
+
 New Features
 ============
 
--  Experimental support for Python 3.13 beta 2. We try and follow its
-   release cycle closely and aim to support it at the time of Python
+-  Experimental support for Python 3.13 beta 2. We try to follow its
+   release cycle closely and aim to support it at the time of CPython
    release.
 
 -  Scons: Added experimental option
@@ -139,7 +183,7 @@ New Features
    interesting for experiments with newer Scons releases. Added in 2.3.2
    already.
 
--  Debugging: A new non-deployment handler was added when segmentation
+-  Debugging: A new non-deployment handler helps when segmentation
    faults occurred. The crashing program then outputs a message pointing
    to a page with helpful information unless the deployment mode is
    active.
@@ -151,7 +195,7 @@ Optimization
    constant values.
 
 -  Python3.8+: Calls of C functions are faster and more compact code
-   using vector calls too.
+   using vector calls, too.
 
 -  Anti-Bloat: Avoid using ``unittest`` in ``keras`` package. Added in
    2.3.1 already.
@@ -166,6 +210,41 @@ Optimization
 
 -  Avoid compiling large ``opcua`` modules that generate huge C files
    much like ``asyncua`` package. Added in 2.3.1 already.
+
+-  Anti-Bloat: Avoid ``shiboken2`` and ``shiboken6`` modules from
+   ``matplotlib`` package when the ``no-qt`` plugin is used. Added in
+   2.3.6 already.
+
+-  Anti-Bloat: Changes for not using ``pydoc`` and ``distutils`` in
+   ``numpy`` version 2. Added in 2.3.7 already.
+
+-  Anti-Bloat: Avoid ``numpy`` and ``packaging`` dependencies from
+   ``PIL`` package.
+
+-  Anti-Bloat: Avoid using ``webbrowser`` module from ``pydoc``.
+
+-  Optimization: Avoid changing code names for complex call helpers
+
+   The numbering of complex call helper as normally applied to all
+   functions are, caused this issue. When part of the code is used
+   from the bytecode cache, they never come to exist and the C code
+   of modules using them then didn't match.
+
+   This avoids an extra C re-compilation for some modules that were
+   using renumbered function the second time around a compilation
+   happens. Added in 2.3.10 already.
+
+-  Anti-Bloat: Avoid using ``pydoc`` for ``werkzeug`` package. Fixed in
+   2.3.10 already.
+
+-  Anti-Bloat: Avoid using ``pydoc`` for ``site`` module. Fixed in 2.3.10
+   already.
+
+-  Anti-Bloat: Avoid ``pydoc`` from ``xmlrpc.server``. Fixed in 2.3.10
+   already.
+
+-  Anti-Bloat: Added ``no_docstrings`` support for numpy2 as well. Fixed in
+   2.3.10 already.
 
 Organizational
 ==============
@@ -188,6 +267,11 @@ Organizational
 -  UI: The new console mode option is a Windows-specific option now,
    move it to that group.
 
+-  UI: Detect "rye python" on macOS. Added in 2.3.8 already.
+
+-  UI: Be forgiving about release candidates, seems Ubuntu ships and
+   keeps them around for LTS releases even. Changed in 2.3.8 already.
+
 Tests
 =====
 
@@ -208,6 +292,10 @@ Cleanups
 
 -  Moved code object extraction of ``dill-compat`` plugin from Python
    module template to C code helper for shared usage and better editing.
+
+-  Also call ``va_end`` for standards compliance when using
+   ``va_start``. Some C compilers may actually need that, so we better
+   do it even if what we saw so far doesn't need it.
 
 -  Minor spelling cleanups.
 
