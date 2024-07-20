@@ -320,7 +320,7 @@ with lots of bug fixes and new features.
 
 -  Added standalone test for ``glfw`` coverage.
 
--  Construct based tests for in-place operations are now using a value
+-  construct-based tests for in-place operations are now using a value
    for the first time, and then a couple more times, allowing for real
    in-place usage, so we are sure we measure correctly if that's
    happening.

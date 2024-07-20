@@ -3,7 +3,7 @@ import sys
 
 from invoke import Collection, task
 
-from _docs import site, intl, bundle
+from _docs import bundle, intl, site
 
 # Disable pipenv warning, we run potentially inside the virtualenv already,
 # Visual Code e.g. picks it up and there is no harm in that. This is only

@@ -149,7 +149,7 @@ tasks in the summary, but first out to the many details.
  Tests
 *******
 
--  Made the construct based testing executable with Python3.
+-  Made the construct-based testing executable with Python3.
 
 -  Removed warnings using the new PyLint warnings plug-in for the
    reflected test. Nuitka now uses the PyLint annotations to not warn.

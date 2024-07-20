@@ -452,7 +452,7 @@ updates, and newly supported packages.
 -  Applied code formatting to many more files in ``tests``, etc.
 
 -  Removed a few micro benchmarks that are instead to be covered by
-   construct based tests now.
+   construct-based tests now.
 
 -  Enhanced code generation for specialized in-place operations to avoid
    unused code for operations that do not have any shortcuts where the

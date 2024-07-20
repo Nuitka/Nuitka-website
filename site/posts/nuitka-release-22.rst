@@ -129,7 +129,7 @@ change is to be able to support Python 3.12 in the next release.
    be a ``gcc`` binary causing errors. Fixed in 2.1.6 already.
 
 -  Windows: Fix, by default, scan only for ``.bin`` and ``.exe``
-   binaries for Nuitka package configuration EXE dependency patterns.
+   binaries for Nuitka Package Configuration EXE dependency patterns.
    This was the intended value, but it had not taken effect yet. Fixed
    in 2.1.6 already.
 
@@ -207,7 +207,7 @@ change is to be able to support Python 3.12 in the next release.
    it at run-time to ``tensorflow`` JIT so it can do its tracing
    executions.
 
--  For Nuitka package configuration, we now have ``change_class``
+-  For Nuitka Package Configuration, we now have ``change_class``
    similar to ``change_function`` to replace a full class definition
    with something else, this can be used to modify classes to become
    stubs or even unusable.
@@ -216,7 +216,7 @@ change is to be able to support Python 3.12 in the next release.
    the ``@asyncSlot`` the same way. Added in 2.1.1 already.
 
 -  Added new kind of warning of ``plugin`` category and use it in the
-   Nuitka Package configuration to inform ``matplotlib`` users to select
+   Nuitka Package Configuration to inform ``matplotlib`` users to select
    a GUI backend via plugin selection. Added in 2.1.4 already.
 
 -  Zig: Added support for ``zig`` as CC value. Due to it not supporting

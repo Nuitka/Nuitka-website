@@ -425,7 +425,7 @@ This release is mainly a consolidation of previous release. Optimization
 added in previous release did in fact introduce regressions, that needed
 to be addressed and were cause for relatively many hotfixes.
 
-The Yaml nuitka package configuration feature is getting ever more
+The Yaml Nuitka Package Configuration feature is getting ever more
 powerful, but is not one bit more documented, such that the community as
 a whole is not yet capable of adding missing dependencies, data files,
 DLLs, and even anti-bloat patches.

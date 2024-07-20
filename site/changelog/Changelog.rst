@@ -445,7 +445,7 @@ Bug Fixes
    be a ``gcc`` binary causing errors. Fixed in 2.1.6 already.
 
 -  Windows: Fix, by default, scan only for ``.bin`` and ``.exe``
-   binaries for Nuitka package configuration EXE dependency patterns.
+   binaries for Nuitka Package Configuration EXE dependency patterns.
    This was the intended value, but it had not taken effect yet. Fixed
    in 2.1.6 already.
 
@@ -522,7 +522,7 @@ New Features
    it at run-time to ``tensorflow`` JIT so it can do its tracing
    executions.
 
--  For Nuitka package configuration, we now have ``change_class``
+-  For Nuitka Package Configuration, we now have ``change_class``
    similar to ``change_function`` to replace a full class definition
    with something else, this can be used to modify classes to become
    stubs or even unusable.
@@ -531,7 +531,7 @@ New Features
    the ``@asyncSlot`` the same way. Added in 2.1.1 already.
 
 -  Added new kind of warning of ``plugin`` category and use it in the
-   Nuitka Package configuration to inform ``matplotlib`` users to select
+   Nuitka Package Configuration to inform ``matplotlib`` users to select
    a GUI backend via plugin selection. Added in 2.1.4 already.
 
 -  Zig: Added support for ``zig`` as CC value. Due to it not supporting
@@ -917,7 +917,7 @@ New Features
 -  Plugins: Make not only booleans related to the python version
    available, but also strings ``python_version_str`` and
    ``python_version_full_str``, to use them when constructing e.g. DLL
-   paths in Nuitka package configuration.
+   paths in Nuitka Package Configuration.
 
 -  Plugins: Added helper function ``iterate_modules`` for producing the
    submodules of a given package, for using in expressions of Nuitka
@@ -1295,7 +1295,7 @@ Bug Fixes
 -  Accelerated: Fix, tensorflow configuration removing ``site`` usage
    needs to apply only to standalone mode. Fixed in 1.9.7 already.
 
--  Plugins: Fix, the ``get_dist_name`` Nuitka package configuration
+-  Plugins: Fix, the ``get_dist_name`` Nuitka Package Configuration
    function could crash in some rare configurations. Fixed in 1.9.7
    already.
 
@@ -1453,7 +1453,7 @@ New Features
          a=b
          c=d
 
--  The Nuitka package configuration ``no-auto-follow`` now applies
+-  The Nuitka Package Configuration ``no-auto-follow`` now applies
    recursively, i.e. that a top level package can have it, and not every
    sub-package that uses a package but should not be automatically
    followed, does have to say this. With this e.g. ``networkx``
@@ -1726,7 +1726,7 @@ Cleanups
    have been moved to common code, and in some cases were having wrong
    texts corrected.
 
--  Use enum definitions in the Nuitka package configuration schema
+-  Use enum definitions in the Nuitka Package Configuration schema
    rather than manual ``oneOf`` types.
 
 -  The User Manual was proof read and had a bunch of wordings improved.

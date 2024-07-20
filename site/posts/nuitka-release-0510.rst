@@ -125,7 +125,7 @@ now faster or got looked at and optimized.
 -  New reference count tests to cover generator expressions and their
    usage got added.
 
--  Many new construct based tests got added, these will be used for
+-  Many new construct-based tests got added, these will be used for
    performance graphing, and serve as micro benchmarks now.
 
 -  Again, more basic tests are directly executable with Python3.

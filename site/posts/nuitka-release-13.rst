@@ -156,7 +156,7 @@ improvements, many of which have been in hotfixes.
    should run in the background (``background``) or are only a UI
    element (``ui-element``).
 
--  Plugins: In the Nuitka package configuration files, the ``when``
+-  Plugins: In the Nuitka Package Configuration files, the ``when``
    allows now to check if a plugin is active. This allowed us to limit
    console warnings to only packages whose plugin was activated.
 

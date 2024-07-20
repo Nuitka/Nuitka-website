@@ -2605,7 +2605,7 @@ Cleanups
 -  Applied code formatting to many more files in ``tests``, etc.
 
 -  Removed a few micro benchmarks that are instead to be covered by
-   construct based tests now.
+   construct-based tests now.
 
 -  Enhanced code generation for specialized in-place operations to avoid
    unused code for operations that do not have any shortcuts where the
@@ -2708,7 +2708,7 @@ will benefit execution times on platform where the Python DLL is used,
 most prominently Windows.
 
 Then this also adds new features, specifically custom reports. Also
-tools to aid with adding Nuitka package configuration input data, to
+tools to aid with adding Nuitka Package Configuration input data, to
 list DLLs and data files.
 
 With multidist we see a brand new ability to combine several programs
@@ -3412,7 +3412,7 @@ New Features
    should run in the background (``background``) or are only a UI
    element (``ui-element``).
 
--  Plugins: In the Nuitka package configuration files, the ``when``
+-  Plugins: In the Nuitka Package Configuration files, the ``when``
    allows now to check if a plugin is active. This allowed us to limit
    console warnings to only packages whose plugin was activated.
 
@@ -4544,7 +4544,7 @@ This release is mainly a consolidation of previous release. Optimization
 added in previous release did in fact introduce regressions, that needed
 to be addressed and were cause for relatively many hotfixes.
 
-The Yaml nuitka package configuration feature is getting ever more
+The Yaml Nuitka Package Configuration feature is getting ever more
 powerful, but is not one bit more documented, such that the community as
 a whole is not yet capable of adding missing dependencies, data files,
 DLLs, and even anti-bloat patches.

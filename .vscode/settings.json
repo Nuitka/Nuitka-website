@@ -50,6 +50,7 @@
         "lxml",
         "metaclass",
         "MSVC",
+        "Multidist",
         "noarch",
         "nofollow",
         "Nuitka",

@@ -3379,7 +3379,7 @@ Tests
 
 -  Added standalone test for ``glfw`` coverage.
 
--  Construct based tests for in-place operations are now using a value
+-  construct-based tests for in-place operations are now using a value
    for the first time, and then a couple more times, allowing for real
    in-place usage, so we are sure we measure correctly if that's
    happening.
@@ -9332,7 +9332,7 @@ Optimization
 Tests
 =====
 
--  Made the construct based testing executable with Python3.
+-  Made the construct-based testing executable with Python3.
 
 -  Removed warnings using the new PyLint warnings plug-in for the
    reflected test. Nuitka now uses the PyLint annotations to not warn.
@@ -10320,7 +10320,7 @@ Tests
 -  New reference count tests to cover generator expressions and their
    usage got added.
 
--  Many new construct based tests got added, these will be used for
+-  Many new construct-based tests got added, these will be used for
    performance graphing, and serve as micro benchmarks now.
 
 -  Again, more basic tests are directly executable with Python3.

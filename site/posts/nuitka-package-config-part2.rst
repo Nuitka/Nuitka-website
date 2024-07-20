@@ -8,7 +8,7 @@
 
 This is the second part of a post series under the tag `package_config
 <https://nuitka.net/blog/tag/package_config.html>`__ that explains the
-Nuitka package configuration in more detail. To recap, Nuitka package
+Nuitka Package Configuration in more detail. To recap, Nuitka package
 configuration is the way Nuitka learns about hidden dependencies, needed
 DLLs, data files, and just generally avoids bloat in the compilation.
 The details are here on a dedicate page on the web site in `Nuitka
@@ -150,7 +150,7 @@ So this does not work.
 So, there are actually a couple of ways to resolve this. One would be to
 just provide the empty directories that non-Windows is checking to
 exist. These would then have to be deployed. There is actually support
-for that in Nuitka package configuration.
+for that in Nuitka Package Configuration.
 
 And we have examples of that in our existing configuration, e.g. for
 ``Crypto.Util._raw_api``.

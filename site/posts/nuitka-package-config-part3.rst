@@ -8,7 +8,7 @@
 
 This is the third part of a post series under the tag `package_config
 <https://nuitka.net/blog/tag/package_config.html>`__ that explains the
-Nuitka package configuration in more detail. To recap, Nuitka package
+Nuitka Package Configuration in more detail. To recap, Nuitka package
 configuration is the way Nuitka learns about hidden dependencies, needed
 DLLs, data files, and just generally avoids bloat in the compilation.
 The details are here on a dedicate page on the web site in `Nuitka

@@ -75,7 +75,7 @@ generic plugins that deal with DLLs, data-files, tweaks (called
 
 Adding stuff there is simple, and as of recently, there is even
 documentation for it. This is going to be explained in a series of posts
-detailing Nuitka package configuration, under the ``package_config``
+detailing Nuitka Package Configuration, under the ``package_config``
 tag.
 
 I must say it's so much fun, I love working with it. But the goal is for

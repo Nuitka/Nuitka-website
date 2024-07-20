@@ -19,7 +19,7 @@ will benefit execution times on platform where the Python DLL is used,
 most prominently Windows.
 
 Then this also adds new features, specifically custom reports. Also
-tools to aid with adding Nuitka package configuration input data, to
+tools to aid with adding Nuitka Package Configuration input data, to
 list DLLs and data files.
 
 With multidist we see a brand new ability to combine several programs

@@ -144,7 +144,7 @@ platform specified new abilities and corrections.
 -  Accelerated: Fix, tensorflow configuration removing ``site`` usage
    needs to apply only to standalone mode. Fixed in 1.9.7 already.
 
--  Plugins: Fix, the ``get_dist_name`` Nuitka package configuration
+-  Plugins: Fix, the ``get_dist_name`` Nuitka Package Configuration
    function could crash in some rare configurations. Fixed in 1.9.7
    already.
 
@@ -303,7 +303,7 @@ platform specified new abilities and corrections.
          a=b
          c=d
 
--  The Nuitka package configuration ``no-auto-follow`` now applies
+-  The Nuitka Package Configuration ``no-auto-follow`` now applies
    recursively, i.e. that a top level package can have it, and not every
    sub-package that uses a package but should not be automatically
    followed, does have to say this. With this e.g. ``networkx``
@@ -579,7 +579,7 @@ platform specified new abilities and corrections.
    have been moved to common code, and in some cases were having wrong
    texts corrected.
 
--  Use enum definitions in the Nuitka package configuration schema
+-  Use enum definitions in the Nuitka Package Configuration schema
    rather than manual ``oneOf`` types.
 
 -  The User Manual was proof read and had a bunch of wordings improved.

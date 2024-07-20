@@ -377,7 +377,7 @@ In the following table, we list code file types.
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 | ``.pyx``   | Ignored, because they are source code not used at run time                                |                                                                                                        |
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd     | Create Nuitka Package configuration for those, with ``dll`` section for the package that uses them.    |
+| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd     | Create Nuitka Package Configuration for those, with ``dll`` section for the package that uses them.    |
 |            | party packages use them as data, for example, ``.NET`` packages, we solve that in package | For rare cases, a ``data-files`` section with special configuration might be the correct thing to do.  |
 |            | configuration for it.                                                                     |                                                                                                        |
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
@@ -385,7 +385,7 @@ In the following table, we list code file types.
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 | ``.so``    | Ignored since they are Linux/BSD extension modules or DLLs.                               | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.exe``   | They are binaries on Windows.                                                             | You can add Nuitka Package configuration to include those as DLLs and mark them as ``executable: yes`` |
+| ``.exe``   | They are binaries on Windows.                                                             | You can add Nuitka Package Configuration to include those as DLLs and mark them as ``executable: yes`` |
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 | ``.bin``   | Same as ``.exe`` on Windows.                                                              |                                                                                                        |
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+

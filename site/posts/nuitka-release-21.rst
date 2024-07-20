@@ -207,7 +207,7 @@ that would otherwise need source code at run-time.
 -  Plugins: Make not only booleans related to the python version
    available, but also strings ``python_version_str`` and
    ``python_version_full_str``, to use them when constructing e.g. DLL
-   paths in Nuitka package configuration.
+   paths in Nuitka Package Configuration.
 
 -  Plugins: Added helper function ``iterate_modules`` for producing the
    submodules of a given package, for using in expressions of Nuitka
