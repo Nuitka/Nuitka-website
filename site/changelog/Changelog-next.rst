@@ -23,7 +23,14 @@ current stable release as |NUITKA_VERSION| as well.
    The main focus shall be scalability and a few open issues for
    performance enhancements that later Python versions enable us to.
 
-This release is not complete yet.
+This release largely contains bug fixes for the previous changes, but
+also finishes full compatibility with the ``match`` statements of 3.10,
+something that was long overdue since there were always some
+incompatible behaviors there.
+
+In terms of bug fixes, it's also huge. An upgrade is required,
+especially for new ``setuptools`` that made compiled programs segfault
+at startup.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -345,8 +352,8 @@ New Features
    global configuration, which is often not practical. Some modules may
    require annotations, but for other packages, we will know they are
    fine without them. Simply disabling annotations globally barely
-   works. For some modules, removing annotations can give a 30% compile
-   time speedup.
+   works. For some modules, removing annotations can give a 30%
+   compile-time speedup.
 
 -  Standalone: Added module configuration for Django to find commands
    and load its engine.
@@ -626,6 +633,19 @@ Cleanups
 Summary
 =======
 
-This release is not yet done.
+This release cycle was a longer than usual, with much new optimization
+and package support requiring attention.
+
+For optimization we got quite a few things going, esp. with more forward
+propagation, but the big ones for scalability are still all queued up
+and things are only prepared.
+
+The 3.13 work was continuing smoothly and seems to be doing fine. We are
+still on track for supporting it right after release.
+
+The parts where we try and address WASI prepare cross-compilation, but
+we will not aim at it generally immediately, and target our own Nuitka
+standalone backend Python that is supposed to be added in coming
+releases.
 
 .. include:: ../dynamic.inc
