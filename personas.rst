@@ -16,7 +16,7 @@ performance, reduce runtime overhead, enhance user experience.
 
 Laura - Seasoned Python veteran with lots of experiences in the Python
 ecosystem and is capable of understanding Everything Python, and
-beyond.Tend to be sceptical. Researching Nuitka as an alternative,
+beyond.Tend to be skeptical. Researching Nuitka as an alternative,
 comparing Nuitka with competitors like Cython and PyArmor. Goal: Improve
 application performance, reduce runtime overhead, enhance user
 experience.

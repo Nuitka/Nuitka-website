@@ -32,9 +32,9 @@ Nuitka uses Github for public issue tracking (commercial users have a
 private tracker available) and your can report the issue on the `issue
 tracker <https://github.com/Nuitka/Nuitka/issues>`_ there.
 
-***********
- Chat Room
-***********
+******************
+ Discord / Gitter
+******************
 
 Try the chat room on Discord, which although not a replacement for an
 issue tracker, can be used for first contact and questions. It is not an
