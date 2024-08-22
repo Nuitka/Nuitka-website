@@ -30,8 +30,8 @@ def get_builder(watcher, sphinx_args, *, host, port, pre_build_commands):
 
         show(context=f"Detected change: {watcher.filepath}")
 
-        show(context="python3 -m invoke doc")
-        subprocess.run("python3 -m invoke doc".split(), check=False)
+        show(context="python3 -m invoke site")
+        subprocess.run("python3 -m invoke site".split(), check=False)
 
         for locale in "zh_CN", "de_DE":
             if os.path.isdir(f"output/{locale}"):
