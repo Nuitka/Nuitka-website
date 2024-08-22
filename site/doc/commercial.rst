@@ -234,6 +234,13 @@ version to third parties.
 #. **Nuitka Commercial** is a drop-in replacement of **Nuitka** with
    only more options.
 
+**********************
+ Reseller Information
+**********************
+
+For resellers there is a this page with the information needed:
+:doc:`/commercial/resellers`
+
 ********************
  Vendor Information
 ********************
