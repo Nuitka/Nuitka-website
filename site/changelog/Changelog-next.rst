@@ -98,6 +98,9 @@ when ``deepcopy`` is used on them. Fixed in 2.4.9 already.
    are sub-modules of the package, but only Python modules. Fixed in
    2.4.11 already.
 
+-  Windows: Fix, avoid encoding issues for CMD files used for
+   accelerated mode on Windows.
+
 Package Support
 ===============
 
@@ -169,6 +172,9 @@ New Features
 -  Reports: Add file system encoding of compiling Python to aid in
    debugging encoding issues.
 
+-  Windows: Console mode ``attach`` enhancements for forced redirects
+   work better now, but it's still not perfect.
+
 Optimization
 ============
 
@@ -200,6 +206,11 @@ Anti-Bloat
 Organizational
 ==============
 
+-  GitHub: Make clear we do not want ``--deployment`` in issue reports
+   are made,
+
+-  since it prevents automatic identification of issues.
+
 -  Quality: Use ``clang-format-20`` in GitHub actions.
 
 -  Release script tests for Debian and PyPI used old runner names, not
@@ -212,8 +223,27 @@ Organizational
    ``dict`` values. Can mistake them be for a module, when that's not
    the case.
 
+-  Debugging: Print reference counts of tracebacks too when dumping
+   reference counts at program end.
+
+-  Debugging: Added assertions and traces for input/output handling.
+
+-  Quality: Check configuration module names in Nuitka package
+   configuration. This should catch cases where filenames are used
+   mistakenly.
+
+-  UI: Removed obsolete options controlling cache options, should use
+   the general ones now.
+
 Tests
 =====
+
+-  Tests: Make sure to default to executing python when comparing
+   results with ``compare_with_cpython`` rather than expecting
+   ``PYTHON`` environment to be set.
+
+-  Azure: Set up CI with Azure Pipelines to run the Nuitka tests against
+   factory branch on commit.
 
 Cleanups
 ========
@@ -222,11 +252,17 @@ Cleanups
    the correct signature that they are being called with. Cast locally
    to the compiled types only, rather than in the function signature.
 
+   Also the call entries offered now have the matching signature as used
+   by Python C code.
+
 -  Indentation of generated code was regressed and generating unaligned
    code in some cases.
 
 -  Quality: Avoid format differences for ``clang-format-20``, so it
    doesn't matter if the new or old version is used.
+
+-  Cleanup, enforce proper indentation of Nuitka cache files in Json
+   format.
 
 Summary
 =======
