@@ -1,3 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
+export PIPENV_VERBOSITY=-1
 python3 -m pipenv run python ./Nuitka-develop/bin/autoformat-nuitka-source $@
