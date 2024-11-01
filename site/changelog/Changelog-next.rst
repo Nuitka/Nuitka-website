@@ -37,23 +37,24 @@ Bug Fixes
    for program and command line paths with spaces. Fixed in 2.4.4
    already.
 
--  Windows: Fix, console output handles were opened with close file handles, but
-   that is not allowed. Fixed in 2.4.2 already.
+-  Windows: Fix, console output handles were opened with close file
+   handles, but that is not allowed. Fixed in 2.4.2 already.
 
 -  Standalone: Fix, using trailing slashes to mark the target directory
    for data files no longer worked on Windows. Fixed in 2.4.2 already.
 
--  Fix, the ``.pyi`` parser could fail for relative imports. This could break
-   some packages that are extension modules, but with source code available too.
-   Fixed in 2.4.3 already.
+-  Fix, the ``.pyi`` parser could fail for relative imports. This could
+   break some packages that are extension modules, but with source code
+   available too. Fixed in 2.4.3 already.
 
--  Modules: Fix, extension modules didn't load into packages with Python3.12.
-   Fixed in 2.4.4 already.
+-  Modules: Fix, extension modules didn't load into packages with
+   Python3.12. Fixed in 2.4.4 already.
 
 Package Support
 ===============
 
--  Standalone: Improved ``arcade`` configuration. Added in 2.4.3 already.
+-  Standalone: Improved ``arcade`` configuration. Added in 2.4.3
+   already.
 
 New Features
 ============
@@ -64,8 +65,8 @@ Optimization
 Anti-Bloat
 ==========
 
--  Avoid including ``importlib_metadata`` for ``numpy`` package. Added in 2.4.2
-   already.
+-  Avoid including ``importlib_metadata`` for ``numpy`` package. Added
+   in 2.4.2 already.
 
 Organizational
 ==============
