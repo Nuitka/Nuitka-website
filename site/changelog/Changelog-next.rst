@@ -101,6 +101,13 @@ when ``deepcopy`` is used on them. Fixed in 2.4.9 already.
 -  Windows: Fix, avoid encoding issues for CMD files used for
    accelerated mode on Windows.
 
+-  Standalone: Fix, scan of standard library should not assume files
+   presence. Files that make no sense could also be manually deleted
+   already by the user or by a Python distribution.
+
+Compatibility: Fix, nuitka resource readers need more attributes for
+file objects. Added ``suffix``, ``suffixes``, and ``stem`` attributes.
+
 Package Support
 ===============
 
@@ -178,6 +185,46 @@ New Features
 Optimization
 ============
 
+-  Enhanced exception handling
+
+   Use exception state to abstract 3.12 or before differences. This
+   solves a TODO about more very in-efficient C code generated that also
+   requires many conversions of exceptions back and forth from 3 value
+   form to normalized. The new code is also better for older Python
+   versions.
+
+-  Pass the exception state into unpacking functions for more efficient
+   code. No need to fetch exceptions per use of those into the exception
+   state, but it can directly write to there.
+
+-  Solve TODO and have dedicated helper for unpacking length check,
+   giving faster and more compact code.
+
+-  Have our own variant of ``_PyGen_FetchStopIterationValue`` to avoid
+   API calls in generator handling.
+
+-  Generate more efficient code for raising exceptions of builtin type.
+   Rather than calling them as a function, create them via base
+   exception new directly which will be much quicker.
+
+-  Faster exception creation, avoid having ``args`` and a tuple needed
+   to hold them for empty exceptions avoiding one more allocation.
+
+-  Removed remaining uses of ``PyTuple_Pack`` and replace with our own
+   helpers to avoid API calls.
+
+-  Avoid implicit exception raise nodes with delayed creation, and have
+   direct exception making nodes instead.
+
+-  Windows and Python3.12+: Follow CPython undoing its own inline
+   function usage for reference count handling. Without this, LTO can
+   make us a lot slower without due to MSVC issues.
+
+-  Avoid API calls when creating ``int`` values in more cases. Some of
+   our specialization code and many helpers as well as the constants
+   blob loading codes were not avoiding these unnecessary calls, since
+   we have faster code for a while already.
+
 Anti-Bloat
 ==========
 
@@ -207,9 +254,10 @@ Organizational
 ==============
 
 -  GitHub: Make clear we do not want ``--deployment`` in issue reports
-   are made,
+   are made, since it prevents automatic identification of issues.
 
--  since it prevents automatic identification of issues.
+-  Plugins: Better error messages when querying information from
+   packages at compile time.
 
 -  Quality: Use ``clang-format-20`` in GitHub actions.
 
@@ -218,6 +266,10 @@ Organizational
 
 -  UI: Disable locking of progress bar, as Nuitka doesn't use threads at
    this time.
+
+-  UI: Added support for recognizing terminal link support
+   heuristically. And added a first terminal link as an experiment to be
+   completed later.
 
 -  Debugging: The explain reference counts could crash on strange
    ``dict`` values. Can mistake them be for a module, when that's not
@@ -238,12 +290,18 @@ Organizational
 Tests
 =====
 
--  Tests: Make sure to default to executing python when comparing
-   results with ``compare_with_cpython`` rather than expecting
-   ``PYTHON`` environment to be set.
+-  Make sure to default to executing python when comparing results with
+   ``compare_with_cpython`` rather than expecting ``PYTHON`` environment
+   to be set.
 
 -  Azure: Set up CI with Azure Pipelines to run the Nuitka tests against
    factory branch on commit.
+
+-  Always use static libpython for construct based tests. We don't
+   really want to see DLL call overhead there.
+
+-  Made many construct tests less susceptible to other unrelated
+   optimization changes.
 
 Cleanups
 ========
