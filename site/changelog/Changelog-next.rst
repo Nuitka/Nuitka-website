@@ -322,6 +322,9 @@ Cleanups
 -  Cleanup, enforce proper indentation of Nuitka cache files in Json
    format.
 
+-  Cleanup, found remaining Python3.3 only code in frame templates and removed
+   it.
+
 Summary
 =======
 
