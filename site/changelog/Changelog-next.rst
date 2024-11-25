@@ -153,11 +153,6 @@ Bug Fixes
 -  macOS: Added support for cyclic DLL dependencies, where one DLL uses
    another DLL and the ones it uses refer to the first DLL.
 
--  Windows: Avoid even scanning in ``PATH`` if we don't want DLLs from
-   the system anyway. This ought to avoid crashes related to found DLLs
-   with non-encodable paths, as they never get detected and need not be
-   discarded later on.
-
 -  Fix, need to use updated expressions as side effects
 
    This was using the old ones, which could have become unusable in the
@@ -204,6 +199,9 @@ Bug Fixes
 
    Uses the inline copy of ``hacl`` for all Linux static libpython uses
    with 3.12 or higher.
+
+-  Standalone: Fix, the scan of standard library should not assume some
+   files presence. They might have been deleted manually already.
 
 Package Support
 ===============
@@ -299,6 +297,10 @@ Package Support
 
 -  Standalone: Added support for ``playwright`` package.
 
+-  Standalone: Allow PySide6 extras to not be installed on macOS. Was
+   complaining about missing DLLs, which of course can be normal if
+   these are not installed.
+
 New Features
 ============
 
@@ -322,6 +324,12 @@ New Features
 -  UI: Add new choice ``hide`` for ``--windows-console-mode`` option.
    With this mode, a console program is generated, but it hides the
    console as soon as possible, but it might still flash briefly.
+
+-  UI: Added support for not using bytecode cache files
+
+   With ``--python-flag=-B`` we can make imports use only source files
+   and never ``.pyc`` files. Mostly relevant for accelerated mode and
+   dynamic imports in case of non-isolation standalone mode.
 
 -  Modules: Generate type stubs for generated modules
 
@@ -357,8 +365,8 @@ New Features
 -  Linux: Added support for uninstalled self-compiled Python on this OS
    as well.
 
--  Plugins: Have ``matplotlib`` plugin react to active Qt and tk-inter
-   plugins for backend selection.
+-  Plugins: Have ``matplotlib`` plugin react to active Qt and
+   ``tk-inter`` plugins for backend selection.
 
 -  Added new attribute ``original_argv0`` to ``__compiled__`` value to
    make the start value accessible.
@@ -377,7 +385,27 @@ Optimization
 ============
 
 -  Experimental support for dual types. For specific cases, speed ups of
-   integer operating loops of 12x and more are achieved.
+   integer operating loops of 12x and more are achieved. This code is
+   not fully ready for prime time yet, but a lot of improvements are
+   going to come from this direction in the future.
+
+-  Faster module variables accesses
+
+   For Python3.6 up to 3.10 inclusive, this is based on dictionary
+   version tags and prone to them changing with module variable writes,
+   so it's not effective in cases where variables are written
+   alternating.
+
+   For Python3.11+ this is based on dictionary keys versions and less
+   prone to dictionary changes affecting it, but also slower in case of
+   cache hits compared to 3.10 cache hits.
+
+-  Faster string dictionary lookups for Python3.11+, solving a TODO
+   about taking advantage of special knowledge we have about the key and
+   the module dictionary likely being a string dictionary.
+
+-  Do not update module dictionaries unless it's actually a value
+   change. This makes caching more effective in some cases.
 
 -  Enhanced exception handling
 
@@ -387,8 +415,25 @@ Optimization
    form to normalized. The new code is also better for older Python
    versions.
 
+-  Avoid using CPython APIs for exception context and cause values,
+   these can be a lot slower to call.
+
+-  For creating ``int`` or ``long`` values, some codes were not using
+   our own creation methods that will be faster to use since we avoid
+   API calls.
+
+-  Have our own variant of ``_PyGen_FetchStopIterationValue`` to avoid
+   slower API calls in generator handling.
+
+-  Windows: Follow CPython undoing its own inline function usage for
+   reference counting on Windows for Python3.12+. Without this, LTO can
+   make us a lot slower without clear boundaries.
+
 -  Also statically optimize unary operations, so we can have more
-   complete number operations.
+   complete number operations, and be well geared for full support of
+   dual types with number types.
+
+-  Statically optimize ``os.stat`` and ``os.lstat`` calls as well.
 
 -  Pass the exception state into unpacking functions for more efficient
    code. No need to fetch exceptions per use of those into the exception
@@ -422,8 +467,20 @@ Optimization
    blob loading codes were not avoiding these unnecessary calls, since
    we have faster code for a while already.
 
+-  Windows: Avoid even scanning for DLLs in ``PATH`` if we don't want to
+   use them from the system anyway. This ought to avoid crashes related
+   to found DLLs with non-encodable paths, as they never get detected
+   and need not be discarded later on.
+
 -  Windows: Use newer MinGW64 version, this should produce slight better
    final code.
+
+-  Avoid module level constants for our global values ``-1``, ``0``,
+   ``1`` as we have global values for them already leading to smaller
+   constant blobs.
+
+-  Put ``NameError`` exceptions directly into the thread state as passed
+   for more compact C code generated with variables.
 
 -  The values ``sys.ps1`` and ``sys.ps2`` are statically optimized to
    not exist compiling for the module mode. This should enable more
@@ -484,6 +541,10 @@ Anti-Bloat
 Organizational
 ==============
 
+-  Quality: Added dev containers support to the repository, for easy
+   setup of a Linux based development environment. This needs more
+   refinement though.
+
 -  GitHub: Make it clear that the reproducer has to be tested against
    Python first, to make sure it's an issue of Nuitka to begin with.
 
@@ -496,6 +557,13 @@ Organizational
 -  UI: The Qt plugins should check if a plugin family to be included
    even exists. Specifying something that doesn't even exist went
    unnoticed so far.
+
+-  UI: Added support for recognizing terminal link support
+   heuristically. This prepares our command line options for adding
+   links to options and their groups.
+
+-  UI: Removed obsolete options related to caching from the help output,
+   we now got the general ones that do it all.
 
 -  Plugins: Better error messages when querying information from
    packages at compile time.
@@ -553,6 +621,15 @@ Tests
 
 -  Added Python3.13 to GitHub Actions.
 
+-  Much enhanced construct based tests for clearer results. We now just
+   execute the code and its alternative with a boolean flag passed
+   rather than producing different code, might lead to removing our
+   custom templating entire.
+
+-  Remove ``2to3`` conversion code, we don't want to use it anymore as
+   its getting removed from newer Python, instead split up tests as
+   necessary with version requirements.
+
 -  Fix, test runner didn't discover and therefore did not use
    Python3.12+ leading to almost no tests being run for it on GitHub
    Action.
@@ -599,6 +676,10 @@ Cleanups
 
 -  Cleanup, enforce proper indentation of Nuitka cache files in Json
    format.
+
+-  Changed checks for Python3.4 or higher to be Python3, since that's
+   what this means to us, since Python3.3 is no longer supported. In
+   some cases, re-formulation of some codes got simpler from this.
 
 -  Cleanup, found remaining Python3.3 only code in frame templates and
    removed it.
