@@ -663,10 +663,10 @@ Compilation modes
 -----------------
 
 |  ``standalone``: ``True`` if standalone mode is activated with
-   ``--standalone`` or ``--onefile``
-|  ``onefile``: ``True`` if onefile mode is activated with ``--onefile``
+   ``--mode=standalone``, ``--mode=onefile`` or ``--mode=app``
+|  ``onefile``: ``True`` if onefile mode is activated with ``--mode=onefile`` or with ``--mode=app`` on non-macOS
 |  ``module_mode``: ``True`` if module mode is activated with
-   ``--module``
+   ``--mode=module``
 |  ``deployment``: ``True`` if deployment mode is activated with
    ``--deployment``
 

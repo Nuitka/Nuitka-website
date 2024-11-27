@@ -342,8 +342,8 @@ strange errors.
 Often, the error handling code paths for files that are not present are
 even buggy and will reveal programming errors like unbound local
 variables. Please look carefully at these exceptions, considering this
-can be the cause. If your program works without the ``--standalone`` and
-only ``--follow-imports``, data files are likely the cause.
+can be the cause. If your program works fails ``--mode=standalone`` and
+works only with ``--follow-imports``, data files are likely the cause.
 
 The most common error indicating file absence is, of course, an uncaught
 ``FileNotFoundError`` with a filename. You should figure out what the

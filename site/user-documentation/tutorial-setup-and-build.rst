@@ -87,9 +87,9 @@ Execute the ``hello.exe`` created near ``hello.py``.
 Distribute
 ==========
 
-To distribute, build with ``--standalone`` option, which will not output
-a single executable, but a whole folder. Copy the resulting
-``hello.dist`` folder to the other machine and run it.
+To distribute, build with ``--mode=standalone`` option, which will not output a
+single executable, but a whole folder. Copy the resulting ``hello.dist`` folder
+to the other machine and run it.
 
 You may also try ``--onefile`` which does create a single file, but make
 sure that the mere standalone is working, before turning to it, as it

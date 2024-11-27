@@ -63,9 +63,9 @@ executable:
    modules being installed.
 
    If you want to be able to copy it to another machine, use
-   ``--standalone`` and copy the created ``program.dist`` directory and
-   execute the ``program.exe`` (Windows) or ``program`` (other
-   platforms) put inside.
+   ``--mode=standalone`` and copy the created ``program.dist`` directory and
+   execute the ``program.exe`` (Windows) or ``program`` (other platforms) put
+   inside.
 
 *******************************************
  Extension Module compilation
@@ -145,11 +145,11 @@ also feasible, use Nuitka like this:
 ***********************************
 
 For distribution to other systems, there is the standalone mode, which
-produces a folder for which you can specify ``--standalone``.
+produces a folder for which you can specify ``--mode=standalone``.
 
 .. code:: bash
 
-   python -m nuitka --standalone program.py
+   python -m nuitka --mode=standalone program.py
 
 Following all imports is default in this mode. You can selectively
 exclude modules by specifically saying ``--nofollow-import-to``, but
