@@ -4,6 +4,15 @@
  Use Cases
 ###########
 
+This page discusses the various use cases of Nuitka, it is recommended
+to be read entirely, since the cases build on each other. They will
+inform your decision how to use Nuitka for your software.
+
+.. contents:: Table of Contents
+   :depth: 1
+   :local:
+   :class: page-toc
+
 ************************************************************
  Use Case 1 — Program compilation with all modules embedded
 ************************************************************
