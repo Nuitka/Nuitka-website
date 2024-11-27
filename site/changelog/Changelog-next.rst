@@ -96,9 +96,9 @@ Bug Fixes
 -  **Python 3.12:** Resolved an issue where Nuitka's constant code was
    triggering assertions in Python 3.12.7. Fixed in 2.4.10 already.
 
--  **--include-package:** Ensured that the ``--include-package`` option
-   includes both Python modules and extension modules that are
-   sub-modules of the specified package. Fixed in 2.4.11 already.
+-  **UI:** Ensured that the ``--include-package`` option includes both
+   Python modules and extension modules that are sub-modules of the
+   specified package. Fixed in 2.4.11 already.
 
 -  **Windows:** Prevented encoding issues with CMD files used for
    accelerated mode on Windows.
@@ -194,6 +194,10 @@ Bug Fixes
 
 -  **Standalone:** Further improved the standard library scan to avoid
    assuming the presence of files that might have been manually deleted.
+
+-  **UI:** Fixed the ``--include-raw-dir`` option, which was not
+   functioning correctly. Only the Nuitka Package configuration was
+   being used previously.
 
 Package Support
 ===============
@@ -512,163 +516,167 @@ Optimization
 Anti-Bloat
 ==========
 
--  Avoid including ``importlib_metadata`` for ``numpy`` package. Added
-   in 2.4.2 already.
+-  Prevented the inclusion of ``importlib_metadata`` for the ``numpy``
+   package. (Added in 2.4.2 already)
 
--  Anti-Bloat: Avoid ``dask`` usage in ``pandera`` package. Added in
-   2.4.5 already.
+-  Avoided the use of ``dask`` in the ``pandera`` package. (Added in
+   2.4.5 already)
 
--  Anti-Bloat: Removed ``numba`` for newer ``shap`` as well. Added in
-   2.4.6 already.
+-  Removed ``numba`` for newer versions of the ``shap`` package. (Added
+   in 2.4.6 already)
 
--  Anti-Bloat: Avoid attempts to include Python2 and Python3 code both
-   for ``aenum``. This avoids ``SyntaxError`` warnings with that
-   package. Added in 2.4.7 already.
+-  Prevented attempts to include both Python 2 and Python 3 code for the
+   ``aenum`` package, avoiding ``SyntaxError`` warnings. (Added in 2.4.7
+   already)
 
--  Anti-Bloat: Enhanced handling for ``sympy`` package. Added in 2.4.7
-   already.
+-  Enhanced handling for the ``sympy`` package. (Added in 2.4.7 already)
 
--  Anti-Bloat: Need to allow ``pydoc`` for ``pyqtgraph`` package. Added
-   in 2.4.7 already.
+-  Allowed ``pydoc`` for the ``pyqtgraph`` package. (Added in 2.4.7
+   already)
 
--  Anti-Bloat: Avoid ``pytest`` in ``time_machine`` package. Added in
-   2.4.9 already.
+-  Avoided ``pytest`` in the ``time_machine`` package. (Added in 2.4.9
+   already)
 
--  Anti-Bloat: Avoid ``pytest`` in ``anyio`` package.
+-  Avoided ``pytest`` in the ``anyio`` package.
 
--  Anti-Bloat: Avoid ``numba`` in ``pandas`` package.
+-  Avoided ``numba`` in the ``pandas`` package.
 
--  Anti-Bloat: Updated for newer ``torch`` package with more coverage.
+-  Updated anti-bloat measures for newer versions of the ``torch``
+   package with increased coverage.
 
--  Anti-Bloat: Avoid ``pygame.tests`` and ``cv2`` for ``pygame``
-   package.
+-  Avoided ``pygame.tests`` and ``cv2`` for the ``pygame`` package.
 
--  Anti-Bloat: Need to allow ``unittest`` in ``absl.testing`` package.
+-  Allowed ``unittest`` in the ``absl.testing`` package.
 
--  Anti-Bloat: Need to allow ``setuptools`` in ``tufup`` package.
+-  Allowed ``setuptools`` in the ``tufup`` package.
 
--  Anti-Bloat: Avoid test modules when using ``bsdiff4`` package.
+-  Avoided test modules when using the ``bsdiff4`` package.
 
--  Anti-Bloat: Using the ``wheel`` module is the same as using
+-  Treated the use of the ``wheel`` module the same as using the
    ``setuptools`` package.
 
 Organizational
 ==============
 
--  Quality: Added dev containers support to the repository, for easy
-   setup of a Linux based development environment. This needs more
-   refinement though.
+-  **Development Environment:** Added experimental support for a
+   devcontainer to the repository, providing an easier way to set up a
+   Linux-based development environment. This feature is still under
+   development and may require further refinement.
 
--  GitHub: Make it clear that the reproducer has to be tested against
-   Python first, to make sure it's an issue of Nuitka to begin with.
+-  **Issue Reporting:** Clarified the issue reporting process on GitHub,
+   emphasizing the importance of testing reproducers against Python
+   first to ensure the issue is related to Nuitka.
 
--  GitHub: Make clear we do not want ``--deployment`` in issue reports
-   are made, since it prevents automatic identification of issues.
+-  **Issue Reporting:** Discouraged the use of ``--deployment`` in issue
+   reports, as it hinders the automatic identification of issues, that
+   should be the first thing to remove.
 
--  UI: Make it more clear that the for using external file options, a
-   file needs inclusion first.
+-  **UI:** Improved the clarity of help message of the option for
+   marking data files as external, emphasizing that files must be
+   included before being used.
 
--  UI: The Qt plugins should check if a plugin family to be included
-   even exists. Specifying something that doesn't even exist went
-   unnoticed so far.
+-  **UI:** Added checks to the Qt plugins to ensure that specified
+   plugin families exist, preventing unnoticed errors.
 
--  UI: Added support for recognizing terminal link support
-   heuristically. This prepares our command line options for adding
-   links to options and their groups.
+-  **UI:** Implemented heuristic detection of terminal link support,
+   paving the way for adding links to options and groups in the command
+   line interface.
 
--  UI: Removed obsolete options related to caching from the help output,
-   we now got the general ones that do it all.
+-  **UI:** Removed obsolete caching-related options from the help
+   output, as they have been replaced by more general options.
 
--  Plugins: Better error messages when querying information from
-   packages at compile time.
+-  **Plugins:** Improved error messages when retrieving information from
+   packages during compilation.
 
--  Quality: Workaround ``isort`` bug that cannot handle UTF8 comments.
+-  **Quality:** Implemented a workaround for an ``isort`` bug that
+   prevented it from handling UTF-8 comments.
 
--  Quality: Use ``clang-format-20`` in GitHub actions.
+-  **Quality:** Updated GitHub actions to use ``clang-format-20``.
 
--  Quality: Use the latest version of ``black``.
+-  **Quality:** Updated to the latest version of ``black`` for code
+   formatting.
 
--  Release script tests for Debian and PyPI used old runner names, not
-   the new ones. Changed in 2.4.1 already.
+-  **Release Process:** Updated the release script tests for Debian and
+   PyPI to use the correct runner names. (Changed in 2.4.1 already)
 
--  UI: Disable locking of progress bar, as Nuitka doesn't use threads at
-   this time.
+-  **UI:** Disabled progress bar locking, as Nuitka currently doesn't
+   utilize threads.
 
--  UI: Added support for recognizing terminal link support
-   heuristically. And added a first terminal link as an experiment to be
-   completed later.
+-  **UI:** Added heuristic detection of terminal link support and
+   introduced an experimental terminal link as a first step towards a
+   more interactive command line interface.
 
--  Debugging: The explain reference counts could crash on strange
-   ``dict`` values. Can mistake them be for a module, when that's not
-   the case.
+-  **Debugging:** Fixed a crash in the "explain reference counts"
+   feature that could occur with unusual ``dict`` values mistaken for
+   modules.
 
--  Debugging: Print reference counts of tracebacks too when dumping
+-  **Debugging:** Included reference counts of tracebacks when dumping
    reference counts at program end.
 
--  Debugging: Added assertions and traces for input/output handling.
+-  **Debugging:** Added assertions and traces to improve debugging of
+   input/output handling.
 
--  Quality: Check configuration module names in Nuitka package
-   configuration. This should catch cases where filenames are used
-   mistakenly.
+-  **Quality:** Added checks for configuration module names in Nuitka
+   package configuration to catch errors caused by using filenames
+   instead of module names.
 
--  UI: Removed obsolete options controlling cache options, should use
-   the general ones now.
+-  **UI:** Removed obsolete options controlling cache behavior,
+   directing users to the more general cache options.
 
--  Fix, the option ``--include-raw-dir`` was not working, only the
-   Nuitka Package configuration was.
+-  **Scons:** Ensured that the ``CC`` environment variable is used
+   consistently for ``--version`` and onefile bootstrap builds, as well
+   as the Python build, preventing inconsistencies in compiler usage and
+   outputs.
 
--  Scons: Fix, ``CC`` environment was not used for ``--version`` and not
-   for the onefile bootstrap build, but only the Python build. This lead
-   to inconsistent outputs and inconsistent compiler usage in these
-   cases.
+-  **Distutils:** Added the ``compiled-package-hidden-by-package``
+   mnemonic for use in ``distutils`` to handle the expected warning when
+   a Python package is replaced with a compiled package and the Python
+   code is yet to be deleted.
 
--  Added mnemonic ``compiled-package-hidden-by-package`` for use in
-   distutils as it's normal to get this warning there, when we replace
-   the Python package with a compiled package and have still to delete
-   the Python code.
-
--  Started experimental support for downloaded Nuitka dependencies like
-   ``ordered-set`` and the like. Not ready for general use yet.
+-  **Dependency Management:** Started experimental support for
+   downloading Nuitka dependencies like ``ordered-set``. This feature is
+   not yet ready for general use.
 
 Tests
 =====
 
--  Added Python3.13 to GitHub Actions.
+-  Added Python 3.13 to the GitHub Actions test matrix.
 
--  Much enhanced construct based tests for clearer results. We now just
-   execute the code and its alternative with a boolean flag passed
-   rather than producing different code, might lead to removing our
-   custom templating entire.
+-  Significantly enhanced construct-based tests for clearer results. The
+   new approach executes code with a boolean flag instead of generating
+   different code, potentially leading to the removal of custom
+   templating.
 
--  Remove ``2to3`` conversion code, we don't want to use it anymore as
-   its getting removed from newer Python, instead split up tests as
-   necessary with version requirements.
+-  Removed the ``2to3`` conversion code from the test suite, as it is
+   being removed from newer Python versions. Tests are now split with
+   version requirements as needed.
 
--  Fix, test runner didn't discover and therefore did not use
-   Python3.12+ leading to almost no tests being run for it on GitHub
-   Action.
+-  Fixed an issue where the test runner did not discover and use Python
+   3.12+, resulting in insufficient test coverage for those versions on
+   GitHub Actions.
 
--  Make sure to default to executing python when comparing results with
-   ``compare_with_cpython`` rather than expecting ``PYTHON`` environment
-   to be set.
+-  Ensured that the ``compare_with_cpython`` test function defaults to
+   executing the system's Python interpreter instead of relying on the
+   ``PYTHON`` environment variable.
 
--  Azure: Set up CI with Azure Pipelines to run the Nuitka tests against
-   factory branch on commit.
+-  Set up continuous integration with Azure Pipelines to run Nuitka
+   tests against the factory branch on each commit.
 
--  Always use static libpython for construct based tests. We don't
-   really want to see DLL call overhead there.
+-  Enforced the use of static ``libpython`` for construct-based tests to
+   eliminate DLL call overhead and provide more accurate performance
+   measurements.
 
--  Made many construct tests less susceptible to other unrelated
-   optimization changes.
+-  Improved the robustness of many construct tests, making them less
+   sensitive to unrelated optimization changes.
 
--  Remove test only working for Nuitka commercial, not useful to always
-   skip it for the standard version. Commercial tests are now recognized
-   from their names as well.
+-  Removed a test that was only applicable to Nuitka Commercial, as it
+   was not useful to always skip it in the standard version. Commercial
+   tests are now also recognized by their names.
 
--  Catch segfault for distutils test cases and give debug output there
-   as well, useful in case of these kind of test failures.
+-  Added handling for segmentation faults in ``distutils`` test cases,
+   providing debug output for easier diagnosis of these failures.
 
--  Avoid resource warning for unclosed files in reflected test.
+-  Prevented resource warnings for unclosed files in a reflected test.
 
 Cleanups
 ========
