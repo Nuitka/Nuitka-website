@@ -349,11 +349,11 @@ New Features
 
 -  **Plugins:** Changed the data files configuration to a list of items,
    allowing the use of ``when`` conditions for more flexible control.
-   (Done in 2.4.6 already)
+   Done in 2.4.6 already.
 
 -  **Onefile:** Removed the MSVC requirement for the splash screen in
-   onefile mode. It now works with MinGW64, Clang, and ClangCL. (Done
-   for 2.4.8 already)
+   onefile mode. It now works with MinGW64, Clang, and ClangCL. Done
+   for 2.4.8 already.
 
 -  **Reports:** Added information about the file system encoding used
    during compilation to help debug encoding issues.
@@ -510,25 +510,25 @@ Anti-Bloat
 ==========
 
 -  Prevented the inclusion of ``importlib_metadata`` for the ``numpy``
-   package. (Added in 2.4.2 already)
+   package. Added in 2.4.2 already.
 
--  Avoided the use of ``dask`` in the ``pandera`` package. (Added in
-   2.4.5 already)
+-  Avoided the use of ``dask`` in the ``pandera`` package. Added in
+   2.4.5 already.
 
--  Removed ``numba`` for newer versions of the ``shap`` package. (Added
-   in 2.4.6 already)
+-  Removed ``numba`` for newer versions of the ``shap`` package. Added
+   in 2.4.6 already.
 
 -  Prevented attempts to include both Python 2 and Python 3 code for the
-   ``aenum`` package, avoiding ``SyntaxError`` warnings. (Added in 2.4.7
-   already)
+   ``aenum`` package, avoiding ``SyntaxError`` warnings. Added in 2.4.7
+   already.
 
--  Enhanced handling for the ``sympy`` package. (Added in 2.4.7 already)
+-  Enhanced handling for the ``sympy`` package. Added in 2.4.7 already.
 
--  Allowed ``pydoc`` for the ``pyqtgraph`` package. (Added in 2.4.7
-   already)
+-  Allowed ``pydoc`` for the ``pyqtgraph`` package. Added in 2.4.7
+   already.
 
--  Avoided ``pytest`` in the ``time_machine`` package. (Added in 2.4.9
-   already)
+-  Avoided ``pytest`` in the ``time_machine`` package. Added in 2.4.9
+   already.
 
 -  Avoided ``pytest`` in the ``anyio`` package.
 
@@ -590,7 +590,7 @@ Organizational
    formatting.
 
 -  **Release Process:** Updated the release script tests for Debian and
-   PyPI to use the correct runner names. (Changed in 2.4.1 already)
+   PyPI to use the correct runner names. (Changed in 2.4.1 already.
 
 -  **UI:** Disabled progress bar locking, as Nuitka currently doesn't
    utilize threads.
