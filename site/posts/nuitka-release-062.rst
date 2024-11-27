@@ -38,7 +38,7 @@ growing in terms of contributors and supported platforms.
 
 -  Added support for Alpine Linux.
 
--  Added support for MSYS2 based Python on Windows.
+-  Added support for **MSYS2** based Python on Windows.
 
 -  Added support for Python flag ``--python flag=-OO``, which allows to
    remove doc strings.

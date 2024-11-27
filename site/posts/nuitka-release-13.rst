@@ -324,8 +324,8 @@ improvements, many of which have been in hotfixes.
 -  UI: Catch user error of running Nuitka with the ``pythonw`` binary on
    Windows.
 
--  UI: Make it clear that MSYS2 defaults to ``--mingw64`` mode. It had
-   been like this, but the ``--help`` output didn't say so.
+-  UI: Make it clear that **MSYS2** defaults to ``--mingw64`` mode. It
+   had been like this, but the ``--help`` output didn't say so.
 
 -  GitHub: Updated contribution guidelines for better readability.
 
@@ -424,9 +424,9 @@ For macOS specifically, the WebEngine support is crucial to some users,
 and the new ``--macos-app-mode`` with more GUI friendly default resolves
 long standing problems in this area.
 
-And for MSYS2 and FreeBSD, support has been re-activated, so now 4 OSes
-work extremely well (others too likely), and on those, most Python
-flavors work well.
+And for **MSYS2** and **FreeBSD**, support has been re-activated, so now
+4 OSes work extremely well (others too likely), and on those, most
+Python flavors work well.
 
 The performance and scalability improvements are going to be crucial.
 It's a pity that 3.11 is not yet supported, but we will be getting

@@ -83,7 +83,7 @@ Bug Fixes
    already.
 
 -  **MSYS2:** Implemented a workaround for non-normalized paths returned
-   by ``os.path.normpath`` in MSYS2 Python environments. Fixed in 2.4.11
+   by ``os.path.normpath`` in **MSYS2** Python environments. Fixed in 2.4.11
    already.
 
 -  **Python 3.12:** Resolved an issue where Nuitka's constant code was

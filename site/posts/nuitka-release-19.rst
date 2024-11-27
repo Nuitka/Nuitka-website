@@ -520,9 +520,9 @@ more configurations.
 -  Avoid relative URLs in use during ``pyproject.toml`` tests, these
    fail to work on macOS at least.
 
--  Add GI GTK/GDK/Cairo standalone test for use with MSYS2. Eventually
-   this should be run inside Nuitka-Watch against MSYS2 on a regular
-   basis, but it doesn't support this Python flavor yet.
+-  Add GI GTK/GDK/Cairo standalone test for use with **MSYS2**.
+   Eventually this should be run inside Nuitka-Watch against **MSYS2**
+   on a regular basis, but it doesn't support this Python flavor yet.
 
 -  Added test case with Chinese module names and identifiers that
    exposed issues.

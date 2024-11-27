@@ -92,7 +92,7 @@ optimization, and doing a lot of bug fixes.
    0.6.18.5 already.
 
 -  MSYS2: Failed to link when using the static libpython, which is also
-   now the default for MSYS2. Fixed in 0.6.18.5 already.
+   now the default for **MSYS2**. Fixed in 0.6.18.5 already.
 
 -  Python3.6+: Fix, the intended finalizer of compiled ``asyncgen`` was
    not present and in fact associated to help type. This could have

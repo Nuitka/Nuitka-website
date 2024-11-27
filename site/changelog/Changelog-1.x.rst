@@ -522,8 +522,8 @@ Tests
 -  Avoid relative URLs in use during ``pyproject.toml`` tests, these
    fail to work on macOS at least.
 
--  Add GI GTK/GDK/Cairo standalone test for use with MSYS2. Eventually
-   this should be run inside Nuitka-Watch against MSYS2 on a regular
+-  Add GI GTK/GDK/Cairo standalone test for use with **MSYS2**. Eventually
+   this should be run inside Nuitka-Watch against **MSYS2** on a regular
    basis, but it doesn't support this Python flavor yet.
 
 -  Added test case with Chinese module names and identifiers that
@@ -3578,7 +3578,7 @@ Organizational
 -  UI: Catch user error of running Nuitka with the ``pythonw`` binary on
    Windows.
 
--  UI: Make it clear that MSYS2 defaults to ``--mingw64`` mode. It had
+-  UI: Make it clear that **MSYS2** defaults to ``--mingw64`` mode. It had
    been like this, but the ``--help`` output didn't say so.
 
 -  GitHub: Updated contribution guidelines for better readability.
@@ -3675,7 +3675,7 @@ For macOS specifically, the WebEngine support is crucial to some users,
 and the new ``--macos-app-mode`` with more GUI friendly default resolves
 long standing problems in this area.
 
-And for MSYS2 and FreeBSD, support has been re-activated, so now 4 OSes
+And for **MSYS2** and **FreeBSD**, support has been re-activated, so now 4 OSes
 work extremely well (others too likely), and on those, most Python
 flavors work well.
 
