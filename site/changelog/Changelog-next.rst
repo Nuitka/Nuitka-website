@@ -240,8 +240,8 @@ Package Support
    2.4.9 already.
 
 -  **win32ctypes:** Included missing implicit dependencies for
-   ``win32ctypes`` modules on Windows in standalone distributions.
-   Added in 2.4.9 already.
+   ``win32ctypes`` modules on Windows in standalone distributions. Added
+   in 2.4.9 already.
 
 -  **arcade:** Added a missing data file for the ``arcade`` package in
    standalone distributions. Added in 2.4.9 already.
@@ -312,82 +312,83 @@ Package Support
 New Features
 ============
 
--  Added experimental support for Python 3.13, it is not recommended to
-   be used yet, since the amount of testing applied is not yet up to the
-   task. Also on Windows, only MSVC and ClangCL work with it at this
-   time, as workarounds for incompatible structure layouts will take
-   time.
+-  **Python 3.13:** Added experimental support for Python 3.13.
 
--  UI: Added new selector ``--mode``.
+   .. warning::
 
-   This will replace the other options ``--standaone``, ``--onefile``,
-   ``--module``, and ``--macos-create-app-bundle``.
+      Python 3.13 support is not yet recommended for production use due
+      to limited testing. On Windows, only MSVC and ClangCL are
+      currently supported due to workarounds needed for incompatible
+      structure layouts.
+
+-  **UI:** Introduced a new ``--mode`` selector to replace the options
+   ``--standalone``, ``--onefile``, ``--module``, and
+   ``--macos-create-app-bundle``.
 
    .. note::
 
-      To address differences between macOS and other OSes for best
-      deployment option, the value ``app`` with create an app bundle on
-      macOS and a onefile binary elsewhere.
+      The ``app`` mode creates an app bundle on macOS and a onefile
+      binary on other operating systems to provide the best deployment
+      option for each platform.
 
--  UI: Add new choice ``hide`` for ``--windows-console-mode`` option.
-   With this mode, a console program is generated, but it hides the
-   console as soon as possible, but it might still flash briefly.
+-  **Windows:** Added a new ``hide`` choice for the
+   ``--windows-console-mode`` option. This generates a console program
+   that hides the console window as soon as possible, although it may
+   still briefly flash.
 
--  UI: Added support for not using bytecode cache files
+-  **UI:** Added the ``--python-flag=-B`` option to disable the use of
+   bytecode cache (``.pyc``) files during imports. This is mainly
+   relevant for accelerated mode and dynamic imports in non-isolated
+   standalone mode.
 
-   With ``--python-flag=-B`` we can make imports use only source files
-   and never ``.pyc`` files. Mostly relevant for accelerated mode and
-   dynamic imports in case of non-isolation standalone mode.
+-  **Modules:** Enabled the generation of type stubs (``.pyi`` files)
+   for compiled modules using an inline copy of ``stubgen``. This
+   provides more accurate and informative type hints for compiled code.
 
--  Modules: Generate type stubs for generated modules
+   .. note::
 
-   Using ``stubgen`` as an inline copy, we can now finally provide
-   meaningful stubs that should even be better than with other tools,
-   but since the tool is fresh it may still have a lot of issues to
-   discover.
+      Nuitka also adds implicit imports to compiled extension modules,
+      ensuring that dependencies are not hidden.
 
-   Also adds implicit imports still, so compiled extension modules don't
-   hide dependencies.
+-  **Plugins:** Changed the data files configuration to a list of items,
+   allowing the use of ``when`` conditions for more flexible control.
+   (Done in 2.4.6 already)
 
--  Plugins: Change data files configuration over to list of items as
-   well, which allows to use ``when`` conditions. Done in 2.4.6 already.
+-  **Onefile:** Removed the MSVC requirement for the splash screen in
+   onefile mode. It now works with MinGW64, Clang, and ClangCL. (Done
+   for 2.4.8 already)
 
--  Onefile: Splash screen no longe requires MSVC, but works with
-   MinGW64, Clang, and ClangCL too. Done for 2.4.8 already.
+-  **Reports:** Added information about the file system encoding used
+   during compilation to help debug encoding issues.
 
--  Reports: Add file system encoding of compiling Python to aid in
-   debugging encoding issues.
+-  **Windows:** Improved the ``attach`` mode for
+   ``--windows-console-mode`` when forced redirects are used.
 
--  Windows: Console mode ``attach`` enhancements for forced redirects
-   work better now, but it's still not perfect.
+-  **Distutils:** Added the ability to disable Nuitka in
+   ``pyproject.toml`` builds using the ``build_with_nuitka`` setting.
+   This allows falling back to the standard ``build`` backend without
+   modifying code or configuration. This setting can also be passed on
+   the command line using ``--config-setting``.
 
--  Distutils: Allow disabling nuitka in ``pyproject.toml`` builds as
-   well. A new setting ``build_with_nuitka`` can be used to specify to
-   fallback to the standard ``build`` backend instead. This can be
-   passed on the command line too, with ``--config-setting`` and allows
-   to disable Nuitka without changing code or configuration.
+-  **Distutils:** Added support for commercial file embedding in
+   ``distutils`` packages.
 
--  Distutils: Added support for commercial file embedding, now packages
-   can be built with this.
+-  **Linux:** Added support for using uninstalled self-compiled Python
+   installations on Linux.
 
--  Linux: Added support for uninstalled self-compiled Python on this OS
-   as well.
+-  **Plugins:** Enabled the ``matplotlib`` plugin to react to active Qt
+   and ``tkinter`` plugins for backend selection.
 
--  Plugins: Have ``matplotlib`` plugin react to active Qt and
-   ``tk-inter`` plugins for backend selection.
+-  **Runtime:** Added a new ``original_argv0`` attribute to the
+   ``__compiled__`` value to provide access to the original start value
+   of ``sys.argv[0]``, which might be needed by applications when Nuitka
+   modifies it to an absolute path.
 
--  Added new attribute ``original_argv0`` to ``__compiled__`` value to
-   make the start value accessible.
+-  **Reports:** Added a list of DLLs that are actively excluded because
+   they are located outside of the PyPI package.
 
-   When we make ``sys.argv[0]`` an absolute value, information is lost
-   that might be needed. The new attribute can be used by application
-   that need this information.
-
--  Reports: Added list of DLLs actively excluded due to being outside of
-   the PyPI package.
-
--  Plugins: Can now override compilation mode for standard library
-   modules if necessary, previously that was ignored.
+-  **Plugins:** Allowed plugins to override the compilation mode for
+   standard library modules when necessary.
 
 Optimization
 ============
