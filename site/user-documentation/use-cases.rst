@@ -13,9 +13,9 @@ inform your decision how to use Nuitka for your software.
    :local:
    :class: page-toc
 
-************************************************************
- Use Case 1 — Program compilation with all modules embedded
-************************************************************
+*************************************************************
+Program compilation with all modules embedded (acceleration)
+*************************************************************
 
 If you want to compile a whole program recursively, and not only the
 single file that is the main program, do it like this:
@@ -68,7 +68,7 @@ executable:
    platforms) put inside.
 
 *******************************************
- Use Case 2 — Extension Module compilation
+ Extension Module compilation
 *******************************************
 
 If you want to compile a single extension module, all you have to do is
@@ -115,7 +115,7 @@ The resulting file ``some_module.so`` can then be used instead of
    the same version and doesn't include other extension modules.
 
 **********************************
- Use Case 3 — Package compilation
+ Package compilation
 **********************************
 
 If you need to compile a whole package and embed all modules, that is
@@ -141,7 +141,7 @@ also feasible, use Nuitka like this:
    <https://nuitka.net/doc/commercial/protect-data-files.html>`__.
 
 ***********************************
- Use Case 4 — Program Distribution
+ Standalone Program Distribution
 ***********************************
 
 For distribution to other systems, there is the standalone mode, which
@@ -298,7 +298,7 @@ Currently, these expanded tokens are available:
    ``pythonw.exe`` which is behaving like ``{NONE}``.
 
 ********************************
- Use Case 5 — Setuptools Wheels
+ Setuptools Wheels
 ********************************
 
 If you have a ``setup.py``, ``setup.cfg`` or ``pyproject.toml`` driven
@@ -426,7 +426,7 @@ value:
    and not as a file in the wheel.
 
 ************************
- Use Case 6 — Multidist
+ Multidist
 ************************
 
 If you have multiple programs, that each should be executable, in the
@@ -459,7 +459,7 @@ This mode works with standalone, onefile, and mere acceleration. It does
 not work with module mode.
 
 *********************************************
- Use Case 7 — Building with GitHub Workflows
+ Building with GitHub Workflows
 *********************************************
 
 For integration with GitHub workflows there is this `Nuitka-Action
@@ -504,16 +504,17 @@ This is an example workflow that builds on all 3 OSes
             # many more Nuitka options available, see action doc, but it's best
             # to use nuitka-project: options in your code, so e.g. you can make
             # a difference for macOS and create an app bundle there.
-            onefile: true
+            mode: app
 
          - name: Upload Artifacts
-         uses: actions/upload-artifact@v3
+         uses: actions/upload-artifact@v4
          with:
             name: ${{ runner.os }} Build
             path: | # match what's created for the 3 OSes
                build/*.exe
                build/*.bin
                build/*.app/**/*
+            include-hidden-files: true
 
 If your app is a GUI, e.g. ``your_main_program.py`` should contain these
 comments as explained in :ref:`nuitka-project-options` since on macOS
@@ -522,14 +523,10 @@ this should then be a bundle.
 .. code:: python
 
    # Compilation mode, standalone everywhere, except on macOS there app bundle
-   # nuitka-project-if: {OS} in ("Windows", "Linux", "FreeBSD"):
-   #    nuitka-project: --onefile
-   # nuitka-project-if: {OS} == "Darwin":
-   #    nuitka-project: --standalone
-   #    nuitka-project: --macos-create-app-bundle
+   # nuitka-project: --mode=app
    #
    # Debugging options, controlled via environment variable at compile time.
-   # nuitka-project-if: os.getenv("DEBUG_COMPILATION", "no") == "yes"
-   #     nuitka-project: --enable-console
+   # nuitka-project-if: {OS} == "Windows" and os.getenv("DEBUG_COMPILATION", "no") == "yes"
+   #     nuitka-project: --windows-console-mode=hide
    # nuitka-project-else:
-   #     nuitka-project: --disable-console
+   #     nuitka-project: --windows-console-mode=disabled
