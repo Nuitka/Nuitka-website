@@ -20,7 +20,9 @@ current stable release as |NUITKA_VERSION| as well.
    Nuitka standalone backend support and enhanced 3.12 performance,
    experimental 3.13 support and scalability in general.
 
-This release in not complete yet.
+This release focuses on improved compatibility, performance
+optimizations, enhanced error reporting, and better debugging support.
+The major news is of course that Python3.13 is supported, too.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -681,43 +683,55 @@ Tests
 Cleanups
 ========
 
--  WASI: Make sure C function getters and setters of compiled types have
-   the correct signature that they are being called with. Cast locally
-   to the compiled types only, rather than in the function signature.
+-  **WASI:** Corrected the signatures of C function getters and setters
+   for compiled types in ``WASI`` to ensure they match the calling
+   conventions. Casts are now performed locally to the compiled types
+   instead of in the function signature. Call entries also have the
+   correct signature used by Python C code.
 
-   Also the call entries offered now have the matching signature as used
-   by Python C code.
+-  **WASI:** Improved code cleanliness by adhering to ``PyCFunction``
+   signatures in ``WASI``.
 
--  WASI: Cleanup, follow ``PyCFunction`` signatures as well.
+-  **Code Generation:** Fixed a regression in code generation that
+   caused misaligned indentation in some cases.
 
--  Indentation of generated code was regressed and generating unaligned
-   code in some cases.
+-  **Code Formatting:** Changed some code for identical formatting with
+   ``clang-format-20`` to eliminate differences between the new and old
+   versions.
 
--  Quality: Avoid format differences for ``clang-format-20``, so it
-   doesn't matter if the new or old version is used.
+-  **Caching:** Enforced proper indentation in Nuitka cache files stored
+   in JSON format.
 
--  Cleanup, enforce proper indentation of Nuitka cache files in Json
-   format.
+-  **Code Cleanliness:** Replaced checks for Python 3.4 or higher with
+   checks for Python 3, simplifying the code and reflecting the fact
+   that Python 3.3 is no longer supported.
 
--  Changed checks for Python3.4 or higher to be Python3, since that's
-   what this means to us, since Python3.3 is no longer supported. In
-   some cases, re-formulation of some codes got simpler from this.
+-  **Code Cleanliness:** Removed remaining Python 3.3 specific code from
+   frame templates.
 
--  Cleanup, found remaining Python3.3 only code in frame templates and
-   removed it.
+-  **Code Cleanliness:** Performed numerous spelling corrections and
+   renamed internal helper functions for consistency and clarity.
 
--  Many spelling cleanups, renaming internal helper functions where
-   needed.
+-  **Plugins:** Renamed the ``get_module_directory`` helper function in
+   the Nuitka Package configuration to remove the leading underscore,
+   improving readability.
 
--  Plugins: Renamed ``get_module_directory`` Nuitka Package
-   Configuration helper to a name without leading underscore.
-
--  Move ``numexpr.cpuinfo`` workaround to proper Nuitka Package
-   configuration. This solves an old TODO.
+-  **Plugins:** Moved the ``numexpr.cpuinfo`` workaround to the
+   appropriate location in the Nuitka Package configuration, resolving
+   an old TODO item.
 
 Summary
 =======
 
-This release is not done yet.
+This a major release that brings support for Python 3.13, relatively
+soon after its release.
+
+Our plugin system and Nuitka plugin configuration was used a lot for
+support of many more third-party packages, and numerous other
+enhancements in the domain of avoiding bloat.
+
+This release focuses on improved compatibility, new break through
+performance optimizations, to build on in the future, enhanced error
+reporting, and better debugging support.
 
 .. include:: ../dynamic.inc
