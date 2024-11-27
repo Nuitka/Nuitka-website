@@ -198,100 +198,116 @@ Bug Fixes
 Package Support
 ===============
 
--  Standalone: Improved ``arcade`` configuration. Added in 2.4.3
-   already.
+-  **arcade:** Improved standalone configuration for the ``arcade``
+   package. Added in 2.4.3 already.
 
--  Standalone: Add data file for ``license-expression``. package Added
-   in 2.4.6 already.
+-  **license-expression:** Added a missing data file for the
+   ``license-expression`` package in standalone distributions. Added in
+   2.4.6 already.
 
--  Standalone: Added missing implicit dependency for ``pydantic`` needed
-   for deprecated decorators to work. Fixed in 2.4.5 already.
+-  **pydantic:** Included a missing implicit dependency required for
+   deprecated decorators in the ``pydantic`` package to function
+   correctly in standalone mode. Fixed in 2.4.5 already.
 
--  Standalone: Added missing implicit dependency for ``spacy`` package.
-   Added in 2.4.7 already.
+-  **spacy:** Added a missing implicit dependency for the ``spacy``
+   package in standalone distributions. Added in 2.4.7 already.
 
--  Standalone: Added support for newer ``trio`` package. Added in 2.4.8
-   already.
+-  **trio:** Updated standalone support for newer versions of the
+   ``trio`` package. Added in 2.4.8 already.
 
--  Standalone: Added support for newer ``tensorflow`` package. Added in
-   2.4.8 already.
+-  **tensorflow:** Updated standalone support for newer versions of the
+   ``tensorflow`` package. Added in 2.4.8 already.
 
--  Standalone: Added support for ``pygame-ce``. Added in 2.4.8 already.
+-  **pygame-ce:** Added standalone support for the ``pygame-ce``
+   package. Added in 2.4.8 already.
 
--  Standalone: Added support for newer ``toga`` on Windows. Added in
+-  **toga:** Added standalone support for newer versions of the ``toga``
+   package on Windows. Added in 2.4.9 already.
+
+-  **django:** Implemented a workaround for a ``django`` debug feature
+   that attempted to extract column numbers from compiled frames. Added
+   in 2.4.9 already.
+
+-  **PySide6:** Improved standalone support for ``PySide6`` on macOS by
+   allowing the recognition of potentially unusable plugins. Added in
    2.4.9 already.
 
--  Fix, workaround ``django`` debug wanting to extract column numbers of
-   compiled frames. Added in 2.4.9 already.
+-  **polars:** Added a missing dependency for the ``polars`` package in
+   standalone distributions. Added in 2.4.9 already.
 
--  Standalone: Allow more potentially unusable plugins for ``PySide6``
-   to be recognized on macOS. Added in 2.4.9 already.
-
--  Standalone: Added missing dependency of ``polars`` package. Added in
+-  **django:** Enhanced handling of cases where the ``django`` settings
+   module parameter is absent in standalone distributions. Added in
    2.4.9 already.
 
--  Standalone: Enhanced handling of absence of django settings module
-   parameter. Added in 2.4.9 already.
+-  **win32ctypes:** Included missing implicit dependencies for
+   ``win32ctypes`` modules on Windows in standalone distributions.
+   Added in 2.4.9 already.
 
--  Standalone: Added missing implicit dependency of ``win32ctypes``
-   modules on Windows. Added in 2.4.9 already.
+-  **arcade:** Added a missing data file for the ``arcade`` package in
+   standalone distributions. Added in 2.4.9 already.
 
--  Standalone: Added missing data file for ``arcade`` packaged. Added in
-   2.4.9 already.
+-  **PySide6:** Allowed ``PySide6`` extras to be optional on macOS in
+   standalone distributions, preventing complaints about missing DLLs
+   when they are not installed. Added in 2.4.11 already.
 
--  Standalone: Allow PySide6 extras to not be installed on macOS, was
-   complaining about missing DLLs, which of course can be normal in that
-   case. Added in 2.4.11 already.
+-  **driverless-selenium:** Added standalone support for the
+   ``driverless-selenium`` package. Added in 2.4.11 already.
 
--  Standalone: Added ``driverless-selenium`` support. Added in 2.4.11
-   already.
+-  **tkinterdnd2:** Updated standalone support for newer versions of the
+   ``tkinterdnd2`` package. Added in 2.4.11 already.
 
--  Standalone: Added support for newer ``tkinterdnd2``. Added in 2.4.11
-   already.
+-  **kivymd:** Updated standalone support for newer versions of the
+   ``kivymd`` package. Added in 2.4.11 already.
 
--  Standalone: Added support for newer ``kivymd``. Added in 2.4.11
-   already.
+-  **gssapi:** Added standalone support for the ``gssapi`` package.
+   Added in 2.4.11 already.
 
--  Standalone: Added support for ``gssapi``. Added in 2.4.11 already.
+-  **azure.cognitiveservices.speech:** Added standalone support for the
+   ``azure.cognitiveservices.speech`` package on macOS.
 
--  Standalone: Added support for ``azure.cognitiveservices.speech`` on
-   macOS too.
+-  **mne:** Added standalone support for the ``mne`` package.
 
--  Standalone: Added support for ``mne``.
+-  **fastapi:** Added a missing dependency for the ``fastapi`` package
+   in standalone distributions.
 
--  Standalone: Added missing dependency of ``fastapi`` package.
+-  **pyav:** Updated standalone support for newer versions of the
+   ``pyav`` package.
 
--  Standalone: Added support for newer ``pyav`` package.
-
--  Standalone: Added support for ``py_mini_racer`` package.
-
--  Standalone: Support ``keras`` extending its sub-modules path to the
-   ``keras.api`` sub-package.
-
--  Standalone: Added support for newer ``transformers`` package.
-
--  Standalone: Added support for newer ``win32com.server.register``
+-  **py_mini_racer:** Added standalone support for the ``py_mini_racer``
    package.
 
--  Python3.12+: Added support for ``distutils`` in ``setuptools``.
+-  **keras:** Improved standalone support for ``keras`` by extending its
+   sub-modules path to include the ``keras.api`` sub-package.
 
--  Standalone: Added missing implicit imports for ``cv2`` package, now
-   they are scanned automatically.
+-  **transformers:** Updated standalone support for newer versions of
+   the ``transformers`` package.
 
--  Standalone: Added support for ``lttbc`` package.
+-  **win32com.server.register:** Updated standalone support for newer
+   versions of the ``win32com.server.register`` package.
 
--  Standalone: Added missing dependency of ``win32file`` package.
+-  **Python 3.12+:** Added support for ``distutils`` in ``setuptools``
+   for Python 3.12 and later.
 
--  Standalone: Fix, ``kivy`` clipboard was not working on Linux due to
-   missing dependencies.
+-  **cv2:** Enabled automatic scanning of missing implicit imports for
+   the ``cv2`` package in standalone distributions.
 
--  Standalone: Add missing ``paddleocr`` data files.
+-  **lttbc:** Added standalone support for the ``lttbc`` package.
 
--  Standalone: Added support for ``playwright`` package.
+-  **win32file:** Added a missing dependency for the ``win32file``
+   package in standalone distributions.
 
--  Standalone: Allow PySide6 extras to not be installed on macOS. Was
-   complaining about missing DLLs, which of course can be normal if
-   these are not installed.
+-  **kivy:** Fixed an issue where the ``kivy`` clipboard was not working
+   on Linux due to missing dependencies in standalone distributions.
+
+-  **paddleocr:** Added missing data files for the ``paddleocr`` package
+   in standalone distributions.
+
+-  **playwright:** Added standalone support for the ``playwright``
+   package with a new plugin.
+
+-  **PySide6:** Allowed ``PySide6`` extras to be optional on macOS in
+   standalone distributions, preventing complaints about missing DLLs
+   when they are not installed.
 
 New Features
 ============
