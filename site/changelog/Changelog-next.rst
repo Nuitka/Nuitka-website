@@ -17,11 +17,8 @@ current stable release as |NUITKA_VERSION| as well.
 .. note::
 
    This a draft of the release notes for 2.5, which is supposed to add
-   Nuitka standalone backend support and enhanced 3.12 performance and
-   scalability in general.
-
-   The main focus shall be scalability and a few open issues for
-   performance enhancements that later Python versions enable us to.
+   Nuitka standalone backend support and enhanced 3.12 performance,
+   experimental 3.13 support and scalability in general.
 
 This release in not complete yet.
 
@@ -33,175 +30,170 @@ This release in not complete yet.
 Bug Fixes
 =========
 
--  Windows: The onefile handling of ``sys.argv`` was seriously regressed
-   for program and command line paths with spaces. Fixed in 2.4.4
+-  **Windows:** Fixed a regression in onefile mode that incorrectly
+   handled program and command line paths containing spaces. Fixed in
+   2.4.4 already.
+
+-  **Windows:** Corrected an issue where console output handles were
+   being opened with closed file handles. Fixed in 2.4.2 already.
+
+-  **Standalone:** Restored the ability to use trailing slashes on the
+   command line to specify the target directory for data files on
+   Windows. Fixed in 2.4.2 already.
+
+-  **Compatibility:** Fixed a parsing error that occurred with relative
+   imports in ``.pyi`` files, which could affect some extension modules
+   with available source code. Fixed in 2.4.3 already.
+
+-  **Modules:** Ensured that extension modules load correctly into
+   packages when using Python 3.12. Fixed in 2.4.4 already.
+
+-  **Windows:** Improved command line handling for onefile mode to
+   ensure full compatibility with quoting. Fixed in 2.4.4 already.
+
+-  **Data Directories:** Allowed the use of non-normalized paths on the
+   command line when specifying data directories. Fixed in 2.4.5
    already.
 
--  Windows: Fix, console output handles were opened with close file
-   handles, but that is not allowed. Fixed in 2.4.2 already.
+-  **Python 3.11+:** Fixed an issue where ``inspect`` module functions
+   could raise ``StopIteration`` when examining compiled functions on
+   the stack. Fixed in 2.4.5 already.
 
--  Standalone: Fix, using trailing slashes to mark the target directory
-   for data files no longer worked on Windows. Fixed in 2.4.2 already.
+-  **importlib_metadata:** Improved compatibility with
+   ``importlib_metadata`` by handling cases where it might be broken,
+   preventing potential compilation crashes. Fixed in 2.4.5 already.
 
--  Fix, the ``.pyi`` parser could fail for relative imports. This could
-   break some packages that are extension modules, but with source code
-   available too. Fixed in 2.4.3 already.
+-  **Plugins:** Fixed a crash that occurred when using the
+   ``no_asserts`` YAML configuration option. Fixed in 2.4.6 already.
 
--  Modules: Fix, extension modules didn't load into packages with
-   Python3.12. Fixed in 2.4.4 already.
+-  **Scons:** Improved error tolerance when reading ``ccache`` log files
+   to prevent crashes on Windows caused by non-ASCII module names or
+   paths. Fixed in 2.4.11 already.
 
--  Windows: Fix, command line handling for onefile mode on was not fully
-   compatible with quoting. Fixed in 2.4.4 already.
+-  **Scons:** Prevented the C standard option from being applied to C++
+   compilers, resolving an issue with the splash screen on Windows when
+   using Clang. Fixed in 2.4.8 already.
 
--  Fix, accept non-normalized paths on the command line for data
-   directories. Fixed in 2.4.5 already.
+-  **macOS:** Enhanced handling of DLL self-dependencies to accommodate
+   cases where DLLs use both ``.so`` and ``.dylib`` extensions for
+   self-references. Fixed in 2.4.8 already.
 
--  Python3.11: Fix, ``inspect`` module functions could raise
-   ``StopIteration`` looking at compiled functions on the stack. Fixed
-   in 2.4.5 already.
+-  **Compatibility:** Fixed a memory leak that occurred when using
+   ``deepcopy`` on compiled methods. Fixed in 2.4.9 already.
 
--  Fix, cannot trust that ``importlib_metadata`` always works, it some
-   situations it's actually broken and that could crash the compilation
-   then. Fixed in 2.4.5 already.
+-  **MSYS2:** Excluded the ``bin`` directory from being considered a
+   system DLL folder when determining DLL inclusion. Fixed in 2.4.9
+   already.
 
--  Plugins: Fix, ``no_asserts`` yaml configuration was crashing the
-   compilation. Fixed in 2.4.6 already.
+-  **Python 3.10+:** Fixed a crash that could occur when a ``match``
+   statement failed to match a class with arguments. Fixed in 2.4.9
+   already.
 
--  Scons: Fix, need to read ccache log files error tolerant. Otherwise
-   on Windows it can crash for non-ASCII module names or paths. Fixed in
-   2.4.11 already.
+-  **MSYS2:** Implemented a workaround for non-normalized paths returned
+   by ``os.path.normpath`` in MSYS2 Python environments. Fixed in 2.4.11
+   already.
 
--  Scons: Fix, specifying the C standard should not be done towards C++
-   compilers. For splash screen on Windows we use C++ and the Clang
-   rejects this option there. Fixed in 2.4.8 already.
+-  **Python 3.12:** Resolved an issue where Nuitka's constant code was
+   triggering assertions in Python 3.12.7. Fixed in 2.4.10 already.
 
--  macOS: Handle one more oddity with self-dependencies. Can apparently
-   switch freely between ``.so`` and ``.dylib`` for self-dependencies.
-   Fixed in 2.4.8 already.
+-  **--include-package:** Ensured that the ``--include-package`` option
+   includes both Python modules and extension modules that are
+   sub-modules of the specified package. Fixed in 2.4.11 already.
 
--  Fix, leaked a reference to the object compiled methods are associated
-   to when ``deepcopy`` is used on them. Fixed in 2.4.9 already.
-
--  MSYS2: Fix, need to consider ``bin`` directory not as system DLL
-   folder for DLL inclusion. Fixed in 2.4.9 already.
-
--  Python3.10+: Fix, failed ``match`` of class with args could crash.
-   Fixed in 2.4.9 already.
-
--  MSYS2: Workaround for not normalized ``/`` from ``os.path.normpath``
-   on this Python flavor. Fixed in 2.4.11 already.
-
--  Fix, with 3.12.7 our constant code was triggering assertions. Fixed
-   in 2.4.10 already.
-
--  Fix, the ``--include-package`` didn't include extension modules that
-   are sub-modules of the package, but only Python modules. Fixed in
-   2.4.11 already.
-
--  Windows: Fix, avoid encoding issues for CMD files used for
+-  **Windows:** Prevented encoding issues with CMD files used for
    accelerated mode on Windows.
 
--  Standalone: Fix, scan of standard library should not assume files
-   presence. Files that make no sense could also be manually deleted
-   already by the user or by a Python distribution.
+-  **Standalone:** Improved the standard library scan to avoid assuming
+   the presence of specific files, which might have been deleted by the
+   user or a Python distribution.
 
--  Compatibility: Fix, nuitka resource readers need more attributes for
-   file objects. Added ``suffix``, ``suffixes``, and ``stem``
-   attributes.
+-  **Compatibility:** Added ``suffix``, ``suffixes``, and ``stem``
+   attributes to Nuitka resource readers to improve compatibility with
+   file objects.
 
--  Compatibility: The error message change for ``yield from`` on the
-   module level has been backported, detect the actual text instead of
-   hard coding the text per version.
+-  **Compatibility:** Backported the error message change for ``yield
+   from`` used at the module level, using dynamic detection instead of
+   hardcoded text per version.
 
--  Fix, calling built-ins with keyword only args could give errors.
+-  **Compatibility:** Fixed an issue where calling built-in functions
+   with keyword-only arguments could result in errors due to incorrect
+   argument passing.
 
-   Was passing keyword only arguments as positional arguments, if the
-   final positional argument was also present, which could lead to
-   errors.
+-  **Compatibility:** Fixed reference leaks that occurred when using
+   ``list.insert`` and ``list.index`` with 2 or 3 arguments.
 
--  Fix, ``list.insert`` and ``list.index`` with 2 and 3 arguments could
-   leak references to used index values.
+-  **Windows:** Prioritized relative paths over absolute paths for the
+   result executable when absolute paths are not file system encodable.
+   This helps address issues related to non-ASCII short paths on some
+   Chinese systems.
 
--  Windows: Avoid using absolute paths for result exe if they are not
-   encodable
+-  **Compatibility:** Improved compatibility with C extensions by
+   handling cases where the attribute slot is not properly implemented,
+   preventing potential segfaults.
 
-   These absolute paths may not be file system encodable, but relative
-   paths could be, so in that case they are preferred. This might help
-   with issues related to short paths that are still non-ASCII as
-   observed on some Chinese systems.
+-  **Compatibility:** Prevent the leakage of ``sys.frozen`` when using
+   the ``multiprocessing`` module and its plugin, resolving a
+   long-standing TODO and potentially breaking compatibility with
+   packages that relied on this behavior.
 
--  Fix, cannot assume that the attribute slot for C extensions is
-   properly implemented. Some C extensions provide wrong return values
-   and get away with it in case of default values being present in the
-   Python code using it.
+-  **Compatibility:** Fixed an issue where matching calls with
+   keyword-only arguments could lead to incorrect optimization and
+   argument passing errors.
 
-   Need to be bug compatible here or else we do a segfault here.
+-  **Compatibility:** Corrected the handling of iterators in for loops
+   to avoid assuming the presence of slots, preventing potential issues.
 
--  Fix, should not leak ``sys.frozen`` from using ``multiprocessing``
-   module and its plugin.
+-  **macOS:** Added support for cyclic DLL dependencies, where DLLs have
+   circular references.
 
-   This solves a long standing TODO. At least the ``faker`` module
-   entered wrong code paths due to this. Might break compatibility with
-   some packages that worked only because of this value being set.
+-  **Compatibility:** Ensured the use of updated expressions during
+   optimization phase for side effects to prevent crashes caused by
+   referencing obsolete information.
 
--  Fix: Matching calls with keyword only arguments could mistakenly
-   optimize them into argument passing errors.
+-  **Python 3.10+:** Fixed a crash that could occur in complex cases
+   when re-formulating ``match`` statements.
 
--  Fix, cannot assume iterators to have slots in for loops, need to use
-   the method that checks that.
+-  **Python 3.4-3.5:** Corrected an issue in Nuitka's custom
+   ``PyDict_Next`` implementation that could lead to incorrect results
+   in older Python 3 versions.
 
--  macOS: Added support for cyclic DLL dependencies, where one DLL uses
-   another DLL and the ones it uses refer to the first DLL.
+-  **Python 3.10+:** Ensured that ``AttributeError`` is raised with the
+   correct keyword arguments, avoiding a ``TypeError`` that occurred
+   previously.
 
--  Fix, need to use updated expressions as side effects
+-  **Plugins:** Added a data file function that avoids loading packages,
+   preventing potential crashes caused by incompatible dependencies
+   (e.g., ``numpy`` versions).
 
-   This was using the old ones, which could have become unusable in the
-   mean time and reference obsolete information already released,
-   leading to crashes during compile time.
+-  **Compatibility:** Ensured that Nuitka's package reader closes data
+   files after reading them to prevent resource warnings in certain
+   Python configurations.
 
--  Python3.10: Fix, ``match`` statements re-formulation could crash in
-   some complex cases.
+-  **Standalone:** Exposed ``setuptools`` contained vendor packages in
+   standalone distributions to match the behavior of the ``setuptools``
+   package.
 
--  Python3.5: Fix, our own ``PyDict_Next`` variant was wrong for older
-   Python3 and could give incorrect results.
+-  **Accelerated Mode:** Enabled the ``django`` module parameter in
+   accelerated mode to correctly detect used extensions.
 
--  Python3.10+: Fix, ``AttributeError`` accepts keyword arguments, was
-   ``TypeError`` when creating those.
+-  **Compatibility:** Prevented resource warnings for unclosed files
+   when trace outputs are sent to files via command line options.
 
--  Plugins: Added data file function that avoids loading packages
+-  **Compatibility:** Enabled the use of ``xmlrpc.server`` without
+   requiring the ``pydoc`` module.
 
-   We shouldn't load package code, as it can also crash, for example due
-   to incompatible ``numpy`` versions that are normally unused, but then
-   they are.
+-  **Plugins:** Fixed an issue in the ``anti-bloat`` configuration where
+   ``change_function`` and ``change_classes`` ignored "when" clauses,
+   leading to unintended changes.
 
--  Fix, the Nuitka package reader needs to close data files after
-   reading them or else resource warnings can be given in some Python
-   configurations.
+-  **Python 3.12 (Linux):** Enhanced static ``libpython`` handling for
+   Linux. Static ``libpython`` is now used only when the inline copy is
+   available (not in official Debian packages). The inline copy of
+   ``hacl`` is used for all Linux static ``libpython`` uses with Python
+   3.12 or higher.
 
--  Standalone: Need to expose ``setuptools`` contained vendor packages
-   as that's what the package does these days.
-
--  Accelerated: Use ``django`` module parameter in that mode too, so it
-   detect used extensions.
-
--  Fix, need to avoid resource warnings for unclosed files when trace
-   outputs are send to files via command line options.
-
--  Fix, ``xmlrpc.server`` was not working without allowing ``pydoc``.
-
--  Plugins: Fix, the ``anti-bloat`` configuration for
-   ``change_function`` and ``change_classes`` ignored when clauses. This
-   caused changes to be made when they were not supposed to happen.
-
--  Python3.12: Enhanced static libpython for Linux. Do not use static
-   libpython with unless the inline copy is available, which it is not
-   for official Debian packages.
-
-   Uses the inline copy of ``hacl`` for all Linux static libpython uses
-   with 3.12 or higher.
-
--  Standalone: Fix, the scan of standard library should not assume some
-   files presence. They might have been deleted manually already.
+-  **Standalone:** Further improved the standard library scan to avoid
+   assuming the presence of files that might have been manually deleted.
 
 Package Support
 ===============
