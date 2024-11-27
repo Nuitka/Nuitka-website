@@ -201,7 +201,7 @@ the correct folder for you.
 With data files, you are largely on your own. Nuitka keeps track of ones
 that are needed by popular packages, but it might be incomplete. Raise
 issues if you encounter something in these. Even better, raise PRs with
-enhancements to the Nuitka Package Configuration. With want 3rd party
+enhancements to the Nuitka Package Configuration. We want 3rd party
 software to just work out of the box.
 
 When that is working, you can use the onefile mode if you so desire.
@@ -229,8 +229,8 @@ your program is impacted, make sure to read the section
 For the unpacking, by default a unique user temporary path one is used,
 and then deleted, however this default
 ``--onefile-tempdir-spec="{TEMP}/onefile_{PID}_{TIME}"`` can be
-overridden with a path specification that is using then using a cached
-path, avoiding repeated unpacking, e.g. with
+overridden with a path specification, then using a cached path, avoiding
+repeated unpacking, e.g. with
 ``--onefile-tempdir-spec="{CACHE_DIR}/{COMPANY}/{PRODUCT}/{VERSION}"``
 which uses version information, and user-specific cache directory.
 
@@ -327,7 +327,7 @@ Nuitka.
             '--clang': None,
             # options with single values, e.g. enable a plugin of Nuitka
             '--enable-plugin': "pyside2",
-            # options with several values, e.g. avoiding including modules
+            # options with several values, e.g. avoid including modules
             '--nofollow-import-to' : ["*.tests", "*.distutils"],
          },
       },
@@ -352,7 +352,7 @@ Nuitka.
             '--clang': ("setup.py", None),
             # options with single values, e.g. enable a plugin of Nuitka
             '--enable-plugin': ("setup.py", "pyside2"),
-            # options with several values, e.g. avoiding including modules
+            # options with several values, e.g. avoid including modules
             '--nofollow-import-to' : ("setup.py", ["*.tests", "*.distutils"]),
          }
       },
@@ -407,7 +407,7 @@ value:
    # options with single values, e.g. enable a plugin of Nuitka
    enable-plugin = "pyside2"
 
-   # options with several values, e.g. avoiding including modules, accepts
+   # options with several values, e.g. avoid including modules, accepts
    # list argument.
    nofollow-import-to = ["*.tests", "*.distutils"]
 
