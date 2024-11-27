@@ -393,116 +393,121 @@ New Features
 Optimization
 ============
 
--  Experimental support for dual types. For specific cases, speed ups of
-   integer operating loops of 12x and more are achieved. This code is
-   not fully ready for prime time yet, but a lot of improvements are
-   going to come from this direction in the future.
+-  **Performance:** Implemented experimental support for "dual types",
+   which can significantly speed up integer operations in specific cases
+   (achieving speedups of 12x or more in some very specific loops). This
+   feature is still under development but shows promising potential for
+   future performance gains, esp. when combined with future PGO (Profile
+   Guided Optimization) work revealing likely runtime types more often
+   and more types being covered.
 
--  Faster module variables accesses
+-  **Performance:** Improved the speed of module variable access.
 
-   For Python3.6 up to 3.10 inclusive, this is based on dictionary
-   version tags and prone to them changing with module variable writes,
-   so it's not effective in cases where variables are written
-   alternating.
+      -  For Python 3.6 to 3.10, this optimization utilizes dictionary
+         version tags but may be less effective when module variables
+         are frequently written to.
 
-   For Python3.11+ this is based on dictionary keys versions and less
-   prone to dictionary changes affecting it, but also slower in case of
-   cache hits compared to 3.10 cache hits.
+      -  For Python 3.11+, it relies on dictionary key versions, making
+         it less susceptible to dictionary changes but potentially
+         slightly slower for cache hits compared to Python 3.10.
 
--  Faster string dictionary lookups for Python3.11+, solving a TODO
-   about taking advantage of special knowledge we have about the key and
-   the module dictionary likely being a string dictionary.
+-  **Performance:** Accelerated string dictionary lookups for Python
+   3.11+ by leveraging knowledge about the key and the module
+   dictionary's likely structure. This also resolves a previous TODO
+   item, where initial 3.11 support was not as fast as our support for
+   3.10 was in this domain.
 
--  Do not update module dictionaries unless it's actually a value
-   change. This makes caching more effective in some cases.
+-  **Performance:** Optimized module dictionary updates to occur only
+   when values actually change, improving caching efficiency.
 
--  Enhanced exception handling
+-  **Performance:** Enhanced exception handling by removing bloat in the
+   abstracted differences between Python 3.12 and earlier versions. This
+   simplifies the generated C code, reduces conversions, and improves
+   efficiency for all Python versions. This affects both C compile time
+   and runtime performance favorably and solves a huge TODO for Python
+   3.12 performance.
 
-   Use exception state to abstract 3.12 or before differences. This
-   solves a TODO about more very in-efficient C code generated that also
-   requires many conversions of exceptions back and forth from 3 value
-   form to normalized. The new code is also better for older Python
-   versions.
+-  **Performance:** Removed the use of CPython APIs calls for accessing
+   exception context and cause values, which can be slow.
 
--  Avoid using CPython APIs for exception context and cause values,
-   these can be a lot slower to call.
+-  **Performance:** Utilized Nuitka's own faster methods for creating
+   ``int`` and ``long`` values, avoiding slower CPython API calls.
 
--  For creating ``int`` or ``long`` values, some codes were not using
-   our own creation methods that will be faster to use since we avoid
-   API calls.
+-  **Performance:** Implemented a custom variant of
+   ``_PyGen_FetchStopIterationValue`` to avoid CPython API calls in
+   generator handling, further improving performance on generators,
+   coroutines and asyncgen.
 
--  Have our own variant of ``_PyGen_FetchStopIterationValue`` to avoid
-   slower API calls in generator handling.
+-  **Windows:** Aligned with CPython's change in reference counting
+   implementation on Windows for Python 3.12+, which improves
+   performance with LTO (Link Time Optimization) enabled.
 
--  Windows: Follow CPython undoing its own inline function usage for
-   reference counting on Windows for Python3.12+. Without this, LTO can
-   make us a lot slower without clear boundaries.
+-  **Optimization:** Expanded static optimization to include unary
+   operations, improving the handling of number operations and preparing
+   for full support of dual types.
 
--  Also statically optimize unary operations, so we can have more
-   complete number operations, and be well geared for full support of
-   dual types with number types.
+-  **Optimization:** Added static optimization for ``os.stat`` and
+   ``os.lstat`` calls.
 
--  Statically optimize ``os.stat`` and ``os.lstat`` calls as well.
+-  **Performance:** Passed the exception state directly into unpacking
+   functions, eliminating redundant exception fetching and improving
+   code efficiency.
 
--  Pass the exception state into unpacking functions for more efficient
-   code. No need to fetch exceptions per use of those into the exception
-   state, but it can directly write to there.
+-  **Performance:** Introduced a dedicated helper for unpacking length
+   checks, resulting in faster and more compact code helping scalability
+   as well.
 
--  Solve TODO and have dedicated helper for unpacking length check,
-   giving faster and more compact code.
+-  **Performance:** Generated more efficient code for raising built-in
+   exceptions by directly creating them through the base exception's
+   ``new`` method instead of calling them as functions. This can speed
+   up some things by a lot.
 
--  Have our own variant of ``_PyGen_FetchStopIterationValue`` to avoid
-   API calls in generator handling.
+-  **Performance:** Optimized exception creation by avoiding unnecessary
+   tuple allocations for empty exceptions. This hack avoids hitting the
+   memory allocator as much.
 
--  Generate more efficient code for raising exceptions of builtin type.
-   Rather than calling them as a function, create them via base
-   exception new directly which will be much quicker.
+-  **Performance:** Replaced remaining uses of ``PyTuple_Pack`` with
+   Nuitka's own helpers to avoid CPython API calls.
 
--  Faster exception creation, avoid having ``args`` and a tuple needed
-   to hold them for empty exceptions avoiding one more allocation.
+-  **Code Generation:** Replaced implicit exception raise nodes with
+   direct exception creation nodes for improved C code generation.
 
--  Removed remaining uses of ``PyTuple_Pack`` and replace with our own
-   helpers to avoid API calls.
+-  **Windows:** Aligned with CPython's change in managing object
+   reference counters on Windows for Python 3.12+, improving performance
+   with LTO enabled.
 
--  Avoid implicit exception raise nodes with delayed creation, and have
-   direct exception making nodes instead.
+-  **Performance:** Removed remaining CPython API calls when creating
+   ``int`` values in various parts of the code, including specialization
+   code, helpers, and constants loading.
 
--  Windows and Python3.12+: Follow CPython undoing its own inline
-   function usage for reference count handling. Without this, LTO can
-   make us a lot slower without due to MSVC issues.
+-  **Windows:** Avoided scanning for DLLs in the ``PATH`` environment
+   variable when they are not intended to be used from the system. This
+   prevents potential crashes related to non-encodable DLL paths and
+   makes those scans faster too.
 
--  Avoid API calls when creating ``int`` values in more cases. Some of
-   our specialization code and many helpers as well as the constants
-   blob loading codes were not avoiding these unnecessary calls, since
-   we have faster code for a while already.
+-  **Windows:** Updated to a newer MinGW64 version from 13.2 to 14.2 for
+   potentially improved binary code generation with that compiler.
 
--  Windows: Avoid even scanning for DLLs in ``PATH`` if we don't want to
-   use them from the system anyway. This ought to avoid crashes related
-   to found DLLs with non-encodable paths, as they never get detected
-   and need not be discarded later on.
+-  **Code Size:** Reduced the size of constant blobs by avoiding
+   module-level constants for the global values ``-1``, ``0``, and
+   ``1``.
 
--  Windows: Use newer MinGW64 version, this should produce slight better
-   final code.
+-  **Code Generation:** Improved code generation for variables by
+   directly placing ``NameError`` exceptions into the thread state when
+   raised, making for more compact C code.
 
--  Avoid module level constants for our global values ``-1``, ``0``,
-   ``1`` as we have global values for them already leading to smaller
-   constant blobs.
+-  **Optimization:** Statically optimized the ``sys.ps1`` and
+   ``sys.ps2`` values to not exist (unless in module mode), potentially
+   enabling more static optimization in packages that detect interactive
+   usage checking them.
 
--  Put ``NameError`` exceptions directly into the thread state as passed
-   for more compact C code generated with variables.
+-  **Performance:** Limited the use of ``tqdm`` locking to no-GIL and
+   Scons builds where threading is actively used.
 
--  The values ``sys.ps1`` and ``sys.ps2`` are statically optimized to
-   not exist compiling for the module mode. This should enable more
-   static optimization of imports with some packages trying to detect
-   interactive usage on the Python REPL.
-
--  UI: Only use ``tqdm`` locking in no-GIL and inside Scons builds where
-   threading actually plays a role at this time.
-
--  Optimization: Faster check for non-frame statement sequences. Frames
-   and normal statement sequence are no longer directly related, but use
-   mixin code instead. Dedicated accessors will be faster and are used a
-   lot during the optimization phase.
+-  **Optimization:** Implemented a faster check for non-frame statement
+   sequences by decoupling frames and normal statement sequences and
+   using dedicated accessors. This improves performance during the
+   optimization phase.
 
 Anti-Bloat
 ==========
