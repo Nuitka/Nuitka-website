@@ -664,7 +664,8 @@ Compilation modes
 
 |  ``standalone``: ``True`` if standalone mode is activated with
    ``--mode=standalone``, ``--mode=onefile`` or ``--mode=app``
-|  ``onefile``: ``True`` if onefile mode is activated with ``--mode=onefile`` or with ``--mode=app`` on non-macOS
+|  ``onefile``: ``True`` if onefile mode is activated with
+   ``--mode=onefile`` or with ``--mode=app`` on non-macOS
 |  ``module_mode``: ``True`` if module mode is activated with
    ``--mode=module``
 |  ``deployment``: ``True`` if deployment mode is activated with
@@ -685,8 +686,8 @@ Compilation modes
    For example if a package is doing something that breaks in only
    onefile mode.
 
-For onefile there is an indication the case where paths are always
-the same or static.
+For onefile there is an indication the case where paths are always the
+same or static.
 
 |  ``onefile_cached``: ``True`` if onefile temporary file spec is
    allowing caching to happen, with ``--onefile``

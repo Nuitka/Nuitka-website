@@ -83,8 +83,8 @@ Bug Fixes
    already.
 
 -  **MSYS2:** Implemented a workaround for non-normalized paths returned
-   by ``os.path.normpath`` in **MSYS2** Python environments. Fixed in 2.4.11
-   already.
+   by ``os.path.normpath`` in **MSYS2** Python environments. Fixed in
+   2.4.11 already.
 
 -  **Python 3.12:** Resolved an issue where Nuitka's constant code was
    triggering assertions in Python 3.12.7. Fixed in 2.4.10 already.
@@ -352,8 +352,8 @@ New Features
    Done in 2.4.6 already.
 
 -  **Onefile:** Removed the MSVC requirement for the splash screen in
-   onefile mode. It now works with MinGW64, Clang, and ClangCL. Done
-   for 2.4.8 already.
+   onefile mode. It now works with MinGW64, Clang, and ClangCL. Done for
+   2.4.8 already.
 
 -  **Reports:** Added information about the file system encoding used
    during compilation to help debug encoding issues.

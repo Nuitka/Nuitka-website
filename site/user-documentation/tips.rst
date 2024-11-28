@@ -54,9 +54,9 @@ case exists.
 When invoked with identical input files, the C compiler will take a long
 time and require a lot of CPU to compile over and over. Make sure to
 have ``ccache`` installed and configured when using gcc. It will make
-repeated compilations much faster, even if things are not yet
-perfect, i.e. changes to the program can cause many C files to change,
-requiring a new compilation instead of using the cached result.
+repeated compilations much faster, even if things are not yet perfect,
+i.e. changes to the program can cause many C files to change, requiring
+a new compilation instead of using the cached result.
 
 On **Windows**, with the included MinGW64 **Nuitka** supports using
 ``ccache.exe`` and will offer to download from an official source and
@@ -254,9 +254,9 @@ function was compiled.
 
 Nuitka will apply values from the environment variables ``CCFLAGS``,
 ``LDFLAGS`` during the compilation on top of what it determines to be
-necessary. Beware, of course, that this is only useful if you know
-what you are doing, so should this pose issues, raise them only with
-perfect information.
+necessary. Beware, of course, that this is only useful if you know what
+you are doing, so should this pose issues, raise them only with perfect
+information.
 
 ******************************************************
  Producing a 32 bit binary on a 64 bit Windows system
