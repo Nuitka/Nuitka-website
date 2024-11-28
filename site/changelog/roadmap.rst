@@ -41,9 +41,9 @@ This is the Nuitka roadmap, broken down by features.
    not checked at runtime. We might want to limit checking to only used
    configuration entries.
 
-************************
- Onefile speed (public)
-************************
+**************************
+ Onefile speed (standard)
+**************************
 
 -  Use Windows NTFS and macOS HFS extended attributes to store caching
    status of a file inside of it. It might be possible to detect
@@ -73,26 +73,86 @@ This is the Nuitka roadmap, broken down by features.
  Python 3.12
 *************
 
--  Change code generation to not use triple ``type, value, traceback``
-   for exception handling anymore. Currently we use conversions back and
-   forth, that slow down.
-
 -  Use special code for 2 digits code in the long operation templates.
    Currently only single digit is optimized, but with Python 3.12, we
    can do better now.
 
-************************
- Nuitka-Python (public)
-************************
+*************
+ Python 3.13
+*************
+
+-  The No-GIL variant of Python 3.13 is not currently working with
+   Nuitka and needs more work. Right now it seems we cannot import
+   ``inspect`` without crashing, we need to audit data structures for
+   more issues like one we found with list data allocations.
+
+**************************
+ Nuitka-Python (standard)
+**************************
 
 This is currently under way and not yet described here. The current
 Nuitka release has support for using it. Most work is focused on the aim
 of getting it capable to statically compile, avoiding extension modules
 and DLL usages.
 
-**********************
- Performance (public)
-**********************
+************************
+ Scalability (standard)
+************************
+
+- More compact code objects handling
+
+  Code objects and their creation is among the oldest code in Nuitka and lacks 2
+  features. First, their creation cannot be delayed, so they consume memory even if never used and module load time as well.
+
+  We have since began to create constants from binary blobs. These too are also always created before use, but in some cases, we want to become able to delay this step.
+
+- Enhanced tracing of loop exit merges
+
+  Tracing of exception exits is not done for function exits and module exits at
+  this time, meaning that the most merge intensive form of tracing is not
+  applied. However, with a for loop, and a bunch of code on the inside, even if
+  the actual exception exit doesn't matter much more than if it happens at all,
+  or for only very few variables (iterated, iterated value, etc.) causes a full
+  blown tracing to be done. Experiments have shown, that this for some modules
+  causing a 40% increase of work to do, and providing the most complex merges to
+  be done, which end up being used.
+
+- More scalable class creation
+
+  For class creation, we have a bunch of complexity. We cannot decide easily if
+  a class dictionary (while being in the class scope) is a normal dict, or at
+  least well behaving like it, or if it's some sort of magic thing that changes
+  all your assignments to something else, and won't allow reading them back,
+  etc. as all of that happens potentially.
+
+  This means that methods in classes, have a harder time to know anything for sure during their creation and assignment as well.
+
+  This leads to massively more complex Python code internally re-formulating the class creation with all things that could happen by virtue of not knowing the base classes as exact as one would have to.
+
+  The runtime impact is not so big, but a lot of merges and temporary variables are created and to be handled during optimization with no chance of getting rid of them really, although some helper functions used there could be inlined even today and give results that we can investigate, but that's never
+  going to be completely workable.
+
+  So, what we want to do here, is to check at runtime the actual value a class
+  dictionary becomes, and as such generate simpler assign and access nodes that
+  will not raise exceptions as much, even if we don't have dictionary tracing at
+  this time, what we do is to change dictionaries over the local variables if the used of it is sane enough, i.e. no ``locals()`` and other strange things used.
+
+
+************************
+ Performance (standard)
+************************
+
+-  Dual types
+
+   After recent improvements, loop analysis became strong enough to
+   trace the types of loop variables, when integer operations are used
+   to increment them, but not if they come out of iterators. That should
+   be added.
+
+   For range and enumerate, we should have code generation capable of
+   producing dual types as well and the dual type generation should be
+   made generally usable for all code creation, which is not too far
+   away.
 
 -  Function inlining.
 
@@ -212,89 +272,6 @@ and DLL usages.
    functions. It could prepare calls much better, such that they do not
    come through keyword arguments unnecessarily.
 
--  Loop trace analysis fails to deliver ``int`` types shapes. We would
-   need that for optimizing loops.
-
-   The new idea here is that merge traces should be explicit. In a way
-   assignments are already explicit. At the end of branches or loops,
-   during the tree building, static merging of variables should be
-   injected. In this way, it saves the need to lookup values, and it
-   will become easier to make an analysis of the flow inside a loop. In
-   our typical loop example things might get easier.
-
-   .. code:: python
-
-      def f():
-         # i -> UnassignedTrace(version=0)
-         i = 0
-         # i -> AssignedTrace(version=1, previous=0, constant=0)
-         while 1: # using endless loop like re-formulations do
-            # i -> MergeTrace(version=2, previous=1 or 3),
-            if i > 9: # i <- Reference(version=2)
-
-               # Note, ExitTrace(version=2) i <- Reference(version=2)
-               break
-
-            i = i + 1
-            # i -> AssignTrace(version=3, previous=2),
-
-         return i # i <- Reference(version=2)
-
-   For the type analysis, we would have to keep track of these traces in
-   some form of a graph, which of course, they do by referencing the
-   "previous". This graph has loops inside of it, that we need to
-   analyze. In this case, our analysis should be able to determine the
-   flow of types into the graph loop.
-
-   It enters with ``int`` and then at the condition, it cannot tell if
-   it's take or not, due to uncertainty, so it needs to consider both
-   branches for type analysis, but that's OK.
-
-   Next step then is, the follow up the ``int`` with what ``+1`` does
-   it. For sake of arguing, lets assume Python2, since then it's not
-   immediately stopping, but it could be overflowing, so it can become
-   ``int`` or ``long``, and we ignore the "unknown" side of things from
-   the turn around. In this case what we should end up with is ``int``,
-   ``long`` and loop end unknown types. So we go another time, and this
-   time ``int``+1 and ``long``+1 both give ``int`` or ``long``. When the
-   result stabilizes, the "unknown" should be considered to be empty.
-
-   Question now is, can there be a case, where this terminates and
-   forgets about a type? Naturally real "unknown", e.g. due to adding an
-   unknown type value, are going to kill the ability to trace. And e.g.
-   two variables that interact with one another may each still be
-   unknown, but this is not about being perfect.
-
-   Right now, the expensive collection of variable traces in micro
-   passes of the whole module is causing issues for performance. Doing
-   this analysis after the micro pass should be cheaper. Also we do not
-   have to create and maintain the current state of the tracing for a
-   variable at all anymore, rather only pointers.
-
-   Versions become static. Right now each pass allocates a new integer
-   for the merge trace to use, such that no collision occurs.
-
-   One case we really have to aim it, as it's an existing problem for
-   --debug and the generated C code being too bad not to warn about
-   unused code:
-
-   .. code:: python
-
-      def f():
-         while ...: # using endless loop like re-formulations do
-
-             some_indicator = False
-
-             ...
-
-             if not some_indicator:
-                ...
-
-         return i # i <- Reference(version=2)
-
-   The loop analysis recently became strong enough to succeed in proper
-   type analyis. We should be able to proceed with this.
-
 -  Cover all built-ins of Python
 
    Currently a few built-ins, even as important as ``enumerate`` are not
@@ -342,16 +319,6 @@ This has been implemented for onefile mode only. Unfortunately that is
 not good for macOS which often require app mode, i.e. standalone mode
 effectively with more than a single file.
 
-********************************************
- Complete Support for Python Version (3.10)
-********************************************
-
--  Add support for remaining ``match`` case syntax of 3.10
-
-   When mixing keyword and positional arguments in catching a type,
-   Nuitka asserts this. It is the last remaining cases missing to
-   execute ``test_patma.py`` completely.
-
 ***********************************
  Traceback Encryption (commercial)
 ***********************************
@@ -374,9 +341,9 @@ effectively with more than a single file.
    to detect changes in the compilation due to upstream changes, as well
    as changes due to newer Nuitka separately.
 
--  Once in place, we should teach our users to have this in place for
-   doing it with their own code base, allowing them to see changes due
-   to new Nuitka or new PyPI packages individually.
+-  We should teach our users to have this in place for doing it with
+   their own code base, allowing them to see changes due to new Nuitka
+   or new PyPI packages individually.
 
 **************************
  Plugin API documentation
@@ -393,9 +360,19 @@ effectively with more than a single file.
    execution, and we have as job for it, but we don't yet render the
    results anywhere.
 
-******************************
- Features to be added for 2.5
-******************************
+*************************************
+ Features to be added for Nuitka 2.6
+*************************************
+
+[ ] More compact code objects handling
+
+[ ] Enhanced tracing of loop exit merges
+
+[ ] More scalable class creation
+
+*************************************
+ Features to be added for Nuitka 2.7
+*************************************
 
 [ ] Use performance potential for attribute access with Python 3.11
 version.
@@ -409,9 +386,9 @@ version.
 [ ] Add download updating for standalone as well, onefile for windows
 works.
 
-******************************
- Features to be added for 2.6
-******************************
+*************************************
+ Features to be added for Nuitka 3.0
+*************************************
 
 [ ] Initial support for ctypes based direct calls of C code.
 
