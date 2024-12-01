@@ -71,11 +71,17 @@ Bug Fixes
 -  Fix, the ``--deployment`` didn't impact the C side as intended, only
    the individual disables were applied there. Fixed in 2.5.2 already.
 
+-  Fix, unary operations could crash the compilation if used inside a
+   binary operation. Fixed in 2.5.3 already.
+
 -  Onefile: Fix, the handling of ``__compiled__.original_argv0`` was
    incorrect and could lead to crashes. Fixed in 2.5.4 already.
 
--  Fix, unary operations could crash the compilation if used inside a
-   binary operation. Fixed in 2.5.3 already.
+-  Fix, calls to ``tensorflow.function`` using only keyword arguments
+   segfaulted at runtime. Fixed in 2.5.5 already.
+
+-  macOS: Ignore harmless warning given for x64 DLLs on arm64 with newer
+   macOS. Fixed in 2.5.5 already.
 
 Package Support
 ===============
@@ -92,6 +98,18 @@ Package Support
 -  Standalone: Added support for ``lab_lamma`` package. Added in 2.5.2
    already.
 
+-  Standalone: Added support for ``docling`` metadata. Added in 2.5.5
+   already.
+
+-  Standalone: Added support for ``pypdfium`` on Linux too. Added in
+   2.5.5 already.
+
+-  Standalone: Added support for using ``debian" package``. Added in
+   2.5.5 already.
+
+-  Standalone: Added support for ``pdfminer`` package. Added in 2.5.5
+   already.
+
 New Features
 ============
 
@@ -101,9 +119,14 @@ New Features
 -  UI: Added ``app`` module for ``--mode`` parameter. On macOS it's an
    app, elsewhere it's a onefile binary. This replaces
    ``--macos-create-app-bundle`` for which we didn't have something yet.
-   Added in 2.5.3 already.
+   Added in 2.5.5 already.
 
-No changes documented yet.
+-  Homebrew: Added support for ``tcl9`` with ``tk-inter`` plugin.
+
+-  When multiple distributions are installed for the same package name,
+   try and figure out which one was installed less, such that
+   ``python-opencv`` and ``python-opencv-headless`` with different
+   versions installed are properly recognized for the version used.
 
 Optimization
 ============
@@ -130,6 +153,9 @@ Organizational
    setuptools version decides the project name casing. For now, we use
    the one that produces deprecated filenames.
 
+-  Debugging: Allow disabling changing to short paths on Windows with an
+   experimental option.
+
 Tests
 =====
 
@@ -138,7 +164,11 @@ No changes documented yet.
 Cleanups
 ========
 
-No changes documented yet.
+-  Unified production or standard source archives and code used for PyPI
+   uploads, so the result is identical and code is shared.
+
+-  Harmonized the usage of ``include <...>`` vs ``include "..."`` by
+   origin of files to be included.
 
 Summary
 =======
