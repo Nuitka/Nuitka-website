@@ -83,6 +83,32 @@ Bug Fixes
 -  macOS: Ignore harmless warning given for x64 DLLs on arm64 with newer
    macOS. Fixed in 2.5.5 already.
 
+-  Python3.13: Fix, our dictionary code could crash copying dictionaries
+   due to internal Python changes not yet followed. Fixed in 2.5.6
+   already.
+
+-  macOS: Improve signing onefile mode, was not applying
+   ``--macos-signed-app-name`` in the signature of the binaries, was
+   only used for app bundles so far. Fixed in 2.5.6 already.
+
+-  Fix, was adding too many paths as extra directories from Nuitka
+   package configuration. This only affected ``win32com`` package as it
+   is the only user of the ``package-dirs`` import hack right now. Fixed
+   in 2.5.6 already.
+
+-  Python2: Fix, can have negative CRC32 values, leading to crashes when
+   creating onefile with Python2 on macOS, this might affect more
+   versions though. Fixed in 2.5.6 already.
+
+-  Plugins: Fix the code provided in ``pre-import-code`` didn't have an
+   effect anymore due to a regression. Fixed in 2.5.6 already.
+
+-  macOS: Fix, do not recommend app bundle mode if the user already uses
+   it. Fixed in 2.5.6 already.
+
+-  macOS: Fix, need to normalize paths using ``~`` when as part of
+   output directory argument.
+
 Package Support
 ===============
 
@@ -110,6 +136,13 @@ Package Support
 -  Standalone: Added support for ``pdfminer`` package. Added in 2.5.5
    already.
 
+-  Standalone: Added missing dependencies of ``torch._dynamo.polyfills``
+   package. Added in 2.5.6 already.
+
+-  Standalone: Add support for ``rtree`` on Linux as well. The old
+   static config only worked on Windows and macOS, this detects it from
+   the module code. Added in 2.5.6 already.
+
 New Features
 ============
 
@@ -127,6 +160,20 @@ New Features
    try and figure out which one was installed less, such that
    ``python-opencv`` and ``python-opencv-headless`` with different
    versions installed are properly recognized for the version used.
+
+-  The release 3.13.1 broke standalone mode of Nuitka by making a
+   workaround added for 3.10.0 breaking. Added in 2.5.6 already.
+
+-  Plugins: Uses new feature for absolute source paths (typically of
+   course from variables or relative to constants), these can be
+   populated from variables and be more powerful the ``by_code`` DLL
+   feature, that we might end up removing in favor of it. Added in 2.5.6
+   already.
+
+-  macOS: For app bundles, automatically switch to containing directory
+   if not launched from the command line. Otherwise the current
+   directory is ``/`` which is almost never correct and contrary to some
+   users expectations too. Added in 2.5.6 already.
 
 Optimization
 ============
@@ -156,10 +203,18 @@ Organizational
 -  Debugging: Allow disabling changing to short paths on Windows with an
    experimental option.
 
+-  UI: Detect external data files that will be overwriting explicitly
+   the original file, and ask the user to provide an output directory,
+   so it can be done. Added in 2.5.6 already.
+
+-  UI: Added alias ``--include-data-files-external`` for external data
+   files option that is not onefile specific, since we want this feature
+   to be universally used.
+
 Tests
 =====
 
-No changes documented yet.
+-  Temporarily disable the tests that expose the 3.13.1 regressions.
 
 Cleanups
 ========
