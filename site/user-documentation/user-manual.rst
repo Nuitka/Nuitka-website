@@ -411,8 +411,8 @@ matching files.
 
 Examples:
    -  ``--include-package-data=package_name`` (all files)
-   -  ``--include-package-data=package_name=*.txt`` (only certain type)
-   -  ``--include-package-data=package_name=some_filename.dat``
+   -  ``--include-package-data=package_name:*.txt`` (only certain type)
+   -  ``--include-package-data=package_name:some_filename.dat``
       (concrete file)
 
 Data files by file patterns ``--include-data-files``
