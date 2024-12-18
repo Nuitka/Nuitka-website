@@ -109,6 +109,44 @@ Bug Fixes
 -  macOS: Fix, need to normalize paths using ``~`` when as part of
    output directory argument.
 
+-  macOS: Fix, need to consider GitHub Actions Python a Homebrew Python,
+   too. Otherwise some DLLs cannot be resolved. Fixed in 2.5.7 already.
+
+-  Fix, could reference leak values send into generator objects. Was not
+   affecting asyncgen and coroutines, they did that correctly already.
+   Fixed in 2.5.7 already.
+
+-  Fix, ``--include-package`` scan picked up both package init file and
+   competing Python files both, leading to compile time conflicts. Fixed
+   in 2.5.7 already.
+
+-  Module: Fix, for modules created for Python 3.12, the handling of
+   string constants could still trigger assertions and the loading of
+   modules created with 3.12.7 or newer failed on older Python 3.12
+   versions when created with Nuitka 2.5.5-2.5.6. Fixed in 2.5.7
+   already.
+
+-  Python3.10+: Calling some method descriptors could use incorrect
+   tuple code. We don't commonly use that though, so this was only
+   observed in a Python2 assertion which wouldn't be affected. Fixed in
+   2.5.7 already.
+
+-  Python3.13: Fix, resource readers accept multiple arguments for
+   ``importlib.resources.read_text`` and ``encoding`` and ``errors``
+   became keyword-only, which we need to follow as well.
+
+-  Scons: Avoid using platform encoding to decode ``ccache`` log. Not
+   all encoding implement encoding errors, but ``latin1`` cannot give
+   them, so lets use that, it's sufficient to match filenames across log
+   lines. Fixed in 2.5.7 already.
+
+-  Python3.12+: Fix, static link libraries for ``hacl`` if asked for do
+   not exist, ignore these. Fixed in 2.5.7 already.
+
+-  Fix, memory leak for results of functions called via specs. This
+   could leak memory leaks for a few operations. Hard import operations
+   we overloaded were most affected. Fixed in 2.5.7 already.
+
 Package Support
 ===============
 
@@ -142,6 +180,27 @@ Package Support
 -  Standalone: Add support for ``rtree`` on Linux as well. The old
    static config only worked on Windows and macOS, this detects it from
    the module code. Added in 2.5.6 already.
+
+-  Standalone: Add missing ``pywebview`` js data files. Added in 2.5.7
+   already.
+
+-  Anti-Bloat: Improved ``no_docstrings`` support for ``xgboost``
+   package. Added in 2.5.7 already.
+
+-  Standalone: Added support for newer ``sklearn`` package. Added in
+   2.5.7 already.
+
+-  Standalone: Added support for newer ``dask`` package. Added in 2.5.7
+   already.
+
+-  Standalone: Added support for newer ``transformers`` package. Added
+   in 2.5.7 already.
+
+-  Windows: Put ``numpy`` DLLs top level for enhanced support in Nuitka
+   VM. Added in 2.5.7 already.
+
+-  Standalone: Allow including no browsers with ``playright``. Added in
+   2.5.7 already.
 
 New Features
 ============
@@ -210,6 +269,9 @@ Organizational
 -  UI: Added alias ``--include-data-files-external`` for external data
    files option that is not onefile specific, since we want this feature
    to be universally used.
+
+-  UI: Examples for ``--include-package-data`` with file patterns were
+   wrong, using the wrong delimiter.
 
 Tests
 =====
