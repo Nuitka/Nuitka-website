@@ -36,7 +36,7 @@ Bug Fixes
    variant
 
    Since ``os.path.normpath`` doesn't actually normalize to native Win32
-   paths with MSYS2, but to forward slashes, we need to do it on our
+   paths with **MSYS2**, but to forward slashes, we need to do it on our
    own. Fixed in 2.5.1 already.
 
 -  Fix, extensions modules that failed to locate could crash the
@@ -147,6 +147,31 @@ Bug Fixes
    could leak memory leaks for a few operations. Hard import operations
    we overloaded were most affected. Fixed in 2.5.7 already.
 
+-  Fix, when finding multiple distributions for a package, choose the
+   one most correctly matching files. This helps in cases, where an
+   older version of ``python-opencv`` was forcefully overwritten with
+   ``python-opencv-headless`` or vice version, picking the actual
+   version to use, and make proper decisions for our Nuitka package
+   configuration and reporting. Fixed in 2.5.8 already.
+
+-  Python2: Fix, initializing ``containing_dir`` for onefile could crash
+   when trying to convert binary name to directory name with the
+   ``os.dirname`` function that may not yet be fully loaded. We now pass
+   the directory name from the onefile bootstrap, which also is simpler
+   code. Fixed in 2.5.8 already.
+
+-  **Anaconda**: Fix, some packages need to load DLLs via ``PATH``
+   environment variables on Windows, therefore cannot remove all usage
+   of ``PATH``, but only those not pointing to inside of the
+   installation prefix. Fixed in 2.5.8 already.
+
+-  **Anaconda**: Fix, is ``is_conda_package`` was not working properly when distribution name and package name were divergent. Fixed in 2.5.8
+      already.
+
+-  **Anaconda**: Fix, need to check conda meta data to resolve package
+   names of distributions, for some packages there is not files metadata
+   available via the typical files. Fixed in 2.5.8 already.
+
 Package Support
 ===============
 
@@ -202,6 +227,13 @@ Package Support
 -  Standalone: Allow including no browsers with ``playright``. Added in
    2.5.7 already.
 
+-  Standalone: Added support for newer ``sqlfluff`` package. Added in
+   2.5.8 already.
+
+-  Standalone: Added support for the ``opencv`` conda package. We needed
+   to disable workarounds not needed there for dependencies. Added in
+   2.5.8 already.
+
 New Features
 ============
 
@@ -228,6 +260,9 @@ New Features
    populated from variables and be more powerful the ``by_code`` DLL
    feature, that we might end up removing in favor of it. Added in 2.5.6
    already.
+
+-  Plugins: In Nuitka Package configuration ``variable`` sections can
+   also have ``when`` conditions.
 
 -  macOS: For app bundles, automatically switch to containing directory
    if not launched from the command line. Otherwise the current
