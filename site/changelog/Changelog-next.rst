@@ -224,7 +224,7 @@ Package Support
 -  Windows: Put ``numpy`` DLLs top level for enhanced support in Nuitka
    VM. Added in 2.5.7 already.
 
--  Standalone: Allow including no browsers with ``playright``. Added in
+-  Standalone: Allow including no browsers with ``playwright``. Added in
    2.5.7 already.
 
 -  Standalone: Added support for newer ``sqlfluff`` package. Added in

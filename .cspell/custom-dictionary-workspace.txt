@@ -1,6 +1,6 @@
-# Custom Dictionary Words
 --noinclude-data-files
 --windows-uac-uiaccess
+# Custom Dictionary Words
 ablog
 asciinema
 asyncio
@@ -13,13 +13,16 @@ extrafooter
 fontawesome
 freelists
 gettempdir
+hacl
 headerlink
 icns
 Lato
 maxsplit
 MSYS2
+no_docstrings
 normpath
 notranslate
+opencv
 os
 pagename
 patchelf
@@ -28,6 +31,7 @@ pythonw
 ravz
 Roboto
 segfault
+segfaulted
 SEPA
 shedskin
 stdlib
