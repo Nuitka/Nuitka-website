@@ -8,8 +8,6 @@
         "**/*.orig": true,
         "**/*.tmp": true,
     },
-    "restructuredtext.confPath": "",
-    "python.formatting.provider": "black",
     "python.analysis.extraPaths": ["Nuitka-develop"],
     "cSpell.words": [
         "Annuitka",
@@ -101,10 +99,4 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
-    "grammarly.selectors": [
-        {
-            "language": "restructuredtext",
-            "scheme": "file"
-        }
-    ],
 }
