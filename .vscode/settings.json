@@ -33,6 +33,7 @@
         "devel",
         "distutils",
         "Doxygen",
+        "dylib",
         "elif",
         "EPEL",
         "Europython",
