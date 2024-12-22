@@ -17,7 +17,7 @@
 
 Nuitka is a Python compiler written in Python.
 
-It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.3 - 3.10).
+It is fully compatible with Python2 (2.6, 2.7) and Python3 (3.4 - 3.13).
 
 You feed Nuitka your Python app, it does a lot of clever things, and
 then creates an executable or extension module, or even a Python wheel.
@@ -87,7 +87,7 @@ Where are we now?
 =================
 
 Milestone 1, feature parity, has been achieved for Python 2.6, 2.7, and
-3.3 up to 3.10. This part of Nuitka is already mature, but every new
+3.4 up to 3.13. This part of Nuitka is already mature, but every new
 Python release has lots of new features to add!
 
 Milestone 2 is always a work in progress, but it has been quite
