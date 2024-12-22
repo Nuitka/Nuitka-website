@@ -99,44 +99,57 @@ and DLL usages.
  Scalability (standard)
 ************************
 
-- More compact code objects handling
+-  More compact code objects handling
 
-  Code objects and their creation is among the oldest code in Nuitka and lacks 2
-  features. First, their creation cannot be delayed, so they consume memory even if never used and module load time as well.
+   Code objects and their creation is among the oldest code in Nuitka
+   and lacks 2 features. First, their creation cannot be delayed, so
+   they consume memory even if never used and module load time as well.
 
-  We have since began to create constants from binary blobs. These too are also always created before use, but in some cases, we want to become able to delay this step.
+   We have since began to create constants from binary blobs. These too
+   are also always created before use, but in some cases, we want to
+   become able to delay this step.
 
-- Enhanced tracing of loop exit merges
+-  Enhanced tracing of loop exit merges
 
-  Tracing of exception exits is not done for function exits and module exits at
-  this time, meaning that the most merge intensive form of tracing is not
-  applied. However, with a for loop, and a bunch of code on the inside, even if
-  the actual exception exit doesn't matter much more than if it happens at all,
-  or for only very few variables (iterated, iterated value, etc.) causes a full
-  blown tracing to be done. Experiments have shown, that this for some modules
-  causing a 40% increase of work to do, and providing the most complex merges to
-  be done, which end up being used.
+   Tracing of exception exits is not done for function exits and module
+   exits at this time, meaning that the most merge intensive form of
+   tracing is not applied. However, with a for loop, and a bunch of code
+   on the inside, even if the actual exception exit doesn't matter much
+   more than if it happens at all, or for only very few variables
+   (iterated, iterated value, etc.) causes a full blown tracing to be
+   done. Experiments have shown, that this for some modules causing a
+   40% increase of work to do, and providing the most complex merges to
+   be done, which end up being used.
 
-- More scalable class creation
+-  More scalable class creation
 
-  For class creation, we have a bunch of complexity. We cannot decide easily if
-  a class dictionary (while being in the class scope) is a normal dict, or at
-  least well behaving like it, or if it's some sort of magic thing that changes
-  all your assignments to something else, and won't allow reading them back,
-  etc. as all of that happens potentially.
+   For class creation, we have a bunch of complexity. We cannot decide
+   easily if a class dictionary (while being in the class scope) is a
+   normal dict, or at least well behaving like it, or if it's some sort
+   of magic thing that changes all your assignments to something else,
+   and won't allow reading them back, etc. as all of that happens
+   potentially.
 
-  This means that methods in classes, have a harder time to know anything for sure during their creation and assignment as well.
+   This means that methods in classes, have a harder time to know
+   anything for sure during their creation and assignment as well.
 
-  This leads to massively more complex Python code internally re-formulating the class creation with all things that could happen by virtue of not knowing the base classes as exact as one would have to.
+   This leads to massively more complex Python code internally
+   re-formulating the class creation with all things that could happen
+   by virtue of not knowing the base classes as exact as one would have
+   to.
 
-  The runtime impact is not so big, but a lot of merges and temporary variables are created and to be handled during optimization with no chance of getting rid of them really, although some helper functions used there could be inlined even today and give results that we can investigate, but that's never
-  going to be completely workable.
+   The runtime impact is not so big, but a lot of merges and temporary
+   variables are created and to be handled during optimization with no
+   chance of getting rid of them really, although some helper functions
+   used there could be inlined even today and give results that we can
+   investigate, but that's never going to be completely workable.
 
-  So, what we want to do here, is to check at runtime the actual value a class
-  dictionary becomes, and as such generate simpler assign and access nodes that
-  will not raise exceptions as much, even if we don't have dictionary tracing at
-  this time, what we do is to change dictionaries over the local variables if the used of it is sane enough, i.e. no ``locals()`` and other strange things used.
-
+   So, what we want to do here, is to check at runtime the actual value
+   a class dictionary becomes, and as such generate simpler assign and
+   access nodes that will not raise exceptions as much, even if we don't
+   have dictionary tracing at this time, what we do is to change
+   dictionaries over the local variables if the used of it is sane
+   enough, i.e. no ``locals()`` and other strange things used.
 
 ************************
  Performance (standard)
