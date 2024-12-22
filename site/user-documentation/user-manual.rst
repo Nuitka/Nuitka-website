@@ -287,7 +287,7 @@ variables. Checkout this example:
    # nuitka-project-if: {OS} in ("Windows", "Linux", "Darwin", "FreeBSD"):
    #    nuitka-project: --onefile
    # nuitka-project-else:
-   #    nuitka-project: --standalone
+   #    nuitka-project: --mode=standalonealone
 
    # The PySide6 plugin covers qt-plugins
    # nuitka-project: --enable-plugin=pyside6
