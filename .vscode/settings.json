@@ -9,6 +9,12 @@
         "**/*.tmp": true,
     },
     "python.analysis.extraPaths": ["Nuitka-develop"],
+    "cSpell.spellCheckOnlyWorkspaceFiles": true,
+    "cSpell.ignorePaths": [
+        ".git",
+        ".vscode",
+        "devcontainer.json",
+    ],
     "cSpell.words": [
         "Annuitka",
         "appdirs",
