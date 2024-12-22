@@ -86,9 +86,9 @@ These are the milestones and priorities for Nuitka's development.
 Where are we now?
 =================
 
-Milestone 1, feature parity, has been achieved for Python 2.6, 2.7, and
-3.4 up to 3.13. This part of Nuitka is already mature, but every new
-Python release has lots of new features to add!
+Milestone 1, feature parity, has been achieved for |SUPPORTED_PYTHONS|.
+This part of Nuitka is already mature, but every new Python release has
+lots of new features to add!
 
 Milestone 2 is always a work in progress, but it has been quite
 successful. Nuitka can already produce code that is more than 2 times
@@ -97,16 +97,18 @@ possible, but they are solid improvements and will improve further.
 
 Milestone 3, constant folding and propagation, is already in place, and
 some control flow optimizations are also applied - but this is just the
-start. Constant folding will see big gains as the type inferencing
-matures and more variables are opened up to become constants.
+start. Constant folding will see big gains as the type inference matures
+and more variables are opened up to become constants.
 
-For milestone 4 the first steps are in place achieve type inferencing.
-The results are encouraging, but it will need a lot more work before
-this can be made the default approach. Remember that this is still
-Python, Nuitka cannot be guaranteed to perfectly guess type information.
+For milestone 4 the first steps are in place achieve type inference. The
+results are encouraging, but it will need a lot more work before this
+can be made the default approach. Remember that this is still Python,
+Nuitka cannot be guaranteed to perfectly guess type information.
 
 We have yet to start on milestones 5 and 6. There is still quite a way
 to go until we hit the "future".
 
 In the meantime you can find its `latest version here
 </doc/download.html>`_.
+
+.. include:: variables.inc
