@@ -172,6 +172,11 @@ Bug Fixes
    names of distributions, for some packages there is not files metadata
    available via the typical files. Fixed in 2.5.8 already.
 
+-  **MSYS2**: Fix, downloaded gcc path needs to be normalized to native slashes
+   or else it can fail during compilation. Fixed in 2.5.9 already.
+
+-  **Python3.13**: Fix, static libpython wasn't working for Linux, an unexposed API that we use changed the signature and we needed to follow that. Fixed in 2.5.9 already.
+
 Package Support
 ===============
 
@@ -293,6 +298,9 @@ Organizational
 -  Release: Use virtualenv for PyPI upload ``sdist`` creation. The
    setuptools version decides the project name casing. For now, we use
    the one that produces deprecated filenames.
+
+-  Release: Use ``osc`` binary from virtualenv, system one can be broken, as is
+   currently the case for Ubuntu.
 
 -  Debugging: Allow disabling changing to short paths on Windows with an
    experimental option.
