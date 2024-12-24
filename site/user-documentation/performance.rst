@@ -10,7 +10,7 @@ go. The current focus for performance measurements is Python 2.7, but
 3.x is going to follow later.
 
 *****************
- pystone results
+ Pystone Results
 *****************
 
 The results are the top value from this kind of output, running pystone
