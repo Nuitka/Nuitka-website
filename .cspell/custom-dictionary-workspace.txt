@@ -10,6 +10,7 @@ copybutton
 doctools
 exe
 extrafooter
+finalizer
 fontawesome
 freelists
 gettempdir

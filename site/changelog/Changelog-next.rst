@@ -177,6 +177,8 @@ Bug Fixes
 
 -  **Python3.13**: Fix, static libpython wasn't working for Linux, an unexposed API that we use changed the signature and we needed to follow that. Fixed in 2.5.9 already.
 
+-  Fix, ``asyncgen`` resurrected when they had a finalizer attached, leading to memory leaks with asyncio in case of exceptions in the ``asyncgen``. Fixed in 2.5.10 already.
+
 Package Support
 ===============
 
