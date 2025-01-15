@@ -47,7 +47,7 @@ done to include as many C optimizations as possible. We currently get a
 Future
 ======
 
-In the future Nuitka will be able to use type inferencing based on whole
+In the future Nuitka will be able to use type inferences based on whole
 program analysis. It will apply that information in order to perform as
 many calculations as possible in C, using C native types, without
 accessing ``libpython``.

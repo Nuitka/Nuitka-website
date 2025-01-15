@@ -109,6 +109,11 @@ and DLL usages.
    are also always created before use, but in some cases, we want to
    become able to delay this step.
 
+   .. note::
+
+      As of Nuitka 2.6, there is an experimental flag to enable these,
+      and we need to switch over to using it.
+
 -  Enhanced tracing of loop exit merges
 
    Tracing of exception exits is not done for function exits and module
@@ -374,17 +379,17 @@ effectively with more than a single file.
    results anywhere.
 
 *************************************
- Features to be added for Nuitka 2.6
+ Features to be added for Nuitka 2.7
 *************************************
 
-[ ] More compact code objects handling
+[x] Activate more scalable code objects handling
 
 [ ] Enhanced tracing of loop exit merges
 
 [ ] More scalable class creation
 
 *************************************
- Features to be added for Nuitka 2.7
+ Features to be added for Nuitka 2.8
 *************************************
 
 [ ] Use performance potential for attribute access with Python 3.11
@@ -396,9 +401,6 @@ version.
 
 [ ] Document traceback encryption usage with examples.
 
-[ ] Add download updating for standalone as well, onefile for windows
-works.
-
 *************************************
  Features to be added for Nuitka 3.0
 *************************************
@@ -407,3 +409,6 @@ works.
 
 [ ] Tuple unpacking for values that support indexing should be
    optimized.
+
+[ ] Add download updating for standalone as well, onefile for windows
+works.
