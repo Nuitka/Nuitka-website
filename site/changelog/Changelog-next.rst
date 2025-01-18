@@ -280,16 +280,28 @@ Package Support
 
 -  Standalone: Added support for newer ``soundfile`` package.
 
+-  Standalone: Added support for newer ``coincurve`` package.
+
+-  Standalone: Added support for newer ``apscheduler`` package.
+
 New Features
 ============
 
--  Module: Allow disabling the use of ``stubgen`` entirely. Added in
-   2.5.1 already.
+-  Module: Use 2-phase loading for all modules with Python3.5 or higher.
+   This enhances loading them as sub-packages for Python3.12+ where the
+   loading context is no longer accessible.
 
 -  UI: Added ``app`` module for ``--mode`` parameter. On macOS it's an
    app, elsewhere it's a onefile binary. This replaces
    ``--macos-create-app-bundle`` for which we didn't have something yet.
    Added in 2.5.5 already.
+
+-  UI: Added ``package`` mode, which is similar to ``module``, but also
+   includes all sub-modules of the package automatically without having
+   to ask for that with ``--include-package`` manually.
+
+-  Module: Allow disabling the use of ``stubgen`` entirely. Added in
+   2.5.1 already.
 
 -  Homebrew: Added support for ``tcl9`` with ``tk-inter`` plugin.
 
@@ -336,6 +348,10 @@ Optimization
    scalable C code and constants usage. This will allow to speed up C
    compilation and code generation a future once properly validated.
 
+-  Scons: Add support for C23 embedding of the constants blob. With
+   Clang 19+ and GCC 15+ it is going to be used, unless it's Windows or
+   macOS where we use other methods currently.
+
 -  In case of duplicated package dirs, avoid checking paths multiple
    times, as file system accesses can become very slow this makes some
    cases much faster.
@@ -355,6 +371,8 @@ Anti-Bloat
 
 -  Avoid including ``tcltest`` TCL code when using tk-inter. Their TCL
    files will be unused for sure.
+
+-  Anti-Bloat: Avoid using ``IPython`` from ``comm`` package.
 
 Organizational
 ==============
@@ -404,6 +422,12 @@ Organizational
    files option that is not onefile specific, since we want this feature
    to be universally used.
 
+-  UI: Allow ``none`` as macOS icon option value to disable warning
+   about not giving it, should that be what you want to do.
+
+-  UI: Error out on icon filenames without suffixes, as no file type can
+   be inferred.
+
 -  UI: Examples for ``--include-package-data`` with file patterns were
    wrong, using the wrong delimiter.
 
@@ -414,6 +438,9 @@ Organizational
 -  Debugging: Allow to not disable printing during reference count
    tests, this can be helpful to see traces added during debugging
    sessions.
+
+-  Debugging: Developer Manual: Added small code snipped for reference
+   leak testing of modules.
 
 Tests
 =====
