@@ -165,8 +165,9 @@ Bug Fixes
    of ``PATH``, but only those not pointing to inside of the
    installation prefix. Fixed in 2.5.8 already.
 
--  **Anaconda**: Fix, is ``is_conda_package`` was not working properly when distribution name and package name were divergent. Fixed in 2.5.8
-      already.
+-  **Anaconda**: Fix, is ``is_conda_package`` was not working properly
+   when distribution name and package name were divergent. Fixed in
+   2.5.8 already.
 
 -  **Anaconda**: Fix, need to check conda meta data to resolve package
    names of distributions, for some packages there is not files metadata
@@ -190,9 +191,9 @@ Bug Fixes
 -  Fix, wasn't compatible of ``os.lstat`` or ``os.stat`` were monkey
    patched, which some tests seem to do.
 
--  Data Composer: Fix, need to make sure the json statistics output is
-   deterministic, as the keys were not sorted, making build comparisons
-   fail on them.
+-  **Data Composer**: Fix, need to make sure the json statistics output
+   is deterministic, as the keys were not sorted, making build
+   comparisons fail on them.
 
 -  **Python3.6+** Fix, ``asyncgen`` with finalizer leaked their objects
    causing potentially large memory leaks when using ``asyncio`` in case
@@ -214,10 +215,13 @@ Bug Fixes
    executed in some cases, although it should have due to too early
    closing.
 
--  **Python3**: Properly handle ``generatir`` resurrecting. There has
-   been no demonstration this is actually needed, but potentially
-   old-style coroutines via decorator ``types.coroutine`` could have had
-   the same issues as coroutines did.
+-  **Python3**: Properly handle ``generator`` objects resurrecting
+   during their deallocation. There has been no demonstration this is
+   actually needed, but potentially old-style coroutines via decorator
+   ``types.coroutine`` could have had the same issues as coroutines did.
+
+-  **PGO**: Fix, during taking the runtime traces, the output was
+   initialized too late, which could cause crashes.
 
 Package Support
 ===============
@@ -284,6 +288,12 @@ Package Support
 
 -  Standalone: Added support for newer ``apscheduler`` package.
 
+-  macOS: Seems PyQt5 in standalone mode works on macOS now and no
+   longer requires bundle mode, so we remove the error and forcing of a
+   workaround in there.
+
+-  Standalone: Added support for ``seleniumbase`` package downloads.
+
 New Features
 ============
 
@@ -341,6 +351,14 @@ New Features
 -  Watch: Added support for using ``conda`` packages rather than PyPI
    packages.
 
+-  UI: Added ``--list-package-exe`` to complement
+   ``--list-package-dlls`` for analysis of packages when making Nuitka
+   Package Configuration.
+
+-  **Windows ARM**: Remove workarounds no longer needed to compile. The
+   lack of dependency analysis might have to be corrected in a hotfix,
+   then this configuration ought to be supported.
+
 Optimization
 ============
 
@@ -373,6 +391,8 @@ Anti-Bloat
    files will be unused for sure.
 
 -  Anti-Bloat: Avoid using ``IPython`` from ``comm`` package.
+
+-  Anti-Bloat: Avoid using ``pytest`` from ``pdbp`` package.
 
 Organizational
 ==============
