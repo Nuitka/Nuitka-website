@@ -180,9 +180,44 @@ Bug Fixes
    unexposed API that we use changed the signature and we needed to
    follow that. Fixed in 2.5.9 already.
 
--  Fix, ``asyncgen`` resurrected when they had a finalizer attached,
-   leading to memory leaks with asyncio in case of exceptions in the
-   ``asyncgen``. Fixed in 2.5.10 already.
+-  **Python3.6+**: Fix, ``asyncgen`` resurrected when they had a
+   finalizer attached, leading to memory leaks with asyncio in case of
+   exceptions in the ``asyncgen``. Fixed in 2.5.10 already.
+
+-  UI: Fix, do not prompt for gcc download during ``--version`` output.
+   This could happen on Windows without MSVC or improper gcc installed.
+
+-  Fix, wasn't compatible of ``os.lstat`` or ``os.stat`` were monkey
+   patched, which some tests seem to do.
+
+-  Data Composer: Fix, need to make sure the json statistics output is
+   deterministic, as the keys were not sorted, making build comparisons
+   fail on them.
+
+-  **Python3.6+** Fix, ``asyncgen`` with finalizer leaked their objects
+   causing potentially large memory leaks when using ``asyncio`` in case
+   of exceptions.
+
+-  Fix, empty generators (necessarily an optimization result) still
+   produced context code that ended up being unused, leading to C
+   compilation warnings.
+
+-  **Python3.6+**: Fix, lost a reference to **asend** value. As this is
+   typically ``None`` this was more a reference leak then a memory leak,
+   but could show up in some cases.
+
+-  **Python3.5+**: Properly handle ``coroutine`` and ``asyncgen``
+   resurrecting.
+
+   This could cause memory leaks with ``asyncio`` and ``asyncgen`` and
+   also incompatibility with ``finally`` code in coroutines that wasn't
+   executed in some cases, although it should have due to too early
+   closing.
+
+-  **Python3**: Properly handle ``generatir`` resurrecting. There has
+   been no demonstration this is actually needed, but potentially
+   old-style coroutines via decorator ``types.coroutine`` could have had
+   the same issues as coroutines did.
 
 Package Support
 ===============
@@ -221,9 +256,6 @@ Package Support
 -  Standalone: Add missing ``pywebview`` js data files. Added in 2.5.7
    already.
 
--  Anti-Bloat: Improved ``no_docstrings`` support for ``xgboost``
-   package. Added in 2.5.7 already.
-
 -  Standalone: Added support for newer ``sklearn`` package. Added in
    2.5.7 already.
 
@@ -245,6 +277,8 @@ Package Support
 -  Standalone: Added support for the ``opencv`` conda package. We needed
    to disable workarounds not needed there for dependencies. Added in
    2.5.8 already.
+
+-  Standalone: Added support for newer ``soundfile`` package.
 
 New Features
 ============
@@ -281,7 +315,19 @@ New Features
    directory is ``/`` which is almost never correct and contrary to some
    users expectations too. Added in 2.5.6 already.
 
--  Standalone: Added support for newer ``soundfile`` package.
+-  Compatibility: Do not reject setting compiled frame ``f_trace``
+   outright, instead a deployment flag
+   ``--no-deployment-flag=frame-useless-set-trace`` can be used to allow
+   it, but it will be ignored.
+
+-  Windows: Added ability to detect extension module entry points, using
+   an inline copy of ``pefile``. With that ``--list-package-dlls`` can
+   now check if an extension module is really valid on that platform as
+   well. It also means we could consider detecting extension modules
+   automatically on the 3 major OSes.
+
+-  Watch: Added support for using ``conda`` packages rather than PyPI
+   packages.
 
 Optimization
 ============
@@ -290,10 +336,25 @@ Optimization
    scalable C code and constants usage. This will allow to speed up C
    compilation and code generation a future once properly validated.
 
+-  In case of duplicated package dirs, avoid checking paths multiple
+   times, as file system accesses can become very slow this makes some
+   cases much faster.
+
+-  Detect possible static libpython for self compiled uninstalled Python
+   too.
+
 Anti-Bloat
 ==========
 
-No changes documented yet.
+-  Improved ``no_docstrings`` support for ``xgboost`` package. Added in
+   2.5.7 already.
+
+-  Avoid using ``numpy`` for ``PIL`` package.
+
+-  Avoid using ``yaml`` for ``numpy`` package.
+
+-  Avoid including ``tcltest`` TCL code when using tk-inter. Their TCL
+   files will be unused for sure.
 
 Organizational
 ==============
@@ -303,10 +364,19 @@ Organizational
    ``--help-plugins`` and point it out in the ``--help`` where all
    plugin options are shown without the need to enable a plugin.
 
+-  UI: Enhanced warnings for onefile and OS specific options, these are
+   now given unless coming from a Nuitka-Action context, where people do
+   build for different modes with one set of configuration.
+
+-  Nuitka-Action: The default for ``mode`` is now ``app``, which will
+   build an application bundle on macOS and a onefile binary otherwise.
+
 -  UI: Use report path for executable in ``--version`` output.
 
    We don't want people to be forced to output their home directory
    path, it only makes them want to avoid giving the whole output.
+
+-  UI: Output the Python flavor name in startup compilation message.
 
 -  UI: Detect missing product or file version if only other Windows
    version information is given and give an explicit error, rather than
@@ -317,7 +387,8 @@ Organizational
 
 -  Release: Use virtualenv for PyPI upload ``sdist`` creation. The
    setuptools version decides the project name casing. For now, we use
-   the one that produces deprecated filenames.
+   the one that produces deprecated filenames, but we should be ready
+   for the new one with this.
 
 -  Release: Use ``osc`` binary from virtualenv, system one can be
    broken, as is currently the case for Ubuntu.
@@ -336,10 +407,40 @@ Organizational
 -  UI: Examples for ``--include-package-data`` with file patterns were
    wrong, using the wrong delimiter.
 
+-  Scons: Warn about using gcc with LTO and no ``make`` available, as
+   that will not work. The gcc warnings are not easy to parse for normal
+   Python people.
+
+-  Debugging: Allow to not disable printing during reference count
+   tests, this can be helpful to see traces added during debugging
+   sessions.
+
 Tests
 =====
 
 -  Temporarily disable the tests that expose the 3.13.1 regressions.
+
+-  Use more common code for package tests, the scanning for test cases
+   and main files in there now uses common code, too.
+
+-  Added support for testing variations of a test with different extra
+   flags given and by exposing a ``NUITKA_TEST_VARIANT`` as a variable
+   name.
+
+-  Detect commercial-only test cases from their name rather than hard
+   coding them into the runner. Also remove them from the standard
+   distribution where they are not useful to have.
+
+-  Use ``--mode`` options in tests, for standalone mode tests check if
+   it was applied or error out, add them to project options of each test
+   case instead of requiring it globally.
+
+-  Added test case to cover external data file usage in onefile. We have
+   had unnoticed regressions that this test would now detect right away.
+
+-  Increased coroutine and asyncgen inspect coverage. So far we didn't
+   cover ``inspect.isawaitable`` yet and we should test both function
+   and context objects for all things.
 
 Cleanups
 ========
@@ -349,6 +450,22 @@ Cleanups
 
 -  Harmonized the usage of ``include <...>`` vs ``include "..."`` by
    origin of files to be included.
+
+-  Generator code for exception handlers was duplicating code, use the
+   ``DROP_GENERATOR_EXCEPTION`` functions instead.
+
+-  Changed more version Python checks on ``>=3.4`` to be ``>=3`` as that
+   is what it means to us these days. Also a bunch of 3.3 references
+   were still in comments, that too is Python3 to us now.
+
+-  Scons: Share more of the code to build the command options and made
+   it simpler to use. Now produces the options dictionary and using an
+   ``OrderedDict`` should make it more stable. Otherwise differences in
+   build outputs were observed where these are recorded.
+
+-  Our function ``executeToolChecked`` often needs to decode the
+   returned ``bytes`` output to ``unicode``. So we added an argument to
+   indicate that is desired to be able remove this in many places.
 
 Summary
 =======
