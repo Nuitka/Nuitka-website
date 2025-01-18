@@ -172,12 +172,17 @@ Bug Fixes
    names of distributions, for some packages there is not files metadata
    available via the typical files. Fixed in 2.5.8 already.
 
--  **MSYS2**: Fix, downloaded gcc path needs to be normalized to native slashes
-   or else it can fail during compilation. Fixed in 2.5.9 already.
+-  **MSYS2**: Fix, downloaded gcc path needs to be normalized to native
+   slashes or else it can fail during compilation. Fixed in 2.5.9
+   already.
 
--  **Python3.13**: Fix, static libpython wasn't working for Linux, an unexposed API that we use changed the signature and we needed to follow that. Fixed in 2.5.9 already.
+-  **Python3.13**: Fix, static libpython wasn't working for Linux, an
+   unexposed API that we use changed the signature and we needed to
+   follow that. Fixed in 2.5.9 already.
 
--  Fix, ``asyncgen`` resurrected when they had a finalizer attached, leading to memory leaks with asyncio in case of exceptions in the ``asyncgen``. Fixed in 2.5.10 already.
+-  Fix, ``asyncgen`` resurrected when they had a finalizer attached,
+   leading to memory leaks with asyncio in case of exceptions in the
+   ``asyncgen``. Fixed in 2.5.10 already.
 
 Package Support
 ===============
@@ -276,10 +281,14 @@ New Features
    directory is ``/`` which is almost never correct and contrary to some
    users expectations too. Added in 2.5.6 already.
 
+-  Standalone: Added support for newer ``soundfile`` package.
+
 Optimization
 ============
 
-No changes documented yet.
+-  Experimental code for more compact code object usage leading to more
+   scalable C code and constants usage. This will allow to speed up C
+   compilation and code generation a future once properly validated.
 
 Anti-Bloat
 ==========
@@ -289,10 +298,19 @@ No changes documented yet.
 Organizational
 ==============
 
+-  UI: Added categories for plugins and show non package-support plugin
+   options by default in ``--help`` output. Added dedicated
+   ``--help-plugins`` and point it out in the ``--help`` where all
+   plugin options are shown without the need to enable a plugin.
+
 -  UI: Use report path for executable in ``--version`` output.
 
    We don't want people to be forced to output their home directory
    path, it only makes them want to avoid giving the whole output.
+
+-  UI: Detect missing product or file version if only other Windows
+   version information is given and give an explicit error, rather than
+   just an assertion error during post processing.
 
 -  UI: The container argument couldn't be a non-template file for
    ``run-inside-nuitka-container``. Fixed in 2.5.2.
@@ -301,8 +319,8 @@ Organizational
    setuptools version decides the project name casing. For now, we use
    the one that produces deprecated filenames.
 
--  Release: Use ``osc`` binary from virtualenv, system one can be broken, as is
-   currently the case for Ubuntu.
+-  Release: Use ``osc`` binary from virtualenv, system one can be
+   broken, as is currently the case for Ubuntu.
 
 -  Debugging: Allow disabling changing to short paths on Windows with an
    experimental option.
