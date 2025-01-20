@@ -6,10 +6,9 @@
  Nuitka VM
 ###########
 
-Nuitka can be purchased and used together with other software that does
-VM level protection. Right now, the offer available is Themida and
-WinLicense. Both are Oreans products, for which Nuitka VM supports
-automatic and transparent use.
+Nuitka can be used together with other software that does VM level protection.
+Right now, the offer available is Themida and WinLicense. Both are Oreans
+products, for which Nuitka VM supports automatic and transparent use.
 
 .. note::
 
@@ -146,5 +145,5 @@ higher price.
 
 .. note::
 
-   If you already own a Themida or WinLicense license, you can purchase
+   You need to own a Themida or WinLicense license, that you can purchase
    them from Oreans Themida separately.
