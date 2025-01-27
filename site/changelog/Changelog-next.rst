@@ -82,10 +82,17 @@ New Features
 -  **Windows:** Enable taskbar grouping, if product name and company
    name are present in version information. Added in 2.6.1 already.
 
+-  **Windows:** Use icons given for Windows automatically with ``PySide6``, this
+   removes the need to also provide the application icon as a PNG file,
+   duplicating it.
+
 Optimization
 ============
 
--  None yet
+-  Avoid API call for finalizer usage in compiled generator, coroutines, and
+   asyncgen. These had been added in Nuitka 2.6 to achieve enhanced
+   compatibility but could slow down their operation, this change undoes that
+   effect.
 
 Anti-Bloat
 ==========
@@ -95,6 +102,14 @@ Anti-Bloat
 Organizational
 ==============
 
+-  **UI:** Enhanced output for used command line options
+
+   -  Use the report path for filenames given as positional arguments, this is
+      often the compiled file.
+
+   -  Format info traces with a potential leader, allows intended values
+      to be output, this makes the trace much more readable.
+
 -  **Actions:** Add compilation report artifacts to all empty module
    compilations.
 
@@ -102,7 +117,8 @@ Organizational
    as produced by application bundled on macOS. Added in 2.6.1 already.
 
 -  **User Manual:** Updated example for Nuitka-Action, we should
-   probably just point to its documentation instead. Changed in 2.6.1 already.
+   probably just point to its documentation instead. Changed in 2.6.1
+   already.
 
 Tests
 =====
