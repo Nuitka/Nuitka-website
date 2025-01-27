@@ -3,7 +3,7 @@
    Click the buttons in the boxes above for Stripe payment (bank
    transfer, credit card, SEPA debit charge, etc).
 
-.. grid:: 1 2 2 4
+.. grid:: 1 2 2 3
    :gutter: 2
 
    .. grid-item-card::  Nuitka Commercial
@@ -23,24 +23,6 @@
 
        - Standard Support
 
-   .. grid-item-card::  Nuitka Priority
-      :class-item: nuitka-grid-offer nuitka-offer-priority
-
-       .. container:: nuitka-price
-
-           € 250 / yr
-
-       .. container:: nuitka-buy
-
-         `Subscribe now » </stripe/checkout-priority-subscription>`__
-
-       - Best Support
-
-       - Issues have **Priority**
-
-       - **No** Commercial features
-
-
    .. grid-item-card::  Full Package
       :class-item: nuitka-grid-offer nuitka-offer-full-package
 
@@ -54,7 +36,9 @@
 
        - Nuitka Commercial **included**
 
-       - Nuitka Priority **included**
+       - Best Support **included**
+
+       - Issues have **Priority**
 
 
    .. grid-item-card::  Sponsor

@@ -163,30 +163,17 @@ already justify the investment.
 
                The feature has not yet been fully implemented; we will add it in future updates.
 
-**************************
- Priority Issue Solutions
-**************************
-
-You might have an issue that blocks you from using **Nuitka**, which you
-want to use. Your interest might be performance gains and IP protection,
-with or without the commercial plugins.
-
-The Nuitka Priority package gives you access to elevated priority of
-your issues. If you subscribe to this, your reported issues will be
-solved with the highest priority, enabling you to use **Nuitka** as
-quickly as possible.
-
 *************
  Sponsorship
 *************
 
 You are happy with using **Nuitka** and want to benefit more because it
 solves a crucial part of your deployment workflow. You may or may not
-need the priority package or the commercial package.
+need the priority package or the **Nuitka Commercial** package.
 
-You can pay this relatively large amount and help **Nuitka** development
-in general. And you can know that you get the best support or reward for
-the high-quality service you got with **Nuitka**.
+You can pay this relatively large amount and help **Nuitka** development in
+general. And you can know that you get the best support or simply reward the
+high-quality service you got with **Nuitka**.
 
 Naturally, sponsors will be entitled to all access and treated with
 highest priority.
