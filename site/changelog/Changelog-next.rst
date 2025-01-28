@@ -90,7 +90,7 @@ New Features
    duplicating it.
 
 -  **Nuitka Package Configuration:** Allow using values of ``constants``
-   declarations in boolean conditions.
+   ``variable`` declarations in ``when`` conditions where possible.
 
 Optimization
 ============
