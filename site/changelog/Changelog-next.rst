@@ -72,6 +72,9 @@ Package Support
 -  Standalone: Added data files needed for ``blib2to3`` package. Added
    in 2.6.1 already.
 
+-  Standalone: Added support for newer ``numba`` package. Added in 2.6.2
+   already.
+
 New Features
 ============
 
@@ -85,6 +88,9 @@ New Features
 -  **Windows:** Use icons given for Windows automatically with ``PySide6``, this
    removes the need to also provide the application icon as a PNG file,
    duplicating it.
+
+-  **Nuitka Package Configuration:** Allow using values of ``constants``
+   declarations in boolean conditions.
 
 Optimization
 ============
@@ -119,6 +125,9 @@ Organizational
 -  **User Manual:** Updated example for Nuitka-Action, we should
    probably just point to its documentation instead. Changed in 2.6.1
    already.
+
+-  **Quality:** Make sure all our C files are ASCII, to avoid unicode sneaking
+   in as it did.
 
 Tests
 =====
