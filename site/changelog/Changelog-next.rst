@@ -61,10 +61,11 @@ Bug Fixes
 
 -  **Modules:** Fix, was crashing in module mode on importlib
    distribution calls that would be optimizable, but due to module mode
-   are not.
+   are not. Fixed in 2.6.1 already.
 
 -  **Python3:** Fix, for namespace packages, not providing a
    ``path_finder`` was leading to errors with newer setuptools versions.
+   Fixed in 2.6.1 already.
 
 Package Support
 ===============
