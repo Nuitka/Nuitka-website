@@ -67,6 +67,10 @@ Bug Fixes
    ``path_finder`` was leading to errors with newer setuptools versions.
    Fixed in 2.6.1 already.
 
+-  **Windows:** Fix, one header file had a UTF-8 comment that could
+   cause MSVC to properly compile on systems with some locales. Fixed in
+   2.6.2 already.
+
 Package Support
 ===============
 
@@ -75,6 +79,9 @@ Package Support
 
 -  Standalone: Added support for newer ``numba`` package. Added in 2.6.2
    already.
+
+-  Standalone: Added support for newer ``huggingface_hub`` package.
+   Added in 2.6.2 already.
 
 New Features
 ============
@@ -104,7 +111,8 @@ Optimization
 Anti-Bloat
 ==========
 
--  None yet
+-  Avoid using ``matplotlib`` from ``tqdm`` package. Added in 2.6.2
+   already.
 
 Organizational
 ==============
