@@ -786,7 +786,7 @@ def runPostProcessing():
         for current_link in doc.xpath(
             "//ul[contains(@class, 'hub-toc')]//a[@class='reference internal']"
         ):
-            if current_link.attrib["href"] == "/":
+            if current_link.attrib["href"] in ("/", "#"):
                 parent_tag = current_link.getparent()
                 assert parent_tag.tag == "p", parent_tag
                 parent_tag.attrib["class"] = "hub-nav-current"
