@@ -71,17 +71,42 @@ Bug Fixes
    cause MSVC to properly compile on systems with some locales. Fixed in
    2.6.2 already.
 
+-  **Standalone:** Fix, need to clear all associated tags for data files
+   discovered, if they are inhibited by the user, otherwise plugins can
+   get confused. Fixed in 2.6.2 already.
+
+-  **Standalone:** Fix, ``pkgutil.iter_modules`` could fail to list all
+   modules.
+
+   When a directory for the package exists, the file finder of Python
+   could take our package responsibility, giving very incomplete results
+   that do not contained compiled modules. Fixed in 2.6.2 already.
+
+-  **Windows** Fix, with onefile compression there was a C warning on 32
+   bit Windows when compiling the bootstrap.
+
 Package Support
 ===============
 
--  Standalone: Added data files needed for ``blib2to3`` package. Added
-   in 2.6.1 already.
+-  **Standalone:** Added data files needed for ``blib2to3`` package.
+   Added in 2.6.1 already.
 
--  Standalone: Added support for newer ``numba`` package. Added in 2.6.2
-   already.
+-  **Standalone:** Added support for newer ``numba`` package. Added in
+   2.6.2 already.
 
--  Standalone: Added support for newer ``huggingface_hub`` package.
+-  **Standalone:** Added support for newer ``huggingface_hub`` package.
    Added in 2.6.2 already.
+
+-  **Anti-Bloat:** Fix, need to provide more ``numpy.testing`` stubs,
+   otherwise some ``sklearn`` modules didn't properly execute. Fixed in
+   2.6.2 already.
+
+-  **Standalone:** Enhanced configuration for ``fontTools`` package. Do
+   not configure hidden dependencies that we now detect by looking at
+   the provided Python files as if they were ``.pyi`` files. Fixed in
+   2.6.2 already.
+
+-  **Standalone:** Fix, for newer ``PySide6`` plugin ``sqldrivers`` on macOS.
 
 New Features
 ============
@@ -114,6 +139,12 @@ Anti-Bloat
 -  Avoid using ``matplotlib`` from ``tqdm`` package. Added in 2.6.2
    already.
 
+-  Avoid using ``matplotlib`` from ``scipy`` package. Added in 2.6.2
+   already.
+
+-  Avoid using ``cython`` from the ``fontTools`` package. Added in 2.6.2
+   already.
+
 Organizational
 ==============
 
@@ -123,6 +154,16 @@ Organizational
       this is often the compiled file.
    -  Format info traces with a potential leader, allows intended values
       to be output, this makes the trace much more readable.
+
+-  **Reports:** Save and restore timing information for cached modules
+
+   -  In this way, we don't have a difference if a module is loaded from
+      cache or not, which helps a lot in Nuitka-Watch where previously
+      every new compilation yielded changes for the timing of those
+      modules.
+
+   -  Should make our life for **Nuitka-Watch** much easier by avoiding
+      this noise.
 
 -  **Actions:** Add compilation report artifacts to all empty module
    compilations.
