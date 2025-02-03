@@ -85,6 +85,36 @@ Bug Fixes
 -  **Windows** Fix, with onefile compression there was a C warning on 32
    bit Windows when compiling the bootstrap.
 
+-  **Python3.12+**: Fix, accessing the module attribute of ``type``
+   variables gave a ``SystemError`` exception.
+
+-  **Metadata**: Fix, reading record data from distribution files may
+   not be possible in some cases, as the files don't always exist. Fixed
+   in 2.6.3 already.
+
+-  **Compatibility:** Fix, for used shared libraries that were symbolic
+   links, on non-Windows the dependencies were not properly resolved if
+   they came from the symlink target and that was not in the system path
+   for libraries, or nearby in symlink form as well. Fixed in 2.6.3
+   already.
+
+-  **Standalone:** Avoid using ``msvcp140.dll`` from ``PySide6``
+   (actually ``shiboken6``) for other packages, they may not be
+   compatible with it causing crashes. Fixed in 2.6.3 already.
+
+-  **Standalone:** Fix, comments after imports could break the ``.pyi``
+   file parsing. Fixed in 2.6.3 already.
+
+-  **UI:** Fix, output of listing DLLs and EXE didn't supply correct
+   sub-folders anymore. Fixed in 2.6.3 already.
+
+-  **macOS:** Fix, icons were no longer attached to application bundles.
+   Fixed in 2.6.3 already.
+
+-  **Onefile:** Fix, this gave a C compiler warning on 32 bit Windows
+   due to lack of type conversion for decompression buffer size. Fixed
+   in 2.6.3 already.
+
 Package Support
 ===============
 
@@ -106,7 +136,16 @@ Package Support
    the provided Python files as if they were ``.pyi`` files. Fixed in
    2.6.2 already.
 
--  **Standalone:** Fix, for newer ``PySide6`` plugin ``sqldrivers`` on macOS.
+-  **Standalone:** Fix, for newer ``PySide6`` plugin ``sqldrivers`` on
+   macOS. Fixed in 2.6.3 already.
+
+-  **Python3.12+**: Added standalone mode support for ``mediapipe``
+   package with Python3.12+, with a workaround for the problems of
+   extension modules creating sub-modules. Fixed in 2.6.3 already.
+
+-  **Python3.12+**: Added standalone mode support for ``onnx`` package
+   with Python3.12+, with a workaround for the problems of extension
+   modules creating sub-modules. Fixed in 2.6.3 already.
 
 New Features
 ============
@@ -114,6 +153,10 @@ New Features
 -  **Windows:** Added support for Windows ARM and dependency analysis.
    We do it via ``pefile`` since dependency walker doesn't know about
    ARM.
+
+-  **Compatibility** Added support for UV-Python, albeit it doesn'T
+   support static libpython as the included one is unusable. Added in
+   2.6.3 already.
 
 -  **Windows:** Enable taskbar grouping, if product name and company
    name are present in version information. Added in 2.6.1 already.
@@ -144,6 +187,13 @@ Anti-Bloat
 
 -  Avoid using ``cython`` from the ``fontTools`` package. Added in 2.6.2
    already.
+
+-  Avoid using ``sparse`` from ``scipy`` package. Added in 2.6.3
+   already.
+
+-  Avoid using ``setuptools`` for ``jaxlib`` package. Also do not call
+   git to attempt and query the version from ``jaxlib`` source code.
+   Added in 2.6.3 already.
 
 Organizational
 ==============
@@ -177,6 +227,9 @@ Organizational
 
 -  **Quality:** Make sure all our C files are ASCII, to avoid unicode
    sneaking in as it did.
+
+-  **Plugins**: When illegal module names are given for implicit
+   imports, properly report plugin name.
 
 Tests
 =====
