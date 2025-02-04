@@ -115,6 +115,9 @@ Bug Fixes
    due to lack of type conversion for decompression buffer size. Fixed
    in 2.6.3 already.
 
+-  **Python3.12+**: Fix, must type aliases had not usable ``module``
+   attribute with the containing module name. Fixed in 2.6.3 already.
+
 Package Support
 ===============
 
@@ -189,6 +192,9 @@ Anti-Bloat
    already.
 
 -  Avoid using ``sparse`` from ``scipy`` package. Added in 2.6.3
+   already.
+
+-  Avoid using ``ndonnx`` from ``scipy`` package. Added in 2.6.3
    already.
 
 -  Avoid using ``setuptools`` for ``jaxlib`` package. Also do not call
