@@ -159,7 +159,7 @@ New Features
    2.6.3 already.
 
 -  **Windows:** Enable taskbar grouping, if product name and company
-   name are present in version information. Added in 2.6.1 already.
+   name are present in version information. Added in 2.6.4 already.
 
 -  **Windows:** Use icons given for Windows automatically with
    ``PySide6``, this removes the need to also provide the application
@@ -194,6 +194,8 @@ Anti-Bloat
 -  Avoid using ``setuptools`` for ``jaxlib`` package. Also do not call
    git to attempt and query the version from ``jaxlib`` source code.
    Added in 2.6.3 already.
+
+-  Avoid using ``yaml`` from ``scipy`` package. Added in 2.6.4 already.
 
 Organizational
 ==============
@@ -230,6 +232,8 @@ Organizational
 
 -  **Plugins**: When illegal module names are given for implicit
    imports, properly report plugin name.
+
+-  **Quality:** Use ``clang-format-21`` if available.
 
 Tests
 =====
