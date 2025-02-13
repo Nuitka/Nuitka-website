@@ -1,6 +1,6 @@
 .. |NUITKA_VERSION| replace::
 
-   2.6.1
+   2.6.5
 
 .. |NUITKA_VERSION_MINOR| replace::
 
