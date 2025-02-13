@@ -118,6 +118,13 @@ Bug Fixes
 -  **Python3.12+**: Fix, must type aliases had not usable ``module``
    attribute with the containing module name. Fixed in 2.6.3 already.
 
+-  **Python3.12+**: Fix, type aliases were not fully compatible for
+   values as well.
+
+   We were creating them in the wrong way for compound type aliases
+   leading to errors in uses like ``pydantic`` schemas. Fixed in 2.6.5
+   already.
+
 Package Support
 ===============
 
@@ -150,6 +157,18 @@ Package Support
    with Python3.12+, with a workaround for the problems of extension
    modules creating sub-modules. Fixed in 2.6.3 already.
 
+-  **Standalone:** Added support for newer ``sqlglot`` package. Added in
+   2.6.5 already.
+
+-  **Standalone:** Include ``asset`` data files of ``arcade`` package,
+   too. Added in 2.6.5 already.
+
+-  **Standalone:** Added implicit dependencies for ``sqlalchemy.orm``.
+   Added in 2.6.5 already.
+
+-  **MacOS:** Fix, need more frameworks including for PySide 6.8
+   web-engine. Added in 2.6.5 already.
+
 New Features
 ============
 
@@ -170,6 +189,9 @@ New Features
 
 -  **Nuitka Package Configuration:** Allow using values of ``constants``
    ``variable`` declarations in ``when`` conditions where possible.
+
+-  **Reports:** Make it clear if a package is "vendored", which is the
+   case for ``setuptools`` contained packages if used from there.
 
 Optimization
 ============
@@ -202,6 +224,13 @@ Anti-Bloat
    Added in 2.6.3 already.
 
 -  Avoid using ``yaml`` from ``scipy`` package. Added in 2.6.4 already.
+
+-  Avoid using ``charset_normalizer`` for ``numpy`` package. Added in
+   2.6.5 already.
+
+-  Avoid using ``lxml`` for ``pandas`` package. Added in 2.6.5 already.
+
+-  Avoid using ``PIL`` for ``sklearn`` package. Added in 2.6.5 already.
 
 Organizational
 ==============
