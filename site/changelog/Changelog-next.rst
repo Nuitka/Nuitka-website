@@ -125,6 +125,33 @@ Bug Fixes
    leading to errors in uses like ``pydantic`` schemas. Fixed in 2.6.5
    already.
 
+-  **Python3.12+**: Workaround for failure to set package context for
+   extension modules causing major compatibility issues previously.
+
+   Without static libpython we don't have the ability to set the package
+   context and then extension modules corrupt global namespace by
+   creating a module without the package name. This can collide with
+   existing package names. For ``PySide6QtAds`` package this was
+   happening. Protect against that by saving and restoring old module
+   value and correct the loaded module name afterwards.
+
+   Previously, e.g. ``PySide6.QtWidgets`` was loaded as ``QtWidgets`` as
+   well in ``sys.modules`` and that was corrected by the Nuitka loader
+   storing it under the correct name as well, only.
+
+   Also rename further sub-modules potentially created by extension
+   modules during their load already. This should increase its coverage
+   by a lot. We had manually done this for ``onnx`` and ``mediapipe`` so
+   far, but e.g. ``paddleocr`` was affected too, any maybe other
+   packages. Most recently new ``scipy`` added itself to that list.
+
+   The most important platform this impacts is Windows and also macOS if
+   using official CPython flavor. Fixed in 2.6.6 already.
+
+-  **Plugins:** In case of data files not naively found, the
+   ``get_data`` helper function for Nuitka Package Configuration crashed
+   on the fallback to ``pkgutil``. Fixed in 2.6.6 already.
+
 Package Support
 ===============
 
@@ -168,6 +195,11 @@ Package Support
 
 -  **MacOS:** Fix, need more frameworks including for PySide 6.8
    web-engine. Added in 2.6.5 already.
+
+-  **Standalone:** Enhanced ``cv2`` package support, config files
+   apparently can be Python minor version specific as well, make data
+   files reading in plugins allowed to find them only optionally. Added
+   in 2.6.6 already.
 
 New Features
 ============
