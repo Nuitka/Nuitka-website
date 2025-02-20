@@ -152,6 +152,30 @@ Bug Fixes
    ``get_data`` helper function for Nuitka Package Configuration crashed
    on the fallback to ``pkgutil``. Fixed in 2.6.6 already.
 
+-  **Standalone:** For DLLs in sub-folders the r-path value used for
+   finding used DLLs on non-Windows, didn't include the DLLs's own
+   folder ``$ORIGIN`` but only the folders above, on some cases that
+   prevented those DLLs from loading. Fixed in 2.6.7 already.
+
+-  **Standalone:** Treat shared library dependencies with paths as if
+   they were given as ``rpaths`` as well.
+
+   This fixes builds using for Pythons that like **Python Build
+   Standalone** (the Python distribution installed by uv), which have an
+   ``$ORIGIN``-relative libpython dependency that should be respected as
+   well. Fixed in 2.6.7 already.
+
+-  **Python3:** Fix, generators need to preserve outside exceptions and
+   restore their own on resume. Otherwise when used as context managers
+   and handling an exception wit ha yield, an other ``with`` statement
+   could not be able to re-raise its own exception if any occurs in its
+   body. Fixed in 2.6.7 already.
+
+-  **Android:** Fix, standalone builds were retaining the Termux
+   ``rpath`` value pointing into its installation, which after APK
+   packaging wouldn't have any effect due to how Android security works,
+   but it shouldn't be there. Fixed in 2.6.7 already.
+
 Package Support
 ===============
 
@@ -201,6 +225,17 @@ Package Support
    files reading in plugins allowed to find them only optionally. Added
    in 2.6.6 already.
 
+-  **Standalone:** Added support for ``scipy`` sub-module loader. They
+   can be used without explicit support, by handling it as a lazy
+   loader, we see these implicit dependencies as well. Added in 2.6.7
+   already.
+
+-  **Standalone:** Include django db engine modules automatically as
+   well. Added in 2.6.7 already.
+
+-  **Homebrew:** Added support for ``tk-inter`` with Python versions
+   with **Tcl/Tk** version 9.
+
 New Features
 ============
 
@@ -208,9 +243,13 @@ New Features
    We do it via ``pefile`` since dependency walker doesn't know about
    ARM.
 
--  **Compatibility** Added support for UV-Python, albeit it doesn'T
-   support static libpython as the included one is unusable. Added in
-   2.6.3 already.
+-  **Android:** Added support for module mode with Termux Python as
+   well. Added in 2.6.7 already.
+
+-  **Compatibility** Added support for **Python Build Standalone** as
+   downloaded by ``uv`` potentially, albeit it doesn't support static
+   ``libpython`` as the included one is currently unusable. Added in
+   2.6.7 already.
 
 -  **Windows:** Enable taskbar grouping, if product name and company
    name are present in version information. Added in 2.6.4 already.
@@ -263,6 +302,8 @@ Anti-Bloat
 -  Avoid using ``lxml`` for ``pandas`` package. Added in 2.6.5 already.
 
 -  Avoid using ``PIL`` for ``sklearn`` package. Added in 2.6.5 already.
+
+-  Avoid ``numba`` in ``smt`` package. Added in 2.6.7 already.
 
 Organizational
 ==============
