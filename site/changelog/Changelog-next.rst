@@ -236,6 +236,8 @@ Package Support
 -  **Homebrew:** Added support for ``tk-inter`` with Python versions
    with **Tcl/Tk** version 9.
 
+-  **Standalone:** Added missing datafile for ``jenn`` package.
+
 New Features
 ============
 
