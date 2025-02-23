@@ -10,7 +10,7 @@ do
     rm -rf output
 
     # Trigger updates from Changelog documents and update downloads page
-    python3 -m invoke update-docs
+    # python3 -m invoke update-docs
 
     python3 -m invoke site
     # python3 -m invoke intl -l zh_CN
