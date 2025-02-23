@@ -511,8 +511,8 @@ These create application bundles with icons on **macOS**:
    manually. Instead, it seamlessly converts various formats, such as
    **PNG** and others on the go during the build process.
 
-MacOS Entitlements
-==================
+**MacOS** Entitlements
+======================
 
 Entitlements define the capabilities and permissions that the
 application has when running, such as access to audio, camera, or
@@ -534,8 +534,8 @@ page.
    value. That prevents your shell from interpreting the spaces as two
    separate arguments for **Nuitka** causing.
 
-Windows UAC Configuration
-=========================
+**Windows** UAC Configuration
+=============================
 
 Request **Windows User Account Control** (**UAC**), to grant admin
 rights on execution with ``--windows-uac-admin`` (**Windows** only). By
@@ -547,28 +547,40 @@ only). See `Microsoft Documentation
 <https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/user-account-control-allow-uiaccess-applications-to-prompt-for-elevation-without-using-the-secure-desktop>`__
 on the topic for details about this.
 
-Console Window
-==============
+**Windows** Console Window Control
+==================================
 
-On **Windows**, programs can open a console by default. You can change
-that with the ``--disable-console`` option. That makes them suitable for
-output visibility or easy debugging of program errors, which is
-essential.
+On **Windows**, compiled programs open a console window by default. This
+behavior is useful for displaying output and debugging, but it's not
+always desirable. You can control this behavior with the
+``--windows-console-mode`` option, which accepts the following values:
 
-In Python, there is also a difference between **pythonw.exe** and
-**python.exe** along those lines. **Nuitka** replicates that with the
-option ``--disable-console``.
++---------+----------------------------------------------------------------------+
+| Mode    | Description                                                          |
++=========+======================================================================+
+| force   | (Default) Forces a console window to open. If the program is         |
+|         | launched from an existing console, that console will be re-used.     |
++---------+----------------------------------------------------------------------+
+| disable | Prevents a console window from opening. Use this for GUI programs    |
+|         | that do not require console interaction.                             |
++---------+----------------------------------------------------------------------+
+| attach  | Attaches to an existing console if the program is launched from one; |
+|         | otherwise, no console window is created.                             |
++---------+----------------------------------------------------------------------+
+| hide    | Forces a console window to be created, but immediately minimizes it. |
+|         | The console window will typically flash briefly.                     |
++---------+----------------------------------------------------------------------+
 
-**Nuitka** itself recommends this option, especially when using **GUI**
-packages like **PySide6** or **wx**, but it may not cover all those
-cases. In case you know your program is a console application, use
-``--enable-console``, which will get rid of these kinds of outputs from
-**Nuitka**.
+
+Nuitka's default behavior mirrors that of ``python.exe``, while
+``--windows-console-mode=disable`` corresponds to using ``pythonw.exe``.
 
 .. note::
 
-   You cannot use **pythonw.exe** with **Nuitka**, as you won't be able
-   to see its output.
+   Even with ``disable`` or ``attach`` some programs might still briefly
+   open a console window due to the way Windows handles program
+   execution. This is a **Windows** limitation and cannot be entirely
+   avoided other than not launching those programs.
 
 Splash screen
 =============
