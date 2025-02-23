@@ -359,37 +359,60 @@ Code is not Data Files
    treatment will not work on other systems unless you know what you are
    doing.
 
-In the following table, we list code file types.
+Code File Types and Solutions
+-----------------------------
 
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| Suffix     | Rationale                                                                                 | Solution                                                                                               |
-+============+===========================================================================================+========================================================================================================+
-| ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code, so    | Use ``--include-module`` on them instead                                                               |
-|            | dependencies are not analyzed, and it will not work.                                      |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyc``   | Same as ``.py``.                                                                          | Use ``--include-module`` on their source code instead.                                                 |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyo``   | Same as ``.pyc``.                                                                         | Use ``--include-module`` on their source code instead.                                                 |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyw``   | Same as ``.py``.                                                                          | For including multiple programs, use multiple ``--main`` arguments instead.                            |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyi``   | Ignored because they are code-like and usually unnecessary at run time. For the ``lazy``  | Raise an issue if 3rd part software needs it.                                                          |
-|            | package that actually would depend on them, we made a solution need.                      |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyx``   | Ignored, because they are source code not used at run time                                |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd     | Create Nuitka Package Configuration for those, with ``dll`` section for the package that uses them.    |
-|            | party packages use them as data, for example, ``.NET`` packages, we solve that in package | For rare cases, a ``data-files`` section with special configuration might be the correct thing to do.  |
-|            | configuration for it.                                                                     |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dylib`` | Ignored since they are macOS extension modules or DLLs.                                   | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.so``    | Ignored since they are Linux/BSD extension modules or DLLs.                               | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.exe``   | They are binaries on Windows.                                                             | You can add Nuitka Package Configuration to include those as DLLs and mark them as ``executable: yes`` |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.bin``   | Same as ``.exe`` on Windows.                                                              |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+
+   * - Suffix
+     - Rationale
+     - Solution
+
+   * - ``.py``
+     - Nuitka trims even the stdlib modules to be included. If it doesn't see Python code, dependencies are not analyzed, and it will not work.
+     - Use ``--include-module`` on them instead
+
+   * - ``.pyc``
+     - Same as ``.py``.
+     - Use ``--include-module`` on their source code instead.
+
+   * - ``.pyo``
+     - Same as ``.pyc``.
+     - Use ``--include-module`` on their source code instead.
+
+   * - ``.pyw``
+     - Same as ``.py``.
+     - For including multiple programs, use multiple ``--main`` arguments instead.
+
+   * - ``.pyi``
+     - Ignored because they are code-like and usually unnecessary at run time. For the ``lazy`` package that actually would depend on them, we made a solution need.
+     - Raise an issue if 3rd part software needs it.
+
+   * - ``.pyx``
+     - Ignored, because they are source code not used at run time
+     -
+
+   * - ``.dll``
+     - These are ignored, since they **usually** are not data files. For the cases where 3rd party packages use them as data, for example, ``.NET`` packages, we solve that in package configuration for it.
+     - Create Nuitka Package Configuration for those, with ``dll`` section for the package that uses them. For rare cases, a ``data-files`` section with special configuration might be the correct thing to do.
+
+   * - ``.dylib``
+     - Ignored since they are macOS extension modules or DLLs.
+     - Need to add configuration with ``dll`` section or ``depends`` that are missing
+
+   * - ``.so``
+     - Ignored since they are Linux/BSD extension modules or DLLs.
+     - Need to add configuration with ``dll`` section or ``depends`` that are missing
+
+   * - ``.exe``
+     - They are binaries on Windows.
+     - You can add Nuitka Package Configuration to include those as DLLs and mark them as ``executable: yes``
+
+   * - ``.bin``
+     - Same as ``.exe`` on Windows.
+     -
+
 
 Package data ``--include-package-data=PACKAGE``
 ===============================================
