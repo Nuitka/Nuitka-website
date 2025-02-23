@@ -171,9 +171,9 @@ You are happy with using **Nuitka** and want to benefit more because it
 solves a crucial part of your deployment workflow. You may or may not
 need the priority package or the **Nuitka Commercial** package.
 
-You can pay this relatively large amount and help **Nuitka** development in
-general. And you can know that you get the best support or simply reward the
-high-quality service you got with **Nuitka**.
+You can pay this relatively large amount and help **Nuitka** development
+in general. And you can know that you get the best support or simply
+reward the high-quality service you got with **Nuitka**.
 
 Naturally, sponsors will be entitled to all access and treated with
 highest priority.

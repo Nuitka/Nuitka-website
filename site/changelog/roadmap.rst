@@ -77,8 +77,8 @@ This is the Nuitka roadmap, broken down by features.
    Currently only single digit is optimized, but with Python 3.12, we
    can do better now.
 
--  Add support for generic classes, these are not yet implemented which is not
-   acceptable mid-term.
+-  Add support for generic classes, these are not yet implemented which
+   is not acceptable mid-term.
 
 *************
  Python 3.13

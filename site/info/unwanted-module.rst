@@ -91,7 +91,7 @@ indicator pointer to get this resolved.
 
 For best results, you should compile with
 ``--noinclude-default-mode=error`` and help to get your compilation
-error-free by removing the problematic imports from 3rd party software
+error-free by removing the problematic imports from 3rd-party software
 with ``anti-bloat`` contributions.
 
 Alternatively, for popular packages, report the issue, and we might do

@@ -87,5 +87,5 @@ missing implicit imports is.
 If you have a segfault, always make an issue report since these are not
 normal, even if you manage to work around them. With ``--debugger``, you
 will get a stack output that will be extremely useful. Please also try
-to reduce the test case as much as possible. Often, imports of 3rd party
+to reduce the test case as much as possible. Often, imports of 3rd-party
 code will be enough to produce your issue.

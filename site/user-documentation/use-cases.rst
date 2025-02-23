@@ -201,7 +201,7 @@ the correct folder for you.
 With data files, you are largely on your own. Nuitka keeps track of ones
 that are needed by popular packages, but it might be incomplete. Raise
 issues if you encounter something in these. Even better, raise PRs with
-enhancements to the Nuitka Package Configuration. We want 3rd party
+enhancements to the Nuitka Package Configuration. We want 3rd-party
 software to just work out of the box.
 
 When that is working, you can use the onefile mode if you so desire.

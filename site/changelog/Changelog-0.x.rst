@@ -14837,7 +14837,7 @@ Organizational
 -  Make the tests run without any dependence on ``PATH`` to contain the
    executables of Nuitka. This makes it easier to use.
 
--  Add license texts to 3rd party file that were missing them, apply
+-  Add license texts to 3rd-party file that were missing them, apply
    ``licensecheck`` results to cleanup Nuitka. Also removed own
    copyright statement from in-line copy of Scons, it had been added by
    accident only.

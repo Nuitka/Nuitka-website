@@ -27,12 +27,15 @@ def virtualenv(c):
 def serve(c):
     c.run(f"{sys.executable} -m pipenv run python update.py --serve-site")
 
+
 @task
 def update_docs(c):
     c.run(f"{sys.executable} -m pipenv run python update.py --update-docs")
 
+
 @task
 def post_process(c):
     c.run(f"{sys.executable} -m pipenv run python update.py --post-process")
+
 
 ns = Collection(intl, site, bundle, serve, update_docs, post_process, virtualenv)
