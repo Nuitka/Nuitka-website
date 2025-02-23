@@ -373,7 +373,7 @@ In the following table, we list code file types.
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 | ``.pyw``   | Same as ``.py``.                                                                          | For including multiple programs, use multiple ``--main`` arguments instead.                            |
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyi``   | Ignored because they are code-like and usually unnecessary at run time. For the ``lazy``  | Raise an issue if 3rd part software needs it.                                                          |
+| ``.pyi``   | Ignored because they are code-like and usually unnecessary at run time. For the ``lazy``  | Raise an issue if 3rd party software needs it.                                                          |
 |            | package that actually would depend on them, we made a solution need.                      |                                                                                                        |
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 | ``.pyx``   | Ignored, because they are source code not used at run time                                |                                                                                                        |
