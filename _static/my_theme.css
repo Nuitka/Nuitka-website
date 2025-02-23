@@ -16,6 +16,11 @@ html {
     max-width: 1000px !important;
 }
 
+.wy-table-responsive table td {
+  white-space:normal;
+}
+
+
 .sd-col {
     margin-bottom: 2rem;
 }
