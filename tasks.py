@@ -24,11 +24,15 @@ def virtualenv(c):
 
 
 @task
-def run(c, target="build-site"):
-    """
-    :target: can be `update-docs`, `build-site`, `serve-site`
-    """
-    c.run(f"{sys.executable} -m pipenv run python update.py --{target}")
+def serve(c):
+    c.run(f"{sys.executable} -m pipenv run python update.py --serve-site")
 
+@task
+def update_docs(c):
+    c.run(f"{sys.executable} -m pipenv run python update.py --update-docs")
 
-ns = Collection(intl, site, bundle, run, virtualenv)
+@task
+def post_process(c):
+    c.run(f"{sys.executable} -m pipenv run python update.py --post-process")
+
+ns = Collection(intl, site, bundle, serve, update_docs, post_process, virtualenv)

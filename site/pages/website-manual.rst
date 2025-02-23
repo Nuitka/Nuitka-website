@@ -216,19 +216,19 @@ Enhancements of all kinds are welcome. You will need Python 3.10 and
    # Now lets build the site, to see if it's all correct.
    python3 -m invoke site
 
-   # Optionally build the localized sites.
-   python3 -m invoke intl -l zh_CN
-   python3 -m invoke intl -l de_DE
+   # Optionally build the localized sites (currently not working)
+   # python3 -m invoke intl -l zh_CN
+   # python3 -m invoke intl -l de_DE
    ...
 
    # post-processing, e.g. adds language switcher, compact
    # JS/CSS, adapts external links, and more.
-   python3 -m invoke run -t post-process
+   python3 -m invoke post-process
 
    # Start local web server with the site, and do automatic
    # rebuilds. Localization are rebuilt if they were previously
    # built.
-   python3 -m invoke run -t serve-site
+   python3 -m invoke serve
 
    # Browse it (Linux)
    xdg-open http://localhost:8080

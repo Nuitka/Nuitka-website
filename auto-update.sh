@@ -9,14 +9,17 @@ do
     # Remove old output
     rm -rf output
 
-    # python3 -m invoke run -t update-docs
+    # Trigger updates from Changelog documents and update downloads page
+    python3 -m invoke update-docs
+
     python3 -m invoke site
     # python3 -m invoke intl -l zh_CN
     # python3 -m invoke intl -l de_DE
-    python3 -m invoke run -t post-process
+
+    python3 -m invoke post-process
 
     set +e
-    python3 -m invoke run -t serve-site
+    python3 -m invoke serve
 
     if [ $? -eq 27 ]
     then

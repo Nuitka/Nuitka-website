@@ -40,8 +40,8 @@ def get_builder(watcher, sphinx_args, *, host, port, pre_build_commands):
                     f"python3 -m invoke intl -l {locale}".split(), check=False
                 )
 
-        show(context="python3 -m invoke run -t post-process")
-        subprocess.run("python3 -m invoke run -t post-process".split(), check=False)
+        show(context="python3 -m invoke --post-process")
+        subprocess.run("python3 -m invoke --post-process".split(), check=False)
 
         show(context=f"Serving on http://{host}:{port}")
 
