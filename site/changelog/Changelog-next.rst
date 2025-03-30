@@ -181,6 +181,10 @@ Bug Fixes
    fixes Pythons that have a ``libpython`` that is uninstalled on
    **Linux**. Fixed in 2.6.8 already.
 
+-  **Standalone:** Older Linux didn't work due to newer ``patchelf``
+   options being used starting with the 2.6.8 ``rpath`` changes. Fixed
+   in 2.6.9 already.
+
 -  **Python3.9**: Fix, older ``importlib.metadata`` versions errored out
    for ``spacy`` plugin. Fixed in 2.6.8 already.
 
@@ -193,6 +197,16 @@ Bug Fixes
 
 -  **Windows**: Fix, need to define ``dotnet`` as a dependency to
    properly use it enabling all UI features.
+
+-  **Scons:** : Fix, need to make sure to use proper ``link`` executable
+   for MSVC backend compiler, and not e.g. the one that ``git`` adds to
+   ``PATH`` potentially. Fixed in 2.6.9 already.
+
+-  **Scons:** : Fix, avoid using ``config.txt`` with ``clcache`` as used
+   when using MSVC. It can exhibit a race during first use with two
+   ``clcache`` threads trying to create it and failing it. Solved by not
+   writing or reading it at all and using default values instead. Fixed
+   in 2.6.9 already.
 
 Package Support
 ===============
@@ -366,7 +380,11 @@ Organizational
 -  **Plugins**: When illegal module names are given for implicit
    imports, properly report plugin name.
 
--  **Quality:** Use ``clang-format-21`` if available.
+-  **Quality:** Use ``clang-format-21`` if available. Applied changes
+   only newest version do.
+
+-  **Quality**: Avoid warnings with Python3.12+ from ``pylint`` for
+   ``setuptools`` package use.
 
 Tests
 =====
