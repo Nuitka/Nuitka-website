@@ -176,6 +176,24 @@ Bug Fixes
    packaging wouldn't have any effect due to how Android security works,
    but it shouldn't be there. Fixed in 2.6.7 already.
 
+-  **Python Build Standalone**: Add rpath to where libpython is in all
+   modes by default and not just where we think it may be needed. This
+   fixes Pythons that have a ``libpython`` that is uninstalled on
+   **Linux**. Fixed in 2.6.8 already.
+
+-  **Python3.9**: Fix, older ``importlib.metadata`` versions errored out
+   for ``spacy`` plugin. Fixed in 2.6.8 already.
+
+-  **Standalone**: Fix, ``requests`` package imports could be corrupted
+   to be a sub-package instead. Fixed in 2.6.8 already.
+
+-  **Distutils on macOS**: Fixup for distutils integration with
+   extension modules scanned, the architecture is hard to know. Fixed in
+   2.6.8 already.
+
+-  **Windows**: Fix, need to define ``dotnet`` as a dependency to
+   properly use it enabling all UI features.
+
 Package Support
 ===============
 
@@ -237,6 +255,9 @@ Package Support
    with **Tcl/Tk** version 9.
 
 -  **Standalone:** Added missing datafile for ``jenn`` package.
+
+-  **Standalone**: Added support for newer ``scipy.optimize._cobyla``
+   package. Fixed in 2.6.8 already.
 
 New Features
 ============
@@ -306,6 +327,8 @@ Anti-Bloat
 -  Avoid using ``PIL`` for ``sklearn`` package. Added in 2.6.5 already.
 
 -  Avoid ``numba`` in ``smt`` package. Added in 2.6.7 already.
+
+-  Avoid more ``pygame`` optional dependencies. Added in 2.6.8 already.
 
 Organizational
 ==============
