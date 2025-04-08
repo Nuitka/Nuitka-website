@@ -9,7 +9,7 @@
 	// "features": {},
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/apt-packages:1": {
-			"packages": "python3-dev,python3-pip,bash-completion,optipng,jpegoptim,file,patchelf,ccache"
+			"packages": "python3-dev,python3-pip,python-is-python3,bash-completion,optipng,jpegoptim,file,patchelf,ccache"
 		},
 		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
 			"command": "python3 -m pip install --break invoke pipenv"
@@ -40,7 +40,8 @@
 				"streetsidesoftware.code-spell-checker",
 				"redhat.vscode-xml",
 				"eamodio.gitlens",
-				"swyddfa.esbonio"
+				"swyddfa.esbonio",
+				"google.geminicodeassist"
 			]
 		}
 	},
