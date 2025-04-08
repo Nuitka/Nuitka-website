@@ -1,5 +1,5 @@
 
-python3 -m pip install -U invoke
+python3 -m pip install --break -U invoke
 python3 -m invoke virtualenv
 
 while true

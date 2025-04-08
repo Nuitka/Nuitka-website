@@ -15,7 +15,7 @@ os.environ["PIPENV_IGNORE_VIRTUALENVS"] = "1"
 @task
 def virtualenv(c):
     """create and install env"""
-    c.run(f"{sys.executable} -m pip install -U pipenv")
+    c.run(f"{sys.executable} -m pip install --break -U pipenv")
     c.run(f"{sys.executable} -m pipenv install --dev")
 
     # Workaround pipenv failing to pin black version due to it being pre-release
