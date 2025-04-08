@@ -362,7 +362,7 @@ Code is not Data Files
 In the following table, we list code file types.
 
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| Suffix     | Rationale                                                                                 | Solution                                                                                               |
+|   Suffix   |                                         Rationale                                         |                                                Solution                                                |
 +============+===========================================================================================+========================================================================================================+
 | ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code, so    | Use ``--include-module`` on them instead                                                               |
 |            | dependencies are not analyzed, and it will not work.                                      |                                                                                                        |
@@ -373,7 +373,7 @@ In the following table, we list code file types.
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 | ``.pyw``   | Same as ``.py``.                                                                          | For including multiple programs, use multiple ``--main`` arguments instead.                            |
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyi``   | Ignored because they are code-like and usually unnecessary at run time. For the ``lazy``  | Raise an issue if 3rd-party software needs it.                                                          |
+| ``.pyi``   | Ignored because they are code-like and usually unnecessary at run time. For the ``lazy``  | Raise an issue if 3rd-party software needs it.                                                         |
 |            | package that actually would depend on them, we made a solution need.                      |                                                                                                        |
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 | ``.pyx``   | Ignored, because they are source code not used at run time                                |                                                                                                        |
