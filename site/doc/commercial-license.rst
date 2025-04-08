@@ -8,12 +8,12 @@
  Overview
 **********
 
-Nuitka commercial is unlike Nuitka **not** Free Software, but under a
-license that forbids the distribution of its source or usage of its code
-outside of Nuitka.
+Nuitka commercial is unlike Nuitka **not** Free Software. It is under a
+license that forbids the distribution of its source code or binaries.
 
-That however does not impact your software at all, and how you use
-compiled binaries of your software.
+That however does not impact your software at all, nor how you use
+compiled binaries of your software. You are free to distribute those
+without any restrictions.
 
 **************
  License Text
