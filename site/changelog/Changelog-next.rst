@@ -208,6 +208,13 @@ Bug Fixes
    writing or reading it at all and using default values instead. Fixed
    in 2.6.9 already.
 
+-  **Standalone:** Fix, need to load extension modules during
+   ``create_module`` of our loader already to be compatible.
+
+   Doing it later in ``exec_module`` seems to at least broken ``mypy``
+   created extension modules as used in the ``black`` package for
+   example.
+
 Package Support
 ===============
 
@@ -276,6 +283,21 @@ Package Support
 New Features
 ============
 
+-  **DLL:** Added new mode to produce standalone DLL distributions
+
+   This is experimental at this time, but appears to work for many
+   things, however documentation is very weak right now. Multiprocessing
+   and potentially other things will need help from launched binary, and
+   that's not currently working.
+
+   Intended for improvement of Windows GUI compatibility with tray icons
+   and notifications in onefile mode, which will use this internally.
+
+-  **Windows:** The onefile mode is now using internally DLL mode and
+   properly interacts with a created DLL. Use ``--onefile-no-dll`` to
+   deactivate it, which can be useful, if e.g. the bootstrap runner is
+   used as an installer and supposed to put an executable there.
+
 -  **Windows:** Added support for Windows ARM and dependency analysis.
    We do it via ``pefile`` since dependency walker doesn't know about
    ARM.
@@ -293,7 +315,7 @@ New Features
 
 -  **Windows:** Use icons given for Windows automatically with
    ``PySide6``, this removes the need to also provide the application
-   icon as a PNG file, duplicating it.
+   icon as a PNG file, which was duplicating it.
 
 -  **Nuitka Package Configuration:** Allow using values of ``constants``
    ``variable`` declarations in ``when`` conditions where possible.
@@ -376,6 +398,11 @@ Organizational
 
 -  **Quality:** Make sure all our C files are ASCII, to avoid unicode
    sneaking in as it did.
+
+-  **Quality:** Check ``global_replacements`` result value for proper
+   Python syntax as well, like we do for ``replacements`` already. Also
+   check the ``global_replacements_re`` and ``replacements_re`` variants
+   if the result value is actually a valid regular expression.
 
 -  **Plugins**: When illegal module names are given for implicit
    imports, properly report plugin name.
