@@ -294,9 +294,9 @@ New Features
    and notifications in onefile mode, which will use this internally.
 
 -  **Windows:** The onefile mode is now using internally DLL mode and
-   properly interacts with a created DLL. Use ``--onefile-no-dll`` to
-   deactivate it, which can be useful, if e.g. the bootstrap runner is
-   used as an installer and supposed to put an executable there.
+   properly interacts with a created DLL rather than an executable when
+   used in temporary mode. Use ``--onefile-no-dll`` to deactivate it
+   if it is causing any issues.
 
 -  **Windows:** Added support for Windows ARM and dependency analysis.
    We do it via ``pefile`` since dependency walker doesn't know about
