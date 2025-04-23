@@ -69,6 +69,11 @@ This is the Nuitka roadmap, broken down by features.
    sharing improvements by generating code variants rather that
    duplicating stuff.
 
+-  Nested async compressions are not yet fully compatible, some newly
+   allowed, strange forms, are failing ``test_testcoroutines`` and need
+   to be supported eventually, although real code is very unlikely to
+   encounter it.
+
 *************
  Python 3.12
 *************
@@ -382,7 +387,7 @@ effectively with more than a single file.
    results anywhere.
 
 *************************************
- Features to be added for Nuitka 2.7
+ Features to be added for Nuitka 2.8
 *************************************
 
 [x] Activate more scalable code objects handling
@@ -392,7 +397,7 @@ effectively with more than a single file.
 [ ] More scalable class creation
 
 *************************************
- Features to be added for Nuitka 2.8
+ Features to be added for Nuitka 2.9
 *************************************
 
 [ ] Use performance potential for attribute access with Python 3.11
