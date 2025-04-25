@@ -270,6 +270,56 @@ To view it, run the following command:
 
    python -m nuitka --help
 
+**************
+ Python Flags
+**************
+
+The ``--python-flag=flag`` option changes specific Python behaviors
+during compilation or runtime. Use the values from the table below. By
+default Nuitka uses in some cases the flags it was invoked with, and
+Python's standard behaviors apply unless modified by these flags.
+
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Flag Name               | Short  | Description                                                                                                                                                |
++=========================+========+============================================================================================================================================================+
+| ``isolated``            |        | Isolates the execution from the user's environment by ignoring variables like ``PYTHONPATH`` and not adding the user's site-packages directory to          |
+|                         |        | ``sys.path``. By default, Python considers these external configurations.                                                                                  |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``main``                | ``-m`` | Compiles the input as a Python package. Nuitka uses ``package/__main__.py`` as the entry point, mimicking ``python -m package`` execution, instead of      |
+|                         |        | compiling a single script file directly.                                                                                                                   |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``no_asserts``          | ``-O`` | Disables ``assert`` statements (they are not compiled or executed) and sets the built-in ``__debug__`` constant to ``False``. By default, ``assert``       |
+|                         |        | statements are checked and ``__debug__`` is ``True``.                                                                                                      |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``no_docstrings``       |        | Discards doc strings during compilation, meaning ``__doc__`` attributes will be ``None``. This reduces compiled code size compared to the default behavior |
+|                         |        | where doc strings are retained.                                                                                                                            |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``no_site``             | ``-S`` | Prevents the automatic import of the ``site`` module during interpreter startup. By default, ``site`` is imported, adding site-specific paths to           |
+|                         |        | ``sys.path`` and running site customization, but otherwise it's just bloat and Nuitka is good at preserving that. Default for standalone mode.             |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``no_warnings``         |        | Suppresses runtime warnings issued through Python's ``warnings`` module. By default, such warnings might be printed to ``stderr``.                         |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``safe_path``           | ``-P`` | Prevents the *current working directory* from being automatically added to the start of module search during compilation and execution. This modifies      |
+|                         |        | Python's default path setup, which might otherwise add the script's directory or the current directory depending on context. (See note below this table if |
+|                         |        | used elsewhere).                                                                                                                                           |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``static_hashes``       |        | Disables the hash randomization used by default at runtime. With this flag, hashes are not random and behavior is more deterministic, however predictable. |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``unbuffered``          | ``-u`` | Forces the ``stdout`` and ``stderr`` streams to be unbuffered. Output is written immediately, bypassing the default line-buffering (for terminals) or      |
+|                         |        | block-buffering (for files/pipes).                                                                                                                         |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``dont_write_bytecode`` | ``-B`` | Prevents Python from writing ``.pyc`` bytecode cache files to disk when importing modules during execution. By default, Python attempts to create ``.pyc`` |
+|                         |        | files. **Note:** This is mainly for debugging Python's import mechanism itself and typically not relevant for Nuitka, as compiled modules do not use       |
+|                         |        | ``.pyc`` files.                                                                                                                                            |
++-------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. note::
+
+   **Note on** ``safe_path`` / ``-P``: Standard Python's ``-P`` flag
+   behavior is context-dependent, preventing the addition of either the
+   *script's directory* or the *current working directory*. Nuitka
+   prevents the *current directory* addition only.
+
 .. _nuitka-project-options:
 
 ************************
@@ -362,7 +412,7 @@ Code is not Data Files
 In the following table, we list code file types.
 
 +------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|   Suffix   |                                         Rationale                                         |                                                Solution                                                |
+| Suffix     | Rationale                                                                                 | Solution                                                                                               |
 +============+===========================================================================================+========================================================================================================+
 | ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code, so    | Use ``--include-module`` on them instead                                                               |
 |            | dependencies are not analyzed, and it will not work.                                      |                                                                                                        |
@@ -570,7 +620,6 @@ always desirable. You can control this behavior with the
 | hide    | Forces a console window to be created, but immediately minimizes it. |
 |         | The console window will typically flash briefly.                     |
 +---------+----------------------------------------------------------------------+
-
 
 Nuitka's default behavior mirrors that of ``python.exe``, while
 ``--windows-console-mode=disable`` corresponds to using ``pythonw.exe``.
