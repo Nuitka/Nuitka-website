@@ -8,9 +8,9 @@
  The Problem in a Few Words
 ****************************
 
-The way Nuitka produced the module/package output, it will not load the
-compiled code, if imported from there before copying it to a different
-place.
+When Nuitka produces a compiled package right next to its source code,
+might not be loaded. This happens when a directory with the same name as
+the package exists alongside the compiled package. place.
 
 ************
  Background
@@ -20,18 +20,20 @@ Python has a priority system that will prefer a directory ``something``
 with ``__init__.py`` of the proper name over an extension module
 ``something.pyd`` / ``something.so`` located in the same place.
 
-So what Nuitka replaced just now, cannot replace the source code until
-you take further action. What's confusing about this, is that for plain
-Python files, the priority is not an issue, so ``something.py`` can be
-replaced with an extension module ``something.pyd`` / ``something.so``
-located in the same place.
+This means that if you have a directory named ``kitty`` and Nuitka
+compiles a package (with Python 3.10 on Windows for example) named
+``kitty`` into ``kitty.cp310-win_amd64.pyd``, Python will prioritize the
+``kitty`` directory over the compiled ``kitty.cp310-win_amd64.pyd``.
+Therefore, the compiled code will not be used. This is different from
+plain Python files, where ``something.py`` can be replaced by
+``something.pyd`` / ``something.so`` in the same location. In that case,
+the compiled code will be used.
 
 *********
  Example
 *********
 
-..
-   code: shell
+.. code:: bash
 
    cd tests/packages/sub_package
    python -m nuitka --mode=package --remove-output --no-pyi-file kitty
@@ -52,9 +54,6 @@ located in the same place.
 
    $ ls
    kitty/  kitty.cp310-win_amd64.pyd*
-
-..
-   code
 
 .. code::
 
@@ -77,7 +76,14 @@ more complex in package mode.
  Recommendation
 ****************
 
-Use ``--output-dir`` and place the output into a dedicated folder, say
-``build`` and then make sure to import from there. You can verify by
-checking your extension module ``__compiled__`` attribute, it should be
-present.
+To avoid this issue, use the ``--output-dir`` option to place the
+compiled package into a dedicated folder, such as ``build``. Then,
+ensure you import the package from this directory.
+
+For example, if you compile the ``kitty`` package with
+``--output-dir=build``, you should import it from the ``build``
+directory.
+
+You can verify that the compiled code is being used by checking for the
+``__compiled__`` attribute on the imported module. If it's present, the
+compiled code is being used.
