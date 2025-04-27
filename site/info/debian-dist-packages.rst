@@ -31,10 +31,10 @@ packaging to the source.
  Example
 *********
 
-This is the change, that Debian does to certifi. The code is changed,
-such that a data file is found not near the Python code, like most
-Python packages do it, using ``importlib.resources`` but rather a hard
-coded path is used.
+This is the change, that Debian does to ``certifi``. The code is
+changed, such that a data file is found not near the Python code, like
+most Python packages do it, using ``importlib.resources`` but rather a
+hard coded path is used.
 
 .. code::
 
