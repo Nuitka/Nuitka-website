@@ -111,4 +111,4 @@ to go until we hit the "future".
 In the meantime you can find its `latest version here
 </doc/download.html>`_.
 
-.. include:: variables.inc
+.. include:: ../variables.inc
