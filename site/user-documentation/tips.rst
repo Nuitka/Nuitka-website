@@ -179,9 +179,9 @@ manually copy things into the folder, esp. not DLLs, as that's not going
 to work. Instead, make bug reports to get these handled by Nuitka
 properly.
 
-*******************************************
+******************************************
  Resolving Windows Resource Update Errors
-*******************************************
+******************************************
 
 On Windows, the Windows Defender tool and the Windows Indexing Service
 both scan the freshly created binaries, while Nuitka wants to work with
