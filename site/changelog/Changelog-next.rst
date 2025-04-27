@@ -31,7 +31,7 @@ development.
 Bug Fixes
 =========
 
--  **macOS**: Fix, need to also recognize self-dependencies of DLLs with
+-  **macOS:** Fix, need to also recognize self-dependencies of DLLs with
    architecture suffix on ``x86_64``. Fixed in 2.6.1 already.
 
 -  **Standalone:** Fix, wasn't detecting ``.pyi`` files with versioned
@@ -54,7 +54,7 @@ Bug Fixes
    process name. Now entrypoints can be invoked from a single binary
    using ``subprocess`` with process names. Fixed in 2.6.1 already.
 
--  **Windows**: Fix, when attaching to a console with
+-  **Windows:** Fix, when attaching to a console with
    ``--windows-console-mode=attach`` and no terminal present, the
    ``sys.stdin`` was not actually usable and lead to errors when forking
    processes. Fixed in 2.6.1 already.
@@ -85,10 +85,10 @@ Bug Fixes
 -  **Windows** Fix, with onefile compression there was a C warning on 32
    bit Windows when compiling the bootstrap.
 
--  **Python3.12+**: Fix, accessing the module attribute of ``type``
+-  **Python3.12+:** Fix, accessing the module attribute of ``type``
    variables gave a ``SystemError`` exception.
 
--  **Metadata**: Fix, reading record data from distribution files may
+-  **Metadata:** Fix, reading record data from distribution files may
    not be possible in some cases, as the files don't always exist. Fixed
    in 2.6.3 already.
 
@@ -115,17 +115,17 @@ Bug Fixes
    due to lack of type conversion for decompression buffer size. Fixed
    in 2.6.3 already.
 
--  **Python3.12+**: Fix, must type aliases had not usable ``module``
+-  **Python3.12+:** Fix, must type aliases had not usable ``module``
    attribute with the containing module name. Fixed in 2.6.3 already.
 
--  **Python3.12+**: Fix, type aliases were not fully compatible for
+-  **Python3.12+:** Fix, type aliases were not fully compatible for
    values as well.
 
    We were creating them in the wrong way for compound type aliases
    leading to errors in uses like ``pydantic`` schemas. Fixed in 2.6.5
    already.
 
--  **Python3.12+**: Workaround for failure to set package context for
+-  **Python3.12+:** Workaround for failure to set package context for
    extension modules causing major compatibility issues previously.
 
    Without static libpython we don't have the ability to set the package
@@ -157,6 +157,13 @@ Bug Fixes
    folder ``$ORIGIN`` but only the folders above, on some cases that
    prevented those DLLs from loading. Fixed in 2.6.7 already.
 
+-  **Standalone:** Preserve existing $ORIGIN relative paths of DLLs for
+   Linux.
+
+   Some PyPI packages reference other PyPI package contents with
+   existing r-paths values, that we replaced and therefore broke these
+   configurations, we now identify them and keep them.
+
 -  **Standalone:** Treat shared library dependencies with paths as if
    they were given as ``rpaths`` as well.
 
@@ -176,7 +183,7 @@ Bug Fixes
    packaging wouldn't have any effect due to how Android security works,
    but it shouldn't be there. Fixed in 2.6.7 already.
 
--  **Python Build Standalone**: Add rpath to where libpython is in all
+-  **Python Build Standalone:** Add rpath to where libpython is in all
    modes by default and not just where we think it may be needed. This
    fixes Pythons that have a ``libpython`` that is uninstalled on
    **Linux**. Fixed in 2.6.8 already.
@@ -185,17 +192,17 @@ Bug Fixes
    options being used starting with the 2.6.8 ``rpath`` changes. Fixed
    in 2.6.9 already.
 
--  **Python3.9**: Fix, older ``importlib.metadata`` versions errored out
+-  **Python3.9:** Fix, older ``importlib.metadata`` versions errored out
    for ``spacy`` plugin. Fixed in 2.6.8 already.
 
--  **Standalone**: Fix, ``requests`` package imports could be corrupted
+-  **Standalone:** Fix, ``requests`` package imports could be corrupted
    to be a sub-package instead. Fixed in 2.6.8 already.
 
--  **Distutils on macOS**: Fixup for distutils integration with
+-  **Distutils on macOS:** Fixup for distutils integration with
    extension modules scanned, the architecture is hard to know. Fixed in
    2.6.8 already.
 
--  **Windows**: Fix, need to define ``dotnet`` as a dependency to
+-  **Windows:** Fix, need to define ``dotnet`` as a dependency to
    properly use it enabling all UI features.
 
 -  **Scons:** : Fix, need to make sure to use proper ``link`` executable
@@ -214,6 +221,62 @@ Bug Fixes
    Doing it later in ``exec_module`` seems to at least broken ``mypy``
    created extension modules as used in the ``black`` package for
    example.
+
+-  **Python3.13:** Fix, the workaround for the wrong package context for
+      extension modules could cause errors in case the module name and
+      package name were the same.
+
+-  **Module:** Fix, for namespace packages the stub generation failed
+   with a warning, but instead it should not be done at all, as there is
+   no source code to work on.
+
+-  **Debian:** Fix, the installer name for Debian package was used with
+   inconsistent casing, ought to use the same form always.
+
+-  **Poetry:** Fix, detection of newer ``poetry`` as the installer was
+   no longer matching their installer name after they changed their
+   casing, which could impact system DLL usage for packages.
+
+-  **Module:** Improve "stubgen" for generics, missing "typing" imports
+   and more
+
+-  **Plugins:** Fix, with keyword defaults the dill-compat plugin could
+   cause corruption of those leading to crashes.
+
+-  **Standalone:** Added support for newer ``py-cpuinfo`` on
+   non-Windows.
+
+-  **Accelerated:** Our ``sys.path_hook`` must not take responsibility
+   over the standard Python path loader hooks, as it cannot handle all
+   they can yet.
+
+-  **Python3.12.7+:** Fix, need to set more unicode immortal attributes,
+   also for non-attributes, otherwise Python core assertions can trigger
+   if enabled.
+
+-  **Compatibility:** Fix, need to fetch errors for class variable
+   lookups. Otherwise the error exit happened with no exception set and
+   when then trying to attach tracebacks, it would just crash.
+
+-  **Python3.13:** Fix, need to follow dictionary values layout change.
+   Where we copy and create dictionary values, we used obsolete
+   3.11/3.12 code that could later lead to crashes and corruption.
+
+-  **Scons:** Fix, default for LTO module count should refer to compiled
+   modules.
+
+-  **Package:** Fix, need to include namespace parent modules too
+
+   Since we don't have an ``--include-package`` to go by anymore, the
+   delayed namespace packages were no longer included causing them to be
+   missing from compiled package.
+
+-  **macOS:** Need to sign data files included in the application bundle
+   as well.
+
+-  **Windows:** Fix, need to use short paths for the directory part of
+   ``sys.argv[0]`` as well. Otherwise tools called with that path might
+   not work well, as they are exposed to unicode paths.
 
 Package Support
 ===============
@@ -239,11 +302,11 @@ Package Support
 -  **Standalone:** Fix, for newer ``PySide6`` plugin ``sqldrivers`` on
    macOS. Fixed in 2.6.3 already.
 
--  **Python3.12+**: Added standalone mode support for ``mediapipe``
+-  **Python3.12+:** Added standalone mode support for ``mediapipe``
    package with Python3.12+, with a workaround for the problems of
    extension modules creating sub-modules. Fixed in 2.6.3 already.
 
--  **Python3.12+**: Added standalone mode support for ``onnx`` package
+-  **Python3.12+:** Added standalone mode support for ``onnx`` package
    with Python3.12+, with a workaround for the problems of extension
    modules creating sub-modules. Fixed in 2.6.3 already.
 
@@ -277,8 +340,31 @@ Package Support
 
 -  **Standalone:** Added missing datafile for ``jenn`` package.
 
--  **Standalone**: Added support for newer ``scipy.optimize._cobyla``
+-  **Standalone:** Added support for newer ``scipy.optimize._cobyla``
    package. Fixed in 2.6.8 already.
+
+-  **Anaconda:** Fix, bare ``mkl`` usage without ``numpy`` wasn't
+   working.
+
+-  **Standalone:** Add missing data file for ``cyclonedx`` package.
+
+-  **Compatibility:** Added support for ``cloudpickle`` and
+   ``ray.cloudpickle`` to pickle local compiled functions.
+
+-  **Standalone:** Added support for ``mitproxy`` on macOS.
+
+-  **Standalone:** Added ``python-docs`` and ``mne`` data files.
+
+-  **Standalone:** Added support for newer ``toga`` which needs its lazy
+   loader handled.
+
+-  **Standalone:** Added support for ``black`` package.
+
+-  **Standalone:** Include its metadata when using ``travertino``
+   package.
+
+-  **Standalone:** Much enhanced support for ``django`` settings derived
+   dependencies.
 
 New Features
 ============
@@ -323,6 +409,25 @@ New Features
 -  **Reports:** Make it clear if a package is "vendored", which is the
    case for ``setuptools`` contained packages if used from there.
 
+-  **Compatibility::** Added ``safe_path`` (``-P``) python flag to allow
+   not using current directory when searching modules.
+
+-  **Compatibility::** Added ``dont_write_bytecode`` (``-B``) python
+   flag to disable writing cached bytecode files at runtime. This is
+   mainly for debugging purposes as compiled code doesn't cause this.
+
+-  **UI:** Added new scanning tool for distribution metadata that
+   outputs similar to ``pip list -v``. This is very experimental still
+   and intended for debugging our metadata scan results.
+
+-  **Plugins:** Add support for transferring ``__annotations__`` and
+   ``__qualname__`` with dill-compat plugin as well. Make the plugin
+   also handle ``cloudpickle`` and ``ray.cloudpickle`` with an option
+   that controls which ones should be treated.
+
+-  **AIX:** Some enhancements aimed at making Nuitka usable on this OS,
+   more work will be needed though.
+
 Optimization
 ============
 
@@ -330,6 +435,12 @@ Optimization
    and asyncgen. These had been added in Nuitka 2.6 to achieve enhanced
    compatibility but could slow down their operation, this change undoes
    that effect.
+
+-  Encode empty strings for data blobs more compact.
+
+   Instead of using 2 bytes for unicode plus zero terminator, we use a
+   dedicated type indicator for it, reduce it to a single byte, making
+   this frequently used value smaller.
 
 Anti-Bloat
 ==========
@@ -365,6 +476,17 @@ Anti-Bloat
 -  Avoid ``numba`` in ``smt`` package. Added in 2.6.7 already.
 
 -  Avoid more ``pygame`` optional dependencies. Added in 2.6.8 already.
+
+-  Avoid using ``setuptools``, ``tomli``, ``tomllib`` for
+   ``incremental`` package.
+
+-  Avoid using ``IPython`` from ``pip`` vendored ``rich`` package as
+   well.
+
+-  For reporting, treat using ``ipywidgets`` as using ``IPython`` as
+   well.
+
+-  Added support for ``assert_raises`` with our ``numpy.testing`` too.
 
 Organizational
 ==============
@@ -404,24 +526,65 @@ Organizational
    check the ``global_replacements_re`` and ``replacements_re`` variants
    if the result value is actually a valid regular expression.
 
--  **Plugins**: When illegal module names are given for implicit
+-  **Plugins:** When illegal module names are given for implicit
    imports, properly report plugin name.
 
 -  **Quality:** Use ``clang-format-21`` if available. Applied changes
    only newest version do.
 
--  **Quality**: Avoid warnings with Python3.12+ from ``pylint`` for
+-  **Quality:** Avoid warnings with Python3.12+ from ``pylint`` for
    ``setuptools`` package use.
+
+-  **UI:** Disallow using Anaconda and poetry **without** its own
+   virtualenv being used in a mixed fashion.
+
+   Due to a poetry bug, where it sets ``INSTALLER`` for conda packages
+   in this use case, we cannot tell if a package was installed by poetry
+   or conda reliably, but need that for conda package detection.
+
+-  **macOS:** Deprecate ``--macos-target-arch`` and ask people to use
+   arch instead, we are going to remove it eventually.
+
+-  **Release:** Make sure to use compatible ``setuptools`` version with
+   ``osc`` uploads.
+
+-  **UI:** Enhanced error message for wrong custom bloat modes to list
+   the allowed values.
+
+-  **Release:** Remove git submodules with CPython tests as they can
+   only do harm, for example when installing with pip, the submodules
+   were also cloned and sometimes even failed to work properly causing
+   Nuitka installation to potentially fail.
 
 Tests
 =====
 
--  None yet
+-  Added support for ``NUITKA_EXTRA_OPTIONS`` environment to distutils
+   cases with pyproject as well.
+
+-  Remove standalone test for ``gi`` package.This is better covered by
+   Nuitka-Watch, and it can fail due to no X11 display in CI, something
+   handle there.
+
+-  Fix, need to ignore current directory to use original source fully,
+   using new ``--python-flag=safe_path`` to achieve it, otherwise the
+   module search doesn't use the original code where we mean to use it.
+
+-  The ``nuitka-watch`` tool didn't really implement ``retry`` for
+   pipenv install properly.
+
+-  Added support extra options via environment variable for
+   ``nuitka-watch`` tool as well.
 
 Cleanups
 ========
 
--  None yet
+-  Distutils: Use ``--module=package`` where it makes sense, rather than
+   manually adding the package contents. This allows for more standard
+   command line call to Nuitka.
+
+-  Moved pyi file creation to a dedicated function, cleaning up the post
+   processing code.
 
 Summary
 =======
