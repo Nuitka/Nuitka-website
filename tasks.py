@@ -15,7 +15,9 @@ os.environ["PIPENV_IGNORE_VIRTUALENVS"] = "1"
 @task
 def virtualenv(c):
     """create and install env"""
-    c.run(f"{sys.executable} -m pipenv 2>/dev/null >/dev/null || {sys.executable} -m pip install -U pipenv")
+    c.run(
+        f"{sys.executable} -m pipenv 2>/dev/null >/dev/null || {sys.executable} -m pip install -U pipenv"
+    )
     c.run(f"{sys.executable} -m pipenv install --dev")
 
     # Workaround pipenv failing to pin black version due to it being pre-release
@@ -31,6 +33,11 @@ def serve(c):
 @task
 def update_docs(c):
     c.run(f"{sys.executable} -m pipenv run python update.py --update-docs")
+
+
+@task
+def update_downloads(c):
+    c.run(f"{sys.executable} -m pipenv run python update.py --update-downloads")
 
 
 @task
