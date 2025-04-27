@@ -45,4 +45,19 @@ def post_process(c):
     c.run(f"{sys.executable} -m pipenv run python update.py --post-process")
 
 
-ns = Collection(intl, site, bundle, serve, update_docs, update_downloads, post_process, virtualenv)
+@task
+def deploy(c):
+    c.run(f"{sys.executable} -m pipenv run python update.py --deploy")
+
+
+ns = Collection(
+    intl,
+    site,
+    bundle,
+    serve,
+    update_docs,
+    update_downloads,
+    post_process,
+    deploy,
+    virtualenv,
+)
