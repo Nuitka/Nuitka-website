@@ -17,8 +17,7 @@ current stable release as |NUITKA_VERSION| as well.
 .. note::
 
    This a draft of the release notes for 2.7, which is supposed to add
-   enhanced 3.13 compatibility, and lots of scalability in general,
-   aiming at an order of magnitude improvement for compile times.
+   enhanced 3.13 compatibility, and lots of new features.
 
 This release is in progress still and documentation might lag behind
 development.
@@ -365,6 +364,8 @@ Package Support
 
 -  **Standalone:** Much enhanced support for ``django`` settings derived
    dependencies.
+
+-  **Standalone:** Added support for ``duckdb`` package.
 
 New Features
 ============
