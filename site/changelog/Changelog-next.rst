@@ -7,8 +7,8 @@
 .. include:: ../changelog/changes-hub.inc
 
 In this document, we track the per-version changes and comments for the
-upcoming Nuitka |NUITKA_VERSION_NEXT| as a draft about hot-fixes of the
-current stable release as |NUITKA_VERSION| as well.
+upcoming Nuitka |NUITKA_VERSION_NEXT| as a draft, including hot-fixes
+for the current stable release |NUITKA_VERSION|.
 
 ****************************
  Nuitka Release 2.7 (Draft)
@@ -16,11 +16,11 @@ current stable release as |NUITKA_VERSION| as well.
 
 .. note::
 
-   This a draft of the release notes for 2.7, which is supposed to add
-   enhanced 3.13 compatibility, and lots of new features.
+   This is a draft of the release notes for 2.7, which aims to provide
+   enhanced Python 3.13 compatibility along with numerous new features.
 
-This release is in progress still and documentation might lag behind
-development.
+Development is ongoing, and this documentation might lag slightly behind
+the latest code changes.
 
 .. contents:: Table of Contents
    :depth: 1
@@ -30,615 +30,593 @@ development.
 Bug Fixes
 =========
 
--  **macOS:** Fix, need to also recognize self-dependencies of DLLs with
-   architecture suffix on ``x86_64``. (Fixed in 2.6.1 already.)
+-  **macOS:** Correctly recognize self-dependencies of DLLs that include
+   an architecture suffix on ``x86_64``. (Fixed in 2.6.1 already.)
 
--  **Standalone:** Fix, wasn't detecting ``.pyi`` files with versioned
-   extension module filenames. (Fixed in 2.6.1 already.)
+-  **Standalone:** Resolved an issue where ``.pyi`` files associated
+   with versioned extension module filenames were not detected. (Fixed
+   in 2.6.1 already.)
 
--  **Standalone:** Fix, single line triple quotes were breaking the
-   ``.pyi`` file parsing. (Fixed in 2.6.1 already.)
+-  **Standalone:** Fixed ``.pyi`` file parsing failures caused by
+   single-line triple quotes. (Fixed in 2.6.1 already.)
 
--  **Standalone:** Fix, for ``__init__`` as extension modules, the
-   origin path of ``__spec__`` was wrong.
+-  **Standalone:** Corrected the ``__spec__.origin`` path for packages
+   where ``__init__`` is an extension module.
 
-   This mostly only affected the module ``repr`` string, but some code
-   could also use ``origin`` to locate something and run into errors as
-   a result. (Fixed in 2.6.1 already.)
+   While this primarily affected the module's ``repr`` string, code
+   relying on ``origin`` for resource location could previously
+   encounter errors. (Fixed in 2.6.1 already.)
 
--  **Multidist:** Fix, binaries now use the name they launched with.
-   Before they were using the path of the actual running binary, which
-   made it "ineffective" if explicitly launched through a different
-   process name.
+-  **Multidist:** Ensured created binaries use the name they were
+   launched with, rather than the path of the actual binary file.
 
-   Now entrypoints can be invoked from a single binary using
-   ``subprocess`` with process names. (Fixed in 2.6.1 already.)
+   This allows entry points invoked via ``subprocess`` with different
+   process names to function correctly from a single binary
+   distribution. (Fixed in 2.6.1 already.)
 
--  **Windows:** Fix, when attaching to a console with
-   ``--windows-console-mode=attach`` and no terminal present, the
-   ``sys.stdin`` was not actually usable and lead to errors when forking
-   processes. (Fixed in 2.6.1 already.)
-
--  **Modules:** Fix, was crashing in module mode on importlib
-   distribution calls that would be optimizable, but due to module mode
-   are not. (Fixed in 2.6.1 already.)
-
--  **Python3:** Fix, for namespace packages, not providing a
-   ``path_finder`` was leading to errors with newer setuptools versions.
-   (Fixed in 2.6.1 already.)
-
--  **Windows:** Fix, one header file had a UTF-8 comment that could
-   cause MSVC to properly compile on systems with some locales. (Fixed
-   in 2.6.2 already.)
-
--  **Standalone:** Fix, need to clear all associated tags for data files
-   discovered, if they are inhibited by the user, otherwise plugins can
-   get confused. (Fixed in 2.6.2 already.)
-
--  **Standalone:** Fix, ``pkgutil.iter_modules`` could fail to list all
-   modules.
-
-   When a directory for the package exists, the file finder of Python
-   could take our package responsibility, giving very incomplete results
-   that do not contained compiled modules. (Fixed in 2.6.2 already.)
-
--  **Windows** Fix, with onefile compression there was a C warning on 32
-   bit Windows when compiling the bootstrap.
-
--  **Python3.12+:** Fix, accessing the module attribute of ``type``
-   variables gave a ``SystemError`` exception.
-
--  **Metadata:** Fix, reading record data from distribution files may
-   not be possible in some cases, as the files don't always exist.
-   (Fixed in 2.6.3 already.)
-
--  **Compatibility:** Fix, for used shared libraries that were symbolic
-   links, on non-Windows the dependencies were not properly resolved.
-
-   This happened if they came from the symlink target and that was not
-   in the system path for libraries, or nearby in symlink form as well.
-   (Fixed in 2.6.3 already.)
-
--  **Standalone:** Avoid using ``msvcp140.dll`` from ``PySide6``
-   (actually ``shiboken6``) for other packages.
-
-   They may not be compatible with it causing crashes. (Fixed in 2.6.3
+-  **Windows:** Fixed unusable ``sys.stdin`` when attaching to a console
+   (``--windows-console-mode=attach``) without an active terminal, which
+   previously led to errors when forking processes. (Fixed in 2.6.1
    already.)
 
--  **Standalone:** Fix, comments after imports could break the ``.pyi``
-   file parsing. (Fixed in 2.6.3 already.)
+-  **Modules:** Prevented crashes in module mode when encountering
+   potentially optimizable ``importlib`` distribution calls that are
+   non-optimizable in this mode. (Fixed in 2.6.1 already.)
 
--  **UI:** Fix, output of listing DLLs and EXE didn't supply correct
-   sub-folders anymore. (Fixed in 2.6.3 already.)
+-  **Python3:** Resolved errors with newer ``setuptools`` versions
+   caused by namespace packages not providing a ``path_finder``. (Fixed
+   in 2.6.1 already.)
 
--  **macOS:** Fix, icons were no longer attached to application bundles.
+-  **Windows:** Removed a UTF-8 comment from a C header file that could
+   prevent MSVC from compiling correctly in certain system locales.
+   (Fixed in 2.6.2 already.)
+
+-  **Standalone:** Ensured that user-inhibited data files have their
+   associated tags cleared to prevent confusion in plugins. (Fixed in
+   2.6.2 already.)
+
+-  **Standalone:** Corrected ``pkgutil.iter_modules`` to prevent
+   incomplete module listings.
+
+   Previously, if a package directory existed, Python's file finder
+   could interfere, yielding incomplete results that excluded compiled
+   modules. (Fixed in 2.6.2 already.)
+
+-  **Windows:** Addressed a C compiler warning related to onefile
+   compression on 32-bit Windows during bootstrap compilation.
+
+-  **Python3.12+:** Resolved a ``SystemError`` when accessing the
+   ``module`` attribute of ``type`` variables.
+
+-  **Metadata:** Handled cases where reading record data from
+   distribution files might fail because the files do not always exist.
    (Fixed in 2.6.3 already.)
 
--  **Onefile:** Fix, this gave a C compiler warning on 32 bit Windows
-   due to lack of type conversion for decompression buffer size. (Fixed
+-  **Compatibility:** Fixed dependency resolution for shared libraries
+   that are symbolic links on non-Windows platforms.
+
+   Resolution failed if dependencies originated from the symlink target
+   and that target was not in the system library path or nearby as
+   another symlink. (Fixed in 2.6.3 already.)
+
+-  **Standalone:** Prevented the use of ``msvcp140.dll`` from
+   ``PySide6`` (specifically ``shiboken6``) by other packages to avoid
+   potential compatibility crashes. (Fixed in 2.6.3 already.)
+
+-  **Standalone:** Fixed ``.pyi`` file parsing failures caused by
+   comments appearing after ``import`` statements. (Fixed in 2.6.3
+   already.)
+
+-  **UI:** Corrected the output of DLL and EXE listings, which no longer
+   provided the correct sub-folder information. (Fixed in 2.6.3
+   already.)
+
+-  **macOS:** Restored the attachment of icons to application bundles.
+   (Fixed in 2.6.3 already.)
+
+-  **Onefile:** Resolved a C compiler warning on 32-bit Windows related
+   to missing type conversion for the decompression buffer size. (Fixed
    in 2.6.3 already.)
 
--  **Python3.12+:** Fix, must type aliases had not usable ``module``
-   attribute with the containing module name. (Fixed in 2.6.3 already.)
-
--  **Python3.12+:** Fix, type aliases were not fully compatible for
-   values as well.
-
-   We were creating them in the wrong way for compound type aliases
-   leading to errors in uses like ``pydantic`` schemas. (Fixed in 2.6.5
+-  **Python3.12+:** Ensured type aliases have a usable ``module``
+   attribute containing the correct module name. (Fixed in 2.6.3
    already.)
 
--  **Python3.12+:** Workaround for failure to set package context for
-   extension modules causing major compatibility issues previously.
+-  **Python3.12+:** Improved compatibility for type alias values.
 
-   Without static libpython we don't have the ability to set the package
-   context and then extension modules corrupt global namespace by
-   creating a module without the package name. This can collide with
-   existing package names. For ``PySide6QtAds`` package this was
-   happening.
+   Corrected the creation process for compound type aliases, resolving
+   errors in libraries like ``pydantic`` when used in schemas. (Fixed in
+   2.6.5 already.)
 
-   Protect against that by saving and restoring old module value and
-   correct the loaded module name afterwards. Previously, e.g.
-   ``PySide6.QtWidgets`` was loaded as ``QtWidgets`` as well in
-   ``sys.modules`` and that was corrected by the Nuitka loader storing
-   it under the correct name as well, only.
+-  **Python3.12+:** Implemented a workaround for extension modules
+   failing to set the correct package context, which previously caused
+   significant compatibility issues (e.g., namespace collisions).
 
-   Also rename further sub-modules potentially created by extension
-   modules during their load already. This should increase its coverage
-   by a lot. We had manually done this for ``onnx`` and ``mediapipe`` so
-   far, but e.g. ``paddleocr`` was affected too, any maybe other
-   packages. Most recently new ``scipy`` added itself to that list.
+   This was particularly problematic when static libpython was
+   unavailable (common on Windows and official macOS CPython). The
+   workaround involves saving/restoring the module context and
+   correcting potentially wrongly named sub-modules created during
+   extension module loading.
 
-   The most important platform this impacts is Windows and also macOS if
-   using official CPython flavor. (Fixed in 2.6.6 already.)
+   This improves compatibility for packages like ``PySide6QtAds``,
+   ``onnx``, ``mediapipe``, ``paddleocr``, and newer ``scipy`` versions,
+   which were previously affected. (Fixed in 2.6.6 already.)
 
--  **Plugins:** In case of data files not naively found, the
-   ``get_data`` helper function for Nuitka Package Configuration crashed
-   on the fallback to ``pkgutil``. (Fixed in 2.6.6 already.)
+-  **Plugins:** Prevented a crash in the Nuitka Package Configuration
+   helper function ``get_data`` when falling back to ``pkgutil`` for
+   data files not found naively. (Fixed in 2.6.6 already.)
 
--  **Standalone:** For DLLs in sub-folders the r-path value used for
-   finding used DLLs on non-Windows, didn't include the DLLs's own
-   folder ``$ORIGIN``.
+-  **Standalone:** Corrected the rpath value used for finding dependent
+   DLLs in sub-folders on non-Windows platforms.
 
-   This only included the folders above, on some cases that prevented
-   those DLLs from loading. (Fixed in 2.6.7 already.)
+   It previously excluded the DLL's own folder (``$ORIGIN``), sometimes
+   preventing DLLs from loading. (Fixed in 2.6.7 already.)
 
--  **Standalone:** Preserve existing $ORIGIN relative paths of DLLs for
-   Linux.
+-  **Standalone:** Preserved existing ``$ORIGIN``-relative rpaths in
+   DLLs on Linux.
 
-   Some PyPI packages reference other PyPI package contents with
-   existing r-paths values, that we replaced and therefore broke these
-   configurations. We now identify them and keep them.
+   Some PyPI packages rely on these existing paths to reference content
+   in other packages; replacing them previously broke these setups.
+   (Fixed in 2.6.7 already.)
 
--  **Standalone:** Treat shared library dependencies with paths as if
-   they were given as ``rpaths`` as well.
+-  **Standalone:** Now treats shared library dependencies specified with
+   paths as implicit rpaths.
 
-   This fixes builds using for Pythons that like **Python Build
-   Standalone** (the Python distribution installed by uv), which have an
-   ``$ORIGIN``-relative libpython dependency that should be respected as
-   well. (Fixed in 2.6.7 already.)
+   This fixes builds using Python distributions like **Python Build
+   Standalone** (installed by ``uv``), which may have an
+   ``$ORIGIN``-relative ``libpython`` dependency that needs to be
+   respected. (Fixed in 2.6.7 already.)
 
--  **Python3:** Fix, generators need to preserve outside exceptions and
-   restore their own on resume.
+-  **Python3:** Ensured generators preserve external exceptions and
+   restore their own upon resuming.
 
-   Otherwise when used as context managers and handling an exception
-   with a yield, another ``with`` statement could not be able to
-   re-raise its own exception if any occurs in its body. (Fixed in 2.6.7
+   This fixes issues where generators used as context managers, handling
+   an exception via ``yield``, could prevent an outer ``with`` statement
+   from correctly re-raising its own exception. (Fixed in 2.6.7
    already.)
 
--  **Android:** Fix, standalone builds were retaining the Termux
-   ``rpath`` value pointing into its installation.
+-  **Android:** Removed the Termux ``rpath`` value pointing into its
+   installation from standalone builds.
 
-   This value, after APK packaging wouldn't have any effect due to how
-   Android security works, but it shouldn't be there. (Fixed in 2.6.7
-   already.)
+   While ineffective after APK packaging due to Android security, this
+   value should not have been present. (Fixed in 2.6.7 already.)
 
--  **Python Build Standalone:** Add rpath to where libpython is in all
-   modes by default and not just where we think it may be needed.
+-  **Python Build Standalone:** Added the rpath to ``libpython`` by
+   default in all modes for **Python Build Standalone** distributions.
 
-   This fixes Pythons that have a ``libpython`` that is uninstalled on
-   **Linux**. (Fixed in 2.6.8 already.)
+   This resolves issues with uninstalled ``libpython`` on **Linux**.
+   (Fixed in 2.6.8 already.)
 
--  **Standalone:** Older Linux didn't work due to newer ``patchelf``
-   options being used starting with the 2.6.8 ``rpath`` changes. (Fixed
-   in 2.6.9 already.)
+-  **Standalone:** Resolved incompatibility with older Linux
+   distributions caused by using newer ``patchelf`` options introduced
+   in 2.6.8's rpath changes. (Fixed in 2.6.9 already.)
 
--  **Python3.9:** Fix, older ``importlib.metadata`` versions errored out
-   for ``spacy`` plugin. (Fixed in 2.6.8 already.)
+-  **Python3.9:** Fixed errors in the ``spacy`` plugin when using older
+   ``importlib.metadata`` versions. (Fixed in 2.6.8 already.)
 
--  **Standalone:** Fix, ``requests`` package imports could be corrupted
-   to be a sub-package instead. (Fixed in 2.6.8 already.)
+-  **Standalone:** Prevented ``requests`` package imports from being
+   incorrectly treated as sub-packages. (Fixed in 2.6.8 already.)
 
--  **Distutils on macOS:** Fixup for distutils integration with
-   extension modules scanned, the architecture is hard to know. (Fixed
-   in 2.6.8 already.)
+-  **Distutils on macOS:** Improved integration for scanned extension
+   modules where determining the correct architecture can be difficult.
+   (Fixed in 2.6.8 already.)
 
--  **Windows:** Fix, need to define ``dotnet`` as a dependency to
-   properly use it enabling all UI features.
+-  **Windows:** Defined ``dotnet`` as a dependency to ensure all UI
+   features requiring it are properly enabled.
 
--  **Scons:** Fix, need to make sure to use proper ``link`` executable
-   for MSVC backend compiler, and not e.g. the one that ``git`` adds to
-   ``PATH`` potentially. (Fixed in 2.6.9 already.)
+-  **Scons:** Ensured the correct ``link.exe`` executable is used for
+   the MSVC backend, avoiding potential conflicts with linkers added to
+   the ``PATH`` (e.g., by ``git``). (Fixed in 2.6.9 already.)
 
--  **Scons:** Fix, avoid using ``config.txt`` with ``clcache`` as used
-   when using MSVC.
+-  **Scons:** Avoided using ``config.txt`` with ``clcache`` when using
+   MSVC.
 
-   It can exhibit a race during first use with two ``clcache`` threads
-   trying to create it and failing it. Solved by not writing or reading
-   it at all and using default values instead. (Fixed in 2.6.9 already.)
+   This prevents potential race conditions during the first use where
+   multiple ``clcache`` threads might attempt to create the file
+   simultaneously. (Fixed in 2.6.9 already.)
 
--  **Standalone:** Fix, need to load extension modules during
-   ``create_module`` of our loader already to be compatible.
+-  **Standalone:** Ensured extension modules are loaded during the
+   ``create_module`` phase of the Nuitka loader for better
+   compatibility.
 
-   Doing it later in ``exec_module`` seems to at least broken ``mypy``
-   created extension modules as used in the ``black`` package for
-   example.
+   Loading them later during ``exec_module`` caused issues with some
+   extension modules, such as those created by ``mypy`` (used in
+   ``black``).
 
--  **Python3.13:** Fix, the workaround for the wrong package context for
-   extension modules could cause errors in case the module name and
-   package name were the same.
+-  **Python3.13:** Corrected the workaround for extension module package
+   context issues, resolving errors that occurred when the module and
+   package names were identical.
 
--  **Module:** Fix, for namespace packages the stub generation failed
-   with a warning, but instead it should not be done at all, as there is
-   no source code to work on.
+-  **Module:** Prevented stub generation attempts for namespace
+   packages, which previously resulted in warnings as there is no source
+   code to process.
 
--  **Debian:** Fix, the installer name for Debian package was used with
-   inconsistent casing, ought to use the same form always.
+-  **Debian:** Ensured consistent casing for the installer name used in
+   Debian package metadata.
 
--  **Poetry:** Fix, detection of newer ``poetry`` as the installer was
-   no longer matching their installer name after they changed their
-   casing.
+-  **Poetry:** Updated detection logic for newer ``poetry`` versions to
+   handle changes in installer name casing, which could previously
+   impact system DLL usage determination.
 
-   This could impact system DLL usage for packages.
+-  **Module:** Improved stub generation (``stubgen``) for generics,
+   handling of missing ``typing`` imports, and other cases.
 
--  **Module:** Improve "stubgen" for generics, missing "typing" imports
-   and more.
+-  **Plugins:** Fixed potential corruption and crashes in the
+   ``dill-compat`` plugin when handling functions with keyword defaults.
 
--  **Plugins:** Fix, with keyword defaults the dill-compat plugin could
-   cause corruption of those leading to crashes.
+-  **Standalone:** Added support for newer ``py-cpuinfo`` versions on
+   non-Windows platforms.
 
--  **Standalone:** Added support for newer ``py-cpuinfo`` on
-   non-Windows.
+-  **Accelerated:** Prevented Nuitka's ``sys.path_hook`` from overriding
+   standard Python path loader hooks, as it doesn't yet support all
+   their functionalities.
 
--  **Accelerated:** Our ``sys.path_hook`` must not take responsibility
-   over the standard Python path loader hooks.
+-  **Python3.12.7+:** Set additional unicode immortal attributes
+   (including for non-attributes) to prevent triggering Python core
+   assertions when enabled.
 
-   It cannot handle all they can yet.
+-  **Compatibility:** Ensured errors are properly fetched during class
+   variable lookups.
 
--  **Python3.12.7+:** Fix, need to set more unicode immortal attributes,
-   also for non-attributes.
+   Previously, an error exit could occur without an exception being set,
+   leading to crashes when attempting to attach tracebacks.
 
-   Otherwise Python core assertions can trigger if enabled.
+-  **Python3.13:** Adapted dictionary value creation and copying to
+   follow internal layout changes, preventing potential crashes and
+   corruption caused by using obsolete Python 3.11/3.12 code.
 
--  **Compatibility:** Fix, need to fetch errors for class variable
-   lookups.
+-  **Scons:** Corrected the default LTO module count calculation to
+   refer to the number of compiled modules.
 
-   Otherwise the error exit happened with no exception set and when then
-   trying to attach tracebacks, it would just crash.
+-  **Package:** Ensured namespace parent modules are included in
+   compiled packages.
 
--  **Python3.13:** Fix, need to follow dictionary values layout change.
+   These were previously missed due to the removal of reliance on
+   ``--include-package`` for delayed namespace package handling.
 
-   Where we copy and create dictionary values, we used obsolete
-   3.11/3.12 code that could later lead to crashes and corruption.
+-  **macOS:** Ensured data files included in application bundles are
+   also signed.
 
--  **Scons:** Fix, default for LTO module count should refer to compiled
-   modules.
-
--  **Package:** Fix, need to include namespace parent modules too.
-
-   Since we don't have an ``--include-package`` to go by anymore, the
-   delayed namespace packages were no longer included causing them to be
-   missing from compiled package.
-
--  **macOS:** Need to sign data files included in the application bundle
-   as well.
-
--  **Windows:** Fix, need to use short paths for the directory part of
+-  **Windows:** Applied short path conversion to the directory part of
    ``sys.argv[0]`` as well.
 
-   Otherwise tools called with that path might not work well, as they
-   are exposed to unicode paths.
+   This prevents issues with tools called using this path that might not
+   handle non-shortened (potentially unicode) paths correctly.
 
 Package Support
 ===============
 
--  **Standalone:** Added data files needed for ``blib2to3`` package.
-   (Added in 2.6.1 already.)
+-  **Standalone:** Included necessary data files for the ``blib2to3``
+   package. (Added in 2.6.1 already.)
 
--  **Standalone:** Added support for newer ``numba`` package. (Added in
+-  **Standalone:** Added support for newer ``numba`` versions. (Added in
    2.6.2 already.)
 
--  **Standalone:** Added support for newer ``huggingface_hub`` package.
+-  **Standalone:** Added support for newer ``huggingface_hub`` versions.
    (Added in 2.6.2 already.)
 
--  **Anti-Bloat:** Fix, need to provide more ``numpy.testing`` stubs,
-   otherwise some ``sklearn`` modules didn't properly execute. (Fixed in
-   2.6.2 already.)
+-  **Anti-Bloat:** Provided additional ``numpy.testing`` stubs required
+   for proper execution of some ``sklearn`` modules. (Fixed in 2.6.2
+   already.)
 
--  **Standalone:** Enhanced configuration for ``fontTools`` package. Do
-   not configure hidden dependencies that we now detect by looking at
-   the provided Python files as if they were ``.pyi`` files. (Fixed in
-   2.6.2 already.)
+-  **Standalone:** Enhanced configuration for ``fontTools``. Avoided
+   configuring hidden dependencies now detected by parsing provided
+   Python files like ``.pyi`` files. (Fixed in 2.6.2 already.)
 
--  **Standalone:** Fix, for newer ``PySide6`` plugin ``sqldrivers`` on
-   macOS. (Fixed in 2.6.3 already.)
+-  **Standalone:** Corrected plugin configuration for newer ``PySide6``
+   ``sqldrivers`` on macOS. (Fixed in 2.6.3 already.)
 
--  **Python3.12+:** Added standalone mode support for ``mediapipe``
-   package with Python3.12+, with a workaround for the problems of
-   extension modules creating sub-modules. (Fixed in 2.6.3 already.)
+-  **Python3.12+:** Introduced standalone support for ``mediapipe``,
+   including a workaround for extension module sub-module creation
+   issues. (Fixed in 2.6.3 already.)
 
--  **Python3.12+:** Added standalone mode support for ``onnx`` package
-   with Python3.12+, with a workaround for the problems of extension
-   modules creating sub-modules. (Fixed in 2.6.3 already.)
+-  **Python3.12+:** Introduced standalone support for ``onnx``,
+   including a workaround for extension module sub-module creation
+   issues. (Fixed in 2.6.3 already.)
 
--  **Standalone:** Added support for newer ``sqlglot`` package. (Added
+-  **Standalone:** Added support for newer ``sqlglot`` versions. (Added
    in 2.6.5 already.)
 
--  **Standalone:** Include ``asset`` data files of ``arcade`` package,
-   too. (Added in 2.6.5 already.)
+-  **Standalone:** Included ``asset`` data files for the ``arcade``
+   package. (Added in 2.6.5 already.)
 
 -  **Standalone:** Added implicit dependencies for ``sqlalchemy.orm``.
    (Added in 2.6.5 already.)
 
--  **MacOS:** Fix, need more frameworks including for PySide 6.8
-   web-engine. (Added in 2.6.5 already.)
+-  **macOS:** Included additional frameworks required for PySide 6.8
+   web-engine support. (Added in 2.6.5 already.)
 
--  **Standalone:** Enhanced ``cv2`` package support.
+-  **Standalone:** Enhanced ``cv2`` support to handle potentially Python
+   minor version-specific config files by allowing optional data file
+   discovery in plugins. (Added in 2.6.6 already.)
 
-   Config files apparently can be Python minor version specific as well,
-   make data files reading in plugins allowed to find them only
-   optionally. (Added in 2.6.6 already.)
+-  **Standalone:** Added support for the ``scipy`` sub-module loader
+   mechanism.
 
--  **Standalone:** Added support for ``scipy`` sub-module loader.
+   By treating it as a lazy loader, implicit dependencies within
+   ``scipy`` are now correctly detected without requiring explicit
+   configuration. (Added in 2.6.7 already.)
 
-   They can be used without explicit support; by handling it as a lazy
-   loader, we see these implicit dependencies as well. (Added in 2.6.7
-   already.)
+-  **Standalone:** Automatically include Django database engine modules.
+   (Added in 2.6.7 already.)
 
--  **Standalone:** Include django db engine modules automatically as
-   well. (Added in 2.6.7 already.)
+-  **Homebrew:** Added ``tk-inter`` support for Python versions using
+   **Tcl/Tk** version 9.
 
--  **Homebrew:** Added support for ``tk-inter`` with Python versions
-   with **Tcl/Tk** version 9.
-
--  **Standalone:** Added missing datafile for ``jenn`` package.
-
--  **Standalone:** Added support for newer ``scipy.optimize._cobyla``
-   package. (Fixed in 2.6.8 already.)
-
--  **Anaconda:** Fix, bare ``mkl`` usage without ``numpy`` wasn't
-   working.
-
--  **Standalone:** Add missing data file for ``cyclonedx`` package.
-
--  **Compatibility:** Added support for ``cloudpickle`` and
-   ``ray.cloudpickle`` to pickle local compiled functions.
-
--  **Standalone:** Added support for ``mitproxy`` on macOS.
-
--  **Standalone:** Added ``python-docs`` and ``mne`` data files.
-
--  **Standalone:** Added support for newer ``toga`` which needs its lazy
-   loader handled.
-
--  **Standalone:** Added support for ``black`` package.
-
--  **Standalone:** Include its metadata when using ``travertino``
+-  **Standalone:** Included a missing data file for the ``jenn``
    package.
 
--  **Standalone:** Much enhanced support for ``django`` settings derived
-   dependencies.
+-  **Standalone:** Added support for newer ``scipy.optimize._cobyla``
+   versions. (Fixed in 2.6.8 already.)
 
--  **Standalone:** Added support for ``duckdb`` package.
+-  **Anaconda:** Fixed issues with bare ``mkl`` usage (without
+   ``numpy``).
+
+-  **Standalone:** Included a missing data file for the ``cyclonedx``
+   package.
+
+-  **Compatibility:** Enabled pickling of local compiled functions using
+   ``cloudpickle`` and ``ray.cloudpickle``.
+
+-  **Standalone:** Added support for ``mitmproxy`` on macOS.
+
+-  **Standalone:** Included necessary data files for ``python-docs`` and
+   ``mne``.
+
+-  **Standalone:** Added support for newer ``toga`` versions, requiring
+   handling of its lazy loader.
+
+-  **Standalone:** Introduced support for the ``black`` code formatter
+   package.
+
+-  **Standalone:** Included metadata when the ``travertino`` package is
+   used.
+
+-  **Standalone:** Significantly enhanced support for detecting
+   dependencies derived from ``django`` settings.
+
+-  **Standalone:** Added support for the ``duckdb`` package.
 
 New Features
 ============
 
--  **DLL:** Added new mode to produce standalone DLL distributions.
+-  **DLL Mode:** Introduced a new experimental mode (``--mode=dll``) to
+   create standalone DLL distributions.
 
-   This is experimental at this time, but appears to work for many
-   things, however documentation is very weak right now.
+   While functional for many cases, documentation is currently limited,
+   and features like multiprocessing require further work involving
+   interaction with the launching binary.
 
-   Multiprocessing and potentially other things will need help from
-   launched binary, and that's not currently working.
+   This mode is intended to improve Windows GUI compatibility (tray
+   icons, notifications) for onefile applications by utilizing an
+   internal DLL structure.
 
-   Intended for improvement of Windows GUI compatibility with tray icons
-   and notifications in onefile mode, which will use this internally.
+-  **Windows:** Onefile mode now internally uses the new DLL mode by
+   default, interacting with a DLL instead of an executable in temporary
+   mode.
 
--  **Windows:** The onefile mode is now using internally DLL mode and
-   properly interacts with a created DLL rather than an executable when
-   used in temporary mode.
+   Use ``--onefile-no-dll`` to revert to the previous behavior if issues
+   arise.
 
-   Use ``--onefile-no-dll`` to deactivate it if it is causing any
-   issues.
+-  **Windows:** Added support for dependency analysis on Windows ARM
+   builds using ``pefile`` (as Dependency Walker lacks ARM support).
 
--  **Windows:** Added support for Windows ARM and dependency analysis.
+-  **Android:** Enabled module mode support when using Termux Python.
+   (Added in 2.6.7 already.)
 
-   We do it via ``pefile`` since dependency walker doesn't know about
-   ARM.
+-  **Compatibility:** Added support for **Python Build Standalone**
+   distributions (e.g., as downloaded by ``uv``).
 
--  **Android:** Added support for module mode with Termux Python as
-   well. (Added in 2.6.7 already.)
+   Note that static ``libpython`` is not supported with these
+   distributions as the included static library is currently unusable.
+   (Added in 2.6.7 already.)
 
--  **Compatibility** Added support for **Python Build Standalone** as
-   downloaded by ``uv`` potentially.
+-  **Windows:** Enabled taskbar grouping for compiled applications if
+   product and company names are provided in the version information.
+   (Added in 2.6.4 already.)
 
-   Albeit it doesn't support static ``libpython`` as the included one is
-   currently unusable. (Added in 2.6.7 already.)
+-  **Windows:** Automatically use icons provided via
+   ``--windows-icon-from-ico`` for ``PySide6`` applications.
 
--  **Windows:** Enable taskbar grouping, if product name and company
-   name are present in version information. (Added in 2.6.4 already.)
+   This eliminates the need to separately provide the icon as a PNG
+   file, avoiding duplication.
 
--  **Windows:** Use icons given for Windows automatically with
-   ``PySide6``.
+-  **Nuitka Package Configuration:** Allowed using values from
+   ``constants`` and ``variable`` declarations within ``when``
+   conditions where feasible.
 
-   This removes the need to also provide the application icon as a PNG
-   file, which was duplicating it.
+-  **Reports:** Clearly indicate if an included package is "vendored"
+   (e.g., packages bundled within ``setuptools``).
 
--  **Nuitka Package Configuration:** Allow using values of ``constants``
-   ``variable`` declarations in ``when`` conditions where possible.
+-  **Compatibility:** Added support for the ``safe_path`` (``-P``)
+   Python flag, preventing the use of the current directory in module
+   searches.
 
--  **Reports:** Make it clear if a package is "vendored", which is the
-   case for ``setuptools`` contained packages if used from there.
+-  **Compatibility:** Added support for the ``dont_write_bytecode``
+   (``-B``) Python flag, disabling the writing of ``.pyc`` files at
+   runtime (primarily for debugging purposes, as compiled code doesn't
+   generate them).
 
--  **Compatibility::** Added ``safe_path`` (``-P``) python flag to allow
-   not using current directory when searching modules.
+-  **UI:** Introduced a new experimental tool for scanning distribution
+   metadata, producing output similar to ``pip list -v``. Intended for
+   debugging metadata scan results.
 
--  **Compatibility::** Added ``dont_write_bytecode`` (``-B``) python
-   flag to disable writing cached bytecode files at runtime.
+-  **Plugins:** Enhanced the ``dill-compat`` plugin to transfer
+   ``__annotations__`` and ``__qualname__``.
 
-   This is mainly for debugging purposes as compiled code doesn't cause
-   this.
+   Added an option to control whether the plugin should also handle
+   ``cloudpickle`` and ``ray.cloudpickle``.
 
--  **UI:** Added new scanning tool for distribution metadata that
-   outputs similar to ``pip list -v``.
-
-   This is very experimental still and intended for debugging our
-   metadata scan results.
-
--  **Plugins:** Add support for transferring ``__annotations__`` and
-   ``__qualname__`` with dill-compat plugin as well.
-
-   Make the plugin also handle ``cloudpickle`` and ``ray.cloudpickle``
-   with an option that controls which ones should be treated.
-
--  **AIX:** Some enhancements aimed at making Nuitka usable on this OS,
-   more work will be needed though.
+-  **AIX:** Implemented initial enhancements towards enabling Nuitka
+   usage on AIX, although further work is required.
 
 Optimization
 ============
 
--  Avoid API call for finalizer usage in compiled generator, coroutines,
-   and asyncgen.
+-  Optimized finalizer handling in compiled generators, coroutines, and
+   asyncgens by avoiding slower C API calls introduced in 2.6, restoring
+   performance for these objects.
 
-   These had been added in Nuitka 2.6 to achieve enhanced compatibility
-   but could slow down their operation; this change undoes that effect.
+-  Implemented a more compact encoding for empty strings in data blobs.
 
--  Encode empty strings for data blobs more compact.
-
-   Instead of using 2 bytes for unicode plus zero terminator, we use a
-   dedicated type indicator for it, reducing it to a single byte. This
-   makes this frequently used value smaller.
+   Instead of 2 bytes (unicode) + null terminator, a dedicated type
+   indicator reduces this frequent value to a single byte.
 
 Anti-Bloat
 ==========
 
--  Avoid using ``matplotlib`` from ``tqdm`` package. (Added in 2.6.2
-   already.)
+-  Avoided including ``matplotlib`` when used by the ``tqdm`` package.
+   (Added in 2.6.2 already.)
 
--  Avoid using ``matplotlib`` from ``scipy`` package. (Added in 2.6.2
-   already.)
+-  Avoided including ``matplotlib`` when used by the ``scipy`` package.
+   (Added in 2.6.2 already.)
 
--  Avoid using ``cython`` from the ``fontTools`` package. (Added in
-   2.6.2 already.)
+-  Avoided including ``cython`` when used by the ``fontTools`` package.
+   (Added in 2.6.2 already.)
 
--  Avoid using ``sparse`` from ``scipy`` package. (Added in 2.6.3
-   already.)
+-  Avoided including ``sparse`` when used by the ``scipy`` package.
+   (Added in 2.6.3 already.)
 
--  Avoid using ``ndonnx`` from ``scipy`` package. (Added in 2.6.3
-   already.)
+-  Avoided including ``ndonnx`` when used by the ``scipy`` package.
+   (Added in 2.6.3 already.)
 
--  Avoid using ``setuptools`` for ``jaxlib`` package.
+-  Avoided including ``setuptools`` for the ``jaxlib`` package.
 
-   Also do not call git to attempt and query the version from ``jaxlib``
-   source code. (Added in 2.6.3 already.)
+   Also prevented attempts to query the version from ``jaxlib`` source
+   code using git. (Added in 2.6.3 already.)
 
--  Avoid using ``yaml`` from ``scipy`` package. (Added in 2.6.4
-   already.)
+-  Avoided including ``yaml`` when used by the ``scipy`` package. (Added
+   in 2.6.4 already.)
 
--  Avoid using ``charset_normalizer`` for ``numpy`` package. (Added in
+-  Avoided including ``charset_normalizer`` for the ``numpy`` package.
+   (Added in 2.6.5 already.)
+
+-  Avoided including ``lxml`` for the ``pandas`` package. (Added in
    2.6.5 already.)
 
--  Avoid using ``lxml`` for ``pandas`` package. (Added in 2.6.5
-   already.)
+-  Avoided including ``PIL`` (Pillow) for the ``sklearn`` package.
+   (Added in 2.6.5 already.)
 
--  Avoid using ``PIL`` for ``sklearn`` package. (Added in 2.6.5
-   already.)
+-  Avoided including ``numba`` when used by the ``smt`` package. (Added
+   in 2.6.7 already.)
 
--  Avoid ``numba`` in ``smt`` package. (Added in 2.6.7 already.)
+-  Avoided including more optional ``pygame`` dependencies. (Added in
+   2.6.8 already.)
 
--  Avoid more ``pygame`` optional dependencies. (Added in 2.6.8
-   already.)
-
--  Avoid using ``setuptools``, ``tomli``, ``tomllib`` for
+-  Avoided including ``setuptools``, ``tomli``, and ``tomllib`` for the
    ``incremental`` package.
 
--  Avoid using ``IPython`` from ``pip`` vendored ``rich`` package as
-   well.
+-  Avoided including ``IPython`` when used by the ``rich`` package
+   vendored within ``pip``.
 
--  For reporting, treat using ``ipywidgets`` as using ``IPython`` as
-   well.
+-  For reporting purposes, treated usage of ``ipywidgets`` as equivalent
+   to using ``IPython``.
 
--  Added support for ``assert_raises`` with our ``numpy.testing`` too.
+-  Added support for ``assert_raises`` within Nuitka's ``numpy.testing``
+   stub.
 
 Organizational
 ==============
 
--  **UI:** Enhanced output for used command line options.
+-  **UI:** Improved the output format for used command line options.
 
-   Use the report path for filenames given as positional arguments; this
-   is often the compiled file.
+   Filenames provided as positional arguments now use the report path
+   format. Info traces now support an optional leader for intended value
+   output, enhancing readability.
 
-   Format info traces with a potential leader, allows intended values to
-   be output; this makes the trace much more readable.
-
--  **Reports:** Save and restore timing information for cached modules.
-
-   In this way, we don't have a difference if a module is loaded from
-   cache or not, which helps a lot in Nuitka-Watch where previously
-   every new compilation yielded changes for the timing of those
+-  **Reports:** Saved and restored timing information for cached
    modules.
 
-   Should make our life for **Nuitka-Watch** much easier by avoiding
-   this noise.
+   This eliminates timing differences based on whether a module was
+   loaded from cache, reducing noise in **Nuitka-Watch** comparisons
+   where cached module timings previously changed with every new
+   compilation.
 
--  **Actions:** Add compilation report artifacts to all empty module
-   compilations.
+-  **Actions:** Added compilation report artifacts to all CI runs
+   involving empty module compilations.
 
--  **Debugging:** For ``--edit`` also find modules from ``.app`` paths
-   as produced by application bundled on macOS. (Added in 2.6.1
-   already.)
+-  **Debugging:** Enabled the ``--edit`` option to find modules within
+   ``.app`` bundles created on macOS. (Added in 2.6.1 already.)
 
--  **User Manual:** Updated example for Nuitka-Action, we should
-   probably just point to its documentation instead. (Changed in 2.6.1
-   already.)
+-  **User Manual:** Updated the Nuitka-Action example; linking directly
+   to its documentation might be preferable. (Changed in 2.6.1 already.)
 
--  **Quality:** Make sure all our C files are ASCII, to avoid unicode
-   sneaking in as it did.
+-  **Quality:** Enforced ASCII encoding for all Nuitka C files to
+   prevent accidental inclusion of non-ASCII characters.
 
--  **Quality:** Check ``global_replacements`` result value for proper
-   Python syntax as well, like we do for ``replacements`` already.
+-  **Quality:** Added syntax validation for ``global_replacements``
+   result values, similar to existing checks for ``replacements``.
 
-   Also check the ``global_replacements_re`` and ``replacements_re``
-   variants if the result value is actually a valid regular expression.
+   Also added validation to ensure ``global_replacements_re`` and
+   ``replacements_re`` result values are valid regular expressions.
 
--  **Plugins:** When illegal module names are given for implicit
-   imports, properly report plugin name.
+-  **Plugins:** Ensured error messages for illegal module names in
+   implicit imports correctly report the originating plugin name.
 
--  **Quality:** Use ``clang-format-21`` if available. Applied changes
-   only newest version do.
+-  **Quality:** Enabled use of ``clang-format-21`` if available and
+   applied formatting changes specific to this newer version.
 
--  **Quality:** Avoid warnings with Python3.12+ from ``pylint`` for
-   ``setuptools`` package use.
+-  **Quality:** Suppressed ``pylint`` warnings related to ``setuptools``
+   usage when running with Python 3.12+.
 
--  **UI:** Disallow using Anaconda and poetry **without** its own
-   virtualenv being used in a mixed fashion.
+-  **UI:** Disallowed mixed usage of Anaconda and Poetry *without* an
+   active Poetry virtual environment.
 
-   Due to a poetry bug, where it sets ``INSTALLER`` for conda packages
-   in this use case, we cannot tell if a package was installed by poetry
-   or conda reliably, but need that for conda package detection.
+   This avoids issues caused by a Poetry bug where it incorrectly sets
+   the ``INSTALLER`` metadata for Conda packages in this scenario,
+   making reliable detection of Conda packages impossible.
 
--  **macOS:** Deprecate ``--macos-target-arch`` and ask people to use
-   arch instead, we are going to remove it eventually.
+-  **macOS:** Deprecated ``--macos-target-arch`` in favor of the
+   standard ``--target-arch`` option, with plans for eventual removal.
 
--  **Release:** Make sure to use compatible ``setuptools`` version with
-   ``osc`` uploads.
+-  **Release:** Ensured usage of a compatible ``setuptools`` version
+   during ``osc`` uploads.
 
--  **UI:** Enhanced error message for wrong custom bloat modes to list
-   the allowed values.
+-  **UI:** Improved the error message for invalid custom anti-bloat
+   modes by listing the allowed values.
 
--  **Release:** Remove git submodules with CPython tests as they can
-   only do harm.
+-  **Release:** Removed CPython test git submodules from the repository.
 
-   For example when installing with pip, the submodules were also cloned
-   and sometimes even failed to work properly causing Nuitka
-   installation to potentially fail.
+   These submodules caused issues, such as being cloned during ``pip
+   install`` and sometimes failing, potentially breaking Nuitka
+   installation.
 
 Tests
 =====
 
--  Added support for ``NUITKA_EXTRA_OPTIONS`` environment to distutils
-   cases with pyproject as well.
+-  Enabled passing extra options via the ``NUITKA_EXTRA_OPTIONS``
+   environment variable for ``distutils`` test cases involving
+   ``pyproject.toml``.
 
--  Remove standalone test for ``gi`` package. This is better covered by
-   Nuitka-Watch, and it can fail due to no X11 display in CI, something
-   handle there.
+-  Removed the standalone test for the ``gi`` package, as it's better
+   covered by Nuitka-Watch and prone to failures in CI due to lack of an
+   X11 display.
 
--  Fix, need to ignore current directory to use original source fully.
+-  Ensured tests correctly ignore the current directory when necessary
+   by using the new ``--python-flag=safe_path``.
 
-   Using new ``--python-flag=safe_path`` to achieve it; otherwise the
-   module search doesn't use the original code where we mean to use it.
+   This forces the use of the original source code as intended, rather
+   than potentially finding modules in the current directory.
 
--  The ``nuitka-watch`` tool didn't really implement ``retry`` for
-   pipenv install properly.
+-  Corrected the implementation of the ``retry`` mechanism for
+   ``pipenv`` installation within the ``nuitka-watch`` tool.
 
--  Added support extra options via environment variable for
-   ``nuitka-watch`` tool as well.
+-  Added support for passing extra options via environment variables to
+   the ``nuitka-watch`` tool.
 
 Cleanups
 ========
 
--  Distutils: Use ``--module=package`` where it makes sense, rather than
-   manually adding the package contents.
+-  **Distutils:** Standardized usage to ``--module=package`` where
+   appropriate, instead of manually adding package contents, resulting
+   in more conventional Nuitka command lines.
 
-   This allows for more standard command line call to Nuitka.
-
--  Moved pyi file creation to a dedicated function, cleaning up the post
-   processing code.
+-  Refactored ``.pyi`` file creation into a dedicated function,
+   simplifying the post-processing code.
 
 Summary
 =======
 
-This release is not complete yet.
+This release is not yet complete.
 
 .. include:: ../dynamic.inc
