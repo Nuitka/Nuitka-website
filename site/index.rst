@@ -31,34 +31,35 @@ Python is already compatible with your system.
    :hidden:
    :caption: Nuitka the Python Compiler
 
-   Free Download <doc/download>
-   User Documentation <user-documentation/index>
-   Get Support <pages/support>
-   Contribute <pages/contribute>
+   |DOWNLOAD_SYMBOL| Free Download <doc/download>
+   |DOCUMENTATION_SYMBOL| User Documentation <user-documentation/index>
+   |SUPPORT_SYMBOL| Get Support <pages/support>
+   |CONTRIBUTE_SYMBOL| Contribute <pages/contribute>
 
 .. toctree::
    :hidden:
    :caption: Commercial Users
 
    |SHOPPING_CART_SYMBOL| Purchase Now <commercial/purchase>
-   Commercial Features <doc/commercial>
-   doc/bundles
+   |PROTECTION_SYMBOL| Commercial Features <doc/commercial>
+   |RESELLERS_SYMBOL| Reseller Information <commercial/resellers>
+   |VM_SYMBOL| Nuitka VM <doc/bundles>
 
 .. toctree::
    :titlesonly:
    :hidden:
    :caption: News and Blog
 
-   changelog/index
-   Blog <news>
-   Streaming <pages/Streaming>
+   |NEWS_SYMBOL| Release Information <changelog/index>
+   |BLOG_SYMBOL| Blog <news>
+   |STREAMING_SYMBOL| Streaming <pages/Streaming>
 
 .. toctree::
    :hidden:
    :caption: Other
 
-   doc/Credits
-   pages/impressum
+   |CREDITS_SYMBOL| Credits <doc/Credits>
+   |IMPRESSUM_SYMBOL| Impressum <pages/impressum>
    pages/pyside2
    pages/pyqt5
 

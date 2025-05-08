@@ -725,6 +725,44 @@ s.parentNode.insertBefore(ci_search, s);
     return js_set_output_filename
 
 
+def fixupSymbols(document_bytes):
+    contents = getFileContents("site/variables.inc", mode="rb")
+
+    def replaceSymbol(value):
+        value = value.group(0)
+
+        found = 0
+        result = b""
+
+        for line in contents.splitlines():
+            if found == 1:
+                assert not line, value
+                found = 2
+                continue
+
+            if found == 2:
+                if not line:
+                    break
+
+                result += line.strip()
+                continue
+
+            if value in line:
+                found = 1
+
+        assert result, value
+        return result
+
+    document_bytes = re.sub(
+        b"\\|.*?_SYMBOL\\|",
+        replaceSymbol,
+        document_bytes,
+        flags=re.S,
+    )
+
+    return document_bytes
+
+
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
     # do other touch ups. spell-checker: ignore searchindex,searchtools
@@ -1110,10 +1148,7 @@ def runPostProcessing():
             doc, include_meta_content_type=True
         )
 
-        document_bytes = document_bytes.replace(
-            b"|SHOPPING_CART_SYMBOL|",
-            b'<i class="fa fa-shopping-cart" aria-hidden="true"></i>',
-        )
+        document_bytes = fixupSymbols(document_bytes)
 
         document_bytes = document_bytes.replace(b"now &#187;", b"now&nbsp;&nbsp;&#187;")
         document_bytes = document_bytes.replace(b"/ yr", b'<i class="sub">/ yr</i>')
