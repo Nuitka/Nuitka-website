@@ -26,55 +26,55 @@
 
 .. |SHOPPING_CART_SYMBOL| raw:: html
 
-   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-shopping-cart" aria-hidden="true"></i>
 
 .. |DOWNLOAD_SYMBOL| raw:: html
 
-   <i class="fa fa-download" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-download" aria-hidden="true"></i>
 
 .. |RESELLERS_SYMBOL| raw:: html
 
-   <i class="fa fa-handshake-o" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-handshake-o" aria-hidden="true"></i>
 
 .. |DOCUMENTATION_SYMBOL| raw:: html
 
-   <i class="fa fa-book" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-book" aria-hidden="true"></i>
 
 .. |PROTECTION_SYMBOL| raw:: html
 
-   <i class="fa fa-shield" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-shield" aria-hidden="true"></i>
 
 .. |VM_SYMBOL| raw:: html
 
-   <i class="fa fa-lock" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-lock" aria-hidden="true"></i>
 
 .. |SUPPORT_SYMBOL| raw:: html
 
-   <i class="fa fa-life-ring" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-life-ring" aria-hidden="true"></i>
 
 .. |CONTRIBUTE_SYMBOL| raw:: html
 
-   <i class="fa fa-cogs" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-cogs" aria-hidden="true"></i>
 
 .. |NEWS_SYMBOL| raw:: html
 
-   <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-newspaper-o" aria-hidden="true"></i>
 
 .. |BLOG_SYMBOL| raw:: html
 
-   <i class="fa fa-rss-square" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-rss-square" aria-hidden="true"></i>
 
 .. |STREAMING_SYMBOL| raw:: html
 
-   <i class="fa fa-video-camera" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-video-camera" aria-hidden="true"></i>
 
 .. |CREDITS_SYMBOL| raw:: html
 
-   <i class="fa fa-users" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-users" aria-hidden="true"></i>
 
 .. |IMPRESSUM_SYMBOL| raw:: html
 
-   <i class="fa fa-info-circle" aria-hidden="true"></i>
+   <i class="fa fa-fw fa-info-circle" aria-hidden="true"></i>
 
 ..
    TODO: Use these
