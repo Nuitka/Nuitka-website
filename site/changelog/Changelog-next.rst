@@ -32,6 +32,24 @@ the latest code changes.
 Bug Fixes
 =========
 
+-  **Standalone**: For Nuitka's "Python Build Standalone" feature,
+   ensured that debug builds correctly recognize all their specific
+   built-in modules, preventing potential errors. (Fixed in 2.7.2
+   already.)
+
+-  **Linux**: Fixed a crash when attempting to modify the RPATH of
+   statically linked executables (e.g., from ``imageio-ffmpeg``). (Fixed
+   in 2.7.2 already.)
+
+-  **Anaconda**: Updated ``PySide2`` support to correctly handle path
+   changes in newer Conda packages and improved path normalization for
+   robustness. (Fixed in 2.7.2 already.)
+
+-  **macOS**: Corrected handling of ``QtWebKit`` framework resources.
+   Previous special handling was removed as symlinking is now default,
+   which also resolved an issue of file duplication. (Fixed in 2.7.2
+   already.)
+
 -  **Debugging**: Resolved an issue in debug builds where an incorrect
    assertion was done during the addition of distribution metadata.
    (Fixed in 2.7.1 already.)
@@ -153,6 +171,11 @@ Tests
 
 Cleanups
 ========
+
+-  **Plugins**: Improved ``pkg_resources`` integration by using the
+   ``__loader__`` attribute of the registering module for loader type
+   registration, avoiding modification of the global ``builtins``
+   dictionary. (Fixed in 2.7.2 already.)
 
 -  Improved the logging mechanism for module search scans. It is now
    possible to enable tracing for individual ``locateModule`` calls,
