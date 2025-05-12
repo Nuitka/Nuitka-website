@@ -29,30 +29,277 @@ html {
     width: 95% !important;
 }
 
-.nuitka-offer-full-package .sd-card {
-    background-color: #403472;
+/* New Pricing Grid Styles */
+.pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    font-family: 'Lato', 'Roboto', sans-serif;
 }
 
-.nuitka-offer-commercial .sd-card {
+.pricing-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pricing-header h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.pricing-header p {
+    font-size: 16px;
+    color: #666;
+}
+
+.pricing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.themida-grid {
+    justify-content: center;
+}
+
+.pricing-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.pricing-card-header {
+    padding: 25px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.pricing-card-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom-left-radius: 8px;
+}
+
+.pricing-card-header h3 {
+    margin: 0 0 15px 0;
+    font-size: 22px;
+    color: white;
+}
+
+.pricing-card-price {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: white;
+}
+
+.pricing-card-price .currency {
+    font-size: 20px;
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+.pricing-card-price .amount {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.pricing-card-price .period {
+    font-size: 16px;
+    margin-left: 5px;
+    opacity: 0.8;
+}
+
+.pricing-card-body {
+    padding: 20px;
+    background-color: white;
+    flex-grow: 1;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pricing-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.feature-icon {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.pricing-card-footer {
+    padding: 20px;
+    background-color: white;
+    text-align: center;
+}
+
+.pricing-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: transparent;
+    color: #333;
+    border: 2px solid;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.pricing-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.pricing-footer a {
+    color: #599dd2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.pricing-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Card color schemes */
+.nuitka-offer-commercial .pricing-card-header {
     background-color: #78c933;
 }
 
-.nuitka-offer-themida .sd-card {
+.nuitka-offer-commercial .pricing-button {
+    color: #78c933;
+    border-color: #78c933;
+}
+
+.nuitka-offer-commercial .pricing-button:hover {
+    background-color: #78c933;
+    color: white;
+}
+
+.nuitka-offer-full-package .pricing-card-header {
+    background-color: #403472;
+}
+
+.nuitka-offer-full-package .pricing-button {
+    color: #403472;
+    border-color: #403472;
+}
+
+.nuitka-offer-full-package .pricing-button:hover {
+    background-color: #403472;
+    color: white;
+}
+
+.nuitka-offer-sponsor .pricing-card-header {
+    background-color: #b45f06;
+}
+
+.nuitka-offer-sponsor .pricing-button {
+    color: #b45f06;
+    border-color: #b45f06;
+}
+
+.nuitka-offer-sponsor .pricing-button:hover {
+    background-color: #b45f06;
+    color: white;
+}
+
+.nuitka-offer-themida .pricing-card-header {
     background-color: rgb(169, 78, 78);
 }
 
-.nuitka-offer-priority .sd-card {
+.nuitka-offer-themida .pricing-button {
+    color: rgb(169, 78, 78);
+    border-color: rgb(169, 78, 78);
+}
+
+.nuitka-offer-themida .pricing-button:hover {
+    background-color: rgb(169, 78, 78);
+    color: white;
+}
+
+.nuitka-offer-priority .pricing-card-header {
     background-color: #007dd6;
 }
 
-.nuitka-offer-sponsor .sd-card {
-    background-color: #b45f06;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pricing-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pricing-card {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 25px;
+    }
+    
+    .pricing-card-price .amount {
+        font-size: 42px;
+    }
+    
+    .pricing-button {
+        width: 100%;
+        padding: 15px 20px;
+    }
+    
+    .feature-section {
+        padding: 20px 15px;
+    }
 }
 
 .nuitka-grid-offer .sd-card {
     color: white;
     margin-bottom: 15px;
     overflow-wrap: normal;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nuitka-grid-offer .sd-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
 }
 
 .nuitka-buy .sd-card-text:last-child {
@@ -79,24 +326,42 @@ h3 {
 /* Stripe links should be forced to color standing out */
 .nuitka-buy a {
     vertical-align: bottom;
-    font: bold 1rem Arial;
+    font: bold 1.1rem Arial, sans-serif;
     text-decoration: none;
-    background-color: #eeeeee78;
+    background-color: #ffffff;
     color: #000000;
-    padding: 10px;
+    padding: 12px 20px;
     border-radius: 30px;
-    outline: 2px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     white-space: nowrap;
+    display: inline-block;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .nuitka-buy a:hover {
-    background-color: #83818178;
+    background-color: #f8f8f8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nuitka-buy a:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nuitka-grid-offer .sd-card-title {
     color: white;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 15px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .nuitka-grid-offer blockquote {
@@ -108,26 +373,37 @@ h3 {
     list-style: none !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    margin-bottom: 10px !important;
+    position: relative;
 }
 
 .nuitka-grid-offer ul {
-    --icon-size: .8em;
-    --gutter: .5em;
+    --icon-size: 1em;
+    --gutter: 1.8em;
     padding: 0 0 0 var(--icon-size);
     box-sizing: border-box;
     min-width: 0;
+    margin-top: 20px;
 }
 
 .nuitka-grid-offer ul li {
     padding-left: var(--gutter);
     box-sizing: border-box;
     min-width: 0;
+    transition: transform 0.2s ease;
 }
 
-.nuitka-grid-offer ul li::marker {
-    content: "\f00a";
-    font-family: FontAwesome;
-    font-size: var(--icon-size);
+.nuitka-grid-offer ul li:hover {
+    transform: translateX(3px);
+}
+
+.nuitka-grid-offer ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+    color: white;
     box-sizing: border-box;
     min-width: 0;
 }
@@ -136,16 +412,35 @@ h3 {
     white-space: nowrap;
     color: white;
     text-align: center !important;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: bold;
     margin-bottom: 20px !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
 }
 
 .nuitka-price p::first-letter {
     color: white;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     vertical-align: 20px;
+}
+
+.nuitka-price {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.nuitka-price::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
 }
 
 .nuitka-price i {
@@ -158,6 +453,72 @@ h3 {
 .nuitka-grid-offer .sd-card-text {
     color: white;
     text-align: left;
+}
+
+/* New feature section styling */
+.feature-section {
+    margin: 50px 0;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #599dd2, #78c933);
+}
+
+.feature-section h2 {
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sd-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.feature-icon {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+    color: #599dd2;
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    background-color: rgba(89, 157, 210, 0.1);
 }
 
 .sd-card-title {
@@ -200,6 +561,19 @@ h3 {
 @media screen and (max-width: 1000px) {
     .share-button-container {
         display: none;
+    }
+    
+    .nuitka-grid-offer .sd-card {
+        margin-bottom: 30px;
+    }
+    
+    .nuitka-price p {
+        font-size: 2.4rem;
+    }
+    
+    .nuitka-buy a {
+        padding: 10px 16px;
+        font-size: 1rem;
     }
 }
 
@@ -773,4 +1147,33 @@ img.fp-circle-image {
         height: fit-content;
         padding-bottom: 1rem;
     }
+}
+
+/* License & Usage Rights section styling */
+.license-benefits {
+    margin: 0 auto 60px;
+    max-width: 1200px;
+}
+
+.license-grid {
+    margin-top: 20px;
+}
+
+.license-card {
+    padding: 25px 20px;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+}
+
+.license-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.license-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--our-color-blue);
 }

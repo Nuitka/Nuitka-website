@@ -9,7 +9,7 @@ This page lists the many ways absolutely everybody can help and make
 
    The money earned through **Nuitka Commercial** is largely used to
    enhance standard **Nuitka**, making it possible to begin with. So
-   |SHOPPING_CART_SYMBOL| :doc:`/commercial/purchase`.
+   |SHOPPING_CART_SYMBOL| :doc:`/doc/commercial`.
 
 #. Donation
 

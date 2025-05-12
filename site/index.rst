@@ -40,10 +40,10 @@ Python is already compatible with your system.
    :hidden:
    :caption: Commercial Users
 
-   |SHOPPING_CART_SYMBOL| Purchase Now <commercial/purchase>
-   |PROTECTION_SYMBOL| Commercial Features <doc/commercial>
+   |SHOPPING_CART_SYMBOL| Nuitka Commercial <doc/commercial>
    |RESELLERS_SYMBOL| Reseller Information <commercial/resellers>
    |VM_SYMBOL| Nuitka VM <doc/bundles>
+   |PRICING_SYMBOL| Pricing <doc/pricing>
 
 .. toctree::
    :titlesonly:

@@ -82,3 +82,7 @@
 .. |MORE_SYMBOL| raw:: html
 
    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+
+.. |PRICING_SYMBOL| raw:: html
+
+   <i class="fa fa-fw fa-money" aria-hidden="true"></i>

@@ -1,29 +1,14 @@
 :orphan:
 
+.. meta::
+   :http-equiv=refresh: 0;URL=../doc/commercial.html
+
 ############################
  Purchase Nuitka Commercial
 ############################
 
-Thank you for purchasing **Nuitka Commercial**. You gain the best
-protected Python usage for your business while also indirectly funding
-the development of the important **Nuitka** project.
+This page has been moved to :doc:`/doc/commercial`.
 
-.. include:: /commercial/purchase-grid.inc
+.. raw:: html
 
-.. grid:: 1 2 2 4
-   :gutter: 2
-
-   .. grid-item-card::  Nuitka Themida
-      :class-item: nuitka-grid-offer nuitka-offer-themida
-
-       .. container:: nuitka-price
-
-           € 500 / yr
-
-       .. container:: nuitka-buy
-
-         `Subscribe now » </stripe/checkout-themida-subscription>`__
-
-       - Nuitka Commercial **included**
-
-       - Nuitka Priority **included**
+   <script>window.location.href = "../doc/commercial.html";</script>
