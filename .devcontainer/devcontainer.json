@@ -23,7 +23,7 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "sudo dpkg-reconfigure tzdata -f none",
 
-	"postStartCommand": "./auto-update.sh",
+	"postStartCommand": "nohup ./auto-update.sh & echo -e \"\\n\\n🚀 Dev environment ready!\\n   Open http://localhost:8000 in your browser.\\n\"",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
