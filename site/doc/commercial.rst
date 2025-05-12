@@ -22,62 +22,71 @@ protection. For this, you need the **Nuitka Commercial** package. It
 includes plugins that achieve the following:
 
 .. grid:: 1 1 2 2
+   :gutter: 1
+   :class-container: hub-card-set commercial-feature-hub
 
    .. grid-item::
 
        .. grid:: 1 1 1 1
            :gutter: 1
 
-           .. grid-item-card::  Program Constants Data
+           .. grid-item-card::  :doc:`/doc/commercial/protect-constants-data`
 
                Obfuscate contained program constants data
 
-               Your encryption keys, your program texts, your library usages, all
-               expose textual information that can be valuable input in Reverse
-               Engineering.
+               Your encryption keys, your program texts, your library usages,
+               all expose textual information that can be valuable input in
+               Reverse Engineering.
 
-               With **Nuitka**, these constants are plain and readable in the compiled
-               programs, just like in your **Python** source code or its bytecode.
+               With **Nuitka**, these constants are plain and readable in the
+               compiled programs, just like in your **Python** source code or
+               its bytecode.
 
                Compiling with **Nuitka** protects the source code, but with the
                data still being easily readable, it will be less effective than **Nuitka Commercial**, which goes all the way.
 
-               :doc:`Read more.... <commercial/protect-constants-data>`
+           .. grid-item-card::  :doc:`/doc/commercial/protect-data-files`
 
-           .. grid-item-card::  Contained Data Files
+               Another aspect of data protection is your data files. When your
+               program includes data files to work with, these have to be
+               visible in the file system. These files unnecessarily expose your
+               program to risks. For example, via QML files of Qt, your program
+               behavior can be changed by an attacker modifying these files, or
+               they can copy their content easily.
 
-               Another aspect of data protection is your data files. When your program
-               includes data files to work with, these have to be visible in the file
-               system. These files unnecessarily expose your program to risks. For example, via QML
-               files of Qt, your program behavior can be changed by an attacker modifying
-               these files, or they can copy their content easily.
+               Therefore, **Nuitka Commercial** allows you to embed data files
+               as part of the program constants and protect them that way.
+               Without these files, the attacker cannot use them as an attack
+               vector.
 
-               Therefore, **Nuitka Commercial** allows you to embed data files as part
-               of the program constants and protect them that way. Without these files, the attacker cannot use them as an attack vector.
+           .. grid-item-card::  :doc:`/doc/commercial/protect-dll-files`
 
-               :doc:`Read more.... <commercial/protect-data-files>`
+               For best protection of your program at runtime, you need to make sure that DLLs and Python extension modules cannot be swapped out.
+
+               Therefore, **Nuitka VM** allows you to DLL files as part of an executable that runs inside a protected VM (provided by a different product), that then is used to prevent that attack vector as well.
 
    .. grid-item::
 
        .. grid:: 1 1 1 1
            :gutter: 1
 
-           .. grid-item-card:: Encrypted Tracebacks
+           .. grid-item-card:: :doc:`/doc/commercial/traceback-encryption`
 
                When your program is deployed and crashing, you could take
-               potentially successful steps against these tracebacks appearing. But
-               when you need to support your client, you must be able to tell why your software is crashing.
+               potentially successful steps against these tracebacks appearing.
+               But when you need to support your client, you must be able to
+               tell why your software is crashing.
 
-               Python tracebacks are suitable for this, but you cannot want them to be
-               readable to the user. At this point, traceback encryption comes in handy.
-               **Nuitka Commercial** allows you to encrypt all
+               Python tracebacks are suitable for this, but you cannot want them
+               to be readable to the user. At this point, traceback encryption
+               comes in handy. **Nuitka Commercial** allows you to encrypt all
                traceback outputs. They still carry the information you want, but
                *only you* will be able to decode them.
 
-               Symmetric encryption (and asymmetric encryption in a future update)
-               are available for you to use there.
+               Symmetric encryption (and asymmetric encryption in a future
+               update) are available for you to use there.
 
-           .. grid-item-card:: Encrypted Outputs
+           .. grid-item-card:: Encrypted Outputs :doc:`/doc/commercial/traceback-encryption`
 
                If you need to query information from a machine or just in general
                want to have perfect protection, you can use the Nuitka plugin to
@@ -92,6 +101,7 @@ includes plugins that achieve the following:
 ******************************
 
 .. grid:: 1 1 2 2
+   :gutter: 1
 
    .. grid-item::
 
