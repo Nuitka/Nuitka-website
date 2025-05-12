@@ -64,6 +64,7 @@
       :shadow: sm
 
       .. raw:: html
+
          <div class="license-icon">🔄</div>
 
       Continue using your compiled applications even after your subscription ends.
