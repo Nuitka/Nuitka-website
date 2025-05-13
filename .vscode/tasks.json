@@ -11,11 +11,17 @@
             "type": "shell",
             "command": "tail -f /workspaces/Nuitka-website/auto-update.log",
             "problemMatcher": [],
+            "isBackground": true,
             "presentation": {
                 "echo": true,
                 "reveal": "always",
                 "focus": false,
-                "panel": "dedicated" // Opens in its own terminal panel
+                "panel": "dedicated", // Opens in its own terminal panel
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "runOptions": {
+                "runOn": "folderOpen" // Automatically run this task when the workspace is opened
             }
         },
         {

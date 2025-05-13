@@ -18,13 +18,20 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [8000],
+	"portsAttributes": {
+		"8000": {
+			"label": "Nuitka Website",
+			"onAutoForward": "notify"
+		}
+	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "sudo dpkg-reconfigure tzdata -f none && sudo mkdir -p /workspaces/Nuitka-website/.devcontainer/supervisor/logs && sudo chown -R vscode:vscode /workspaces/Nuitka-website/.devcontainer/supervisor",
 
+
 	// Start supervisord to manage background services like auto-update.sh
-	"postStartCommand": "supervisord -c /workspaces/Nuitka-website/.devcontainer/supervisor/supervisord.conf",
+	"postStartCommand": "supervisord -c /workspaces/Nuitka-website/.devcontainer/supervisor/supervisord.conf && echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://localhost:8000.\\n\\n'",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
