@@ -13,3 +13,5 @@ node_modules
 *.bin
 *.dist
 *.build
+auto-update.log
+.devcontainer/supervisor

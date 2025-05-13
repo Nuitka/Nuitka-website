@@ -9,7 +9,7 @@
 	// "features": {},
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/apt-packages:1": {
-			"packages": "python3-dev,python3-pip,python-is-python3,bash-completion,optipng,jpegoptim,file,patchelf,ccache"
+			"packages": "python3-dev,python3-pip,python-is-python3,bash-completion,optipng,jpegoptim,file,patchelf,ccache,supervisor"
 		},
 		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
 			"command": "python3 -m pip install --break invoke pipenv"
@@ -21,9 +21,10 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo dpkg-reconfigure tzdata -f none",
+	"postCreateCommand": "sudo dpkg-reconfigure tzdata -f none && sudo mkdir -p /workspaces/Nuitka-website/.devcontainer/supervisor/logs && sudo chown -R vscode:vscode /workspaces/Nuitka-website/.devcontainer/supervisor",
 
-	"postStartCommand": "nohup ./auto-update.sh & echo -e \"\\n\\n🚀 Dev environment ready!\\n   Open http://localhost:8000 in your browser.\\n\"",
+	// Start supervisord to manage background services like auto-update.sh
+	"postStartCommand": "supervisord -c /workspaces/Nuitka-website/.devcontainer/supervisor/supervisord.conf",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {

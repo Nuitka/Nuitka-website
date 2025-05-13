@@ -7,6 +7,18 @@
     },
     "tasks": [
         {
+            "label": "View Auto-Update Log",
+            "type": "shell",
+            "command": "tail -f /workspaces/Nuitka-website/auto-update.log",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated" // Opens in its own terminal panel
+            }
+        },
+        {
             "label": "rebuild all pages",
             "type": "shell",
             "command": "killall -SIGUSR2 sphinx-autobuild",
@@ -53,7 +65,7 @@
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": []
-        },
+        }
     ],
     "typescript.tsc.autoDetect": "off",
     "grunt.autoDetect": "off",
