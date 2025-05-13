@@ -116,6 +116,32 @@ Bug Fixes
    hard-coded module names for greater flexibility. (Fixed in 2.7.1
    already.)
 
+-  **Windows**: For onefile mode using DLL mode, ensure all necessary
+   environment variables are correctly set for ``QtWebEngine``.
+   Previously, default Qt paths could point incorrectly near the onefile
+   binary. (Fixed in 2.7.3 already.)
+
+-  **PySide6**: Fixed an issue with ``PySide6`` where slots defined in
+   base classes might not be correctly handled, leading to them only
+   working for the first class that used them. (Fixed in 2.7.3 already.)
+
+-  **Plugins**: Enhanced Qt binding plugin support by checking for
+   module presence without strictly requiring metadata. This improves
+   compatibility with environments like Homebrew or ``uv`` where package
+   metadata might be absent. (Fixed in 2.7.3 already.)
+
+-  **macOS**: Ensured the ``apple`` target is specified during linking
+   to prevent potential linker warnings about using an ``unknown``
+   target in certain configurations. (Fixed in 2.7.3 already.)
+
+-  **macOS**: Disabled the use of static ``libpython`` with ``pyenv``
+   installations, as this configuration is currently broken. (Fixed in
+   2.7.3 already.)
+
+-  **macOS**: Improved error handling for the
+   ``--macos-app-protected-resource`` option by catching cases where a
+   description is not provided. (Fixed in 2.7.3 already.)
+
 Package Support
 ===============
 
