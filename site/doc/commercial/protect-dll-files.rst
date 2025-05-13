@@ -33,3 +33,9 @@ integrity and security of your deployed software.
 
    The **Nuitka VM** product is not **Nuitka Commercial** and requires a
    separate product purchase and is currently only Windows.
+
+
+Go `back to Nuitka commercial
+</doc/commercial.html#protection-vs-reverse-engineering>`__ overview to
+learn about more features or to subscribe to `Nuitka commercial
+</doc/commercial.html#pricing>`__.
