@@ -57,15 +57,13 @@ Here are a few examples of how to use Nuitka:
 
 .. dropdown:: Linux Packages (Debian, Ubuntu, Fedora, etc.)
 
-   Windows
-   =======
+   **Windows**
 
    The MSI installers are discontinued as Python has deprecated their
    support for them, as well as Windows 10 making it harder to users to
    install them. Using the PyPI installation is recommended on Windows.
 
-   Debian/Ubuntu/Mint
-   ==================
+   **Debian/Ubuntu/Mint**
 
    -  |DEBIAN_LOGO| |UBUNTU_LOGO| |MINT_LOGO| Stable: Debian/Ubuntu/Mint
       repositories
@@ -105,8 +103,7 @@ Here are a few examples of how to use Nuitka:
          version is already in the standard repository. This is the only
          way to access the develop version of Nuitka though.
 
-   RHEL
-   ====
+   **RHEL**
 
    |RHEL_LOGO| repositories
 
@@ -123,8 +120,7 @@ Here are a few examples of how to use Nuitka:
 
    .. include:: rhel-downloads.inc
 
-   CentOS
-   ======
+   **CentOS**
 
    |CENTOS_LOGO| repositories
 
@@ -143,8 +139,7 @@ Here are a few examples of how to use Nuitka:
 
    .. include:: centos-downloads.inc
 
-   Fedora
-   ======
+   **Fedora**
 
    |FEDORA_LOGO| repositories
 
@@ -162,8 +157,7 @@ Here are a few examples of how to use Nuitka:
 
    .. include:: fedora-downloads.inc
 
-   Suse
-   ====
+   **Suse**
 
    |SUSE_LOGO| repositories
 
@@ -181,21 +175,18 @@ Here are a few examples of how to use Nuitka:
 
    .. include:: suse-downloads.inc
 
-   Arch
-   ====
+   **Arch**
 
    -  |ARCH_LOGO| Stable: Arch Linux, execute \`\`pacman -S nuitka\`\`
 
    -  |ARCH_LOGO| Develop: Arch Linux `Nuitka from git develop
       <https://aur.archlinux.org/packages/nuitka-git/>`_
 
-   Gentoo
-   ======
+   **Gentoo**
 
    -  |GENTOO_LOGO| Gentoo Linux, execute \`\`emerge -a dev-python/nuitka\`\`
 
-   macOS
-   =====
+   **macOS**
 
    No installer is available for macOS. Use the source packages, clone from
    git, or use PyPI.
