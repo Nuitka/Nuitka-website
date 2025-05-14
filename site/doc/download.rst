@@ -114,7 +114,7 @@ Here are a few examples of how to use Nuitka:
 
       yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-${VERSION_ID}/home:kayhayen.repo
 
-      # Install either the these, but not both
+      # Install either of these, but not both
       yum install nuitka
       yum install nuitka-unstable
 
