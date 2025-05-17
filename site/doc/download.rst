@@ -2,18 +2,16 @@
    :description: Download the Python compiler Nuitka and make your code faster today.
    :keywords: nuitka,download,redhat,centos,debian,mint,freebsd,openbsd,arch,PyPI,git
 
-.. include:: ../variables.inc
 ##################
  Nuitka Downloads
 ##################
 
-
-**************
+***************
  Quick Install
-**************
+***************
 
-Nuitka is a Python compiler that makes your code faster and
-easier to distribute.
+Nuitka is a Python compiler that makes your code faster and easier to
+distribute.
 
 **Recommended: Install via PyPI (all platforms)**
 
@@ -29,39 +27,13 @@ For the latest development version:
 
 .. note::
 
-   Use the Python you want to compile with. On Windows and macOS, this is the easiest and most reliable way.
-
-**Basic Usage Examples**
-
-Here are a few examples of how to use Nuitka:
-
--  To create a standalone executable (an independent folder that's redistributable):
-
-   .. code:: bash
-
-      python -m nuitka --standalone main.py
-
--  To create a single executable file (onefile):
-
-   .. code:: bash
-
-      python -m nuitka --onefile main.py
-
--  To create a local but compiled version (Accelerated mode)
-
-   .. code:: bash
-
-      python -m nuitka main.py
+   Use the Python interpreter you want to compile with, that is the
+   easiest way. And also invoke as ``python -m nuitka`` with that
+   interpreter. It is the easiest and most reliable way.
 
 **Other install options:**
 
 .. dropdown:: Linux Packages (Debian, Ubuntu, Fedora, etc.)
-
-   **Windows**
-
-   The MSI installers are discontinued as Python has deprecated their
-   support for them, as well as Windows 10 making it harder to users to
-   install them. Using the PyPI installation is recommended on Windows.
 
    **Debian/Ubuntu/Mint**
 
@@ -96,12 +68,6 @@ Here are a few examples of how to use Nuitka:
          sudo echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/develop/$CODENAME $CODENAME main"
          sudo apt-get update
          sudo apt-get install nuitka
-
-      .. note::
-
-         Because Nuitka is part of Debian Stable/Testing/Unstable, a stable
-         version is already in the standard repository. This is the only
-         way to access the develop version of Nuitka though.
 
    **RHEL**
 
@@ -213,8 +179,8 @@ Here are a few examples of how to use Nuitka:
    Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on
    Github.
 
-For commercial support and advanced features, see
-:doc:`Nuitka Commercial <commercial>`.
+For commercial support and advanced features, see :doc:`Nuitka
+Commercial <commercial>`.
 
 .. _nuitka-standard-license:
 
@@ -229,3 +195,5 @@ or agreed to in writing, software distributed under the License is
 distributed on an **"as is" basis, without warranties or conditions of
 any kind**, either express or implied. See the License for the specific
 language governing permissions and limitations under the License.
+
+.. include:: ../variables.inc
