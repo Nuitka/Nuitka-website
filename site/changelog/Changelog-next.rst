@@ -32,10 +32,9 @@ the latest code changes.
 Bug Fixes
 =========
 
--  **Standalone**: For Nuitka's "Python Build Standalone" feature,
-   ensured that debug builds correctly recognize all their specific
-   built-in modules, preventing potential errors. (Fixed in 2.7.2
-   already.)
+-  **Standalone**: For the "Python Build Standalone" flavor ensured that
+   debug builds correctly recognize all their specific built-in modules,
+   preventing potential errors. (Fixed in 2.7.2 already.)
 
 -  **Linux**: Fixed a crash when attempting to modify the RPATH of
    statically linked executables (e.g., from ``imageio-ffmpeg``). (Fixed
@@ -142,6 +141,50 @@ Bug Fixes
    ``--macos-app-protected-resource`` option by catching cases where a
    description is not provided. (Fixed in 2.7.3 already.)
 
+-  **Plugins**: Enhanced workarounds for ``PySide6``, now also covering
+   single-shot timer callbacks. (Fixed in 2.7.4 already.)
+
+-  **Plugins**: Ensured that the Qt binding module is included when
+   using accelerated mode with Qt bindings. (Fixed in 2.7.4 already.)
+
+-  **macOS**: Avoided signing through symlinks and minimized their use
+   to prevent potential issues, especially during code signing of
+   application bundles. (Fixed in 2.7.4 already.)
+
+-  **Windows**: Implemented path shortening for paths used in onefile
+   DLL mode to prevent issues with long or Unicode paths. This also
+   benefits module mode. (Fixed in 2.7.4 already.)
+
+-  **UI**: The options nanny plugin no longer uses a deprecated option
+   for macOS app bundles, preventing potential warnings or issues.
+   (Fixed in 2.7.4 already.)
+
+-  **Plugins**: Ensured the correct macOS target architecture is used.
+   This particularly useful for ``PySide2`` with universal CPython
+   binaries, to prevent compile time crashes e.g. when cross-compiling
+   for a different architecture. (Fixed in 2.7.4 already.)
+
+-  **UI**: Fixed a crash that occurred on **macOS** if the ``ccache``
+   download was rejected by the user. (Fixed in 2.7.4 already.)
+
+-  **UI**: Improved the warning message related to macOS application
+   icons for better clarity. (Added in 2.7.4 already.)
+
+-  **Standalone**: Corrected an issue with QML plugins on **macOS** when
+   using newer ``PySide6`` versions. (Fixed in 2.7.4 already.)
+
+-  **Python 3.10+**: Fixed a memory leak where the matched value in
+   pattern matching constructs was not being released. (Fixed in 2.7.4
+   already.)
+
+-  **compatibility**: Fixed an issue where exception exits for larger
+   ``range`` objects, which are not optimized away, were not correctly
+   annotated by the compiler. (Fixed in 2.7.4 already.)
+
+-  **Windows**: Corrected an issue with the automatic use of icons for
+   ``PySide6`` applications on non-Windows, if Windows icon options were
+   used. (Fixed in 2.7.4 already.)
+
 Package Support
 ===============
 
@@ -153,6 +196,23 @@ Package Support
 
 -  **Standalone**: Added needed data files for ``ursina`` package.
    (Added in 2.7.1 already.)
+
+-  **Standalone**: Added support for newer versions of the ``pydantic``
+   package. (Added in 2.7.4 already.)
+
+-  **Standalone**: Extended ``libonnxruntime`` support to **macOS**,
+   enabling its use in compiled applications on this platform. (Added in
+   2.7.4 already.)
+
+-  **Standalone**: Added necessary data files for the ``pygameextra``
+   package. (Added in 2.7.4 already.)
+
+-  **Standalone**: Included GL backends for the ``arcade`` package.
+   (Added in 2.7.4 already.)
+
+-  **Standalone**: Added more data directories for the ``ursina`` and
+   ``panda3d`` packages, improving their out-of-the-box compatibility.
+   (Added in 2.7.4 already.)
 
 New Features
 ============
@@ -171,6 +231,11 @@ Optimization
    erroneous, it should not cause a compiler crash. (Added in 2.7.1
    already.)
 
+-  **macOS**: Enhanced ``PySide2`` support, removing the general
+   requirement for onefile mode. Onefile mode is now only enforced for
+   ``QtWebEngine`` due to its specific stability issues if not bundled
+   this way. (Added in 2.7.4 already.)
+
 Anti-Bloat
 ==========
 
@@ -188,12 +253,21 @@ Anti-Bloat
 Organizational
 ==============
 
--  None yet
+-  **Release:** Ensured proper handling of newer ``setuptools`` versions
+   during Nuitka installation. (Fixed in 2.7.4 already.)
 
 Tests
 =====
 
--  None yet
+-  Improved test robustness against short paths for package-containing
+   directories. (Added in 2.7.4 already.)
+
+-  Prevented test failures caused by rejected download prompts during
+   test execution, making CI more stable. (Added in 2.7.4 already.)
+
+-  Refactored common testing code to avoid using ``doctests``,
+   preventing warnings in specific standalone mode test scenarios
+   related to reference counting. (Added in 2.7.4 already.)
 
 Cleanups
 ========
