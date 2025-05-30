@@ -9,7 +9,7 @@
         {
             "label": "View Auto-Update Log",
             "type": "shell",
-            "command": "tail -f /workspaces/Nuitka-website/auto-update.log",
+            "command": "tail -F /workspaces/Nuitka-website/auto-update.log",
             "problemMatcher": [],
             "isBackground": true,
             "presentation": {
