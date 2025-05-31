@@ -185,6 +185,14 @@ Bug Fixes
    ``PySide6`` applications on non-Windows, if Windows icon options were
    used. (Fixed in 2.7.4 already.)
 
+-  **Onefile**: When using DLL mode there was a load error for the DLL
+   with MSVC 14.2 or earlier, but older MSVC is to be supported. (Fixed
+   in 2.7.5 already.)
+
+-  **Onefile**: Fix, the splash screen was showing in DLL mode twice or
+   more, these extra copies couldn't be stopped. (Fixed in 2.7.5
+   already.)
+
 Package Support
 ===============
 
@@ -213,6 +221,9 @@ Package Support
 -  **Standalone**: Added more data directories for the ``ursina`` and
    ``panda3d`` packages, improving their out-of-the-box compatibility.
    (Added in 2.7.4 already.)
+
+-  **Standalone**: Added support for newer ``skimage`` package. (Added
+   in 2.7.5 already.)
 
 New Features
 ============
