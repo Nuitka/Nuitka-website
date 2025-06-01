@@ -113,6 +113,8 @@ html_theme_options = {
     "prev_next_buttons_location": "none",
     "includehidden": True,
     "titles_only": True,
+    "enable_search_shortcuts": False,
+    "navigation_with_keys": False,
 }
 
 html_extra_path = [f"{ROOT}/files"]
