@@ -2311,22 +2311,25 @@ operations.
 .. code:: python
 
    try:
-       block()
+      block()
    except:
-       # These are special nodes that access the exception, and don't really
-       # use the "sys" module.
-       tmp_exc_type = sys.exc_info()[0]
-       tmp_exc_value = sys.exc_info()[1]
+      # These are special nodes that access the exception, and don't really
+      # use the "sys" module.
+      tmp_exc_type = sys.exc_info()[0]
+      tmp_exc_value = sys.exc_info()[1]
+      tmp_exc_tb = sys.exc_info()[2]
 
-       # exception_matches is a comparison operation, also a special node.
-       if exception_matches(tmp_exc_type, (A,)):
-           e = tmp_exc_value
-           handlerA(e)
-       elif exception_matches(tmp_exc_type, (B,)):
-           e = tmp_exc_value
-           handlerB(e)
-       else:
-           handlerElse()
+      set_sys_exc_info(tmp_exc_type, tmp_exc_type, tmp_exc_tb)
+
+      # exception_matches is a comparison operation, also a special node.
+      if exception_matches(tmp_exc_type, (A,)):
+         e = tmp_exc_value
+         handlerA(e)
+      elif exception_matches(tmp_exc_type, (B,)):
+         e = tmp_exc_value
+         handlerB(e)
+      else:
+         handlerElse()
 
 For Python3, the assigned ``e`` variables get deleted at the end of the
 handler block. Should that value be already deleted, that ``del`` does
@@ -2369,6 +2372,76 @@ use special references, that access the C++ and don't go via
 
 This means, that the different handlers and their catching run time
 behavior are all explicit and reduced the branches.
+
+Exception Groups
+----------------
+
+
+.. code:: python
+
+   try:
+      block()
+   except* (A, B) as eg:
+      handlerAorB(eg)
+   except* (B) as eg:
+      print("ValueError handling", sys.exc_info())
+      handlerB(eg)
+
+.. code:: python
+
+   try:
+       block()
+   except:
+
+      # For now, this is a C helper, EXCEPTION_GROUP_MATCH, could be also a
+      # helper function later.
+      def exception_group_match(exc_type, exc_value, exc_tb, match_against):
+         if not isinstance(tmp_exc_type, BaseExceptionGroup):
+            exc_type = ExceptionGroup
+            exc_value = ExceptionGroup("", (exc_type,))
+            exc_tb = None
+
+         matches = []
+         rest = []
+         for candidate in match_against:
+            if exception_matches(exception_type, exception_value, candidate):
+               matches.append(candidate)
+            else:
+               rest.append(candidate)
+
+         return matches != [], matches, rest
+
+      try:
+         is_match, matched, rest = exception_group_match(*sys.exc_info(), (A,B)):
+         if is_match:
+            try:
+               set_sys_exc_info(ExceptionGroup("", matches))
+
+               e = tmp_exc_value
+               handlerAorB(e)
+            finally:
+               del e
+
+            set_sys_exc_info(rest)
+
+      finally:
+         is_match, matched, rest = exception_group_match(rest, (B,)):
+         if is_match:
+            try:
+               set_sys_exc_info(ExceptionGroup("", rest))
+
+               e = tmp_exc_value
+               handlerAorB(e)
+            finally:
+                  del e
+
+            set_sys_exc_info(rest)
+
+      if rest and not isinstance(sys.exc_info()[0], BaseExceptionGroup):
+         raise ExceptionGroup("", rest)
+
+      raise
+
 
 Statement ``try``/``except`` with ``else``
 ------------------------------------------
