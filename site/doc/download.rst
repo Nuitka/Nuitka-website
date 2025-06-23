@@ -6,68 +6,181 @@
  Nuitka Downloads
 ##################
 
-*********
- General
-*********
+***************
+ Quick Install
+***************
 
-Thank you for downloading Nuitka. Please consider becoming a Nuitka
-commercial subscriber.
+Nuitka is a Python compiler that makes your code faster and easier to
+distribute.
 
-.. raw:: html
+**Recommended: Install via PyPI (all platforms)**
 
-   <style>
-       .responsive-google-slides {
-           position: relative;
-           padding-bottom: 56.25%; /* 16:9 Ratio */
-           height: 0;
-           overflow: hidden;
-       }
-       .responsive-google-slides iframe {
-           border: 0;
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100% !important;
-           height: 100% !important;
-       }
-   </style>
+.. code:: bash
 
-   <div class="responsive-google-slides">
-       <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQ8gKXjTPukmeULWnjqSWWOKzopxEQ-LqfPYbvHE4wEPuYTnj3JmYFc8fm-EriAYgXzEbI-kWwaaQN/embed?rm=minimal&start=true&loop=true&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-   </div>
+   python -m pip install -U nuitka
 
-Nuitka Standard
-===============
+For the latest development version:
 
-The standard edition bundles your code, dependencies and data into a
-single executable if you want. It also does acceleration, just running
-faster in the same environment, and can produce extension modules as
-well. It is freely distributed under the Apache license.
+.. code:: bash
 
-`Get Nuitka Standard </doc/download.html>`_
-
-Nuitka Commercial
-=================
-
-The commercial edition additionally protects your code, data and
-outputs, so that users of the executable cannot access these. This a
-private repository of plugins that you pay to get access to.
-Additionally, you can purchase priority support.
-
-`Learn more about Nuitka commercial </doc/commercial.html>`_
-
-The current release is Nuitka |NUITKA_VERSION|. Stable releases are
-supported with hot fixes, indicated by the last of the 4 digits.
+   python -m pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
 
 .. note::
 
-   Stable releases are supposed to work for you. Develop releases are
-   snapshots of the current ``develop`` branch in git, usually also
-   relatively stable, but also rarely break.
+   Use the Python interpreter you want to compile with, that is the
+   easiest way. And also invoke as ``python -m nuitka`` with that
+   interpreter. It is the easiest and most reliable way.
 
-.. note::
+**Other install options:**
 
-   During releases package builds can lag behind for a couple of days.
+.. dropdown:: Linux Packages (Debian, Ubuntu, Fedora, etc.)
+
+   **Debian/Ubuntu/Mint**
+
+   -  |DEBIAN_LOGO| |UBUNTU_LOGO| |MINT_LOGO| Stable: Debian/Ubuntu/Mint
+      repositories
+
+      .. code:: bash
+
+         CODENAME=`egrep \\'UBUNTU_CODENAME|VERSION_CODENAME\\' /etc/os-release | sort | head -1 | cut -d= -f2`
+         if [ -z "$CODENAME" ]
+         then
+            CODENAME=`lsb_release -c -s`
+         fi
+         wget -O - https://nuitka.net/deb/archive.key.gpg | sudo apt-key add -
+         sudo apt-get install ca-certificates
+         sudo echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/stable/$CODENAME $CODENAME main"
+         sudo apt-get update
+         sudo apt-get install nuitka
+
+   -  |DEBIAN_LOGO| |UBUNTU_LOGO| |MINT_LOGO| Develop: Debian/Ubuntu/Mint
+      repositories
+
+      .. code:: bash
+
+         CODENAME=`egrep \\'UBUNTU_CODENAME|VERSION_CODENAME\\' /etc/os-release | sort | head -1 | cut -d= -f2`
+         if [ -z "$CODENAME" ]
+         then
+            CODENAME=`lsb_release -c -s`
+         fi
+         wget -O - https://nuitka.net/deb/archive.key.gpg | sudo apt-key add -
+         sudo apt-get install ca-certificates
+         sudo echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/develop/$CODENAME $CODENAME main"
+         sudo apt-get update
+         sudo apt-get install nuitka
+
+   **RHEL**
+
+   |RHEL_LOGO| repositories
+
+   .. code:: bash
+
+      # Detect the RHEL version
+      eval `grep VERSION_ID= /etc/os-release`
+
+      yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-${VERSION_ID}/home:kayhayen.repo
+
+      # Install either of these, but not both
+      yum install nuitka
+      yum install nuitka-unstable
+
+   .. include:: rhel-downloads.inc
+
+   **CentOS**
+
+   |CENTOS_LOGO| repositories
+
+   .. code:: bash
+
+      # CentOS 6:
+      yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo
+      # CentOS 7
+      yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo
+      # CentOS 8
+      yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo
+
+      # Install either the these, but not both
+      yum install nuitka
+      yum install nuitka-unstable
+
+   .. include:: centos-downloads.inc
+
+   **Fedora**
+
+   |FEDORA_LOGO| repositories
+
+   .. code:: bash
+
+      # Detect the Fedora version
+      eval `grep VERSION_ID= /etc/os-release`
+
+      # Use yum on older versions
+      dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/kayhayen/Fedora_${VERSION_ID}/home:kayhayen.repo
+
+      # Install either the these, but not both
+      dnf install nuitka
+      dnf install nuitka-unstable
+
+   .. include:: fedora-downloads.inc
+
+   **Suse**
+
+   |SUSE_LOGO| repositories
+
+   .. code:: bash
+
+      # Detect the OpenSUSE leap version
+      eval `grep VERSION_ID= /etc/os-release`
+
+      # Add Nuitka repo
+      zypper ar -f https://download.opensuse.org/repositories/home:/kayhayen/Open_${VERSION_ID}/home:kayhayen.repo
+
+      # Install either the these, but not both
+      zypper install nuitka
+      zypper install nuitka-unstable
+
+   .. include:: suse-downloads.inc
+
+   **Arch**
+
+   -  |ARCH_LOGO| Stable: Arch Linux, execute \`\`pacman -S nuitka\`\`
+
+   -  |ARCH_LOGO| Develop: Arch Linux `Nuitka from git develop
+      <https://aur.archlinux.org/packages/nuitka-git/>`_
+
+   **Gentoo**
+
+   -  |GENTOO_LOGO| Gentoo Linux, execute \`\`emerge -a dev-python/nuitka\`\`
+
+   **macOS**
+
+   No installer is available for macOS. Use the source packages, clone from
+   git, or use PyPI.
+
+.. dropdown:: Source Code
+
+   .. include:: source-downloads.inc
+
+   .. note::
+
+      The source archives can be used directly after unpacking, simply
+      start with \`\`python bin/nuitka --help\`\` and read \`\`README.pdf\`\` or
+      \`\`README.rst\`\` to get started. Take especially care to read the User
+      Manual, such that you don\\'t go on a wrong track.
+
+.. dropdown:: GitHub
+
+   -  |GIT_LOGO| Stable: **git clone --branch main
+      https://github.com/Nuitka/Nuitka**
+
+   -  |GIT_LOGO| Develop: **git clone --branch develop
+      https://github.com/Nuitka/Nuitka**
+
+   Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on
+   Github.
+
+For commercial support and advanced features, see :doc:`Nuitka
+Commercial <commercial>`.
 
 .. _nuitka-standard-license:
 
@@ -83,204 +196,4 @@ distributed on an **"as is" basis, without warranties or conditions of
 any kind**, either express or implied. See the License for the specific
 language governing permissions and limitations under the License.
 
-******
- PyPI
-******
-
-There is `Nuitka on PyPI <http://pypi.python.org/pypi/Nuitka/>`__ as
-well. So you can install with ``pip`` as follows.
-
-.. note::
-
-   The stable version from PyPI can be installed via pip, and has no
-   dependencies on any package, and is a source package, so you will
-   have an easy time, even on e.g. Windows to use it.
-
-.. code:: bash
-
-   # Stable version
-   python -m pip install -U nuitka
-
-   # Develop version
-   python -m pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
-
-.. note::
-
-   Do this with the python binary, you want to be compiled against.
-
-*********
- Sources
-*********
-
-.. include:: source-downloads.inc
-
-.. note::
-
-   The source archives can be used directly after unpacking, simply
-   start with ``python bin/nuitka --help`` and read ``README.pdf`` or
-   ``README.rst`` to get started. Take especially care to read the User
-   Manual, such that you don't go on a wrong track.
-
-**********
- Packages
-**********
-
-Windows
-=======
-
-The MSI installers are discontinued as Python has deprecated their
-support for them, as well as Windows 10 making it harder to users to
-install them. Using the PyPI installation is recommended on Windows.
-
-Debian/Ubuntu/Mint
-==================
-
--  |DEBIAN_LOGO| |UBUNTU_LOGO| |MINT_LOGO| Stable: Debian/Ubuntu/Mint
-   repositories
-
-   .. code:: bash
-
-      CODENAME=`egrep 'UBUNTU_CODENAME|VERSION_CODENAME' /etc/os-release | sort | head -1 | cut -d= -f2`
-      if [ -z "$CODENAME" ]
-      then
-         CODENAME=`lsb_release -c -s`
-      fi
-      wget -O - https://nuitka.net/deb/archive.key.gpg | sudo apt-key add -
-      sudo apt-get install ca-certificates
-      sudo echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/stable/$CODENAME $CODENAME main"
-      sudo apt-get update
-      sudo apt-get install nuitka
-
--  |DEBIAN_LOGO| |UBUNTU_LOGO| |MINT_LOGO| Develop: Debian/Ubuntu/Mint
-   repositories
-
-   .. code:: bash
-
-      CODENAME=`egrep 'UBUNTU_CODENAME|VERSION_CODENAME' /etc/os-release | cut -d= -f2`
-      if [ -z "$CODENAME" ]
-      then
-         CODENAME=`lsb_release -c -s`
-      fi
-      wget -O - https://nuitka.net/deb/archive.key.gpg | sudo apt-key add -
-      sudo apt-get install ca-certificates
-      sudo echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/develop/$CODENAME $CODENAME main"
-      sudo apt-get update
-      sudo apt-get install nuitka
-
-   .. note::
-
-      Because Nuitka is part of Debian Stable/Testing/Unstable, a stable
-      version is already in the standard repository. This is the only
-      way to access the develop version of Nuitka though.
-
-RHEL
-====
-
-|RHEL_LOGO| repositories
-
-.. code:: bash
-
-   # Detect the RHEL version
-   eval `grep VERSION_ID= /etc/os-release`
-
-   yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-${VERSION_ID}/home:kayhayen.repo
-
-   # Install either the these, but not both
-   yum install nuitka
-   yum install nuitka-unstable
-
-.. include:: rhel-downloads.inc
-
-CentOS
-======
-
-|CENTOS_LOGO| repositories
-
-.. code:: bash
-
-   # CentOS 6:
-   yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo
-   # CentOS 7
-   yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo
-   # CentOS 8
-   yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo
-
-   # Install either the these, but not both
-   yum install nuitka
-   yum install nuitka-unstable
-
-.. include:: centos-downloads.inc
-
-Fedora
-======
-
-|FEDORA_LOGO| repositories
-
-.. code:: bash
-
-   # Detect the Fedora version
-   eval `grep VERSION_ID= /etc/os-release`
-
-   # Use yum on older versions
-   dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/kayhayen/Fedora_${VERSION_ID}/home:kayhayen.repo
-
-   # Install either the these, but not both
-   dnf install nuitka
-   dnf install nuitka-unstable
-
-.. include:: fedora-downloads.inc
-
-Suse
-====
-
-|SUSE_LOGO| repositories
-
-.. code:: bash
-
-   # Detect the OpenSUSE leap version
-   eval `grep VERSION_ID= /etc/os-release`
-
-   # Add Nuitka repo
-   zypper ar -f https://download.opensuse.org/repositories/home:/kayhayen/Open_${VERSION_ID}/home:kayhayen.repo
-
-   # Install either the these, but not both
-   zypper install nuitka
-   zypper install nuitka-unstable
-
-.. include:: suse-downloads.inc
-
-Arch
-====
-
--  |ARCH_LOGO| Stable: Arch Linux, execute ``pacman -S nuitka``
-
--  |ARCH_LOGO| Develop: Arch Linux `Nuitka from git develop
-   <https://aur.archlinux.org/packages/nuitka-git/>`_
-
-Gentoo
-======
-
--  |GENTOO_LOGO| Gentoo Linux, execute ``emerge -a dev-python/nuitka``
-
-macOS
-=====
-
-No installer is available for macOS. Use the source packages, clone from
-git, or use PyPI.
-
-********
- Github
-********
-
--  |GIT_LOGO| Stable: **git clone --branch main
-   https://github.com/Nuitka/Nuitka**
-
--  |GIT_LOGO| Develop: **git clone --branch develop
-   https://github.com/Nuitka/Nuitka**
-
-Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on
-Github.
-
 .. include:: ../variables.inc
-
-.. include:: ../dynamic.inc
