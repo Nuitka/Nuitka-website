@@ -52,7 +52,7 @@ the following that abort the build in ``--debug``
    14164 |     nuitka_bool tmp_try_except_1__unhandled_indicator = NUITKA_BOOL_UNASSIGNED;
        |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Should this happen, use ``--experimental=allow-c-warnings`` as that is
+Should this happen, use ``--no-debug-c-warnings`` as that is
 not typically the issue you are looking for with larger programs, but
 rather a sign of non-optimal code. It could also be an indication of a
 the bug we are looking for. Recompile with that flag then.
