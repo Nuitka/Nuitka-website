@@ -50,12 +50,12 @@ msgid ""
 msgstr ""
 
 #: ../../doc/pages/support.rst:27
-msgid "Github Issue Tracker"
+msgid "GitHub Issue Tracker"
 msgstr ""
 
 #: ../../doc/pages/support.rst:29
 msgid ""
-"Nuitka uses Github for public issue tracking (commercial users have a "
+"Nuitka uses GitHub for public issue tracking (commercial users have a "
 "private tracker available) and your can report the issue on the `issue "
 "tracker <https://github.com/Nuitka/Nuitka/issues>`_ there."
 msgstr ""
@@ -72,4 +72,3 @@ msgstr ""
 
 msgid "Join the chat at https://gitter.im/Nuitka-chat/community"
 msgstr ""
-

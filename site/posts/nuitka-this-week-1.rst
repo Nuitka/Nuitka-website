@@ -118,7 +118,7 @@ Then, asking about type hints, I got the usual question about Nuitka
 going to use it. And my stance is unchanged. They are just hints, not
 reliable. Need to behave the same if users do it wrong. Suggested to
 create decorated which make type hints enforced. But I expect nobody
-takes this on though. I need to make it a Github issue of Nuitka,
+takes this on though. I need to make it a GitHub issue of Nuitka,
 although technically it is pure CPython work and ought to be done
 independently. Right now Nuitka is not yet there anyway yet, to take
 full advantage.
@@ -177,7 +177,7 @@ For PyLint, the 2.0.0 release found new things, but unfortunately for
 versions of first PyLint, and now also Astroid, so Travis cannot
 suddenly start to fail due to a PyLint release finding new warnings.
 
-Currently, if you make a PR on Github, a PyLint update will break it.
+Currently, if you make a PR on GitHub, a PyLint update will break it.
 And also the cron job on Travis that checks master.
 
 As somebody pointed out, I am now using `requires.io

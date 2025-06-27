@@ -17,10 +17,10 @@ served here in the `Nuitka Commercial area. </doc/commercial.html>`_.
 .. _github-issue-tracker:
 
 **********************
- Github Issue Tracker
+ GitHub Issue Tracker
 **********************
 
-Nuitka uses Github for public issue tracking (commercial users have a
+Nuitka uses GitHub for public issue tracking (commercial users have a
 private tracker available) and your can report the issue on the `issue
 tracker <https://github.com/Nuitka/Nuitka/issues>`_ there.
 

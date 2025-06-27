@@ -85,7 +85,7 @@ Nuitka setup is trivial and explained in the `User Manual
 Linux system, and you are good to go with a git clone of Nuitka in a
 minute. See `Download page </doc/download.html>`_ how to do that.
 
-Bug fixes and features are expected to be done via PRs on Github. We can
+Bug fixes and features are expected to be done via PRs on GitHub. We can
 guide you through that, it's easy. We are not very formal, but helpful.
 
 Remember, Nuitka must be the title of your application or else Google
@@ -180,7 +180,7 @@ Linux and/or Windows installs of Python, one platform is good, both
 would be great. Ideally learn about ``pipenv`` and apply it for defining
 environments to test in.
 
-Main platform for this would be the `Github issue
+Main platform for this would be the `GitHub issue
 <https://github.com/Nuitka/Nuitka/issues/229>`__ and feel to ask
 questions and clarifications there.
 
@@ -212,7 +212,7 @@ Skills: Python programming, having Linux and/or Windows installs of
 Python, both would be great. Likely some C knowledge may be required,
 but that is uncertain.
 
-Main platform for this would be the `Github issue
+Main platform for this would be the `GitHub issue
 <https://github.com/Nuitka/Nuitka/issues/230>`__ and feel to ask
 questions and clarifications there.
 
@@ -246,7 +246,7 @@ relatively free in inventing ways to present this information.
 Skills: Python programming, Linux installs of Python, C tooling would be
 nice, but can be mentored.
 
-Main platform for this would be the `Github issue
+Main platform for this would be the `GitHub issue
 <https://github.com/Nuitka/Nuitka/issues/231>`__ and feel to ask
 questions and clarifications there.
 
@@ -298,11 +298,11 @@ Further reading:
           return PyInt_FromSsize_t(res);
       }
 
--  Many more links and examples in the Github issue below.
+-  Many more links and examples in the GitHub issue below.
 
 Skills: Python and C programming, platform wouldn't matter
 
-Main platform for this would be the `Github issue
+Main platform for this would be the `GitHub issue
 <https://github.com/Nuitka/Nuitka/issues/232>`__ and feel to ask
 questions and clarifications there.
 
@@ -325,7 +325,7 @@ Your mentors will not be able to help with macOS specifics. Nuitka is
 known to work on the platform, but Travis might expose differences that
 need some addressing.
 
-Main platform for this would be the `Github issue
+Main platform for this would be the `GitHub issue
 <https://github.com/Nuitka/Nuitka/issues/233>`__ and feel to ask
 questions and clarifications there.
 
