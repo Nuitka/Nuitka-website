@@ -177,7 +177,7 @@ Bug Fixes
    pattern matching constructs was not being released. (Fixed in 2.7.4
    already.)
 
--  **compatibility**: Fixed an issue where exception exits for larger
+-  **Python3**: Fixed an issue where exception exits for larger
    ``range`` objects, which are not optimized away, were not correctly
    annotated by the compiler. (Fixed in 2.7.4 already.)
 
@@ -269,8 +269,11 @@ Package Support
 -  **macOS**: Enhanced configuration for the ``pypylon`` package,
    however it's not sufficient. (Added in 2.7.6 already.)
 
-   -  **Standalone**: Added support for newer ``numpy`` versions. (Added
-      in 2.7.7 already.)
+-  **Standalone**: Added support for newer ``numpy`` versions. (Added in
+   2.7.7 already.)
+
+-  **Standalone**: Added support for older ``vtk`` package. (Added in
+   2.7.8 already.)
 
 New Features
 ============
@@ -331,6 +334,12 @@ Anti-Bloat
 Organizational
 ==============
 
+-  **Python3.13.4**: Reject broken CPython official release for Windows.
+
+   The link library included is not the one needed for GIL, and as such
+   it breaks Nuitka heavily and must be errored out on, all smaller or
+   larger micro versions work, but this one does not.
+
 -  **Release:** Ensured proper handling of newer ``setuptools`` versions
    during Nuitka installation. (Fixed in 2.7.4 already.)
 
@@ -338,6 +347,9 @@ Organizational
    build-backend, intended for use in ``pyproject.toml`` and other
    build-system dependencies. To use it depend in
    ``Nuitka[build-wheel]`` instead of Nuitka. (Added in 2.7.7 already.)
+
+-  **UI**: Sort ``--list-distribution-metadata`` output and remove
+   duplicates. (Changed in 2.7.8 already.)
 
 Tests
 =====
