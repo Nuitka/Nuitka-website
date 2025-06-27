@@ -361,7 +361,11 @@ Organizational
    it breaks Nuitka heavily and must be errored out on, all smaller or
    larger micro versions work, but this one does not.
 
--  **Release:** Ensured proper handling of newer ``setuptools`` versions
+-  **Release**: Do not use Nuitka 2.7.9 as it broke data file access via
+   ``__file__`` in onefile mode on Windows. This is a brown paper bag release
+   with 2.7.10 containing only the fix for that. Sorry for the inconvenience.
+
+-  **Release**: Ensured proper handling of newer ``setuptools`` versions
    during Nuitka installation. (Fixed in 2.7.4 already.)
 
 -  **Release**: Added an extra dependency group for the Nuitka
