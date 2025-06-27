@@ -80,7 +80,7 @@ For the latest development version:
 
       yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-${VERSION_ID}/home:kayhayen.repo
 
-      # Install either of these, but not both
+      # Install only one of these, not both.
       yum install nuitka
       yum install nuitka-unstable
 
@@ -99,7 +99,7 @@ For the latest development version:
       # CentOS 8
       yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo
 
-      # Install either the these, but not both
+      # Install only one of these, not both.
       yum install nuitka
       yum install nuitka-unstable
 
@@ -117,7 +117,7 @@ For the latest development version:
       # Use yum on older versions
       dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/kayhayen/Fedora_${VERSION_ID}/home:kayhayen.repo
 
-      # Install either the these, but not both
+      # Install only one of these, not both.
       dnf install nuitka
       dnf install nuitka-unstable
 
@@ -135,7 +135,7 @@ For the latest development version:
       # Add Nuitka repo
       zypper ar -f https://download.opensuse.org/repositories/home:/kayhayen/Open_${VERSION_ID}/home:kayhayen.repo
 
-      # Install either the these, but not both
+      # Install only one of these, not both.
       zypper install nuitka
       zypper install nuitka-unstable
 
@@ -177,7 +177,7 @@ For the latest development version:
       https://github.com/Nuitka/Nuitka**
 
    Visit https://github.com/Nuitka/Nuitka for the Nuitka repository on
-   Github.
+   GitHub.
 
 For commercial support and advanced features, see :doc:`Nuitka
 Commercial <commercial>`.
