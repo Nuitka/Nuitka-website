@@ -1,10 +1,74 @@
 .. meta::
    :description: Download the Python compiler Nuitka and make your code faster today.
-   :keywords: nuitka,download,redhat,centos,debian,mint,freebsd,openbsd,arch,PyPI,git
+   :keywords: nuitka,download,RedHat,RHEL,CentOS,Debian,Mint,Arch,Fedora,SuSE,FreeBSD,OpenBSD,AIX,PyPI,git,source
 
 ##################
  Nuitka Downloads
 ##################
+
+*********
+ General
+*********
+
+Thank you for downloading Nuitka. Please consider becoming a Nuitka
+commercial subscriber.
+
+.. raw:: html
+
+   <style>
+       .responsive-google-slides {
+           position: relative;
+           padding-bottom: 56.25%; /* 16:9 Ratio */
+           height: 0;
+           overflow: hidden;
+       }
+       .responsive-google-slides iframe {
+           border: 0;
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100% !important;
+           height: 100% !important;
+       }
+   </style>
+
+   <div class="responsive-google-slides">
+       <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQ8gKXjTPukmeULWnjqSWWOKzopxEQ-LqfPYbvHE4wEPuYTnj3JmYFc8fm-EriAYgXzEbI-kWwaaQN/embed?rm=minimal&start=true&loop=true&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+   </div>
+
+Nuitka Standard vs Commercial
+=============================
+
+The standard edition is what you download here. It lacks features that
+commercial users might want for IP protection. Nuitka standard bundles
+your code, dependencies and data into a single executable if you want.
+It also does acceleration, just running faster in the same environment,
+and can produce extension modules as well.
+
+`Get Nuitka Standard </doc/download.html>`_
+
+Nuitka Commercial
+=================
+
+The commercial edition additionally protects your code, data and
+outputs, so that users of the executable cannot access these. This a
+private repository of plugins that you pay to get access to.
+Additionally, you can purchase priority support.
+
+`Learn more about Nuitka commercial </doc/commercial.html>`_
+
+The current release is Nuitka |NUITKA_VERSION|. Stable releases are
+supported with hot fixes, indicated by the last of the 4 digits.
+
+.. note::
+
+   Stable releases are supposed to work for you. Develop releases are
+   snapshots of the current ``develop`` branch in git, usually also
+   relatively stable, but also rarely break.
+
+.. note::
+
+   During releases package builds can lag behind for a couple of days.
 
 ***************
  Quick Install
@@ -164,9 +228,7 @@ For the latest development version:
    .. note::
 
       The source archives can be used directly after unpacking, simply
-      start with \`\`python bin/nuitka --help\`\` and read \`\`README.pdf\`\` or
-      \`\`README.rst\`\` to get started. Take especially care to read the User
-      Manual, such that you don\\'t go on a wrong track.
+      start with ``python bin/nuitka --help``. They do not even have to be installed.
 
 .. dropdown:: GitHub
 
