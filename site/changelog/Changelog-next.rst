@@ -193,6 +193,27 @@ Bug Fixes
    more, these extra copies couldn't be stopped. (Fixed in 2.7.5
    already.)
 
+-  **Standalone**: Fixed an issue where data files were no longer
+   checked for conflicts with included DLLs. The order of data file and
+   DLL copying was restored, and macOS app signing was made a separate
+   step to remove the order dependency. (Fixed in 2.7.6 already.)
+
+-  **macOS**: Corrected our workaround using symlinks for files that
+   cannot be signed. When ``--output-directory`` was used, as it made
+   incorrect assumptions about the ``dist`` folder path. (Fixed in 2.7.6
+   already.)
+
+-  **UI**: Prevented checks on onefile target specifications when not
+   actually compiling in onefile mode, e.g. on macOS with
+   ``--mode=app``. (Fixed in 2.7.6 already.)
+
+-  **UI**: Improved error messages for data directory options by
+   outputing the relevant part. (Fixed in 2.7.6 already.)
+
+-  **Plugins**: Suppressed ``UserWarning`` messages from the
+   ``pkg_resources`` module during compilation. (Fixed in 2.7.6
+   already.)
+
 Package Support
 ===============
 
@@ -225,10 +246,31 @@ Package Support
 -  **Standalone**: Added support for newer ``skimage`` package. (Added
    in 2.7.5 already.)
 
+-  **Standalone**: Added support for the ``PyTaskbar`` package. (Added
+   in 2.7.6 already.)
+
+-  **macOS**: Added ``tk-inter`` support for Python 3.13 with official
+   CPython builds, which now use framework files for Tcl/Tk. (Added in
+   2.7.6 already.)
+
+-  **Standalone**: Added support for the ``paddlex`` package. (Added in
+   2.7.6 already.)
+
+-  **Standalone**: Added support for the ``jinxed`` package, which
+   dynamically loads terminal information. (Added in 2.7.6 already.)
+
+-  **Windows**: Added support for the ``ansicon`` package by including a
+   missing DLL. (Added in 2.7.6 already.)
+
+-  **macOS**: Enhanced configuration for the ``pypylon`` package, however it's
+   not sufficient. (Added in 2.7.6 already.)
+
 New Features
 ============
 
--  None yet
+-  **Plugins**: Introduced ``global_change_function`` to the anti-bloat
+   engine, allowing function replacements across all sub-modules of a
+   package at once. (Added in 2.7.6 already.)
 
 Optimization
 ============
@@ -260,6 +302,15 @@ Anti-Bloat
 
 -  Reduced compiled size by avoiding the use of "docutils" within the
    ``markdown2`` package. (Added in 2.7.1 already.)
+
+-  Avoided including the testing framework from the ``langsmith``
+   package. (Added in 2.7.6 already.)
+
+-  Avoided including ``setuptools`` from ``jax.version``. (Added in
+   2.7.6 already.)
+
+-  Avoided including ``unittest`` from the ``reportlab`` package. (Added
+   in 2.7.6 already.)
 
 Organizational
 ==============
