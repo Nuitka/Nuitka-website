@@ -207,8 +207,8 @@ Bug Fixes
    actually compiling in onefile mode, e.g. on macOS with
    ``--mode=app``. (Fixed in 2.7.6 already.)
 
--  **UI**: Improved error messages for data directory options by
-   outputing the relevant part. (Fixed in 2.7.6 already.)
+-  **UI**: Improved error messages for data directory options by include
+   the relevant part in the output. (Fixed in 2.7.6 already.)
 
 -  **Plugins**: Suppressed ``UserWarning`` messages from the
    ``pkg_resources`` module during compilation. (Fixed in 2.7.6
@@ -217,6 +217,21 @@ Bug Fixes
 -  **Python3.11+**: Fixed an issue where descriptors for compiled
    methods were incorrectly exposed for Python 3.11 and 3.12. (Fixed in
    2.7.7 already.)
+
+-  **Onefile**: The ``containing_dir`` attribute of the ``__compiled__``
+   object was regressed in DLL mode on **Windows**, pointing to the
+   temporary DLL directory instead of the directory containing the
+   onefile binary. (Fixed in 2.7.9 already.)
+
+-  **Plugins**: Avoided loading modules when checking for data file
+   existence. This prevents unnecessary module loading and potential
+   crashes in broken installations. (Fixed in 2.7.9 already.)
+
+-  **Plugins**: The ``global_change_function`` anti-bloat feature now
+   operates on what should be the qualified names (``__qualname__``)
+   instead of just function names, preventing incorrect replacements of
+   methods with the same name in different classes. (Fixed in 2.7.9
+   already.)
 
 Package Support
 ===============
@@ -274,6 +289,12 @@ Package Support
 
 -  **Standalone**: Added support for older ``vtk`` package. (Added in
    2.7.8 already.)
+
+-  **Standalone**: Added support for newer ``certifi`` versions that use
+   ``importlib.resources``. (Added in 2.7.9 already.)
+
+-  **Standalone**: Added support for the ``reportlab.graphics.barcode``
+   module. (Added in 2.7.9 already.)
 
 New Features
 ============
@@ -353,6 +374,9 @@ Organizational
 
 Tests
 =====
+
+-  Removed Azure CI configuration, as testing has been fully migrated to
+   GitHub Actions. (Changed in 2.7.9 already.)
 
 -  Improved test robustness against short paths for package-containing
    directories. (Added in 2.7.4 already.)
