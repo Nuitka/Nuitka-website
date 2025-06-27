@@ -801,6 +801,7 @@ details.sd-dropdown > summary.sd-summary-title {
 details.sd-dropdown > summary.sd-summary-title:focus {
     outline: none;
 }
+details.sd-dropdown > summary.sd-summary-title:focus,
 details.sd-dropdown > summary.sd-summary-title:focus-visible {
     outline: 2px solid var(--sd-color-primary, #007bff);
     outline-offset: 2px;
