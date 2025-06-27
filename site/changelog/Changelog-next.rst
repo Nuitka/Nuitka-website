@@ -214,6 +214,10 @@ Bug Fixes
    ``pkg_resources`` module during compilation. (Fixed in 2.7.6
    already.)
 
+-  **Python3.11+**: Fixed an issue where descriptors for compiled
+   methods were incorrectly exposed for Python 3.11 and 3.12. (Fixed in
+   2.7.7 already.)
+
 Package Support
 ===============
 
@@ -262,8 +266,11 @@ Package Support
 -  **Windows**: Added support for the ``ansicon`` package by including a
    missing DLL. (Added in 2.7.6 already.)
 
--  **macOS**: Enhanced configuration for the ``pypylon`` package, however it's
-   not sufficient. (Added in 2.7.6 already.)
+-  **macOS**: Enhanced configuration for the ``pypylon`` package,
+   however it's not sufficient. (Added in 2.7.6 already.)
+
+   -  **Standalone**: Added support for newer ``numpy`` versions. (Added
+      in 2.7.7 already.)
 
 New Features
 ============
@@ -271,6 +278,12 @@ New Features
 -  **Plugins**: Introduced ``global_change_function`` to the anti-bloat
    engine, allowing function replacements across all sub-modules of a
    package at once. (Added in 2.7.6 already.)
+
+-  **Reports**: For Python 3.13, the compilation report now includes
+   information on GIL usage. (Added in 2.7.7 already.)
+
+-  **macOS**: Added an option to prevent an application from running in
+   multiple instances. (Added in 2.7.7 already.)
 
 Optimization
 ============
@@ -312,11 +325,19 @@ Anti-Bloat
 -  Avoided including ``unittest`` from the ``reportlab`` package. (Added
    in 2.7.6 already.)
 
+-  Avoid compiling generated ``google.protobuf.*_pb2`` files. (Added in
+   2.7.7 already.)
+
 Organizational
 ==============
 
 -  **Release:** Ensured proper handling of newer ``setuptools`` versions
    during Nuitka installation. (Fixed in 2.7.4 already.)
+
+-  **Release**: Added an extra dependency group for the Nuitka
+   build-backend, intended for use in ``pyproject.toml`` and other
+   build-system dependencies. To use it depend in
+   ``Nuitka[build-wheel]`` instead of Nuitka. (Added in 2.7.7 already.)
 
 Tests
 =====
