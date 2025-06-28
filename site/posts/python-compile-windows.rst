@@ -51,7 +51,7 @@ Now install Nuitka with the following command.
 
 .. code:: bash
 
-   python -m pip install nuitka
+   python -m pip install Nuitka
 
 .. image:: images/Nuitka-Installation-CMD.png
    :alt: Install Nuitka in Python

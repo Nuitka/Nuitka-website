@@ -774,3 +774,71 @@ img.fp-circle-image {
         padding-bottom: 1rem;
     }
 }
+
+/* Dropbox styling */
+details.sd-dropdown {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5em;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+details.sd-dropdown:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+details.sd-dropdown > summary.sd-summary-title {
+    padding: 1em 1.5em;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+details.sd-dropdown > summary.sd-summary-title:focus {
+    outline: none;
+}
+details.sd-dropdown > summary.sd-summary-title:focus,
+details.sd-dropdown > summary.sd-summary-title:focus-visible {
+    outline: 2px solid var(--sd-color-primary, #007bff);
+    outline-offset: 2px;
+}
+
+details.sd-dropdown > summary.sd-summary-title .sd-summary-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+}
+
+details.sd-dropdown > summary.sd-summary-title .sd-summary-chevron {
+    display: none;
+}
+
+
+details.sd-dropdown > summary.sd-summary-title::after {
+    display: none;
+}
+
+details.sd-dropdown > summary.sd-summary-title::before {
+    content: '➔';
+    font-size: 1.4em;
+    color: #555;
+    transition: transform 0.2s ease-in-out;
+    flex-shrink: 0;
+    margin-right: 0.75em;
+}
+
+details.sd-dropdown[open] > summary.sd-summary-title::before {
+    transform: rotate(90deg);
+}
+
+details.sd-dropdown > .sd-dropdown-content,
+details.sd-dropdown > .sd-summary-content {
+    padding: 0.5em 1.5em 1em 1.5em;
+    border-top: 1px solid #e0e0e0;
+    color: #444;
+    margin-top: 0.5em;
+}
