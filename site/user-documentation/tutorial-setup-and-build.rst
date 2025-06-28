@@ -25,7 +25,7 @@ Install Python
 Install Nuitka
 ==============
 
--  ``python -m pip install nuitka``
+-  ``python -m pip install Nuitka``
 
 -  Verify using command ``python -m nuitka --version``
 

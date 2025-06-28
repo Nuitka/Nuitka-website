@@ -3,7 +3,7 @@
    :author: Kay Hayen
 
 ###########################################
- Nuitka on Github, Bitbucket and Gitorious
+ Nuitka on GitHub, Bitbucket and Gitorious
 ###########################################
 
 This is to let you know, that I have *finally* carved in and created
@@ -23,9 +23,9 @@ So these are the landing pages:
    Python people due to its Mercurial ties. I also liked that it
    imported my Nuitka repository easily.
 
--  `Github <https://github.com/kayhayen/Nuitka>`_
+-  `GitHub <https://github.com/kayhayen/Nuitka>`_
 
-   Is not being on Github allowed these days? Anyway, from ease of use,
+   Is not being on GitHub allowed these days? Anyway, from ease of use,
    the interface looks more powerful.
 
 -  Gitorious (since discontinued)

@@ -69,7 +69,7 @@ busy, and makes me extremely happy.
  Nuitka Organisation
 *********************
 
-The Nuitka organisation on Github was introduced for my a while ago, and
+The Nuitka organisation on GitHub was introduced for my a while ago, and
 I had transferred the ownership of the Nuitka repository to there.
 Having moved the issue tracking to there, I was going more all in on it.
 

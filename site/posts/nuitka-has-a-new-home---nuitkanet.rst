@@ -45,7 +45,7 @@ is already running there.
 
 .. note::
 
-   This is obsolete information, we use Github for this now.
+   This is obsolete information, we use GitHub for this now.
 
 And I took the chance to sanitize the old posts somewhat. Changed the
 links to not use the old domain name anymore, and correct some broken

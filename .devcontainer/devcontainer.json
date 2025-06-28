@@ -31,7 +31,7 @@
 
 
 	// Start supervisord to manage background services like auto-update.sh
-	"postStartCommand": "supervisord -c /workspaces/Nuitka-website/.devcontainer/supervisor/supervisord.conf && echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://localhost:8000.\\n\\n'",
+	"postStartCommand": "supervisord -c /workspaces/Nuitka-website/.devcontainer/supervisor/supervisord.conf && echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:8000\\n\\n'",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {

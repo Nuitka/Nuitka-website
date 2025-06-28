@@ -86,7 +86,7 @@ I am going to post a lot on Twitter though.
  Static Compilation
 ********************
 
-There is a Github issue where I describe how pyenv on macOS ought to be
+There is a GitHub issue where I describe how pyenv on macOS ought to be
 possible to use, and indeed, a brave soul has confirmed and even
 provided the concrete commands. All it takes now is somebody to fit this
 into the existing caching mechanism of Nuitka and to make sure the
@@ -124,7 +124,7 @@ checking the actual diff.
  Bug Tracker
 *************
 
-The next release will make Github the official tracker for Nuitka
+The next release will make GitHub the official tracker for Nuitka
 issues. I am working down the issues on the old tracker. The web site
 already pointed users there for a while, and I was set on this for some
 time, but yesterday I focused on taking action.

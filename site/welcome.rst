@@ -4,48 +4,52 @@
  Welcome to **Nuitka** Design Test Page
 ########################################
 
-..
-   card for Marina's persona
+.. tab-set::
+   :class: carousel persona-carousel
 
-Dear Nuitka for Deployment User,
+   .. tab-item:: Deployment
+      :class: carousel-part carousel-persona-marina
 
-see how to get started with deploying your software using Nuitka, it's
-easy and we are there to guide you and help you through it. Many people
-say it works out of the box, but if your software is very complex, we
-can help you get it done.
+      Dear Nuitka for Deployment User,
 
-Take the Deployment tour
+      see how to get started with deploying your software using Nuitka, it's
+      easy and we are there to guide you and help you through it. Many people
+      say it works out of the box, but if your software is very complex, we
+      can help you get it done.
 
-..
-   card for Billy's persona
+      Take the Deployment tour
 
-Dear Python Beginner,
+   .. tab-item:: Beginner
+      :class: carousel-part carousel-persona-billy
 
-you and I know you are not at all familiar and you need help. Get
-potentially instant help from a community of volunteers. TODO: Discord
-Link
 
-Take the Beginner Tour
+      Dear Python Beginner,
 
-..
-   card for Cesar's persona
+      you and I know you are not at all familiar and you need help. Get
+      potentially instant help from a community of volunteers. TODO: Discord
+      Link
 
-Dear IT Manager,
+      Take the Beginner Tour
 
-see how your business can benefit from Nuitka with IP protection and its
-powerful deployment solutions. Also, see the many convenience features
-that can save your team a bunch of development time.
+   .. tab-item:: IT Manager
+      :class: carousel-part carousel-persona-cesar
 
-Take the IT manager tour
+      Dear IT Manager,
 
-..
-   card for Laura's persona
+      see how your business can benefit from Nuitka with IP protection and its
+      powerful deployment solutions. Also, see the many convenience features
+      that can save your team a bunch of development time.
 
-Dear Python expert,
+      Take the IT manager tour
 
-you have ideas about what Nuitka is, and we are here to answer them in
-great detail (eventually). Explore the power of Nuitka for deployment,
-performance, and IP protection with more details and expert knowledge
-used.
+   .. tab-item:: Advanced Pythonista
+      :class: carousel-part carousel-persona-laura
 
-Take the Advanced Tour
+      Dear Python expert,
+
+      you have ideas about what Nuitka is, and we are here to answer them in
+      great detail (eventually). Explore the power of Nuitka for deployment,
+      performance, and IP protection with more details and expert knowledge
+      used.
+
+      Take the Advanced Tour
