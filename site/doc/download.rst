@@ -74,14 +74,11 @@ supported with hot fixes, indicated by the last of the 4 digits.
  Quick Install
 ***************
 
-Nuitka is a Python compiler that makes your code faster and easier to
-distribute.
-
 **Recommended: Install via PyPI (all platforms)**
 
 .. code:: bash
 
-   python -m pip install -U nuitka
+   python -m pip install -U Nuitka
 
 For the latest development version:
 
@@ -97,7 +94,7 @@ For the latest development version:
 
 **Other install options:**
 
-.. dropdown:: Linux Packages (Debian, Ubuntu, Fedora, etc.)
+.. dropdown:: Linux (Debian, Ubuntu, Mint, Fedora, CentOS, RHEL, SuSE, Arch)
 
    **Debian/Ubuntu/Mint**
 
@@ -135,88 +132,85 @@ For the latest development version:
 
    **RHEL**
 
-   |RHEL_LOGO| repositories
+   - |RHEL_LOGO| repositories
 
-   .. code:: bash
+      .. code:: bash
 
-      # Detect the RHEL version
-      eval `grep VERSION_ID= /etc/os-release`
+         # Detect the RHEL version
+         eval `grep VERSION_ID= /etc/os-release`
 
-      yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-${VERSION_ID}/home:kayhayen.repo
+         yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/RedHat_RHEL-${VERSION_ID}/home:kayhayen.repo
 
-      # Install only one of these, not both.
-      yum install nuitka
-      yum install nuitka-unstable
+         # Install only one of these, not both.
+         yum install nuitka
+         yum install nuitka-unstable
 
-   .. include:: rhel-downloads.inc
+      .. include:: rhel-downloads.inc
 
    **CentOS**
 
-   |CENTOS_LOGO| repositories
+   - |CENTOS_LOGO| repositories
 
-   .. code:: bash
+      .. code:: bash
 
-      # CentOS 6:
-      yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo
-      # CentOS 7
-      yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo
-      # CentOS 8
-      yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo
+         # CentOS 6:
+         yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_CentOS-6/home:kayhayen.repo
+         # CentOS 7
+         yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_7/home:kayhayen.repo
+         # CentOS 8
+         yum-config-manager --add-repo http://download.opensuse.org/repositories/home:/kayhayen/CentOS_8/home:kayhayen.repo
 
-      # Install only one of these, not both.
-      yum install nuitka
-      yum install nuitka-unstable
+         # Install only one of these, not both.
+         yum install nuitka
+         yum install nuitka-unstable
 
    .. include:: centos-downloads.inc
 
    **Fedora**
 
-   |FEDORA_LOGO| repositories
+   - |FEDORA_LOGO| repositories
 
-   .. code:: bash
+      .. code:: bash
 
-      # Detect the Fedora version
-      eval `grep VERSION_ID= /etc/os-release`
+         # Detect the Fedora version
+         eval `grep VERSION_ID= /etc/os-release`
 
-      # Use yum on older versions
-      dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/kayhayen/Fedora_${VERSION_ID}/home:kayhayen.repo
+         # Use yum on older versions
+         dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/kayhayen/Fedora_${VERSION_ID}/home:kayhayen.repo
 
-      # Install only one of these, not both.
-      dnf install nuitka
-      dnf install nuitka-unstable
+         # Install only one of these, not both.
+         dnf install nuitka
+         dnf install nuitka-unstable
 
-   .. include:: fedora-downloads.inc
+      .. include:: fedora-downloads.inc
 
    **Suse**
 
-   |SUSE_LOGO| repositories
+   - |SUSE_LOGO| repositories
 
-   .. code:: bash
+      .. code:: bash
 
-      # Detect the OpenSUSE leap version
-      eval `grep VERSION_ID= /etc/os-release`
+         # Detect the OpenSUSE leap version
+         eval `grep VERSION_ID= /etc/os-release`
 
-      # Add Nuitka repo
-      zypper ar -f https://download.opensuse.org/repositories/home:/kayhayen/Open_${VERSION_ID}/home:kayhayen.repo
+         # Add Nuitka repo
+         zypper ar -f https://download.opensuse.org/repositories/home:/kayhayen/Open_${VERSION_ID}/home:kayhayen.repo
 
-      # Install only one of these, not both.
-      zypper install nuitka
-      zypper install nuitka-unstable
+         # Install only one of these, not both.
+         zypper install nuitka
+         zypper install nuitka-unstable
 
-   .. include:: suse-downloads.inc
+      .. include:: suse-downloads.inc
 
    **Arch**
 
-   -  |ARCH_LOGO| Stable: Arch Linux, execute \`\`pacman -S nuitka\`\`
-
-   -  |ARCH_LOGO| Develop: Arch Linux `Nuitka from git develop
-      <https://aur.archlinux.org/packages/nuitka-git/>`_
+      -  |ARCH_LOGO| Stable: Arch Linux, execute \`\`pacman -S nuitka\`\`
 
    **Gentoo**
 
-   -  |GENTOO_LOGO| Gentoo Linux, execute \`\`emerge -a dev-python/nuitka\`\`
+      -  |GENTOO_LOGO| Gentoo Linux, execute \`\`emerge -a dev-python/nuitka\`\`
 
-   **macOS**
+.. dropdown:: macOS
 
    No installer is available for macOS. Use the source packages, clone from
    git, or use PyPI.
