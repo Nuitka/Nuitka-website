@@ -1100,7 +1100,7 @@ def runPostProcessing():
 
         file_language, translated_filenames = _getTranslationFileSet(filename)
 
-        if len(translated_filenames) == 1:
+        if len(translated_filenames) == 1 or True:
             for node in doc.xpath(
                 "//details[contains(@class, 'language-switcher-container')]"
             ):
