@@ -4,11 +4,15 @@
  Welcome to **Nuitka** Design Test Page
 ########################################
 
+On this page, we are striving to turn the tab set below into a full fledged carousel displaying the contents.
+
 .. tab-set::
    :class: carousel persona-carousel
 
    .. tab-item:: Deployment
-      :class: carousel-part carousel-persona-marina
+      :class-label: carousel-label carousel-persona-marina
+      :class-container: carousel-container carousel-persona-marina
+      :class-content: carousel-content carousel-persona-marina
 
       Dear Nuitka for Deployment User,
 
@@ -20,7 +24,9 @@
       Take the Deployment tour
 
    .. tab-item:: Beginner
-      :class: carousel-part carousel-persona-billy
+      :class-label: carousel-label carousel-persona-billy
+      :class-container: carousel-container carousel-persona-billy
+      :class-content: carousel-content carousel-persona-billy
 
 
       Dear Python Beginner,
@@ -32,7 +38,9 @@
       Take the Beginner Tour
 
    .. tab-item:: IT Manager
-      :class: carousel-part carousel-persona-cesar
+      :class-label: carousel-label carousel-persona-cesar
+      :class-container: carousel-container carousel-persona-cesar
+      :class-content: carousel-content carousel-persona-cesar
 
       Dear IT Manager,
 
@@ -43,7 +51,9 @@
       Take the IT manager tour
 
    .. tab-item:: Advanced Pythonista
-      :class: carousel-part carousel-persona-laura
+      :class-label: carousel-label carousel-persona-laura
+      :class-container: carousel-container carousel-persona-laura
+      :class-content: carousel-content carousel-persona-laura
 
       Dear Python expert,
 
