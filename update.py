@@ -684,6 +684,7 @@ js_order = [
     "clipboard.min.js",
     "copybutton.js",
     "translations.js",
+    "design-tabs.js",
 ]
 
 excluded_js = [
