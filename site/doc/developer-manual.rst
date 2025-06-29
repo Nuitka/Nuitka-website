@@ -2310,26 +2310,31 @@ operations.
 
 .. code:: python
 
+   # This will be one expression node
+   def get_published_exc_info():
+      if sys.version_info < (3,12):
+         return sys.exc_info()
+      else:
+         return sys.exception()
+
    try:
       block()
-   except:
-      # These are special nodes that access the exception, and don't really
-      # use the "sys" module.
-      tmp_exc_type = sys.exc_info()[0]
-      tmp_exc_value = sys.exc_info()[1]
-      tmp_exc_tb = sys.exc_info()[2]
+   except: # in case of exception, tmp_current_exception is referring tstate->exc_state
+      tmp_preserved_exception_state = get_published_exc_info()
+      set_sys_exc_info(tmp_current_exception)
 
-      set_sys_exc_info(tmp_exc_type, tmp_exc_type, tmp_exc_tb)
-
-      # exception_matches is a comparison operation, also a special node.
-      if exception_matches(tmp_exc_type, (A,)):
-         e = tmp_exc_value
-         handlerA(e)
-      elif exception_matches(tmp_exc_type, (B,)):
-         e = tmp_exc_value
-         handlerB(e)
-      else:
-         handlerElse()
+      try:
+         # exception_matches is a comparison operation, also a special node.
+         if exception_matches(get_exception_type(tmp_current_exception), (A,)):
+            e = get_exception_value(tmp_current_exception)
+            handlerA(e)
+         elif exception_matches(get_exception_type(tmp_current_exception), (B,)):
+            e = get_exception_value(tmp_current_exception)
+            handlerB(e)
+         else:
+            handlerElse()
+      finally:
+         set_sys_exc_info(tmp_preserved_exception_state)
 
 For Python3, the assigned ``e`` variables get deleted at the end of the
 handler block. Should that value be already deleted, that ``del`` does
@@ -2392,55 +2397,61 @@ Exception Groups
    try:
        block()
    except:
-
-      # For now, this is a C helper, EXCEPTION_GROUP_MATCH, could be also a
-      # helper function later.
-      def exception_group_match(exc_type, exc_value, exc_tb, match_against):
-         if not isinstance(tmp_exc_type, BaseExceptionGroup):
-            exc_type = ExceptionGroup
-            exc_value = ExceptionGroup("", (exc_type,))
-            exc_tb = None
-
-         matches = []
-         rest = []
-         for candidate in match_against:
-            if exception_matches(exception_type, exception_value, candidate):
-               matches.append(candidate)
-            else:
-               rest.append(candidate)
-
-         return matches != [], matches, rest
-
       try:
-         is_match, matched, rest = exception_group_match(*sys.exc_info(), (A,B)):
-         if is_match:
-            try:
-               set_sys_exc_info(ExceptionGroup("", matches))
+         tmp_preserved_exception_state = get_published_exc_info()
 
-               e = tmp_exc_value
-               handlerAorB(e)
-            finally:
-               del e
+         # For now, this is a C helper, EXCEPTION_GROUP_MATCH, could be also a
+         # helper function later.
+         def exception_group_match(exc_type, exc_value, exc_tb, match_against):
+            if not isinstance(tmp_exc_type, BaseExceptionGroup):
+               exc_type = ExceptionGroup
+               exc_value = ExceptionGroup("", (exc_type,))
+               exc_tb = None
 
-            set_sys_exc_info(rest)
+            matches = []
+            rest = []
+            for candidate in match_against:
+               if exception_matches(exception_type, exception_value, candidate):
+                  matches.append(candidate)
+               else:
+                  rest.append(candidate)
 
-      finally:
-         is_match, matched, rest = exception_group_match(rest, (B,)):
-         if is_match:
-            try:
-               set_sys_exc_info(ExceptionGroup("", rest))
+            return matches != [], matches, rest
 
-               e = tmp_exc_value
-               handlerAorB(e)
-            finally:
+         is_match, matches, rest = exception_group_match(tmp_current_exception, (A,B)):
+         try:
+            if is_match:
+               try:
+                  set_sys_exc_info(ExceptionGroup("", matches))
+
+                  e = tmp_exc_value
+                  handlerAorB(e)
+               finally:
                   del e
 
-            set_sys_exc_info(rest)
+               set_sys_exc_info(rest)
 
-      if rest and not isinstance(sys.exc_info()[0], BaseExceptionGroup):
-         raise ExceptionGroup("", rest)
+         finally:
+            is_match, matches, rest = exception_group_match(rest, (B,)):
+            if is_match:
+               try:
+                  set_sys_exc_info(ExceptionGroup("", matches))
 
-      raise
+                  e = tmp_exc_value
+                  handlerAorB(e)
+               finally:
+                     del e
+
+               set_sys_exc_info(ExceptionGroup("", rest))
+
+         if rest and not isinstance(sys.exc_info()[0], BaseExceptionGroup):
+            raise ExceptionGroup("", rest)
+      except:
+         raise
+      else:
+         set_sys_exc_info(tmp_preserved_exception_state)
+      finally:
+         del tmp_preserved_exception_state
 
 
 Statement ``try``/``except`` with ``else``
