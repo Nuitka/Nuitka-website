@@ -58,7 +58,7 @@ Additionally, you can purchase priority support.
 `Learn more about Nuitka commercial </doc/commercial.html>`_
 
 The current release is Nuitka |NUITKA_VERSION|. Stable releases are
-supported with hot fixes, indicated by the last of the 4 digits.
+supported with hot fixes, indicated by the last of the 3 digits.
 
 .. note::
 
