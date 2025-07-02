@@ -4,52 +4,176 @@
  Welcome to **Nuitka** Design Test Page
 ########################################
 
-.. tab-set::
-   :class: carousel persona-carousel
+.. container:: carousel-rst-container
 
-   .. tab-item:: Deployment
-      :class: carousel-part carousel-persona-marina
+   .. carousel-content::
+      :class: tab-start
 
-      Dear Nuitka for Deployment User,
+      Tab start
 
-      see how to get started with deploying your software using Nuitka, it's
+   .. carousel-content::
+      :class: tab-label-top
+
+      Deployment
+
+   .. carousel-content::
+      :class: tab-label-side
+
+      See how to get started with deploying your software using Nuitka, it's
+      easy and we are there to guide you and help you through it.
+
+   .. carousel-content::
+      :class: carousel-heading
+
+       Dear Nuitka for Deployment User,
+
+   .. carousel-content::
+      :class: carousel-text
+
+      See how to get started with deploying your software using Nuitka, it's
       easy and we are there to guide you and help you through it. Many people
       say it works out of the box, but if your software is very complex, we
       can help you get it done.
 
-      Take the Deployment tour
+   .. carousel-content::
+      :class: carousel-button
 
-   .. tab-item:: Beginner
-      :class: carousel-part carousel-persona-billy
+      Take the Deployment Tour
 
+   .. carousel-content::
+      :class: cta-link
+
+      test
+
+   .. carousel-content::
+      :class: tab-end
+
+      Tab end
+
+   .. carousel-content::
+      :class: tab-start
+
+      Tab start
+
+   .. carousel-content::
+      :class: tab-label-top
+
+      Beginner
+
+   .. carousel-content::
+      :class: tab-label-side
+
+      Python Beginner, you and I know you are not at all familiar and you need help.
+
+   .. carousel-content::
+      :class: carousel-heading
 
       Dear Python Beginner,
 
-      you and I know you are not at all familiar and you need help. Get
-      potentially instant help from a community of volunteers. TODO: Discord
-      Link
+   .. carousel-content::
+      :class: carousel-text
+
+      You and I know you are not at all familiar and you need help. Get
+      potentially instant help from a community of volunteers.
+
+   .. carousel-content::
+      :class: carousel-button
 
       Take the Beginner Tour
 
-   .. tab-item:: IT Manager
-      :class: carousel-part carousel-persona-cesar
+   .. carousel-content::
+      :class: cta-link
+
+      test
+
+   .. carousel-content::
+      :class: tab-end
+
+      Tab end
+
+   .. carousel-content::
+      :class: tab-start
+
+      Tab start
+
+   .. carousel-content::
+      :class: tab-label-top
+
+      IT Manager
+
+   .. carousel-content::
+      :class: tab-label-side
+
+      See how your business can benefit from Nuitka with IP protection and its
+      powerful deployment solutions
+
+   .. carousel-content::
+      :class: carousel-heading
 
       Dear IT Manager,
 
-      see how your business can benefit from Nuitka with IP protection and its
+   .. carousel-content::
+      :class: carousel-text
+
+      See how your business can benefit from Nuitka with IP protection and its
       powerful deployment solutions. Also, see the many convenience features
       that can save your team a bunch of development time.
 
-      Take the IT manager tour
+   .. carousel-content::
+      :class: carousel-button
 
-   .. tab-item:: Advanced Pythonista
-      :class: carousel-part carousel-persona-laura
+      Take the IT Manager Tour
 
-      Dear Python expert,
+   .. carousel-content::
+      :class: cta-link
 
-      you have ideas about what Nuitka is, and we are here to answer them in
+      test
+
+   .. carousel-content::
+      :class: tab-end
+
+      Tab end
+
+   .. carousel-content::
+      :class: tab-start
+
+      Tab start
+
+   .. carousel-content::
+      :class: tab-label-top
+
+      Advanced Pythonista
+
+   .. carousel-content::
+      :class: tab-label-side
+
+      Explore the power of Nuitka for deployment,
+      performance, and IP protection.
+
+   .. carousel-content::
+      :class: carousel-heading
+
+      Dear Python Expert,
+
+   .. carousel-content::
+      :class: carousel-text
+
+      You have ideas about what Nuitka is, and we are here to answer them in
       great detail (eventually). Explore the power of Nuitka for deployment,
       performance, and IP protection with more details and expert knowledge
       used.
 
+   .. carousel-content::
+      :class: carousel-button
+
       Take the Advanced Tour
+
+   .. carousel-content::
+      :class: cta-link
+
+      test
+
+   .. carousel-content::
+      :class: tab-end
+
+      Tab end
