@@ -911,8 +911,8 @@ details.sd-dropdown > .sd-summary-content {
 	font-weight: 500;
 	padding: 16px;
 	border-radius: 6px;
-    max-width: 100%;
 	overflow-wrap: break-word;
+    max-width: 250px;
 }
 
 .carousel-duration {
