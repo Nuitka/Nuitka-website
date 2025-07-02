@@ -488,10 +488,10 @@ which you expect to be inside the onefile binary, access them like this.
  Windows Programs with no console give no errors
 *************************************************
 
-For debugging purposes, remove ``--disable-console`` or use the options
-``--force-stdout-spec`` and ``--force-stderr-spec`` with paths as
-documented for ``--onefile-tempdir-spec`` above. These can be program
-relative, absolute paths, or temp directories.
+For debugging purposes, remove ``--windows-console-mode=disable`` or use
+the options ``--force-stdout-spec`` and ``--force-stderr-spec`` with
+paths as documented for ``--onefile-tempdir-spec`` above. These can be
+program relative, absolute paths, or temp directories.
 
 .. admonition:: Example
 
