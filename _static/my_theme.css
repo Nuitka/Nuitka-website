@@ -13,7 +13,7 @@ html {
 */
 
 .wy-nav-content {
-    max-width: 1000px !important;
+    max-width: 1500px !important;
 }
 
 .wy-table-responsive table td {
@@ -841,4 +841,258 @@ details.sd-dropdown > .sd-summary-content {
     border-top: 1px solid #e0e0e0;
     color: #444;
     margin-top: 0.5em;
+}
+
+.carousel {
+	max-width: 1200px;
+	margin: 0 auto;
+	border: 1px solid #dfe9f2;
+	background: white;
+	padding: 24px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.carousel-top {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.carousel-top h1,
+.carousel-top h2 {
+	font-size: 1.75rem;
+	font-weight: 600;
+	margin: 0;
+	color: #222;
+}
+
+.carousel-tabs-top {
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.carousel-tab-top {
+	background: #e6f1f9;
+	color: #333;
+	font-weight: 500;
+	padding: 10px 20px;
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: all 0.3s ease;
+	font-size: 1rem;
+}
+
+.carousel-tab-top.active {
+	background: #599dd2;
+	color: white;
+	border-color: #599dd2;
+	font-weight: 600;
+}
+
+.carousel-tab-top:hover {
+	background: #d2e6f4;
+}
+
+.carousel-tabs-side {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.carousel-tab-side {
+	background-color: #f7f9fa;
+	padding: 20px;
+	font-size: 0.95rem;
+	font-weight: 500;
+	padding: 16px;
+	border-radius: 6px;
+    max-width: 100%;
+	overflow-wrap: break-word;
+}
+
+.carousel-duration {
+	background-color: #d0e4f1;
+	height: 6px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.carousel-progress {
+	background-color: #599dd2;
+	width: 100%;
+	height: 100%;
+	animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}
+
+.carousel-content {
+	display: flex;
+	gap: 24px;
+	flex-wrap: nowrap;
+}
+
+.carousel-main {
+	flex: 2 1 60%;
+	background: white;
+    min-width: 0;
+	padding: 32px;
+	border-radius: 12px;
+	transition:
+		opacity 0.4s ease,
+		transform 0.4s ease;
+	opacity: 1;
+	transform: translateY(0);
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.carousel-main.fade-out {
+	opacity: 0;
+	transform: translateY(20px);
+}
+
+.carousel-main.fade-in {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.carousel-main h2.carousel-heading {
+	font-size: 2rem;
+	color: #222;
+	font-weight: 700;
+	margin: 0;
+}
+
+.carousel-main p.carousel-text {
+	font-size: 1.1rem;
+	color: #444;
+	line-height: 1.8;
+	margin: 0;
+}
+
+.carousel-main .carousel-button {
+	align-self: flex-start;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	background-color: #599dd2;
+	color: white;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 600;
+	transition:
+		background-color 0.3s ease,
+		transform 0.2s ease;
+	text-decoration: none;
+}
+
+.carousel-main .carousel-button:hover {
+	background-color: #417bb1;
+	transform: translateY(-2px);
+}
+
+.carousel-main .carousel-button:active {
+	transform: translateY(0);
+}
+
+.carousel-main.fade-out {
+	opacity: 0;
+	transform: translateY(20px);
+}
+
+.carousel-main.fade-in {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.carousel-sidebar {
+	flex: 1 1 300px;
+	background: #ffffff;
+	border: 1px solid #e6edf3;
+	padding: 16px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+	font-size: 0.95rem;
+	font-weight: 400;
+    max-width: 250px;
+	min-width: 200px;
+	overflow: auto
+}
+
+@media (max-width: 768px) {
+	body {
+		padding: 12px;
+		font-size: 0.95rem;
+	}
+
+	.carousel {
+		padding: 16px;
+	}
+
+	.carousel-content {
+		flex-direction: column;
+	}
+
+	.carousel-main,
+	.carousel-sidebar {
+		flex: 1 1 100%;
+	}
+
+	.carousel-tab-top {
+		padding: 8px 16px;
+		font-size: 0.95rem;
+	}
+}
+
+@media (max-width: 992px) {
+	.carousel-content {
+		gap: 16px;
+	}
+
+	.carousel {
+		padding: 20px;
+	}
+}
+
+.hub-circle-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	color: #212529;
+	cursor: pointer;
+	transition:
+		background-color 0.3s ease,
+		transform 0.2s ease;
+}
+
+.hub-circle-button:hover {
+	transform: scale(1.1);
+}
+
+.hub-circle-button i {
+	pointer-events: none;
+}
+
+.carousel-button .hub-circle-button {
+	color: white;
 }
