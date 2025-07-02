@@ -34,4 +34,10 @@
         "editor.defaultFormatter": "vscode.html-language-features"
     },
     "esbonio.server.installBehavior": "nothing",
+    "[postcss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

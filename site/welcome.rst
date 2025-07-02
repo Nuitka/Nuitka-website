@@ -4,62 +4,74 @@
  Welcome to **Nuitka** Design Test Page
 ########################################
 
-On this page, we are striving to turn the tab set below into a full fledged carousel displaying the contents.
+On this page, we are striving to turn the tab set below into a full
+fledged carousel displaying the contents.
 
-.. tab-set::
-   :class: carousel persona-carousel
+.. carousel-container::
 
-   .. tab-item:: Deployment
-      :class-label: carousel-label carousel-persona-marina
-      :class-container: carousel-container carousel-persona-marina
-      :class-content: carousel-content carousel-persona-marina
+   .. carousel::
 
-      Dear Nuitka for Deployment User,
+      .. carousel-content:: Deployment
+         :doc: deployment-tour
 
-      see how to get started with deploying your software using Nuitka, it's
-      easy and we are there to guide you and help you through it. Many people
-      say it works out of the box, but if your software is very complex, we
-      can help you get it done.
+         Dear Nuitka for Deployment User
 
-      Take the Deployment tour
+         See how to get started with deploying your software using Nuitka, it's
+         easy and we are there to guide you and help you through it. Many people
+         say it works out of the box, but if your software is very complex, we
+         can help you get it done.
 
-   .. tab-item:: Beginner
-      :class-label: carousel-label carousel-persona-billy
-      :class-container: carousel-container carousel-persona-billy
-      :class-content: carousel-content carousel-persona-billy
+         Take the Deployment Tour
 
+      .. carousel-content:: Beginner
+         :doc: beginner-tour
 
-      Dear Python Beginner,
+         Dear Python Beginner
 
-      you and I know you are not at all familiar and you need help. Get
-      potentially instant help from a community of volunteers. TODO: Discord
-      Link
+         You and I know you are not at all familiar and you need help. Get
+         potentially instant help from a community of volunteers.
 
-      Take the Beginner Tour
+         Take the Beginner Tour
 
-   .. tab-item:: IT Manager
-      :class-label: carousel-label carousel-persona-cesar
-      :class-container: carousel-container carousel-persona-cesar
-      :class-content: carousel-content carousel-persona-cesar
+      .. carousel-content:: IT Manager
+         :doc: it-manager-tour
 
-      Dear IT Manager,
+         Dear IT Manager
 
-      see how your business can benefit from Nuitka with IP protection and its
-      powerful deployment solutions. Also, see the many convenience features
-      that can save your team a bunch of development time.
+         See how your business can benefit from Nuitka with IP protection and its
+         powerful deployment solutions. Also, see the many convenience features
+         that can save your team a bunch of development time.
 
-      Take the IT manager tour
+         Take the IT Manager Tour
 
-   .. tab-item:: Advanced Pythonista
-      :class-label: carousel-label carousel-persona-laura
-      :class-container: carousel-container carousel-persona-laura
-      :class-content: carousel-content carousel-persona-laura
+      .. carousel-content:: Advanced Pythonista
+         :doc: advanced-tour
 
-      Dear Python expert,
+         Dear Python Expert
 
-      you have ideas about what Nuitka is, and we are here to answer them in
-      great detail (eventually). Explore the power of Nuitka for deployment,
-      performance, and IP protection with more details and expert knowledge
-      used.
+         You have ideas about what Nuitka is, and we are here to answer them in
+         great detail (eventually). Explore the power of Nuitka for deployment,
+         performance, and IP protection with more details and expert knowledge
+         used.
 
-      Take the Advanced Tour
+         Take the Advanced Tour
+
+      .. carousel-side-tab:: Deployment
+         :doc: deployment-tour
+
+         Create standalone executables and protect your IP.
+
+      .. carousel-side-tab:: Beginner
+         :doc: beginner-tour
+
+         Simple guides and community support for newcomers.
+
+      .. carousel-side-tab:: IT Manager
+         :doc: it-manager-tour
+
+         Enterprise solutions with IP protection and cost savings.
+
+      .. carousel-side-tab:: Advanced Pythonista
+         :doc: advanced-tour
+
+         Advanced optimization and cutting-edge features.

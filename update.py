@@ -675,8 +675,9 @@ def _getTranslationFileSet(filename):
 
 
 js_order = [
+    "jquery.js"
+    "carousel.js",
     "documentation_options.js",
-    "jquery.js",
     "_sphinx_javascript_frameworks_compat.js",
     "doctools.js",
     "sphinx_highlight.js",
@@ -684,16 +685,9 @@ js_order = [
     "clipboard.min.js",
     "copybutton.js",
     "translations.js",
-    "design-tabs.js",
 ]
 
-
 def _makeJsCombined(js_filenames):
-    js_filenames = list(js_filenames)
-    if "_static/jquery.js" not in js_filenames:
-        js_filenames.append("_static/jquery.js")
-    js_filenames.sort(key=lambda x: js_order.index(os.path.basename(x)))
-
     js_set_contents = (
         "\n".join(getFileContents(f"output/{js_name}") for js_name in js_filenames)
         + """
