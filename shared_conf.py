@@ -1,6 +1,7 @@
 import sys
 import time
 from pathlib import Path
+from directives import CarouselContent
 
 # Configuration file for the Sphinx documentation builder.
 
@@ -102,11 +103,15 @@ favicons = [
 # -- Options for EPUB output
 epub_show_urls = "footnote"
 
+def add_js_page(app, page_name, _, __, ___):
+    if page_name == "welcome":
+        app.add_js_file('carousel.js', loading_method="defer")
 
-# Enable our own CSS to be used.
+# Enable our own CSS & JS to be used.
 def setup(app):
     app.add_css_file("my_theme.css")
-
+    app.connect('html-page-context', add_js_page)
+    app.add_directive("carousel-content", CarouselContent)
 
 # Configure theme
 html_theme_options = {
