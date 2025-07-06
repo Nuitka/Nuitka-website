@@ -1,7 +1,9 @@
 import sys
 import time
 from pathlib import Path
-from directives import CarouselContent
+from directives import (CarouselContainer, Carousel, CarouselTopControls,
+                        CarouselTopButton, CarouselContent, CarouselMainContent,
+                        CarouselMainContentHeading, CarouselCTA, CarouselMainContentText, CarouselSideTabContainer, CarouselSideTabs)
 
 # Configuration file for the Sphinx documentation builder.
 
@@ -111,7 +113,17 @@ def add_js_page(app, page_name, _, __, ___):
 def setup(app):
     app.add_css_file("my_theme.css")
     app.connect('html-page-context', add_js_page)
+    app.add_directive("carousel-container", CarouselContainer)
+    app.add_directive("carousel", Carousel)
+    app.add_directive("carousel-top-controls", CarouselTopControls)
+    app.add_role("carousel-top-button", CarouselTopButton())
     app.add_directive("carousel-content", CarouselContent)
+    app.add_directive("carousel-main-content", CarouselMainContent)
+    app.add_directive("carousel-main-content-heading", CarouselMainContentHeading)
+    app.add_role("carousel-cta", CarouselCTA())
+    app.add_directive("carousel-main-content-text", CarouselMainContentText)
+    app.add_directive("carousel-side-tab-container", CarouselSideTabContainer)
+    app.add_directive("carousel-side-tabs", CarouselSideTabs)
 
 # Configure theme
 html_theme_options = {
