@@ -161,4 +161,4 @@ const structureCarousel = () => {
 	container.appendChild(carousel);
 };
 
-structureCarousel();
+// TODO: Add event listener to call structureCarousel on DOMContentLoaded
