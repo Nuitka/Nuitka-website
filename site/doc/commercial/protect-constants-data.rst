@@ -4,9 +4,12 @@
  Protect Program Constants Data
 ################################
 
-Consider this example information, to learn what this is about. Only
-Nuitka commercial offers the full protection, and this illustrates the
-issue with standard Python the best.
+Let's look at how **Nuitka Commercial** protects sensitive data embedded
+in your source code. This example will highlight a common vulnerability
+in standard Python applications and demonstrate how **Nuitka
+Commercial** provides a solution that protects this information.
+
+Here is a simple Python script with a hard-coded secret:
 
 .. code:: bash
 
@@ -15,14 +18,15 @@ issue with standard Python the best.
 .. literalinclude:: important-data-demo.py
    :language: python
 
-Key is contained in the source code (separate file is dealt with in
-another part), and literally unprotected due to that. Lets turn it to
-bytecode:
+When a secret, like an API key, is stored as a string constant directly
+in your source code, it is not protected. (Protecting data from separate
+`data files <protect-data-files.html>`__ is covered in another section.)
+Let's see what happens when we compile this Python file to bytecode:
 
 .. code:: bash
 
    python -m compileall important-data-demo.py
-   # produces e.g. __pycache__/important-data-demo.cpython-39.py, depending on Python version
+   # produces e.g. __pycache__/important-data-demo.cpython-39.pyc, depending on Python version
 
    strings __pycache__/important-data-demo.cpython-39.pyc
 
@@ -36,25 +40,31 @@ bytecode:
    printr
    <module>
 
-So not only are all program identified, argument names, also the string
-value that is our secret contained in the ``.pyc`` file. There are
-better ways to decode a bytecode file, that will give the data in clear
-form as a Python object, but at this point it should be clear, the
-bytecode object offers no protection for your data there. Nuitka
-Commercial to the rescue.
+As you can see, the ``.pyc`` file exposes not only program identifiers
+like function and argument names, but also the ``SuperSecret`` string
+itself. While the ``strings`` command provides a quick look, more
+sophisticated tools can easily decode the bytecode and retrieve the
+original data as a clean Python object. This clearly shows that standard
+Python bytecode offers no real protection for your embedded secrets.
+
+This is where **Nuitka Commercial** comes to the rescue.
 
 .. code:: bash
 
    # The data-hiding plugin uses whitebox encryption to protect the constant data.
    python -m nuitka --enable-plugin=data-hiding important-data-demo.py
-   # produces e.g. important-data.bin, depending on platform
+   # produces e.g. important-data.exe, depending on platform
 
-   # No output
-   strings important-data.bin | grep SuperSecret
+   # No outputs from these
+   strings important-data.exe | grep SuperSecret
+   strings important-data.exe | grep getKey
 
-For Nuitka commercial, the output is empty. Without that plugin, the
-string will be found. The plugin is part of the Nuitka Commercial
-subscription and unique in this level of protection.
+With **Nuitka Commercial's** ``data-hiding`` plugin, the result is
+completely different. The ``strings`` command finds nothing. The secret
+is no longer present in plain text in the file. This plugin, available
+with a **Nuitka Commercial** subscription, provides a unique and
+powerful level of protection by encrypting your constant data, making it
+inaccessible to trivial reverse engineering attempts.
 
 Go `back to Nuitka commercial
 </doc/commercial.html#protection-vs-reverse-engineering>`__ overview to
