@@ -101,7 +101,6 @@ class CarouselSideTabContainer(SphinxDirective):
     required_arguments = 1
     final_argument_whitespace = True
 
-
     def run(self):
         tab_heading_text = self.arguments[0]
 
@@ -111,16 +110,6 @@ class CarouselSideTabContainer(SphinxDirective):
         tab_heading = nodes.paragraph(text=tab_heading_text, classes=['carousel-tab-heading'])
 
         container.append(tab_heading)
-
-        self.state.nested_parse(self.content, self.content_offset, container)
-        return [container]
-
-
-    def run(self):
-        container = nodes.container()
-        container['classes'] = ['carousel-tab-side']
-
-        # TODO: Maybe I can add the arrow button here.
 
         self.state.nested_parse(self.content, self.content_offset, container)
         return [container]
