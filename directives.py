@@ -5,7 +5,7 @@ from sphinx.util.docutils import SphinxDirective, SphinxRole
 
 # TODO: I think this could be an extension, but I don't know how to do that yet. For now, will add each directive manually.
 
-# TODO: Right now I have some directives, I think I can combine some of them.
+# TODO: Add arrow buttons
 
 class CarouselContainer(SphinxDirective):
     has_content = True
