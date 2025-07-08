@@ -6,16 +6,16 @@
 
 .. carousel-container::
 
-   .. carousel-top-controls::
+   .. carousel::
 
-      :carousel-top-button:`Deployment`
-      :carousel-top-button:`Beginner`
-      :carousel-top-button:`IT Manager`
-      :carousel-top-button:`Advanced Pythonista`
+      .. carousel-top-controls::
 
-   .. carousel-side-tabs::
+         .. carousel-top-button:: Deployment
+         .. carousel-top-button:: Beginner
+         .. carousel-top-button:: IT Manager
+         .. carousel-top-button:: Advanced Pythonista
 
-      .. carousel-side-tab-container:: Deployment
+      .. carousel-content::
 
          .. carousel-main-content::
 
@@ -30,9 +30,7 @@
                say it works out of the box, but if your software is very complex, we
                can help you get it done.
 
-            :carousel-cta:`Take the Deployment Tour`
-
-      .. carousel-side-tab-container:: Beginner
+            .. carousel-cta:: Take the Deployment Tour
 
          .. carousel-main-content::
 
@@ -45,9 +43,7 @@
                You and I know you are not at all familiar and you need help. Get
                potentially instant help from a community of volunteers.
 
-            :carousel-cta:`Take the Beginner Tour`
-
-      .. carousel-side-tab-container:: IT Manager
+            .. carousel-cta:: Take the Beginner Tour
 
          .. carousel-main-content::
 
@@ -61,9 +57,7 @@
                powerful deployment solutions. Also, see the many convenience features
                that can save your team a bunch of development time.
 
-            :carousel-cta:`Take the IT Manager Tour`
-
-      .. carousel-side-tab-container:: Advanced Pythonista
+            .. carousel-cta:: Take the IT Manager Tour
 
          .. carousel-main-content::
 
@@ -78,4 +72,14 @@
                performance, and IP protection with more details and expert knowledge
                used.
 
-            :carousel-cta:`Take the Advanced Tour`
+            .. carousel-cta:: Take the Advanced Tour
+
+         .. carousel-side-tabs::
+
+            .. carousel-side-tab-container:: Deployment
+
+            .. carousel-side-tab-container:: Beginner
+
+            .. carousel-side-tab-container:: IT Manager
+
+            .. carousel-side-tab-container:: Advanced Pythonista

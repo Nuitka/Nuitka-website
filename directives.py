@@ -37,10 +37,15 @@ class CarouselTopControls(SphinxDirective):
         self.state.nested_parse(self.content, self.content_offset, container)
         return [container]
 
-class CarouselTopButton(SphinxRole):
+class CarouselTopButton(SphinxDirective):
+    has_content = False
+    required_arguments = 1
+    final_argument_whitespace = True
+
     def run(self):
-        node = nodes.inline(text=self.text, classes=['carousel-tab-top'])
-        return [node], []
+        text = self.arguments[0]
+        node = nodes.inline(text=text, classes=['carousel-tab-top'])
+        return [node]
 
 class CarouselContent(SphinxDirective):
     has_content = True
@@ -81,10 +86,15 @@ class CarouselMainContentText(SphinxDirective):
         paragraph_node = nodes.paragraph(text=text, classes=['carousel-text'])
         return [paragraph_node]
 
-class CarouselCTA(SphinxRole):
+class CarouselCTA(SphinxDirective):
+    has_content = False
+    required_arguments = 1
+    final_argument_whitespace = True
+
     def run(self):
-        node = nodes.inline(text=self.text, classes=['carousel-button'])
-        return [node], []
+        text = self.arguments[0]
+        node = nodes.inline(text=text, classes=['carousel-button'])
+        return [node]
 
 class CarouselSideTabs(SphinxDirective):
     has_content = True
