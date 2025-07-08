@@ -1,113 +1,29 @@
-const parseTabsData = (elements) => {
-	let currentTab = {};
-	const tabsData = [];
+// TODO: Instead of set display to none here, do it with a class or a directive.
 
-	elements.forEach((el) => {
-		if (el.classList.contains("tab-start")) currentTab = {};
-		if (el.classList.contains("tab-label-top"))
-			currentTab.labelTop = el.textContent.trim();
-		if (el.classList.contains("tab-label-side"))
-			currentTab.labelSide = el.textContent.trim();
-		if (el.classList.contains("carousel-heading"))
-			currentTab.heading = el.textContent.trim();
-		if (el.classList.contains("carousel-text"))
-			currentTab.text = el.textContent.trim();
-		if (el.classList.contains("carousel-button"))
-			currentTab.button = el.textContent.trim();
-		if (el.classList.contains("tab-end")) tabsData.push({ ...currentTab });
-		if (el.classList.contains("cta-link"))
-			currentTab.ctaLink = el.textContent.trim();
-	});
-
-	return tabsData;
-};
-
-const createCarouselTop = () => {
-	const carouselTop = document.createElement("div");
-	carouselTop.className = "carousel-top";
-
-	const tabsTop = document.createElement("div");
-	tabsTop.className = "carousel-tabs-top";
-
-	const carouselDuration = document.createElement("div");
-	carouselDuration.className = "carousel-duration";
-
-	const carouselProgress = document.createElement("div");
-	carouselProgress.className = "carousel-progress";
-
-	carouselDuration.appendChild(carouselProgress);
-	carouselTop.appendChild(tabsTop);
-	carouselTop.appendChild(carouselDuration);
-
-	return { carouselTop, tabsTop, carouselProgress };
-};
-
-const createCarouselContent = () => {
-	const carouselContent = document.createElement("div");
-	carouselContent.className = "carousel-content";
-
-	const mainContent = document.createElement("div");
-	mainContent.className = "carousel-main";
-
-	const tabsContainer = document.createElement("div");
-	tabsContainer.className = "carousel-tabs-side";
-
-	return { carouselContent, mainContent, tabsContainer };
-};
-
-const structureCarousel = () => {
- const container = document.querySelector(".carousel-rst-container");
-  const elements = Array.from(container.querySelectorAll("p"));
-	const tabsData = parseTabsData(elements);
-
-	const carousel = document.createElement("div");
-	carousel.className = "carousel";
-
-	const { carouselTop, tabsTop, carouselProgress } = createCarouselTop();
-	const { carouselContent, mainContent, tabsContainer } =
-		createCarouselContent();
-
+const carousel = () => {
 	let activeIndex = 0;
 	let interval = null;
 
 	const setActiveTab = (index) => {
-		const tab = tabsData[index];
+		contents.forEach((el, i) => {
+			el.style.display = i === index ? "flex" : "none";
+		});
 
-		mainContent.classList.add("fade-out");
+		tabs.forEach((tab, i) => {
+			tab.classList.toggle("active", i === index);
+		});
 
-		setTimeout(() => {
-			mainContent.innerHTML = `
-				<h2 class="carousel-heading">${tab.heading}</h2>
-				<p class="carousel-text">${tab.text}</p>
-				<a class="carousel-button" href="${tab.ctaLink}" target="_blank">
-					${tab.button}
-					<div class="hub-circle-button">
-						<i class="fa fa-arrow-circle-right" aria-hidden="true" style="font-size: 25px;"></i>
-					</div>
-				</a>
-`;
+		const progressBar = moveProgressBar(index);
 
-			[...tabsTop.children].forEach((el, i) => {
-				el.classList.toggle("active", i === index);
-			});
-
-			carouselProgress.style.animation = "none";
-			carouselProgress.offsetHeight;
-			carouselProgress.style.animation = "progress 5s linear forwards";
-
-			mainContent.classList.remove("fade-out");
-			mainContent.classList.add("fade-in");
-
-			setTimeout(() => {
-				mainContent.classList.remove("fade-in");
-			}, 400);
-		}, 400);
+		progressBar.style.animation = "none";
+		progressBar.offsetHeight;
+		progressBar.style.animation = "progress 5s linear forwards";
 
 		activeIndex = index;
 	};
 
 	const nextTab = () => {
-		activeIndex = (activeIndex + 1) % tabsData.length;
+		activeIndex = (activeIndex + 1) % contents.length;
 		setActiveTab(activeIndex);
 	};
 
@@ -116,49 +32,58 @@ const structureCarousel = () => {
 		interval = setInterval(nextTab, 5000);
 	};
 
-	const createTopTabs = () => {
-		tabsData.forEach((tab, index) => {
-			const tabDiv = document.createElement("div");
-			tabDiv.className = "carousel-tab-top";
-			tabDiv.textContent = tab.labelTop || tab.heading;
-			tabDiv.addEventListener("click", () => {
-				setActiveTab(index);
-				startAutoRotate();
-			});
-			tabsTop.appendChild(tabDiv);
-		});
+	const tabs = document.querySelectorAll(".carousel-tab-top");
+
+	if (tabs.length === 0) {
+		return;
+	}
+
+	const contents = document.querySelectorAll(".carousel-main");
+
+	if (contents.length === 0) {
+		return;
+	}
+
+	const createProgressBar = () => {
+		const durationContainer = document.createElement("div");
+		durationContainer.className = "carousel-duration";
+
+		const progressBar = document.createElement("div");
+		progressBar.className = "carousel-progress";
+
+		durationContainer.appendChild(progressBar);
+		return { durationContainer, progressBar };
 	};
 
-	const createSideTabs = () => {
-		tabsData.forEach((tab, index) => {
-			const tabDiv = document.createElement("div");
-			tabDiv.className = "carousel-tab-side";
-			tabDiv.innerHTML = `
-				<div class="tab-heading">${tab.labelSide || tab.heading}</div>
-				<div class="hub-circle-button">
-					<i class="fa fa-arrow-circle-right" aria-hidden="true" style="font-size: 25px;"></i>
-				</div>
-			`;
-			tabDiv.addEventListener("click", () => {
-				setActiveTab(index);
-				startAutoRotate();
-			});
-			tabsContainer.appendChild(tabDiv);
-		});
+	let currentProgressBar = null;
+
+	const moveProgressBar = (tabIndex) => {
+		const activeTab = tabs[tabIndex];
+
+		if (currentProgressBar) {
+			currentProgressBar.remove();
+		}
+
+		const { durationContainer, progressBar } = createProgressBar();
+		currentProgressBar = durationContainer;
+		activeTab.appendChild(durationContainer);
+
+		return progressBar;
 	};
 
-	createTopTabs();
-	createSideTabs();
+	contents.forEach((el, i) => {
+		el.style.display = i === 0 ? "flex" : "none";
+	});
+
+	tabs.forEach((tab, i) => {
+		tab.addEventListener("click", () => {
+			setActiveTab(i);
+			startAutoRotate();
+		});
+	});
+
 	setActiveTab(0);
 	startAutoRotate();
-
-	carouselContent.appendChild(mainContent);
-	carouselContent.appendChild(tabsContainer);
-	carousel.appendChild(carouselTop);
-	carousel.appendChild(carouselContent);
-
-	container.innerHTML = ""
-	container.appendChild(carousel);
 };
 
-// TODO: Add event listener to call structureCarousel on DOMContentLoaded
+document.addEventListener("DOMContentLoaded", carousel());
