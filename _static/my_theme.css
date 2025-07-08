@@ -4,6 +4,7 @@
     --our-color-grey: #ccc;
     --our-color-dark-blue: #2a3990;
     --our-color-green: #00916e;
+    --our-carousel-light-blue: #d2e6f4;
 }
 
 /* Google Chrome still hates our menu
@@ -857,7 +858,8 @@ details.sd-dropdown > .sd-summary-content {
 
 .carousel-top {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+    justify-content: center;
 	gap: 12px;
 }
 
@@ -877,7 +879,7 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 .carousel-tab-top {
-	background: #e6f1f9;
+	background: var(--our-carousel-light-blue);
 	color: #333;
 	font-weight: 500;
 	padding: 10px 20px;
@@ -888,19 +890,20 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 .carousel-tab-top.active {
-	background: #599dd2;
+	background: var(--our-color-blue);
 	color: white;
-	border-color: #599dd2;
+	border-color: var(--our-color-blue);
 	font-weight: 600;
 }
 
 .carousel-tab-top:hover {
-	background: #d2e6f4;
+	background: var(--our-color-blue);
 }
 
 .carousel-tabs-side {
 	display: flex;
 	flex-direction: column;
+    justify-content: center;
 	gap: 1rem;
 }
 
@@ -916,14 +919,15 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 .carousel-duration {
-	background-color: #d0e4f1;
-	height: 6px;
+	background-color: var(--our-carousel-light-blue);
+	height: 4px;
 	overflow: hidden;
 	width: 100%;
+    margin-top: 2px;
 }
 
 .carousel-progress {
-	background-color: #599dd2;
+	background-color: var(--our-color-dark-blue);
 	width: 100%;
 	height: 100%;
 	animation: progress 5s linear forwards;
@@ -959,6 +963,13 @@ details.sd-dropdown > .sd-summary-content {
 	justify-content: center;
 	flex-direction: column;
 	gap: 24px;
+}
+
+.carousel-main p:first-of-type {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-family: 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif, ff-tisa-web-pro, Georgia, Arial, sans-serif;
+    font-weight: 500;
 }
 
 .carousel-main.fade-out {
@@ -1058,7 +1069,16 @@ details.sd-dropdown > .sd-summary-content {
 	.carousel-tab-top {
 		padding: 8px 16px;
 		font-size: 0.95rem;
+        width: 100%
 	}
+
+    .carousel-top {
+        flex-direction: column;
+    }
+
+    .carousel-tabs-side {
+        display: none;
+    }
 }
 
 @media (max-width: 992px) {
