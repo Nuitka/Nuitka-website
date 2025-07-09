@@ -1,5 +1,3 @@
-// TODO: Instead of set display to none here, do it with a class or a directive.
-
 const carousel = () => {
 	let activeIndex = 0;
 	let interval = null;
@@ -71,10 +69,6 @@ const carousel = () => {
 		return progressBar;
 	};
 
-	contents.forEach((el, i) => {
-		el.style.display = i === 0 ? "flex" : "none";
-	});
-
 	tabs.forEach((tab, i) => {
 		tab.addEventListener("click", () => {
 			setActiveTab(i);
@@ -86,4 +80,4 @@ const carousel = () => {
 	startAutoRotate();
 };
 
-document.addEventListener("DOMContentLoaded", carousel());
+document.addEventListener("DOMContentLoaded", carousel);

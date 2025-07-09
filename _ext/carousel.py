@@ -124,6 +124,8 @@ class CarouselSideTabContainer(SphinxDirective):
         return [container]
 
 def setup(app):
+    # TODO: We can add JS and CSS files here instead of in shared_conf.py, this way we keep all the carousel-related code in one place.
+
     app.add_directive("carousel-container", CarouselContainer)
     app.add_directive("carousel", Carousel)
     app.add_directive("carousel-top-controls", CarouselTopControls)
