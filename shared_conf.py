@@ -1,9 +1,7 @@
 import sys
 import time
 from pathlib import Path
-from directives import (CarouselContainer, Carousel, CarouselTopControls,
-                        CarouselTopButton, CarouselContent, CarouselMainContent,
-                        CarouselMainContentHeading, CarouselCTA, CarouselMainContentText, CarouselSideTabContainer, CarouselSideTabs)
+
 
 # Configuration file for the Sphinx documentation builder.
 
@@ -14,8 +12,19 @@ author = "Kay Hayen"
 release = version = ""
 
 ROOT = Path(__file__).parent.absolute().as_posix()  # The root directory
+EXT = str(Path(__file__).parent / '_ext') # The _ext directory for extensions
+
 # For autodoc to work
 sys.path.append(ROOT)
+
+# For extensions to work
+sys.path.append(EXT)
+
+print(f"Current file: {__file__}")
+print(f"Parent directory: {Path(__file__).parent}")
+print(f"_ext path: {Path(__file__).parent / '_ext'}")
+print(f"_ext exists: {(Path(__file__).parent / '_ext').exists()}")
+
 from update import importNuitka  # isort:skip
 
 importNuitka()
@@ -41,6 +50,7 @@ extensions = [
     "sphinxcontrib.asciinema",
     # Blog extension
     "ablog",
+    "carousel"
 ]
 
 intersphinx_mapping = {
@@ -113,17 +123,6 @@ def add_js_page(app, page_name, _, __, ___):
 def setup(app):
     app.add_css_file("my_theme.css")
     app.connect('html-page-context', add_js_page)
-    app.add_directive("carousel-container", CarouselContainer)
-    app.add_directive("carousel", Carousel)
-    app.add_directive("carousel-top-controls", CarouselTopControls)
-    app.add_directive("carousel-top-button", CarouselTopButton)
-    app.add_directive("carousel-content", CarouselContent)
-    app.add_directive("carousel-main-content", CarouselMainContent)
-    app.add_directive("carousel-main-content-heading", CarouselMainContentHeading)
-    app.add_directive("carousel-cta", CarouselCTA)
-    app.add_directive("carousel-main-content-text", CarouselMainContentText)
-    app.add_directive("carousel-side-tab-container", CarouselSideTabContainer)
-    app.add_directive("carousel-side-tabs", CarouselSideTabs)
 
 # Configure theme
 html_theme_options = {

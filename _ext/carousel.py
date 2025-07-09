@@ -61,7 +61,6 @@ class CarouselMainContent(SphinxDirective):
     has_content = True
     final_argument_whitespace = True
 
-
     def run(self):
         container = nodes.container()
         container['classes'] = ['carousel-main']
@@ -123,3 +122,22 @@ class CarouselSideTabContainer(SphinxDirective):
 
         self.state.nested_parse(self.content, self.content_offset, container)
         return [container]
+
+def setup(app):
+    app.add_directive("carousel-container", CarouselContainer)
+    app.add_directive("carousel", Carousel)
+    app.add_directive("carousel-top-controls", CarouselTopControls)
+    app.add_directive("carousel-top-button", CarouselTopButton)
+    app.add_directive("carousel-content", CarouselContent)
+    app.add_directive("carousel-main-content", CarouselMainContent)
+    app.add_directive("carousel-main-content-heading", CarouselMainContentHeading)
+    app.add_directive("carousel-main-content-text", CarouselMainContentText)
+    app.add_directive("carousel-cta", CarouselCTA)
+    app.add_directive("carousel-side-tabs", CarouselSideTabs)
+    app.add_directive("carousel-side-tab-container", CarouselSideTabContainer)
+
+    return {
+        "version": "0.1",
+        "parallel_read_safe": True,
+        "parallel_write_safe": True,
+    }
