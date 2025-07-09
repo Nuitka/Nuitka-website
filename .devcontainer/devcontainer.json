@@ -14,6 +14,9 @@
 		"ghcr.io/devcontainers-extra/features/bash-command:1": {
 			"command": "python3 -m pip install --break invoke pipenv"
 		},
+		 "ghcr.io/devcontainers/features/node:1": {
+   "version": "18"
+  },
 		"ghcr.io/hwaien/devcontainer-features/match-host-time-zone": {}
 	},
 
@@ -27,7 +30,7 @@
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo dpkg-reconfigure tzdata -f none && sudo mkdir -p /workspaces/Nuitka-website/.devcontainer/supervisor/logs && sudo chown -R vscode:vscode /workspaces/Nuitka-website/.devcontainer/supervisor",
+	"postCreateCommand": "sudo dpkg-reconfigure tzdata -f none && sudo mkdir -p /workspaces/Nuitka-website/.devcontainer/supervisor/logs && sudo chown -R vscode:vscode /workspaces/Nuitka-website/.devcontainer/supervisor && npm install",
 
 
 	// Start supervisord to manage background services like auto-update.sh

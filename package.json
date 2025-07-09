@@ -7,7 +7,8 @@
     "doc": "doc"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "postcss input.css -o output.css --config postcss.config.js"
   },
   "repository": {
     "type": "git",
@@ -15,9 +16,10 @@
   },
   "author": "",
   "license": "ASF2.0",
-  "dependencies": {
-    "cssnano": "^6.1.2",
-    "postcss": "^8.4.38",
-    "postcss-cli": "^11.0.0"
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.0.7",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1"
   }
 }
