@@ -5,6 +5,11 @@ from pathlib import Path
 DOC_ROOT = Path(__file__).parent.absolute()
 sys.path.extend([DOC_ROOT.as_posix(), DOC_ROOT.parent.as_posix()])
 
+# Add _ext directory to Python path for custom Sphinx extensions
+_ext_path = str(DOC_ROOT.parent / '_ext')
+if _ext_path not in sys.path:
+    sys.path.append(_ext_path)
+
 # isort:start
 
 # -- General configuration
