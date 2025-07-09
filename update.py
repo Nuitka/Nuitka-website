@@ -1,5 +1,8 @@
 #!/usr/bin/env python3.12
 
+""" Main interface to Nuitka-Website build process."""
+
+
 import copy
 import datetime
 import os
@@ -7,11 +10,9 @@ import re
 import shutil
 import subprocess
 import sys
-import zipfile
 from io import StringIO
 from optparse import OptionParser
 from pathlib import Path
-from urllib.request import urlretrieve
 
 import requests
 from lxml import html
@@ -102,6 +103,7 @@ from nuitka.utils.FileOperations import (
     getFileContents,
     getFileList,
     putTextFileContents,
+    withTemporaryFile,
 )
 from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
@@ -120,7 +122,7 @@ def updateDownloadPage():
     max_pre_release = ""
     max_stable_release = ""
 
-    def numberize(value):
+    def get_numeric_version(value):
         if value == "":
             return []
 
@@ -195,9 +197,11 @@ def updateDownloadPage():
         # print "VER", filename
 
         if "pre" in filename or "rc" in filename:
-            max_pre_release = max(max_pre_release, filename, key=numberize)
+            max_pre_release = max(max_pre_release, filename, key=get_numeric_version)
         else:
-            max_stable_release = max(max_stable_release, filename, key=numberize)
+            max_stable_release = max(
+                max_stable_release, filename, key=get_numeric_version
+            )
 
     def makePlain(value):
         value = (
@@ -280,7 +284,7 @@ def updateDownloadPage():
                 print("problem with line %r from '%s'" % (line, url))
                 raise
 
-        def numberize(x):
+        def get_numeric_version(x):
             if x.startswith("lp"):
                 x = x[2:]
             if x.startswith("bp"):
@@ -295,7 +299,10 @@ def updateDownloadPage():
         def compareVersion(v):
             v = v.split("-")
 
-            v = tuple(tuple(numberize(x) for x in splitVersion(value)) for value in v)
+            v = tuple(
+                tuple(get_numeric_version(x) for x in splitVersion(value))
+                for value in v
+            )
 
             return v
 
@@ -703,6 +710,7 @@ js_order = [
 
 
 def _makeCssCombined(css_filenames, css_links, has_asciinema):
+    # Simply concatenate CSS files - let PostCSS handle the processing
     merged_css = "\n".join(
         getFileContents(css_filename)
         for css_filename in sorted(css_filenames, key=lambda x: "my_" in x)
@@ -749,6 +757,12 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
     # Strip comments and trailing whitespace (created by that in part)
     merged_css = re.sub(r"/\*.*?\*/", "", merged_css, flags=re.S)
     merged_css = re.sub(r"\s+\n", r"\n", merged_css, flags=re.M)
+
+    # Process with PostCSS
+    processed_css = processWithPostCSS(merged_css)
+
+    # Validate processed CSS: fallback to original if empty or invalid
+    assert processed_css
 
     output_filename = "/_static/css/combined_%s.css" % getHashFromValues(merged_css)
 
@@ -838,6 +852,48 @@ def fixupSymbols(document_bytes):
     )
 
     return document_bytes
+
+
+def processWithPostCSS(css_content):
+    """Process CSS content through PostCSS"""
+    # Create temporary input file
+    with withTemporaryFile(suffix=".css", mode="w") as tmp_input:
+        tmp_input.write(css_content)
+        tmp_input_path = tmp_input.name
+
+        # Create temporary output file
+        with withTemporaryFile(mode="w", suffix=".css") as tmp_output:
+            tmp_output_path = tmp_output.name
+
+            # Run PostCSS
+            try:
+                subprocess.run(
+                    [
+                        "npx",
+                        "postcss",
+                        tmp_input_path,
+                        "--output",
+                        tmp_output_path,
+                        "--config",
+                        "postcss.config.js",
+                    ],
+                    capture_output=True,
+                    text=True,
+                    check=True,
+                )
+            except subprocess.CalledProcessError as e:
+                my_print(f"PostCSS processing failed: {e}")
+                my_print(f"Error output: {e.stderr}")
+                # Fallback to original CSS if PostCSS fails
+                return None
+            except Exception as e:
+                my_print(f"Unexpected error in PostCSS processing: {e}")
+                return None
+
+            # Read processed CSS
+            processed_css = getFileContents(tmp_output_path)
+
+            return processed_css
 
 
 def handleJavaScript(filename, doc):
@@ -1134,6 +1190,7 @@ def runPostProcessing():
 
         file_language, translated_filenames = _getTranslationFileSet(filename)
 
+        # Disabled for now, pylint: disable=condition-evals-to-constant
         if len(translated_filenames) == 1 or True:
             for node in doc.xpath(
                 "//details[contains(@class, 'language-switcher-container')]"
@@ -1175,6 +1232,8 @@ def runPostProcessing():
             node.getparent().remove(node)
 
             # TODO: Enable language switcher later on
+            # Disabled for now, pylint: disable=condition-evals-to-constant
+
             if top_link_nav is not None and False:
                 top_link_nav.append(node)
 
