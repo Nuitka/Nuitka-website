@@ -32,7 +32,10 @@
                say it works out of the box, but if your software is very complex, we
                can help you get it done.
 
-            .. carousel-cta:: Take the Deployment Tour
+            .. carousel-cta::
+               :url: https://example.com
+
+               Take the Deployment Tour <i class="fa fa-arrow-right sd-text-white"></i>
 
          .. carousel-main-content::
 
@@ -45,7 +48,10 @@
                You and I know you are not at all familiar and you need help. Get
                potentially instant help from a community of volunteers.
 
-            .. carousel-cta:: Take the Beginner Tour
+            .. carousel-cta::
+               :url: https://example.com
+
+               Take the Beginner Tour <i class="fa fa-arrow-right sd-text-white"></i>
 
          .. carousel-main-content::
 
@@ -59,7 +65,10 @@
                powerful deployment solutions. Also, see the many convenience features
                that can save your team a bunch of development time.
 
-            .. carousel-cta:: Take the IT Manager Tour
+            .. carousel-cta::
+               :url: https://example.com
+
+               Take the IT Manager Tour <i class="fa fa-arrow-right sd-text-white"></i>
 
          .. carousel-main-content::
 
@@ -74,14 +83,33 @@
                performance, and IP protection with more details and expert knowledge
                used.
 
-            .. carousel-cta:: Take the Advanced Tour
+            .. carousel-cta::
+               :url: https://example.com
 
-         .. carousel-side-tabs::
+               Take the Advanced Tour <i class="fa fa-arrow-right sd-text-white"></i>
+
+       .. carousel-side-tabs::
 
             .. carousel-side-tab-container:: Deployment
+               :url: https://example.com
+
+               Create standalone executables and protect your IP.
+               <i class="fa fa-arrow-right"></i>
 
             .. carousel-side-tab-container:: Beginner
+               :url: https://example.com
+
+               Simple guides and community support for newcomers.
+               <i class="fa fa-arrow-right"></i>
 
             .. carousel-side-tab-container:: IT Manager
+               :url: https://example.com
+
+               Enterprise solutions with IP protection and cost savings.
+               <i class="fa fa-arrow-right"></i>
 
             .. carousel-side-tab-container:: Advanced Pythonista
+               :url: https://example.com
+
+               Advanced optimization and cutting-edge features.
+               <i class="fa fa-arrow-right"></i>
