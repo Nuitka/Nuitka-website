@@ -843,7 +843,6 @@ details.sd-dropdown > .sd-summary-content {
     color: #444;
     margin-top: 0.5em;
 }
-
 .carousel {
 	max-width: 1200px;
 	margin: 0 auto;
@@ -859,8 +858,9 @@ details.sd-dropdown > .sd-summary-content {
 .carousel-top {
 	display: flex;
 	flex-direction: row;
-    justify-content: center;
+	justify-content: center;
 	gap: 12px;
+	flex-wrap: wrap;
 }
 
 .carousel-top h1,
@@ -869,6 +869,7 @@ details.sd-dropdown > .sd-summary-content {
 	font-weight: 600;
 	margin: 0;
 	color: #222;
+	text-align: center;
 }
 
 .carousel-tabs-top {
@@ -902,20 +903,21 @@ details.sd-dropdown > .sd-summary-content {
 
 .carousel-tabs-side {
 	display: flex;
-	flex-direction: column;
-    justify-content: center;
+	justify-content: center;
 	gap: 1rem;
+	flex-wrap: wrap;
 }
 
 .carousel-tab-side {
 	background-color: #f7f9fa;
-	padding: 20px;
+	padding: 16px;
 	font-size: 0.95rem;
 	font-weight: 500;
-	padding: 16px;
 	border-radius: 6px;
 	overflow-wrap: break-word;
-    max-width: 250px;
+	max-width: 250px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .carousel-duration {
@@ -923,7 +925,7 @@ details.sd-dropdown > .sd-summary-content {
 	height: 4px;
 	overflow: hidden;
 	width: 100%;
-    margin-top: 2px;
+	margin-top: 2px;
 }
 
 .carousel-progress {
@@ -944,14 +946,13 @@ details.sd-dropdown > .sd-summary-content {
 
 .carousel-content {
 	display: flex;
-	gap: 24px;
-	flex-wrap: nowrap;
+	flex-direction: column;
 }
 
 .carousel-main {
 	flex: 2 1 60%;
 	background: white;
-    min-width: 0;
+	min-width: 0;
 	padding: 32px;
 	border-radius: 12px;
 	transition:
@@ -966,14 +967,14 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 .carousel-main:first-child {
-    display: flex;
+	display: flex;
 }
 
 .carousel-main p:first-of-type {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-family: 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif, ff-tisa-web-pro, Georgia, Arial, sans-serif;
-    font-weight: 500;
+	font-size: 1.5rem;
+	line-height: 2rem;
+	font-family: Rockwell, serif;
+	font-weight: 600;
 }
 
 .carousel-main.fade-out {
@@ -984,13 +985,6 @@ details.sd-dropdown > .sd-summary-content {
 .carousel-main.fade-in {
 	opacity: 1;
 	transform: translateY(0);
-}
-
-.carousel-main h2.carousel-heading {
-	font-size: 2rem;
-	color: #222;
-	font-weight: 700;
-	margin: 0;
 }
 
 .carousel-main p.carousel-text {
@@ -1028,27 +1022,21 @@ details.sd-dropdown > .sd-summary-content {
 	transform: translateY(0);
 }
 
-.carousel-main.fade-out {
-	opacity: 0;
-	transform: translateY(20px);
+.carousel-tab-heading {
+	font-size: 1.1rem;
+	font-family: Rockwell, serif;
+	font-weight: 600;
 }
 
-.carousel-main.fade-in {
-	opacity: 1;
-	transform: translateY(0);
-}
+@media (max-width: 992px) {
+	.carousel {
+		padding: 20px;
+	}
 
-.carousel-sidebar {
-	flex: 1 1 300px;
-	background: #ffffff;
-	border: 1px solid #e6edf3;
-	padding: 16px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-	font-size: 0.95rem;
-	font-weight: 400;
-    max-width: 250px;
-	min-width: 200px;
-	overflow: auto
+	.carousel-tab-top {
+		font-size: 0.95rem;
+		padding: 8px 16px;
+	}
 }
 
 @media (max-width: 768px) {
@@ -1061,37 +1049,41 @@ details.sd-dropdown > .sd-summary-content {
 		padding: 16px;
 	}
 
-	.carousel-content {
+	.carousel-top {
 		flex-direction: column;
+		align-items: center;
+		text-align: center;
 	}
 
-	.carousel-main,
-	.carousel-sidebar {
-		flex: 1 1 100%;
+	.carousel-tabs-top {
+		justify-content: center;
 	}
 
 	.carousel-tab-top {
 		padding: 8px 16px;
 		font-size: 0.95rem;
-        width: 100%
+		width: 100%;
+		text-align: center;
 	}
 
-    .carousel-top {
-        flex-direction: column;
-    }
+	.carousel-tabs-side {
+		display: none;
+	}
 
-    .carousel-tabs-side {
-        display: none;
-    }
+	.carousel-main {
+		padding: 20px;
+	}
 }
 
-@media (max-width: 992px) {
-	.carousel-content {
-		gap: 16px;
+@media (max-width: 480px) {
+	.carousel-tab-top {
+		font-size: 0.9rem;
+		padding: 8px;
 	}
 
-	.carousel {
-		padding: 20px;
+	.carousel-main p:first-of-type {
+		font-size: 1.25rem;
+		line-height: 1.6rem;
 	}
 }
 
@@ -1119,4 +1111,12 @@ details.sd-dropdown > .sd-summary-content {
 
 .carousel-button .hub-circle-button {
 	color: white;
+}
+
+.carousel-tab-side:visited,
+.carousel-tab-side:link,
+.carousel-tab-side:hover,
+.carousel-tab-side:active {
+	color: inherit !important;
+	text-decoration: none !important;
 }
