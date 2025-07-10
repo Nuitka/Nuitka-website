@@ -80,4 +80,4 @@ const carousel = () => {
 	startAutoRotate();
 };
 
-document.addEventListener("DOMContentLoaded", carousel);
+window.addEventListener("load", carousel);

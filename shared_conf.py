@@ -20,11 +20,6 @@ sys.path.append(ROOT)
 # For extensions to work
 sys.path.append(EXT)
 
-print(f"Current file: {__file__}")
-print(f"Parent directory: {Path(__file__).parent}")
-print(f"_ext path: {Path(__file__).parent / '_ext'}")
-print(f"_ext exists: {(Path(__file__).parent / '_ext').exists()}")
-
 from update import importNuitka  # isort:skip
 
 importNuitka()
@@ -116,8 +111,7 @@ favicons = [
 epub_show_urls = "footnote"
 
 def add_js_page(app, page_name, _, __, ___):
-    if page_name == "welcome":
-        app.add_js_file('carousel.js', loading_method="defer")
+    app.add_js_file('carousel.js')
 
 # Enable our own CSS & JS to be used.
 def setup(app):
