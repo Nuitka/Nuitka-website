@@ -16,10 +16,11 @@
   },
   "author": "",
   "license": "ASF2.0",
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.0.7",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1"
-  }
+  },
+  "devDependencies": {}
 }
