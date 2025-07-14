@@ -953,9 +953,15 @@ def runPostProcessing():
                 # Process with PostCSS
                 processed_css = processWithPostCSS(merged_css)
 
+                # Validate processed CSS: fallback to original if empty or invalid
+                if not processed_css or not isinstance(processed_css, str) or processed_css.strip() == "":
+                    my_print("PostCSS processing failed or returned empty content, using original CSS.")
+                    css_to_write = merged_css
+                else:
+                    css_to_write = processed_css
                 putTextFileContents(
                     filename=f"output{output_filename}",
-                    contents=processed_css
+                    contents=css_to_write
                 )
 
             css_links[0].attrib["href"] = output_filename
