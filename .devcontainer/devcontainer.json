@@ -36,7 +36,7 @@
 
 	// Start supervisord to manage background services like auto-update.sh
 	"postStartCommand": {
-		"start_supervisord": "supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf",
+		"start_supervisord": "export containerWorkspaceFolder=${containerWorkspaceFolder} && supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf",
 		"info_message": "echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:8000\\n\\n'"
 	},
 	// Configure tool-specific properties.
