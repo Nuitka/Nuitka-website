@@ -102,7 +102,7 @@
     "cSpell.customDictionaries": {
         "custom-dictionary-workspace": {
             "name": "custom-dictionary-workspace",
-            "path": "${workspaceFolder:Nuitka-website}/.cspell/custom-dictionary-workspace.txt",
+            "path": "${workspaceFolder}/.cspell/custom-dictionary-workspace.txt",
             "addWords": true,
             "scope": "workspace"
         }
