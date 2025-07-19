@@ -38,14 +38,28 @@ def _updateCheckout(branch, update):
         print(f"Updating {branch} checkout...")
         sys.stdout.flush()
 
-        urlretrieve(
-            f"https://github.com/Nuitka/Nuitka/archive/{branch}.zip", "nuitka.zip.tmp"
+        # Using git is better than zip files for preserving x-bits.
+        subprocess.run(
+            [
+                "git",
+                "clone",
+                "https://github.com/Nuitka/Nuitka.git",
+                "--depth",
+                "1",
+                "--branch",
+                branch,
+                "--single-branch",
+                f"Nuitka-{branch}",
+            ],
+            check=True,
         )
 
-        with zipfile.ZipFile("nuitka.zip.tmp") as archive:
-            archive.extractall(".")
+        # Install the commit hooks
+        subprocess.run(["./Nuitka-develop/misc/install-git-hooks.py"], check=True)
+        shutil.copy("./Nuitka-develop/.git/hooks/pre-commit", ".git/hooks/pre-commit")
 
-        os.unlink("nuitka.zip.tmp")
+        # Now we can drop the .git to make sure it doesn't confuse anything.
+        shutil.rmtree("./Nuitka-develop/.git")
     finally:
         os.chdir(old_cwd)
 
