@@ -90,6 +90,7 @@ from nuitka.utils.FileOperations import (
     getFileContents,
     getFileList,
     putTextFileContents,
+    withTemporaryFile
 )
 from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
@@ -768,41 +769,36 @@ def fixupSymbols(document_bytes):
 
 def processWithPostCSS(css_content):
     """Process CSS content through PostCSS"""
-    try:
-        # Create temporary input file
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.css', delete=False) as tmp_input:
-            tmp_input.write(css_content)
-            tmp_input_path = tmp_input.name
+    # Create temporary input file
+    with withTemporaryFile(suffix='.css',mode='w') as tmp_input:
+        tmp_input.write(css_content)
+        tmp_input_path = tmp_input.name
 
         # Create temporary output file
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.css', delete=False) as tmp_output:
+        with withTemporaryFile(mode='w', suffix='.css') as tmp_output:
             tmp_output_path = tmp_output.name
 
-        # Run PostCSS
-        subprocess.run([
-            'npx', 'postcss', tmp_input_path,
-            '--output', tmp_output_path,
-            '--config', 'postcss.config.js'
-        ], capture_output=True, text=True, check=True)
+            # Run PostCSS
+            try:
+                subprocess.run([
+                    'npx', 'postcss', tmp_input_path,
+                    '--output', tmp_output_path,
+                    '--config', 'postcss.config.js'
+                ], capture_output=True, text=True, check=True)
+            except subprocess.CalledProcessError as e:
+                my_print(f"PostCSS processing failed: {e}")
+                my_print(f"Error output: {e.stderr}")
+                # Fallback to original CSS if PostCSS fails
+                return None
+            except Exception as e:
+                my_print(f"Unexpected error in PostCSS processing: {e}")
+                return None
 
-        # Read processed CSS
-        with open(tmp_output_path, 'r') as f:
-            processed_css = f.read()
+            # Read processed CSS
+            with open(tmp_output_path, 'r') as f:
+                processed_css = f.read()
 
-        # Clean up temp files
-        os.unlink(tmp_input_path)
-        os.unlink(tmp_output_path)
-
-        return processed_css
-
-    except subprocess.CalledProcessError as e:
-        my_print(f"PostCSS processing failed: {e}")
-        my_print(f"Error output: {e.stderr}")
-        # Fallback to original CSS if PostCSS fails
-        return None
-    except Exception as e:
-        my_print(f"Unexpected error in PostCSS processing: {e}")
-        return None
+            return processed_css
 
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
