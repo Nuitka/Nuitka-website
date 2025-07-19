@@ -33,7 +33,8 @@ The patched PySide2 source code and binary wheels for some platforms are
 available as part of the the `Nuitka Commercial
 </doc/commercial.html>`__ offering.
 
-These wheels are available for the major platforms: **Windows**, **macOS**, and **Linux**.
+These wheels are available for the major platforms: **Windows**,
+**macOS**, and **Linux**.
 
 *************
  Alternative
