@@ -108,7 +108,7 @@ def updateDownloadPage():
     max_pre_release = ""
     max_stable_release = ""
 
-    def numberize(value):
+    def get_numeric_version(value):
         if value == "":
             return []
 
@@ -183,9 +183,9 @@ def updateDownloadPage():
         # print "VER", filename
 
         if "pre" in filename or "rc" in filename:
-            max_pre_release = max(max_pre_release, filename, key=numberize)
+            max_pre_release = max(max_pre_release, filename, key=get_numeric_version)
         else:
-            max_stable_release = max(max_stable_release, filename, key=numberize)
+            max_stable_release = max(max_stable_release, filename, key=get_numeric_version)
 
     def makePlain(value):
         value = (
@@ -268,7 +268,7 @@ def updateDownloadPage():
                 print("problem with line %r from '%s'" % (line, url))
                 raise
 
-        def numberize(x):
+        def get_numeric_version(x):
             if x.startswith("lp"):
                 x = x[2:]
             if x.startswith("bp"):
@@ -283,7 +283,7 @@ def updateDownloadPage():
         def compareVersion(v):
             v = v.split("-")
 
-            v = tuple(tuple(numberize(x) for x in splitVersion(value)) for value in v)
+            v = tuple(tuple(get_numeric_version(x) for x in splitVersion(value)) for value in v)
 
             return v
 
