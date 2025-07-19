@@ -4,9 +4,11 @@
  Welcome to **Nuitka** Design Test Page
 ########################################
 
+On this page, we are striving to turn the tab set below into a full fledged carousel displaying the contents.
+
 .. TODO: Replace for real content
 
-.. container:: carousel-rst-container
+.. carousel-container::
 
    .. carousel::
 
