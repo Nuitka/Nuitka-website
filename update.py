@@ -779,7 +779,7 @@ def processWithPostCSS(css_content):
             tmp_output_path = tmp_output.name
 
         # Run PostCSS
-        result = subprocess.run([
+        subprocess.run([
             'npx', 'postcss', tmp_input_path,
             '--output', tmp_output_path,
             '--config', 'postcss.config.js'
@@ -799,10 +799,10 @@ def processWithPostCSS(css_content):
         my_print(f"PostCSS processing failed: {e}")
         my_print(f"Error output: {e.stderr}")
         # Fallback to original CSS if PostCSS fails
-        return css_content
+        return None
     except Exception as e:
         my_print(f"Unexpected error in PostCSS processing: {e}")
-        return css_content
+        return None
 
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
@@ -954,7 +954,7 @@ def runPostProcessing():
                 processed_css = processWithPostCSS(merged_css)
 
                 # Validate processed CSS: fallback to original if empty or invalid
-                if not processed_css or not isinstance(processed_css, str) or processed_css.strip() == "":
+                if not processed_css:
                     my_print("PostCSS processing failed or returned empty content, using original CSS.")
                     css_to_write = merged_css
                 else:
