@@ -4,62 +4,116 @@
  Welcome to **Nuitka** Design Test Page
 ########################################
 
-On this page, we are striving to turn the tab set below into a full fledged carousel displaying the contents.
+On this page, we are striving to turn the tab set below into a full
+fledged carousel displaying the contents.
 
-.. tab-set::
-   :class: carousel persona-carousel
+..
+   TODO: Replace for real content
 
-   .. tab-item:: Deployment
-      :class-label: carousel-label carousel-persona-marina
-      :class-container: carousel-container carousel-persona-marina
-      :class-content: carousel-content carousel-persona-marina
+.. carousel-container::
 
-      Dear Nuitka for Deployment User,
+   .. carousel::
 
-      see how to get started with deploying your software using Nuitka, it's
-      easy and we are there to guide you and help you through it. Many people
-      say it works out of the box, but if your software is very complex, we
-      can help you get it done.
+      .. carousel::-top-controls
 
-      Take the Deployment tour
+         .. carousel::-top-button Deployment
+         .. carousel::-top-button Beginner
+         .. carousel::-top-button IT Manager
+         .. carousel::-top-button Advanced Pythonista
 
-   .. tab-item:: Beginner
-      :class-label: carousel-label carousel-persona-billy
-      :class-container: carousel-container carousel-persona-billy
-      :class-content: carousel-content carousel-persona-billy
+      .. carousel::-content
 
+         .. carousel::-main-content
 
-      Dear Python Beginner,
+            .. carousel::-main-content-heading
 
-      you and I know you are not at all familiar and you need help. Get
-      potentially instant help from a community of volunteers. TODO: Discord
-      Link
+               Dear Nuitka for Deployment User,
 
-      Take the Beginner Tour
+            .. carousel::-main-content-text
 
-   .. tab-item:: IT Manager
-      :class-label: carousel-label carousel-persona-cesar
-      :class-container: carousel-container carousel-persona-cesar
-      :class-content: carousel-content carousel-persona-cesar
+               See how to get started with deploying your software using Nuitka, it's
+               easy and we are there to guide you and help you through it. Many people
+               say it works out of the box, but if your software is very complex, we
+               can help you get it done.
 
-      Dear IT Manager,
+            .. carousel::-cta
+               :url: https://example.com
 
-      see how your business can benefit from Nuitka with IP protection and its
-      powerful deployment solutions. Also, see the many convenience features
-      that can save your team a bunch of development time.
+               Take the Deployment Tour <i class="fa fa-arrow-right sd-text-white"></i>
 
-      Take the IT manager tour
+         .. carousel::-main-content
 
-   .. tab-item:: Advanced Pythonista
-      :class-label: carousel-label carousel-persona-laura
-      :class-container: carousel-container carousel-persona-laura
-      :class-content: carousel-content carousel-persona-laura
+            .. carousel::-main-content-heading
 
-      Dear Python expert,
+               Dear Python Beginner,
 
-      you have ideas about what Nuitka is, and we are here to answer them in
-      great detail (eventually). Explore the power of Nuitka for deployment,
-      performance, and IP protection with more details and expert knowledge
-      used.
+            .. carousel::-main-content-text
 
-      Take the Advanced Tour
+               You and I know you are not at all familiar and you need help. Get
+               potentially instant help from a community of volunteers.
+
+            .. carousel::-cta
+               :url: https://example.com
+
+               Take the Beginner Tour <i class="fa fa-arrow-right sd-text-white"></i>
+
+         .. carousel::-main-content
+
+            .. carousel::-main-content-heading
+
+               Dear IT Manager,
+
+            .. carousel::-main-content-text
+
+               See how your business can benefit from Nuitka with IP protection and its
+               powerful deployment solutions. Also, see the many convenience features
+               that can save your team a bunch of development time.
+
+            .. carousel::-cta
+               :url: https://example.com
+
+               Take the IT Manager Tour <i class="fa fa-arrow-right sd-text-white"></i>
+
+         .. carousel::-main-content
+
+            .. carousel::-main-content-heading
+
+               Dear Python Expert,
+
+            .. carousel::-main-content-text
+
+               You have ideas about what Nuitka is, and we are here to answer them in
+               great detail (eventually). Explore the power of Nuitka for deployment,
+               performance, and IP protection with more details and expert knowledge
+               used.
+
+            .. carousel::-cta
+               :url: https://example.com
+
+               Take the Advanced Tour <i class="fa fa-arrow-right sd-text-white"></i>
+
+       .. carousel::-side-tabs
+
+            .. carousel::-side-tab-container Deployment
+               :url: https://example.com
+
+               Create standalone executables and protect your IP.
+               <i class="fa fa-arrow-right"></i>
+
+            .. carousel::-side-tab-container Beginner
+               :url: https://example.com
+
+               Simple guides and community support for newcomers.
+               <i class="fa fa-arrow-right"></i>
+
+            .. carousel::-side-tab-container IT Manager
+               :url: https://example.com
+
+               Enterprise solutions with IP protection and cost savings.
+               <i class="fa fa-arrow-right"></i>
+
+            .. carousel::-side-tab-container Advanced Pythonista
+               :url: https://example.com
+
+               Advanced optimization and cutting-edge features.
+               <i class="fa fa-arrow-right"></i>
