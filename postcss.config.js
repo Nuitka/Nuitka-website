@@ -10,13 +10,13 @@ module.exports = {
         });
 
         // Wrap non-awesome font-face rules in media query
-        fontFaceRules.forEach(rule => {
-          const ruleString = rule.toString();
-          if (!ruleString.includes('awesome')) {
-            const newRule = `@media(min-width:901px){${ruleString}}`;
-            rule.replaceWith(newRule);
-          }
-        });
+        // fontFaceRules.forEach(rule => {
+        //   const ruleString = rule.toString();
+        //   if (!ruleString.includes('awesome')) {
+        //     const newRule = `@media(min-width:901px){${ruleString}}`;
+        //     rule.replaceWith(newRule);
+        //   }
+        // });
       },
     },
 
