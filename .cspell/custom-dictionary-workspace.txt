@@ -12,6 +12,7 @@ backported"
 bdist"
 binutils
 bytecode"
+ccache
 ccache"
 CEST"
 chdir"
@@ -38,6 +39,7 @@ gettempdir
 Gitter"
 gsoc"
 hacl
+Hayen
 Hayen"
 headerlink
 icns
@@ -63,6 +65,7 @@ MSVC"
 MSYS2
 Multidist"
 no_docstrings
+noarch
 noarch"
 nofollow"
 normpath

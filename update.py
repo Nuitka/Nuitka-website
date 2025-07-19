@@ -12,6 +12,8 @@ from io import StringIO
 from optparse import OptionParser
 from pathlib import Path
 from urllib.request import urlretrieve
+import subprocess
+import tempfile
 
 import requests
 from lxml import html
@@ -88,6 +90,7 @@ from nuitka.utils.FileOperations import (
     getFileContents,
     getFileList,
     putTextFileContents,
+    withTemporaryFile
 )
 from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
@@ -106,7 +109,7 @@ def updateDownloadPage():
     max_pre_release = ""
     max_stable_release = ""
 
-    def numberize(value):
+    def get_numeric_version(value):
         if value == "":
             return []
 
@@ -181,9 +184,9 @@ def updateDownloadPage():
         # print "VER", filename
 
         if "pre" in filename or "rc" in filename:
-            max_pre_release = max(max_pre_release, filename, key=numberize)
+            max_pre_release = max(max_pre_release, filename, key=get_numeric_version)
         else:
-            max_stable_release = max(max_stable_release, filename, key=numberize)
+            max_stable_release = max(max_stable_release, filename, key=get_numeric_version)
 
     def makePlain(value):
         value = (
@@ -266,7 +269,7 @@ def updateDownloadPage():
                 print("problem with line %r from '%s'" % (line, url))
                 raise
 
-        def numberize(x):
+        def get_numeric_version(x):
             if x.startswith("lp"):
                 x = x[2:]
             if x.startswith("bp"):
@@ -281,7 +284,7 @@ def updateDownloadPage():
         def compareVersion(v):
             v = v.split("-")
 
-            v = tuple(tuple(numberize(x) for x in splitVersion(value)) for value in v)
+            v = tuple(tuple(get_numeric_version(x) for x in splitVersion(value)) for value in v)
 
             return v
 
@@ -764,6 +767,39 @@ def fixupSymbols(document_bytes):
     return document_bytes
 
 
+def processWithPostCSS(css_content):
+    """Process CSS content through PostCSS"""
+    # Create temporary input file
+    with withTemporaryFile(suffix='.css',mode='w') as tmp_input:
+        tmp_input.write(css_content)
+        tmp_input_path = tmp_input.name
+
+        # Create temporary output file
+        with withTemporaryFile(mode='w', suffix='.css') as tmp_output:
+            tmp_output_path = tmp_output.name
+
+            # Run PostCSS
+            try:
+                subprocess.run([
+                    'npx', 'postcss', tmp_input_path,
+                    '--output', tmp_output_path,
+                    '--config', 'postcss.config.js'
+                ], capture_output=True, text=True, check=True)
+            except subprocess.CalledProcessError as e:
+                my_print(f"PostCSS processing failed: {e}")
+                my_print(f"Error output: {e.stderr}")
+                # Fallback to original CSS if PostCSS fails
+                return None
+            except Exception as e:
+                my_print(f"Unexpected error in PostCSS processing: {e}")
+                return None
+
+            # Read processed CSS
+            with open(tmp_output_path, 'r') as f:
+                processed_css = f.read()
+
+            return processed_css
+
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
     # do other touch ups. spell-checker: ignore searchindex,searchtools
@@ -903,56 +939,25 @@ def runPostProcessing():
                 *css_filenames
             )
 
-            if not os.path.exists(output_filename):
+            if not os.path.exists(f"output{output_filename}"):
+                # Simply concatenate CSS files - let PostCSS handle the processing
                 merged_css = "\n".join(
                     getFileContents(css_filename)
                     for css_filename in sorted(css_filenames, key=lambda x: "my_" in x)
                 )
 
-                # Do not display fonts on mobile devices.
-                merged_css = re.sub(
-                    r"@font-face\{(?!.*?awesome)(.*?)\}",
-                    r"@media(min-width:901px){@font-face{\1}}",
-                    merged_css,
-                    flags=re.S,
-                )
-                merged_css = re.sub(
-                    r"@font-face\{([^)]*?Lato)(.*?)\}",
-                    r"",
-                    merged_css,
-                    flags=re.S,
-                )
-                merged_css = merged_css.replace("Lato", "ui-sans-serif")
-                merged_css = re.sub(
-                    r"@font-face\{([^)]*?Roboto Slab)(.*?)\}",
-                    r"",
-                    merged_css,
-                    flags=re.S,
-                )
-                merged_css = merged_css.replace(
-                    "Roboto Slab",
-                    "Rockwell, 'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif",
-                )
-                merged_css = re.sub(
-                    r"@font-face\{(.*?)\}",
-                    r"@font-face{font-display:swap;\1}",
-                    merged_css,
-                    flags=re.S,
-                )
+                # Process with PostCSS
+                processed_css = processWithPostCSS(merged_css)
 
-                merged_css = merged_css.replace(
-                    "@media(min-width: 1200px)", "@media(min-width: 1500px)"
-                )
-                merged_css = merged_css.replace(
-                    "@media(min-width: 992px)", "@media(min-width: 1192px)"
-                )
-
-                # Strip comments and trailing whitespace (created by that in part)
-                merged_css = re.sub(r"/\*.*?\*/", "", merged_css, flags=re.S)
-                merged_css = re.sub(r"\s+\n", r"\n", merged_css, flags=re.M)
-
+                # Validate processed CSS: fallback to original if empty or invalid
+                if not processed_css:
+                    my_print("PostCSS processing failed or returned empty content, using original CSS.")
+                    css_to_write = merged_css
+                else:
+                    css_to_write = processed_css
                 putTextFileContents(
-                    filename=f"output{output_filename}", contents=merged_css
+                    filename=f"output{output_filename}",
+                    contents=css_to_write
                 )
 
             css_links[0].attrib["href"] = output_filename
