@@ -67,4 +67,4 @@ If you are using a system Python, execute the command from this table, it may re
      - ``pkg install python2``
    * - Anaconda
      - Python 2.x / 3.x
-     - Development headers are included with the ``python`` package. (e.g., ``conda create -n myenv python``)
+     - Development headers are included with the ``python`` package. (e.g., ``conda create -n my_env python``)
