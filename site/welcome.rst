@@ -16,10 +16,10 @@ fledged carousel displaying the contents.
 
       .. carousel::-top-controls
 
-         .. carousel::-top-button Deployment
-         .. carousel::-top-button Beginner
-         .. carousel::-top-button IT Manager
-         .. carousel::-top-button Advanced Pythonista
+         .. carousel-top-button Deployment::
+         .. carousel-top-button Beginner::
+         .. carousel-top-button IT Manager::
+         .. carousel-top-button Advanced Pythonista::
 
       .. carousel::-content
 
@@ -106,7 +106,7 @@ fledged carousel displaying the contents.
                Simple guides and community support for newcomers.
                <i class="fa fa-arrow-right"></i>
 
-            .. carousel::-side-tab-container IT Manager
+            .. carousel-side-tab-container IT:: Manager
                :url: https://example.com
 
                Enterprise solutions with IP protection and cost savings.
