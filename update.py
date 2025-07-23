@@ -694,8 +694,10 @@ excluded_js = [
 
 def _makeJsCombined(js_filenames):
     js_filenames = list(js_filenames)
-    if "_static/jquery.js" not in js_filenames:
-        js_filenames.append("_static/jquery.js")
+    if "_static/jquery.js" in js_filenames:
+        js_filenames.remove("_static/jquery.js")
+
+    js_filenames.insert(0, "_static/jquery.js")
 
     js_filenames = [
         js for js in js_filenames
