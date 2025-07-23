@@ -2,8 +2,12 @@ from docutils import nodes
 from sphinx.util.docutils import SphinxDirective
 from typing import List, cast
 
-# TODO: Add carousel js here.
-# TODO: Add :doc: to the button links.
+def make_icon_node():
+    return nodes.raw(
+        '',
+        '<i class="fa fa-arrow-right sd-text-white" aria-hidden="true"></i>',
+        format='html'
+    )
 
 class CarouselContainer(SphinxDirective):
     has_content = True
@@ -16,6 +20,9 @@ class CarouselContainer(SphinxDirective):
         return [container]
 
 class Carousel(SphinxDirective):
+    option_spec = {
+        'tab-duration': int,
+    }
     has_content = True
 
     def run(self) -> List[nodes.Node]:
@@ -48,7 +55,7 @@ class Carousel(SphinxDirective):
                     carousel += nodes.raw('', radio_html, format='html')
 
                     label_html = f'''
-                    <label for="carousel-tab-{tab_count}" class="carousel-tab-top">
+                    <label for="carousel-tab-{tab_count}" class="carousel-tab-top" data-duration={self.options.get('tab-duration', 5000)}>
                         {tab_name}
                         <div class="carousel-duration">
                             <div class="carousel-progress"></div>
@@ -72,6 +79,10 @@ class CarouselContent(SphinxDirective):
     has_content = True
     required_arguments = 1
     final_argument_whitespace = True
+    option_spec = {
+        'doc': str,
+        'url': str,
+    }
 
     def run(self) -> List[nodes.Node]:
         tab_name = self.arguments[0]
@@ -82,7 +93,6 @@ class CarouselContent(SphinxDirective):
 
         if self.content:
             content_lines = list(self.content)
-
             heading_text = content_lines[0]
             heading_node = nodes.raw('', f'<h2 class="carousel-heading">{heading_text}</h2>', format='html')
             container.append(heading_node)
@@ -93,9 +103,30 @@ class CarouselContent(SphinxDirective):
                 container.append(text_node)
 
             if len(content_lines) > 1:
-                cta_text = content_lines[-1]
-                cta_node = nodes.container(classes=['carousel-button'])
-                cta_node += nodes.raw('', cta_text, format='html')
+                cta_line = content_lines[-1]
+
+                link_url = None
+                if 'doc' in self.options:
+                    docname = self.options['doc']
+                    env = self.env
+                    if env.found_docs and docname in env.found_docs:
+                        link_url = env.app.builder.get_relative_uri(env.docname, docname)
+                    else:
+                        link_url = f"{docname}.html"  # fallback
+                elif 'url' in self.options:
+                    link_url = self.options['url']
+
+                if link_url:
+                    cta_html = f'<a href="{link_url}" class="carousel-button-link">{cta_line} <i class="fa fa-arrow-right sd-text-white" aria-hidden="true"></i></a>'
+                    cta_node = nodes.raw('', f'<div class="carousel-button">{cta_html}</div>', format='html')
+                else:
+                    inline_node = nodes.paragraph()
+                    self.state.nested_parse([cta_line], self.content_offset, inline_node)
+                    cta_node = nodes.container(classes=['carousel-button'])
+                    cta_node.extend(inline_node.children)
+                    arrow_node = make_icon_node()
+                    cta_node.append(arrow_node)
+
                 container.append(cta_node)
 
         return [container]
@@ -104,6 +135,10 @@ class CarouselSideTab(SphinxDirective):
     has_content = True
     required_arguments = 1
     final_argument_whitespace = True
+    option_spec = {
+        'doc': str,
+        'url': str,
+    }
 
     def run(self) -> List[nodes.Node]:
         tab_heading = self.arguments[0]
@@ -112,11 +147,39 @@ class CarouselSideTab(SphinxDirective):
         container = nodes.container()
         container['classes'] = ['carousel-tab-side']
 
-        heading = nodes.paragraph(text=tab_heading, classes=['carousel-tab-heading'])
-        content = nodes.paragraph(text=content_text)
+        link_url = None
+        if 'doc' in self.options:
+            docname = self.options['doc']
+            env = self.env
+            if env.found_docs and docname in env.found_docs:
+                link_url = env.app.builder.get_relative_uri(env.docname, docname)
+            else:
+                link_url = f"{docname}.html"
+        elif 'url' in self.options:
+            link_url = self.options['url']
 
-        container.append(heading)
-        container.append(content)
+        if link_url:
+            tab_html = f'''
+            <a href="{link_url}" class="carousel-tab-side-link">
+                <div class="carousel-tab-heading">{tab_heading}</div>
+                <div class="carousel-tab-content">{content_text}</div>
+            </a>
+            '''
+
+            arrow_node = f'''
+            <a href="{link_url}" class="carousel-tab-arrow">
+                <i class="fa fa-arrow-right sd-text-black" aria-hidden="true"></i>
+            </a>'''
+
+            container += nodes.raw('', tab_html, format='html')
+            container += nodes.raw('', arrow_node, format='html')
+        else:
+            heading = nodes.paragraph(text=tab_heading, classes=['carousel-tab-heading'])
+            content = nodes.paragraph(text=content_text)
+            arrow_node = make_icon_node()
+            container.append(heading)
+            container.append(content)
+            container.append(arrow_node)
 
         return [container]
 
@@ -125,6 +188,7 @@ def setup(app):
     app.add_directive("carousel", Carousel)
     app.add_directive("carousel-content", CarouselContent)
     app.add_directive("carousel-side-tab", CarouselSideTab)
+    app.connect('builder-inited', lambda app: app.add_js_file('carousel.js'))
 
     return {
         "version": "0.1",
