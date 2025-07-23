@@ -1,13 +1,14 @@
 from docutils import nodes
-from sphinx.util.docutils import SphinxDirective, SphinxRole
+from sphinx.util.docutils import SphinxDirective
+from typing import List, cast
 
-# TODO: Implement a better way to handle CLASSES. I don't really like how I have to hard code the class names in directives.
-
+# TODO: Add carousel js here.
+# TODO: Add :doc: to the button links.
 
 class CarouselContainer(SphinxDirective):
     has_content = True
 
-    def run(self):
+    def run(self) -> List[nodes.Node]:
         container = nodes.container()
         container['classes'] = ['carousel-rst-container']
 
@@ -17,137 +18,113 @@ class CarouselContainer(SphinxDirective):
 class Carousel(SphinxDirective):
     has_content = True
 
-    def run(self):
-        container = nodes.container()
-        container['classes'] = ['carousel']
+    def run(self) -> List[nodes.Node]:
+        carousel = nodes.container()
+        carousel['classes'] = ['carousel']
 
-        self.state.nested_parse(self.content, self.content_offset, container)
-        return [container]
+        top_controls = nodes.container()
+        top_controls['classes'] = ['carousel-top']
 
-class CarouselTopControls(SphinxDirective):
-    has_content = True
+        content = nodes.container()
+        content['classes'] = ['carousel-content']
 
-    def run(self):
-        container = nodes.container()
-        container['classes'] = ['carousel-top']
+        side_tabs = nodes.container()
+        side_tabs['classes'] = ['carousel-tabs-side']
 
-        self.state.nested_parse(self.content, self.content_offset, container)
-        return [container]
+        temp_container = nodes.container()
+        self.state.nested_parse(self.content, self.content_offset, temp_container)
 
-class CarouselTopButton(SphinxDirective):
-    has_content = False
-    required_arguments = 1
-    final_argument_whitespace = True
+        tab_count = 0
+        for child in temp_container.children:
+            child_container = cast(nodes.container, child)
+            if 'carousel-main' in child_container.attributes.get('classes', []):
+                content.append(child)
+                tab_name = child_container.attributes.get('tab-name')
+                if tab_name:
+                    radio_html = f'''
+                    <input type="radio" name="carousel-tab" id="carousel-tab-{tab_count}"
+                           class="carousel-radio" {'checked' if tab_count == 0 else ''}>
+                    '''
+                    carousel += nodes.raw('', radio_html, format='html')
 
-    def run(self):
-        text = self.arguments[0]
-        node = nodes.inline(text=text, classes=['carousel-tab-top'])
-        return [node]
+                    label_html = f'''
+                    <label for="carousel-tab-{tab_count}" class="carousel-tab-top">
+                        {tab_name}
+                        <div class="carousel-duration">
+                            <div class="carousel-progress"></div>
+                        </div>
+                    </label>
+                    '''
+                    top_controls += nodes.raw('', label_html, format='html')
+
+                    tab_count += 1
+
+            elif 'carousel-tab-side' in child_container.attributes.get('classes', []):
+                side_tabs.append(child)
+
+        carousel.append(top_controls)
+        carousel.append(content)
+        carousel.append(side_tabs)
+
+        return [carousel]
 
 class CarouselContent(SphinxDirective):
     has_content = True
-
-    def run(self):
-        container = nodes.container()
-        container['classes'] = ['carousel-content']
-
-        self.state.nested_parse(self.content, self.content_offset, container)
-        return [container]
-
-class CarouselMainContent(SphinxDirective):
-    has_content = True
+    required_arguments = 1
     final_argument_whitespace = True
 
-    def run(self):
+    def run(self) -> List[nodes.Node]:
+        tab_name = self.arguments[0]
+
         container = nodes.container()
         container['classes'] = ['carousel-main']
+        container.attributes['tab-name'] = tab_name
 
-        self.state.nested_parse(self.content, self.content_offset, container)
+        if self.content:
+            content_lines = list(self.content)
+
+            heading_text = content_lines[0]
+            heading_node = nodes.raw('', f'<h2 class="carousel-heading">{heading_text}</h2>', format='html')
+            container.append(heading_node)
+
+            if len(content_lines) > 2:
+                text = '\n'.join(content_lines[1:-1])
+                text_node = nodes.paragraph(text=text, classes=['carousel-text'])
+                container.append(text_node)
+
+            if len(content_lines) > 1:
+                cta_text = content_lines[-1]
+                cta_node = nodes.container(classes=['carousel-button'])
+                cta_node += nodes.raw('', cta_text, format='html')
+                container.append(cta_node)
+
         return [container]
 
-class CarouselMainContentHeading(SphinxDirective):
-    has_content = True
-
-    def run(self):
-        text = '\n'.join(self.content)
-        heading_node = nodes.paragraph(text=text, classes=['carousel-heading'])
-        return [heading_node]
-
-class CarouselMainContentText(SphinxDirective):
-    has_content = True
-    final_argument_whitespace = True
-
-    def run(self):
-        text = '\n'.join(self.content)
-        paragraph_node = nodes.paragraph(text=text, classes=['carousel-text'])
-        return [paragraph_node]
-
-class CarouselCTA(SphinxDirective):
-    has_content = True
-    option_spec = {
-        "url": str,
-    }
-
-    def run(self):
-        url = self.options.get("url")
-
-        content_html = '\n'.join(self.content)
-
-        html = f'''
-        <a href="{url}" class="carousel-button">
-            {content_html}
-        </a>
-        '''
-
-        return [nodes.raw('', html, format='html')]
-
-class CarouselSideTabs(SphinxDirective):
-    has_content = True
-
-    def run(self):
-        container = nodes.container()
-        container['classes'] = ['carousel-tabs-side']
-
-        self.state.nested_parse(self.content, self.content_offset, container)
-        return [container]
-
-class CarouselSideTabContainer(SphinxDirective):
+class CarouselSideTab(SphinxDirective):
     has_content = True
     required_arguments = 1
     final_argument_whitespace = True
-    option_spec = {
-        "url": str,
-    }
 
-    def run(self):
-        url = self.options.get("url")
+    def run(self) -> List[nodes.Node]:
+        tab_heading = self.arguments[0]
+        content_text = '\n'.join(self.content)
 
-        tab_heading_text = self.arguments[0]
-        content_html = '\n'.join(self.content)
+        container = nodes.container()
+        container['classes'] = ['carousel-tab-side']
 
-        html = f'''
-        <a href="{url}" class="carousel-tab-side">
-            <p class="carousel-tab-heading">{tab_heading_text}</p>
-            {content_html}
-        </a>
-        '''
+        heading = nodes.paragraph(text=tab_heading, classes=['carousel-tab-heading'])
+        content = nodes.paragraph(text=content_text)
 
-        return [nodes.raw('', html, format='html')]
+        container.append(heading)
+        container.append(content)
+
+        return [container]
 
 def setup(app):
-    # TODO: We can add JS and CSS files here instead of in shared_conf.py, this way we keep all the carousel-related code in one place.
-
     app.add_directive("carousel-container", CarouselContainer)
     app.add_directive("carousel", Carousel)
-    app.add_directive("carousel-top-controls", CarouselTopControls)
-    app.add_directive("carousel-top-button", CarouselTopButton)
     app.add_directive("carousel-content", CarouselContent)
-    app.add_directive("carousel-main-content", CarouselMainContent)
-    app.add_directive("carousel-main-content-heading", CarouselMainContentHeading)
-    app.add_directive("carousel-main-content-text", CarouselMainContentText)
-    app.add_directive("carousel-cta", CarouselCTA)
-    app.add_directive("carousel-side-tabs", CarouselSideTabs)
-    app.add_directive("carousel-side-tab-container", CarouselSideTabContainer)
+    app.add_directive("carousel-side-tab", CarouselSideTab)
 
     return {
         "version": "0.1",
