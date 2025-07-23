@@ -1,83 +1,51 @@
-const carousel = () => {
-	let activeIndex = 0;
-	let interval = null;
+window.addEventListener("load", function () {
+  const carousels = document.querySelectorAll(".carousel");
+  carousels.forEach((carousel) => {
+    const radios = carousel.querySelectorAll(".carousel-radio");
+    const labels = carousel.querySelectorAll(".carousel-tab-top");
 
-	const setActiveTab = (index) => {
-		contents.forEach((el, i) => {
-			el.style.display = i === index ? "flex" : "none";
-		});
+    let current = 0;
+    let autoplay = true;
+    let timeoutId = null;
 
-		tabs.forEach((tab, i) => {
-			tab.classList.toggle("active", i === index);
-		});
+    function getDuration(index) {
+      const label = labels[index];
+      const duration = label?.getAttribute("data-duration");
+      return parseInt(duration, 10);
+    }
 
-		const progressBar = moveProgressBar(index);
+    function goTo(index) {
+      radios[index].checked = true;
+      current = index;
+    }
 
-		progressBar.style.animation = "none";
-		progressBar.offsetHeight;
-		progressBar.style.animation = "progress 5s linear forwards";
+    function nextSlide() {
+      if (!autoplay) return;
 
-		activeIndex = index;
-	};
+      const next = (current + 1) % radios.length;
+      goTo(next);
+      scheduleNext();
+    }
 
-	const nextTab = () => {
-		activeIndex = (activeIndex + 1) % contents.length;
-		setActiveTab(activeIndex);
-	};
+    function scheduleNext() {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(nextSlide, getDuration(current));
+    }
 
-	const startAutoRotate = () => {
-		clearInterval(interval);
-		interval = setInterval(nextTab, 5000);
-	};
+    labels.forEach((label, index) => {
+      label.addEventListener("click", () => {
+        autoplay = false;
 
-	const tabs = document.querySelectorAll(".carousel-tab-top");
+        const durationBars = carousel.querySelectorAll(".carousel-duration")
 
-	if (tabs.length === 0) {
-		return;
-	}
+        durationBars.forEach(bar => bar.remove())
 
-	const contents = document.querySelectorAll(".carousel-main");
+        goTo(index);
+        clearTimeout(timeoutId);
+      });
+    });
 
-	if (contents.length === 0) {
-		return;
-	}
-
-	const createProgressBar = () => {
-		const durationContainer = document.createElement("div");
-		durationContainer.className = "carousel-duration";
-
-		const progressBar = document.createElement("div");
-		progressBar.className = "carousel-progress";
-
-		durationContainer.appendChild(progressBar);
-		return { durationContainer, progressBar };
-	};
-
-	let currentProgressBar = null;
-
-	const moveProgressBar = (tabIndex) => {
-		const activeTab = tabs[tabIndex];
-
-		if (currentProgressBar) {
-			currentProgressBar.remove();
-		}
-
-		const { durationContainer, progressBar } = createProgressBar();
-		currentProgressBar = durationContainer;
-		activeTab.appendChild(durationContainer);
-
-		return progressBar;
-	};
-
-	tabs.forEach((tab, i) => {
-		tab.addEventListener("click", () => {
-			setActiveTab(i);
-			startAutoRotate();
-		});
-	});
-
-	setActiveTab(0);
-	startAutoRotate();
-};
-
-window.addEventListener("load", carousel);
+    goTo(current);
+    scheduleNext();
+  });
+});

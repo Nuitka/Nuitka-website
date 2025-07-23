@@ -675,9 +675,10 @@ def _getTranslationFileSet(filename):
 
 
 js_order = [
+    "carousel.js",
     "documentation_options.js",
     "jquery.js",
-    "_sphinx_javascript_frameworks_compat.js",
+    "_sphinx_javascript_frameworks_compat.js"
     "doctools.js",
     "sphinx_highlight.js",
     "theme.js",
@@ -686,23 +687,12 @@ js_order = [
     "translations.js",
 ]
 
-excluded_js = [
-    "carousel.js"
-    "design-tabs.js",
-]
-
-
 def _makeJsCombined(js_filenames):
     js_filenames = list(js_filenames)
     if "_static/jquery.js" in js_filenames:
         js_filenames.remove("_static/jquery.js")
 
     js_filenames.insert(0, "_static/jquery.js")
-
-    js_filenames = [
-        js for js in js_filenames
-        if os.path.basename(js) not in excluded_js
-    ]
 
     js_set_contents = (
         "\n".join(getFileContents(f"output/{js_name}") for js_name in js_filenames)
@@ -1077,10 +1067,6 @@ def runPostProcessing():
 
             if script_tag.attrib["src"].startswith("http"):
                 continue
-
-            if any(excluded_js_name in script_tag.attrib["src"] for excluded_js_name in excluded_js):
-                continue
-
 
             if not has_highlight and "copybutton" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
