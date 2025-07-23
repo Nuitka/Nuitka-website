@@ -2381,7 +2381,6 @@ behavior are all explicit and reduced the branches.
 Exception Groups
 ----------------
 
-
 .. code:: python
 
    try:
@@ -2452,7 +2451,6 @@ Exception Groups
          set_sys_exc_info(tmp_preserved_exception_state)
       finally:
          del tmp_preserved_exception_state
-
 
 Statement ``try``/``except`` with ``else``
 ------------------------------------------
