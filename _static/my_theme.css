@@ -900,7 +900,6 @@ details.sd-dropdown > .sd-summary-content {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    flex-wrap: wrap;
   }
 }
 
