@@ -675,7 +675,7 @@ def _getTranslationFileSet(filename):
 
 
 js_order = [
-    "jquery.js"
+    "jquery.js",
     "carousel.js",
     "documentation_options.js",
     "_sphinx_javascript_frameworks_compat.js",
@@ -686,6 +686,7 @@ js_order = [
     "copybutton.js",
     "translations.js",
 ]
+
 
 def _makeJsCombined(js_filenames):
     js_set_contents = (
