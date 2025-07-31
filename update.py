@@ -697,7 +697,9 @@ def _makeJsCombined(js_filenames):
             break
 
     js_set_contents = (
-        "\n".join(getFileContents(f"output/{js_filename}") for js_filename in js_filenames)
+        "\n".join(
+            getFileContents(f"output/{js_filename}") for js_filename in js_filenames
+        )
         + """
 jQuery(function () {
     SphinxRtdTheme.Navigation.enable(true);
@@ -804,6 +806,10 @@ def runPostProcessing():
         # Check copybutton.js
         has_highlight = doc.xpath("//div[@class='highlight']")
 
+        # Check carousel.js
+        has_carousel = doc.xpath("//div[@class='carousel']")
+
+        # Check inline tabs
         has_inline_tabs = doc.xpath("//*[@class='sd-tab-label']")
 
         # Detect if asciinema is used in the page
@@ -1075,6 +1081,8 @@ def runPostProcessing():
             elif not has_highlight and "clipboard" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
             elif not has_inline_tabs and "design-tabs" in script_tag.attrib["src"]:
+                script_tag.getparent().remove(script_tag)
+            elif not has_carousel and "carousel" in script_tag.attrib["src"]:
                 script_tag.getparent().remove(script_tag)
             else:
                 if script_tag_first is None:
