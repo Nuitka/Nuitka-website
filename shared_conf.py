@@ -16,15 +16,14 @@ ROOT = Path(__file__).parent.absolute().as_posix()  # The root directory
 # For autodoc to work
 sys.path.append(ROOT)
 
-# Add _ext directory to Python path for custom Sphinx extensions
-_ext_path = os.path.join(ROOT, "_ext")
-if _ext_path not in sys.path:
-    sys.path.append(_ext_path)
-
 from update import importNuitka  # isort:skip
 
 importNuitka()
 del sys.path[-1]
+
+# Add _ext directory to Python path for custom Sphinx extensions
+_ext_path = os.path.join(ROOT, "_ext")
+sys.path.append(_ext_path)
 
 # -- General configuration
 
