@@ -1,7 +1,7 @@
+import os
 import sys
 import time
 from pathlib import Path
-
 
 # Configuration file for the Sphinx documentation builder.
 
@@ -17,7 +17,7 @@ ROOT = Path(__file__).parent.absolute().as_posix()  # The root directory
 sys.path.append(ROOT)
 
 # Add _ext directory to Python path for custom Sphinx extensions
-_ext_path = str(ROOT.parent / '_ext')
+_ext_path = os.path.join(ROOT, "_ext")
 if _ext_path not in sys.path:
     sys.path.append(_ext_path)
 
@@ -46,7 +46,7 @@ extensions = [
     "sphinxcontrib.asciinema",
     # Blog extension
     "ablog",
-    "carousel"
+    "carousel",
 ]
 
 intersphinx_mapping = {
@@ -111,9 +111,11 @@ favicons = [
 # -- Options for EPUB output
 epub_show_urls = "footnote"
 
+
 # Enable our own CSS to be used.
 def setup(app):
     app.add_css_file("my_theme.css")
+
 
 # Configure theme
 html_theme_options = {
