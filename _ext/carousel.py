@@ -111,14 +111,14 @@ class CarouselContent(SphinxDirective):
 
                 link_url = None
                 if "doc" in self.options:
-                    docname = self.options["doc"]
+                    doc_name = self.options["doc"]
                     env = self.env
-                    if env.found_docs and docname in env.found_docs:
+                    if env.found_docs and doc_name in env.found_docs:
                         link_url = env.app.builder.get_relative_uri(
-                            env.docname, docname
+                            env.docname, doc_name
                         )
                     else:
-                        link_url = f"{docname}.html"  # fallback
+                        link_url = f"{doc_name}.html"  # fallback
                 elif "url" in self.options:
                     link_url = self.options["url"]
 
@@ -154,6 +154,8 @@ class CarouselSideTab(SphinxDirective):
     }
 
     def run(self) -> List[nodes.Node]:
+        # Sphinx API, spell-checker: ignore .docname
+
         tab_heading = self.arguments[0]
         content_text = "\n".join(self.content)
 
@@ -162,12 +164,12 @@ class CarouselSideTab(SphinxDirective):
 
         link_url = None
         if "doc" in self.options:
-            docname = self.options["doc"]
+            doc_name = self.options["doc"]
             env = self.env
-            if env.found_docs and docname in env.found_docs:
-                link_url = env.app.builder.get_relative_uri(env.docname, docname)
+            if env.found_docs and doc_name in env.found_docs:
+                link_url = env.app.builder.get_relative_uri(env.docname, doc_name)
             else:
-                link_url = f"{docname}.html"
+                link_url = f"{doc_name}.html"
         elif "url" in self.options:
             link_url = self.options["url"]
 
