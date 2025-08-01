@@ -991,7 +991,7 @@ details.sd-dropdown > .sd-summary-content {
 	background: var(--our-color-blue);
 	color: white;
 	border-color: var(--our-color-blue);
-	font-weight: 600;
+	text-shadow: 0 0 0.4px currentColor;
 }
 
 /* Show the content of the active tab */
