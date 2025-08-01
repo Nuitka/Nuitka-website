@@ -759,7 +759,7 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
     merged_css = re.sub(r"\s+\n", r"\n", merged_css, flags=re.M)
 
     # Process with PostCSS
-    processed_css = processWithPostCSS(merged_css)
+    processed_css = _processWithPostCSS(merged_css)
 
     # Validate processed CSS: fallback to original if empty or invalid
     assert processed_css
@@ -854,46 +854,52 @@ def fixupSymbols(document_bytes):
     return document_bytes
 
 
-def processWithPostCSS(css_content):
+_postcss_cache = {}
+
+
+def _processWithPostCSS(css_content):
     """Process CSS content through PostCSS"""
-    # Create temporary input file
-    with withTemporaryFile(suffix=".css", mode="w") as tmp_input:
-        tmp_input.write(css_content)
-        tmp_input_path = tmp_input.name
 
-        # Create temporary output file
-        with withTemporaryFile(mode="w", suffix=".css") as tmp_output:
-            tmp_output_path = tmp_output.name
+    if css_content not in _postcss_cache:
 
-            # Run PostCSS
-            try:
-                subprocess.run(
-                    [
-                        "npx",
-                        "postcss",
-                        tmp_input_path,
-                        "--output",
-                        tmp_output_path,
-                        "--config",
-                        "postcss.config.js",
-                    ],
-                    capture_output=True,
-                    text=True,
-                    check=True,
-                )
-            except subprocess.CalledProcessError as e:
-                my_print(f"PostCSS processing failed: {e}")
-                my_print(f"Error output: {e.stderr}")
-                # Fallback to original CSS if PostCSS fails
-                return None
-            except Exception as e:
-                my_print(f"Unexpected error in PostCSS processing: {e}")
-                return None
+        # Create temporary input file
+        with withTemporaryFile(suffix=".css", mode="w") as tmp_input:
+            tmp_input.write(css_content)
+            tmp_input_path = tmp_input.name
 
-            # Read processed CSS
-            processed_css = getFileContents(tmp_output_path)
+            # Create temporary output file
+            with withTemporaryFile(mode="w", suffix=".css") as tmp_output:
+                tmp_output_path = tmp_output.name
 
-            return processed_css
+                # Run PostCSS
+                try:
+                    subprocess.run(
+                        [
+                            "npx",
+                            "postcss",
+                            tmp_input_path,
+                            "--output",
+                            tmp_output_path,
+                            "--config",
+                            "postcss.config.js",
+                        ],
+                        capture_output=True,
+                        text=True,
+                        check=True,
+                    )
+                except subprocess.CalledProcessError as e:
+                    my_print(f"PostCSS processing failed: {e}")
+                    my_print(f"Error output: {e.stderr}")
+                    # Fallback to original CSS if PostCSS fails
+                    return None
+                except Exception as e:
+                    my_print(f"Unexpected error in PostCSS processing: {e}")
+                    return None
+
+                # Read processed CSS
+                _postcss_cache[css_content] = getFileContents(tmp_output_path)
+
+    return _postcss_cache[css_content]
 
 
 def handleJavaScript(filename, doc):
