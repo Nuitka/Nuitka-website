@@ -71,7 +71,7 @@ fledged carousel displaying the contents.
 
          Enterprise solutions with IP protection and cost savings.
 
-      .. carousel-side-tab:: Advanced Pythonista
+      .. carousel-side-tab:: Pythonista
          :doc: advanced-tour
 
          Advanced optimization and cutting-edge features.

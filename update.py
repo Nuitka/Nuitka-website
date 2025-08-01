@@ -691,6 +691,11 @@ js_order = [
 def _makeJsCombined(js_filenames):
     js_filenames = list(js_filenames)
 
+    print("W", js_filenames)
+
+    # TODO: Below we inject jQuery for search box anyway, so the check is
+    # pointless, but we probably need not call
+    # "SphinxRtdTheme.Navigation.enable" at all.
     for js_filename in js_filenames:
         if "jQuery" in getFileContents(f"output/{js_filename}"):
             js_filenames.insert(0, "_static/jquery.js")
@@ -850,7 +855,7 @@ def handleJavaScript(filename, doc):
                     else:
                         script_tag.attrib["src"] = "/" + script_tag.attrib["src"]
 
-                js_filenames.append(script_tag.attrib["src"][1:])
+            js_filenames.append(script_tag.attrib["src"][1:])
 
     if script_tag_first is not None:
         if "welcome" in filename:
