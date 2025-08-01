@@ -4,6 +4,7 @@
 	--our-color-grey: #ccc;
 	--our-color-dark-blue: #2a3990;
 	--our-color-green: #00916e;
+	--our-carousel-light-blue: #d2e6f4;
 }
 
 /* Google Chrome still hates our menu
@@ -833,4 +834,201 @@ details.sd-dropdown > .sd-summary-content {
 	border-top: 1px solid #e0e0e0;
 	color: #444;
 	margin-top: 0.5em;
+}
+
+.carousel {
+	max-width: 1200px;
+	margin: 0 auto;
+	border: 1px solid var(--our-carousel-light-blue);
+	background: white;
+	padding: 24px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.carousel * a,
+.carousel * a:visited,
+.carousel * a:hover,
+.carousel * a:active {
+	all: unset;
+	cursor: pointer;
+}
+
+.carousel-main {
+	display: none;
+	padding: 0rem 3rem 3rem 3rem;
+}
+
+.carousel .carousel-radio {
+	display: none;
+}
+
+.carousel-main .carousel-button {
+	align-self: flex-start;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	background-color: var(--our-color-blue);
+	color: white;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 600;
+	transition:
+		background-color 0.3s ease,
+		transform 0.2s ease;
+	text-decoration: none;
+	width: fit-content;
+}
+
+.carousel-main .carousel-button:hover {
+	background-color: var(--our-carousel-light-blue);
+	transform: translateY(-2px);
+}
+
+.carousel-main .carousel-button:active {
+	transform: translateY(0);
+}
+
+.carousel-tabs-side {
+	display: none;
+}
+
+@media (min-width: 992px) {
+	.carousel-tabs-side {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+}
+
+.carousel-tab-side {
+	background-color: var(--our-carousel-light-blue);
+	padding: 16px;
+	font-size: 0.95rem;
+	font-weight: 500;
+	border-radius: 6px;
+	overflow-wrap: break-word;
+	max-width: 250px;
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
+
+.carousel-duration {
+	background-color: var(--our-carousel-light-blue);
+	height: 4px;
+	overflow: hidden;
+	width: 100%;
+	margin-top: 2px;
+	display: none;
+}
+
+.carousel-tab-heading {
+	margin-bottom: 0.5rem;
+}
+
+.carousel-progress {
+	background-color: var(--our-color-dark-blue);
+	width: 100%;
+	height: 100%;
+	animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}
+
+.carousel-top {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.carousel-tab-top {
+	background: var(--our-carousel-light-blue);
+	color: #333;
+	font-weight: 500;
+	padding: 10px 20px;
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: all 0.3s ease;
+	font-size: 1rem;
+}
+
+.carousel-tab-top:hover {
+	background: var(--our-color-blue);
+}
+
+.carousel-tab-arrow {
+	font-size: 1.2rem;
+}
+
+/* Make the active tab stand out */
+.carousel-radio#carousel-tab-0:checked ~ .carousel-top
+	label[for="carousel-tab-0"],
+.carousel-radio#carousel-tab-1:checked
+	~ .carousel-top
+	label[for="carousel-tab-1"],
+.carousel-radio#carousel-tab-2:checked
+	~ .carousel-top
+	label[for="carousel-tab-2"],
+.carousel-radio#carousel-tab-3:checked
+	~ .carousel-top
+	label[for="carousel-tab-3"] {
+	background: var(--our-color-blue);
+	color: white;
+	border-color: var(--our-color-blue);
+	font-weight: 600;
+}
+
+/* Show the content of the active tab */
+#carousel-tab-0:checked
+	~ .carousel-top
+	~ .carousel-content
+	.carousel-main:nth-child(1),
+#carousel-tab-1:checked
+	~ .carousel-top
+	~ .carousel-content
+	.carousel-main:nth-child(2),
+#carousel-tab-2:checked
+	~ .carousel-top
+	~ .carousel-content
+	.carousel-main:nth-child(3),
+#carousel-tab-3:checked
+	~ .carousel-top
+	~ .carousel-content
+	.carousel-main:nth-child(4) {
+	display: block;
+}
+
+/* Show the duration bar only for the active tab */
+.carousel-radio#carousel-tab-0:checked ~ .carousel-top
+	label[for="carousel-tab-0"]
+	.carousel-duration,
+.carousel-radio#carousel-tab-1:checked
+	~ .carousel-top
+	label[for="carousel-tab-1"]
+	.carousel-duration,
+.carousel-radio#carousel-tab-2:checked
+	~ .carousel-top
+	label[for="carousel-tab-2"]
+	.carousel-duration,
+.carousel-radio#carousel-tab-3:checked
+	~ .carousel-top
+	label[for="carousel-tab-3"]
+	.carousel-duration {
+	display: block;
 }
