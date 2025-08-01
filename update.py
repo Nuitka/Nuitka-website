@@ -675,8 +675,9 @@ def _getTranslationFileSet(filename):
 
 
 js_order = [
-    "documentation_options.js",
     "jquery.js",
+    "carousel.js",
+    "documentation_options.js",
     "_sphinx_javascript_frameworks_compat.js",
     "doctools.js",
     "sphinx_highlight.js",
@@ -684,18 +685,16 @@ js_order = [
     "clipboard.min.js",
     "copybutton.js",
     "translations.js",
-    "design-tabs.js",
 ]
 
 
 def _makeJsCombined(js_filenames):
     js_filenames = list(js_filenames)
-    if "_static/jquery.js" not in js_filenames:
-        js_filenames.append("_static/jquery.js")
-    js_filenames.sort(key=lambda x: js_order.index(os.path.basename(x)))
 
     js_set_contents = (
-        "\n".join(getFileContents(f"output/{js_name}") for js_name in js_filenames)
+        "\n".join(
+            getFileContents(f"output/{js_filename}") for js_filename in js_filenames
+        )
         + """
 jQuery(function () {
     SphinxRtdTheme.Navigation.enable(true);
@@ -764,6 +763,94 @@ def fixupSymbols(document_bytes):
     return document_bytes
 
 
+def handleJavaScript(filename, doc):
+    # Check copybutton.js
+    has_highlight = doc.xpath("//div[@class='highlight']")
+
+    # Check carousel.js
+    has_carousel = doc.xpath("//div[contains(@class, 'carousel')]")
+
+    # Check inline tabs
+    has_inline_tabs = doc.xpath("//*[@class='sd-tab-label']")
+
+    # Detect if asciinema is used in the page
+    has_asciinema = False
+    for script_tag in doc.xpath("//script"):
+        if script_tag.text and "AsciinemaPlayer" in script_tag.text:
+            has_asciinema = True
+
+    script_tag_first = None
+    js_filenames = []
+    for script_tag in doc.xpath("//script"):
+        if "src" in script_tag.attrib:
+            script_tag.attrib["src"] = script_tag.get("src").split("?")[0]
+        else:
+            if (
+                script_tag.text
+                and "SphinxRtdTheme.Navigation.enable(true);" in script_tag.text
+            ):
+                script_tag.getparent().remove(script_tag)
+
+            # Wait before executing Asciinema script tags, so the async load
+            # of its Javascript can complete still.
+            if script_tag.text and "AsciinemaPlayer" in script_tag.text:
+                script_tag.attrib["defer"] = "true"
+
+            continue
+
+        script_tag.attrib["async"] = ""
+
+        if "combined_" in script_tag.attrib["src"]:
+            script_tag_first = None
+            break
+
+        # Google search.
+        if "google" in script_tag.attrib["src"]:
+            continue
+
+        if "asciinema" in script_tag.attrib["src"]:
+            if not has_asciinema:
+                script_tag.getparent().remove(script_tag)
+
+            continue
+
+        if script_tag.attrib["src"].startswith("http"):
+            continue
+
+        if not has_highlight and "copybutton" in script_tag.attrib["src"]:
+            script_tag.getparent().remove(script_tag)
+        elif not has_highlight and "clipboard" in script_tag.attrib["src"]:
+            script_tag.getparent().remove(script_tag)
+        elif not has_inline_tabs and "design-tabs" in script_tag.attrib["src"]:
+            script_tag.getparent().remove(script_tag)
+        elif not has_carousel and "carousel" in script_tag.attrib["src"]:
+            script_tag.getparent().remove(script_tag)
+        else:
+            # Make script source absolute, so it's easier to find
+            if not script_tag.attrib["src"].startswith("/"):
+                while script_tag.attrib["src"].startswith("../"):
+                    script_tag.attrib["src"] = script_tag.attrib["src"][3:]
+
+                for translation in _translations:
+                    if translation in filename:
+                        script_tag.attrib["src"] = (
+                            "/" + translation + "/" + script_tag.attrib["src"]
+                        )
+                        break
+                else:
+                    script_tag.attrib["src"] = "/" + script_tag.attrib["src"]
+            if script_tag_first is None:
+                script_tag_first = script_tag
+            else:
+                script_tag.getparent().remove(script_tag)
+
+            assert script_tag.attrib["src"][0] == "/", script_tag.attrib["src"]
+            js_filenames.append(script_tag.attrib["src"][1:])
+
+    if script_tag_first is not None:
+        script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)
+
+
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
     # do other touch ups. spell-checker: ignore searchindex,searchtools
@@ -787,6 +874,15 @@ def runPostProcessing():
         if root_doc is None:
             root_doc = doc
 
+        # Check copybutton.js
+        has_highlight = doc.xpath("//div[@class='highlight']")
+
+        # Detect if asciinema is used in the page
+        has_asciinema = False
+        for script_tag in doc.xpath("//script"):
+            if script_tag.text and "AsciinemaPlayer" in script_tag.text:
+                has_asciinema = True
+
         # Repair favicon extension not cooperation with ablog extension,
         # copy over the root_doc links.
         fav_icons = doc.xpath("//head/link[@rel='icon']")
@@ -798,17 +894,6 @@ def runPostProcessing():
                 fav_icon.attrib["href"] = "/" + fav_icon.attrib["href"]
 
                 head_node.append(fav_icon)
-
-        # Check copybutton.js
-        has_highlight = doc.xpath("//div[@class='highlight']")
-
-        has_inline_tabs = doc.xpath("//*[@class='sd-tab-label']")
-
-        # Detect if asciinema is used in the page
-        has_asciinema = False
-        for script_tag in doc.xpath("//script"):
-            if script_tag.text and "AsciinemaPlayer" in script_tag.text:
-                has_asciinema = True
 
         for search_link in doc.xpath("//link[@rel='search']"):
             search_link.getparent().remove(search_link)
@@ -1030,74 +1115,7 @@ def runPostProcessing():
         for node in doc.xpath("//div[@class='wy-side-nav-search']"):
             node.getparent().remove(node)
 
-        script_tag_first = None
-        js_filenames = []
-        for script_tag in doc.xpath("//script"):
-            if "src" in script_tag.attrib:
-                script_tag.attrib["src"] = script_tag.get("src").split("?")[0]
-            else:
-                if (
-                    script_tag.text
-                    and "SphinxRtdTheme.Navigation.enable(true);" in script_tag.text
-                ):
-                    script_tag.getparent().remove(script_tag)
-
-                # Wait before executing Asciinema script tags, so the async load
-                # of its Javascript can complete still.
-                if script_tag.text and "AsciinemaPlayer" in script_tag.text:
-                    script_tag.attrib["defer"] = "true"
-
-                continue
-
-            script_tag.attrib["async"] = ""
-
-            if "combined_" in script_tag.attrib["src"]:
-                script_tag_first = None
-                break
-
-            # Google search.
-            if "google" in script_tag.attrib["src"]:
-                continue
-
-            if "asciinema" in script_tag.attrib["src"]:
-                if not has_asciinema:
-                    script_tag.getparent().remove(script_tag)
-
-                continue
-
-            if script_tag.attrib["src"].startswith("http"):
-                continue
-
-            if not has_highlight and "copybutton" in script_tag.attrib["src"]:
-                script_tag.getparent().remove(script_tag)
-            elif not has_highlight and "clipboard" in script_tag.attrib["src"]:
-                script_tag.getparent().remove(script_tag)
-            elif not has_inline_tabs and "design-tabs" in script_tag.attrib["src"]:
-                script_tag.getparent().remove(script_tag)
-            else:
-                if script_tag_first is None:
-                    script_tag_first = script_tag
-                else:
-                    script_tag.getparent().remove(script_tag)
-
-                    # Make script source absolute, so it's easier to find
-                    if not script_tag.attrib["src"].startswith("/"):
-                        while script_tag.attrib["src"].startswith("../"):
-                            script_tag.attrib["src"] = script_tag.attrib["src"][3:]
-
-                        for translation in _translations:
-                            if translation in filename:
-                                script_tag.attrib["src"] = (
-                                    "/" + translation + "/" + script_tag.attrib["src"]
-                                )
-                                break
-                        else:
-                            script_tag.attrib["src"] = "/" + script_tag.attrib["src"]
-
-                    js_filenames.append(script_tag.attrib["src"][1:])
-
-        if script_tag_first is not None:
-            script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)
+        handleJavaScript(filename, doc)
 
         file_language, translated_filenames = _getTranslationFileSet(filename)
 

@@ -56,7 +56,8 @@
 				"redhat.vscode-xml",
 				"eamodio.gitlens",
 				"swyddfa.esbonio",
-				"google.geminicodeassist"
+				"google.geminicodeassist",
+				"esbenp.prettier-vscode"
 			]
 		}
 	},

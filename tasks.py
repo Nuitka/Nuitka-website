@@ -22,7 +22,7 @@ def virtualenv(c):
 
     # Workaround pipenv failing to pin black version due to it being pre-release
     # always.
-    # c.run(f"{sys.executable} -m pipenv run python -m pip install black==24.10.0")
+    c.run(f"{sys.executable} -m pipenv run python -m pip install black==24.10.0")
 
 
 @task

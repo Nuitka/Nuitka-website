@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 from pathlib import Path
@@ -11,12 +12,18 @@ author = "Kay Hayen"
 release = version = ""
 
 ROOT = Path(__file__).parent.absolute().as_posix()  # The root directory
+
 # For autodoc to work
 sys.path.append(ROOT)
+
 from update import importNuitka  # isort:skip
 
 importNuitka()
 del sys.path[-1]
+
+# Add _ext directory to Python path for custom Sphinx extensions
+_ext_path = os.path.join(ROOT, "_ext")
+sys.path.append(_ext_path)
 
 # -- General configuration
 
@@ -38,6 +45,7 @@ extensions = [
     "sphinxcontrib.asciinema",
     # Blog extension
     "ablog",
+    "carousel",
 ]
 
 intersphinx_mapping = {
