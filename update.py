@@ -691,16 +691,6 @@ js_order = [
 def _makeJsCombined(js_filenames):
     js_filenames = list(js_filenames)
 
-    print("W", js_filenames)
-
-    # TODO: Below we inject jQuery for search box anyway, so the check is
-    # pointless, but we probably need not call
-    # "SphinxRtdTheme.Navigation.enable" at all.
-    for js_filename in js_filenames:
-        if "jQuery" in getFileContents(f"output/{js_filename}"):
-            js_filenames.insert(0, "_static/jquery.js")
-            break
-
     js_set_contents = (
         "\n".join(
             getFileContents(f"output/{js_filename}") for js_filename in js_filenames
