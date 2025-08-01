@@ -1,7 +1,5 @@
-window.addEventListener("load", function () {
-  // We will always have a single carousel per page
+const initCarousel = () => {
   const carousel = document.querySelector(".carousel");
-
   if (!carousel) return;
 
   const radios = carousel.querySelectorAll(".carousel-radio");
@@ -15,7 +13,7 @@ window.addEventListener("load", function () {
   let autoplay = true;
   let currentAnimationEndHandler = null;
 
-  function removeAnimationEndListener() {
+  const removeAnimationEndListener = () => {
     if (currentAnimationEndHandler) {
       durationBars[current].removeEventListener(
         "animationend",
@@ -23,9 +21,9 @@ window.addEventListener("load", function () {
       );
       currentAnimationEndHandler = null;
     }
-  }
+  };
 
-  function addAnimationEndListener(index) {
+  const addAnimationEndListener = (index) => {
     currentAnimationEndHandler = () => {
       nextSlide();
     };
@@ -33,44 +31,38 @@ window.addEventListener("load", function () {
       "animationend",
       currentAnimationEndHandler
     );
-  }
+  };
 
-  function resetAnimation(index) {
+  const resetAnimation = (index) => {
     const bar = durationBars[index];
     bar.style.animation = "none";
     bar.offsetHeight;
     bar.style.animation = "";
-  }
+  };
 
-  function goTo(index) {
+  const goTo = (index) => {
     radios[index].checked = true;
-
     removeAnimationEndListener();
-
     current = index;
-
     addAnimationEndListener(current);
-
     resetAnimation(current);
-  }
+  };
 
-  function nextSlide() {
+  const nextSlide = () => {
     if (!autoplay) return;
-
     const next = (current + 1) % radios.length;
     goTo(next);
-    scheduleNext();
-  }
+  };
 
   labels.forEach((label, index) => {
     label.addEventListener("click", () => {
       autoplay = false;
-
       durationBars.forEach((bar) => bar.remove());
-
       goTo(index);
     });
   });
 
   goTo(current);
-});
+};
+
+window.addEventListener("load", initCarousel);
