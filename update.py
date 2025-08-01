@@ -768,7 +768,7 @@ def handleJavaScript(filename, doc):
     has_highlight = doc.xpath("//div[@class='highlight']")
 
     # Check carousel.js
-    has_carousel = doc.xpath("//div[@class='carousel']")
+    has_carousel = doc.xpath("//div[contains(@class, 'carousel')]")
 
     # Check inline tabs
     has_inline_tabs = doc.xpath("//*[@class='sd-tab-label']")
@@ -848,8 +848,6 @@ def handleJavaScript(filename, doc):
             js_filenames.append(script_tag.attrib["src"][1:])
 
     if script_tag_first is not None:
-        if "welcome" in filename:
-            print("JS", filename, js_filenames)
         script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)
 
 
