@@ -688,6 +688,70 @@ js_order = [
 ]
 
 
+def _makeCssCombined(css_filenames, css_links, has_asciinema):
+    output_filename = "/_static/css/combined_%s.css" % getHashFromValues(*css_filenames)
+
+    if not os.path.exists(output_filename):
+        merged_css = "\n".join(
+            getFileContents(css_filename)
+            for css_filename in sorted(css_filenames, key=lambda x: "my_" in x)
+        )
+
+        # Do not display fonts on mobile devices.
+        merged_css = re.sub(
+            r"@font-face\{(?!.*?awesome)(.*?)\}",
+            r"@media(min-width:901px){@font-face{\1}}",
+            merged_css,
+            flags=re.S,
+        )
+        merged_css = re.sub(
+            r"@font-face\{([^)]*?Lato)(.*?)\}",
+            r"",
+            merged_css,
+            flags=re.S,
+        )
+        merged_css = merged_css.replace("Lato", "ui-sans-serif")
+        merged_css = re.sub(
+            r"@font-face\{([^)]*?Roboto Slab)(.*?)\}",
+            r"",
+            merged_css,
+            flags=re.S,
+        )
+        merged_css = merged_css.replace(
+            "Roboto Slab",
+            "Rockwell, 'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif",
+        )
+        merged_css = re.sub(
+            r"@font-face\{(.*?)\}",
+            r"@font-face{font-display:swap;\1}",
+            merged_css,
+            flags=re.S,
+        )
+
+        merged_css = merged_css.replace(
+            "@media(min-width: 1200px)", "@media(min-width: 1500px)"
+        )
+        merged_css = merged_css.replace(
+            "@media(min-width: 992px)", "@media(min-width: 1192px)"
+        )
+
+        # Strip comments and trailing whitespace (created by that in part)
+        merged_css = re.sub(r"/\*.*?\*/", "", merged_css, flags=re.S)
+        merged_css = re.sub(r"\s+\n", r"\n", merged_css, flags=re.M)
+
+        putTextFileContents(filename=f"output{output_filename}", contents=merged_css)
+
+    css_links[0].attrib["href"] = output_filename
+    for css_link in css_links[1:]:
+        if in_devcontainer and "my_theme" in css_link.attrib["href"]:
+            continue
+
+        if "asciinema" in css_link.attrib["href"] and has_asciinema:
+            continue
+
+        css_link.getparent().remove(css_link)
+
+
 def _makeJsCombined(js_filenames):
     js_filenames = list(js_filenames)
 
@@ -984,71 +1048,9 @@ def runPostProcessing():
             if "my_theme" not in css_link.get("href") or not in_devcontainer
             if "asciinema" not in css_link.get("href")
         ]:
-            output_filename = "/_static/css/combined_%s.css" % getHashFromValues(
-                *css_filenames
+            output_filename = _makeCssCombined(
+                css_filenames, css_links=css_links, has_asciinema=has_asciinema
             )
-
-            if not os.path.exists(output_filename):
-                merged_css = "\n".join(
-                    getFileContents(css_filename)
-                    for css_filename in sorted(css_filenames, key=lambda x: "my_" in x)
-                )
-
-                # Do not display fonts on mobile devices.
-                merged_css = re.sub(
-                    r"@font-face\{(?!.*?awesome)(.*?)\}",
-                    r"@media(min-width:901px){@font-face{\1}}",
-                    merged_css,
-                    flags=re.S,
-                )
-                merged_css = re.sub(
-                    r"@font-face\{([^)]*?Lato)(.*?)\}",
-                    r"",
-                    merged_css,
-                    flags=re.S,
-                )
-                merged_css = merged_css.replace("Lato", "ui-sans-serif")
-                merged_css = re.sub(
-                    r"@font-face\{([^)]*?Roboto Slab)(.*?)\}",
-                    r"",
-                    merged_css,
-                    flags=re.S,
-                )
-                merged_css = merged_css.replace(
-                    "Roboto Slab",
-                    "Rockwell, 'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif",
-                )
-                merged_css = re.sub(
-                    r"@font-face\{(.*?)\}",
-                    r"@font-face{font-display:swap;\1}",
-                    merged_css,
-                    flags=re.S,
-                )
-
-                merged_css = merged_css.replace(
-                    "@media(min-width: 1200px)", "@media(min-width: 1500px)"
-                )
-                merged_css = merged_css.replace(
-                    "@media(min-width: 992px)", "@media(min-width: 1192px)"
-                )
-
-                # Strip comments and trailing whitespace (created by that in part)
-                merged_css = re.sub(r"/\*.*?\*/", "", merged_css, flags=re.S)
-                merged_css = re.sub(r"\s+\n", r"\n", merged_css, flags=re.M)
-
-                putTextFileContents(
-                    filename=f"output{output_filename}", contents=merged_css
-                )
-
-            css_links[0].attrib["href"] = output_filename
-            for css_link in css_links[1:]:
-                if in_devcontainer and "my_theme" in css_link.attrib["href"]:
-                    continue
-
-                if "asciinema" in css_link.attrib["href"] and has_asciinema:
-                    continue
-
-                css_link.getparent().remove(css_link)
 
         for link in doc.xpath("//a[not(contains(@class, 'intern'))]"):
             if (
