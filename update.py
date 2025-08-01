@@ -836,25 +836,25 @@ def handleJavaScript(filename, doc):
         elif not has_carousel and "carousel" in script_tag.attrib["src"]:
             script_tag.getparent().remove(script_tag)
         else:
+            # Make script source absolute, so it's easier to find
+            if not script_tag.attrib["src"].startswith("/"):
+                while script_tag.attrib["src"].startswith("../"):
+                    script_tag.attrib["src"] = script_tag.attrib["src"][3:]
+
+                for translation in _translations:
+                    if translation in filename:
+                        script_tag.attrib["src"] = (
+                            "/" + translation + "/" + script_tag.attrib["src"]
+                        )
+                        break
+                else:
+                    script_tag.attrib["src"] = "/" + script_tag.attrib["src"]
             if script_tag_first is None:
                 script_tag_first = script_tag
             else:
                 script_tag.getparent().remove(script_tag)
 
-                # Make script source absolute, so it's easier to find
-                if not script_tag.attrib["src"].startswith("/"):
-                    while script_tag.attrib["src"].startswith("../"):
-                        script_tag.attrib["src"] = script_tag.attrib["src"][3:]
-
-                    for translation in _translations:
-                        if translation in filename:
-                            script_tag.attrib["src"] = (
-                                "/" + translation + "/" + script_tag.attrib["src"]
-                            )
-                            break
-                    else:
-                        script_tag.attrib["src"] = "/" + script_tag.attrib["src"]
-
+            assert script_tag.attrib["src"][0] == "/", script_tag.attrib["src"]
             js_filenames.append(script_tag.attrib["src"][1:])
 
     if script_tag_first is not None:
