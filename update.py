@@ -1061,7 +1061,7 @@ def runPostProcessing():
             if "my_theme" not in css_link.get("href") or not in_devcontainer
             if "asciinema" not in css_link.get("href")
         ]:
-            output_filename = _makeCssCombined(
+            _makeCssCombined(
                 css_filenames, css_links=css_links, has_asciinema=has_asciinema
             )
 
