@@ -1,51 +1,76 @@
 window.addEventListener("load", function () {
-	const carousels = document.querySelectorAll(".carousel");
-	carousels.forEach((carousel) => {
-		const radios = carousel.querySelectorAll(".carousel-radio");
-		const labels = carousel.querySelectorAll(".carousel-tab-top");
+  // We will always have a single carousel per page
+  const carousel = document.querySelector(".carousel");
 
-		let current = 0;
-		let autoplay = true;
-		let timeoutId = null;
+  if (!carousel) return;
 
-		function getDuration(index) {
-			const label = labels[index];
-			const duration = label?.getAttribute("data-duration");
-			return parseInt(duration, 10);
-		}
+  const radios = carousel.querySelectorAll(".carousel-radio");
+  const labels = carousel.querySelectorAll(".carousel-tab-top");
+  const durationBars = carousel.querySelectorAll(".carousel-duration");
 
-		function goTo(index) {
-			radios[index].checked = true;
-			current = index;
-		}
+  if (radios.length === 0 || labels.length === 0 || durationBars.length === 0)
+    return;
 
-		function nextSlide() {
-			if (!autoplay) return;
+  let current = 0;
+  let autoplay = true;
+  let currentAnimationEndHandler = null;
 
-			const next = (current + 1) % radios.length;
-			goTo(next);
-			scheduleNext();
-		}
+  function removeAnimationEndListener() {
+    if (currentAnimationEndHandler) {
+      durationBars[current].removeEventListener(
+        "animationend",
+        currentAnimationEndHandler
+      );
+      currentAnimationEndHandler = null;
+    }
+  }
 
-		function scheduleNext() {
-			clearTimeout(timeoutId);
-			timeoutId = setTimeout(nextSlide, getDuration(current));
-		}
+  function addAnimationEndListener(index) {
+    currentAnimationEndHandler = () => {
+      nextSlide();
+    };
+    durationBars[index].addEventListener(
+      "animationend",
+      currentAnimationEndHandler
+    );
+  }
 
-		labels.forEach((label, index) => {
-			label.addEventListener("click", () => {
-				autoplay = false;
+  function resetAnimation(index) {
+    const bar = durationBars[index];
+    bar.style.animation = "none";
+    bar.offsetHeight;
+    bar.style.animation = "";
+  }
 
-				const durationBars = carousel.querySelectorAll(".carousel-duration");
+  function goTo(index) {
+    radios[index].checked = true;
 
-				durationBars.forEach((bar) => bar.remove());
+    removeAnimationEndListener();
 
-				goTo(index);
-				clearTimeout(timeoutId);
-			});
-		});
+    current = index;
 
-		goTo(current);
-		scheduleNext();
-	});
+    addAnimationEndListener(current);
+
+    resetAnimation(current);
+  }
+
+  function nextSlide() {
+    if (!autoplay) return;
+
+    const next = (current + 1) % radios.length;
+    goTo(next);
+    scheduleNext();
+  }
+
+  labels.forEach((label, index) => {
+    label.addEventListener("click", () => {
+      autoplay = false;
+
+      durationBars.forEach((bar) => bar.remove());
+
+      goTo(index);
+    });
+  });
+
+  goTo(current);
 });

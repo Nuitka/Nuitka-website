@@ -24,9 +24,6 @@ class CarouselContainer(SphinxDirective):
 
 
 class Carousel(SphinxDirective):
-    option_spec = {
-        "tab-duration": int,
-    }
     has_content = True
 
     def run(self) -> List[nodes.Node]:
@@ -59,7 +56,7 @@ class Carousel(SphinxDirective):
                     carousel += nodes.raw("", radio_html, format="html")
 
                     label_html = f"""
-                    <label for="carousel-tab-{tab_count}" class="carousel-tab-top" data-duration={self.options.get('tab-duration', 5000)}>
+                    <label for="carousel-tab-{tab_count}" class="carousel-tab-top">
                         {tab_name}
                         <div class="carousel-duration">
                             <div class="carousel-progress"></div>
