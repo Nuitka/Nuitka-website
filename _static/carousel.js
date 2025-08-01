@@ -1,13 +1,18 @@
 const initCarousel = () => {
   const carousel = document.querySelector(".carousel");
-  if (!carousel) return;
+  if (!carousel) {
+    console.warn("Carousel not found.");
+    return;
+  }
 
   const radios = carousel.querySelectorAll(".carousel-radio");
   const labels = carousel.querySelectorAll(".carousel-tab-top");
   const durationBars = carousel.querySelectorAll(".carousel-duration");
 
-  if (radios.length === 0 || labels.length === 0 || durationBars.length === 0)
+  if (radios.length === 0 || labels.length === 0 || durationBars.length === 0) {
+    console.warn("Carousel elements not found.");
     return;
+  }
 
   let current = 0;
   let autoplay = true;
