@@ -12,7 +12,7 @@ fledged carousel displaying the contents.
    .. carousel::
 
       .. carousel-content:: Deployment
-         :doc: deployment-tour
+         :doc: tours/deployment
 
          Dear Nuitka for Deployment User
 
@@ -24,7 +24,7 @@ fledged carousel displaying the contents.
          Take the Deployment Tour
 
       .. carousel-content:: Beginner
-         :doc: beginner-tour
+         :doc: tours/beginner
 
          Dear Python Beginner
 
@@ -34,7 +34,7 @@ fledged carousel displaying the contents.
          Take the Beginner Tour
 
       .. carousel-content:: IT Manager
-         :doc: it-manager-tour
+         :doc: tours/it-manager
 
          Dear IT Manager
 
@@ -45,7 +45,7 @@ fledged carousel displaying the contents.
          Take the IT Manager Tour
 
       .. carousel-content:: Advanced Pythonista
-         :doc: advanced-tour
+         :doc: tours/advanced
 
          Dear Python Expert
 
@@ -57,21 +57,21 @@ fledged carousel displaying the contents.
          Take the Advanced Tour
 
       .. carousel-side-tab:: Deployment
-         :doc: deployment-tour
+         :doc: tours/deployment
 
          Create standalone executables and protect your IP.
 
       .. carousel-side-tab:: Beginner
-         :doc: beginner-tour
+         :doc: tours/beginner
 
          Simple guides and community support for newcomers.
 
       .. carousel-side-tab:: IT Manager
-         :doc: it-manager-tour
+         :doc: tours/it-manager
 
          Enterprise solutions with IP protection and cost savings.
 
       .. carousel-side-tab:: Pythonista
-         :doc: advanced-tour
+         :doc: tours/advanced
 
          Advanced optimization and cutting-edge features.
