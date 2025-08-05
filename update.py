@@ -716,57 +716,19 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
         for css_filename in sorted(css_filenames, key=lambda x: "my_" in x)
     )
 
-    # Do not display fonts on mobile devices.
-    merged_css = re.sub(
-        r"@font-face\{(?!.*?awesome)(.*?)\}",
-        r"@media(min-width:901px){@font-face{\1}}",
-        merged_css,
-        flags=re.S,
-    )
-    merged_css = re.sub(
-        r"@font-face\{([^)]*?Lato)(.*?)\}",
-        r"",
-        merged_css,
-        flags=re.S,
-    )
-    merged_css = merged_css.replace("Lato", "ui-sans-serif")
-    merged_css = re.sub(
-        r"@font-face\{([^)]*?Roboto Slab)(.*?)\}",
-        r"",
-        merged_css,
-        flags=re.S,
-    )
-    merged_css = merged_css.replace(
-        "Roboto Slab",
-        "Rockwell, 'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif",
-    )
-    merged_css = re.sub(
-        r"@font-face\{(.*?)\}",
-        r"@font-face{font-display:swap;\1}",
-        merged_css,
-        flags=re.S,
-    )
-
-    merged_css = merged_css.replace(
-        "@media(min-width: 1200px)", "@media(min-width: 1500px)"
-    )
-    merged_css = merged_css.replace(
-        "@media(min-width: 992px)", "@media(min-width: 1192px)"
-    )
-
-    # Strip comments and trailing whitespace (created by that in part)
-    merged_css = re.sub(r"/\*.*?\*/", "", merged_css, flags=re.S)
-    merged_css = re.sub(r"\s+\n", r"\n", merged_css, flags=re.M)
+    # orig_css = merged_css
 
     # Process with PostCSS
     processed_css = _processWithPostCSS(merged_css)
+    del merged_css
 
     # Validate processed CSS: fallback to original if empty or invalid
     assert processed_css
 
-    output_filename = "/_static/css/combined_%s.css" % getHashFromValues(merged_css)
+    output_filename = "/_static/css/combined_%s.css" % getHashFromValues(processed_css)
 
-    putTextFileContents(filename=f"output{output_filename}", contents=merged_css)
+    putTextFileContents(filename=f"output{output_filename}", contents=processed_css)
+    # putTextFileContents(filename=f"output{output_filename}.orig", contents=orig_css)
 
     css_links[0].attrib["href"] = output_filename
     for css_link in css_links[1:]:
@@ -873,7 +835,7 @@ def _processWithPostCSS(css_content):
 
                 # Run PostCSS
                 try:
-                    subprocess.run(
+                    process = subprocess.run(
                         [
                             "npx",
                             "postcss",
@@ -895,6 +857,8 @@ def _processWithPostCSS(css_content):
                 except Exception as e:
                     my_print(f"Unexpected error in PostCSS processing: {e}")
                     return None
+                else:
+                    my_print("Ok, postcss output was: %s" % process.stdout)
 
                 # Read processed CSS
                 _postcss_cache[css_content] = getFileContents(tmp_output_path)
