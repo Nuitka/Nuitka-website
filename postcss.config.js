@@ -39,14 +39,6 @@ module.exports = {
 					fontFaceToWrap.push(rule);
 				});
 
-				fontFaceToWrap.forEach((rule) => {
-					const ruleString = rule.toString();
-					if (!ruleString.includes("awesome")) {
-						const newRule = `@media(min-width:901px){${ruleString}}`;
-						rule.replaceWith(newRule);
-					}
-				});
-
 				// Replace font family references
 				root.walkDecls((decl) => {
 					if (decl.prop.includes("font-family") || decl.prop.includes("font")) {
