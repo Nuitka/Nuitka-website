@@ -112,6 +112,77 @@ from nuitka.utils.Rest import makeTable
 
 in_devcontainer = os.getenv("REMOTE_CONTAINERS_DISPLAY_SOCK") is not None
 
+FA_STYLE_MAP = {
+    "fas": "solid",
+    "far": "regular",
+    "fab": "brands",
+    "fal": "light",
+    "fad": "duotone",
+    "fat": "thin",
+    "fass": "sharp-solid",
+}
+
+FA_UTILITY_CLASSES = {
+    "fa",
+    "fa-fw",
+    "fa-spin",
+    "fa-pulse",
+    "fa-lg",
+    "fa-xs",
+    "fa-sm",
+    "fa-2x",
+    "fa-3x",
+    "fa-4x",
+    "fa-5x"
+}
+
+# TODO: rename func and maybe refactor, I think we can use it in other places too.
+def fontawesome_replace(doc):
+    for i_tag in doc.xpath("//i[contains(@class, 'fa')]"):
+        class_list = i_tag.get("class", "").split()
+
+        style_class = next((cl for cl in class_list if cl in FA_STYLE_MAP), None)
+
+        if not style_class and "fa" in class_list:
+            style_class = "fas"
+
+        icon_class = next(
+            (c for c in class_list if c.startswith("fa-") and c not in FA_UTILITY_CLASSES),
+            None
+        )
+
+        if not style_class or not icon_class:
+            continue
+
+        style_folder = FA_STYLE_MAP[style_class]
+        icon_name = icon_class.replace("fa-", "")
+
+        svg_path = Path("site") / "images" / "fontawesome" / style_folder / f"{icon_name}.svg"
+
+        if not svg_path.exists():
+            #my_print(f"\nMissing SVG: {svg_path}")
+            #my_print(f"Fix this by copying the SVG from your FA Pro+.\n")
+
+            #TODO: Remove continue and add command to copy the SVG from FA Pro+.
+            continue
+
+        svg_content = svg_path.read_text(encoding="utf-8")
+        svg_element = html.fragment_fromstring(svg_content, create_parent=False)
+
+
+        svg_element.set("class", ' '.join(class_list))
+        svg_element.set("aria-hidden", "true")
+
+        parent = i_tag.getparent()
+        tail = i_tag.tail
+
+        parent.replace(i_tag, svg_element)
+
+        # This is to preserve the tail text of the <i> tag, if any.
+        if tail:
+            print(f"Adding tail text: {repr(tail)}")
+            # TODO: Insert tail text after the SVG element. Still thinking about the best way to do this.
+
 
 def updateDownloadPage():
     page_source = requests.get("https://nuitka.net/releases/").text
@@ -1216,8 +1287,19 @@ def runPostProcessing():
         document_bytes = document_bytes.replace(b"now &#187;", b"now&nbsp;&nbsp;&#187;")
         document_bytes = document_bytes.replace(b"/ yr", b'<i class="sub">/ yr</i>')
 
+        doc = html.fromstring(document_bytes)
+
+        fontawesome_replace(doc)
+
+        result = html.tostring(
+            doc,
+            encoding="UTF-8",
+            method="html",
+            doctype="<!DOCTYPE html>",
+        )
+
         with open(filename, "wb") as output:
-            output.write(document_bytes)
+            output.write(result)
 
     if in_devcontainer:
         my_theme_filename = "output/_static/my_theme.css"
