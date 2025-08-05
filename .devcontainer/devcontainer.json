@@ -1,70 +1,72 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "Ubuntu",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
- 	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+    "name": "Ubuntu",
+    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+     "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-	"features": {
-		"ghcr.io/devcontainers-extra/features/apt-packages:1": {
-			"packages": "python3-dev,python3-pip,python-is-python3,bash-completion,optipng,jpegoptim,file,patchelf,ccache,supervisor"
-		},
-		"ghcr.io/devcontainers-extra/features/bash-command:1": {
-			"command": "python3 -m pip install --break invoke pipenv"
-		},
-		"ghcr.io/hwaien/devcontainer-features/match-host-time-zone": {}
-	},
+    // Features to add to the dev container. More info: https://containers.dev/features.
+    // "features": {},
+    "features": {
+        "ghcr.io/devcontainers-extra/features/apt-packages:1": {
+            "packages": "python3-dev,python3-pip,python-is-python3,bash-completion,optipng,jpegoptim,file,patchelf,ccache,supervisor"
+        },
+        "ghcr.io/devcontainers-extra/features/bash-command:1": {
+            "command": "python3 -m pip install --break invoke pipenv"
+        },
+         "ghcr.io/devcontainers/features/node:1": {
+               "version": "18"
+          },
+        "ghcr.io/hwaien/devcontainer-features/match-host-time-zone": {}
+    },
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [8000],
-	"portsAttributes": {
-		"8000": {
-			"label": "Nuitka Website",
-			"onAutoForward": "notify"
-		}
-	},
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [8000],
+    "portsAttributes": {
+        "8000": {
+            "label": "Nuitka Website",
+            "onAutoForward": "notify"
+        }
+    },
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": {
-		"set_timezone": "sudo dpkg-reconfigure tzdata -f none",
-		"create_supervisor_log_dir": "sudo mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs",
-		"chown_supervisor_log_dir": "sudo chown -R vscode:vscode ${containerWorkspaceFolder}/.devcontainer/supervisor"
-	},
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": {
+        "set_timezone": "sudo dpkg-reconfigure tzdata -f none",
+        "create_supervisor_log_dir": "sudo mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs",
+        "chown_supervisor_log_dir": "sudo chown -R vscode:vscode ${containerWorkspaceFolder}/.devcontainer/supervisor",
+        "npm_install": "npm install"
+    },
 
 
-	// Start supervisord to manage background services like auto-update.sh
-	"postStartCommand": {
-		"start_supervisord": "export containerWorkspaceFolder=${containerWorkspaceFolder} && supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf",
-		"info_message": "echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:8000\\n\\n'"
-	},
-	// Configure tool-specific properties.
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"samuelcolvin.jinjahtml",
-				"jebbs.plantuml",
-				"lextudio.restructuredtext",
-				"aeschli.vscode-css-formatter",
-				"ms-python.python",
-				"ms-python.vscode-pylance",
-				"GitHub.vscode-pull-request-github",
-				"trond-snekvik.simple-rst",
-				"shuworks.vscode-table-formatter",
-				"streetsidesoftware.code-spell-checker",
-				"redhat.vscode-xml",
-				"eamodio.gitlens",
-				"swyddfa.esbonio",
-				"google.geminicodeassist",
-				"esbenp.prettier-vscode"
-			]
-		}
-	},
-	"containerEnv": {
-		"PIPENV_VERBOSITY": "-1"
-	}
-}
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+    // Start supervisord to manage background services like auto-update.sh
+    "postStartCommand": {
+        "start_supervisord": "export containerWorkspaceFolder=${containerWorkspaceFolder} && supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf",
+        "info_message": "echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:8000\\n\\n'"
+    },
+    // Configure tool-specific properties.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "samuelcolvin.jinjahtml",
+                "jebbs.plantuml",
+                "lextudio.restructuredtext",
+                "aeschli.vscode-css-formatter",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "GitHub.vscode-pull-request-github",
+                "trond-snekvik.simple-rst",
+                "shuworks.vscode-table-formatter",
+                "streetsidesoftware.code-spell-checker",
+                "redhat.vscode-xml",
+                "eamodio.gitlens",
+                "swyddfa.esbonio",
+                "google.geminicodeassist",
+                "esbenp.prettier-vscode",
+                "csstools.postcss"
+            ]
+        }
+    },
+    "containerEnv": {
+        "PIPENV_VERBOSITY": "-1"
+    }
 }
