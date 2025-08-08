@@ -16,6 +16,13 @@ html {
 }
 */
 
+.wy-nav-top svg {
+	font-size: 30px;
+ float: left;
+ cursor: pointer;
+ padding-top: inherit;
+}
+
 .wy-nav-content {
 	max-width: 1000px !important;
 }
