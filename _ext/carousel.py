@@ -7,7 +7,7 @@ from sphinx.util.docutils import SphinxDirective
 def makeIconNode():
     return nodes.raw(
         "",
-        '<i class="fa fa-arrow-right sd-text-white" aria-hidden="true"></i>',
+        '<i class="fa fa-fw fa-arrow-right sd-text-white" aria-hidden="true"></i>',
         format="html",
     )
 
