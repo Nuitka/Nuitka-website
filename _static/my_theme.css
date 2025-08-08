@@ -897,6 +897,11 @@ details.sd-dropdown > .sd-summary-content {
 	transform: translateY(0);
 }
 
+.carousel-button a {
+	display: flex;
+	gap: 5px;
+}
+
 .carousel-tabs-side {
 	display: none;
 }
