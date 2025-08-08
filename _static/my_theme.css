@@ -553,6 +553,11 @@ a[class~="headerlink"]:visited {
 	width: 250px;
 }
 
+.wy-menu-vertical a {
+	display: flex;
+	gap: 5px;
+}
+
 .wy-side-scroll {
 	/* instead of 320 */
 	width: 250px;
@@ -904,7 +909,7 @@ details.sd-dropdown > .sd-summary-content {
 	transform: translateY(0);
 }
 
-.carousel-button a {
+.carousel-main .carousel-button .carousel-button-link {
 	display: flex;
 	gap: 5px;
 }
