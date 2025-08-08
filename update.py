@@ -145,15 +145,43 @@ def add_inline_svg(element, svg_path, is_fa_icon=False, style_folder=None, icon_
             my_print("To fix, run the following command to copy it from the unpacked Pro+ tarball:\n")
             my_print(f"cp <tar_dir>/svgs/{style_folder}/{icon_name}.svg <project_dir>/{style_folder}/{icon_name}.svg\n")
 
-        return FileNotFoundError
+        raise FileNotFoundError(f"SVG file not found: {svg_path}")
 
     svg_content = svg_path.read_text(encoding="utf-8")
     svg_content = re.sub(r"<!--.*?-->", "", svg_content, flags=re.DOTALL)
 
     svg_element = html.fragment_fromstring(svg_content, create_parent=False)
+
+    # For preserve colors from classes
+    if is_fa_icon:
+        for path in svg_element.xpath(".//path"):
+            if "fill" not in path.attrib:
+                path.set("fill", "currentColor")
+
     attrs = dict(element.attrib)
 
     for attr in attrs:
+        if attr == "src":
+            continue
+
+        value = attrs[attr]
+
+        # For cases when we are using font-size as width like we do in the arrow icon
+        if attr == "style" and "font-size" in value:
+            start = value.find("font-size")
+            end = value.find(";", start)
+
+            if end == -1:
+                end = len(value)
+
+            font_size_value = value[start:end].split(":", 1)[1].strip()
+            style_without_fs = (value[:start] + value[end:]).strip().rstrip(";")
+
+            value = f"{style_without_fs + '; ' if style_without_fs else ''}width: {font_size_value};"
+
+            svg_element.set("style", value)
+            continue
+
         svg_element.set(attr, element.get(attr))
 
     parent = element.getparent()
@@ -180,7 +208,6 @@ def inlineImagesSvg(doc):
             continue
 
         svg_path = (Path(__file__).resolve().parent / src.lstrip("/")).resolve()
-        print(svg_path)
         add_inline_svg(img_tag, svg_path)
 
 def inlineFontAwesomeSvg(doc):
