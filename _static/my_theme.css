@@ -17,7 +17,7 @@ html {
 */
 
 .wy-nav-top svg {
-	font-size: 30px;
+	width: 30px;
  float: left;
  cursor: pointer;
  padding-top: inherit;
