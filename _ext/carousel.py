@@ -7,7 +7,7 @@ from sphinx.util.docutils import SphinxDirective
 def makeIconNode():
     return nodes.raw(
         "",
-        '<i class="fa fa-arrow-right sd-text-white" aria-hidden="true"></i>',
+        '<i class="fa fa-fw fa-arrow-right sd-text-white" aria-hidden="true"></i>',
         format="html",
     )
 
@@ -123,7 +123,7 @@ class CarouselContent(SphinxDirective):
                     link_url = self.options["url"]
 
                 if link_url:
-                    cta_html = f'<a href="{link_url}" class="carousel-button-link">{cta_line} <i class="fa fa-arrow-right sd-text-white" aria-hidden="true"></i></a>'
+                    cta_html = f'<a href="{link_url}" class="carousel-button-link">{cta_line} <i class="fa fa-fw fa-arrow-right sd-text-white" aria-hidden="true"></i></a>'
                     cta_node = nodes.raw(
                         "",
                         f'<div class="carousel-button">{cta_html}</div>',
@@ -183,7 +183,7 @@ class CarouselSideTab(SphinxDirective):
 
             arrow_node = f"""
             <a href="{link_url}" class="carousel-tab-arrow">
-                <i class="fa fa-arrow-right sd-text-black" aria-hidden="true"></i>
+                <i class="fa fa-fw fa-arrow-right sd-text-black" aria-hidden="true"></i>
             </a>"""
 
             container += nodes.raw("", tab_html, format="html")
