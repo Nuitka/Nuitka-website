@@ -17,9 +17,9 @@ html {
 
 .wy-nav-top svg {
 	width: 30px;
- float: left;
- cursor: pointer;
- padding-top: inherit;
+	float: left;
+	cursor: pointer;
+	padding-top: inherit;
 }
 
 .wy-nav-content {
@@ -582,15 +582,13 @@ a[class~="headerlink"]:visited {
 
 .hub-card:hover {
 	transform: translateY(-5px) scale(1.005) translateZ(0);
-	box-shadow:
-		0 24px 36px rgba(0, 0, 0, 0.11),
+	box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11),
 		0 24px 46px var(--box-shadow-color);
 }
 
 .hub-card:active {
 	transform: scale(1) translateZ(0);
-	box-shadow:
-		0 15px 24px rgba(0, 0, 0, 0.11),
+	box-shadow: 0 15px 24px rgba(0, 0, 0, 0.11),
 		0 15px 24px var(--box-shadow-color);
 }
 
@@ -892,9 +890,7 @@ details.sd-dropdown > .sd-summary-content {
 	cursor: pointer;
 	font-size: 1rem;
 	font-weight: 600;
-	transition:
-		background-color 0.3s ease,
-		transform 0.2s ease;
+	transition: background-color 0.3s ease, transform 0.2s ease;
 	text-decoration: none;
 	width: fit-content;
 }
@@ -996,7 +992,8 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 /* Make the active tab stand out */
-.carousel-radio#carousel-tab-0:checked ~ .carousel-top
+.carousel-radio#carousel-tab-0:checked
+	~ .carousel-top
 	label[for="carousel-tab-0"],
 .carousel-radio#carousel-tab-1:checked
 	~ .carousel-top
@@ -1034,7 +1031,8 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 /* Show the duration bar only for the active tab */
-.carousel-radio#carousel-tab-0:checked ~ .carousel-top
+.carousel-radio#carousel-tab-0:checked
+	~ .carousel-top
 	label[for="carousel-tab-0"]
 	.carousel-duration,
 .carousel-radio#carousel-tab-1:checked
