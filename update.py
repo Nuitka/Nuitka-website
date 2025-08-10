@@ -137,6 +137,7 @@ FA_UTILITY_CLASSES = {
 }
 
 FA_SVG_PATH = Path("site") / "images" / "fontawesome"
+IMAGES_SVG_PATH = Path("site") / "images"
 
 def add_inline_svg(element, svg_path, is_fa_icon=False, style_folder=None, icon_name=None):
     if not svg_path.exists():
@@ -207,7 +208,14 @@ def inlineImagesSvg(doc):
         if not src.endswith(".svg"):
             continue
 
+        if src.startswith(("http://", "https://")):
+            continue
+
         svg_path = (Path(__file__).resolve().parent / src.lstrip("/")).resolve()
+
+        if not svg_path.exists():
+            svg_path = IMAGES_SVG_PATH / src.lstrip("/")
+            
         add_inline_svg(img_tag, svg_path)
 
 def inlineFontAwesomeSvg(doc):
