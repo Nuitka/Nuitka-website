@@ -161,11 +161,9 @@ def add_inline_svg(element, svg_path, is_fa_icon=False, style_folder=None, icon_
 
     attrs = dict(element.attrib)
 
-    for attr in attrs:
+    for attr, value in attrs.items():
         if attr == "src":
             continue
-
-        value = attrs[attr]
 
         # For cases when we are using font-size as width like we do in the arrow icon
         if attr == "style" and "font-size" in value:
@@ -214,8 +212,9 @@ def inlineImagesSvg(doc):
         svg_path = (Path(__file__).resolve().parent / src.lstrip("/")).resolve()
 
         if not svg_path.exists():
-            svg_path = IMAGES_SVG_PATH / src.lstrip("/")
-            
+            file = Path(src).name
+            svg_path = IMAGES_SVG_PATH / file
+
         add_inline_svg(img_tag, svg_path)
 
 def inlineFontAwesomeSvg(doc):
