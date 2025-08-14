@@ -15,7 +15,7 @@
             "command": "python3 -m pip install --break invoke pipenv"
         },
          "ghcr.io/devcontainers/features/node:1": {
-               "version": "18"
+               "version": "20"
           },
         "ghcr.io/hwaien/devcontainer-features/match-host-time-zone": {}
     },
