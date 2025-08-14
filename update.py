@@ -964,7 +964,6 @@ def fixupSymbols(document_bytes):
 
 _postcss_cache = {}
 
-
 def _processWithPostCSS(css_content):
     """Process CSS content through PostCSS"""
     if css_content in _postcss_cache:
@@ -1002,6 +1001,31 @@ def _processWithPostCSS(css_content):
 
     return result
 
+_html_minifier_processed = []
+
+def _minifyHtml(filename):
+    """Process HTML content through HTML-MINIFIER"""
+
+    if filename in _html_minifier_processed:
+        return
+
+    try:
+       subprocess.run(
+            ["npm", "run", "build:html"],
+            env={**os.environ, "INPUT": filename, "OUTPUT": filename},
+            text=True,
+            capture_output=True,
+            check=True
+        )
+    except subprocess.CalledProcessError as e:
+        my_print(f"HTML processing failed: {e}")
+        my_print(f"Error output: {e.stderr}")
+        return None
+    except Exception as e:
+        my_print(f"Unexpected error in HTML processing: {e}")
+        return None
+
+    _html_minifier_processed.append(filename)
 
 def handleJavaScript(filename, doc):
     # Check copybutton.js
@@ -1375,6 +1399,9 @@ def runPostProcessing():
         if not os.path.islink(my_theme_filename):
             os.unlink(my_theme_filename)
             os.symlink(os.path.abspath("_static/my_theme.css"), my_theme_filename)
+    else:
+        # Minify HTML only outside of devcontainer, because it is too slow.
+        _minifyHtml(filename)
 
 
 def runDeploymentCommand():

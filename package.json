@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "postcss $INPUT --output $OUTPUT --config postcss.config.js"
+    "build:css": "postcss $INPUT --output $OUTPUT --config postcss.config.js",
+    "build:html": "html-minifier --collapse-whitespace --remove-optional-tags --remove-redundant-attributes \"$INPUT\" -o \"$INPUT\""
   },
   "repository": {
     "type": "git",
