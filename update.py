@@ -1001,20 +1001,22 @@ def _processWithPostCSS(css_content):
 
     return result
 
-_html_minifier_processed = []
+_html_minifier_cache = {}
 
 def _minifyHtml(filename):
     """Process HTML content through HTML-MINIFIER"""
-
-    if filename in _html_minifier_processed:
+    if filename in _html_minifier_cache:
+        with open(filename, "w", encoding="utf-8") as output:
+            output.write(_html_minifier_cache[filename])
         return
+
+    my_print("Minifying HTML:", filename)
 
     try:
        subprocess.run(
             ["npm", "run", "build:html"],
-            env={**os.environ, "INPUT": filename, "OUTPUT": filename},
+            env={**os.environ, "INPUT": filename},
             text=True,
-            capture_output=True,
             check=True
         )
     except subprocess.CalledProcessError as e:
@@ -1025,7 +1027,7 @@ def _minifyHtml(filename):
         my_print(f"Unexpected error in HTML processing: {e}")
         return None
 
-    _html_minifier_processed.append(filename)
+    _html_minifier_cache[filename] = getFileContents(filename, mode="r", encoding="utf-8")
 
 def handleJavaScript(filename, doc):
     # Check copybutton.js
@@ -1392,6 +1394,11 @@ def runPostProcessing():
         with open(filename, "wb") as output:
             output.write(result)
 
+        if in_devcontainer:
+            continue
+
+        _minifyHtml(filename)
+
     if in_devcontainer:
         my_theme_filename = "output/_static/my_theme.css"
 
@@ -1399,9 +1406,6 @@ def runPostProcessing():
         if not os.path.islink(my_theme_filename):
             os.unlink(my_theme_filename)
             os.symlink(os.path.abspath("_static/my_theme.css"), my_theme_filename)
-    else:
-        # Minify HTML only outside of devcontainer, because it is too slow.
-        _minifyHtml(filename)
 
 
 def runDeploymentCommand():
