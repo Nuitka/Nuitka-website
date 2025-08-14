@@ -1395,9 +1395,7 @@ def runPostProcessing():
             output.write(result)
 
         if in_devcontainer:
-            continue
-
-        _minifyHtml(filename)
+            _minifyHtml(filename)
 
     if in_devcontainer:
         my_theme_filename = "output/_static/my_theme.css"
