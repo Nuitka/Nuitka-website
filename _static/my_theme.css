@@ -7,6 +7,7 @@
 	--our-color-dark-blue: #2a3990;
 	--our-color-green: #00916e;
 	--our-carousel-light-blue: #d2e6f4;
+	--our-lightgrey: #f8f9fa
 }
 
 /* Google Chrome still hates our menu
@@ -979,7 +980,8 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 /* Make the active tab stand out */
-.carousel-radio#carousel-tab-0:checked ~ .carousel-top
+.carousel-radio#carousel-tab-0:checked
+	~ .carousel-top
 	label[for="carousel-tab-0"],
 .carousel-radio#carousel-tab-1:checked
 	~ .carousel-top
@@ -1017,7 +1019,8 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 /* Show the duration bar only for the active tab */
-.carousel-radio#carousel-tab-0:checked ~ .carousel-top
+.carousel-radio#carousel-tab-0:checked
+	~ .carousel-top
 	label[for="carousel-tab-0"]
 	.carousel-duration,
 .carousel-radio#carousel-tab-1:checked
@@ -1033,4 +1036,94 @@ details.sd-dropdown > .sd-summary-content {
 	label[for="carousel-tab-3"]
 	.carousel-duration {
 	display: block;
+}
+
+.coming-soon-container {
+	text-align: center;
+	margin: 3rem auto;
+	padding: 2rem;
+	max-width: 800px;
+	border-radius: 8px;
+	background-color: var(--our-lightgrey);;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+	animation: fadeIn 1s ease-in-out;
+}
+
+.coming-soon-icon {
+	margin-bottom: 1.5rem;
+	animation: pulse 2s infinite;
+	pointer-events: none;
+}
+
+.coming-soon-title {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	color: var(--our-color-dark-blue);
+	font-weight: 600;
+}
+
+.coming-soon-message {
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.coming-soon-return {
+	display: flex;
+	flex-wrap: wrap;
+ justify-content: center;
+	margin-top: 2rem;
+	line-height: 2.5;
+	gap: 0.5rem;
+}
+
+.coming-soon-return a {
+	flex: 1 1 150px;
+	max-width: 250px;
+	padding: 0.75rem 1.5rem;
+	background-color: var(--our-color-blue);
+	color: white !important;
+	text-decoration: none;
+	border-radius: 4px;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+	margin: 0 0.5rem;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	50% {
+		transform: scale(1.1);
+		opacity: 0.8;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.coming-soon-return a:hover {
+	background-color: var(--our-color-dark-blue)b;
+	text-decoration: none;
+}
+
+@media (max-width: 600px) {
+	.coming-soon-return {
+		flex-direction: column;
+		align-items: center;
+	}
 }
