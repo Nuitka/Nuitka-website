@@ -490,7 +490,6 @@ a[class~="headerlink"]:visited {
 		padding: 0;
 		padding-bottom: 2px;
 		z-index: 100;
-		background-color: white;
 	}
 }
 
@@ -507,10 +506,11 @@ a[class~="headerlink"]:visited {
 
 .top_link_nav {
 	border: 2px solid lightgray;
-	width: fit-content;
+	width: 100%;
 	margin-bottom: 20px;
 	padding-bottom: 0;
 	border-radius: 3.6rem;
+	background-color: white;
 }
 
 .top_link_nav ul {
