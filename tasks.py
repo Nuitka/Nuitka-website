@@ -24,6 +24,9 @@ def virtualenv(c):
     # always.
     c.run(f"{sys.executable} -m pipenv run python -m pip install black==24.10.0")
 
+    # Install node while we are here, probably worth renaming the task
+    c.run(f"npm install")
+
 
 @task
 def serve(c):
