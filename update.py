@@ -110,8 +110,7 @@ from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.ReExecute import callExecProcess
 from nuitka.utils.Rest import makeTable
 
-in_devcontainer = os.getenv("REMOTE_CONTAINERS_DISPLAY_SOCK") is not None
-
+in_devcontainer = os.getenv("IN_DEVCONTAINER") == "1"
 FA_STYLE_MAP = {
     "fas": "solid",
     "far": "regular",
@@ -977,19 +976,22 @@ def _processWithPostCSS(css_content):
         tmp_output_path = tmp_output.name
 
     try:
-       subprocess.run(
+       result = subprocess.run(
             ["npm", "run", "build:css"],
             env={**os.environ, "INPUT": tmp_input_path, "OUTPUT": tmp_output_path},
             capture_output=True,
             text=True,
-            check=True
         )
-    except subprocess.CalledProcessError as e:
-        my_print(f"PostCSS processing failed: {e}")
-        my_print(f"Error output: {e.stderr}")
-        return None
+
+       if result.stdout.strip():
+            my_print(f"PostCSS output: {result.stdout.strip()}")
+
+       if result.returncode != 0:
+            my_print(f"PostCSS processing failed: {result.stderr.strip()}")
+            return None
+
     except Exception as e:
-        my_print(f"Unexpected error in PostCSS processing: {e}")
+        my_print(f"Unexpected error running PostCSS: {e}")
         return None
 
     result = getFileContents(tmp_output_path, mode="r", encoding="utf-8")

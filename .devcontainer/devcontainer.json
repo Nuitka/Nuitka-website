@@ -67,6 +67,7 @@
         }
     },
     "containerEnv": {
-        "PIPENV_VERBOSITY": "-1"
+        "PIPENV_VERBOSITY": "-1",
+        "IN_DEVCONTAINER": "1"
     }
 }
