@@ -1394,7 +1394,7 @@ def runPostProcessing():
         with open(filename, "wb") as output:
             output.write(result)
 
-        if in_devcontainer:
+        if not in_devcontainer:
             _minifyHtml(filename)
 
     if in_devcontainer:
