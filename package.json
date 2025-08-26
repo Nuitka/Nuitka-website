@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "postcss $INPUT --output $OUTPUT --config postcss.config.js",
-    "build:html": "sh -c 'html-minifier-next --collapse-whitespace --remove-optional-tags --remove-redundant-attributes \"$INPUT\" -o \"$INPUT.min.html\" && mv \"$INPUT.min.html\" \"$INPUT\"'"
+    "build:html": "html-minifier-next --collapse-whitespace --remove-optional-tags --remove-redundant-attributes \"$INPUT\" -o \"$INPUT.min.html\" && mv \"$INPUT.min.html\" \"$INPUT\""
   },
   "repository": {
     "type": "git",
