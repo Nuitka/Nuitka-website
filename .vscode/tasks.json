@@ -1,81 +1,114 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "presentation": {
-        "panel": "shared",
-    },
-    "tasks": [
-        {
-            "label": "View Auto-Update Log",
-            "type": "shell",
-            "command": "tail -F ${workspaceFolder}/auto-update.log || true",
-            "problemMatcher": [],
-            "isBackground": true,
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "dedicated", // Opens in its own terminal panel
-                "showReuseMessage": false,
-                "clear": false
-            },
-            "runOptions": {
-                "runOn": "folderOpen" // Automatically run this task when the workspace is opened
-            }
-        },
-        {
-            "label": "rebuild all pages",
-            "type": "shell",
-            "command": "killall -SIGUSR2 sphinx-autobuild",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": [],
-            "presentation": {
-                "reveal": "never"
-            }
-        },
-        {
-            "label": "auto-format current file",
-            "type": "shell",
-            "command": "./auto-format ${file}",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "auto-format documents and code",
-            "type": "shell",
-            "command": "./auto-format *.py site/*.rst site/*/*.rst site/*.inc site/*/*.inc",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "auto-format JPEG images",
-            "type": "shell",
-            "command": "./auto-format images/*.jpg site/posts/images/*.jpg",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "auto-format PNG images",
-            "type": "shell",
-            "command": "./auto-format images/*.png doc/posts/images/*.png",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        }
-    ],
-    "typescript.tsc.autoDetect": "off",
-    "grunt.autoDetect": "off",
-    "jake.autoDetect": "off",
-    "gulp.autoDetect": "off",
-    "npm.autoDetect": "off"
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"presentation": {
+		"panel": "shared"
+	},
+	"tasks": [
+		{
+			"label": "View Auto-Update Log",
+			"type": "shell",
+			"command": "tail -F ${workspaceFolder}/auto-update.log || true",
+			"problemMatcher": [],
+			"isBackground": true,
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "dedicated", // Opens in its own terminal panel
+				"showReuseMessage": false,
+				"clear": false
+			},
+			"runOptions": {
+				"runOn": "folderOpen" // Automatically run this task when the workspace is opened
+			}
+		},
+		{
+			"label": "stop auto-update.sh",
+			"type": "shell",
+			"command": "pkill -f auto-update.sh || true",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "never"
+			},
+			"detail": "Stop any running auto-update.sh processes"
+		},
+		{
+			"label": "rebuild all pages",
+			"type": "shell",
+			"command": "killall -SIGUSR2 sphinx-autobuild",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "never"
+			}
+		},
+		{
+			"label": "run development mode",
+			"type": "shell",
+			"command": "./auto-update.sh --development",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"dependsOn": ["stop auto-update.sh"]
+		},
+		{
+			"label": "run production mode",
+			"type": "shell",
+			"command": "./auto-update.sh --production",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"dependsOn": ["stop auto-update.sh"]
+		},
+		{
+			"label": "auto-format current file",
+			"type": "shell",
+			"command": "./auto-format ${file}",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "auto-format documents and code",
+			"type": "shell",
+			"command": "./auto-format *.py site/*.rst site/*/*.rst site/*.inc site/*/*.inc",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "auto-format JPEG images",
+			"type": "shell",
+			"command": "./auto-format images/*.jpg site/posts/images/*.jpg",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "auto-format PNG images",
+			"type": "shell",
+			"command": "./auto-format images/*.png doc/posts/images/*.png",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": []
+		}
+	],
+	"typescript.tsc.autoDetect": "off",
+	"grunt.autoDetect": "off",
+	"jake.autoDetect": "off",
+	"gulp.autoDetect": "off",
+	"npm.autoDetect": "off"
 }
