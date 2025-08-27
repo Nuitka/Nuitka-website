@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "postcss input.css -o output.css --config postcss.config.js"
+    "build:css": "postcss $INPUT --output $OUTPUT --config postcss.config.js",
+    "build:html": "html-minifier-next --collapse-whitespace --remove-optional-tags --remove-redundant-attributes \"$INPUT\" -o \"$INPUT.min.html\" && mv \"$INPUT.min.html\" \"$INPUT\""
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,8 @@
   "dependencies": {
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.0.7",
+    "html-minifier-next": "^1.1.5",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1"
-  },
-  "devDependencies": {}
+  }
 }
