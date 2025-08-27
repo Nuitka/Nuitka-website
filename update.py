@@ -110,7 +110,7 @@ from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.ReExecute import callExecProcess
 from nuitka.utils.Rest import makeTable
 
-in_devcontainer = os.getenv("IN_DEVCONTAINER") == "1"
+development_mode = os.getenv("DEVELOPMENT_MODE") == "1"
 
 def updateDownloadPage():
     page_source = requests.get("https://nuitka.net/releases/").text
@@ -731,7 +731,7 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
 
     css_links[0].attrib["href"] = output_filename
     for css_link in css_links[1:]:
-        if in_devcontainer and "my_theme" in css_link.attrib["href"]:
+        if development_mode and "my_theme" in css_link.attrib["href"]:
             continue
 
         if "asciinema" in css_link.attrib["href"] and has_asciinema:
@@ -1103,7 +1103,7 @@ def runPostProcessing():
             for css_link in css_links
             if "combined_" not in css_link.get("href")
             if "copybutton" not in css_link.get("href") or has_highlight
-            if "my_theme" not in css_link.get("href") or not in_devcontainer
+            if "my_theme" not in css_link.get("href") or not development_mode
             if "asciinema" not in css_link.get("href")
         ]:
             _makeCssCombined(
@@ -1238,10 +1238,10 @@ def runPostProcessing():
         with open(filename, "wb") as output:
             output.write(document_bytes)
 
-        if not in_devcontainer:
+        if not development_mode:
             _minifyHtml(filename)
 
-    if in_devcontainer:
+    if development_mode:
         my_theme_filename = "output/_static/my_theme.css"
 
         assert os.path.exists(my_theme_filename), my_theme_filename
