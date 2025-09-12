@@ -20,6 +20,9 @@
 
 .. |GIT_LOGO| image:: /images/git.jpg
 
+.. |COMING_SOON_CLOCK| image:: /images/svg/coming-soon-clock.svg
+   :width: 30%
+
 .. |SUPPORTED_PYTHONS| replace::
 
    **Python 3** (3.4 — 3.13) and **Python 2** (2.6, 2.7)
