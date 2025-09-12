@@ -36,6 +36,7 @@ finalizer
 fontawesome
 freelists
 gettempdir
+Gitter
 Gitter"
 gsoc"
 hacl
