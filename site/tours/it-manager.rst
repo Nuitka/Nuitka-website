@@ -1,1 +1,1 @@
-.. include:: ../_includes/coming_soon.rst
+.. include:: ../_includes/coming_soon.inc

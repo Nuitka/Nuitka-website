@@ -133,22 +133,28 @@ FA_UTILITY_CLASSES = {
     "fa-2x",
     "fa-3x",
     "fa-4x",
-    "fa-5x"
+    "fa-5x",
 }
 
-FA_SVG_PATH = Path("site") / "images" / "fontawesome"
-IMAGES_SVG_PATH = Path("site") / "images"
+FA_SVG_PATH = "site/images/fontawesome"
 
-def add_inline_svg(element, svg_path, is_fa_icon=False, style_folder=None, icon_name=None):
-    if not svg_path.exists():
+
+def add_inline_svg(
+    element, svg_path, is_fa_icon=False, style_folder=None, icon_name=None
+):
+    if not os.path.exists(svg_path):
         if is_fa_icon and style_folder and icon_name:
-            my_print(f"Missing Font Awesome SVG: {svg_path.name}")
-            my_print("To fix, run the following command to copy it from the unpacked Pro+ tarball:\n")
-            my_print(f"cp <tar_dir>/svgs/{style_folder}/{icon_name}.svg <project_dir>/{style_folder}/{icon_name}.svg\n")
+            my_print(f"Missing Font Awesome SVG: {svg_path}")
+            my_print(
+                "To fix, run the following command to copy it from the unpacked Pro+ tarball:\n"
+            )
+            my_print(
+                f"cp <tar_dir>/svgs/{style_folder}/{icon_name}.svg <project_dir>/{style_folder}/{icon_name}.svg\n"
+            )
 
         raise FileNotFoundError(f"SVG file not found: {svg_path}")
 
-    svg_content = svg_path.read_text(encoding="utf-8")
+    svg_content = getFileContents(svg_path, encoding="utf-8")
     svg_content = re.sub(r"<!--.*?-->", "", svg_content, flags=re.DOTALL)
 
     svg_element = html.fragment_fromstring(svg_content, create_parent=False)
@@ -198,9 +204,8 @@ def add_inline_svg(element, svg_path, is_fa_icon=False, style_folder=None, icon_
         parent.append(tail_element)
 
 
-def inlineImagesSvg(doc):
+def inlineImagesSvg(doc, filename):
     for img_tag in doc.xpath("//img[@src]"):
-
         src = img_tag.get("src")
 
         if not src.endswith(".svg"):
@@ -209,13 +214,15 @@ def inlineImagesSvg(doc):
         if src.startswith(("http://", "https://")):
             continue
 
-        svg_path = (Path(__file__).resolve().parent / src.lstrip("/")).resolve()
+        svg_path = os.path.join(
+            os.path.dirname(__file__),
+            os.path.join(os.path.dirname(filename), src).lstrip("/"),
+        )
 
-        if not svg_path.exists():
-            file = Path(src).name
-            svg_path = IMAGES_SVG_PATH / file
+        assert os.path.exists(svg_path), (filename, src, svg_path)
 
         add_inline_svg(img_tag, svg_path)
+
 
 def inlineFontAwesomeSvg(doc):
     for i_tag in doc.xpath("//i[contains(@class, 'fa')]"):
@@ -227,8 +234,12 @@ def inlineFontAwesomeSvg(doc):
             style_class = "fas"
 
         icon_class = next(
-            (c for c in class_list if c.startswith("fa-") and c not in FA_UTILITY_CLASSES),
-            None
+            (
+                c
+                for c in class_list
+                if c.startswith("fa-") and c not in FA_UTILITY_CLASSES
+            ),
+            None,
         )
 
         if not style_class or not icon_class:
@@ -237,16 +248,15 @@ def inlineFontAwesomeSvg(doc):
         style_folder = FA_STYLE_MAP[style_class]
         icon_name = icon_class.replace("fa-", "")
 
-        svg_path = Path(FA_SVG_PATH / style_folder / f"{icon_name}.svg")
+        svg_path = os.path.join(FA_SVG_PATH, style_folder, f"{icon_name}.svg")
 
         add_inline_svg(
             i_tag,
             svg_path,
             is_fa_icon=True,
             style_folder=style_folder,
-            icon_name=icon_name
+            icon_name=icon_name,
         )
-
 
 
 def updateDownloadPage():
@@ -994,7 +1004,8 @@ def _processWithPostCSS(css_content):
                     my_print(f"Unexpected error in PostCSS processing: {e}")
                     return None
                 else:
-                    my_print("Ok, postcss output was: %s" % process.stdout)
+                    if process.stdout:
+                        my_print("Ok,but postcss output was: %s" % process.stdout)
 
                 # Read processed CSS
                 _postcss_cache[css_content] = getFileContents(tmp_output_path)
@@ -1354,7 +1365,7 @@ def runPostProcessing():
 
         doc = html.fromstring(document_bytes)
 
-        inlineImagesSvg(doc)
+        inlineImagesSvg(doc=doc, filename=filename)
         inlineFontAwesomeSvg(doc)
 
         result = html.tostring(
