@@ -20,7 +20,7 @@
 
 .. |GIT_LOGO| image:: /images/git.jpg
 
-.. |COMING_SOON_CLOCK| image:: /images/svg/coming-soon-clock.svg
+.. |COMING_SOON_CLOCK| image:: /images/coming-soon-clock.svg
    :width: 30%
 
 .. |SUPPORTED_PYTHONS| replace::
