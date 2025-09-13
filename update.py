@@ -112,6 +112,152 @@ from nuitka.utils.Rest import makeTable
 
 in_devcontainer = os.getenv("REMOTE_CONTAINERS_DISPLAY_SOCK") is not None
 
+FA_STYLE_MAP = {
+    "fas": "solid",
+    "far": "regular",
+    "fab": "brands",
+    "fal": "light",
+    "fad": "duotone",
+    "fat": "thin",
+    "fass": "sharp-solid",
+}
+
+FA_UTILITY_CLASSES = {
+    "fa",
+    "fa-fw",
+    "fa-spin",
+    "fa-pulse",
+    "fa-lg",
+    "fa-xs",
+    "fa-sm",
+    "fa-2x",
+    "fa-3x",
+    "fa-4x",
+    "fa-5x",
+}
+
+FA_SVG_PATH = "site/images/fontawesome"
+
+
+def add_inline_svg(
+    element, svg_path, is_fa_icon=False, style_folder=None, icon_name=None
+):
+    if not os.path.exists(svg_path):
+        if is_fa_icon and style_folder and icon_name:
+            my_print(f"Missing Font Awesome SVG: {svg_path}")
+            my_print(
+                "To fix, run the following command to copy it from the unpacked Pro+ tarball:\n"
+            )
+            my_print(
+                f"cp <tar_dir>/svgs/{style_folder}/{icon_name}.svg <project_dir>/{style_folder}/{icon_name}.svg\n"
+            )
+
+        raise FileNotFoundError(f"SVG file not found: {svg_path}")
+
+    svg_content = getFileContents(svg_path, encoding="utf-8")
+    svg_content = re.sub(r"<!--.*?-->", "", svg_content, flags=re.DOTALL)
+
+    svg_element = html.fragment_fromstring(svg_content, create_parent=False)
+
+    # For preserve colors from classes
+    if is_fa_icon:
+        for path in svg_element.xpath(".//path"):
+            if "fill" not in path.attrib:
+                path.set("fill", "currentColor")
+
+    attrs = dict(element.attrib)
+
+    for attr, value in attrs.items():
+        if attr == "src":
+            continue
+
+        # For cases when we are using font-size as width like we do in the arrow icon
+        if attr == "style" and "font-size" in value:
+            start = value.find("font-size")
+            end = value.find(";", start)
+
+            if end == -1:
+                end = len(value)
+
+            font_size_value = value[start:end].split(":", 1)[1].strip()
+            style_without_fs = (value[:start] + value[end:]).strip().rstrip(";")
+
+            value = f"{style_without_fs + '; ' if style_without_fs else ''}width: {font_size_value};"
+
+            svg_element.set("style", value)
+            continue
+
+        svg_element.set(attr, element.get(attr))
+
+    parent = element.getparent()
+    tail = element.tail
+
+    element.tail = None
+
+    parent.replace(element, svg_element)
+
+    if tail:
+        tail_element = html.Element("span")
+
+        tail_element.text = tail
+
+        parent.append(tail_element)
+
+
+def inlineImagesSvg(doc, filename):
+    for img_tag in doc.xpath("//img[@src]"):
+        src = img_tag.get("src")
+
+        if not src.endswith(".svg"):
+            continue
+
+        if src.startswith(("http://", "https://")):
+            continue
+
+        svg_path = os.path.join(
+            os.path.dirname(__file__),
+            os.path.join(os.path.dirname(filename), src).lstrip("/"),
+        )
+
+        assert os.path.exists(svg_path), (filename, src, svg_path)
+
+        add_inline_svg(img_tag, svg_path)
+
+
+def inlineFontAwesomeSvg(doc):
+    for i_tag in doc.xpath("//i[contains(@class, 'fa')]"):
+        class_list = i_tag.get("class", "").split()
+
+        style_class = next((cl for cl in class_list if cl in FA_STYLE_MAP), None)
+
+        if not style_class and "fa" in class_list:
+            style_class = "fas"
+
+        icon_class = next(
+            (
+                c
+                for c in class_list
+                if c.startswith("fa-") and c not in FA_UTILITY_CLASSES
+            ),
+            None,
+        )
+
+        if not style_class or not icon_class:
+            continue
+
+        style_folder = FA_STYLE_MAP[style_class]
+        icon_name = icon_class.replace("fa-", "")
+
+        svg_path = os.path.join(FA_SVG_PATH, style_folder, f"{icon_name}.svg")
+
+        add_inline_svg(
+            i_tag,
+            svg_path,
+            is_fa_icon=True,
+            style_folder=style_folder,
+            icon_name=icon_name,
+        )
+
 
 def updateDownloadPage():
     page_source = requests.get("https://nuitka.net/releases/").text
@@ -858,7 +1004,8 @@ def _processWithPostCSS(css_content):
                     my_print(f"Unexpected error in PostCSS processing: {e}")
                     return None
                 else:
-                    my_print("Ok, postcss output was: %s" % process.stdout)
+                    if process.stdout:
+                        my_print("Ok,but postcss output was: %s" % process.stdout)
 
                 # Read processed CSS
                 _postcss_cache[css_content] = getFileContents(tmp_output_path)
@@ -1216,8 +1363,20 @@ def runPostProcessing():
         document_bytes = document_bytes.replace(b"now &#187;", b"now&nbsp;&nbsp;&#187;")
         document_bytes = document_bytes.replace(b"/ yr", b'<i class="sub">/ yr</i>')
 
+        doc = html.fromstring(document_bytes)
+
+        inlineImagesSvg(doc=doc, filename=filename)
+        inlineFontAwesomeSvg(doc)
+
+        result = html.tostring(
+            doc,
+            encoding="UTF-8",
+            method="html",
+            doctype="<!DOCTYPE html>",
+        )
+
         with open(filename, "wb") as output:
-            output.write(document_bytes)
+            output.write(result)
 
     if in_devcontainer:
         my_theme_filename = "output/_static/my_theme.css"
