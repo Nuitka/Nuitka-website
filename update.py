@@ -966,9 +966,10 @@ _postcss_cache = {}
 
 
 def _processWithPostCSS(css_content):
-    """Process CSS content through PostCSS"""
+    """Process CSS content through PostCSS with PurgeCSS"""
 
     if css_content not in _postcss_cache:
+        original_size = len(css_content)
 
         # Create temporary input file
         with withTemporaryFile(suffix=".css", mode="w") as tmp_input:
@@ -1008,7 +1009,14 @@ def _processWithPostCSS(css_content):
                         my_print("Ok,but postcss output was: %s" % process.stdout)
 
                 # Read processed CSS
-                _postcss_cache[css_content] = getFileContents(tmp_output_path)
+                processed_css = getFileContents(tmp_output_path)
+                _postcss_cache[css_content] = processed_css
+
+                # Report CSS size reduction
+                processed_size = len(processed_css)
+                if original_size > 0:
+                    reduction_percent = (original_size - processed_size) / original_size * 100
+                    my_print(f"CSS reduced by {reduction_percent:.1f}% ({original_size} → {processed_size} bytes)")
 
     return _postcss_cache[css_content]
 
