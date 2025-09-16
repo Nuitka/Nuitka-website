@@ -20,9 +20,9 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [ "${DEVELOPMENT_MODE:-0}" -eq 1 ]; then
-    echo "Running in DEVELOPMENT mode" | tee -a auto-update.log
+    echo "Running in DEVELOPMENT mode"
 else
-    echo "Running in PRODUCTION mode" | tee -a auto-update.log
+    echo "Running in PRODUCTION mode"
 fi
 python3 -m invoke --help 2>/dev/null >/dev/null || python3 -m pip install invoke
 python3 -m invoke virtualenv
