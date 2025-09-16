@@ -29,6 +29,11 @@ run is most meaningful, and eliminates usage spikes.
    echo "Compiled Python3"
    for i in {1..100}; do BENCH=1 ./pystone3.bin ; done | sort -rn | head -n 1
 
+.. note::
+
+   For the pystone benchmark, higher values are better. The numbers in
+   parenthesis are factors, comparing to the uncompiled version.
+
 +-------------------+-------------------+----------------------+---------------------+
 | Python            | Uncompiled        | Compiled LTO         | Compiled PGO        |
 +===================+===================+======================+=====================+
