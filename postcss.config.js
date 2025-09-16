@@ -64,6 +64,29 @@ module.exports = {
 
 		require("autoprefixer"),
 
+		require("@fullhuman/postcss-purgecss").default({
+			content: ["output/**/*.html"],
+			safelist: [
+				// Font Awesome classes
+				/^fa-/,
+				/^fas$/,
+				/^far$/,
+				/^fab$/,
+				/^fa$/,
+				// Sphinx Design classes
+				/^sd-/,
+				// Hub-related classes
+				/^hub-/,
+				// Classes that might be added by JS
+				/^carousel/,
+				/^active$/,
+				/^current/,
+				// Utility classes
+				/^highlight/,
+			],
+			defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+		}),
+
 		require("cssnano")({
 			preset: [
 				"default",
