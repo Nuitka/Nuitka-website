@@ -1015,16 +1015,26 @@ def _minifyHtml(filename):
     my_print("Minifying HTML:", filename)
 
     try:
-       subprocess.run(
+        result = subprocess.run(
             ["npm", "run", "build:html"],
             env={**os.environ, "INPUT": filename},
+            capture_output=True,
             text=True,
-            check=True
         )
-    except subprocess.CalledProcessError as e:
-        my_print(f"HTML processing failed: {e}")
-        my_print(f"Error output: {e.stderr}")
-        return None
+
+        if result.stdout.strip():
+            my_print(f"HTML-minifier output: {result.stdout.strip()}")
+
+        if result.returncode != 0:
+            my_print(f"HTML-minifier failed: {result.stderr.strip()}")
+            return None
+
+        if os.path.exists(filename):
+            os.replace(filename, filename)
+        else:
+            my_print(f"Expected minified file not found: {filename}")
+            return None
+
     except Exception as e:
         my_print(f"Unexpected error in HTML processing: {e}")
         return None
