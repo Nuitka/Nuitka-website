@@ -110,8 +110,7 @@ from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.ReExecute import callExecProcess
 from nuitka.utils.Rest import makeTable
 
-in_devcontainer = os.getenv("REMOTE_CONTAINERS_DISPLAY_SOCK") is not None
-
+development_mode = os.getenv("DEVELOPMENT_MODE") == "1"
 FA_STYLE_MAP = {
     "fas": "solid",
     "far": "regular",
@@ -878,7 +877,7 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
 
     css_links[0].attrib["href"] = output_filename
     for css_link in css_links[1:]:
-        if in_devcontainer and "my_theme" in css_link.attrib["href"]:
+        if development_mode and "my_theme" in css_link.attrib["href"]:
             continue
 
         if "asciinema" in css_link.attrib["href"] and has_asciinema:
@@ -967,50 +966,85 @@ _postcss_cache = {}
 
 def _processWithPostCSS(css_content):
     """Process CSS content through PostCSS"""
+    if css_content in _postcss_cache:
+        return _postcss_cache[css_content]
 
-    if css_content not in _postcss_cache:
+    with withTemporaryFile(suffix=".css", mode="w", delete=False) as tmp_input:
+        tmp_input.write(css_content)
+        tmp_input_path = tmp_input.name
 
-        # Create temporary input file
-        with withTemporaryFile(suffix=".css", mode="w") as tmp_input:
-            tmp_input.write(css_content)
-            tmp_input_path = tmp_input.name
+    with withTemporaryFile(mode="w", suffix=".css", delete=False) as tmp_output:
+        tmp_output_path = tmp_output.name
 
-            # Create temporary output file
-            with withTemporaryFile(mode="w", suffix=".css") as tmp_output:
-                tmp_output_path = tmp_output.name
+    try:
+        result = subprocess.run(
+            ["npm", "run", "build:css"],
+            env={**os.environ, "INPUT": tmp_input_path, "OUTPUT": tmp_output_path},
+            capture_output=True,
+            text=True,
+        )
 
-                # Run PostCSS
-                try:
-                    process = subprocess.run(
-                        [
-                            "npx",
-                            "postcss",
-                            tmp_input_path,
-                            "--output",
-                            tmp_output_path,
-                            "--config",
-                            "postcss.config.js",
-                        ],
-                        capture_output=True,
-                        text=True,
-                        check=True,
-                    )
-                except subprocess.CalledProcessError as e:
-                    my_print(f"PostCSS processing failed: {e}")
-                    my_print(f"Error output: {e.stderr}")
-                    # Fallback to original CSS if PostCSS fails
-                    return None
-                except Exception as e:
-                    my_print(f"Unexpected error in PostCSS processing: {e}")
-                    return None
-                else:
-                    if process.stdout:
-                        my_print("Ok,but postcss output was: %s" % process.stdout)
+        if result.stdout.strip():
+            my_print(f"PostCSS output: {result.stdout.strip()}")
 
-                # Read processed CSS
-                _postcss_cache[css_content] = getFileContents(tmp_output_path)
+        if result.returncode != 0:
+            my_print(f"PostCSS processing failed: {result.stderr.strip()}")
+            return None
 
-    return _postcss_cache[css_content]
+    except Exception as e:
+        my_print(f"Unexpected error running PostCSS: {e}")
+        return None
+
+    result = getFileContents(tmp_output_path, mode="r", encoding="utf-8")
+
+    _postcss_cache[css_content] = result
+
+    os.remove(tmp_input_path)
+    os.remove(tmp_output_path)
+
+    return result
+
+
+_html_minifier_cache = {}
+
+
+def _minifyHtml(filename):
+    """Process HTML content through HTML-MINIFIER"""
+    if filename in _html_minifier_cache:
+        with open(filename, "w", encoding="utf-8") as output:
+            output.write(_html_minifier_cache[filename])
+        return
+
+    my_print("Minifying HTML:", filename)
+
+    try:
+        result = subprocess.run(
+            ["npm", "run", "build:html"],
+            env={**os.environ, "INPUT": filename},
+            capture_output=True,
+            text=True,
+        )
+
+        if result.stdout.strip():
+            my_print(f"HTML-minifier output: {result.stdout.strip()}")
+
+        if result.returncode != 0:
+            my_print(f"HTML-minifier failed: {result.stderr.strip()}")
+            return None
+
+        if os.path.exists(filename):
+            os.replace(filename, filename)
+        else:
+            my_print(f"Expected minified file not found: {filename}")
+            return None
+
+    except Exception as e:
+        my_print(f"Unexpected error in HTML processing: {e}")
+        return None
+
+    _html_minifier_cache[filename] = getFileContents(
+        filename, mode="r", encoding="utf-8"
+    )
 
 
 def handleJavaScript(filename, doc):
@@ -1231,7 +1265,7 @@ def runPostProcessing():
             for css_link in css_links
             if "combined_" not in css_link.get("href")
             if "copybutton" not in css_link.get("href") or has_highlight
-            if "my_theme" not in css_link.get("href") or not in_devcontainer
+            if "my_theme" not in css_link.get("href") or not development_mode
             if "asciinema" not in css_link.get("href")
         ]:
             _makeCssCombined(
@@ -1378,7 +1412,10 @@ def runPostProcessing():
         with open(filename, "wb") as output:
             output.write(result)
 
-    if in_devcontainer:
+        if not development_mode:
+            _minifyHtml(filename)
+
+    if development_mode:
         my_theme_filename = "output/_static/my_theme.css"
 
         assert os.path.exists(my_theme_filename), my_theme_filename

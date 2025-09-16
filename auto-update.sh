@@ -1,5 +1,29 @@
 #!/bin/bash
 
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --development)
+            DEVELOPMENT_MODE=1
+            echo "Overriding to DEVELOPMENT mode (from flag)" | tee -a auto-update.log
+            shift
+            ;;
+        --production)
+            DEVELOPMENT_MODE=0
+            echo "Overriding to PRODUCTION mode (from flag)" | tee -a auto-update.log
+            shift
+            ;;
+        *)
+            echo "Unknown argument: $1"
+            shift
+            ;;
+    esac
+done
+
+if [ "${DEVELOPMENT_MODE:-0}" -eq 1 ]; then
+    echo "Running in DEVELOPMENT mode"
+else
+    echo "Running in PRODUCTION mode"
+fi
 python3 -m invoke --help 2>/dev/null >/dev/null || python3 -m pip install invoke
 python3 -m invoke virtualenv
 

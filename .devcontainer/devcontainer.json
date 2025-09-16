@@ -15,7 +15,7 @@
             "command": "python3 -m pip install --break invoke pipenv"
         },
          "ghcr.io/devcontainers/features/node:1": {
-               "version": "18"
+               "version": "20"
           },
         "ghcr.io/hwaien/devcontainer-features/match-host-time-zone": {}
     },
@@ -34,7 +34,8 @@
         "set_timezone": "sudo dpkg-reconfigure tzdata -f none",
         "create_supervisor_log_dir": "sudo mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs",
         "chown_supervisor_log_dir": "sudo chown -R vscode:vscode ${containerWorkspaceFolder}/.devcontainer/supervisor",
-        "npm_install": "npm install"
+        "npm_install": "npm install",
+        "fix_paste": "echo \"bind 'set enable-bracketed-paste off'\" >> /home/vscode/.bashrc"
     },
 
 
@@ -67,6 +68,7 @@
         }
     },
     "containerEnv": {
-        "PIPENV_VERBOSITY": "-1"
+        "PIPENV_VERBOSITY": "-1",
+        "DEVELOPMENT_MODE": "1"
     }
 }
