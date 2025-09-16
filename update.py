@@ -963,6 +963,7 @@ def fixupSymbols(document_bytes):
 
 _postcss_cache = {}
 
+
 def _processWithPostCSS(css_content):
     """Process CSS content through PostCSS"""
     if css_content in _postcss_cache:
@@ -976,17 +977,17 @@ def _processWithPostCSS(css_content):
         tmp_output_path = tmp_output.name
 
     try:
-       result = subprocess.run(
+        result = subprocess.run(
             ["npm", "run", "build:css"],
             env={**os.environ, "INPUT": tmp_input_path, "OUTPUT": tmp_output_path},
             capture_output=True,
             text=True,
         )
 
-       if result.stdout.strip():
+        if result.stdout.strip():
             my_print(f"PostCSS output: {result.stdout.strip()}")
 
-       if result.returncode != 0:
+        if result.returncode != 0:
             my_print(f"PostCSS processing failed: {result.stderr.strip()}")
             return None
 
@@ -1003,7 +1004,9 @@ def _processWithPostCSS(css_content):
 
     return result
 
+
 _html_minifier_cache = {}
+
 
 def _minifyHtml(filename):
     """Process HTML content through HTML-MINIFIER"""
@@ -1039,7 +1042,10 @@ def _minifyHtml(filename):
         my_print(f"Unexpected error in HTML processing: {e}")
         return None
 
-    _html_minifier_cache[filename] = getFileContents(filename, mode="r", encoding="utf-8")
+    _html_minifier_cache[filename] = getFileContents(
+        filename, mode="r", encoding="utf-8"
+    )
+
 
 def handleJavaScript(filename, doc):
     # Check copybutton.js
