@@ -218,11 +218,6 @@ Bug Fixes
    methods were incorrectly exposed for Python 3.11 and 3.12. (Fixed in
    2.7.7 already.)
 
--  **Onefile**: The ``containing_dir`` attribute of the ``__compiled__``
-   object was regressed in DLL mode on **Windows**, pointing to the
-   temporary DLL directory instead of the directory containing the
-   onefile binary. (Fixed in 2.7.9 already.)
-
 -  **Plugins**: Avoided loading modules when checking for data file
    existence. This prevents unnecessary module loading and potential
    crashes in broken installations. (Fixed in 2.7.9 already.)
@@ -232,6 +227,76 @@ Bug Fixes
    instead of just function names, preventing incorrect replacements of
    methods with the same name in different classes. (Fixed in 2.7.9
    already.)
+
+-  **Onefile**: The ``containing_dir`` attribute of the ``__compiled__``
+   object was regressed in DLL mode on **Windows**, pointing to the
+   temporary DLL directory instead of the directory containing the
+   onefile binary. (Fixed in 2.7.10 already, note that the solution in
+   2.7.9 had a regression.)
+
+-  **Compatibility**: Fixed a crash that occurred when an import
+   attempted to go outside of its package boundaries. (Fixed in 2.7.11
+   already.)
+
+-  **macOS**: Ignored a warning from ``codesign`` when using self-signed
+   certificates. (Fixed in 2.7.11 already.)
+
+-  **Onefile**: Fixed an issue in DLL mode where environment variables
+   from other onefile processes (related to temporary paths and process
+   IDs) were not being ignored, which could lead to conflicts. (Fixed in
+   2.7.12 already.)
+
+-  **Compatibility**: Fixed a potential crash that could occur when
+   processing an empty code body. (Fixed in 2.7.13 already.)
+
+-  **Plugins**: Ensured that DLL directories created by plugins could be
+   at the top level when necessary, improving flexibility. (Fixed in
+   2.7.13 already.)
+
+-  **Onefile**: On **Windows**, corrected an issue in DLL mode where
+   ``original_argv0`` was ``None``; it is now properly set. (Fixed in
+   2.7.13 already.)
+
+-  **macOS**: Avoided a warning that appeared on newer macOS versions.
+   (Fixed in 2.7.13 already.)
+
+-  **macOS**: Allowed another DLL to be missing for ``PySide6`` to
+   support more setups. (Fixed in 2.7.13 already.)
+
+-  **Standalone**: Corrected the existing import workaround for Python
+   3.12 that was incorrectly renaming existing modules of matching names
+   into sub-modules of the currently imported module. (Fixed in 2.7.14
+   already.)
+
+-  **Standalone**: On **Windows**, ensured that the DLL search path
+   correctly uses the proper DLL directory. (Fixed in 2.7.14 already.)
+
+-  **Python 3.5+**: Fixed a memory leak where the called object could be
+   leaked in calls with keyword arguments following a star dict
+   argument. (Fixed in 2.7.14 already.)
+
+-  **Python 3.13**: Fixed an issue where ``PyState_FindModule`` was not
+   working correctly with extension modules due to sub-interpreter
+   changes. (Fixed in 2.7.14 already.)
+
+-  **Onefile**: Corrected an issue where the process ID (PID) was not
+   set in a timely manner, which could affect onefile operations. (Fixed
+   in 2.7.14 already.)
+
+-  **Standalone**: Added support for the ``gdsfactory``, ``klayout``,
+   and ``kfactory`` packages. (Added in 2.7.15 already.)
+
+-  **Standalone**: Added missing data files for the ``trimesh`` package.
+   (Added in 2.7.15 already.)
+
+-  **Standalone**: Added support for newer versions of the
+   ``tkinterweb`` package. (Added in 2.7.15 already.)
+
+-  **Standalone**: Added support for newer versions of the
+   ``cmsis_pack_manager`` package. (Added in 2.7.15 already.)
+
+-  **Standalone**: Added missing data files for the ``idlelib`` package.
+   (Added in 2.7.15 already.)
 
 Package Support
 ===============
@@ -296,6 +361,45 @@ Package Support
 -  **Standalone**: Added support for the ``reportlab.graphics.barcode``
    module. (Added in 2.7.9 already.)
 
+-  **Standalone**: Added support for newer versions of the
+   ``transformers`` package. (Added in 2.7.11 already.)
+
+-  **Standalone**: Added support for newer versions of the ``sklearn``
+   package. (Added in 2.7.12 already.)
+
+-  **Standalone**: Added support for newer versions of the ``scipy``
+   package. (Added in 2.7.12 already.)
+
+-  **Standalone**: Added support for older versions of the ``cv2``
+   package (specifically version 4.4). (Added in 2.7.12 already.)
+
+-  **Standalone**: Added initial support for the ``vllm`` package.
+   (Added in 2.7.12 already.)
+
+-  **Standalone**: Ensured all necessary DLLs for the ``pygame`` package
+   are included. (Added in 2.7.12 already.)
+
+-  **Standalone**: Added support for newer versions of the
+   ``zaber_motion`` package. (Added in 2.7.13 already.)
+
+-  **Standalone**: Added missing dependencies for the ``pymediainfo``
+   package. (Added in 2.7.13 already.)
+
+-  **Standalone**: Added support for newer versions of the ``sklearn``
+   package by including a missing dependency. (Added in 2.7.13 already.)
+
+-  **Standalone**: Added support for newer versions of the ``toga``
+   package. (Added in 2.7.14 already.)
+
+-  **Standalone**: Added support for the ``wordninja-enhanced`` package.
+   (Added in 2.7.14 already.)
+
+-  **Standalone**: Added support for the ``Fast-SSIM`` package. (Added
+   in 2.7.14 already.)
+
+-  **Standalone**: Added a missing data file for the ``rfc3987_syntax``
+   package. (Added in 2.7.14 already.)
+
 New Features
 ============
 
@@ -303,7 +407,7 @@ New Features
    engine, allowing function replacements across all sub-modules of a
    package at once. (Added in 2.7.6 already.)
 
--  **Reports**: For Python 3.13, the compilation report now includes
+-  **Reports**: For Python 3.13+, the compilation report now includes
    information on GIL usage. (Added in 2.7.7 already.)
 
 -  **macOS**: Added an option to prevent an application from running in
@@ -348,6 +452,15 @@ Anti-Bloat
 
 -  Avoided including ``unittest`` from the ``reportlab`` package. (Added
    in 2.7.6 already.)
+
+-  Avoided including ``IPython`` for the ``keras`` package using a more
+   global approach. (Added in 2.7.11 already.)
+
+-  Avoided including the ``triton`` package when compiling
+   ``transformers``. (Added in 2.7.11 already.)
+
+-  Avoided a bloat warning for an optional import in the ``seaborn``
+   package. (Added in 2.7.13 already.)
 
 -  Avoid compiling generated ``google.protobuf.*_pb2`` files. (Added in
    2.7.7 already.)
