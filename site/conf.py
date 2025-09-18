@@ -33,9 +33,6 @@ blog_feed_fulltext = True
 blog_feed_archives = True
 blog_feed_length = None
 
-# RTD theme has fontawesome used, allow ablog to use it too.
-fontawesome_included = True
-
 # TODO: Optimized feeds one day?
 x_blog_feed_templates = {
     # Use defaults, no templates
