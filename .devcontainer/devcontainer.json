@@ -70,5 +70,8 @@
     "containerEnv": {
         "PIPENV_VERBOSITY": "-1",
         "DEVELOPMENT_MODE": "1"
-    }
+    },
+    "mounts": [
+        "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    ]
 }
