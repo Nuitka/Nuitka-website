@@ -144,12 +144,22 @@ FA_UTILITY_CLASSES = {
 }
 
 FA_SVG_PATH = "site/images/fontawesome"
+SVG_SOURCE_PATH = "images/svg"
 
 FA_REPLACEMENT_CLASS = {
     "fa": "nuitka-fa",
     "fa-fw": "nuitka-fw",
 }
 
+
+SVG_CACHE = {}
+
+def get_svg_content(svg_path):
+    if svg_path not in SVG_CACHE:
+        if not os.path.exists(svg_path):
+            raise FileNotFoundError(f"SVG not found: {svg_path}")
+        SVG_CACHE[svg_path] = getFileContents(svg_path, encoding="utf-8")
+    return SVG_CACHE[svg_path]
 
 def add_inline_svg(
     element, svg_path, is_fa_icon=False, style_folder=None, icon_name=None
@@ -166,7 +176,7 @@ def add_inline_svg(
 
         raise FileNotFoundError(f"SVG file not found: {svg_path}")
 
-    svg_content = getFileContents(svg_path, encoding="utf-8")
+    svg_content = get_svg_content(svg_path)
     svg_content = re.sub(r"<!--.*?-->", "", svg_content, flags=re.DOTALL)
 
     svg_element = html.fragment_fromstring(svg_content, create_parent=False)
@@ -232,15 +242,22 @@ def inlineImagesSvg(doc, filename):
         if src.startswith(("http://", "https://")):
             continue
 
-        svg_path = os.path.join(
-            os.path.dirname(__file__),
-            os.path.join(os.path.dirname(filename), src).lstrip("/"),
-        )
+        src_clean = os.path.basename(src)
+
+        svg_path = f"{SVG_SOURCE_PATH}/{src_clean}"
 
         assert os.path.exists(svg_path), (filename, src, svg_path)
 
         add_inline_svg(img_tag, svg_path)
 
+        output_svg_path = os.path.join("output", "_images", src_clean)
+
+        if os.path.exists(output_svg_path):
+            try:
+                os.remove(output_svg_path)
+                my_print(f"Removed inlined SVG from build: {output_svg_path}")
+            except Exception as e:
+                my_print(f"Warning: could not remove {output_svg_path}: {e}")
 
 def inlineFontAwesomeSvg(doc):
     for i_tag in doc.xpath("//i[contains(@class, 'fa')]"):
