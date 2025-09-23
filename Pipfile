@@ -16,6 +16,7 @@ asciinema-automation = "*"
 ordered-set = "*"
 zstandard = "*"
 esbonio = "*"
+pytest-playwright = "*"
 
 [packages]
 restructuredtext-lint = "*"
