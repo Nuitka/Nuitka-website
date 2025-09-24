@@ -1717,7 +1717,7 @@ When given, the site is deployed. Default %default.""",
         runDeploymentCommand()
 
     if options.update_golden:
-        return runUpdateGolden(
+        runUpdateGolden(
             browsers=options.browsers.split(",") if options.browsers else None,
             devices=options.devices.split(",") if options.devices else None,
             pages=options.pages.split(",") if options.pages else None,
