@@ -289,6 +289,14 @@ Bug Fixes
 -  **Standalone**: Added missing data files for the ``trimesh`` package.
    (Added in 2.7.15 already.)
 
+-  **Compatibility**: Fixed a crash that could occur when a function
+   with both a star-list argument and keyword-only arguments was called
+   without any arguments. (Fixed in 2.7.16 already.)
+
+-  **Standalone**: Corrected an issue where distribution names were not
+   checked case-insensitively, which could lead to metadata not being
+   included. (Fixed in 2.7.16 already.)
+
 -  **Standalone**: Added support for newer versions of the
    ``tkinterweb`` package. (Added in 2.7.15 already.)
 
@@ -400,6 +408,9 @@ Package Support
 -  **Standalone**: Added a missing data file for the ``rfc3987_syntax``
    package. (Added in 2.7.14 already.)
 
+-  **Standalone**: Added support for the ``vllm`` package. (Added in
+   2.7.16 already.)
+
 New Features
 ============
 
@@ -464,6 +475,13 @@ Anti-Bloat
 
 -  Avoid compiling generated ``google.protobuf.*_pb2`` files. (Added in
    2.7.7 already.)
+
+-  **Anti-Bloat**: Avoided including ``triton`` and ``setuptools`` when
+   using the ``xformers`` package. (Added in 2.7.16 already.)
+
+-  **Anti-Bloat**: Refined ``dask`` support to not remove
+   ``pandas.testing`` when ``pytest`` usage is allowed. (Added in 2.7.16
+   already.)
 
 Organizational
 ==============
