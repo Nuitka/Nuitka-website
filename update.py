@@ -1500,7 +1500,7 @@ def runUpdateGolden(browsers=None, devices=None, pages=None, wait=None, clean=Fa
     wait = wait or DEFAULT_WAIT_TIME
 
     if verbose:
-        my_print(f"Configuration:")
+        my_print("Configuration:")
         my_print(f"- Browsers: {browsers}")
         my_print(f"- Devices: {devices}")
         my_print(f"- Pages: {pages}")
