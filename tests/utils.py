@@ -17,11 +17,7 @@ from const import VIEWPORTS, GOLDEN_PAGES, BASE_URL, GOLDEN_DIR, CURRENT_DIR, DI
 
 def sanitizeUrl(url):
     path = urlparse(url).path
-    if path in ("", "/"):
-        path = "home"
-    else:
-        path = path.lstrip("/")
-
+    path = "home" if path in ("", "/") else path.lstrip("/")
     return re.sub(r'[^a-zA-Z0-9_-]', '_', path)
 
 def get_context_options(browser_name, mode):
