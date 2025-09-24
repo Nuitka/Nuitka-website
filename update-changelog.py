@@ -174,7 +174,8 @@ Bug Fixes, Optimization, New Features, Cleanups) and write a clear, concise summ
 
 Follow these style guidelines precisely:
 - The output must be valid ReStructuredText and be in the style of other Changelog files in this repo.
-- Group related changes under appropriate headings like "Bug Fixes", "Optimization", etc.
+- Group related changes under appropriate existing headings like "Bug Fixes", "Optimization", etc.
+- Put new changelog items at the end of the section where they are added.
 - For each item, write a in the past tense, ending with "(Fixed in {hotfix_version} already.)", for
   new features, "Added" should be used rather than "Fixed".
 
