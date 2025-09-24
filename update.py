@@ -1487,6 +1487,60 @@ def runSphinxAutoBuild():
 
     callExecProcess(args, uac=False)
 
+tests_dir = Path(__file__).parent / "tests"
+sys.path.insert(0, str(tests_dir.resolve()))
+
+from tests.utils import update_golden_images
+from tests.const import BROWSERS, VIEWPORTS, GOLDEN_PAGES, GOLDEN_DIR, DEFAULT_WAIT_TIME
+
+def runUpdateGolden(browsers=None, devices=None, pages=None, wait=None, clean=False, verbose=False):
+    browsers = browsers or BROWSERS
+    devices = devices or list(VIEWPORTS.keys())
+    pages = pages or GOLDEN_PAGES
+    wait = wait or DEFAULT_WAIT_TIME
+
+    if verbose:
+        my_print(f"Configuration:")
+        my_print(f"- Browsers: {browsers}")
+        my_print(f"- Devices: {devices}")
+        my_print(f"- Pages: {pages}")
+        my_print(f"- Wait time: {wait} ms")
+        my_print(f"- Clean directory: {'Yes' if clean else 'No'}")
+
+    golden_dir = Path(GOLDEN_DIR)
+    if clean:
+        if golden_dir.exists():
+            my_print(f"Cleaning reference images directory: {golden_dir}")
+            for file in golden_dir.glob("*.png"):
+                file.unlink()
+        else:
+            my_print(f"Creating reference images directory: {golden_dir}")
+            golden_dir.mkdir(parents=True, exist_ok=True)
+
+    Path(GOLDEN_DIR).mkdir(parents=True, exist_ok=True)
+
+    try:
+        print("Starting reference images update...")
+        update_golden_images(
+            browsers_to_use=browsers,
+            modes_to_use=devices,
+            pages_to_update=pages,
+            wait_time=wait
+        )
+        my_print("Update completed successfully!")
+    except Exception as e:
+        my_print(f"Error during update: {e}")
+        import traceback
+        traceback.print_exc()
+        return 1
+
+    my_print("Summary:")
+    my_print(f"- Browsers: {len(browsers)}")
+    my_print(f"- Viewports: {len(devices)}")
+    my_print(f"- Pages: {len(pages)}")
+    my_print(f"- Total images: {len(browsers) * len(devices) * len(pages)}")
+    return 0
+
 
 def getTranslationStatus():
     status = {}
@@ -1586,6 +1640,59 @@ When given, the site is re-built on changes and served locally. Default %default
 When given, the site is deployed. Default %default.""",
     )
 
+    parser.add_option(
+        "--update-golden",
+        action="store_true",
+        dest="update_golden",
+        default=False,
+        help="Update reference images"
+    )
+
+    parser.add_option(
+        "--browsers",
+        dest="browsers",
+        default=None,
+        help="Comma-separated list of browsers to use"
+    )
+
+    parser.add_option(
+        "--devices",
+        dest="devices",
+        default=None,
+        help="Comma-separated list of device types to use"
+    )
+
+    parser.add_option(
+        "--pages",
+        dest="pages",
+        default=None,
+        help="Comma-separated list of pages to update"
+    )
+
+    parser.add_option(
+        "--wait",
+        type="int",
+        dest="wait",
+        default=None,
+        help="Wait time in milliseconds before capture"
+    )
+
+    parser.add_option(
+        "--clean",
+        action="store_true",
+        dest="clean",
+        default=False,
+        help="Clean images directory before updating"
+    )
+
+    parser.add_option(
+        "--verbose",
+        action="store_true",
+        dest="verbose",
+        default=False,
+        help="Show detailed information during execution"
+    )
+
     options, positional_args = parser.parse_args()
 
     assert not positional_args, positional_args
@@ -1609,6 +1716,15 @@ When given, the site is deployed. Default %default.""",
     if options.deploy:
         runDeploymentCommand()
 
+    if options.update_golden:
+        return runUpdateGolden(
+            browsers=options.browsers.split(",") if options.browsers else None,
+            devices=options.devices.split(",") if options.devices else None,
+            pages=options.pages.split(",") if options.pages else None,
+            wait=options.wait,
+            clean=options.clean,
+            verbose=options.verbose
+        )
 
 if __name__ == "__main__":
     importNuitka()

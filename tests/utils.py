@@ -1,91 +1,86 @@
-from nuitka.Tracing import my_print
-import os
 import re
-from playwright.sync_api import Page, expect
+import os
+import sys
 from PIL import Image, ImageChops, ImageDraw
 import math
+from urllib.parse import urlparse
 
-GOLDEN_PAGES = [
-    "/",
-    "doc/developer-manual.html",
-    "doc/download.html",
-    "commercial/purchase.html",
-    "changelog/index.html",
-    "changelog/Changelog.html",
-    "user-documentation/nuitka-package-config.html",
-    "user-documentation/user-manual.html",
-    "user-documentation/use-cases.html",
-    "user-documentation/common-issue-solutions.html",
-    "posts/nuitka-package-config-kickoff.html",
-    "doc/api-doc.html",
-    "doc/download.html",
-    "changelog/Changelog-next.html",
-    "posts/nuitka-shaping-up.html",
-    "doc/commercial.html",
-    "doc/commercial/protect-data-files.html",
-    "posts/nuitka-package-config-part2.html",
-    "user-documentation/tips.html",
-    "posts/nuitka-package-config-part3.html",
-    "pages/website-manual.html",
-]
+sys.path.insert(
+    0,
+    os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "../Nuitka-develop")
+    )
+)
+from nuitka.Tracing import my_print
 
-VIEWPORTS = {
-    "desktop": {
-        "viewport": {"width": 1920, "height": 1080},
-        "device_scale_factor": 1,
-        "is_mobile": False,
-        "has_touch": False,
-    },
-    "mobile": {
-        "viewport": {"width": 390, "height": 844},
-        "device_scale_factor": 3,
-        "is_mobile": True,
-        "has_touch": True,
-        "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)...",
-    },
-}
+from const import VIEWPORTS, GOLDEN_PAGES, BASE_URL, GOLDEN_DIR, CURRENT_DIR, DIFF_DIR, BROWSERS, COMPARISON_THRESHOLD, DEFAULT_WAIT_TIME
 
-def sanitizeUrl(url: str) -> str:
-    return re.sub(r'[^a-zA-Z0-9]', '_', url)
+def sanitizeUrl(url):
+    path = urlparse(url).path
+    if path in ("", "/"):
+        path = "home"
+    else:
+        path = path.lstrip("/")
 
-def takeScreenshot(browser, url, mode, base_path="screenshots"):
+    return re.sub(r'[^a-zA-Z0-9_-]', '_', path)
+
+def get_context_options(browser_name, mode):
+    options = VIEWPORTS[mode].copy()
+    if browser_name == "firefox":
+        options.pop("is_mobile", None)
+        options.pop("has_touch", None)
+    return options
+
+def build_url(page_path):
+    if not page_path:
+        return BASE_URL
+    if page_path.startswith('/') and BASE_URL.endswith('/'):
+        return f"{BASE_URL}{page_path[1:]}"
+    if not page_path.startswith('/') and not BASE_URL.endswith('/'):
+        return f"{BASE_URL}/{page_path}"
+    return f"{BASE_URL}{page_path}"
+
+def takeScreenshot(browser, url, mode, base_path=CURRENT_DIR, wait_time=DEFAULT_WAIT_TIME):
     if not os.path.exists(base_path):
-        os.makedirs(base_path)
+        os.makedirs(base_path, exist_ok=True)
 
-    context = browser.new_context(**VIEWPORTS[mode])
+    browser_name = browser.browser_type.name
+    context_options = get_context_options(browser_name, mode)
+    context = browser.new_context(**context_options)
     page = context.new_page()
-    page.goto(url)
 
-    safe_url = sanitizeUrl(url)
-    file_path = f"{base_path}/{mode}_{safe_url}.png"
+    page.goto(url, timeout=20000)
+    my_my_print(f"  Taking screenshot of {url} ({browser_name}, {mode})")
 
-    page.screenshot(path=file_path)
+    if wait_time > 0:
+        page.wait_for_timeout(wait_time)
+
+    safe_url = sanitizeUrl(url.replace(BASE_URL, "") or "home")
+    file_path = f"{base_path}/{browser_name}_{mode}_{safe_url}.png"
+
+    page.screenshot(path=file_path, timeout=20000)
     context.close()
-
     return file_path
 
-def updateGoldenImages(browser, base_path="screenshots"):
-    for mode in VIEWPORTS:
-        for url in GOLDEN_PAGES:
-            path = takeScreenshot(browser, url, mode, base_path)
-            
-            if not path:
-                my_print(f"Failed to take screenshot for {url} in {mode} mode")
-            else:
-                my_print(f"Screenshot taken for {url} in {mode} mode")
-
-def compareImages(golden_path, current_path, diff_path=None, threshold=5):
+def compareImages(golden_path, current_path, diff_path = None, threshold=COMPARISON_THRESHOLD):
     golden = Image.open(golden_path).convert("RGB")
     current = Image.open(current_path).convert("RGB")
 
     if golden.size != current.size:
+        my_print(f"  Size mismatch: Golden {golden.size} vs Current {current.size}")
+        if diff_path:
+            error_img = Image.new('RGB', (400, 100), color=(255, 0, 0))
+            ImageDraw.Draw(error_img).text(
+                (10, 40),
+                f"Size mismatch: Golden {golden.size} vs Current {current.size}",
+                fill=(255, 255, 255)
+            )
+            error_img.save(diff_path)
         return False
 
     diff = ImageChops.difference(golden, current)
-
     h = diff.histogram()
-    sq = (value * ((idx % 256) ** 2) for idx, value in enumerate(h))
-    sum_of_squares = sum(sq)
+    sum_of_squares = sum(value * ((idx % 256) ** 2) for idx, value in enumerate(h))
     rms = math.sqrt(sum_of_squares / float(golden.size[0] * golden.size[1]))
 
     if rms <= threshold:
@@ -96,8 +91,55 @@ def compareImages(golden_path, current_path, diff_path=None, threshold=5):
         draw = ImageDraw.Draw(highlight)
         for x in range(current.width):
             for y in range(current.height):
-                if diff.getpixel((x, y)) != (0, 0, 0):
+                pixel_diff = diff.getpixel((x, y))
+                diff_sum = sum(pixel_diff[:3]) if isinstance(pixel_diff, tuple) else pixel_diff
+                if diff_sum > 30:
                     draw.point((x, y), fill=(255, 0, 0))
         highlight.save(diff_path)
 
     return False
+
+def update_golden_images(browsers_to_use=None, modes_to_use=None, pages_to_update=None, wait_time=DEFAULT_WAIT_TIME):
+    from playwright.sync_api import sync_playwright
+
+    browsers_to_use = browsers_to_use or BROWSERS
+    modes_to_use = modes_to_use or list(VIEWPORTS.keys())
+    pages_to_update = pages_to_update or GOLDEN_PAGES
+
+    if not os.path.exists(GOLDEN_DIR):
+        os.makedirs(GOLDEN_DIR, exist_ok=True)
+
+    total = len(browsers_to_use) * len(modes_to_use) * len(pages_to_update)
+    count = 0
+    errors = []
+    successes = 0
+
+    my_print(f"\nStarting to update {total} golden images across {len(browsers_to_use)} browsers")
+
+    with sync_playwright() as p:
+        for browser_name in browsers_to_use:
+            my_print(f"\nLaunching {browser_name}...")
+            browser = getattr(p, browser_name).launch(timeout=120000)
+
+            for mode in modes_to_use:
+                for page_path in pages_to_update:
+                    count += 1
+                    my_print(f"\n[{count}/{total}] Processing: {browser_name} / {mode} / {page_path}")
+                    url = build_url(page_path)
+                    try:
+                        file_path = takeScreenshot(browser, url, mode, base_path=GOLDEN_DIR, wait_time=wait_time)
+                        my_print(f"✓ Completed: {os.path.basename(file_path)}")
+                        successes += 1
+                    except Exception as e:
+                        my_print(f"✗ Failed: {browser_name} / {mode} / {page_path}")
+                        my_print(f"  Error: {str(e)}")
+                        errors.append(f"{browser_name} / {mode} / {page_path}: {str(e)}")
+                        continue
+
+            browser.close()
+
+    my_print(f"\nSummary: {successes} successful, {len(errors)} failed out of {total} total")
+    if errors:
+        my_print("\nThe following errors occurred:")
+        for error in errors:
+            my_print(f"- {error}")

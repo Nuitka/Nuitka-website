@@ -46,6 +46,7 @@ psutil = "*"
 setproctitle = "*"
 livereload = "*"
 sphinx-rtd-theme = "3.0.2"
+pillow = "*"
 
 [requires]
 python_version = "3.12"
