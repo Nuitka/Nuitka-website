@@ -59,6 +59,13 @@ module.exports = {
 						rule.params = "(min-width: 1192px)";
 					}
 				});
+
+			root.walkRules((rule) => {
+					// Keep rules that contain fa-fw to avoid breaking SVG width, some of these uses fa-fw for width	control
+					if (rule.selector.match(/\.fa([srb]?|\-)/) && !rule.selector.includes("fa-fw")) {
+							rule.remove();
+					}
+			});
 			},
 		},
 

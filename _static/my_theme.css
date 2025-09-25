@@ -136,7 +136,6 @@ h3 {
 
 .nuitka-grid-offer ul li::marker {
 	content: "\f00a";
-	font-family: FontAwesome;
 	font-size: var(--icon-size);
 	box-sizing: border-box;
 	min-width: 0;
