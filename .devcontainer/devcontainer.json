@@ -35,12 +35,14 @@
         "create_supervisor_log_dir": "sudo mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs",
         "chown_supervisor_log_dir": "sudo chown -R vscode:vscode ${containerWorkspaceFolder}/.devcontainer/supervisor",
         "npm_install": "npm install",
-        "fix_paste": "echo \"bind 'set enable-bracketed-paste off'\" >> /home/vscode/.bashrc"
+        "fix_paste": "echo \"bind 'set enable-bracketed-paste off'\" >> /home/vscode/.bashrc",
+        "pipenv_install": "pipenv install --dev"
     },
 
 
     // Start supervisord to manage background services like auto-update.sh
     "postStartCommand": {
+        "playwright_install": "pipenv run playwright install && pipenv run playwright install-deps",
         "start_supervisord": "export containerWorkspaceFolder=${containerWorkspaceFolder} && supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf",
         "info_message": "echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:8000\\n\\n'"
     },
