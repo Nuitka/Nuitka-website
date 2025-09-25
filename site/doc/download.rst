@@ -204,7 +204,7 @@ For the latest development version:
 
    **Arch**
 
-      -  |ARCH_LOGO| Stable: Arch Linux, execute \`\`pacman -S nuitka\`\`
+      -  |ARCH_LOGO| Stable: Arch Linux, execute \`\`pacman -S nuitka\`\` or use from AUR https://aur.archlinux.org/packages/nuitka
 
    **Gentoo**
 
