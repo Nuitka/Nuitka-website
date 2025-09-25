@@ -74,6 +74,10 @@ questions and processes.
 
    -  A: No, end customers do not need to sign any contracts.
 
+-  **Q: What are the license terms?**
+
+   -  A: The :doc:`Nuitka Commercial license </doc/commercial-license>` has that information.
+
 -  **Q: When will invoices be delivered?**
 
    -  A: Invoices will be delivered after purchase.
