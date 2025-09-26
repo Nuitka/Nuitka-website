@@ -46,7 +46,7 @@ def takeScreenshot(browser, url, mode, base_path=CURRENT_DIR, wait_time=DEFAULT_
     page = context.new_page()
 
     page.goto(url, timeout=20000)
-    my_my_print(f"  Taking screenshot of {url} ({browser_name}, {mode})")
+    my_print(f"  Taking screenshot of {url} ({browser_name}, {mode})")
 
     if wait_time > 0:
         page.wait_for_timeout(wait_time)
