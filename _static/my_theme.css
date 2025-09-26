@@ -16,6 +16,18 @@ html {
 }
 */
 
+.nuitka-fa {
+  display: inline-block;
+  width: 1em;               
+  height: 1em;
+  vertical-align: middle;
+}
+
+.nuitka-fw {
+	 width: 1.25em;
+  text-align: center;
+}
+
 .wy-nav-top svg {
 	width: 30px;
 	float: left;

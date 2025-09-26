@@ -137,6 +137,10 @@ FA_UTILITY_CLASSES = {
 
 FA_SVG_PATH = "site/images/fontawesome"
 
+FA_REPLACEMENT_CLASS = {
+    "fa": "nuitka-fa",
+    "fa-fw": "nuitka-fw",
+}
 
 def add_inline_svg(
     element, svg_path, is_fa_icon=False, style_folder=None, icon_name=None
@@ -187,6 +191,12 @@ def add_inline_svg(
             continue
 
         svg_element.set(attr, element.get(attr))
+
+    if is_fa_icon:
+        class_attr = svg_element.get("class", element.get("class", ""))
+        class_list = class_attr.split()
+        class_list = [FA_REPLACEMENT_CLASS.get(cl, cl) for cl in class_list]
+        svg_element.set("class", " ".join(class_list))
 
     parent = element.getparent()
     tail = element.tail
