@@ -36,6 +36,7 @@ GOLDEN_PAGES = [
     "doc/commercial/protect-data-files.html",
     "user-documentation/tips.html",
     "pages/website-manual.html",
+    "posts/nuitka-shaping-up.html"
 ]
 
 DEFAULT_WAIT_TIME = 1000
