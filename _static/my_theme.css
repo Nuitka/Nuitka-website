@@ -16,6 +16,21 @@ html {
 }
 */
 
+/* Navbar */
+
+[data-toggle="wy-nav-top"].menu-open {
+  float: right;
+}
+[data-toggle="wy-nav-top"] {
+  float: left;
+}
+
+@media screen and (max-width: 768px) {
+    .wy-nav-side.shift {
+        width: 70%;
+    }
+}
+
 .nuitka-fa {
   display: inline-block;
   width: 1em;
