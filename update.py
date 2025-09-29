@@ -1133,7 +1133,8 @@ def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
     # do other touch ups. spell-checker: ignore searchindex,searchtools
 
-    for delete_filename in ("searchindex.js", "searchtools.js", "search.html"):
+    for delete_filename in ("searchindex.js", "searchtools.js", "search.html", "_static/jquery.js"):
+        print('removing', os.path.join("output", delete_filename))
         deleteFile(os.path.join("output", delete_filename), must_exist=False)
         for translation in _translations:
             deleteFile(
