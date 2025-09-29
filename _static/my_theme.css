@@ -18,7 +18,7 @@ html {
 
 .nuitka-fa {
   display: inline-block;
-  width: 1em;               
+  width: 1em;
   height: 1em;
   vertical-align: middle;
 }
@@ -33,6 +33,7 @@ html {
 	float: left;
 	cursor: pointer;
 	padding-top: inherit;
+	height: auto;
 }
 
 .wy-nav-content {
