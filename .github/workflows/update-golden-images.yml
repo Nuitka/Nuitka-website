@@ -87,12 +87,12 @@ jobs:
 
           pipenv run python update.py $ARGS
 
-          echo "✅ Golden images generated for ${{ matrix.browser }}/${{ matrix.device }}"
+          echo "Golden images generated for ${{ matrix.browser }}/${{ matrix.device }}"
           ls -lah golden/
 
       - name: Save golden images to cache
         if: steps.check-combination.outputs.skip != 'true'
-        uses: actions/cache/save@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
+        uses: actions/cache/save@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
         with:
           path: golden/
           key: golden-images-${{ matrix.browser }}-${{ matrix.device }}-${{ hashFiles('src/**', 'update.py') }}
@@ -123,7 +123,7 @@ jobs:
           echo "## What Happened" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "New golden images have been generated and cached" >> $GITHUB_STEP_SUMMARY
-          echo "Backup artifacts uploaded" >> $GITHUB_STEP_SUMMARY
+          echo "Backup artifacts uploaded (90-day retention)" >> $GITHUB_STEP_SUMMARY
           echo "Cache updated for selected browser/device combinations" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "## Next Steps" >> $GITHUB_STEP_SUMMARY

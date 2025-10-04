@@ -41,7 +41,7 @@ jobs:
           pipenv --version
 
       - name: Cache Pipenv dependencies
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
@@ -83,7 +83,7 @@ jobs:
             --clean \
             --verbose
 
-          echo "Golden images generated successfully"
+          echo "✅ Golden images generated successfully"
           ls -lah golden/
 
       - name: Update golden images (manual trigger)
