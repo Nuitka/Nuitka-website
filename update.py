@@ -850,20 +850,6 @@ def _getTranslationFileSet(filename):
     return language, filename_translations
 
 
-js_order = [
-    "jquery.js",
-    "carousel.js",
-    "documentation_options.js",
-    "_sphinx_javascript_frameworks_compat.js",
-    "doctools.js",
-    "sphinx_highlight.js",
-    "theme.js",
-    "clipboard.min.js",
-    "copybutton.js",
-    "translations.js",
-]
-
-
 def _makeCssCombined(css_filenames, css_links, has_asciinema):
     # Simply concatenate CSS files - let PostCSS handle the processing
     merged_css = "\n".join(
@@ -899,15 +885,13 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
 def _makeJsCombined(js_filenames):
     js_filenames = list(js_filenames)
 
-    js_set_contents = (
+    js_set_contents = """
+    const jQuery = {};
+    jQuery.fn = {};
+    """ + (
         "\n".join(
             getFileContents(f"output/{js_filename}") for js_filename in js_filenames
         )
-        + """
-jQuery(function () {
-    SphinxRtdTheme.Navigation.enable(true);
-});
-    """
         + """
 (function() {
 var id = '82f00db2-cffd-11ee-882e-0242ac130002';
@@ -1149,7 +1133,8 @@ def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
     # do other touch ups. spell-checker: ignore searchindex,searchtools
 
-    for delete_filename in ("searchindex.js", "searchtools.js", "search.html"):
+    for delete_filename in ("searchindex.js", "searchtools.js", "search.html", "_static/jquery.js"):
+        print('removing', os.path.join("output", delete_filename))
         deleteFile(os.path.join("output", delete_filename), must_exist=False)
         for translation in _translations:
             deleteFile(
