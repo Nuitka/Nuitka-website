@@ -41,7 +41,7 @@ jobs:
           pipenv --version
 
       - name: Cache Pipenv dependencies
-        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
@@ -56,7 +56,7 @@ jobs:
       - name: Restore golden images from cache
         id: cache-golden
         if: github.event.inputs.update_golden != 'true'
-        uses: actions/cache/restore@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: golden/
           key: golden-images-${{ matrix.browser }}-${{ matrix.device }}-${{ hashFiles('src/**', 'update.py') }}
@@ -124,7 +124,7 @@ jobs:
 
       - name: Save golden images to cache
         if: github.event.inputs.update_golden == 'true' || steps.handle-missing.outputs.cache_miss == 'true'
-        uses: actions/cache/save@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: golden/
           key: golden-images-${{ matrix.browser }}-${{ matrix.device }}-${{ hashFiles('src/**', 'update.py') }}
