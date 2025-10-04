@@ -1,0 +1,88 @@
+# .github/workflows/update-golden-images.yml
+name: Update Golden Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      browsers:
+        description: 'Browsers (comma-separated: chromium,firefox,webkit)'
+        required: true
+        default: 'chromium,firefox,webkit'
+      devices:
+        description: 'Devices (comma-separated: desktop,mobile)'
+        required: true
+        default: 'desktop,mobile'
+      pages:
+        description: 'Pages (comma-separated or "all")'
+        required: false
+        default: 'all'
+
+jobs:
+  update-golden:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Pipenv
+        run: |
+          pip install pipenv
+          pipenv install --dev
+
+      - name: Install Playwright browsers
+        run: |
+          IFS=',' read -ra BROWSERS <<< "${{ github.event.inputs.browsers }}"
+          for browser in "${BROWSERS[@]}"; do
+            pipenv run playwright install --with-deps $browser
+          done
+
+      - name: Update golden images
+        run: |
+          ARGS="--update-golden --browsers ${{ github.event.inputs.browsers }} --devices ${{ github.event.inputs.devices }} --wait 1000 --clean --verbose"
+
+          if [ "${{ github.event.inputs.pages }}" != "all" ]; then
+            ARGS="$ARGS --pages ${{ github.event.inputs.pages }}"
+          fi
+
+          pipenv run python update.py $ARGS
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update golden images'
+          title: 'Update Golden Images'
+          body: |
+            ## Golden Images Update
+
+            **Triggered by:** @${{ github.actor }}
+            **Browsers:** ${{ github.event.inputs.browsers }}
+            **Devices:** ${{ github.event.inputs.devices }}
+            **Pages:** ${{ github.event.inputs.pages }}
+
+            This PR updates the baseline golden images for visual regression testing.
+
+            ### Review Checklist
+            - [ ] Verify visual changes are intentional
+            - [ ] Check all browsers and devices
+            - [ ] Ensure no unintended regressions
+          branch: update-golden-images-${{ github.run_number }}
+          delete-branch: true
+          labels: |
+            golden-images
+            automated
+
+      - name: Upload updated golden images
+        uses: actions/upload-artifact@v4
+        with:
+          name: updated-golden-images
+          path: golden/
+          retention-days: 30

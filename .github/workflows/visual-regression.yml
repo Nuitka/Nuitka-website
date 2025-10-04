@@ -1,0 +1,172 @@
+# .github/workflows/visual-regression.yml
+name: Visual Regression Tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      update_golden:
+        description: 'Update golden images'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  visual-regression:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+        device: [desktop, mobile]
+      fail-fast: false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Pipenv
+        run: |
+          pip install pipenv
+          pipenv --version
+
+      - name: Cache Pipenv dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pipenv-
+
+      - name: Install dependencies
+        run: |
+          pipenv install --dev
+          pipenv run playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Download golden images from artifacts
+        if: github.event.inputs.update_golden != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: golden-images-${{ matrix.browser }}-${{ matrix.device }}
+          path: golden/
+        continue-on-error: true
+
+      - name: Restore golden images from cache
+        if: github.event.inputs.update_golden != 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: golden/
+          key: golden-${{ matrix.browser }}-${{ matrix.device }}-${{ github.sha }}
+          restore-keys: |
+            golden-${{ matrix.browser }}-${{ matrix.device }}-
+        continue-on-error: true
+
+      - name: Update golden images
+        if: github.event.inputs.update_golden == 'true'
+        run: |
+          pipenv run python update.py --update-golden \
+            --browsers ${{ matrix.browser }} \
+            --devices ${{ matrix.device }} \
+            --wait 1000 \
+            --clean \
+            --verbose
+
+      - name: Run visual regression tests
+        if: github.event.inputs.update_golden != 'true'
+        run: |
+          pipenv run pytest tests/regression.py -v \
+            --browser=${{ matrix.browser }} \
+            --device=${{ matrix.device }} \
+            --tb=short
+        continue-on-error: true
+        id: tests
+
+      - name: Upload current screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
+          path: current/
+          retention-days: 7
+
+      - name: Upload diff images
+        if: failure() && steps.tests.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: diff-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
+          path: diff/
+          retention-days: 14
+
+      - name: Upload golden images (if updated)
+        if: github.event.inputs.update_golden == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-images-${{ matrix.browser }}-${{ matrix.device }}
+          path: golden/
+          retention-days: 90
+
+      - name: Cache golden images
+        if: github.event.inputs.update_golden == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: golden/
+          key: golden-${{ matrix.browser }}-${{ matrix.device }}-${{ github.sha }}
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request' && failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const browser = '${{ matrix.browser }}';
+            const device = '${{ matrix.device }}';
+            const runNumber = '${{ github.run_number }}';
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Visual Regression Failed
+
+              **Browser:** ${browser}
+              **Device:** ${device}
+
+              Visual differences detected! Check the artifacts:
+              - [Diff Images](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+              - Artifact: \`diff-${browser}-${device}-${runNumber}\`
+
+              Review the changes and update golden images if intentional.`
+            });
+
+      - name: Fail job if tests failed
+        if: steps.tests.outcome == 'failure'
+        run: exit 1
+
+  report:
+    needs: visual-regression
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create summary report
+        run: |
+          echo "# Visual Regression Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Run ID:** ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.visual-regression.result }}" == "success" ]; then
+            echo "All visual regression tests passed!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Some visual regression tests failed. Check artifacts for diff images." >> $GITHUB_STEP_SUMMARY
+          fi
