@@ -957,15 +957,17 @@ def fixupSymbols(document_bytes):
 
 _postcss_cache = {}
 
-
 def _processWithPostCSS(css_content):
-    """Process CSS content through PostCSS"""
+    """Process CSS content through PostCSS with PurgeCSS"""
     if css_content in _postcss_cache:
         return _postcss_cache[css_content]
+
+    original_size = len(css_content)
 
     with withTemporaryFile(suffix=".css", mode="w", delete=False) as tmp_input:
         tmp_input.write(css_content)
         tmp_input_path = tmp_input.name
+
 
     with withTemporaryFile(mode="w", suffix=".css", delete=False) as tmp_output:
         tmp_output_path = tmp_output.name
@@ -985,6 +987,16 @@ def _processWithPostCSS(css_content):
             my_print(f"PostCSS processing failed: {result.stderr.strip()}")
             return None
 
+        # Read processed CSS
+        processed_css = getFileContents(tmp_output_path)
+        _postcss_cache[css_content] = processed_css
+
+        # Report CSS size reduction
+        processed_size = len(processed_css)
+        if original_size > 0:
+            reduction_percent = (original_size - processed_size) / original_size * 100
+            my_print(f"CSS reduced by {reduction_percent:.1f}% ({original_size} → {processed_size} bytes)")
+
     except Exception as e:
         my_print(f"Unexpected error running PostCSS: {e}")
         return None
@@ -1000,7 +1012,6 @@ def _processWithPostCSS(css_content):
 
 
 _html_minifier_cache = {}
-
 
 def _minifyHtml(filename):
     """Process HTML content through HTML-MINIFIER"""
