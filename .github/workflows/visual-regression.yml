@@ -26,12 +26,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
         with:
           python-version: '3.11'
 
@@ -41,7 +41,7 @@ jobs:
           pipenv --version
 
       - name: Cache Pipenv dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
@@ -53,25 +53,40 @@ jobs:
           pipenv install --dev
           pipenv run playwright install --with-deps ${{ matrix.browser }}
 
-      - name: Download golden images from artifacts
-        if: github.event.inputs.update_golden != 'true'
-        uses: actions/download-artifact@v4
-        with:
-          name: golden-images-${{ matrix.browser }}-${{ matrix.device }}
-          path: golden/
-        continue-on-error: true
-
       - name: Restore golden images from cache
+        id: cache-golden
         if: github.event.inputs.update_golden != 'true'
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
         with:
           path: golden/
-          key: golden-${{ matrix.browser }}-${{ matrix.device }}-${{ github.sha }}
+          key: golden-images-${{ matrix.browser }}-${{ matrix.device }}-${{ hashFiles('src/**', 'update.py') }}
           restore-keys: |
-            golden-${{ matrix.browser }}-${{ matrix.device }}-
-        continue-on-error: true
+            golden-images-${{ matrix.browser }}-${{ matrix.device }}-
 
-      - name: Update golden images
+      - name: Handle missing golden images
+        if: github.event.inputs.update_golden != 'true' && steps.cache-golden.outputs.cache-hit != 'true'
+        id: handle-missing
+        run: |
+          echo "No golden images found in cache for ${{ matrix.browser }}/${{ matrix.device }}"
+          echo "This is expected on first run or after cache expiration."
+          echo ""
+          echo "Generating golden images now..."
+          echo "cache_miss=true" >> $GITHUB_OUTPUT
+
+      - name: Generate golden images on cache miss
+        if: steps.handle-missing.outputs.cache_miss == 'true'
+        run: |
+          pipenv run python update.py --update-golden \
+            --browsers ${{ matrix.browser }} \
+            --devices ${{ matrix.device }} \
+            --wait 1000 \
+            --clean \
+            --verbose
+
+          echo "Golden images generated successfully"
+          ls -lah golden/
+
+      - name: Update golden images (manual trigger)
         if: github.event.inputs.update_golden == 'true'
         run: |
           pipenv run python update.py --update-golden \
@@ -82,7 +97,7 @@ jobs:
             --verbose
 
       - name: Run visual regression tests
-        if: github.event.inputs.update_golden != 'true'
+        if: github.event.inputs.update_golden != 'true' && steps.handle-missing.outputs.cache_miss != 'true'
         run: |
           pipenv run pytest tests/regression.py -v \
             --browser=${{ matrix.browser }} \
@@ -92,8 +107,8 @@ jobs:
         id: tests
 
       - name: Upload current screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
+        if: always() && steps.tests.conclusion != 'skipped'
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
         with:
           name: current-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
           path: current/
@@ -101,30 +116,30 @@ jobs:
 
       - name: Upload diff images
         if: failure() && steps.tests.outcome == 'failure'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
         with:
           name: diff-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
           path: diff/
           retention-days: 14
 
-      - name: Upload golden images (if updated)
-        if: github.event.inputs.update_golden == 'true'
-        uses: actions/upload-artifact@v4
+      - name: Save golden images to cache
+        if: github.event.inputs.update_golden == 'true' || steps.handle-missing.outputs.cache_miss == 'true'
+        uses: actions/cache/save@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
         with:
-          name: golden-images-${{ matrix.browser }}-${{ matrix.device }}
+          path: golden/
+          key: golden-images-${{ matrix.browser }}-${{ matrix.device }}-${{ hashFiles('src/**', 'update.py') }}
+
+      - name: Upload golden images as backup
+        if: github.event.inputs.update_golden == 'true' || steps.handle-missing.outputs.cache_miss == 'true'
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
+        with:
+          name: golden-backup-${{ matrix.browser }}-${{ matrix.device }}
           path: golden/
           retention-days: 90
 
-      - name: Cache golden images
-        if: github.event.inputs.update_golden == 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: golden/
-          key: golden-${{ matrix.browser }}-${{ matrix.device }}-${{ github.sha }}
-
       - name: Comment PR with results
-        if: github.event_name == 'pull_request' && failure()
-        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request' && failure() && steps.tests.outcome == 'failure'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           script: |
             const browser = '${{ matrix.browser }}';
@@ -145,6 +160,31 @@ jobs:
               - Artifact: \`diff-${browser}-${device}-${runNumber}\`
 
               Review the changes and update golden images if intentional.`
+            });
+
+      - name: Comment on cache miss (first run)
+        if: github.event_name == 'pull_request' && steps.handle-missing.outputs.cache_miss == 'true'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            const browser = '${{ matrix.browser }}';
+            const device = '${{ matrix.device }}';
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## ℹGolden Images Generated
+
+              **Browser:** ${browser}
+              **Device:** ${device}
+
+              No cached golden images were found (first run or cache expired).
+
+              New golden images have been generated and cached automatically.
+              Future runs will use these as the baseline for comparison.
+
+              This is expected behavior and not an error.`
             });
 
       - name: Fail job if tests failed
