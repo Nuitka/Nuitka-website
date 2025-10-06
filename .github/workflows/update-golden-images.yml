@@ -1,4 +1,3 @@
-# .github/workflows/update-golden-images.yml
 name: Update Golden Images
 
 on:
@@ -30,87 +29,55 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-
-      - name: Check if browser/device combination is selected
-        id: check-combination
-        run: |
-          SELECTED_BROWSERS="${{ github.event.inputs.browsers }}"
-          SELECTED_DEVICES="${{ github.event.inputs.devices }}"
-          CURRENT_BROWSER="${{ matrix.browser }}"
-          CURRENT_DEVICE="${{ matrix.device }}"
-
-          # Check if current browser is in selected list
-          if [[ ",$SELECTED_BROWSERS," == *",$CURRENT_BROWSER,"* ]]; then
-            echo "Browser $CURRENT_BROWSER is selected"
-          else
-            echo "Browser $CURRENT_BROWSER is not selected, skipping"
-            echo "skip=true" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          # Check if current device is in selected list
-          if [[ ",$SELECTED_DEVICES," == *",$CURRENT_DEVICE,"* ]]; then
-            echo "Device $CURRENT_DEVICE is selected"
-          else
-            echo "Device $CURRENT_DEVICE is not selected, skipping"
-            echo "skip=true" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          echo "skip=false" >> $GITHUB_OUTPUT
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
-        if: steps.check-combination.outputs.skip != 'true'
         uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
         with:
           python-version: '3.11'
 
-      - name: Install Pipenv
-        if: steps.check-combination.outputs.skip != 'true'
+      - name: Cache Pipenv dependencies
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pipenv-
+
+      - name: Install dependencies
         run: |
-          npm install
           pip install pipenv
           pipenv install --dev
+          npm install
+          pipenv run playwright install --with-deps
 
-      - name: Install Playwright browser
-        if: steps.check-combination.outputs.skip != 'true'
-        run: |
-          pipenv run playwright install --with-deps ${{ matrix.browser }}
       - name: Start app for screenshots
         run: |
-          # Dev mode just to block html minifier
           export DEVELOPMENT_MODE=1
-
           pipenv run invoke update-docs
           pipenv run invoke site
           pipenv run invoke post-process
-
           nohup pipenv run invoke serve &
-
           sleep 5
+
       - name: Generate golden images
-        if: steps.check-combination.outputs.skip != 'true'
         run: |
           ARGS="--update-golden --browsers ${{ matrix.browser }} --devices ${{ matrix.device }} --wait 1000 --clean --verbose"
-
           if [ "${{ github.event.inputs.pages }}" != "all" ]; then
             ARGS="$ARGS --pages ${{ github.event.inputs.pages }}"
           fi
-
           pipenv run python update.py $ARGS
-
           echo "Golden images generated for ${{ matrix.browser }}/${{ matrix.device }}"
           ls -lah tests/golden/
 
       - name: Save golden images to cache
-        if: steps.check-combination.outputs.skip != 'true'
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: tests/golden/
           key: golden-images-${{ matrix.browser }}-${{ matrix.device }}-${{ hashFiles('src/**', 'update.py') }}
 
       - name: Upload golden images as backup artifact
-        if: steps.check-combination.outputs.skip != 'true'
         uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
         with:
           name: golden-backup-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
@@ -126,25 +93,9 @@ jobs:
       - name: Create update summary
         run: |
           echo "# Golden Images Update Complete" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Triggered by:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
           echo "**Browsers:** ${{ github.event.inputs.browsers }}" >> $GITHUB_STEP_SUMMARY
           echo "**Devices:** ${{ github.event.inputs.devices }}" >> $GITHUB_STEP_SUMMARY
           echo "**Pages:** ${{ github.event.inputs.pages }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## What Happened" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "New golden images have been generated and cached" >> $GITHUB_STEP_SUMMARY
-          echo "Backup artifacts uploaded (90-day retention)" >> $GITHUB_STEP_SUMMARY
-          echo "Cache updated for selected browser/device combinations" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Next Steps" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "The next visual regression test run will use these new golden images as the baseline." >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Recovery" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "If you need to restore previous golden images:" >> $GITHUB_STEP_SUMMARY
-          echo "1. Go to Actions → Caches" >> $GITHUB_STEP_SUMMARY
-          echo "2. Delete the updated caches" >> $GITHUB_STEP_SUMMARY
-          echo "3. Download previous backup artifacts if needed" >> $GITHUB_STEP_SUMMARY
+          echo "New golden images have been generated, cached, and backup artifacts uploaded (90-day retention)." >> $GITHUB_STEP_SUMMARY
+          echo "Next visual regression test run will use these images as baseline."

@@ -38,7 +38,7 @@ jobs:
           pip install pipenv
           pipenv install --dev
           npm install
-          pipenv run playwright install --with-deps ${{ matrix.browser }}
+          pipenv run playwright install --with-deps
 
       - name: Start app for screenshots
         run: |
@@ -73,7 +73,7 @@ jobs:
           name: diff-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
           path: diff/
           retention-days: 14
-          
+
       - name: Workflow summary
         if: failure()
         run: |
