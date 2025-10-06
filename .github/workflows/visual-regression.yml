@@ -16,23 +16,29 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5.0.0
+        uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
         with:
           python-version: "3.11"
+
+      - name: Cache Pipenv dependencies
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pipenv-
 
       - name: Install dependencies
         run: |
           pip install pipenv
           pipenv install --dev
           npm install
-
-      - name: Install Playwright browsers
-        run: pipenv run playwright install --with-deps ${{ matrix.browser }}
+          pipenv run playwright install --with-deps ${{ matrix.browser }}
 
       - name: Start app for screenshots
         run: |
@@ -49,12 +55,12 @@ jobs:
             --browser=${{ matrix.browser }} \
             --device=${{ matrix.device }} \
             --tb=short
-        continue-on-error: true
+        continue-on-error: false
         id: tests
 
       - name: Upload current screenshots
         if: failure()
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
         with:
           name: current-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
           path: current/
@@ -62,8 +68,16 @@ jobs:
 
       - name: Upload diff images
         if: failure()
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
         with:
           name: diff-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
           path: diff/
           retention-days: 14
+          
+      - name: Workflow summary
+        if: failure()
+        run: |
+          echo "### Visual Regression Test Failed" >> $GITHUB_STEP_SUMMARY
+          echo "- Browser: ${{ matrix.browser }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Device: ${{ matrix.device }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Screenshots: [Artifacts tab](#)" >> $GITHUB_STEP_SUMMARY
