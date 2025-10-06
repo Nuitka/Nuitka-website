@@ -20,6 +20,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Restore golden images cache from main
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: tests/golden/
+          key: golden-images-main-${{ matrix.browser }}-${{ matrix.device }}
+          restore-keys: |
+            golden-images-main-${{ matrix.browser }}-${{ matrix.device }}
+
       - name: Set up Python
         uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
         with:
