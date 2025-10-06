@@ -50,6 +50,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          npm install
           pipenv install --dev
           pipenv run playwright install --with-deps ${{ matrix.browser }}
       - name: Start app for screenshots
