@@ -38,7 +38,7 @@ jobs:
           pip install pipenv
           pipenv install --dev
           npm install
-          pipenv run playwright install --with-deps
+          pipenv run playwright install-deps
 
       - name: Start app for screenshots
         run: |
