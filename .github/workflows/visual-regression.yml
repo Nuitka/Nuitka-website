@@ -56,7 +56,7 @@ jobs:
       - name: Start app for screenshots
         run: |
           # Dev mode just to block html minifier
-          DEVELOPMENT_MODE=1
+          export DEVELOPMENT_MODE=1
 
           pipenv run invoke update-docs
           pipenv run invoke site
@@ -70,7 +70,7 @@ jobs:
         if: github.event.inputs.update_golden != 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
-          path: golden/
+          path: tests/golden/
           key: golden-images-${{ matrix.browser }}-${{ matrix.device }}-${{ hashFiles('src/**', 'update.py') }}
           restore-keys: |
             golden-images-${{ matrix.browser }}-${{ matrix.device }}-
@@ -95,8 +95,8 @@ jobs:
             --clean \
             --verbose
 
-          echo "✅ Golden images generated successfully"
-          ls -lah golden/
+          echo "Golden images generated successfully"
+          ls -lah tests/golden/
 
       - name: Update golden images (manual trigger)
         if: github.event.inputs.update_golden == 'true'
@@ -138,7 +138,7 @@ jobs:
         if: github.event.inputs.update_golden == 'true' || steps.handle-missing.outputs.cache_miss == 'true'
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
-          path: golden/
+          path: tests/golden/
           key: golden-images-${{ matrix.browser }}-${{ matrix.device }}-${{ hashFiles('src/**', 'update.py') }}
 
       - name: Upload golden images as backup
@@ -146,7 +146,7 @@ jobs:
         uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
         with:
           name: golden-backup-${{ matrix.browser }}-${{ matrix.device }}
-          path: golden/
+          path: tests/golden/
           retention-days: 90
 
       - name: Comment PR with results
