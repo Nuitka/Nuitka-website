@@ -54,11 +54,11 @@ jobs:
           pipenv run playwright install --with-deps ${{ matrix.browser }}
       - name: Start app for screenshots
         run: |
-          python3 -m invoke update-docs
-          python3 -m invoke site
-          python3 -m invoke post-process
+          pipenv run invoke update-docs
+          pipenv run invoke site
+          pipenv run invoke post-process
 
-          python3 -m invoke serve
+          pipenv run invoke serve
 
           sleep 5
       - name: Restore golden images from cache
