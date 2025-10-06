@@ -1,6 +1,9 @@
 name: Update Golden Images
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       browsers:
