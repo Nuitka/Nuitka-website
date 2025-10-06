@@ -223,6 +223,11 @@ button svg {
 	padding: 0 0;
 }
 
+button svg {
+	 width: 1em;
+  height: 1em;
+}
+
 /* For share buttons to position into them absolute, this needs to be marked relative. */
 .rst-content {
 	position: relative;
