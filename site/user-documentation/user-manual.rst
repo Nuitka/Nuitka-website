@@ -120,7 +120,7 @@ possible.
 
    -  **Moving binaries to other machines:** The created binaries can be
       made executable independent of the Python installation, with
-      ``--mode=standalone``, ``--mode=onefile``, or ``--mode=app``
+      ``--standalone``, ``--onefile``, or ``--app``
       options, but not with ``--mode=accelerated``.
 
    -  **Binary filename suffix:** The created binaries have an ``.exe``
@@ -337,7 +337,7 @@ variables. Checkout this example:
    # nuitka-project-if: {OS} in ("Windows", "Linux", "Darwin", "FreeBSD"):
    #    nuitka-project: --onefile
    # nuitka-project-else:
-   #    nuitka-project: --mode=standalonealone
+   #    nuitka-project: --standalone
 
    # The PySide6 plugin covers qt-plugins
    # nuitka-project: --enable-plugin=pyside6

@@ -87,10 +87,16 @@ Execute the ``hello.exe`` created near ``hello.py``.
 Distribute
 ==========
 
-To distribute, build with ``--mode=standalone`` option, which will not
+To distribute, build with ``--standalone`` option, which will not
 output a single executable, but a whole folder. Copy the resulting
 ``hello.dist`` folder to the other machine and run it.
 
-You may also try ``--onefile`` which does create a single file, but make
-sure that the mere standalone is working, before turning to it, as it
-will make the debugging only harder, e.g. in case of missing data files.
+You may also try ``--onefile`` which creates a single executable file. However,
+we recommend first ensuring your program works correctly with ``--standalone``
+before using ``--onefile``, as any issues (such as missing data files) are
+easier to diagnose and fix in standalone mode.
+
+.. note::
+
+   ``--onefile`` automatically includes ``--standalone`` behavior, so you
+   do not need to pass both options together.
