@@ -662,14 +662,16 @@ To check what OS is selected, we got these.
 Compilation modes
 -----------------
 
-|  ``standalone``: ``True`` if standalone mode is activated with
-   ``--standalone``, ``--onefile`` or ``--app``
-|  ``onefile``: ``True`` if onefile mode is activated with
-   ``--onefile`` or with ``--app`` on non-macOS
-|  ``module_mode``: ``True`` if module mode is activated with
-   ``--module``
-|  ``deployment``: ``True`` if deployment mode is activated with
-   ``--deployment``
+|  ``standalone``: ``True`` when creating distributable applications that
+   include all dependencies. Activated with ``--standalone``, ``--onefile``,
+   or ``--app`` (since these all create standalone distributions).
+|  ``onefile``: ``True`` when creating single-file executables with
+   ``--onefile``, or ``--app`` on non-macOS platforms (macOS ``--app``
+   creates app bundles, not single files).
+|  ``module_mode``: ``True`` when compiling Python extension modules
+   with ``--module`` instead of standalone applications.
+|  ``deployment``: ``True`` when optimizing for production deployment
+   with ``--deployment`` (enables additional optimizations).
 
 .. note::
 
