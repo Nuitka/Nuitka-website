@@ -121,7 +121,7 @@ possible.
    -  **Moving binaries to other machines:** The created binaries can be
       made executable independent of the Python installation, with
       ``--standalone``, ``--onefile``, or ``--app``
-      options, but not with ``--mode=accelerated``.
+      options, but not with acceleration mode (the default).
 
    -  **Binary filename suffix:** The created binaries have an ``.exe``
       suffix on Windows. On other platforms, they have either no suffix
