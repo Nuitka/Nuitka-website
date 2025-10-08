@@ -250,15 +250,6 @@ def inlineImagesSvg(doc, filename):
 
         add_inline_svg(img_tag, svg_path)
 
-        output_svg_path = os.path.join("output", "_images", src_clean)
-
-        if os.path.exists(output_svg_path):
-            try:
-                os.remove(output_svg_path)
-                my_print(f"Removed inlined SVG from build: {output_svg_path}")
-            except Exception as e:
-                my_print(f"Warning: could not remove {output_svg_path}: {e}")
-
 def inlineFontAwesomeSvg(doc):
     for i_tag in doc.xpath("//i[contains(@class, 'fa')]"):
         class_list = i_tag.get("class", "").split()
@@ -1033,8 +1024,8 @@ def _processWithPostCSS(css_content):
 
     _postcss_cache[css_content] = result
 
-    os.remove(tmp_input_path)
-    os.remove(tmp_output_path)
+    deleteFile(tmp_input_path, must_exist=False)
+    deleteFile(tmp_output_path, must_exist=False)
 
     return result
 
@@ -1168,6 +1159,13 @@ def handleJavaScript(filename, doc):
     if script_tag_first is not None:
         script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)
 
+def cleanBuildSVGs():
+    for dirpath, dirnames, filenames in os.walk("output/_images"):
+        for filename in filenames:
+            if not filename.endswith(".svg"):
+                continue
+
+            deleteFile(os.path.join(dirpath, filename), must_exist=False)
 
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
@@ -1462,6 +1460,8 @@ def runPostProcessing():
         if not os.path.islink(my_theme_filename):
             os.unlink(my_theme_filename)
             os.symlink(os.path.abspath("_static/my_theme.css"), my_theme_filename)
+
+    cleanBuildSVGs()
 
 
 def runDeploymentCommand():
