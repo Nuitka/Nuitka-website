@@ -76,6 +76,7 @@ jobs:
       - name: Upload current screenshots
         if: failure()
         uses: actions/upload-artifact@v4
+        with:
           name: current-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
           path: current/
           retention-days: 7
