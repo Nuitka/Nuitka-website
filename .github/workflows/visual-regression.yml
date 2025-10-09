@@ -68,23 +68,23 @@ jobs:
         run: |
           pipenv run pytest tests/regression_test.py -m "${{ matrix.device }} and ${{ matrix.browser }}" -v \
             --tb=short
-        continue-on-error: true
+        continue-on-error: false
         id: tests
 
       - name: Upload current screenshots
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: current-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
-          path: current/
+          name: tests/current-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
+          path: tests/current/
           retention-days: 7
 
       - name: Upload diff images
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: diff-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
-          path: diff/
+          name: tests/diff-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
+          path: tests/diff/
           retention-days: 14
 
       - name: Workflow summary
