@@ -12,8 +12,8 @@ sys.path.insert(
 
 from nuitka.Tracing import my_print
 
-from utils import *
-from const import *
+from .utils import *
+from .const import *
 
 def run_visual_test(browser_name, viewport_mode, page_path, wait_time=DEFAULT_WAIT_TIME):
     url = build_url(page_path)
