@@ -101,6 +101,7 @@ redist"
 Roadmap"
 Roboto
 runpy"
+Scons
 Scons"
 segfault
 segfaulted
@@ -121,6 +122,7 @@ Uncompiled
 uncompiled"
 unidecode
 unstripped"
+Valgrind
 virtualenv"
 whitebox"
 zstandard

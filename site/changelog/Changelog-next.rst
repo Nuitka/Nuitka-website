@@ -283,12 +283,6 @@ Bug Fixes
    set in a timely manner, which could affect onefile operations. (Fixed
    in 2.7.14 already.)
 
--  **Standalone**: Added support for the ``gdsfactory``, ``klayout``,
-   and ``kfactory`` packages. (Added in 2.7.15 already.)
-
--  **Standalone**: Added missing data files for the ``trimesh`` package.
-   (Added in 2.7.15 already.)
-
 -  **Compatibility**: Fixed a crash that could occur when a function
    with both a star-list argument and keyword-only arguments was called
    without any arguments. (Fixed in 2.7.16 already.)
@@ -297,14 +291,73 @@ Bug Fixes
    checked case-insensitively, which could lead to metadata not being
    included. (Fixed in 2.7.16 already.)
 
--  **Standalone**: Added support for newer versions of the
-   ``tkinterweb`` package. (Added in 2.7.15 already.)
+-  **Linux**: Avoid using full zlib with extern declarations but instead
+   only the CRC32 functions we need. Otherwise conflicts with OS headers
+   could occur.
 
--  **Standalone**: Added support for newer versions of the
-   ``cmsis_pack_manager`` package. (Added in 2.7.15 already.)
+-  **Standalone**: Fix, scanning for standard library dependencies
+   should not be necessary
 
--  **Standalone**: Added missing data files for the ``idlelib`` package.
-   (Added in 2.7.15 already.)
+   We now ignore doing it for standard library for all flavors,
+   previously we only had it for Anaconda.
+
+-  **Plugins**: Make run time query code robust against modules output
+   in stdout during import
+
+   This affected at least ``toga`` giving some warnings on Windows with
+   mere stdout prints. We now have a marker for the start of our output
+   that we look for and safely ignore them.
+
+-  **Windows**: Do not attach when running in DLL mode. For onefile with
+   DLL mode this was unnecessary since the bootstrap already does it,
+   and for pure DLL mode it's not desired.
+
+-  **Onefile**: No need to monitor the parent process in onefile DLL
+   mode, there is no child process launched.
+
+-  **Anaconda**: Determine version and project name for conda packages
+   more reliably
+
+   It seems Anaconda is giving variables in package metadata and often
+   no project name, so we derive it from the conda files and its meta
+   data in those cases.
+
+-  **macOS**: Make sure the SSL certificates are found when downloading
+   on macOS.
+
+-  **Windows**: Fix, console mode attach was not working in onefile DLL
+   mode.
+
+-  **Scons**: Fix, need to only use pragma with ``clang`` as older
+   ``gcc`` can give warnings about them. This fixes building on older
+   OSes with the system gcc.
+
+-  **Compatibility**: Fix, need to avoid using filenames with more than
+   250 chars for long module names.
+
+   -  For cache files, const files, and C files, we need to make sure,
+      we don't exceed the 255 char limits per path element that
+      literally every OS has.
+
+   -  Also enhanced the check code for legal paths to cover this, so
+      user options are covered from this errors too.
+
+   -  Moved file hashing to file operations where it makes more sense to
+      allow module names to use hashing to provide a legal filename for
+      themselves.
+
+-  **Compatibility**: Fix, walking included compiled packages through
+   the Nuitka loader could produce false names in some cases.
+
+-  **Windows**: Fix, for when checking ``stderr`` during launch and it
+   being ``None``, this make wrong method calls on that object.
+
+-  **Debugging**: Fix, the segfault non-deployment handler needs to
+   disable itself before doing anything else.
+
+-  **Plugins**: Fix, the warning to choose a GUI plugin for
+   ``matplotlib`` was given with ``tk-inter`` plugin enabled still,
+   which is of course wrong.
 
 Package Support
 ===============
@@ -408,11 +461,60 @@ Package Support
 -  **Standalone**: Added a missing data file for the ``rfc3987_syntax``
    package. (Added in 2.7.14 already.)
 
+-  **Standalone**: Added missing data files for the ``trimesh`` package.
+   (Added in 2.7.15 already.)
+
+-  **Standalone**: Added support for the ``gdsfactory``, ``klayout``,
+   and ``kfactory`` packages. (Added in 2.7.15 already.)
+
 -  **Standalone**: Added support for the ``vllm`` package. (Added in
    2.7.16 already.)
 
+-  **Standalone**: Added support for newer versions of the
+   ``tkinterweb`` package. (Added in 2.7.15 already.)
+
+-  **Standalone**: Added support for newer versions of the
+   ``cmsis_pack_manager`` package. (Added in 2.7.15 already.)
+
+-  **Standalone**: Added missing data files for the ``idlelib`` package.
+   (Added in 2.7.15 already.)
+
+-  **Standalone**: Avoid including debug binary on non-Windows for Qt
+   Webkit.
+
+-  Standalone: Add dependencies for **pymediainfo**
+
 New Features
 ============
+
+-  **Python3.14**: Added experimental support for Python3.14, not
+   recommended for use yet as this is very fresh and might be missing a
+   lot of fixes.
+
+-  **Release**: Added an extra dependency group for the Nuitka
+   build-backend, intended for use in ``pyproject.toml`` and other
+   build-system dependencies. To use it depend in
+   ``Nuitka[build-wheel]`` instead of Nuitka. (Added in 2.7.7 already.)
+
+   For release we also added ``Nuitka[onefile]``,
+   ``Nuitka[standalone]``, ``Nuitka[app]`` as extra dependency groups.
+   If icon conversions are used, e.g.
+   ``Nuitka[onefile,icon-conversion]`` adds the necessary packages for
+   that. If you don't care about what's being pulled in ``Nuitka[all]``
+   can be used, by default ``Nuitka`` only comes with the bare minimum
+   needed and will inform about missing packages.
+
+-  **macOS**: Added options ``--macos-sign-keyring-filename`` and
+   ``--macos-sign-keyring-password`` to automatically unlock a keyring
+   for use during signing. This is very useful for CI where no UI prompt
+   can be used.
+
+-  **Windows**: Detect when ``input`` cannot be used due to no console
+   or the console not providing proper standard input and produce a
+   dialog for entry instead. Shells like ``cmd.exe`` execute inputs as
+   commands entered when attaching to them. With this, the user is
+   informed to make the input into the dialog instead. In case of no
+   terminal, this just brings up the dialog for GUI mode.
 
 -  **Plugins**: Introduced ``global_change_function`` to the anti-bloat
    engine, allowing function replacements across all sub-modules of a
@@ -423,6 +525,38 @@ New Features
 
 -  **macOS**: Added an option to prevent an application from running in
    multiple instances. (Added in 2.7.7 already.)
+
+-  **AIX**: Added support for this OS as well, now standalone and module
+   mode work there too.
+
+-  **Scons**: When C a compilation fails to due warnings in ``--debug``
+   mode, recognize that and provide the proper extra options to use if
+   you want to ignore that.
+
+-  **Non-Deployment**: Added non-deployment handler to catch modules
+   that error exit on import, while assumed to work perfectly.
+
+   This will give people an indication that the ``numpy`` module is
+   expected to work, and that maybe just the newest version is not and
+   we need to be told about it.
+
+-  **Non-Deployment**: Added non-deployment handler for
+   ``DistributionNotFound`` main program exception exits that point the
+   user to metadata options needed.
+
+-  **UI**: Make ``--include-data-files-external`` the main option name
+   for put data files alongside the created program.
+
+   This now works with standalone mode too, and is no longer onefile
+   specific, the name should reflect that and people can now use it more
+   broadly.
+
+-  **Plugins**: Added support for multiple warnings of the same kind.
+   The ``dill-compat`` plugin needs that as it supports multiple
+   packages.
+
+-  **Plugins**: Added detector for the ``dill-compat`` plugin that
+   detects usages of ``dill``, ``cloudpickle`` and ``ray.cloudpickle``.
 
 Optimization
 ============
@@ -436,10 +570,29 @@ Optimization
    erroneous, it should not cause a compiler crash. (Added in 2.7.1
    already.)
 
+-  With unknown locals dictionary variables trust very hard values there
+   too.
+
+   -  With this using hard import names also optimize inside of classes.
+   -  This makes ``gcloud`` metadata work, which previously wasn't
+      resolved in their code.
+
 -  **macOS**: Enhanced ``PySide2`` support, removing the general
    requirement for onefile mode. Onefile mode is now only enforced for
    ``QtWebEngine`` due to its specific stability issues if not bundled
    this way. (Added in 2.7.4 already.)
+
+-  **Scons**: Added support for C23 embedding of the constants blob with
+   ClangCL too avoiding the use of resources. Since the onefile
+   bootstrap doesn't yet honor this for its payload, this is still not
+   complete but could help with size limitations in the future.
+
+-  **Plugins**: Overhaul of the UPX plugin.
+
+   Use better compression than before, hint the user at disabling
+   onefile compression where applicable to avoid double compression.
+   Output warnings for files that are not considered compressible. Check
+   for ``upx`` binary sooner.
 
 Anti-Bloat
 ==========
@@ -455,36 +608,49 @@ Anti-Bloat
 -  Reduced compiled size by avoiding the use of "docutils" within the
    ``markdown2`` package. (Added in 2.7.1 already.)
 
--  Avoided including the testing framework from the ``langsmith``
-   package. (Added in 2.7.6 already.)
+-  Avoid including the testing framework from the ``langsmith`` package.
+   (Added in 2.7.6 already.)
 
--  Avoided including ``setuptools`` from ``jax.version``. (Added in
-   2.7.6 already.)
+-  Avoid including ``setuptools`` from ``jax.version``. (Added in 2.7.6
+   already.)
 
--  Avoided including ``unittest`` from the ``reportlab`` package. (Added
+-  Avoid including ``unittest`` from the ``reportlab`` package. (Added
    in 2.7.6 already.)
 
--  Avoided including ``IPython`` for the ``keras`` package using a more
+-  Avoid including ``IPython`` for the ``keras`` package using a more
    global approach. (Added in 2.7.11 already.)
 
--  Avoided including the ``triton`` package when compiling
+-  Avoid including the ``triton`` package when compiling
    ``transformers``. (Added in 2.7.11 already.)
 
--  Avoided a bloat warning for an optional import in the ``seaborn``
+-  Avoid a bloat warning for an optional import in the ``seaborn``
    package. (Added in 2.7.13 already.)
 
 -  Avoid compiling generated ``google.protobuf.*_pb2`` files. (Added in
    2.7.7 already.)
 
--  **Anti-Bloat**: Avoided including ``triton`` and ``setuptools`` when
-   using the ``xformers`` package. (Added in 2.7.16 already.)
+-  Avoid including ``triton`` and ``setuptools`` when using the
+   ``xformers`` package. (Added in 2.7.16 already.)
 
--  **Anti-Bloat**: Refined ``dask`` support to not remove
-   ``pandas.testing`` when ``pytest`` usage is allowed. (Added in 2.7.16
-   already.)
+-  Refined ``dask`` support to not remove ``pandas.testing`` when
+   ``pytest`` usage is allowed. (Added in 2.7.16 already.)
+
+-  Avoid compiling ``tensorflow`` module that is very slow and contains
+   generated code.
+
+-  Avoid using ``setuptools`` in ``cupy`` package.
+
+-  Avoid false bloat warning in ``seadoc`` package.
+
+-  Avoid using ``dask`` in ``sklearn`` package.
 
 Organizational
 ==============
+
+-  **UI**: Remove obsolete options to control the compilation mode from
+   help output. We are keeping them only to not break existing
+   workflows, but ``--mode=`` should be used now and these options will
+   start triggering warnings soon.
 
 -  **Python3.13.4**: Reject broken CPython official release for Windows.
 
@@ -500,13 +666,95 @@ Organizational
 -  **Release**: Ensured proper handling of newer ``setuptools`` versions
    during Nuitka installation. (Fixed in 2.7.4 already.)
 
--  **Release**: Added an extra dependency group for the Nuitka
-   build-backend, intended for use in ``pyproject.toml`` and other
-   build-system dependencies. To use it depend in
-   ``Nuitka[build-wheel]`` instead of Nuitka. (Added in 2.7.7 already.)
-
 -  **UI**: Sort ``--list-distribution-metadata`` output and remove
    duplicates. (Changed in 2.7.8 already.)
+
+-  **Visual Code**: Added Python2.6 config for Win32 to use for
+   comparisons, still checking things there a lot.
+
+-  **UI**: List available Qt plugin families if ``--include-qt-plugin``
+   cannot find one.
+
+-  **UI**: Warn about compiling a file named ``__main__.py`` which
+   should be avoided, instead you should specify the package directory
+   in that case.
+
+   -  **UI:** Make it an error to compile a file named ``__init__.py``
+      for standalone mode.
+
+-  **Debugging**: Also find files for ``--edit`` for temporary file
+   paths that are not short, but long paths.
+
+-  **Debugging**: Make the ``pyside6`` plugin enforce
+   ``--no-debug-immortal-assumptions`` when ``--debug`` is on because
+   PySide6 violates these and we don't need Nuitka to check for that
+   then as it will abort when it finds them.
+
+-  **Quality**: Avoid writing auto-formatted files with same contents
+
+   -  That avoids stirring up tools that listen to changes.
+   -  For example the Nuitka website auto-builder otherwise rebuilt per
+      release post on docs update.
+
+-  **Release**: The man pages were using outdated options and had no
+   example for standalone or app modes. Also the actual options were no
+   longer included.
+
+-  **GitHub**: Use the ``--mode`` options in the issue template as well.
+
+-  **GitHub**: Enhanced wordings for bug report template to give more
+   directions and more space for excellent reports to be made.
+
+-  **GitHub**: Also ask for output of our own package metadata listing
+   tool as it contains more information about Nuitka seeing things.
+
+-  **Debugging**: Don't disable all warnings with Clang, this has went
+   unnoticed for a long time and prevented a few things from being
+   recognized.
+
+-  **Debugging**: Support arbitrary debuggers through
+   `--debugger-choice`.
+
+      Support arbitrary debuggers for use in the ``--debugger`` mode, if
+      you specify all of their command line you can do anything there.
+
+      Also added predefined ``valgrind-memcheck`` mode for memory
+      checker tool of Valgrind to be used.
+
+-  **UI**: Added rich as a progress bar that can be used. Since it's
+   available in pip these days, it can be found most likely and needs no
+   inline copy. Add colors and similar behavior for ``tqdm`` as well.
+
+-  **UI**: Remove obsolete warning for Linux with ``upx`` plugin.
+
+   We don't use ``appimage`` anymore for a while now, so its constraints
+   do not matter.
+
+-  **UI**: Output the module name in question for ``options-nanny``
+   plugin and parameter warnings.
+
+-  **UI**: When a forbidden import comes from an implicit import, report
+   that properly.
+
+   Sometimes ``.pyi`` files from extension modules cause an import, but
+   it wasn't clear which one, now it will be giving the module causing
+   it.
+
+-  **UI**: More clear error message in case a Python for scons was not
+   found.
+
+-  **Actions**: Cover debug mode compilation at least once.
+
+-  **Quality**: Resolve paths from all OSes in ``--edit``. Sometime I
+   want to look at a file on the wrong OS still, and there is no need to
+   enforce being on the same one for resolutions to work.
+
+-  **Actions**: Use newer Ubuntu for testing, otherwise we weren't able
+   to get ``clang-format`` installed anymore.
+
+-  **Debugging:** Allow for C stack output in signal handlers, this is
+   most useful when doing the non-deployment handler that catches them
+   to know where they came from more precisely.
 
 Tests
 =====
@@ -524,6 +772,9 @@ Tests
    preventing warnings in specific standalone mode test scenarios
    related to reference counting. (Added in 2.7.4 already.)
 
+-  Tests: Cover the memory leaking call re-formulation with a reference
+   count test.
+
 Cleanups
 ========
 
@@ -535,6 +786,27 @@ Cleanups
 -  Improved the logging mechanism for module search scans. It is now
    possible to enable tracing for individual ``locateModule`` calls,
    significantly enhancing readability and aiding debugging efforts.
+
+-  **Scons**: Refactored architecture specific options into dedicated
+   functions to keep the code more clear.
+
+-  **Spelling:** Cleanups
+
+   -  Avoid using ``#ifdef`` in C code templates, and lets just avoid it
+      generally.
+
+   -  Added missing slot function names to the ignored word list.
+
+   -  Renamed variables related to slots to be more verbose and proper
+      spelling as a result, as that's for better understanding of their
+      use anyway.
+
+-  **Scons**: Specify versions supported for Scons by excluding the ones
+   that are not rather than manually maintaining a list. This adds
+   support for using Python 3.14 automatically.
+
+-  **Plugins**: Remove useless use of ``intern`` as it doesn't do what I
+   thought it does.
 
 Summary
 =======
