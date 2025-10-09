@@ -3,33 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from .utils import *
-
-BASE_URL = "http://localhost:8000"
-
-ROOT = Path(__file__).parent.parent
-
-GOLDEN_DIR = ROOT / "tests" / "golden"
-CURRENT_DIR = ROOT / "tests" / "current"
-DIFF_DIR = ROOT / "tests" / "diff"
-
-VIEWPORT_MODES = ["desktop", "mobile"]
-
-GOLDEN_PAGES = [
-    "/",
-    "doc/download.html",
-    "commercial/purchase.html",
-    "user-documentation/user-manual.html",
-    "user-documentation/use-cases.html",
-    "user-documentation/common-issue-solutions.html",
-    "doc/commercial/protect-data-files.html",
-    "user-documentation/tips.html",
-    "pages/website-manual.html",
-    "posts/nuitka-shaping-up.html"
-]
-
-DEFAULT_WAIT_TIME = 1000
-COMPARISON_THRESHOLD = 5
+from regression_utils import *
 
 def run_visual_test(page, browser_name, page_path, viewport_mode, wait_time=DEFAULT_WAIT_TIME):
     url = build_url(page_path)
@@ -63,18 +37,6 @@ def run_visual_test(page, browser_name, page_path, viewport_mode, wait_time=DEFA
         f"Visual regression detected in {url} ({browser_name}-{viewport_mode}).\n"
         f"Difference saved to {diff_path}"
     )
-
-DESKTOP_DEVICES = {
-    "chromium": {"viewport": {"width": 1280, "height": 720}, "is_mobile": False},
-    "firefox": {"viewport": {"width": 1280, "height": 720}, "is_mobile": False},
-    "webkit": {"viewport": {"width": 1280, "height": 720}, "is_mobile": False},
-}
-
-MOBILE_DEVICES = {
-    "chromium": {"viewport": {"width": 375, "height": 667}, "is_mobile": True, "has_touch": True},
-    "firefox": {"viewport": {"width": 375, "height": 667}, "is_mobile": True, "has_touch": True},
-    "webkit": {"viewport": {"width": 375, "height": 667}, "is_mobile": True, "has_touch": True},
-}
 
 @pytest.mark.parametrize("page_path", GOLDEN_PAGES)
 @pytest.mark.desktop

@@ -1,5 +1,6 @@
 import os
 import sys
+from pathlib import Path
 
 import re
 from urllib.parse import urlparse
@@ -10,11 +11,50 @@ from PIL import Image, ImageChops, ImageDraw
 sys.path.insert(
     0,
     os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../Nuitka-develop")
+        os.path.join(os.path.dirname(__file__), "./Nuitka-develop")
     )
 )
 
 from nuitka.Tracing import my_print
+
+BASE_URL = "http://localhost:8000"
+
+ROOT = Path(__file__).parent.resolve()
+
+GOLDEN_DIR = ROOT / "tests" / "golden"
+CURRENT_DIR = ROOT / "tests" / "current"
+DIFF_DIR = ROOT / "tests" / "diff"
+
+VIEWPORT_MODES = ["desktop", "mobile"]
+
+GOLDEN_PAGES = [
+    "/",
+    "doc/download.html",
+    "commercial/purchase.html",
+    "user-documentation/user-manual.html",
+    "user-documentation/use-cases.html",
+    "user-documentation/common-issue-solutions.html",
+    "doc/commercial/protect-data-files.html",
+    "user-documentation/tips.html",
+    "pages/website-manual.html",
+    "posts/nuitka-shaping-up.html"
+]
+
+DEFAULT_WAIT_TIME = 1000
+COMPARISON_THRESHOLD = 5
+
+DESKTOP_DEVICES = {
+    "chromium": {"viewport": {"width": 1280, "height": 720}, "is_mobile": False},
+    "firefox": {"viewport": {"width": 1280, "height": 720}, "is_mobile": False},
+    "webkit": {"viewport": {"width": 1280, "height": 720}, "is_mobile": False},
+}
+
+MOBILE_DEVICES = {
+    "chromium": {"viewport": {"width": 375, "height": 667}, "is_mobile": True, "has_touch": True},
+    "firefox": {"viewport": {"width": 375, "height": 667}, "is_mobile": True, "has_touch": True},
+    "webkit": {"viewport": {"width": 375, "height": 667}, "is_mobile": True, "has_touch": True},
+}
+
 
 def sanitizeUrl(url):
     path = urlparse(url).path

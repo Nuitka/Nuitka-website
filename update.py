@@ -109,14 +109,19 @@ from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.ReExecute import callExecProcess
 from nuitka.utils.Rest import makeTable
-from tests.const import (
-    BROWSERS,
-    DEFAULT_WAIT_TIME,
+
+from playwright.sync_api import sync_playwright
+
+from regression_utils import (
     GOLDEN_DIR,
+    VIEWPORT_MODES,
     GOLDEN_PAGES,
-    VIEWPORTS,
+    DEFAULT_WAIT_TIME,
+    DESKTOP_DEVICES,
+    MOBILE_DEVICES,
+    sanitizeUrl,
+    build_url,
 )
-from tests.utils import update_golden_images
 
 development_mode = os.getenv("DEVELOPMENT_MODE") == "1"
 FA_STYLE_MAP = {
@@ -1528,15 +1533,16 @@ def runSphinxAutoBuild():
     callExecProcess(args, uac=False)
 
 
-tests_dir = Path(__file__).parent / "tests"
-sys.path.insert(0, str(tests_dir.resolve()))
-
-
 def runUpdateGolden(
-    browsers=None, devices=None, pages=None, wait=None, clean=False, verbose=False
+    browsers=None,
+    devices=None,
+    pages=None,
+    wait=None,
+    clean=False,
+    verbose=False,
 ):
-    browsers = browsers or BROWSERS
-    devices = devices or list(VIEWPORTS.keys())
+    browsers = browsers or ["chromium", "firefox", "webkit"]
+    devices = devices or VIEWPORT_MODES
     pages = pages or GOLDEN_PAGES
     wait = wait or DEFAULT_WAIT_TIME
 
@@ -1549,30 +1555,53 @@ def runUpdateGolden(
         my_print(f"- Clean directory: {'Yes' if clean else 'No'}")
 
     golden_dir = Path(GOLDEN_DIR)
-    if clean:
-        if golden_dir.exists():
-            my_print(f"Cleaning reference images directory: {golden_dir}")
-            for file in golden_dir.glob("*.png"):
-                file.unlink()
-        else:
-            my_print(f"Creating reference images directory: {golden_dir}")
-            golden_dir.mkdir(parents=True, exist_ok=True)
-
-    Path(GOLDEN_DIR).mkdir(parents=True, exist_ok=True)
+    if clean and golden_dir.exists():
+        my_print(f"Cleaning reference images directory: {golden_dir}")
+        for file in golden_dir.glob("*.png"):
+            deleteFile(file, must_exist=False)
+    golden_dir.mkdir(parents=True, exist_ok=True)
 
     try:
-        print("Starting reference images update...")
-        update_golden_images(
-            browsers_to_use=browsers,
-            modes_to_use=devices,
-            pages_to_update=pages,
-            wait_time=wait,
-        )
-        my_print("Update completed successfully!")
-    except Exception as e:
-        my_print(f"Error during update: {e}")
-        import traceback
+        my_print("Starting reference images update...")
+        with sync_playwright() as p:
+            for browser_name in browsers:
+                browser_type = getattr(p, browser_name)
+                browser = browser_type.launch(headless=True)
 
+                for viewport_mode in devices:
+                    if viewport_mode == "desktop":
+                        device_config = DESKTOP_DEVICES[browser_name]
+                    elif viewport_mode == "mobile":
+                        device_config = MOBILE_DEVICES[browser_name]
+                    else:
+                        raise ValueError(f"Unknown viewport mode: {viewport_mode}")
+
+                    context = browser.new_context(**device_config)
+                    page = context.new_page()
+
+                    for page_path in pages:
+                        url = build_url(page_path)
+                        safe_name = sanitizeUrl(page_path)
+                        golden_path = golden_dir / f"{browser_name}_{viewport_mode}_{safe_name}.png"
+
+                        if verbose:
+                            my_print(
+                                f"  Generating {browser_name} / {viewport_mode} / {page_path} -> {golden_path}"
+                            )
+
+                        page.goto(url, timeout=20000)
+                        if wait > 0:
+                            page.wait_for_timeout(wait)
+                        page.screenshot(path=golden_path, full_page=True, timeout=20000)
+
+                    context.close()
+                browser.close()
+
+        my_print("Update completed successfully!")
+
+    except Exception as e:
+        import traceback
+        my_print(f"Error during update: {e}")
         traceback.print_exc()
         return 1
 
@@ -1582,7 +1611,6 @@ def runUpdateGolden(
     my_print(f"- Pages: {len(pages)}")
     my_print(f"- Total images: {len(browsers) * len(devices) * len(pages)}")
     return 0
-
 
 def getTranslationStatus():
     status = {}

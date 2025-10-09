@@ -90,7 +90,7 @@ Run all tests (60 total: 10 pages × 3 browsers × 2 viewports):
 
 .. code-block:: bash
 
-   pytest tests/regression.py -v
+   pytest tests/regression_test.py -v
 
 Selective Execution with Markers
 --------------------------------
@@ -102,31 +102,31 @@ Available markers: ``desktop``, ``mobile``, ``chromium``, ``firefox``, ``webkit`
 
   .. code-block:: bash
 
-     pytest tests/regression.py -m "desktop" -v
+     pytest tests/regression_test.py -m "desktop" -v
 
 - All mobile tests:
 
   .. code-block:: bash
 
-     pytest tests/regression.py -m "mobile" -v
+     pytest tests/regression_test.py -m "mobile" -v
 
 - Specific combo (e.g., mobile Chromium):
 
   .. code-block:: bash
 
-     pytest tests/regression.py -m "mobile and chromium" -v
+     pytest tests/regression_test.py -m "mobile and chromium" -v
 
 - Single test function (e.g., desktop Firefox):
 
   .. code-block:: bash
 
-     pytest tests/regression.py::test_visual_desktop_firefox -v
+     pytest tests/regression_test.py::test_visual_desktop_firefox -v
 
 - Specific page in a test (e.g., home page on mobile WebKit):
 
   .. code-block:: bash
 
-     pytest tests/regression.py::test_visual_mobile_webkit[/] -v
+     pytest tests/regression_test.py::test_visual_mobile_webkit[/] -v
 
 Test Output
 ===========
