@@ -13,7 +13,7 @@ sys.path.insert(
 )
 from nuitka.Tracing import my_print
 
-from .const import VIEWPORTS, GOLDEN_PAGES, BASE_URL, GOLDEN_DIR, CURRENT_DIR, DIFF_DIR, BROWSERS, COMPARISON_THRESHOLD, DEFAULT_WAIT_TIME
+from const import VIEWPORTS, GOLDEN_PAGES, BASE_URL, GOLDEN_DIR, CURRENT_DIR, DIFF_DIR, BROWSERS, COMPARISON_THRESHOLD, DEFAULT_WAIT_TIME
 
 def sanitizeUrl(url):
     path = urlparse(url).path
