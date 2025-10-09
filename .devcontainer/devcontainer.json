@@ -34,7 +34,7 @@
         "set_timezone": "sudo dpkg-reconfigure tzdata -f none",
         "create_supervisor_log_dir": "sudo mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs",
         "chown_supervisor_log_dir": "sudo chown -R vscode:vscode ${containerWorkspaceFolder}/.devcontainer/supervisor",
-        "npm_install": "npm install",
+        "npm_install": "npm install --silent --no-fund --no-audit",
         "fix_paste": "echo \"bind 'set enable-bracketed-paste off'\" >> /home/vscode/.bashrc",
         "pipenv_install": "pipenv install --dev"
     },
