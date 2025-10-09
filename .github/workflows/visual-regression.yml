@@ -66,7 +66,7 @@ jobs:
 
       - name: Run visual regression tests
         run: |
-          pipenv run pytest tests/regression_test.py -m "${{ matrix.viewport }} and ${{ matrix.browser }}" -v \
+          pipenv run pytest tests/regression_test.py -m "${{ matrix.device }} and ${{ matrix.browser }}" -v \
             --tb=short
         continue-on-error: false
         id: tests
