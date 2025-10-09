@@ -20,7 +20,7 @@
 
 .. |GIT_LOGO| image:: /images/git.jpg
 
-.. |COMING_SOON_CLOCK| image:: /images/coming-soon-clock.svg
+.. |COMING_SOON_CLOCK| image:: /images/svg/coming-soon-clock.svg
    :width: 30%
 
 .. |SUPPORTED_PYTHONS| replace::
@@ -85,3 +85,7 @@
 .. |MORE_SYMBOL| raw:: html
 
    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+
+.. |GITTER_BADGE| image:: /images/svg/gitter-badge.svg
+   :target: https://gitter.im/Nuitka-chat/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+   :alt: Join the chat at https://gitter.im/Nuitka-chat/community

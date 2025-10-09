@@ -1,0 +1,104 @@
+name: Update Golden Images
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      browsers:
+        description: 'Browsers (comma-separated: chromium,firefox,webkit)'
+        required: true
+        default: 'chromium,firefox,webkit'
+      devices:
+        description: 'Devices (comma-separated: desktop,mobile)'
+        required: true
+        default: 'desktop,mobile'
+      pages:
+        description: 'Pages (comma-separated or "all")'
+        required: false
+        default: 'all'
+
+jobs:
+  update-golden:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+        device: [desktop, mobile]
+      fail-fast: false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Cache Pipenv dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pipenv-
+
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install --dev
+          npm install
+          pipenv run playwright install && pipenv run playwright install-deps
+
+      - name: Start app for screenshots
+        run: |
+          export DEVELOPMENT_MODE=1
+          pipenv run invoke update-docs
+          pipenv run invoke site
+          pipenv run invoke post-process
+          nohup pipenv run invoke serve &
+          sleep 5
+
+      - name: Generate golden images
+        run: |
+          ARGS="--update-golden --browsers ${{ matrix.browser }} --devices ${{ matrix.device }} --wait 1000 --clean --verbose"
+          if [ "${{ github.event.inputs.pages }}" != "all" ]; then
+            ARGS="$ARGS --pages ${{ github.event.inputs.pages }}"
+          fi
+          pipenv run python update.py $ARGS
+          echo "Golden images generated for ${{ matrix.browser }}/${{ matrix.device }}"
+          ls -lah tests/golden/
+
+      - name: Save golden images to cache
+        uses: actions/cache/save@v4
+        with:
+          path: tests/golden/
+          key: golden-images-main-${{ matrix.browser }}-${{ matrix.device }}
+
+      - name: Upload golden images as backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-backup-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
+          path: tests/golden/
+          retention-days: 90
+
+  summary:
+    needs: update-golden
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create update summary
+        run: |
+          echo "# Golden Images Update Complete" >> $GITHUB_STEP_SUMMARY
+          echo "**Triggered by:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Browsers:** ${{ github.event.inputs.browsers }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Devices:** ${{ github.event.inputs.devices }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Pages:** ${{ github.event.inputs.pages }}" >> $GITHUB_STEP_SUMMARY
+          echo "New golden images have been generated, cached, and backup artifacts uploaded (90-day retention)." >> $GITHUB_STEP_SUMMARY
+          echo "Next visual regression test run will use these images as baseline."

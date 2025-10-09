@@ -144,12 +144,22 @@ FA_UTILITY_CLASSES = {
 }
 
 FA_SVG_PATH = "site/images/fontawesome"
+SVG_SOURCE_PATH = "images/svg"
 
 FA_REPLACEMENT_CLASS = {
     "fa": "nuitka-fa",
     "fa-fw": "nuitka-fw",
 }
 
+
+SVG_CACHE = {}
+
+def get_svg_content(svg_path):
+    if svg_path not in SVG_CACHE:
+        if not os.path.exists(svg_path):
+            raise FileNotFoundError(f"SVG not found: {svg_path}")
+        SVG_CACHE[svg_path] = getFileContents(svg_path, encoding="utf-8")
+    return SVG_CACHE[svg_path]
 
 def add_inline_svg(
     element, svg_path, is_fa_icon=False, style_folder=None, icon_name=None
@@ -166,7 +176,7 @@ def add_inline_svg(
 
         raise FileNotFoundError(f"SVG file not found: {svg_path}")
 
-    svg_content = getFileContents(svg_path, encoding="utf-8")
+    svg_content = get_svg_content(svg_path)
     svg_content = re.sub(r"<!--.*?-->", "", svg_content, flags=re.DOTALL)
 
     svg_element = html.fragment_fromstring(svg_content, create_parent=False)
@@ -232,15 +242,13 @@ def inlineImagesSvg(doc, filename):
         if src.startswith(("http://", "https://")):
             continue
 
-        svg_path = os.path.join(
-            os.path.dirname(__file__),
-            os.path.join(os.path.dirname(filename), src).lstrip("/"),
-        )
+        src_clean = os.path.basename(src)
+
+        svg_path = f"{SVG_SOURCE_PATH}/{src_clean}"
 
         assert os.path.exists(svg_path), (filename, src, svg_path)
 
         add_inline_svg(img_tag, svg_path)
-
 
 def inlineFontAwesomeSvg(doc):
     for i_tag in doc.xpath("//i[contains(@class, 'fa')]"):
@@ -1016,8 +1024,8 @@ def _processWithPostCSS(css_content):
 
     _postcss_cache[css_content] = result
 
-    os.remove(tmp_input_path)
-    os.remove(tmp_output_path)
+    deleteFile(tmp_input_path, must_exist=False)
+    deleteFile(tmp_output_path, must_exist=False)
 
     return result
 
@@ -1151,6 +1159,13 @@ def handleJavaScript(filename, doc):
     if script_tag_first is not None:
         script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)
 
+def cleanBuildSVGs():
+    for dirpath, dirnames, filenames in os.walk("output/_images"):
+        for filename in filenames:
+            if not filename.endswith(".svg"):
+                continue
+
+            deleteFile(os.path.join(dirpath, filename), must_exist=False)
 
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
@@ -1445,6 +1460,8 @@ def runPostProcessing():
         if not os.path.islink(my_theme_filename):
             os.unlink(my_theme_filename)
             os.symlink(os.path.abspath("_static/my_theme.css"), my_theme_filename)
+
+    cleanBuildSVGs()
 
 
 def runDeploymentCommand():
