@@ -182,7 +182,7 @@ Bug Fixes
    annotated by the compiler. (Fixed in 2.7.4 already.)
 
 -  **Windows**: Corrected an issue with the automatic use of icons for
-   ``PySide6`` applications on non-Windows, if Windows icon options were
+   ``PySide6`` applications on non-Windows if Windows icon options were
    used. (Fixed in 2.7.4 already.)
 
 -  **Onefile**: When using DLL mode there was a load error for the DLL
@@ -190,7 +190,7 @@ Bug Fixes
    in 2.7.5 already.)
 
 -  **Onefile**: Fix, the splash screen was showing in DLL mode twice or
-   more, these extra copies couldn't be stopped. (Fixed in 2.7.5
+   more; these extra copies couldn't be stopped. (Fixed in 2.7.5
    already.)
 
 -  **Standalone**: Fixed an issue where data files were no longer
@@ -235,7 +235,7 @@ Bug Fixes
    2.7.9 had a regression.)
 
 -  **Compatibility**: Fixed a crash that occurred when an import
-   attempted to go outside of its package boundaries. (Fixed in 2.7.11
+   attempted to go outside its package boundaries. (Fixed in 2.7.11
    already.)
 
 -  **macOS**: Ignored a warning from ``codesign`` when using self-signed
@@ -309,11 +309,11 @@ Bug Fixes
    that we look for and safely ignore them.
 
 -  **Windows**: Do not attach when running in DLL mode. For onefile with
-   DLL mode this was unnecessary since the bootstrap already does it,
+   DLL mode, this was unnecessary since the bootstrap already does it,
    and for pure DLL mode it's not desired.
 
--  **Onefile**: No need to monitor the parent process in onefile DLL
-   mode, there is no child process launched.
+-  **Onefile:** No need to monitor the parent process in onefile DLL
+   mode; there is no child process launched.
 
 -  **Anaconda**: Determine version and project name for conda packages
    more reliably
@@ -375,7 +375,7 @@ Bug Fixes
 
 -  **macOS**: Fix entitlements were not properly given for code signing.
 
--  **Onefile:** Fix, was delaying shutdown for terminal applications in
+-  **Onefile**: Fix, was delaying shutdown for terminal applications in
    onefile DLL mode.
 
    Was waiting for non-used child processes, which don't exist and then
@@ -385,10 +385,10 @@ Bug Fixes
 -  Python3.13: Fix, seems interpreter frames with None code objects
    exist and need to be handled as well.
 
--  Standalone: Fix, need to allow for ``setuptools`` package to be user
+-  **Standalone**: Fix, need to allow for ``setuptools`` package to be user
    provided.
 
--  Windows: Avoid using non-encodable dist and build folder names
+-  **Windows:** Avoid using non-encodable dist and build folder names
 
    Some paths don't become short, but still be non-encodable from the
    file system for tools, in these cases use temporary filenames to
@@ -400,10 +400,10 @@ Bug Fixes
    The module was removed during development, and if you install over an
    old alpha version of 3.13 a newer Python, Nuitka would crash on it.
 
--  macOS: Need to allow ``lib`` folder for Python Build Standalone
+-  **macOS**: Need to allow ``lib`` folder for Python Build Standalone
    flavor.
 
--  macOS: Need to allow libraries for ``rpath`` resolution to be found
+-  **macOS**: Need to allow libraries for ``rpath`` resolution to be found
    in all of Homebrew folders.
 
 -  **Onefile**: Need to allow ``..`` in paths to allow outside
@@ -458,7 +458,7 @@ Package Support
    missing DLL. (Added in 2.7.6 already.)
 
 -  **macOS**: Enhanced configuration for the ``pypylon`` package,
-   however it's not sufficient. (Added in 2.7.6 already.)
+   however, it's not sufficient. (Added in 2.7.6 already.)
 
 -  **Standalone**: Added support for newer ``numpy`` versions. (Added in
    2.7.7 already.)
@@ -469,7 +469,7 @@ Package Support
 -  **Standalone**: Added support for newer ``certifi`` versions that use
    ``importlib.resources``. (Added in 2.7.9 already.)
 
--  **Standalone**: Added support for the ``reportlab.graphics.barcode``
+-  **Standalone:** Added support for the ``reportlab.graphics.barcode``
    module. (Added in 2.7.9 already.)
 
 -  **Standalone**: Added support for newer versions of the
@@ -548,9 +548,9 @@ Package Support
 
 -  **Standalone:** Added support for newer ``transformers`` package.
 
--  Standalone: Added data files for "rasterio" package.
+-  **Standalone**: Added data files for "rasterio" package.
 
--  Standalone: Added support for "ortools" package.
+-  **Standalone**: Added support for "ortools" package.
 
 -  Standalone: Added support newer "vtk" package
 
@@ -558,7 +558,7 @@ New Features
 ============
 
 -  **Python3.14**: Added experimental support for Python3.14, not
-   recommended for use yet as this is very fresh and might be missing a
+   recommended for use yet, as this is very fresh and might be missing a
    lot of fixes.
 
 -  **Release**: Added an extra dependency group for the Nuitka
@@ -607,7 +607,7 @@ New Features
    that error exit on import, while assumed to work perfectly.
 
    This will give people an indication that the ``numpy`` module is
-   expected to work, and that maybe just the newest version is not and
+   expected to work and that maybe just the newest version is not and
    we need to be told about it.
 
 -  **Non-Deployment**: Added non-deployment handler for
@@ -645,7 +645,7 @@ New Features
 -  **UI**: Make sure the distribution name is correct for
    ``--include-distribution-metadata`` values.
 
--  Plugins: Added support for configuring re-compilation of extension
+-  **Plugins**: Added support for configuring re-compilation of extension
    modules from their source code.
 
    -  When we have both Python code and an extension module, we only had
@@ -659,7 +659,7 @@ New Features
       is never possible.
 
 -  **Reports**: Include environment flags for C compiler and linker
-   picked up for the compilation. Sometimes these call compilation
+   picked up for the compilation. Sometimes these cause compilation
    errors that and this will reveal there presence.
 
 Optimization
@@ -686,12 +686,12 @@ Optimization
    ``QtWebEngine`` due to its specific stability issues if not bundled
    this way. (Added in 2.7.4 already.)
 
--  **Scons**: Added support for C23 embedding of the constants blob with
+-  **Scons:** Added support for C23 embedding of the constants blob with
    ClangCL too avoiding the use of resources. Since the onefile
    bootstrap doesn't yet honor this for its payload, this is still not
    complete but could help with size limitations in the future.
 
--  **Plugins**: Overhaul of the UPX plugin.
+-  **Plugins:** Overhaul of the UPX plugin.
 
    Use better compression than before, hint the user at disabling
    onefile compression where applicable to avoid double compression.
@@ -708,7 +708,7 @@ Anti-Bloat
    also been applied to ``IPython`` to reduce overhead. (Added in 2.7.1
    already.)
 
--  Avoid ``docutils`` usage in ``markdown2`` package. (Added in 2.7.1
+-  Avoid ``docutils`` usage in the ``markdown2`` package. (Added in 2.7.1
    already.)
 
 -  Reduced compiled size by avoiding the use of "docutils" within the
@@ -741,7 +741,7 @@ Anti-Bloat
 -  Refined ``dask`` support to not remove ``pandas.testing`` when
    ``pytest`` usage is allowed. (Added in 2.7.16 already.)
 
--  Avoid compiling ``tensorflow`` module that is very slow and contains
+-  Avoid compiling the ``tensorflow`` module that is very slow and contains
    generated code.
 
 -  Avoid using ``setuptools`` in ``cupy`` package.
@@ -774,7 +774,7 @@ Organizational
 
 -  **Release**: Do not use Nuitka 2.7.9 as it broke data file access via
    ``__file__`` in onefile mode on Windows. This is a brown paper bag
-   release with 2.7.10 containing only the fix for that. Sorry for the
+   release, with 2.7.10 containing only the fix for that. Sorry for the
    inconvenience.
 
 -  **Release**: Ensured proper handling of newer ``setuptools`` versions
@@ -793,7 +793,7 @@ Organizational
    should be avoided, instead you should specify the package directory
    in that case.
 
-   -  **UI:** Make it an error to compile a file named ``__init__.py``
+   -  **UI**: Make it an error to compile a file named ``__init__.py``
       for standalone mode.
 
 -  **Debugging**: Also find files for ``--edit`` for temporary file
@@ -915,7 +915,7 @@ Cleanups
 -  **Scons**: Refactored architecture specific options into dedicated
    functions to keep the code more clear.
 
--  **Spelling:** Cleanups
+-  **Spelling**: Cleanups
 
    -  Avoid using ``#ifdef`` in C code templates, and lets just avoid it
       generally.
