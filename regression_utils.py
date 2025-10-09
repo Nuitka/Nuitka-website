@@ -44,15 +44,15 @@ DEFAULT_WAIT_TIME = 1000
 COMPARISON_THRESHOLD = 5
 
 DESKTOP_DEVICES = {
-    "chromium": {"viewport": {"width": 1280, "height": 720}, "is_mobile": False},
-    "firefox": {"viewport": {"width": 1280, "height": 720}, "is_mobile": False},
-    "webkit": {"viewport": {"width": 1280, "height": 720}, "is_mobile": False},
+    "chromium": {"viewport": {"width": 1920, "height": 1080}, "is_mobile": False},
+    "firefox": {"viewport": {"width": 1920, "height": 1080}, "is_mobile": False},
+    "webkit": {"viewport": {"width": 1920, "height": 1080}, "is_mobile": False},
 }
 
 MOBILE_DEVICES = {
-    "chromium": {"viewport": {"width": 375, "height": 667}, "is_mobile": True, "has_touch": True},
-    "firefox": {"viewport": {"width": 375, "height": 667}, "is_mobile": True, "has_touch": True},
-    "webkit": {"viewport": {"width": 375, "height": 667}, "is_mobile": True, "has_touch": True},
+    "chromium": {"viewport": {"width": 390, "height": 844}, "is_mobile": True, "has_touch": True},
+    "firefox": {"viewport": {"width": 390, "height": 844}, "is_mobile": True, "has_touch": True},
+    "webkit": {"viewport": {"width": 390, "height": 844}, "is_mobile": True, "has_touch": True},
 }
 
 
