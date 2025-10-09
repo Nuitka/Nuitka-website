@@ -298,8 +298,8 @@ Bug Fixes
 -  **Standalone**: Fix, scanning for standard library dependencies
    should not be necessary
 
-   We now ignore doing it for standard library for all flavors,
-   previously we only had it for Anaconda.
+   We now ignore doing it for standard library for all flavors;
+   previously, we only had it for Anaconda.
 
 -  **Plugins**: Make run time query code robust against modules output
    in stdout during import
@@ -312,8 +312,8 @@ Bug Fixes
    DLL mode, this was unnecessary since the bootstrap already does it,
    and for pure DLL mode it's not desired.
 
--  **Onefile:** No need to monitor the parent process in onefile DLL
-   mode; there is no child process launched.
+-  **Onefile**: No need to monitor the parent process in onefile DLL
+   mode, as there is no child process launched.
 
 -  **Anaconda**: Determine version and project name for conda packages
    more reliably
@@ -325,10 +325,10 @@ Bug Fixes
 -  **macOS**: Make sure the SSL certificates are found when downloading
    on macOS.
 
--  **Windows**: Fix, console mode attach was not working in onefile DLL
+-  **Windows**: Fix, console mode ``attach`` was not working in onefile DLL
    mode.
 
--  **Scons**: Fix, need to only use pragma with ``clang`` as older
+-  **Scons**: Fix, need to only use ``pragma`` with ``clang`` as older
    ``gcc`` can give warnings about them. This fixes building on older
    OSes with the system gcc.
 
@@ -360,7 +360,7 @@ Bug Fixes
    which is of course not appropriate.
 
 -  **Distutils**: Fix, do not recreate the build folder with
-   ``.gitignore`` contained.
+   a ``.gitignore`` file.
 
    We were re-creating it as soon as we looked at what it would be, now
    it's created only when asking for that to happen.
@@ -373,9 +373,9 @@ Bug Fixes
 -  **Compatibility**: Fix 3.12 generic classes and generic type
    declarations.
 
--  **macOS**: Fix entitlements were not properly given for code signing.
+-  **macOS**: Fix, entitlements were not properly given for code signing
 
--  **Onefile**: Fix, was delaying shutdown for terminal applications in
+-  **Onefile**: Fix, delayed shutdown for terminal applications in
    onefile DLL mode.
 
    Was waiting for non-used child processes, which don't exist and then
@@ -391,7 +391,7 @@ Bug Fixes
 -  **Windows:** Avoid using non-encodable dist and build folder names
 
    Some paths don't become short, but still be non-encodable from the
-   file system for tools, in these cases use temporary filenames to
+   file system for tools. In these cases, use temporary filenames to
    avoid errors from C compilers and other tools.
 
 -  Python3.13: Fix, ignore stdlib ``cgi`` module that might be left over
@@ -404,7 +404,7 @@ Bug Fixes
    flavor.
 
 -  **macOS**: Need to allow libraries for ``rpath`` resolution to be found
-   in all of Homebrew folders.
+   in all Homebrew folders and not just ``lib``.
 
 -  **Onefile**: Need to allow ``..`` in paths to allow outside
    installation paths.
@@ -534,23 +534,22 @@ Package Support
 
 -  **Standalone**: Add dependencies for **pymediainfo** package.
 
--  **Standalone**: Added support for ``winpty`` package.
+-  **Standalone**: Added support for the ``winpty`` package.
 
 -  **Standalone:** Added support for newer versions of the ``gi``
    package.
 
 -  **Standalone:** Added support for newer versions of the ``litellm``
    package.
+-
+-  **Standalone**: Added support for the ``traits`` and ``pyface`` packages.
 
--  **Standalone**: Added support for the ``traits`` package.
+-  **Standalone:** Added support for newer versions of the ``transformers``
+   package.
 
--  Standalone: Added support for ``pyface`` package.
+-  **Standalone**: Added data files for ``rasterio`` package.
 
--  **Standalone:** Added support for newer ``transformers`` package.
-
--  **Standalone**: Added data files for "rasterio" package.
-
--  **Standalone**: Added support for "ortools" package.
+-  **Standalone**: Added support for ``ortools`` package.
 
 -  Standalone: Added support newer "vtk" package
 
@@ -654,7 +653,7 @@ New Features
    -  This adds ``--recompile-extension-modules`` for more fine grained
       choices as it allows to specify names and patterns.
 
-   -  For ``zmq`` we need to enforce it to never be compiled, as it
+   -  For ``zmq``, we need to enforce it to never be compiled, as it
       checks if it is compiled with Cython at runtime, so re-compilation
       is never possible.
 
@@ -682,7 +681,7 @@ Optimization
       resolved in their code.
 
 -  **macOS**: Enhanced ``PySide2`` support, removing the general
-   requirement for onefile mode. Onefile mode is now only enforced for
+   requirement for onefile mode. Onefile mode is now only enforced for the
    ``QtWebEngine`` due to its specific stability issues if not bundled
    this way. (Added in 2.7.4 already.)
 
@@ -698,7 +697,7 @@ Optimization
    Output warnings for files that are not considered compressible. Check
    for ``upx`` binary sooner.
 
--  **Scons**: Avoid compiling hacl code for macOS where it's needed.
+-  **Scons**: Avoid compiling ``hacl`` code for macOS where it's not needed.
 
 Anti-Bloat
 ==========
@@ -750,13 +749,13 @@ Anti-Bloat
 
 -  Avoid using ``dask`` in ``sklearn`` package.
 
--  Avoid using ``cupy.testing`` in ``cupy`` package.
+-  Avoid using ``cupy.testing`` in the ``cupy`` package.
 
--  Avoid using "IPython" in "roboflow" package.
+-  Avoid using ``IPython`` in the ``roboflow`` package.
 
--  Avoid including "ray" for "vllm" package.
+-  Avoid including ``ray`` for the ``vllm`` package.
 
--  Anti-Bloat: Avoid using "dill" in "torch" package.
+-  Avoid using ``dill`` in the ``torch`` package.
 
 Organizational
 ==============
@@ -797,7 +796,7 @@ Organizational
       for standalone mode.
 
 -  **Debugging**: Also find files for ``--edit`` for temporary file
-   paths that are not short, but long paths.
+   paths that are not short but long paths.
 
 -  **Debugging**: Make the ``pyside6`` plugin enforce
    ``--no-debug-immortal-assumptions`` when ``--debug`` is on because
@@ -917,7 +916,7 @@ Cleanups
 
 -  **Spelling**: Cleanups
 
-   -  Avoid using ``#ifdef`` in C code templates, and lets just avoid it
+   -  Avoid using ``#ifdef`` in C code templates, and let's just avoid it
       generally.
 
    -  Added missing slot function names to the ignored word list.
