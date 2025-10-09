@@ -357,7 +357,57 @@ Bug Fixes
 
 -  **Plugins**: Fix, the warning to choose a GUI plugin for
    ``matplotlib`` was given with ``tk-inter`` plugin enabled still,
-   which is of course wrong.
+   which is of course not appropriate.
+
+-  **Distutils**: Fix, do not recreate the build folder with
+   ``.gitignore`` contained.
+
+   We were re-creating it as soon as we looked at what it would be, now
+   it's created only when asking for that to happen.
+
+-  **No-GIL**: More changes for dictionaries needed
+
+   Fix compile errors for the free-threaded dictionary implementation
+   were needed after a hotfix for 2.7 broke it.
+
+-  **Compatibility**: Fix 3.12 generic classes and generic type
+   declarations.
+
+-  **macOS**: Fix entitlements were not properly given for code signing.
+
+-  **Onefile:** Fix, was delaying shutdown for terminal applications in
+   onefile DLL mode.
+
+   Was waiting for non-used child processes, which don't exist and then
+   the timeout for that operation, which is always happening on CTRL-C
+   or terminal shutdown.
+
+-  Python3.13: Fix, seems interpreter frames with None code objects
+   exist and need to be handled as well.
+
+-  Standalone: Fix, need to allow for ``setuptools`` package to be user
+   provided.
+
+-  Windows: Avoid using non-encodable dist and build folder names
+
+   Some paths don't become short, but still be non-encodable from the
+   file system for tools, in these cases use temporary filenames to
+   avoid errors from C compilers and other tools.
+
+-  Python3.13: Fix, ignore stdlib ``cgi`` module that might be left over
+   from previous installs
+
+   The module was removed during development, and if you install over an
+   old alpha version of 3.13 a newer Python, Nuitka would crash on it.
+
+-  macOS: Need to allow ``lib`` folder for Python Build Standalone
+   flavor.
+
+-  macOS: Need to allow libraries for ``rpath`` resolution to be found
+   in all of Homebrew folders.
+
+-  **Onefile**: Need to allow ``..`` in paths to allow outside
+   installation paths.
 
 Package Support
 ===============
@@ -482,7 +532,27 @@ Package Support
 -  **Standalone**: Avoid including debug binary on non-Windows for Qt
    Webkit.
 
--  Standalone: Add dependencies for **pymediainfo**
+-  **Standalone**: Add dependencies for **pymediainfo** package.
+
+-  **Standalone**: Added support for ``winpty`` package.
+
+-  **Standalone:** Added support for newer versions of the ``gi``
+   package.
+
+-  **Standalone:** Added support for newer versions of the ``litellm``
+   package.
+
+-  **Standalone**: Added support for the ``traits`` package.
+
+-  Standalone: Added support for ``pyface`` package.
+
+-  **Standalone:** Added support for newer ``transformers`` package.
+
+-  Standalone: Added data files for "rasterio" package.
+
+-  Standalone: Added support for "ortools" package.
+
+-  Standalone: Added support newer "vtk" package
 
 New Features
 ============
@@ -558,6 +628,40 @@ New Features
 -  **Plugins**: Added detector for the ``dill-compat`` plugin that
    detects usages of ``dill``, ``cloudpickle`` and ``ray.cloudpickle``.
 
+-  **Standalone**: Add support for including Visual Code runtime dlls on
+   Windows
+
+   -  When MSVC (Visual Studio) is installed, we take the runtime DLLs
+      from its folders. We couldn't take the ones from the ``redist``
+      packages installed to system folders legally.
+
+   -  Gives a warning when these DLLs would be needed, but were not
+      found.
+
+   -  We might want to add an option later to exclude them again, for
+      size purposes, but correctness out of the box is more important
+      for now.
+
+-  **UI**: Make sure the distribution name is correct for
+   ``--include-distribution-metadata`` values.
+
+-  Plugins: Added support for configuring re-compilation of extension
+   modules from their source code.
+
+   -  When we have both Python code and an extension module, we only had
+      a global option available on the command line.
+
+   -  This adds ``--recompile-extension-modules`` for more fine grained
+      choices as it allows to specify names and patterns.
+
+   -  For ``zmq`` we need to enforce it to never be compiled, as it
+      checks if it is compiled with Cython at runtime, so re-compilation
+      is never possible.
+
+-  **Reports**: Include environment flags for C compiler and linker
+   picked up for the compilation. Sometimes these call compilation
+   errors that and this will reveal there presence.
+
 Optimization
 ============
 
@@ -593,6 +697,8 @@ Optimization
    onefile compression where applicable to avoid double compression.
    Output warnings for files that are not considered compressible. Check
    for ``upx`` binary sooner.
+
+-  **Scons**: Avoid compiling hacl code for macOS where it's needed.
 
 Anti-Bloat
 ==========
@@ -643,6 +749,14 @@ Anti-Bloat
 -  Avoid false bloat warning in ``seadoc`` package.
 
 -  Avoid using ``dask`` in ``sklearn`` package.
+
+-  Avoid using ``cupy.testing`` in ``cupy`` package.
+
+-  Avoid using "IPython" in "roboflow" package.
+
+-  Avoid including "ray" for "vllm" package.
+
+-  Anti-Bloat: Avoid using "dill" in "torch" package.
 
 Organizational
 ==============
@@ -696,6 +810,10 @@ Organizational
    -  For example the Nuitka website auto-builder otherwise rebuilt per
       release post on docs update.
 
+-  **Quality**: Use latest version of ``deepdiff``.
+
+-  **Quality**: Added autoformat for JSON files.
+
 -  **Release**: The man pages were using outdated options and had no
    example for standalone or app modes. Also the actual options were no
    longer included.
@@ -730,6 +848,10 @@ Organizational
    We don't use ``appimage`` anymore for a while now, so its constraints
    do not matter.
 
+-  **UI:** Add warnings for module specific options too. The logic to
+   not warn on GitHub Actions was inverted, this restores warnings for
+   normal users.
+
 -  **UI**: Output the module name in question for ``options-nanny``
    plugin and parameter warnings.
 
@@ -755,6 +877,9 @@ Organizational
 -  **Debugging:** Allow for C stack output in signal handlers, this is
    most useful when doing the non-deployment handler that catches them
    to know where they came from more precisely.
+
+-  **UI**: Show no-GIL in output of Python flavor in compilation if
+   relevant.
 
 Tests
 =====
@@ -807,6 +932,13 @@ Cleanups
 
 -  **Plugins**: Remove useless use of ``intern`` as it doesn't do what I
    thought it does.
+
+-  Attach copyright during code generation for code specializations
+
+   -  This also enhances the formatting for almost all files by making
+      leading and trailing new lines more consistent.
+   -  One C file turns out unused and was removed as a left over from a
+      previous refactoring.
 
 Summary
 =======

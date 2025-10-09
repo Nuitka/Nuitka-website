@@ -20,6 +20,7 @@ clcache"
 conda"
 copybutton
 ctypes"
+Cython
 Dejong"
 devcontainer"
 devel"
