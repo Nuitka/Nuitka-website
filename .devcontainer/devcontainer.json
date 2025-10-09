@@ -71,6 +71,8 @@
     },
     "containerEnv": {
         "PIPENV_VERBOSITY": "-1",
-        "DEVELOPMENT_MODE": "1"
+        "DEVELOPMENT_MODE": "1",
+        "DEBIAN_FRONTEND": "noninteractive",
+        "LANG": "C"
     }
 }
