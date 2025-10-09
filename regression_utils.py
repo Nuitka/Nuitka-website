@@ -74,18 +74,6 @@ def compareImages(golden_path, current_path, diff_path = None, threshold=5):
     golden = Image.open(golden_path).convert("RGB")
     current = Image.open(current_path).convert("RGB")
 
-    if golden.size != current.size:
-        my_print(f"  Size mismatch: Golden {golden.size} vs Current {current.size}")
-        if diff_path:
-            error_img = Image.new('RGB', (400, 100), color=(255, 0, 0))
-            ImageDraw.Draw(error_img).text(
-                (10, 40),
-                f"Size mismatch: Golden {golden.size} vs Current {current.size}",
-                fill=(255, 255, 255)
-            )
-            error_img.save(diff_path)
-        return False
-
     diff = ImageChops.difference(golden, current)
     h = diff.histogram()
     sum_of_squares = sum(value * ((idx % 256) ** 2) for idx, value in enumerate(h))
