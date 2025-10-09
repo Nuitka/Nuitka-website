@@ -66,10 +66,15 @@ jobs:
 
       - name: Generate golden images
         run: |
-          ARGS="--update-golden --browsers ${{ matrix.browser }} --devices ${{ matrix.device }} --wait 1000 --clean --verbose"
-          if [ "${{ github.event.inputs.pages }}" != "all" ]; then
-            ARGS="$ARGS --pages ${{ github.event.inputs.pages }}"
+          PAGES="${{ github.event.inputs.pages || 'all' }}"
+          BROWSERS="${{ github.event.inputs.browsers || 'chromium,firefox,webkit' }}"
+          DEVICES="${{ github.event.inputs.devices || 'desktop,mobile' }}"
+
+          ARGS="--update-golden --browsers ${{ matrix.browser }} --devices ${{ matrix.device }} --clean --verbose"
+          if [ "$PAGES" != "all" ]; then
+            ARGS="$ARGS --pages $PAGES"
           fi
+
           pipenv run python update.py $ARGS
           echo "Golden images generated for ${{ matrix.browser }}/${{ matrix.device }}"
           ls -lah tests/golden/
