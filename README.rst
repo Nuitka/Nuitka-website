@@ -75,12 +75,58 @@ CLI Options
 Running Tests
 =============
 
-All tests are executed with **pytest**:
+All tests are executed with **pytest**. The suite includes explicit visual regression tests for each browser (**Chromium**, **Firefox**, **WebKit**) and viewport mode (**desktop**, **mobile**), parametrized across the golden pages.
+
+Prerequisites
+--------------
+
+- Ensure your local server is running at ``http://localhost:8000``.
+- Activate your environment: run inside your **pipenv** shell.
+
+Basic Commands
+---------------
+
+Run all tests (60 total: 10 pages × 3 browsers × 2 viewports):
 
 .. code-block:: bash
+
    pytest tests/regression.py -v
 
-Make sure to run this inside your **pipenv shell**.
+Selective Execution with Markers
+--------------------------------
+
+Use markers to run subsets (e.g., only desktop Chromium).
+Available markers: ``desktop``, ``mobile``, ``chromium``, ``firefox``, ``webkit``.
+
+- All desktop tests:
+
+  .. code-block:: bash
+
+     pytest tests/regression.py -m "desktop" -v
+
+- All mobile tests:
+
+  .. code-block:: bash
+
+     pytest tests/regression.py -m "mobile" -v
+
+- Specific combo (e.g., mobile Chromium):
+
+  .. code-block:: bash
+
+     pytest tests/regression.py -m "mobile and chromium" -v
+
+- Single test function (e.g., desktop Firefox):
+
+  .. code-block:: bash
+
+     pytest tests/regression.py::test_visual_desktop_firefox -v
+
+- Specific page in a test (e.g., home page on mobile WebKit):
+
+  .. code-block:: bash
+
+     pytest tests/regression.py::test_visual_mobile_webkit[/] -v
 
 Test Output
 ===========
