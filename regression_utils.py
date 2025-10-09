@@ -70,27 +70,35 @@ def build_url(page_path, base_url="http://localhost:8000"):
         return f"{base_url}/{page_path}"
     return f"{base_url}{page_path}"
 
-def compareImages(golden_path, current_path, diff_path = None, threshold=5):
+def compareImages(golden_path, current_path, diff_path=None, threshold=5):
     golden = Image.open(golden_path).convert("RGB")
     current = Image.open(current_path).convert("RGB")
 
-    diff = ImageChops.difference(golden, current)
+    max_width = max(golden.width, current.width)
+    max_height = max(golden.height, current.height)
+    canvas_golden = Image.new("RGB", (max_width, max_height), (0, 0, 0))
+    canvas_current = Image.new("RGB", (max_width, max_height), (0, 0, 0))
+    canvas_golden.paste(golden, (0, 0))
+    canvas_current.paste(current, (0, 0))
+
+    diff = ImageChops.difference(canvas_golden, canvas_current)
     h = diff.histogram()
     sum_of_squares = sum(value * ((idx % 256) ** 2) for idx, value in enumerate(h))
-    rms = math.sqrt(sum_of_squares / float(golden.size[0] * golden.size[1]))
+    rms = math.sqrt(sum_of_squares / float(max_width * max_height))
 
     if rms <= threshold:
         return True
 
     if diff_path:
-        highlight = current.copy()
+        highlight = canvas_current.copy()
         draw = ImageDraw.Draw(highlight)
-        for x in range(current.width):
-            for y in range(current.height):
+        for x in range(max_width):
+            for y in range(max_height):
                 pixel_diff = diff.getpixel((x, y))
                 diff_sum = sum(pixel_diff[:3]) if isinstance(pixel_diff, tuple) else pixel_diff
                 if diff_sum > 30:
                     draw.point((x, y), fill=(255, 0, 0))
         highlight.save(diff_path)
+        print(f"  RMS difference: {rms:.2f}, diff saved to {diff_path}")
 
     return False
