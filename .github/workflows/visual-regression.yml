@@ -68,7 +68,7 @@ jobs:
         run: |
           pipenv run pytest tests/regression_test.py -m "${{ matrix.device }} and ${{ matrix.browser }}" -v \
             --tb=short
-        continue-on-error: false
+        continue-on-error: true
         id: tests
 
       - name: Upload current screenshots
