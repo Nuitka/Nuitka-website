@@ -75,7 +75,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: tests/current-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
+          name: tests-current-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
           path: tests/current/
           retention-days: 7
 
@@ -83,7 +83,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: tests/diff-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
+          name: tests-diff-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
           path: tests/diff/
           retention-days: 14
 
