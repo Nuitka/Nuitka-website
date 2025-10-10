@@ -52,7 +52,7 @@ jobs:
         run: |
           pip install pipenv
           pipenv install --dev
-          npm install
+          npm install --silent --no-fund --no-audit
           pipenv run playwright install && pipenv run playwright install-deps
 
       - name: Start app for screenshots
@@ -83,7 +83,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: tests/golden/
-          key: golden-images-main-${{ matrix.browser }}-${{ matrix.device }}
+          key: golden-images-main-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
 
       - name: Upload golden images as backup artifact
         uses: actions/upload-artifact@v4
