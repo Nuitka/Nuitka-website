@@ -208,7 +208,7 @@ When that is working, you can use the onefile mode if you so desire.
 
 .. code:: bash
 
-   python -m nuitka --onefile program.py
+   python -m nuitka --mode=onefile program.py
 
 This will create a single binary, that extracts itself on the target,
 before running the program. But notice, that accessing files relative to
@@ -222,13 +222,10 @@ your program is impacted, make sure to read the section
    everything is working. Issues like missing data files are much easier
    to debug in standalone mode.
 
-   ``--mode=onefile`` automatically includes ``--mode=standalone`` behavior, so you
-   don't need to pass both options.
-
 .. code:: bash
 
    # Create a binary that unpacks into a temporary folder
-   python -m nuitka --onefile program.py
+   python -m nuitka --mode=onefile program.py
 
 .. note::
 

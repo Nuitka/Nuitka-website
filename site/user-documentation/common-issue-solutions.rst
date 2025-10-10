@@ -342,10 +342,10 @@ strange errors.
 Often, the error handling code paths for files that are not present are
 even buggy and will reveal programming errors like unbound local
 variables. Please look carefully at these exceptions, considering this
-can be the cause. If your program fails with ``--standalone`` but works
+can be the cause. If your program fails with ``--mode=standalone`` but works
 with ``--follow-imports``, data files are likely missing. Always test
-with ``--standalone`` first to identify missing data files before using
-``--onefile``, as issues are much easier to debug in standalone mode.
+with ``--mode=standalone`` first to identify missing data files before using
+``--mode=onefile``, as issues are much easier to debug in standalone mode.
 
 The most common error indicating file absence is, of course, an uncaught
 ``FileNotFoundError`` with a filename. You should figure out what the
