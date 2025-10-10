@@ -90,6 +90,8 @@ module.exports = {
 				/^current/,
 				// Utility classes
 				/^highlight/,
+				"nuitka-fa",
+				"nuitka-fw",
 			],
 			defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
 		}),
