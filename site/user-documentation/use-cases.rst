@@ -63,7 +63,7 @@ executable:
    modules being installed.
 
    If you want to be able to copy it to another machine, use
-   ``--standalone`` and copy the created ``program.dist`` directory
+   ``--mode=standalone`` and copy the created ``program.dist`` directory
    and execute the ``program.exe`` (Windows) or ``program`` (other
    platforms) put inside.
 
@@ -145,12 +145,11 @@ also feasible, use Nuitka like this:
 *********************************
 
 For distribution to other systems, there is the standalone mode, which
-produces a folder containing all dependencies. Use ``--standalone`` to create
-a distributable folder that can run on other machines without Python installed.
+produces a folder for which you can specify ``--mode=standalone``.
 
 .. code:: bash
 
-   python -m nuitka --standalone program.py
+   python -m nuitka --mode=standalone program.py
 
 Following all imports is default in this mode. You can selectively
 exclude modules by specifically saying ``--nofollow-import-to``, but
@@ -218,12 +217,12 @@ your program is impacted, make sure to read the section
 
 .. note::
 
-   **Recommended workflow:** Always test with ``--standalone`` first to
-   ensure your program works correctly, then switch to ``--onefile`` once
+   **Recommended workflow:** Always test with ``--mode=standalone`` first to
+   ensure your program works correctly, then switch to ``--mode=onefile`` once
    everything is working. Issues like missing data files are much easier
    to debug in standalone mode.
 
-   ``--onefile`` automatically includes ``--standalone`` behavior, so you
+   ``--mode=onefile`` automatically includes ``--mode=standalone`` behavior, so you
    don't need to pass both options.
 
 .. code:: bash
@@ -534,7 +533,7 @@ this should then be a bundle.
 .. code:: python
 
    # Compilation mode, standalone everywhere, except on macOS there app bundle
-   # nuitka-project: --app
+   # nuitka-project: --mode=app
    #
    # Debugging options, controlled via environment variable at compile time.
    # nuitka-project-if: {OS} == "Windows" and os.getenv("DEBUG_COMPILATION", "no") == "yes"
