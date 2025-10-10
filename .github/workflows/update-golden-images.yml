@@ -52,7 +52,7 @@ jobs:
         run: |
           pip install pipenv
           pipenv install --dev
-          npm install
+          npm install --silent --no-fund --no-audit
           pipenv run playwright install && pipenv run playwright install-deps
 
       - name: Start app for screenshots
