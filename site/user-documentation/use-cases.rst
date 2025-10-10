@@ -222,6 +222,9 @@ your program is impacted, make sure to read the section
    everything is working. Issues like missing data files are much easier
    to debug in standalone mode.
 
+   ``--mode=onefile`` automatically combines with ``--mode=standalone``,
+   so you don't need to specify both.
+
 .. code:: bash
 
    # Create a binary that unpacks into a temporary folder
