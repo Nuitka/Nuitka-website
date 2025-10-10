@@ -663,13 +663,16 @@ Compilation modes
 -----------------
 
 |  ``standalone``: ``True`` if standalone mode is activated with
-   ``--mode=standalone``, ``--mode=onefile`` or ``--mode=app``
+   ``--mode=standalone``, ``--mode=onefile`` or ``--mode=app``. Note that
+   macOS app bundles (``--mode=app``) are considered standalone mode since
+   they contain all dependencies in a distributable package.
 |  ``onefile``: ``True`` if onefile mode is activated with
-   ``--mode=onefile`` or with ``--mode=app`` on non-macOS
+   ``--mode=onefile`` or with ``--mode=app`` on non-macOS platforms
+   (macOS ``--mode=app`` creates app bundles, not single files).
 |  ``module_mode``: ``True`` if module mode is activated with
-   ``--mode=module``
+   ``--mode=module``.
 |  ``deployment``: ``True`` if deployment mode is activated with
-   ``--deployment``
+   ``--deployment``.
 
 .. note::
 

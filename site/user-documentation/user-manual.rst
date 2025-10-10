@@ -121,13 +121,13 @@ possible.
    -  **Moving binaries to other machines:** The created binaries can be
       made executable independent of the Python installation, with
       ``--mode=standalone``, ``--mode=onefile``, or ``--mode=app``
-      options, but not with ``--mode=accelerated``.
+      options, but not with accelerated mode (the default).
 
    -  **Binary filename suffix:** The created binaries have an ``.exe``
       suffix on Windows. On other platforms, they have either no suffix
       in standalone mode or the ``.bin`` suffix, which you can remove or
       change with the ``--output-filename`` option. **Nuitka** adds the
-      suffix for onefile and acceleration mode to make sure that the
+      suffix for onefile and accelerated mode to make sure that the
       original script name and the binary name cannot ever collide, so
       we can safely overwrite the binary without destroying the source
       file.
@@ -335,9 +335,9 @@ variables. Checkout this example:
 
    # Compilation mode, support OS-specific options
    # nuitka-project-if: {OS} in ("Windows", "Linux", "Darwin", "FreeBSD"):
-   #    nuitka-project: --onefile
+   #    nuitka-project: --mode=onefile
    # nuitka-project-else:
-   #    nuitka-project: --mode=standalonealone
+   #    nuitka-project: --mode=standalone
 
    # The PySide6 plugin covers qt-plugins
    # nuitka-project: --enable-plugin=pyside6
