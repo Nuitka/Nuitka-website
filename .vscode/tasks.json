@@ -25,19 +25,6 @@
             }
         },
         {
-            "label": "stop auto-update.sh",
-            "type": "shell",
-            "command": "pkill -f auto-update.sh || true",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": [],
-            "presentation": {
-                "reveal": "never"
-            },
-            "detail": "Stop any running auto-update.sh processes"
-        },
-        {
             "label": "rebuild all pages",
             "type": "shell",
             "command": "killall -SIGUSR2 sphinx-autobuild",
@@ -52,22 +39,20 @@
         {
             "label": "run development mode",
             "type": "shell",
-            "command": "./auto-update.sh --development",
+            "command": "sed -i 's/^development_mode = .*$/development_mode = true/' settings.ini",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [],
-            "dependsOn": ["stop auto-update.sh"]
         },
         {
             "label": "run production mode",
             "type": "shell",
-            "command": "./auto-update.sh --production",
+            "command": "sed -i 's/^development_mode = .*$/development_mode = false/' settings.ini",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [],
-            "dependsOn": ["stop auto-update.sh"]
         },
         {
             "label": "auto-format current file",
