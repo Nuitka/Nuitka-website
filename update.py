@@ -13,6 +13,7 @@ import sys
 from io import StringIO
 from optparse import OptionParser
 from pathlib import Path
+from configparser import ConfigParser
 
 import requests
 from lxml import html
@@ -123,7 +124,16 @@ from regression_utils import (
     build_url,
 )
 
-development_mode = os.getenv("DEVELOPMENT_MODE") == "1"
+CONFIG_FILE = "settings.ini"
+
+config = ConfigParser()
+
+config.read(CONFIG_FILE)
+
+development_mode = config.getboolean("DEFAULT", "DEVELOPMENT_MODE", fallback=False)
+
+my_print("Development mode:", development_mode)
+
 FA_STYLE_MAP = {
     "fas": "solid",
     "far": "regular",
@@ -1524,6 +1534,8 @@ def runSphinxAutoBuild():
         "update.py",
         "--watch",
         "site",
+        "--watch",
+        "settings.ini",
         "--watch",
         "intl",
         "--watch",
