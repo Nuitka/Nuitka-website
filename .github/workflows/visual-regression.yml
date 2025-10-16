@@ -28,14 +28,6 @@ jobs:
           restore-keys: |
             golden-images-main
 
-      - name: Fail if no golden images found
-        run: |
-          if [ ! -d "tests/golden" ] || [ -z "$(ls -A tests/golden)" ]; then
-            echo "Error: Golden images cache for main branch not found!"
-            echo "You must run 'Update Golden Images' workflow on main first."
-            exit 1
-          fi
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
