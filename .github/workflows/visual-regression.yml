@@ -24,9 +24,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: tests/golden/
-          key: golden-images-main-
+          key: golden-images-main
           restore-keys: |
-            golden-images-main-
+            golden-images-main
 
       - name: Fail if no golden images found
         if: steps.golden-cache.outputs.cache-hit != 'true'
