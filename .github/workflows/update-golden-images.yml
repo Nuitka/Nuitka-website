@@ -57,7 +57,6 @@ jobs:
 
       - name: Start app for screenshots
         run: |
-          export DEVELOPMENT_MODE=1
           pipenv run invoke update-docs
           pipenv run invoke site
           pipenv run invoke post-process
