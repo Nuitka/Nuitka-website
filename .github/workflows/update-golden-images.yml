@@ -82,7 +82,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: tests/golden/
-          key: golden-images-main-${{ matrix.browser }}-${{ matrix.device }}-${{ github.run_number }}
+          key: golden-images-main-${{ matrix.browser }}-${{ matrix.device }}
 
       - name: Upload golden images as backup artifact
         uses: actions/upload-artifact@v4
