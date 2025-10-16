@@ -19,8 +19,48 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Restore golden images cache
-        id: golden-cache
+      # Restore golden images caches per browser/device
+      - name: Restore Chromium Desktop golden images
+        uses: actions/cache@v4
+        with:
+          path: tests/golden/chromium/desktop
+          key: golden-images-main-chromium-desktop-
+          restore-keys: |
+            golden-images-main-chromium-desktop-
+
+      - name: Restore Chromium Mobile golden images
+        uses: actions/cache@v4
+        with:
+          path: tests/golden/chromium/mobile
+          key: golden-images-main-chromium-mobile-
+          restore-keys: |
+            golden-images-main-chromium-mobile-
+
+      - name: Restore Firefox Desktop golden images
+        uses: actions/cache@v4
+        with:
+          path: tests/golden/firefox/desktop
+          key: golden-images-main-firefox-desktop-
+          restore-keys: |
+            golden-images-main-firefox-desktop-
+
+      - name: Restore Firefox Mobile golden images
+        uses: actions/cache@v4
+        with:
+          path: tests/golden/firefox/mobile
+          key: golden-images-main-firefox-mobile-
+          restore-keys: |
+            golden-images-main-firefox-mobile-
+
+      - name: Restore WebKit Desktop golden images
+        uses: actions/cache@v4
+        with:
+          path: tests/golden/webkit/desktop
+          key: golden-images-main-webkit-desktop-
+          restore-keys: |
+            golden-images-main-webkit-desktop-
+
+      - name: Restore WebKit Mobile golden images
         uses: actions/cache@v4
         with:
           path: tests/golden/
