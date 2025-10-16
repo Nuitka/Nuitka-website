@@ -45,13 +45,13 @@ COMPARISON_THRESHOLD = 5
 
 DESKTOP_DEVICES = {
     "chromium": {"viewport": {"width": 1920, "height": 1080}, "is_mobile": False},
-    "firefox": {"viewport": {"width": 1920, "height": 1080}, "is_mobile": False},
+    "firefox": {"viewport": {"width": 1920, "height": 1080}},
     "webkit": {"viewport": {"width": 1920, "height": 1080}, "is_mobile": False},
 }
 
 MOBILE_DEVICES = {
     "chromium": {"viewport": {"width": 390, "height": 844}, "is_mobile": True, "has_touch": True},
-    "firefox": {"viewport": {"width": 390, "height": 844}, "is_mobile": True, "has_touch": True},
+    "firefox": {"viewport": {"width": 390, "height": 844}},
     "webkit": {"viewport": {"width": 390, "height": 844}, "is_mobile": True, "has_touch": True},
 }
 
