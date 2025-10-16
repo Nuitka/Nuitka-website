@@ -29,11 +29,12 @@ jobs:
             golden-images-main
 
       - name: Fail if no golden images found
-        if: steps.golden-cache.outputs.cache-hit != 'true'
         run: |
-          echo "Error: Golden images cache for main branch not found!"
-          echo "You must run 'Update Golden Images' workflow on main first."
-          exit 1
+          if [ ! -d "tests/golden" ] || [ -z "$(ls -A tests/golden)" ]; then
+            echo "Error: Golden images cache for main branch not found!"
+            echo "You must run 'Update Golden Images' workflow on main first."
+            exit 1
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v4
