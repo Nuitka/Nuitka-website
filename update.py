@@ -13,7 +13,7 @@ import sys
 from io import StringIO
 from optparse import OptionParser
 from pathlib import Path
-from configparser import ConfigParser
+from settings import development_mode
 
 import requests
 from lxml import html
@@ -123,14 +123,6 @@ from regression_utils import (
     sanitizeUrl,
     build_url,
 )
-
-CONFIG_FILE = "settings.ini"
-
-config = ConfigParser()
-
-config.read(CONFIG_FILE)
-
-development_mode = config.getboolean("DEFAULT", "DEVELOPMENT_MODE", fallback=False)
 
 my_print("Development mode:", development_mode)
 

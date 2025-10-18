@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from regression_utils import *
+from settings import comparison_threshold
 
 def run_visual_test(page, browser_name, page_path, viewport_mode, wait_time=DEFAULT_WAIT_TIME):
     url = build_url(page_path)
@@ -29,7 +30,7 @@ def run_visual_test(page, browser_name, page_path, viewport_mode, wait_time=DEFA
 
     my_print(f"Testing {browser_name} / {viewport_mode} / {page_path}")
 
-    is_same = compareImages(golden_path, current_path, diff_path)
+    is_same = compareImages(golden_path, current_path, diff_path, comparison_threshold)
     result = "✓ Passed" if is_same else "✗ Failed"
     my_print(f"{result}: {browser_name} / {viewport_mode} / {page_path}")
 
