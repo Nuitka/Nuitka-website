@@ -9,18 +9,6 @@
 .. raw:: html
    :file: fp-card-circle.html
 
-****************
- What is Nuitka
-****************
-
-Nuitka is the optimizing Python compiler written in Python that creates
-executables that run without a separate installer. Data files can both
-be included or put alongside.
-
-Nuitka is fully compatible with |SUPPORTED_PYTHONS|, and works on
-**Windows**, **macOS**, **Linux**, and more — essentially, wherever
-Python is already compatible with your system.
-
 ..
    Quick Demo
    ==========
