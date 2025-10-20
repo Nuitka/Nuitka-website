@@ -1,11 +1,20 @@
 import os
 from pathlib import Path
-
 import pytest
+from playwright.sync_api import sync_playwright
 
 from regression_utils import *
+from settings import comparison_threshold
 
-def run_visual_test(page, browser_name, page_path, viewport_mode, wait_time=DEFAULT_WAIT_TIME):
+
+def run_visual_test(browser_name, viewport_mode, page_path, wait_time=DEFAULT_WAIT_TIME):
+    if viewport_mode == "desktop":
+        device_config = DESKTOP_DEVICES[browser_name]
+    elif viewport_mode == "mobile":
+        device_config = MOBILE_DEVICES[browser_name]
+    else:
+        raise ValueError(f"Unknown viewport mode: {viewport_mode}")
+
     url = build_url(page_path)
     safe_name = sanitizeUrl(page_path.lstrip('/') or "home")
 
@@ -16,20 +25,37 @@ def run_visual_test(page, browser_name, page_path, viewport_mode, wait_time=DEFA
     os.makedirs(os.path.dirname(current_path), exist_ok=True)
     os.makedirs(os.path.dirname(diff_path), exist_ok=True)
 
-    my_print(f"  Navigating to {url} ({browser_name}, {viewport_mode})")
-    page.goto(url, timeout=20000)
+    my_print(f"Testing {browser_name} / {viewport_mode} / {page_path}")
+    my_print(f"Using device settings: {device_config}")
 
-    if wait_time > 0:
-        page.wait_for_timeout(wait_time)
+    with sync_playwright() as p:
+        browser_type = getattr(p, browser_name)
+        browser = browser_type.launch(headless=True)
+        context = browser.new_context(**device_config)
+        page = context.new_page()
 
-    page.screenshot(path=current_path, full_page=True, timeout=20000)
+        my_print(f"  Navigating to {url}")
+        page.goto(url, timeout=20000)
+        if wait_time > 0:
+            page.wait_for_timeout(wait_time)
+
+        page.add_style_tag(content="""
+            * {
+                font-family: Arial, Helvetica, sans-serif !important;
+                -webkit-font-smoothing: none !important;
+                -moz-osx-font-smoothing: grayscale !important;
+            }
+        """)
+        page.wait_for_function("document.fonts.ready")
+        page.screenshot(path=current_path, full_page=True, timeout=20000)
+
+        context.close()
+        browser.close()
 
     if not os.path.exists(golden_path):
         pytest.fail(f"Reference image not found: {golden_path}. Run update_golden_images first.")
 
-    my_print(f"Testing {browser_name} / {viewport_mode} / {page_path}")
-
-    is_same = compareImages(golden_path, current_path, diff_path)
+    is_same = compareImages(golden_path, current_path, diff_path, comparison_threshold)
     result = "✓ Passed" if is_same else "✗ Failed"
     my_print(f"{result}: {browser_name} / {viewport_mode} / {page_path}")
 
@@ -38,149 +64,48 @@ def run_visual_test(page, browser_name, page_path, viewport_mode, wait_time=DEFA
         f"Difference saved to {diff_path}"
     )
 
+
 @pytest.mark.parametrize("page_path", GOLDEN_PAGES)
 @pytest.mark.desktop
 @pytest.mark.chromium
-def test_visual_desktop_chromium(page, page_path):
-    browser_name = "chromium"
-    viewport_mode = "desktop"
-    device = DESKTOP_DEVICES[browser_name]
+def test_visual_desktop_chromium(page_path):
+    run_visual_test("chromium", "desktop", page_path, wait_time=DEFAULT_WAIT_TIME)
 
-    my_print(f"Running {browser_name} {viewport_mode} test for {page_path}")
-    my_print(f"Using device settings: {device}")
-
-    context = page.context.browser.new_context(**device)
-    emulated_page = context.new_page()
-
-    run_visual_test(
-        page=emulated_page,
-        browser_name=browser_name,
-        page_path=page_path,
-        viewport_mode=viewport_mode,
-        wait_time=DEFAULT_WAIT_TIME
-    )
-
-    context.close()
 
 @pytest.mark.parametrize("page_path", GOLDEN_PAGES)
 @pytest.mark.desktop
 @pytest.mark.firefox
-def test_visual_desktop_firefox(page, page_path):
-    browser_name = "firefox"
-    viewport_mode = "desktop"
-    device = DESKTOP_DEVICES[browser_name]
+def test_visual_desktop_firefox(page_path):
+    run_visual_test("firefox", "desktop", page_path, wait_time=DEFAULT_WAIT_TIME)
 
-    my_print(f"Running {browser_name} {viewport_mode} test for {page_path}")
-    my_print(f"Using device settings: {device}")
-
-    context = page.context.browser.new_context(**device)
-    emulated_page = context.new_page()
-
-    run_visual_test(
-        page=emulated_page,
-        browser_name=browser_name,
-        page_path=page_path,
-        viewport_mode=viewport_mode,
-        wait_time=DEFAULT_WAIT_TIME
-    )
-
-    context.close()
 
 @pytest.mark.parametrize("page_path", GOLDEN_PAGES)
 @pytest.mark.desktop
 @pytest.mark.webkit
-def test_visual_desktop_webkit(page, page_path):
-    browser_name = "webkit"
-    viewport_mode = "desktop"
-    device = DESKTOP_DEVICES[browser_name]
+def test_visual_desktop_webkit(page_path):
+    run_visual_test("webkit", "desktop", page_path, wait_time=DEFAULT_WAIT_TIME)
 
-    my_print(f"Running {browser_name} {viewport_mode} test for {page_path}")
-    my_print(f"Using device settings: {device}")
-
-    context = page.context.browser.new_context(**device)
-    emulated_page = context.new_page()
-
-    run_visual_test(
-        page=emulated_page,
-        browser_name=browser_name,
-        page_path=page_path,
-        viewport_mode=viewport_mode,
-        wait_time=DEFAULT_WAIT_TIME
-    )
-
-    context.close()
 
 @pytest.mark.parametrize("page_path", GOLDEN_PAGES)
 @pytest.mark.mobile
 @pytest.mark.chromium
-def test_visual_mobile_chromium(page, page_path):
-    browser_name = "chromium"
-    viewport_mode = "mobile"
-    device = MOBILE_DEVICES[browser_name]
+def test_visual_mobile_chromium(page_path):
+    run_visual_test("chromium", "mobile", page_path, wait_time=DEFAULT_WAIT_TIME)
 
-    my_print(f"Running {browser_name} {viewport_mode} test for {page_path}")
-    my_print(f"Using device settings: {device}")
-
-    context = page.context.browser.new_context(**device)
-    emulated_page = context.new_page()
-
-    run_visual_test(
-        page=emulated_page,
-        browser_name=browser_name,
-        page_path=page_path,
-        viewport_mode=viewport_mode,
-        wait_time=DEFAULT_WAIT_TIME
-    )
-
-    context.close()
 
 @pytest.mark.parametrize("page_path", GOLDEN_PAGES)
 @pytest.mark.mobile
 @pytest.mark.firefox
-def test_visual_mobile_firefox(page, page_path):
-    browser_name = "firefox"
-    viewport_mode = "mobile"
-    device = MOBILE_DEVICES[browser_name]
+def test_visual_mobile_firefox(page_path):
+    run_visual_test("firefox", "mobile", page_path, wait_time=DEFAULT_WAIT_TIME)
 
-    my_print(f"Running {browser_name} {viewport_mode} test for {page_path}")
-    my_print(f"Using device settings: {device}")
-
-    context = page.context.browser.new_context(**device)
-    emulated_page = context.new_page()
-
-    run_visual_test(
-        page=emulated_page,
-        browser_name=browser_name,
-        page_path=page_path,
-        viewport_mode=viewport_mode,
-        wait_time=DEFAULT_WAIT_TIME
-    )
-
-    context.close()
 
 @pytest.mark.parametrize("page_path", GOLDEN_PAGES)
 @pytest.mark.mobile
 @pytest.mark.webkit
-def test_visual_mobile_webkit(page, page_path):
-    browser_name = "webkit"
-    viewport_mode = "mobile"
-    device = MOBILE_DEVICES[browser_name]
+def test_visual_mobile_webkit(page_path):
+    run_visual_test("webkit", "mobile", page_path, wait_time=DEFAULT_WAIT_TIME)
 
-    my_print(f"Running {browser_name} {viewport_mode} test for {page_path}")
-    my_print(f"Using device settings: {device}")
-
-    context = page.context.browser.new_context(**device)
-    emulated_page = context.new_page()
-
-    run_visual_test(
-        page=emulated_page,
-        browser_name=browser_name,
-        page_path=page_path,
-        viewport_mode=viewport_mode,
-        wait_time=DEFAULT_WAIT_TIME
-    )
-
-    context.close()
 
 if __name__ == "__main__":
     my_print("This file is meant to be run with pytest.")

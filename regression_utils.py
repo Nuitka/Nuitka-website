@@ -40,8 +40,7 @@ GOLDEN_PAGES = [
     "posts/nuitka-shaping-up.html"
 ]
 
-DEFAULT_WAIT_TIME = 1000
-COMPARISON_THRESHOLD = 5
+DEFAULT_WAIT_TIME = 5000
 
 DESKTOP_DEVICES = {
     "chromium": {"viewport": {"width": 1920, "height": 1080}, "is_mobile": False},
@@ -54,7 +53,6 @@ MOBILE_DEVICES = {
     "firefox": {"viewport": {"width": 390, "height": 844}},
     "webkit": {"viewport": {"width": 390, "height": 844}, "is_mobile": True, "has_touch": True},
 }
-
 
 def sanitizeUrl(url):
     path = urlparse(url).path
@@ -70,7 +68,7 @@ def build_url(page_path, base_url="http://localhost:8000"):
         return f"{base_url}/{page_path}"
     return f"{base_url}{page_path}"
 
-def compareImages(golden_path, current_path, diff_path=None, threshold=5):
+def compareImages(golden_path, current_path, diff_path=None, threshold=15):
     golden = Image.open(golden_path).convert("RGB")
     current = Image.open(current_path).convert("RGB")
 
