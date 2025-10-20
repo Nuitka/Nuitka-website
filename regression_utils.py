@@ -40,7 +40,7 @@ GOLDEN_PAGES = [
     "posts/nuitka-shaping-up.html"
 ]
 
-DEFAULT_WAIT_TIME = 1000
+DEFAULT_WAIT_TIME = 5000
 
 DESKTOP_DEVICES = {
     "chromium": {"viewport": {"width": 1920, "height": 1080}, "is_mobile": False},

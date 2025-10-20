@@ -1596,6 +1596,16 @@ def runUpdateGolden(
                         page.goto(url, timeout=20000)
                         if wait > 0:
                             page.wait_for_timeout(wait)
+
+                        page.add_style_tag(content="""
+                        * {
+                            font-family: Arial, Helvetica, sans-serif !important;
+                            -webkit-font-smoothing: none !important;
+                            -moz-osx-font-smoothing: grayscale !important;
+                        }
+                        """)
+
+                        page.wait_for_function("document.fonts.ready")
                         page.screenshot(path=golden_path, full_page=True, timeout=20000)
 
                     context.close()
