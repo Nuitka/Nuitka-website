@@ -37,6 +37,7 @@ jobs:
 
       - name: Start app for screenshots
         run: |
+          pipenv run invoke update-docs
           pipenv run invoke site
           pipenv run invoke post-process
           nohup pipenv run invoke serve &
@@ -50,10 +51,17 @@ jobs:
           ls -lah tests/golden/
 
       - name: Save golden images to cache
+        id: save-cache
         uses: actions/cache/save@v4
         with:
           path: tests/golden/
           key: golden-images-main
+
+      - name: Fail if cache failed
+        if: steps.save-cache.outcome != 'success'
+        run: |
+          echo "Cache save failed!"
+          exit 1
 
       - name: Upload golden images as backup artifact
         uses: actions/upload-artifact@v4
