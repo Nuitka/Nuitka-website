@@ -37,7 +37,6 @@ jobs:
 
       - name: Start app for screenshots
         run: |
-          pipenv run invoke update-docs
           pipenv run invoke site
           pipenv run invoke post-process
           nohup pipenv run invoke serve &
