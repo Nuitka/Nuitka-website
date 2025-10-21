@@ -41,7 +41,10 @@ None yet.
 New Features
 ============
 
-None yet.
+-  **Zig:** Added experimental support for using ``zig`` as a C compiler
+   backend for **Nuitka**. This can be enabled by setting the ``CC``
+   environment variable to point to the ``zig`` or ``zig.exe``
+   executable.
 
 Optimization
 ============
