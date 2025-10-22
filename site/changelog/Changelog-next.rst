@@ -31,20 +31,32 @@ includes details on hot-fixes applied to the current stable release,
 Bug Fixes
 =========
 
--  macOS: Fix, avoid setting $ORIGIN r-paths that end up unused
+-  **Accelerated:** The enhanced detection for uninstalled Anaconda and
+   WinPython was not fully working. (Fixed in 2.8.1 already.)
 
--  macOS: Fix, make sure to use system ``xattr`` binary
+-  **Onefile:** Fixed an issue in DLL mode where signal handlers were
+   not being registered, which could prevent proper program termination
+   on signals like CTRL-C. (Fixed in 2.8.1 already.)
+
+-  **Windows:** Fixed incorrect handling of forward slashes in cache
+   directory paths, which caused issues with Nuitka-Action. (Fixed in
+   2.8.1 already.)
+
+-  macOS: Fix, avoid setting $ORIGIN r-paths that end up unused and in
+   some cases cause errors because the header space is exhausted
+   preventing the build entirely. (Fixed in 2.8.5 already.)
+
+-  macOS: Fix, make sure to use system ``xattr`` binary.
 
    Otherwise using "arch -x86_64 python" for compilation can fail when
    some packages are installed that provide "xattr" too, as that is a
-   "arm64" binary only.
-
-None yet.
+   "arm64" binary only. (Fixed in 2.8.5 already.)
 
 Package Support
 ===============
 
-None yet.
+-  **Anti-Bloat:** Avoided a warning during program shutdown when using
+   a compiled ``xgboost`` package. (Fixed in 2.8.1 already.)
 
 New Features
 ============
