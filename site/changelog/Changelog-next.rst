@@ -69,6 +69,10 @@ Bug Fixes
    ``arm64`` binary only and then wouldn't work. (Fixed in 2.8.5
    already.)
 
+-  **Standalone:** For the "Python Build Standalone" flavor, ensured
+   that debug builds correctly recognize all their specific built-in
+   modules, preventing potential errors. (Fixed in 2.8.4 already.)
+
 Package Support
 ===============
 
@@ -78,8 +82,8 @@ Package Support
 -  **Standalone:** Added support for the ``oracledb`` package. (Fixed in
    2.8.2 already.)
 
--  **Standalone:** Enhanced support for the ``ray`` package with more
-   implicit dependencies added. (Fixed in 2.8.3 already.)
+-  **macOS:** Added support for newer ``PySide6`` versions. (Fixed in
+   2.8.4 already.)
 
 New Features
 ============
