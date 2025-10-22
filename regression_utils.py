@@ -1,21 +1,18 @@
+import math
 import os
+import re
 import sys
 from pathlib import Path
-
-import re
 from urllib.parse import urlparse
 
-import math
 from PIL import Image, ImageChops, ImageDraw
 
+from nuitka.Tracing import my_print
+
 sys.path.insert(
-    0,
-    os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "./Nuitka-develop")
-    )
+    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "./Nuitka-develop"))
 )
 
-from nuitka.Tracing import my_print
 
 BASE_URL = "http://localhost:8000"
 
@@ -37,7 +34,7 @@ GOLDEN_PAGES = [
     "doc/commercial/protect-data-files.html",
     "user-documentation/tips.html",
     "pages/website-manual.html",
-    "posts/nuitka-shaping-up.html"
+    "posts/nuitka-shaping-up.html",
 ]
 
 DEFAULT_WAIT_TIME = 5000
@@ -49,24 +46,35 @@ DESKTOP_DEVICES = {
 }
 
 MOBILE_DEVICES = {
-    "chromium": {"viewport": {"width": 390, "height": 844}, "is_mobile": True, "has_touch": True},
+    "chromium": {
+        "viewport": {"width": 390, "height": 844},
+        "is_mobile": True,
+        "has_touch": True,
+    },
     "firefox": {"viewport": {"width": 390, "height": 844}},
-    "webkit": {"viewport": {"width": 390, "height": 844}, "is_mobile": True, "has_touch": True},
+    "webkit": {
+        "viewport": {"width": 390, "height": 844},
+        "is_mobile": True,
+        "has_touch": True,
+    },
 }
+
 
 def sanitizeUrl(url):
     path = urlparse(url).path
     path = "home" if path in ("", "/") else path.lstrip("/")
-    return re.sub(r'[^a-zA-Z0-9_-]', '_', path)
+    return re.sub(r"[^a-zA-Z0-9_-]", "_", path)
+
 
 def build_url(page_path, base_url="http://localhost:8000"):
     if not page_path:
         return base_url
-    if page_path.startswith('/') and base_url.endswith('/'):
+    if page_path.startswith("/") and base_url.endswith("/"):
         return f"{base_url}{page_path[1:]}"
-    if not page_path.startswith('/') and not base_url.endswith('/'):
+    if not page_path.startswith("/") and not base_url.endswith("/"):
         return f"{base_url}/{page_path}"
     return f"{base_url}{page_path}"
+
 
 def compareImages(golden_path, current_path, diff_path=None, threshold=15):
     golden = Image.open(golden_path).convert("RGB")
@@ -93,7 +101,9 @@ def compareImages(golden_path, current_path, diff_path=None, threshold=15):
         for x in range(max_width):
             for y in range(max_height):
                 pixel_diff = diff.getpixel((x, y))
-                diff_sum = sum(pixel_diff[:3]) if isinstance(pixel_diff, tuple) else pixel_diff
+                diff_sum = (
+                    sum(pixel_diff[:3]) if isinstance(pixel_diff, tuple) else pixel_diff
+                )
                 if diff_sum > 30:
                     draw.point((x, y), fill=(255, 0, 0))
         highlight.save(diff_path)

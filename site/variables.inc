@@ -87,5 +87,5 @@
    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 
 .. |GITTER_BADGE| image:: /images/svg/gitter-badge.svg
-   :target: https://gitter.im/Nuitka-chat/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
    :alt: Join the chat at https://gitter.im/Nuitka-chat/community
+   :target: https://gitter.im/Nuitka-chat/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge

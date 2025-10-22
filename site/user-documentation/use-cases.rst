@@ -217,10 +217,10 @@ your program is impacted, make sure to read the section
 
 .. note::
 
-   **Recommended workflow:** Always test with ``--mode=standalone`` first to
-   ensure your program works correctly, then switch to ``--mode=onefile`` once
-   everything is working. Issues like missing data files are much easier
-   to debug in standalone mode.
+   **Recommended workflow:** Always test with ``--mode=standalone``
+   first to ensure your program works correctly, then switch to
+   ``--mode=onefile`` once everything is working. Issues like missing
+   data files are much easier to debug in standalone mode.
 
    ``--mode=onefile`` automatically combines with ``--mode=standalone``,
    so you don't need to specify both.

@@ -94,6 +94,8 @@ importNuitka()
 
 # isort:start
 
+from playwright.sync_api import sync_playwright
+
 from nuitka.tools.quality.auto_format.AutoFormat import (
     withFileOpenedAndAutoFormatted,
 )
@@ -110,18 +112,15 @@ from nuitka.utils.Hashing import getHashFromValues
 from nuitka.utils.Jinja2 import getTemplate
 from nuitka.utils.ReExecute import callExecProcess
 from nuitka.utils.Rest import makeTable
-
-from playwright.sync_api import sync_playwright
-
 from regression_utils import (
-    GOLDEN_DIR,
-    VIEWPORT_MODES,
-    GOLDEN_PAGES,
     DEFAULT_WAIT_TIME,
     DESKTOP_DEVICES,
+    GOLDEN_DIR,
+    GOLDEN_PAGES,
     MOBILE_DEVICES,
-    sanitizeUrl,
+    VIEWPORT_MODES,
     build_url,
+    sanitizeUrl,
 )
 
 my_print("Development mode:", development_mode)
@@ -161,12 +160,14 @@ FA_REPLACEMENT_CLASS = {
 
 SVG_CACHE = {}
 
+
 def get_svg_content(svg_path):
     if svg_path not in SVG_CACHE:
         if not os.path.exists(svg_path):
             raise FileNotFoundError(f"SVG not found: {svg_path}")
         SVG_CACHE[svg_path] = getFileContents(svg_path, encoding="utf-8")
     return SVG_CACHE[svg_path]
+
 
 def add_inline_svg(
     element, svg_path, is_fa_icon=False, style_folder=None, icon_name=None
@@ -256,6 +257,7 @@ def inlineImagesSvg(doc, filename):
         assert os.path.exists(svg_path), (filename, src, svg_path)
 
         add_inline_svg(img_tag, svg_path)
+
 
 def inlineFontAwesomeSvg(doc):
     for i_tag in doc.xpath("//i[contains(@class, 'fa')]"):
@@ -1166,6 +1168,7 @@ def handleJavaScript(filename, doc):
     if script_tag_first is not None:
         script_tag_first.attrib["src"] = _makeJsCombined(js_filenames)
 
+
 def cleanBuildSVGs():
     for dirpath, dirnames, filenames in os.walk("output/_images"):
         for filename in filenames:
@@ -1173,6 +1176,7 @@ def cleanBuildSVGs():
                 continue
 
             deleteFile(os.path.join(dirpath, filename), must_exist=False)
+
 
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
@@ -1586,7 +1590,10 @@ def runUpdateGolden(
                     for page_path in pages:
                         url = build_url(page_path)
                         safe_name = sanitizeUrl(page_path)
-                        golden_path = golden_dir / f"{browser_name}_{viewport_mode}_{safe_name}.png"
+                        golden_path = (
+                            golden_dir
+                            / f"{browser_name}_{viewport_mode}_{safe_name}.png"
+                        )
 
                         if verbose:
                             my_print(
@@ -1597,13 +1604,15 @@ def runUpdateGolden(
                         if wait > 0:
                             page.wait_for_timeout(wait)
 
-                        page.add_style_tag(content="""
+                        page.add_style_tag(
+                            content="""
                         * {
                             font-family: Arial, Helvetica, sans-serif !important;
                             -webkit-font-smoothing: none !important;
                             -moz-osx-font-smoothing: grayscale !important;
                         }
-                        """)
+                        """
+                        )
 
                         page.wait_for_function("document.fonts.ready")
                         page.screenshot(path=golden_path, full_page=True, timeout=20000)
@@ -1615,6 +1624,7 @@ def runUpdateGolden(
 
     except Exception as e:
         import traceback
+
         my_print(f"Error during update: {e}")
         traceback.print_exc()
         return 1
@@ -1625,6 +1635,7 @@ def runUpdateGolden(
     my_print(f"- Pages: {len(pages)}")
     my_print(f"- Total images: {len(browsers) * len(devices) * len(pages)}")
     return 0
+
 
 def getTranslationStatus():
     status = {}
