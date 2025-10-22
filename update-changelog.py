@@ -66,7 +66,7 @@ def main():
     major, minor, patch = map(int, match.groups())
 
     # 2. Calculate the previous version for the git log range
-    previous_version = f"{major}.{minor}.{patch - 1}"
+    previous_version = f"{major}.{minor}.{patch - 1}".rstrip(".0")
     git_range = f"{previous_version}..{hotfix_version}"
 
     print(f"Processing changelog for Nuitka hotfix version: {hotfix_version}")
