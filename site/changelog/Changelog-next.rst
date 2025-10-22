@@ -42,21 +42,41 @@ Bug Fixes
    directory paths, which caused issues with Nuitka-Action. (Fixed in
    2.8.1 already.)
 
--  macOS: Fix, avoid setting $ORIGIN r-paths that end up unused and in
-   some cases cause errors because the header space is exhausted
+-  **UI:** The ``--output-dir`` option was not being honored in
+   accelerated mode when ``--output-filename`` was also provided. (Fixed
+   in 2.8.2 already.)
+
+-  **UI:** The ``--output-filename`` option help said it wouldn't work
+   for standalone mode when in fact it did for a while already. (Fixed
+   in 2.8.2 already.)
+
+-  **Onefile:** On **Windows**, fixed a crash when using
+   ``--output-dir`` where it was checking for the wrong folder to exist.
+   (Fixed in 2.8.2 already.)
+
+-  **macOS:** Fixed a crash that could occur when many package-specific
+   directories were used, which could lead to the ``otool`` command line
+   being too long. (Fixed in 2.8.2 already.)
+
+-  **macOS:** Fix, avoid setting ``$ORIGIN`` r-paths that end up unused
+   and in some cases cause errors because the header space is exhausted
    preventing the build entirely. (Fixed in 2.8.5 already.)
 
--  macOS: Fix, make sure to use system ``xattr`` binary.
+-  **macOS:** Fix, make sure to use system ``xattr`` binary.
 
-   Otherwise using "arch -x86_64 python" for compilation can fail when
-   some packages are installed that provide "xattr" too, as that is a
-   "arm64" binary only. (Fixed in 2.8.5 already.)
+   Otherwise using ``arch -x86_64 python`` for compilation can fail when
+   some packages are installed that provide ``xattr`` too, as that is a
+   ``arm64`` binary only and then wouldn't work. (Fixed in 2.8.5
+   already.)
 
 Package Support
 ===============
 
 -  **Anti-Bloat:** Avoided a warning during program shutdown when using
    a compiled ``xgboost`` package. (Fixed in 2.8.1 already.)
+
+-  **Standalone:** Added support for the ``oracledb`` package. (Fixed in
+   2.8.2 already.)
 
 New Features
 ============
