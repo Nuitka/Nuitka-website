@@ -78,6 +78,9 @@ Package Support
 -  **Standalone:** Added support for the ``oracledb`` package. (Fixed in
    2.8.2 already.)
 
+-  **Standalone:** Enhanced support for the ``ray`` package with more
+   implicit dependencies added. (Fixed in 2.8.3 already.)
+
 New Features
 ============
 
