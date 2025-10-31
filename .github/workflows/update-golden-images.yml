@@ -54,10 +54,10 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: tests/golden/
-          key: golden-images-main
+          key: golden-images-main-${{ github.sha }}
 
-      - name: Fail if cache failed
-        if: steps.save-cache.outcome != 'success'
+      - name: Check cache save result
+        if: failure()
         run: |
           echo "Cache save failed!"
           exit 1

@@ -165,13 +165,20 @@ button svg {
 	padding-left: var(--gutter);
 	box-sizing: border-box;
 	min-width: 0;
+	position: relative;
 }
 
-.nuitka-grid-offer ul li::marker {
-	content: "\f00a";
-	font-size: var(--icon-size);
-	box-sizing: border-box;
-	min-width: 0;
+.nuitka-grid-offer ul li::before {
+	content: '';
+	position: absolute;
+	left: calc(-1 * var(--gutter) - var(--icon-size));
+	top: 0.25em;
+	width: var(--icon-size);
+	height: var(--icon-size);
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><path d="M64 192c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64z" fill="white"/></svg>');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .nuitka-price p {
