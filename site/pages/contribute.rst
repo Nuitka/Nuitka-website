@@ -93,7 +93,7 @@ or enthusiast, there's a way for you to contribute.
  Advanced Developer Contributions
 **********************************
 
-.. dropdown:: :octicon:`package-dependents` Remove Package Bloat
+.. dropdown:: :octicon:`package-dependents` |nbsp| Remove Package Bloat
    :color: warning
    :animate: fade-in
 
@@ -107,7 +107,7 @@ or enthusiast, there's a way for you to contribute.
 
    See the problem described in :ref:`anti-bloat` and our solutions.
 
-.. dropdown:: :octicon:`rocket` Add New Optimizations
+.. dropdown:: :octicon:`rocket` |nbsp| Add New Optimizations
    :color: success
    :animate: fade-in
 
@@ -168,5 +168,8 @@ or enthusiast, there's a way for you to contribute.
            **Join Community**
 
            Connect with developers worldwide
+
+.. |nbsp| unicode:: 0xA0
+   :trim:
 
 .. include:: ../variables.inc
