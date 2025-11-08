@@ -17,4 +17,4 @@ auto-update.log
 .devcontainer/supervisor
 tests/current
 tests/diff
-settings.ini
+state.int

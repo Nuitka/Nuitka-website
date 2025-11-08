@@ -36,7 +36,8 @@
         "chown_supervisor_log_dir": "sudo chown -R vscode:vscode ${containerWorkspaceFolder}/.devcontainer/supervisor",
         "npm_install": "npm install --silent --no-fund --no-audit",
         "fix_paste": "echo \"bind 'set enable-bracketed-paste off'\" >> /home/vscode/.bashrc",
-        "pipenv_install": "pipenv install --dev"
+        "pipenv_install": "pipenv install --dev",
+        "default_development_mode":  "echo '[DEFAULT]\\ndevelopment_mode = true' > state.ini"
     },
 
 

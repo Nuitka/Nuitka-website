@@ -1533,6 +1533,8 @@ def runSphinxAutoBuild():
         "--watch",
         "settings.ini",
         "--watch",
+        "state.ini",
+        "--watch",
         "intl",
         "--watch",
         "Pipenv.lock",

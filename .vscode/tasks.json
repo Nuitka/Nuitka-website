@@ -39,7 +39,7 @@
         {
             "label": "run development mode",
             "type": "shell",
-            "command": "sed -i 's/^development_mode = .*$/development_mode = true/' settings.ini",
+            "command": "sed -i 's/^development_mode = .*$/development_mode = true/' state.ini",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -48,7 +48,7 @@
         {
             "label": "run production mode",
             "type": "shell",
-            "command": "sed -i 's/^development_mode = .*$/development_mode = false/' settings.ini",
+            "command": "sed -i 's/^development_mode = .*$/development_mode = false/' state.ini",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
