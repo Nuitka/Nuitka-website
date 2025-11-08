@@ -2,59 +2,174 @@
  Contribute To Nuitka
 ######################
 
-This page lists the many ways absolutely everybody can help and make
-**Nuitka** even better.
+.. meta::
+   :description: Help make Nuitka better - contribute through subscriptions, donations, documentation, code, or community support
+   :keywords: contribute,nuitka,open source,donation,support,python compiler
 
-#. Become a commercial subscriber
+Help us make **Nuitka** even better! Whether you're a developer, writer,
+or enthusiast, there's a way for you to contribute.
 
-   The money earned through **Nuitka Commercial** is largely used to
-   enhance standard **Nuitka**, making it possible to begin with. So
-   |SHOPPING_CART_SYMBOL| :doc:`/commercial/purchase`.
+.. grid:: 1 1 2 2
+   :gutter: 3
+   :margin: 4
 
-#. Donation
+   .. grid-item-card:: |SHOPPING_CART_SYMBOL| Commercial Support
+       :link: /commercial/purchase
+       :link-type: doc
+       :class-card: sd-border-info
 
-   To exclusively support the free work on **Nuitka** and help improve
-   it, you can :doc:`make a donation </pages/donations>`.
+       **Fuel Nuitka's Development**
 
-#. Enhance the documentation and website
+       Subscribe to Nuitka Commercial and directly support ongoing development. Commercial revenue enables continuous improvements to the free version.
 
-   Most helpful help others using **Nuitka** successfully as well; read
-   all about how easy it is on our :doc:`/pages/website-manual`.
+       +++
+       .. button-ref:: /commercial/purchase
+           :ref-type: doc
+           :color: primary
+           :outline:
 
-#. Become part of the **Nuitka Issue Triage Team**.
+           Subscribe Now
 
-   Help to assess new issues of Nuitka and categorize and even solve
-   easier ones that, for example, only need package configuration added.
-   Join our Discord and get in touch with us there.
+   .. grid-item-card:: :octicon:`heart-fill` Make a Donation
+       :link: /pages/donations
+       :link-type: doc
+       :class-card: sd-border-danger
 
-#. Enhance Nuitka compatibility
+       **Support Free Development**
 
-   Please create PRs for **Nuitka**.
+       Make a one-time or recurring donation to exclusively support free Nuitka development and help the project thrive.
 
-   Adding support for packages with missing DLLs or missing data files
-   is very easy thanks to :doc:`Nuitka Package Configuration
-   </user-documentation/nuitka-package-config>`.
+       +++
+       .. button-ref:: /pages/donations
+           :ref-type: doc
+           :color: danger
+           :outline:
 
-#. Remove bloat from common packages
+           Donate Now
 
-   In **Nuitka** with the :doc:`Nuitka Package Configuration
-   </user-documentation/nuitka-package-config>`, we have a powerful tool
-   to reduce bloat in standard packages. Maybe targeting unnecessary
-   usages of packages in your deployment, join and help us reduce
-   optional dependencies.
+*************************
+ Community Contributions
+*************************
 
-   See the problem described in :ref:`anti-bloat` and our solutions for
-   it.
+.. grid:: 1 1 2 3
+   :gutter: 3
 
-#. Add more Nuitka Optimization
+   .. grid-item-card:: :octicon:`book` Documentation
+       :class-card: sd-border-secondary
 
-   Adding new optimization is much more challenging, but join our
-   Discord server and ask how you can help. You can help a lot with only
-   Python skills, and with both C and Python skills, you will be
-   perfect.
+       Help others succeed with Nuitka by improving docs and the website.
 
-   Recommended reading is the :doc:`Developer Manual
-   </doc/developer-manual>` and you may find the :doc:`API doc
-   </doc/api-doc>` useful.
+       .. button-ref:: /pages/website-manual
+           :ref-type: doc
+           :color: secondary
+           :outline:
+
+           Learn How
+
+   .. grid-item-card:: :octicon:`people` Issue Triage
+       :class-card: sd-border-secondary
+
+       Join the **Nuitka Issue Triage Team** to help assess, categorize, and solve community issues.
+
+       .. button-link:: https://discord.gg/nZ9hr9tUck
+           :color: secondary
+           :outline:
+
+           Join Discord
+
+   .. grid-item-card:: :octicon:`package` Package Support
+       :class-card: sd-border-secondary
+
+       Add support for packages with missing DLLs or data files using Nuitka Package Configuration.
+
+       .. button-ref:: /user-documentation/nuitka-package-config
+           :ref-type: doc
+           :color: secondary
+           :outline:
+
+           Read Guide
+
+**********************************
+ Advanced Developer Contributions
+**********************************
+
+.. dropdown:: :octicon:`package-dependents` |nbsp| Remove Package Bloat
+   :color: warning
+   :animate: fade-in
+
+   Help reduce bloat in standard packages using :doc:`Nuitka Package Configuration </user-documentation/nuitka-package-config>`.
+
+   **What you can do:**
+
+   - Target unnecessary package usages in your deployments
+   - Reduce optional dependencies
+   - Improve compilation speed and output size
+
+   See the problem described in :ref:`anti-bloat` and our solutions.
+
+.. dropdown:: :octicon:`rocket` |nbsp| Add New Optimizations
+   :color: success
+   :animate: fade-in
+
+   Join the core development effort to enhance Nuitka's optimization capabilities.
+
+   **What you'll need:**
+
+   - Python skills (essential)
+   - C skills (helpful but not required)
+   - Passion for compiler optimization
+
+   **Getting Started:**
+
+   1. Join our `Discord server <https://discord.gg/nZ9hr9tUck>`_
+   2. Read the :doc:`Developer Manual </doc/developer-manual>`
+   3. Explore the :doc:`API documentation </doc/api-doc>`
+   4. Start contributing!
+
+*****************
+ Why Contribute?
+*****************
+
+.. grid:: 1 1 3 3
+   :gutter: 2
+
+   .. grid-item::
+       :columns: 12 12 4 4
+
+       .. card::
+           :class-card: sd-text-center sd-border-0
+
+           :octicon:`heart-fill;3em;sd-text-danger`
+           ^^^
+           **Give Back**
+
+           Support a tool you use and love
+
+   .. grid-item::
+       :columns: 12 12 4 4
+
+       .. card::
+           :class-card: sd-text-center sd-border-0
+
+           :octicon:`rocket;3em;sd-text-primary`
+           ^^^
+           **Learn & Grow**
+
+           Develop compiler and Python skills
+
+   .. grid-item::
+       :columns: 12 12 4 4
+
+       .. card::
+           :class-card: sd-text-center sd-border-0
+
+           :octicon:`people;3em;sd-text-success`
+           ^^^
+           **Join Community**
+
+           Connect with developers worldwide
+
+.. |nbsp| unicode:: 0xA0
+   :trim:
 
 .. include:: ../variables.inc
