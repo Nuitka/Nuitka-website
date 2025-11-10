@@ -29,7 +29,7 @@ jobs:
             golden-images-main-
 
       - name: Fail if no golden images found
-        if: steps.golden-cache.outputs.cache-hit != 'true'
+        if: success() && !steps.golden-cache.outputs.cache-hit
         run: |
           echo "Error: Golden images cache for main branch not found!"
           echo "You must run 'Update Golden Images' workflow on main first."
