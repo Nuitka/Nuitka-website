@@ -3,7 +3,19 @@ from pathlib import Path
 import pytest
 from playwright.sync_api import sync_playwright
 
-from regression_utils import *
+from regression_utils import (
+    my_print,
+    build_url,
+    sanitizeUrl,
+    compareImages,
+    GOLDEN_DIR,
+    CURRENT_DIR,
+    DIFF_DIR,
+    DESKTOP_DEVICES,
+    MOBILE_DEVICES,
+    GOLDEN_PAGES,
+    DEFAULT_WAIT_TIME,
+)
 from settings import comparison_threshold
 
 
