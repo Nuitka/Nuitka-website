@@ -4,7 +4,6 @@ import pytest
 from playwright.sync_api import sync_playwright
 
 from regression_utils import (
-    print,
     build_url,
     sanitizeUrl,
     compareImages,
