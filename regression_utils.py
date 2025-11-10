@@ -7,12 +7,6 @@ from urllib.parse import urlparse
 
 from PIL import Image, ImageChops, ImageDraw
 
-from nuitka.Tracing import my_print
-
-sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "./Nuitka-develop"))
-)
-
 
 BASE_URL = "http://localhost:8000"
 

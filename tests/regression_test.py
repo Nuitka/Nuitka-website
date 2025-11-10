@@ -3,7 +3,18 @@ from pathlib import Path
 import pytest
 from playwright.sync_api import sync_playwright
 
-from regression_utils import *
+from regression_utils import (
+    build_url,
+    sanitizeUrl,
+    compareImages,
+    GOLDEN_DIR,
+    CURRENT_DIR,
+    DIFF_DIR,
+    DESKTOP_DEVICES,
+    MOBILE_DEVICES,
+    GOLDEN_PAGES,
+    DEFAULT_WAIT_TIME,
+)
 from settings import comparison_threshold
 
 
@@ -25,8 +36,8 @@ def run_visual_test(browser_name, viewport_mode, page_path, wait_time=DEFAULT_WA
     os.makedirs(os.path.dirname(current_path), exist_ok=True)
     os.makedirs(os.path.dirname(diff_path), exist_ok=True)
 
-    my_print(f"Testing {browser_name} / {viewport_mode} / {page_path}")
-    my_print(f"Using device settings: {device_config}")
+    print(f"Testing {browser_name} / {viewport_mode} / {page_path}")
+    print(f"Using device settings: {device_config}")
 
     with sync_playwright() as p:
         browser_type = getattr(p, browser_name)
@@ -34,7 +45,7 @@ def run_visual_test(browser_name, viewport_mode, page_path, wait_time=DEFAULT_WA
         context = browser.new_context(**device_config)
         page = context.new_page()
 
-        my_print(f"  Navigating to {url}")
+        print(f"  Navigating to {url}")
         page.goto(url, timeout=20000)
         if wait_time > 0:
             page.wait_for_timeout(wait_time)
@@ -57,7 +68,7 @@ def run_visual_test(browser_name, viewport_mode, page_path, wait_time=DEFAULT_WA
 
     is_same = compareImages(golden_path, current_path, diff_path, comparison_threshold)
     result = "✓ Passed" if is_same else "✗ Failed"
-    my_print(f"{result}: {browser_name} / {viewport_mode} / {page_path}")
+    print(f"{result}: {browser_name} / {viewport_mode} / {page_path}")
 
     assert is_same, (
         f"Visual regression detected in {url} ({browser_name}-{viewport_mode}).\n"
@@ -108,8 +119,8 @@ def test_visual_mobile_webkit(page_path):
 
 
 if __name__ == "__main__":
-    my_print("This file is meant to be run with pytest.")
-    my_print("Run all tests: pytest tests/regression.py")
-    my_print("Examples:")
-    my_print("  Only desktop Chromium: pytest tests/regression.py -m 'desktop and chromium' -v")
-    my_print("  Only mobile: pytest tests/regression.py -m 'mobile' -v")
+    print("This file is meant to be run with pytest.")
+    print("Run all tests: pytest tests/regression.py")
+    print("Examples:")
+    print("  Only desktop Chromium: pytest tests/regression.py -m 'desktop and chromium' -v")
+    print("  Only mobile: pytest tests/regression.py -m 'mobile' -v")
