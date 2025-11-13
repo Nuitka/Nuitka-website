@@ -1198,3 +1198,19 @@ details.sd-dropdown > .sd-summary-content {
 		align-items: center;
 	}
 }
+
+.kay-portrait {
+	border-radius: 50%;
+	border: 3px solid var(--our-color-blue);
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+	.kay-portrait {
+		float: none;
+		display: block;
+		margin: 0 auto 20px auto;
+		width: 150px;
+	}
+}
