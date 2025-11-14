@@ -58,6 +58,10 @@ Bug Fixes
    directories were used, which could lead to the ``otool`` command line
    being too long. (Fixed in 2.8.2 already.)
 
+-  **Standalone:** For the "Python Build Standalone" flavor, ensured
+   that debug builds correctly recognize all their specific built-in
+   modules, preventing potential errors. (Fixed in 2.8.4 already.)
+
 -  **macOS:** Fix, avoid setting ``$ORIGIN`` r-paths that end up unused
    and in some cases cause errors because the header space is exhausted
    preventing the build entirely. (Fixed in 2.8.5 already.)
@@ -67,11 +71,18 @@ Bug Fixes
    Otherwise using ``arch -x86_64 python`` for compilation can fail when
    some packages are installed that provide ``xattr`` too, as that is a
    ``arm64`` binary only and then wouldn't work. (Fixed in 2.8.5
-   already.)
+   already.) ``arm64`` binary only and then wouldn't work. (Fixed in
+   2.8.5 already.)
 
--  **Standalone:** For the "Python Build Standalone" flavor, ensured
-   that debug builds correctly recognize all their specific built-in
-   modules, preventing potential errors. (Fixed in 2.8.4 already.)
+-  **UI:** Fixed a misleading typo in the rejection message for
+   unsupported Python 3.13.4. (Fixed in 2.8.5 already.)
+
+-  **Accelerated:** The runner scripts ``.cmd`` or ``.sh`` now are also
+   placed respecting the ``--output-filename`` and ``--output-dir``
+   options. (Fixed in 2.8.5 already.)
+
+-  **Plugins:** Ensured that plugins detected by namespace usage are
+   also activated in module mode. (Fixed in 2.8.5 already.)
 
 Package Support
 ===============
@@ -84,6 +95,13 @@ Package Support
 
 -  **macOS:** Added support for newer ``PySide6`` versions. (Fixed in
    2.8.4 already.)
+
+-  **Standalone:** Added support for including more metadata for the
+   ``transformers`` package. (Fixed in 2.8.5 already.)
+
+-  **Standalone:** Metadata from Nuitka Package Configuration is now
+   only included if the corresponding package is part of the
+   compilation. (Fixed in 2.8.5 already.)
 
 New Features
 ============
@@ -171,6 +189,10 @@ Organizational
 -  Anti-Bloat: Don't allow custom ``nofollow`` modes, point the user to
    the correct option instead. This was never needed, but two ways of
    providing this user decision make no sense.
+
+-  UI: The help text for ``--include-data-files-external`` was updated
+   to reflect that it works in standalone mode. (Fixed in 2.8.5
+   already.)
 
 Tests
 =====
