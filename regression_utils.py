@@ -7,7 +7,6 @@ from urllib.parse import urlparse
 
 from PIL import Image, ImageChops, ImageDraw
 
-
 BASE_URL = "http://localhost:8000"
 
 ROOT = Path(__file__).parent.resolve()
