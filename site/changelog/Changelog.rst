@@ -938,7 +938,7 @@ Summary
 This release was supposed to focus on scalability, but that didn't
 happen **again** due to a variety of important issues coming up as well
 as a created downtime after high private difficulties after a planned
-surgery.
+surgery. However, the upcoming release will have it finally.
 
 The onefile DLL mode as used on Windows has driven a lot of need for
 corrections, some of which are only in the final release, and this is
