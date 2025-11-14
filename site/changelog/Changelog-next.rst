@@ -84,6 +84,26 @@ Bug Fixes
 -  **Plugins:** Ensured that plugins detected by namespace usage are
    also activated in module mode. (Fixed in 2.8.5 already.)
 
+-  **Standalone:** Fixed an issue where non-existent packages listed in
+   ``top_level.txt`` files could cause errors during metadata
+   collection. (Fixed in 2.8.6 already.)
+
+-  **Standalone:** Corrected the classification of the ``site`` module,
+   which was previously treated as a standard library module in some
+   cases. (Fixed in 2.8.6 already.)
+
+-  **Windows:** Ensured that temporary link libraries and export files
+   created during compilation are properly deleted, preventing them from
+   being included in the standalone distribution. (Fixed in 2.8.6
+   already.)
+
+-  **Python3.14:** Adapted to core changes by no longer inlining
+   ``hacl`` code for this version. (Fixed in 2.8.6 already.)
+
+-  Fixed a potential for mis-optimization for uses of locals
+   ``locals()`` when transforming the variable name reference call.
+   (Fixed in 2.8.6 already.)
+
 Package Support
 ===============
 
@@ -102,6 +122,12 @@ Package Support
 -  **Standalone:** Metadata from Nuitka Package Configuration is now
    only included if the corresponding package is part of the
    compilation. (Fixed in 2.8.5 already.)
+
+-  **Standalone:** Added support for the ``win32ctypes`` package. (Fixed
+   in 2.8.6 already.)
+
+-  **Standalone:** Added support for newer versions of the ``dask``
+   package. (Fixed in 2.8.6 already.)
 
 New Features
 ============
@@ -163,6 +189,14 @@ Optimization
    intermediate directories in r-paths of ELF platforms, by only putting
    them there if the directory the point to will contain DLLs or
    binaries. This removes unused elements and reduces r-path size.
+
+-  **Windows:** Made the caching of external paths effective, which
+   significantly speeds up DLL resolution in subsequent compilations.
+   (Fixed in 2.8.6 already.)
+
+-  Recognized module variable usages inside outlined functions that are
+   in a loop, which improves the effectiveness of caching. (Fixed in
+   2.8.6 already.)
 
 Anti-Bloat
 ==========
