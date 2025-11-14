@@ -8,4 +8,4 @@
 
 .. |NUITKA_VERSION_NEXT| replace::
 
-   2.9
+   4.0

@@ -707,6 +707,9 @@ def updateDownloadPage():
 
     plain_stable_next = "%d.%d" % (major, minor)
 
+    if plain_stable_next == "2.9":
+        plain_stable_next = "4.0"
+
     with withFileOpenedAndAutoFormatted("site/dynamic.inc") as output_file:
         output_file.write(
             """
