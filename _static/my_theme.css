@@ -119,6 +119,40 @@ button svg {
   height: 1em;
 }
 
+.copybtn {
+    position: absolute;
+    display: flex;
+    top: 0.3em;
+    right: 0.3em;
+    width: 1.7em;
+    height: 1.7em;
+    opacity: 0;
+    user-select: none;
+    background-color: rgb(246, 248, 250);
+    color: rgb(87, 96, 106);
+    transition: opacity 0.3s, border 0.3s, background-color 0.3s;
+    padding: 0px;
+    outline: none;
+    border-radius: 0.4em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(27, 31, 36, 0.15);
+    border-image: initial;
+				justify-content: center;
+				align-items: center;
+
+				svg {
+					width: 1.3em;
+					height: 1.3em;
+				}
+}
+
+.copybtn:hover {
+				background-color: rgb(221, 225, 230);
+				border-color: rgba(27, 31, 36, 0.35);
+			 opacity: 1;
+}
+
 /* Stripe links should be forced to color standing out */
 .nuitka-buy a {
 	vertical-align: bottom;
@@ -158,18 +192,15 @@ button svg {
 .nuitka-grid-offer ul {
 	--icon-size: 0.8em;
 	--gutter: 0.5em;
-	padding: 0 0 0 var(--icon-size);
+	padding: 0 0 0 calc(var(--icon-size));
 	box-sizing: border-box;
 	min-width: 0;
 }
 
-/*  TODO: This SVG is not really any useful, when it displays it's just a
-    circle like every other font does.
-
 .nuitka-grid-offer ul li {
-	list-style: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><path d="M64 192c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64z" fill="white"/></svg>') !important;
+	list-style: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512"><path fill="white" d="M149.333 56v80c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V56c0-13.255 10.745-24 24-24h101.333c13.255 0 24 10.745 24 24zm181.334 240v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm32-240v80c0 13.255 10.745 24 24 24H488c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24zm-32 80V56c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm-205.334 56H24c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zm386.667-56H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm0 160H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zM181.333 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24z"/></svg>') !important;
 }
-*/
+
 
 .nuitka-price p {
 	white-space: nowrap;
@@ -190,7 +221,6 @@ button svg {
 .nuitka-price i {
 	font-style: normal;
 	font-size: 18px;
-	vertical-align: 3px;
 }
 
 .nuitka-grid-offer .sd-card-text {
