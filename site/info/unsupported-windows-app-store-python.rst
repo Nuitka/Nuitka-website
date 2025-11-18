@@ -12,6 +12,14 @@ Python on Windows can be installed via the Windows app store. While this
 may be more convenient for the user, for compilation, this distribution
 is missing essential bits and will not work.
 
+.. note::
+
+   important
+
+   As of Nuitka 4.0, only accelerated mode which is not commonly what
+   you use, is the only thing that does not work. accelerated mode does
+   not.
+
 ************
  Background
 ************
