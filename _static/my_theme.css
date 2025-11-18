@@ -192,7 +192,7 @@ button svg {
 .nuitka-grid-offer ul {
 	--icon-size: 0.8em;
 	--gutter: 0.5em;
-	padding: 0 0 0 calc(var(--icon-size));
+	padding: 0 0 0 var(--icon-size);
 	box-sizing: border-box;
 	min-width: 0;
 }
@@ -1188,7 +1188,7 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 .coming-soon-return a:hover {
-	background-color: var(--our-color-dark-blue) b;
+	background-color: var(--our-color-dark-blue);
 	text-decoration: none;
 }
 
