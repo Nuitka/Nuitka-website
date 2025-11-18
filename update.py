@@ -1541,6 +1541,8 @@ def runSphinxAutoBuild():
         "intl",
         "--watch",
         "Pipenv.lock",
+        "--watch",
+        "_static",
     ]
 
     callExecProcess(args, uac=False)
