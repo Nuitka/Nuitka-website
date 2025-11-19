@@ -8,6 +8,7 @@
 	--our-color-green: #00916e;
 	--our-carousel-light-blue: #d2e6f4;
 	--our-lightgrey: #f8f9fa;
+	--our-lightgrey: #f8f9fa;
 }
 
 /* Google Chrome still hates our menu
@@ -20,12 +21,17 @@ html {
 
 [data-toggle="wy-nav-top"].menu-open {
 	float: right;
+	float: right;
 }
 [data-toggle="wy-nav-top"] {
+	float: left;
 	float: left;
 }
 
 @media screen and (max-width: 768px) {
+	.wy-nav-side.shift {
+		width: 70%;
+	}
 	.wy-nav-side.shift {
 		width: 70%;
 	}
@@ -36,9 +42,15 @@ html {
 	width: 1em;
 	height: 1em;
 	vertical-align: middle;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
 }
 
 .nuitka-fw {
+	width: 1.25em;
+	text-align: center;
 	width: 1.25em;
 	text-align: center;
 }
@@ -115,6 +127,8 @@ h3 {
 }
 
 button svg {
+	width: 1em;
+	height: 1em;
 	width: 1em;
 	height: 1em;
 }
@@ -1116,6 +1130,7 @@ details.sd-dropdown > .sd-summary-content {
 	max-width: 800px;
 	border-radius: 8px;
 	background-color: var(--our-lightgrey);
+	background-color: var(--our-lightgrey);
 	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s ease;
 	animation: fadeIn 1s ease-in-out;
@@ -1142,6 +1157,7 @@ details.sd-dropdown > .sd-summary-content {
 .coming-soon-return {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	justify-content: center;
 	margin-top: 2rem;
 	line-height: 2.5;
@@ -1188,7 +1204,7 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 .coming-soon-return a:hover {
-	background-color: var(--our-color-dark-blue);
+	background-color: var(--our-color-dark-blue) b;
 	text-decoration: none;
 }
 
@@ -1200,10 +1216,13 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 .kay-portrait {
-	border-radius: 50%;
-	border: 3px solid var(--our-color-blue);
 	margin-left: 20px;
 	margin-bottom: 20px;
+
+	img {
+		border-radius: 50%;
+		border: 3px solid var(--our-color-blue);
+	}
 }
 
 @media (max-width: 768px) {
