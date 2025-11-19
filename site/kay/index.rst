@@ -55,8 +55,18 @@ Development Timeline
 **2011**: Public debut
    First presented Nuitka at PyCon DE as a working implementation
 
+**2022**: All in with Nuitka
+   At age 50, made Nuitka my full-time day job after 20 years in Air Traffic
+   Control software development
+
+   *"I am bad at marketing, but good at software, which is one more reason to
+   purchase it. You know you love these kinds of people. Was that good
+   marketing?"*
+
+   Read the full story: `All in with Nuitka <../posts/all-in-with-nuitka.html>`_
+
 **Present**: Full-time focus
-   Nuitka development became my day job, serving users worldwide
+   Nuitka development is my day job, serving users worldwide
 
 *****************
  Current Focus
