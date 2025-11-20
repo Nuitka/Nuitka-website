@@ -221,7 +221,7 @@ def add_inline_svg(
 
     attrs = dict(svg_element.attrib)
 
-    if is_fa_icon and not "width" in attrs:
+    if is_fa_icon and "width" not in attrs:
         class_attr = svg_element.get("class", element.get("class", ""))
         class_list = class_attr.split()
         class_list = [FA_REPLACEMENT_CLASS.get(cl, cl) for cl in class_list]
