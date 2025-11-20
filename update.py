@@ -209,17 +209,19 @@ def add_inline_svg(
             if end == -1:
                 end = len(value)
 
-            font_size_value = value[start:end].split(":", 1)[1].strip()
-            style_without_fs = (value[:start] + value[end:]).strip().rstrip(";")
+            font_size = value[start:end].split(":", 1)[1].strip()
+            font_size_value = re.search(r"\d+", font_size).group()
 
-            value = f"{style_without_fs + '; ' if style_without_fs else ''}width: {font_size_value};"
+            svg_element.set("width", font_size_value)
+            svg_element.set("height", font_size_value)
 
-            svg_element.set("style", value)
             continue
 
         svg_element.set(attr, element.get(attr))
 
-    if is_fa_icon:
+    attrs = dict(svg_element.attrib)
+
+    if is_fa_icon and not "width" in attrs:
         class_attr = svg_element.get("class", element.get("class", ""))
         class_list = class_attr.split()
         class_list = [FA_REPLACEMENT_CLASS.get(cl, cl) for cl in class_list]
