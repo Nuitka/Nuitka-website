@@ -387,7 +387,7 @@ effectively with more than a single file.
    results anywhere.
 
 *************************************
- Features to be added for Nuitka 2.8
+ Features to be added for Nuitka 4.0
 *************************************
 
 [x] Activate more scalable code objects handling
@@ -397,7 +397,7 @@ effectively with more than a single file.
 [ ] More scalable class creation
 
 *************************************
- Features to be added for Nuitka 2.9
+ Features to be added for Nuitka 4.1
 *************************************
 
 [ ] Use performance potential for attribute access with Python 3.11
@@ -410,7 +410,7 @@ version.
 [ ] Document traceback encryption usage with examples.
 
 *************************************
- Features to be added for Nuitka 3.0
+ Features to be added for Nuitka 4.2
 *************************************
 
 [ ] Initial support for ctypes based direct calls of C code.
