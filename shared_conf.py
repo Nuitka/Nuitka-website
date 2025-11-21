@@ -146,3 +146,6 @@ sphinxcontrib_asciinema_defaults = {
 html_static_path = [f"{ROOT}/_static"]
 
 gettext_compact = False  # optional.
+
+# Pretend FA is available, otherwise ablog skips icons and they won't be inlined
+fontawesome_included = True
