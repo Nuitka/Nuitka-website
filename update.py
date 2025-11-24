@@ -1200,6 +1200,26 @@ def runPostProcessing():
                 os.path.join("output", translation, delete_filename), must_exist=False
             )
 
+    output_base_theme_path = "output/_static/css/theme.css"
+    fa_fonts_path = "output/_static/fonts"
+
+    if os.path.exists(output_base_theme_path):
+        my_print(f"Processing base theme with PostCSS...")
+        theme_css_content = getFileContents(
+            output_base_theme_path, mode="r", encoding="utf-8"
+        )
+        processed_theme_css = _processWithPostCSS(theme_css_content)
+        if processed_theme_css:
+            putTextFileContents(
+                filename=output_base_theme_path, contents=processed_theme_css
+            )
+            my_print(f"Successfully processed and cleaned base theme")
+
+    if os.path.exists(fa_fonts_path):
+        for filename in os.listdir(fa_fonts_path):
+            if filename.lower().startswith("fontawesome"):
+                deleteFile(os.path.join(fa_fonts_path, filename), must_exist=False)
+
     # Force working on the root document first.
     file_list = getFileList("output", only_suffixes=".html")
     file_list.remove("output/index.html")
