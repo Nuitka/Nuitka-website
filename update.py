@@ -1205,10 +1205,14 @@ def runPostProcessing():
 
     if os.path.exists(output_base_theme_path):
         my_print(f"Processing base theme with PostCSS...")
-        theme_css_content = getFileContents(output_base_theme_path, mode="r", encoding="utf-8")
+        theme_css_content = getFileContents(
+            output_base_theme_path, mode="r", encoding="utf-8"
+        )
         processed_theme_css = _processWithPostCSS(theme_css_content)
         if processed_theme_css:
-            putTextFileContents(filename=output_base_theme_path, contents=processed_theme_css)
+            putTextFileContents(
+                filename=output_base_theme_path, contents=processed_theme_css
+            )
             my_print(f"Successfully processed and cleaned base theme")
 
     if os.path.exists(fa_fonts_path):
