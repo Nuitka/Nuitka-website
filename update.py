@@ -939,7 +939,7 @@ s.parentNode.insertBefore(ci_search, s);
     if not development_mode:
         processed_js = _processWithTerser(js_set_contents)
 
-        if processed_js:
+        if processed_js is not None:
             js_set_contents = processed_js
 
     js_set_output_filename = "/_static/combined_%s.js" % getHashFromValues(
