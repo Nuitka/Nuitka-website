@@ -119,40 +119,6 @@ button svg {
 	height: 1em;
 }
 
-.copybtn {
-	position: absolute;
-	display: flex;
-	top: 0.3em;
-	right: 0.3em;
-	width: 1.7em;
-	height: 1.7em;
-	opacity: 0;
-	user-select: none;
-	background-color: rgb(246, 248, 250);
-	color: rgb(87, 96, 106);
-	transition: opacity 0.3s, border 0.3s, background-color 0.3s;
-	padding: 0px;
-	outline: none;
-	border-radius: 0.4em;
-	border-width: 1px;
-	border-style: solid;
-	border-color: rgba(27, 31, 36, 0.15);
-	border-image: initial;
-	justify-content: center;
-	align-items: center;
-
-	svg {
-		width: 1.3em;
-		height: 1.3em;
-	}
-}
-
-.copybtn:hover {
-	background-color: rgb(221, 225, 230);
-	border-color: rgba(27, 31, 36, 0.35);
-	opacity: 1;
-}
-
 /* Stripe links should be forced to color standing out */
 .nuitka-buy a {
 	vertical-align: bottom;

@@ -93,7 +93,7 @@ module.exports = {
 				"nuitka-fa",
 				"nuitka-fw",
 			],
-			defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+			defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)|\[.+?\]/g) || [],
 		}),
 
 		require("cssnano")({
