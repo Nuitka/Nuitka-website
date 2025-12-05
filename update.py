@@ -14,6 +14,7 @@ from io import StringIO
 from optparse import OptionParser
 from pathlib import Path
 from settings import development_mode
+import urllib.parse
 
 import requests
 from lxml import html
@@ -992,6 +993,81 @@ def fixupSymbols(document_bytes):
     return document_bytes
 
 
+def inlineSVGsInCss():
+    css_path = "output/_static/css"
+    css_files = getFileList(css_path, only_suffixes=".css")
+
+    def ensure_root_fill(svg_str):
+        opening_tag, rest = svg_str.split(">", 1)
+        opening_tag += ">"
+
+        if re.search(r'\bfill\s*=', opening_tag, flags=re.IGNORECASE):
+            opening_tag = re.sub(
+                r'\bfill\s*=\s*"[^\"]*"',
+                'fill="#1c5e89"',
+                opening_tag,
+                flags=re.IGNORECASE
+            )
+        else:
+            opening_tag = opening_tag.replace(
+                ">",
+                ' fill="#1c5e89">'
+            )
+
+        if re.search(r'\bviewBox\s*=', opening_tag, flags=re.IGNORECASE):
+            opening_tag = re.sub(
+                r'\bviewBox\s*=\s*"[^\"]*"',
+                'viewBox="0 0 640 512"',
+                opening_tag,
+                flags=re.IGNORECASE
+            )
+        else:
+            opening_tag = opening_tag.replace(
+                ">",
+                ' viewBox="0 0 640 512">'
+            )
+
+        return opening_tag + rest
+
+    if development_mode:
+        svg_output_dir = "output/_images/svg"
+        os.makedirs(svg_output_dir, exist_ok=True)
+        svg_files = getFileList("images/svg", only_suffixes=".svg")
+        for svg_file in svg_files:
+            svg_content = get_svg_content(svg_file)
+            svg_content = ensure_root_fill(svg_content)
+
+            output_svg_path = os.path.join(svg_output_dir, os.path.basename(svg_file))
+            putTextFileContents(output_svg_path, svg_content, encoding="utf-8")
+    else:
+        for css_file in css_files:
+            css_content = getFileContents(css_file, encoding="utf-8")
+
+            def replace_svg_load(match):
+                svg_filename = match.group(1)
+                svg_path = os.path.join(SVG_SOURCE_PATH, svg_filename)
+
+                if not os.path.exists(svg_path):
+                    my_print(f"SVG file for CSS inlining not found: {svg_path}")
+                    return match.group(0)
+
+                svg_content = get_svg_content(svg_path)
+                svg_content = ensure_root_fill(svg_content)
+                svg_content = re.sub(r"\s+", " ", svg_content.strip())
+                svg_content = svg_content.replace('"', "'")
+                svg_content_encoded = urllib.parse.quote(svg_content, safe='')
+
+                my_print(f"Inlining SVG: {svg_filename} into CSS file: {css_file}")
+
+                return f"url('data:image/svg+xml,{svg_content_encoded}')"
+
+            css_content = re.sub(
+                r'url\(\s*[\'"]?\.\./_images/svg/([^\'")]+)[\'"]?\s*\)',
+                replace_svg_load,
+                css_content,
+            )
+            putTextFileContents(css_file, css_content, encoding="utf-8")
+
 _postcss_cache = {}
 _terser_cache = {}
 
@@ -1518,7 +1594,10 @@ def runPostProcessing():
             os.unlink(my_theme_filename)
             os.symlink(os.path.abspath("_static/my_theme.css"), my_theme_filename)
 
-    cleanBuildSVGs()
+    inlineSVGsInCss()
+
+    if not development_mode:
+        cleanBuildSVGs()
 
 
 def runDeploymentCommand():

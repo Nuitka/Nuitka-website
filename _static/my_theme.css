@@ -119,6 +119,64 @@ button svg {
 	height: 1em;
 }
 
+/* purgecss start ignore */
+
+a[href$=".zip"]::after,
+a[href$=".tar.gz"]::after,
+a[href$=".tgz"]::after,
+a[href$=".tar.bz2"]::after,
+a[href$=".tar.xz"]::after,
+a[href$=".msi"]::after,
+a[href$=".exe"]::after,
+a[href$=".deb"]::after,
+a[href$=".rpm"]::after,
+a[href$=".whl"]::after,
+a[href$=".gpg"]::after,
+a[href$=".asc"]::after,
+a[href$=".repo"]::after {
+	content: url("../_images/svg/file.svg");
+	display: inline-block;
+	height: 1.4em;
+	margin-left: 3px;
+	width: 1.4em;
+}
+
+a[href$=".tar.gz"]::after,
+a[href$=".tgz"]::after,
+a[href$=".tar.bz2"]::after,
+a[href$=".tar.xz"]::after {
+	content: url("../_images/svg/file-zipper.svg");
+}
+
+a[href$=".msi"]::after,
+a[href$=".exe"]::after {
+	content: url("../_images/svg/windows.svg");
+}
+
+a[href$=".zip"]::after {
+	content: url("../_images/svg/zip.svg");
+}
+
+a[href$=".deb"]::after {
+	content: url("../_images/svg/debian.svg");
+}
+
+a[href$=".rpm"]::after,
+a[href$=".repo"]::after {
+	content: url("../_images/svg/linux.svg");
+}
+
+a[href$=".whl"]::after {
+	content: url("../_images/svg/python.svg");
+}
+
+a[href$=".gpg"]::after,
+a[href$=".asc"]::after {
+	content: url("../_images/svg/key.svg");
+}
+
+/*	purgecss end ignore */
+
 /* Stripe links should be forced to color standing out */
 .nuitka-buy a {
 	vertical-align: bottom;
