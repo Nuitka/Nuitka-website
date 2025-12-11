@@ -936,6 +936,12 @@ s.parentNode.insertBefore(ci_search, s);
 """
     )
 
+    if not development_mode:
+        processed_js = _processWithTerser(js_set_contents)
+
+        if processed_js is not None:
+            js_set_contents = processed_js
+
     js_set_output_filename = "/_static/combined_%s.js" % getHashFromValues(
         js_set_contents
     )
@@ -987,62 +993,77 @@ def fixupSymbols(document_bytes):
 
 
 _postcss_cache = {}
+_terser_cache = {}
 
+def _processWithNpmBuild(contents, script, suffix, cache, label):
+    """Generic processor for content via an npm script"""
+    if contents in cache:
+        return cache[contents]
 
-def _processWithPostCSS(css_content):
-    """Process CSS content through PostCSS with PurgeCSS"""
-    if css_content in _postcss_cache:
-        return _postcss_cache[css_content]
+    original_size = len(contents)
 
-    original_size = len(css_content)
-
-    with withTemporaryFile(suffix=".css", mode="w", delete=False) as tmp_input:
-        tmp_input.write(css_content)
+    with withTemporaryFile(suffix=suffix, mode="w", delete=False) as tmp_input:
+        tmp_input.write(contents)
         tmp_input_path = tmp_input.name
 
-    with withTemporaryFile(mode="w", suffix=".css", delete=False) as tmp_output:
+    with withTemporaryFile(mode="w", suffix=suffix, delete=False) as tmp_output:
         tmp_output_path = tmp_output.name
 
     try:
         result = subprocess.run(
-            ["npm", "run", "build:css"],
+            ["npm", "run", script],
             env={**os.environ, "INPUT": tmp_input_path, "OUTPUT": tmp_output_path},
             capture_output=True,
             text=True,
         )
 
         if result.stdout.strip():
-            my_print(f"PostCSS output: {result.stdout.strip()}")
+            my_print(f"{label} tool output: {result.stdout.strip()}")
 
         if result.returncode != 0:
-            my_print(f"PostCSS processing failed: {result.stderr.strip()}")
+            my_print(f"{label} processing failed: {result.stderr.strip()}")
             return None
 
-        # Read processed CSS
-        processed_css = getFileContents(tmp_output_path)
-        _postcss_cache[css_content] = processed_css
+        processed = getFileContents(tmp_output_path, mode="r", encoding="utf-8")
+        cache[contents] = processed
 
-        # Report CSS size reduction
-        processed_size = len(processed_css)
+        processed_size = len(processed)
         if original_size > 0:
             reduction_percent = (original_size - processed_size) / original_size * 100
             my_print(
-                f"CSS reduced by {reduction_percent:.1f}% ({original_size} → {processed_size} bytes)"
+                f"{label} reduced by {reduction_percent:.1f}% ({original_size} → {processed_size} bytes)"
             )
 
     except Exception as e:
-        my_print(f"Unexpected error running PostCSS: {e}")
+        my_print(f"Unexpected error running {label} tool: {e}")
         return None
+    finally:
+        deleteFile(tmp_input_path, must_exist=False)
+        deleteFile(tmp_output_path, must_exist=False)
 
-    result = getFileContents(tmp_output_path, mode="r", encoding="utf-8")
+    return processed
 
-    _postcss_cache[css_content] = result
 
-    deleteFile(tmp_input_path, must_exist=False)
-    deleteFile(tmp_output_path, must_exist=False)
+def _processWithPostCSS(css_content):
+    """Process CSS content through PostCSS with PurgeCSS."""
+    return _processWithNpmBuild(
+        contents=css_content,
+        script="build:css",
+        suffix=".css",
+        cache=_postcss_cache,
+        label="CSS",
+    )
 
-    return result
 
+def _processWithTerser(js_content):
+    """Process JavaScript content through Terser minifier."""
+    return _processWithNpmBuild(
+        contents=js_content,
+        script="build:js",
+        suffix=".js",
+        cache=_terser_cache,
+        label="JS",
+    )
 
 _html_minifier_cache = {}
 
