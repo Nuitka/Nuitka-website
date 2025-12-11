@@ -12,7 +12,7 @@ module.exports = {
 				// Remove Lato and Roboto Slab font-face declarations safely
 				fontFaceRules.forEach((rule) => {
 					const ruleStr = rule.toString();
-					if (ruleStr.includes("Lato") || ruleStr.includes("Roboto Slab")) {
+					if (ruleStr.includes("Lato") || ruleStr.includes("Roboto Slab") || ruleStr.includes("FontAwesome")) {
 						rule.remove();
 					}
 				});
