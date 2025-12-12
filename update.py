@@ -1055,9 +1055,6 @@ def fixupSymbols(document_bytes):
 
 
 def inlineSVGsInCss():
-    css_path = "output/_static/css"
-    css_files = getFileList(css_path, only_suffixes=".css")
-
     # Some SVGs use different viewBox dimensions, causing inconsistent sizing.
     def ensure_viewbox_normalization(svg_str):
         opening_tag, rest = svg_str.split(">", 1)
@@ -1090,6 +1087,9 @@ def inlineSVGsInCss():
 
         os.symlink(svg_source_abs, svg_output_dir)
     else:
+        css_path = "output/_static/css"
+        css_files = getFileList(css_path, only_suffixes=".css")
+
         for css_file in css_files:
             css_content = getFileContents(css_file, encoding="utf-8")
 
