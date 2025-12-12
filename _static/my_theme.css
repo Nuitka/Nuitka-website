@@ -134,45 +134,59 @@ a[href$=".whl"]::after,
 a[href$=".gpg"]::after,
 a[href$=".asc"]::after,
 a[href$=".repo"]::after {
-	content: url("../_images/svg/file.svg");
+	--icon: url("../_images/svg/file-link.svg");
+
+	content: "";
 	display: inline-block;
-	height: 1.4em;
-	margin-left: 3px;
 	width: 1.4em;
+	height: 1.4em;
+	margin-left: 4px;
+
+	background-color: var(--our-color-blue);
+
+	mask-image: var(--icon);
+	mask-size: contain;
+	mask-repeat: no-repeat;
+	mask-position: center;
+
+	-webkit-mask-image: var(--icon);
+	-webkit-mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: bottom;
 }
 
 a[href$=".tar.gz"]::after,
 a[href$=".tgz"]::after,
 a[href$=".tar.bz2"]::after,
 a[href$=".tar.xz"]::after {
-	content: url("../_images/svg/file-zipper.svg");
+	--icon: url("../_images/svg/compressed-link.svg");
 }
 
 a[href$=".msi"]::after,
 a[href$=".exe"]::after {
-	content: url("../_images/svg/windows.svg");
+	--icon: url("../_images/svg/windows-link.svg");
 }
 
 a[href$=".zip"]::after {
-	content: url("../_images/svg/zip.svg");
+	--icon: url("../_images/svg/zip-link.svg");
 }
 
 a[href$=".deb"]::after {
-	content: url("../_images/svg/debian.svg");
+	--icon: url("../_images/svg/debian-link.svg");
 }
 
 a[href$=".rpm"]::after,
 a[href$=".repo"]::after {
-	content: url("../_images/svg/linux.svg");
+	--icon: url("../_images/svg/linux-link.svg");
 }
 
 a[href$=".whl"]::after {
-	content: url("../_images/svg/python.svg");
+	--icon: url("../_images/svg/python-link.svg");
 }
 
 a[href$=".gpg"]::after,
 a[href$=".asc"]::after {
-	content: url("../_images/svg/key.svg");
+	--icon: url("../_images/svg/key-link.svg");
 }
 
 /*	purgecss end ignore */
