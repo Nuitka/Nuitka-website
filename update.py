@@ -997,22 +997,10 @@ def inlineSVGsInCss():
     css_path = "output/_static/css"
     css_files = getFileList(css_path, only_suffixes=".css")
 
-    def ensure_root_fill(svg_str):
+    # Some SVGs use different viewBox dimensions, causing inconsistent sizing.
+    def ensure_viewbox_normalization(svg_str):
         opening_tag, rest = svg_str.split(">", 1)
         opening_tag += ">"
-
-        if re.search(r'\bfill\s*=', opening_tag, flags=re.IGNORECASE):
-            opening_tag = re.sub(
-                r'\bfill\s*=\s*"[^\"]*"',
-                'fill="#1c5e89"',
-                opening_tag,
-                flags=re.IGNORECASE
-            )
-        else:
-            opening_tag = opening_tag.replace(
-                ">",
-                ' fill="#1c5e89">'
-            )
 
         if re.search(r'\bviewBox\s*=', opening_tag, flags=re.IGNORECASE):
             opening_tag = re.sub(
@@ -1032,13 +1020,14 @@ def inlineSVGsInCss():
     if development_mode:
         svg_output_dir = "output/_images/svg"
         os.makedirs(svg_output_dir, exist_ok=True)
-        svg_files = getFileList("images/svg", only_suffixes=".svg")
-        for svg_file in svg_files:
-            svg_content = get_svg_content(svg_file)
-            svg_content = ensure_root_fill(svg_content)
 
-            output_svg_path = os.path.join(svg_output_dir, os.path.basename(svg_file))
-            putTextFileContents(output_svg_path, svg_content, encoding="utf-8")
+        svg_source_abs = os.path.abspath("images/svg")
+        if os.path.islink(svg_output_dir):
+            os.unlink(svg_output_dir)
+        elif os.path.exists(svg_output_dir):
+            shutil.rmtree(svg_output_dir)
+
+        os.symlink(svg_source_abs, svg_output_dir)
     else:
         for css_file in css_files:
             css_content = getFileContents(css_file, encoding="utf-8")
@@ -1051,8 +1040,9 @@ def inlineSVGsInCss():
                     my_print(f"SVG file for CSS inlining not found: {svg_path}")
                     return match.group(0)
 
+                # Parse and normalize SVG content
                 svg_content = get_svg_content(svg_path)
-                svg_content = ensure_root_fill(svg_content)
+                svg_content = ensure_viewbox_normalization(svg_content)
                 svg_content = re.sub(r"\s+", " ", svg_content.strip())
                 svg_content = svg_content.replace('"', "'")
                 svg_content_encoded = urllib.parse.quote(svg_content, safe='')
