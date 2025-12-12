@@ -133,7 +133,8 @@ a[href$=".rpm"]::after,
 a[href$=".whl"]::after,
 a[href$=".gpg"]::after,
 a[href$=".asc"]::after,
-a[href$=".repo"]::after {
+a[href$=".repo"]::after,
+a[href$=".pdf"]::after {
 	--icon: url("../_images/svg/file-link.svg");
 
 	content: "";
@@ -153,6 +154,10 @@ a[href$=".repo"]::after {
 	-webkit-mask-size: contain;
 	-webkit-mask-repeat: no-repeat;
 	-webkit-mask-position: bottom;
+}
+
+a[href$=".pdf"]::after {
+	--icon: url("../_images/svg/pdf-link.svg");
 }
 
 a[href$=".tar.gz"]::after,
