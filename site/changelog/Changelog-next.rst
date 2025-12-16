@@ -104,6 +104,21 @@ Bug Fixes
    ``locals()`` when transforming the variable name reference call.
    (Fixed in 2.8.6 already.)
 
+-  **Module:** Fixed ``pkgutil.iter_modules`` not working when loading a
+   module into a namespace. (Fixed in 2.8.7 already.)
+
+-  **Reports:** Fixed a crash when creating the compilation report
+   before the source directory is created. (Fixed in 2.8.7 already.)
+
+-  **Standalone:** Fixed ignoring of non-existent packages from
+   ``top_level.txt`` for metadata. (Fixed in 2.8.7 already.)
+
+-  **UI:** The ``--no-progressbar`` option was not disabling the
+   **Scons** progress bars. (Fixed in 2.8.7 already.)
+
+-  **UI:** Fixed an exception in the ``tqdm`` progress bar during
+   process shutdown. (Fixed in 2.8.7 already.)
+
 Package Support
 ===============
 
@@ -128,6 +143,9 @@ Package Support
 
 -  **Standalone:** Added support for newer versions of the ``dask``
    package. (Fixed in 2.8.6 already.)
+
+-  **Standalone:** Added support for the ``dataparser`` package. (Added
+   in 2.8.7 already.)
 
 New Features
 ============
@@ -157,6 +175,12 @@ New Features
 
 -  Onefile: Allow to disable onefile timeout and hard killing on CTRL-C
    entirely by providing ``--onefile-child-grace-time=infinity``.
+
+-  **Scons:** Added newer inline copy of **Scons** which supports Visual
+   Studio 2026. (Added in 2.8.7 already.)
+
+-  **Scons:** Allowed using Python versions only partially supported for
+   **Nuitka** with **Scons**. (Added in 2.8.7 already.)
 
 Optimization
 ============
@@ -198,6 +222,12 @@ Optimization
    in a loop, which improves the effectiveness of caching. (Fixed in
    2.8.6 already.)
 
+-  **Optimization:** Avoid including ``tzdata`` on non-Windows
+   platforms. (Fixed in 2.8.7 already.)
+
+-  **macOS:** Removed extended attributes from data files as well,
+   improving performance. (Fixed in 2.8.7 already.)
+
 Anti-Bloat
 ==========
 
@@ -227,6 +257,9 @@ Organizational
 -  UI: The help text for ``--include-data-files-external`` was updated
    to reflect that it works in standalone mode. (Fixed in 2.8.5
    already.)
+
+-  **Release:** Use lowercase names for source archives in PyPI uploads.
+   (Fixed in 2.8.7 already.)
 
 Tests
 =====
