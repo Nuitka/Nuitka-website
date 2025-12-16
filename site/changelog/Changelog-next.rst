@@ -119,6 +119,12 @@ Bug Fixes
 -  **UI:** Fixed an exception in the ``tqdm`` progress bar during
    process shutdown. (Fixed in 2.8.7 already.)
 
+-  **Windows:** Fixed incorrect ``sys.executable`` value in onefile DLL
+   mode. (Fixed in 2.8.9 already.)
+
+-  **Python3.14:** Added missing implicit dependency for ``_ctypes`` on
+   **Windows**. (Fixed in 2.8.9 already.)
+
 Package Support
 ===============
 
@@ -228,6 +234,9 @@ Optimization
 -  **macOS:** Removed extended attributes from data files as well,
    improving performance. (Fixed in 2.8.7 already.)
 
+-  **Scons:** Stopped detecting installed **MinGW** to avoid overhead as
+   it is not supported. (Fixed in 2.8.9 already.)
+
 Anti-Bloat
 ==========
 
@@ -269,7 +278,8 @@ None yet.
 Cleanups
 ========
 
-None yet.
+-  **Python3.14:** Fixed a type mismatch warning seen with **MSVC**.
+   (Fixed in 2.8.9 already.)
 
 Summary
 =======
