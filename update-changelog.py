@@ -188,19 +188,6 @@ Here is the raw commit information for version {hotfix_version}:
 
 Generate only the ReStructuredText for the changelog section. Do not include any other explanatory text or headers.
 """
-
-        if not shutil.which("gemini"):
-            print("\n--- Gemini CLI not found, printing prompt instead ---")
-            print(prompt)
-            sys.exit("\nPlease install the Gemini CLI to proceed automatically.")
-
-        # Construct the command and ask the user to execute it.
-        command_to_run = f"gemini", "--prompt", "{prompt}"
-        print("\n--- Gemini prompt ---")
-        print(prompt)
-        print("\n--- Running Gemini ---")
-
-        # subprocess.run(command_to_run)
     else:
         print("\nNo relevant commits found to generate a changelog.")
 
