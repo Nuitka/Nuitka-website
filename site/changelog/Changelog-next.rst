@@ -172,7 +172,8 @@ New Features
 -  Scons: Added experimental support for enabling Thin LTO with
    **Clang** compiler.
 
--  Standalone: Honor "--nofollow-import-to" for stdlib modules as well.
+-  Standalone: Honor ``--nofollow-import-to`` for stdlib modules as
+   well.
 
    This allows users to manually reduce the standard library usage too,
    but of course also to shoot themselves into their feet and have
@@ -245,7 +246,7 @@ None yet.
 Organizational
 ==============
 
--  UI: Don't say "--include-data-files-external" doesn't work in
+-  UI: Don't say ``--include-data-files-external`` doesn't work in
    standalone mode
 
    It actually does for a while, and we since renamed that option, but
