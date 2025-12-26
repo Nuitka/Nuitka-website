@@ -113,7 +113,7 @@ Bug Fixes
 -  **Standalone:** Fixed ignoring of non-existent packages from
    ``top_level.txt`` for metadata. (Fixed in 2.8.7 already.)
 
--  **UI:** The ``--no-progressbar`` option was not disabling the
+-  **UI:** The ``--no-progress-bar`` option was not disabling the
    **Scons** progress bars. (Fixed in 2.8.7 already.)
 
 -  **UI:** Fixed an exception in the ``tqdm`` progress bar during
