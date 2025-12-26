@@ -337,7 +337,7 @@ Optimization
    faster checksums for cached mode of onefile, improving that a lot as
    well.
 
--  Windows: Updated MinGW64 to latest winlibs package, should produce
+-  Windows: Updated MinGW64 to latest WinLibs package, should produce
    even faster code and show stopping bugs in its ``binutils`` have
    apparently been fixed. This should now link a lot faster with LTO,
    due to using multiple processes.
@@ -2008,7 +2008,7 @@ Organizational
    <https://github.com/Nuitka/Nuitka-Action>`__ repository.
 
 -  Windows: When MSVC doesn't have WindowsSDK, just don't use it, and
-   proceed, to e.g. allow fallback to winlibs gcc.
+   proceed, to e.g. allow fallback to WinLibs gcc.
 
 -  User Manual: The code to update benchmark numbers as giving was
    actually wrong. Fixed in 1.5.1 already.
@@ -2738,7 +2738,7 @@ Bug Fixes
 
 -  Scons: Fix, was not updating ``PATH`` environment variable anymore,
    which could lead to externally provided compilers and internal
-   winlibs gcc clashing on Windows, but should be a general problem.
+   WinLibs gcc clashing on Windows, but should be a general problem.
    Fixed in 1.3.4 already.
 
 -  Standalone: Added support for ``cefpython3`` package. Fixed in 1.3.4
@@ -3437,7 +3437,7 @@ New Features
    Python, it crashed on the main filename being not the same.
 
 -  Scons: Fix, need to preserve environment attached modes when
-   switching to winlibs gcc on Windows. This was observed with MSYS2,
+   switching to WinLibs gcc on Windows. This was observed with MSYS2,
    but might have effects in other cases too.
 
 Optimization

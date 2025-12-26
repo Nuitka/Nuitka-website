@@ -181,7 +181,7 @@ improvements, many of which have been in hotfixes.
    Python, it crashed on the main filename being not the same.
 
 -  Scons: Fix, need to preserve environment attached modes when
-   switching to winlibs gcc on Windows. This was observed with MSYS2,
+   switching to WinLibs gcc on Windows. This was observed with MSYS2,
    but might have effects in other cases too.
 
 **************

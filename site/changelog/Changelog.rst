@@ -4461,7 +4461,7 @@ Organizational
 -  UI: Proper error message from Nuitka when scons build fails with a
    detail mnemonic page. Read more on for detailed information.
 
--  Windows: Reject all MinGW64 that are not are not the ``winlibs`` that
+-  Windows: Reject all MinGW64 that are not are not the ``WinLibs`` that
    Nuitka itself downloaded. As these packages break very easily, we
    need to control if it's a working set of ``ccache``, ``make``,
    ``binutils`` and gcc with all the necessary workarounds and features
@@ -4542,7 +4542,7 @@ Cleanups
       if __name__ != "__main__":
          sys.exit("Cannot import 'setup' module of Nuitka")
 
--  Scons: Don't scan for ``ccache`` on Windows, the ``winlibs`` package
+-  Scons: Don't scan for ``ccache`` on Windows, the ``WinLibs`` package
    contains it nowadays, and since it's now required to be used, there
    is no point for this code anymore.
 
@@ -4771,7 +4771,7 @@ Bug Fixes
 -  Standalone: Added support for ``toga``.
 
 -  Scons: Fix, need to Avoid picking up ``clang`` from PATH on Windows
-   with ``--clang`` provided, as only our winlibs version is really
+   with ``--clang`` provided, as only our WinLibs version is really
    working.
 
 -  Fix, version of ``setuptools`` when included (which we try to avoid

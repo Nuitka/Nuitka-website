@@ -48,6 +48,7 @@ Hayen
 Hayen"
 headerlink
 icns
+imageio
 imageio"
 imopen"
 importlib"
@@ -95,10 +96,12 @@ path
 Pipenv
 pipenv"
 Pipfile
+Plotly
 Podman"
 postlist"
 pyenv"
 pyproject"
+pyreadstat
 pyside"
 pystone
 pystone"
@@ -126,6 +129,7 @@ tempfile
 termux
 themida
 Tkinter"
+torchvision
 tqdm
 traceback"
 tracebacks"

@@ -439,7 +439,7 @@ workarounds.
    <https://github.com/Nuitka/Nuitka-Action>`__ repository.
 
 -  Windows: When MSVC doesn't have WindowsSDK, just don't use it, and
-   proceed, to e.g. allow fallback to winlibs gcc.
+   proceed, to e.g. allow fallback to WinLibs gcc.
 
 -  User Manual: The code to update benchmark numbers as giving was
    actually wrong. Fixed in 1.5.1 already.

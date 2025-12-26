@@ -227,7 +227,7 @@ bug fixes.
 
 -  UI: Nicer output in case of no commercial version is used.
 
--  Updated the MinGW64 winlibs download used on Windows to the latest
+-  Updated the WinLibs MinGW64 download used on Windows to the latest
    version based on gcc 11, the gcc 12 is not yet ready.
 
 -  Git: Make sure we are not affected by ``core.autocrlf`` setting, as

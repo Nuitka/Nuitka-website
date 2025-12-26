@@ -332,7 +332,7 @@ more configurations.
    faster checksums for cached mode of onefile, improving that a lot as
    well.
 
--  Windows: Updated MinGW64 to latest winlibs package, should produce
+-  Windows: Updated MinGW64 to latest WinLibs package, should produce
    even faster code and show stopping bugs in its ``binutils`` have
    apparently been fixed. This should now link a lot faster with LTO,
    due to using multiple processes.

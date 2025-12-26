@@ -204,7 +204,7 @@ platform specified new abilities and corrections.
 -  Standalone: Added support for ``toga``.
 
 -  Scons: Fix, need to Avoid picking up ``clang`` from PATH on Windows
-   with ``--clang`` provided, as only our winlibs version is really
+   with ``--clang`` provided, as only our WinLibs version is really
    working.
 
 -  Fix, version of ``setuptools`` when included (which we try to avoid

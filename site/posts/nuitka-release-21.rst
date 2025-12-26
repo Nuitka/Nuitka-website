@@ -336,7 +336,7 @@ that would otherwise need source code at run-time.
 -  UI: Proper error message from Nuitka when scons build fails with a
    detail mnemonic page. Read more on for detailed information.
 
--  Windows: Reject all MinGW64 that are not are not the ``winlibs`` that
+-  Windows: Reject all MinGW64 that are not are not the ``WinLibs`` that
    Nuitka itself downloaded. As these packages break very easily, we
    need to control if it's a working set of ``ccache``, ``make``,
    ``binutils`` and gcc with all the necessary workarounds and features
@@ -418,7 +418,7 @@ that would otherwise need source code at run-time.
       if __name__ != "__main__":
          sys.exit("Cannot import 'setup' module of Nuitka")
 
--  Scons: Don't scan for ``ccache`` on Windows, the ``winlibs`` package
+-  Scons: Don't scan for ``ccache`` on Windows, the ``WinLibs`` package
    contains it nowadays, and since it's now required to be used, there
    is no point for this code anymore.
 

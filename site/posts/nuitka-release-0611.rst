@@ -146,7 +146,7 @@ fixes and new features.
 -  Output for ``clcache`` and ``ccache`` results got improved.
 
 -  Enhanced support for ``clang``, on Windows if present near a
-   ``gcc.exe`` like it is the case for some winlibs downloads, it will
+   ``gcc.exe`` like it is the case for some WinLibs downloads, it will
    be used. To use it provide ``--mingw64 --clang`` both. Without the
    first one, it will mean ``clangcl.exe`` which uses the MSVC compiler
    as a host.

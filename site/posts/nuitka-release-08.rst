@@ -366,7 +366,7 @@ features, and adds new ones.
 
 -  Updated man page contents for option name changes from last releases.
 
--  Updated the MinGW64 winlibs download used on Windows to the latest
+-  Updated the WinLibs MinGW64 download used on Windows to the latest
    version.
 
 -  Updated the ``ccache`` binary used on Windows with MinGW64. This is

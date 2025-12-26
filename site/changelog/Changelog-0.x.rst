@@ -230,7 +230,7 @@ Organizational
 
 -  UI: Nicer output in case of no commercial version is used.
 
--  Updated the MinGW64 winlibs download used on Windows to the latest
+-  Updated the WinLibs MinGW64 download used on Windows to the latest
    version based on gcc 11, the gcc 12 is not yet ready.
 
 -  Git: Make sure we are not affected by ``core.autocrlf`` setting, as
@@ -634,7 +634,7 @@ Organizational
 
 -  Updated man page contents for option name changes from last releases.
 
--  Updated the MinGW64 winlibs download used on Windows to the latest
+-  Updated the WinLibs MinGW64 download used on Windows to the latest
    version.
 
 -  Updated the ``ccache`` binary used on Windows with MinGW64. This is
@@ -1930,7 +1930,7 @@ Organizational
    other ones will keep being used.
 
 -  Windows: Requiring latest MinGW64 with version 11.2 as released by
-   winlibs, because this is known to allow LTO, where previous releases
+   WinLibs, because this is known to allow LTO, where previous releases
    were missing needed binaries.
 
 -  Reject standalone mode usage with Apple Python, as it works only with
@@ -3787,7 +3787,7 @@ New Features
 -  Output for ``clcache`` and ``ccache`` results got improved.
 
 -  Enhanced support for ``clang``, on Windows if present near a
-   ``gcc.exe`` like it is the case for some winlibs downloads, it will
+   ``gcc.exe`` like it is the case for some WinLibs downloads, it will
    be used. To use it provide ``--mingw64 --clang`` both. Without the
    first one, it will mean ``clangcl.exe`` which uses the MSVC compiler
    as a host.

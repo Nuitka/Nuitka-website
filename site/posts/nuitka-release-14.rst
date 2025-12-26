@@ -50,7 +50,7 @@ without the overhead of multiple distributions.
 
 -  Scons: Fix, was not updating ``PATH`` environment variable anymore,
    which could lead to externally provided compilers and internal
-   winlibs gcc clashing on Windows, but should be a general problem.
+   WinLibs gcc clashing on Windows, but should be a general problem.
    Fixed in 1.3.4 already.
 
 -  Standalone: Added support for ``cefpython3`` package. Fixed in 1.3.4

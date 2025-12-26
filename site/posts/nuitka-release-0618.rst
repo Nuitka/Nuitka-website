@@ -386,7 +386,7 @@ organizational changes.
    other ones will keep being used.
 
 -  Windows: Requiring latest MinGW64 with version 11.2 as released by
-   winlibs, because this is known to allow LTO, where previous releases
+   WinLibs, because this is known to allow LTO, where previous releases
    were missing needed binaries.
 
 -  Reject standalone mode usage with Apple Python, as it works only with
