@@ -6,17 +6,18 @@
         "**/*.pyc": true,
         "**/__pycache__": true,
         "**/*.orig": true,
-        "**/*.tmp": true,
+        "**/*.tmp": true
     },
-    "python.analysis.extraPaths": ["Nuitka-develop"],
+    "python.analysis.extraPaths": [
+        "Nuitka-develop"
+    ],
     "cSpell.spellCheckOnlyWorkspaceFiles": true,
     "cSpell.ignorePaths": [
         ".git",
         ".vscode",
-        "devcontainer.json",
+        "devcontainer.json"
     ],
     "esbonio.server.enabled": true,
-    "esbonio.sphinx.confDir": "",
     "editor.wordWrap": "off",
     "githubPullRequests.ignoredPullRequestBranches": [
         "main"
@@ -45,5 +46,6 @@
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
-    }
+    },
+    "restructuredtext.linter.executablePath": "sphinx-lint"
 }

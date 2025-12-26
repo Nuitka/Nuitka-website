@@ -334,8 +334,7 @@ that would otherwise need source code at run-time.
    from Nuitka repo.
 
 -  UI: Proper error message from Nuitka when scons build fails with a
-   detail mnemonic page. Read more on :doc:`the info page
-   </info/scons-backend-failure>` for detailed information.
+   detail mnemonic page. Read more on for detailed information.
 
 -  Windows: Reject all MinGW64 that are not are not the ``winlibs`` that
    Nuitka itself downloaded. As these packages break very easily, we

@@ -458,7 +458,7 @@ New Features
    ``importlib.resources.path`` is used, due to a bad interaction with
    the fallback implementation used without it.
 
--  Added support for ``--force-stdout-spec```and ``--force-stderr-spec``
+-  Added support for ``--force-stdout-spec`` and ``--force-stderr-spec``
    on all platforms, this was previously limited to Windows.
 
 -  Added support for requiring and suggesting modes. In part this was
@@ -3516,7 +3516,7 @@ New Features
 ============
 
 -  UI: With ``tqdm`` installed alongside Nuitka, experimental progress
-   bars are enabled. Do not use `` --show-progress`` or ``--verbose`` as
+   bars are enabled. Do not use ``--show-progress`` or ``--verbose`` as
    these might have to disable it.
 
 -  Plugins: Added APIs for final processing of the result and onefile
@@ -15987,7 +15987,7 @@ New Tests
    working, this makes clearer what will be needed. Even if this code is
    obscure, I would like to be that correct here.
 
--  Made ``Operators`` test to cover the `` operator as well.
+-  Made ``Operators`` test to cover the ``^`` operator as well.
 
 -  Added to ``ListContractions`` the case where a contraction is
    returned by a lambda function, but still needs to leak its loop
@@ -16229,7 +16229,7 @@ Built-ins
    raises appropriate exceptions as required, plus it deals with keyword
    arguments just as well.
 
-   So, to Nuitka it doesn't matter now it you write ``int(value) ``or
+   So, to Nuitka it doesn't matter now it you write ``int(value)`` or
    ``int(x = value)`` anymore. The ``base`` parameter of these built-ins
    is also supported.
 

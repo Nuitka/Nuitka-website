@@ -101,7 +101,7 @@ of bug fixes and new features.
 **************
 
 -  UI: With ``tqdm`` installed alongside Nuitka, experimental progress
-   bars are enabled. Do not use `` --show-progress`` or ``--verbose`` as
+   bars are enabled. Do not use ``--show-progress`` or ``--verbose`` as
    these might have to disable it.
 
 -  Plugins: Added APIs for final processing of the result and onefile

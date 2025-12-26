@@ -33,7 +33,7 @@ stabilization phases that are extended.
 
 Not sure yet, what to do. I think, I want to look at adding the ``int``
 as a C type and/or specializing code for mix of ``CLONG`` (C long value)
-and ``LONG`` (Python3 ``int`` object``) and ``INT`` (Python2 ``int``
+and ``LONG`` (Python3 ``int`` object) and ``INT`` (Python2 ``int``
 object). Right now adding ``1`` goes through a constant object, one that
 is prepared, and not time consuming to reference, but still overhead to
 use.

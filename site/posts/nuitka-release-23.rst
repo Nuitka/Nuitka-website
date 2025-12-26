@@ -167,9 +167,7 @@ improvements.
    appear.
 
 -  Plugins: Added support to include directories entirely unchanged by
-   adding ``raw_dir`` values for ``data-files`` section, see
-   :doc:`Nuitka Package Configuration
-   </user-documentation/nuitka-package-config>`.
+   adding ``raw_dir`` values for ``data-files`` section, see .
 
 -  UI: The new command line option ``--include-raw-dir`` was added to
    allow including directories entirely unchanged.
@@ -287,9 +285,9 @@ improvements.
    user plugin test rather than passing by environment variables to the
    test runner.
 
--  Added a new search mode, ``skip, `` to complement ``resume`` which resumes right
-      after the last test ``resume`` stopped on. We can use that while
-      support for a Python version is not complete.
+-  Added a new search mode, ``skip``, to complement ``resume`` which
+   resumes right after the last test ``resume`` stopped on. We can use
+   that while support for a Python version is not complete.
 
 **********
  Cleanups

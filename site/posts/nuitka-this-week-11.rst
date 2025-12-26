@@ -110,7 +110,7 @@ manually here does not work, as ``__init__`` and ``iter_modules`` do not
 become anything but static methods ever. Needs a real type.
 
 Plus, I had to disable it for now, because mixed packages, like the one
-we do with ``multiprocessing" where only part is compiled (the one
+we do with ``multiprocessing`` where only part is compiled (the one
 required) and part is pure Python from disk still, stopped to work. The
 ``iter_modules`` it seems will have to cover that case too.
 

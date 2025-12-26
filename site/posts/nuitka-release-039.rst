@@ -179,7 +179,7 @@ Built-ins
    raises appropriate exceptions as required, plus it deals with keyword
    arguments just as well.
 
-   So, to Nuitka it doesn't matter now it you write ``int(value) ``or
+   So, to Nuitka it doesn't matter now it you write ``int(value)`` or
    ``int(x = value)`` anymore. The ``base`` parameter of these built-ins
    is also supported.
 

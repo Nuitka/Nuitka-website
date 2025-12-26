@@ -108,7 +108,7 @@ structural optimization enhancements.
    working, this makes clearer what will be needed. Even if this code is
    obscure, I would like to be that correct here.
 
--  Made ``Operators`` test to cover the `` operator as well.
+-  Made ``Operators`` test to cover the ``^`` operator as well.
 
 -  Added to ``ListContractions`` the case where a contraction is
    returned by a lambda function, but still needs to leak its loop

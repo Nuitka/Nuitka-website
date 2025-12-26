@@ -187,7 +187,7 @@ features, and adds new ones.
    ``importlib.resources.path`` is used, due to a bad interaction with
    the fallback implementation used without it.
 
--  Added support for ``--force-stdout-spec```and ``--force-stderr-spec``
+-  Added support for ``--force-stdout-spec`` and ``--force-stderr-spec``
    on all platforms, this was previously limited to Windows.
 
 -  Added support for requiring and suggesting modes. In part this was

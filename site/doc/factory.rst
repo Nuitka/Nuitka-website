@@ -38,7 +38,7 @@ git
    git clone --branch staging https://github.com/Nuitka/Nuitka-commercial.git
 
 Either run ``bin/nuitka`` from the checkout, and it will use the Nuitka
-code right next to it, or run ``python setup.py develop``to create a
+code right next to it, or run ``python setup.py develop`` to create a
 ``.pth`` file that works like a symlink. That means if you update the
 git, Nuitka is automatically updated in your environment, too.
 
