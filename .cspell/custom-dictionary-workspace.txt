@@ -1,4 +1,4 @@
-# Custom Dictionary Words
+# Custom Dictionary Words, spell-checker: disable
 -devel
 ablog
 Annuitka"
@@ -19,8 +19,11 @@ chdir"
 clcache"
 conda"
 copybutton
+ctypes
 ctypes"
 Cython
+dask
+dataparser
 Dejong"
 devcontainer"
 devel"
@@ -63,6 +66,7 @@ loky"
 lxml"
 maxsplit
 metaclass"
+MSVC
 MSVC"
 MSYS2
 Multidist"
@@ -70,6 +74,7 @@ no_docstrings
 noarch
 noarch"
 nofollow"
+nohup
 normpath
 notranslate
 NTFS"
@@ -79,13 +84,17 @@ onefile
 onefile"
 opencv
 optipng"
+oracledb
 Oreans"
 os
+otool
 our-ico
 pagename
 patchelf
 path
+Pipenv
 pipenv"
+Pipfile
 Podman"
 postlist"
 pyenv"
@@ -102,6 +111,7 @@ redist"
 Roadmap"
 Roboto
 runpy"
+rusage
 Scons
 Scons"
 segfault
@@ -116,8 +126,10 @@ tempfile
 termux
 themida
 Tkinter"
+tqdm
 traceback"
 tracebacks"
+tzdata
 ucrt"
 Uncompiled
 uncompiled"
@@ -125,5 +137,8 @@ unidecode
 unstripped"
 Valgrind
 virtualenv"
+virtualenvs
 whitebox"
+xattr
+xgboost
 zstandard
