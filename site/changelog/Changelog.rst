@@ -3590,9 +3590,7 @@ New Features
    appear.
 
 -  Plugins: Added support to include directories entirely unchanged by
-   adding ``raw_dir`` values for ``data-files`` section, see
-   :doc:`Nuitka Package Configuration
-   </user-documentation/nuitka-package-config>`.
+   adding ``raw_dir`` values for ``data-files`` section, see .
 
 -  UI: The new command line option ``--include-raw-dir`` was added to
    allow including directories entirely unchanged.
@@ -3707,9 +3705,9 @@ Tests
    user plugin test rather than passing by environment variables to the
    test runner.
 
--  Added a new search mode, ``skip, `` to complement ``resume`` which resumes right
-      after the last test ``resume`` stopped on. We can use that while
-      support for a Python version is not complete.
+-  Added a new search mode, ``skip``, to complement ``resume`` which
+   resumes right after the last test ``resume`` stopped on. We can use
+   that while support for a Python version is not complete.
 
 Cleanups
 ========
@@ -4461,8 +4459,7 @@ Organizational
    from Nuitka repo.
 
 -  UI: Proper error message from Nuitka when scons build fails with a
-   detail mnemonic page. Read more on :doc:`the info page
-   </info/scons-backend-failure>` for detailed information.
+   detail mnemonic page. Read more on for detailed information.
 
 -  Windows: Reject all MinGW64 that are not are not the ``winlibs`` that
    Nuitka itself downloaded. As these packages break very easily, we
