@@ -49,10 +49,14 @@ a **C++** compiler for **C++03** [#]_.
 
 -  The **MinGW64** compiler (used with ``--mingw64``) option, must be
    the one Nuitka downloads, and it enforces that because there were
-   frequent breakage with the complete tooling used.
+   frequent breakage with the complete tooling used. But note that
+   MinGW64 does not work with Python 3.13 or higher.
 
-   Nuitka will offer to download it unless it finds Visual Studio. Using
    ``--mingw64`` enforces using this compiler.
+
+-  The **Zig** compiler (used with ``--zig``). On Windows, this is
+   currently limited to compiling for **x64** (AMD64) Python. On other
+   platforms, it can be used for all architectures it supports.
 
 -  The **Clang-cl** compiler can be used if provided by the **Visual
    Studio** installer or Using ``--clang`` on Windows enforces the one
@@ -64,7 +68,7 @@ a **C++** compiler for **C++03** [#]_.
    Using ``--mingw64 --clang`` enforces using this **Clang**.
 
 **For Linux**, use either the **GCC** from the system or an installed
-**clang**.
+**Clang**, or **Zig**.
 
 **For macOS**, use the system **Clang** compiler. Install XCode via
 Apple Store to be covered.
@@ -411,35 +415,38 @@ Code is not Data Files
 
 In the following table, we list code file types.
 
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| Suffix     | Rationale                                                                                 | Solution                                                                                               |
-+============+===========================================================================================+========================================================================================================+
-| ``.py``    | Nuitka trims even the stdlib modules to be included. If it doesn't see Python code, so    | Use ``--include-module`` on them instead                                                               |
-|            | dependencies are not analyzed, and it will not work.                                      |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyc``   | Same as ``.py``.                                                                          | Use ``--include-module`` on their source code instead.                                                 |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyo``   | Same as ``.pyc``.                                                                         | Use ``--include-module`` on their source code instead.                                                 |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyw``   | Same as ``.py``.                                                                          | For including multiple programs, use multiple ``--main`` arguments instead.                            |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyi``   | Ignored because they are code-like and usually unnecessary at run time. For the ``lazy``  | Raise an issue if 3rd-party software needs it.                                                         |
-|            | package that actually would depend on them, we made a solution need.                      |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.pyx``   | Ignored, because they are source code not used at run time                                |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dll``   | These are ignored, since they **usually** are not data files. For the cases where 3rd     | Create Nuitka Package Configuration for those, with ``dll`` section for the package that uses them.    |
-|            | party packages use them as data, for example, ``.NET`` packages, we solve that in package | For rare cases, a ``data-files`` section with special configuration might be the correct thing to do.  |
-|            | configuration for it.                                                                     |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.dylib`` | Ignored since they are macOS extension modules or DLLs.                                   | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.so``    | Ignored since they are Linux/BSD extension modules or DLLs.                               | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.exe``   | They are binaries on Windows.                                                             | You can add Nuitka Package Configuration to include those as DLLs and mark them as ``executable: yes`` |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| ``.bin``   | Same as ``.exe`` on Windows.                                                              |                                                                                                        |
-+------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| Suffix     | Rationale                                                                                  | Solution                                                                                               |
++============+============================================================================================+========================================================================================================+
+| |  ``.py`` | |  Nuitka trims even the stdlib modules to be included. If it doesn't see Python code, so  | |  Use ``--include-module`` on them instead                                                            |
+| |          | |  dependencies are not analyzed, and it will not work.                                    | |                                                                                                      |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyc``   | Same as ``.py``.                                                                           | Use ``--include-module`` on their source code instead.                                                 |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyo``   | Same as ``.pyc``.                                                                          | Use ``--include-module`` on their source code instead.                                                 |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyw``   | Same as ``.py``.                                                                           | For including multiple programs, use multiple ``--main`` arguments instead.                            |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| |  ``.pyi`` | |  Ignored because they are code-like and usually unnecessary at run time. For the         | |  Raise an issue if 3rd-party software needs it.                                                      |
+| |          |    ``lazy``                                                                                | |                                                                                                      |
+| |          | |  package that actually would depend on them, we made a compile time solution             | |                                                                                                      |
+|            | |  that removes the need.                                                                  |                                                                                                        |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.pyx``   | Ignored, because they are source code not used at run time                                 |                                                                                                        |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| |  ``.dll`` | |  These are ignored, since they **usually** are not data files. For the cases where 3rd   | |  Create Nuitka Package Configuration for those, with ``dll`` section for the package that uses them. |
+| |          | |  party packages use them as data, for example, ``.NET`` packages, we solve that in       | |  For rare cases, a ``data-files`` section with special configuration might be the correct thing to   |
+| |          |    package                                                                                 |    do.                                                                                                 |
+|            | |  configuration for it.                                                                   | |                                                                                                      |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.dylib`` | Ignored since they are macOS extension modules or DLLs.                                    | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.so``    | Ignored since they are Linux/BSD extension modules or DLLs.                                | Need to add configuration with ``dll`` section or ``depends`` that are missing                         |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.exe``   | They are binaries on Windows.                                                              | You can add Nuitka Package Configuration to include those as DLLs and mark them as ``executable: yes`` |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| ``.bin``   | Same as ``.exe`` on Windows.                                                               |                                                                                                        |
++------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 Package data ``--include-package-data=PACKAGE``
 ===============================================
