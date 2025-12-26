@@ -1,51 +1,53 @@
 {
-    "files.trimTrailingWhitespace": true,
-    "files.trimFinalNewlines": true,
-    "files.exclude": {
-        "**/*.build": true,
-        "**/*.pyc": true,
-        "**/__pycache__": true,
-        "**/*.orig": true,
-        "**/*.tmp": true
-    },
-    "python.analysis.extraPaths": [
-        "Nuitka-develop"
-    ],
-    "cSpell.spellCheckOnlyWorkspaceFiles": true,
-    "cSpell.ignorePaths": [
-        ".git",
-        ".vscode",
-        "devcontainer.json"
-    ],
-    "esbonio.server.enabled": true,
-    "editor.wordWrap": "off",
-    "githubPullRequests.ignoredPullRequestBranches": [
-        "main"
-    ],
-    "cSpell.customDictionaries": {
-        "custom-dictionary-workspace": {
-            "name": "custom-dictionary-workspace",
-            "path": "${workspaceFolder}/.cspell/custom-dictionary-workspace.txt",
-            "addWords": true,
-            "scope": "workspace"
-        }
-    },
-    "editor.defaultFormatter": "vscode.css-language-features",
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
-    "esbonio.server.installBehavior": "nothing",
-    "[postcss]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[xml]": {
-        "editor.defaultFormatter": "redhat.vscode-xml"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "restructuredtext.linter.executablePath": "sphinx-lint"
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.exclude": {
+    "**/*.build": true,
+    "**/*.pyc": true,
+    "**/__pycache__": true,
+    "**/*.orig": true,
+    "**/*.tmp": true
+  },
+  "python.analysis.extraPaths": [
+    "Nuitka-develop"
+  ],
+  "cSpell.spellCheckOnlyWorkspaceFiles": true,
+  "cSpell.ignorePaths": [
+    ".git",
+    ".vscode",
+    "devcontainer.json",
+    "Pipfile",
+    "Pipfile.lock"
+  ],
+  "esbonio.server.enabled": true,
+  "editor.wordWrap": "off",
+  "githubPullRequests.ignoredPullRequestBranches": [
+    "main"
+  ],
+  "cSpell.customDictionaries": {
+    "custom-dictionary-workspace": {
+      "name": "custom-dictionary-workspace",
+      "path": "${workspaceFolder}/.cspell/custom-dictionary-workspace.txt",
+      "addWords": true,
+      "scope": "workspace"
+    }
+  },
+  "editor.defaultFormatter": "vscode.css-language-features",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "esbonio.server.installBehavior": "nothing",
+  "[postcss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "restructuredtext.linter.executablePath": "sphinx-lint"
 }
