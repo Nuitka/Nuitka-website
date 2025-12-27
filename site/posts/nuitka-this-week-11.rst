@@ -120,7 +120,7 @@ bit, but such is life.
 When to release
 ===============
 
-There are still some issues that I want to get to. Specicially the
+There are still some issues that I want to get to. Specifically the
 OpenGL plugins which has been research ever since, and nobody stepped
 up, but it's rather trivial. And the Tcl/Tk for Windows. People have
 provided sufficient instructions for a plugin that I am going to write

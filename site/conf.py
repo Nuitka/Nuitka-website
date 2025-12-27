@@ -29,7 +29,7 @@ blog_title = "Nuitka Blog"
 # e.g. blog_baseurl = "http://example.com/"
 blog_baseurl = html_baseurl
 blog_path = "blog"
-blog_feed_fulltext = True
+blog_feed_fulltext = True  # spell-checker: ignore fulltext
 blog_feed_archives = True
 blog_feed_length = None
 
