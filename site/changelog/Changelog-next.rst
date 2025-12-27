@@ -396,6 +396,16 @@ Organizational
 Tests
 =====
 
+-  Added support for ``--all`` with ``--max-failures`` option to the
+   test runner to stop after a specified number of failures, or just run
+   all tests and output the failed tests in the end.
+
+   Also the tests specified can be a glob pattern, to match multiple
+   tests, not just a test name.
+
+   Added examples to the help output of the runner to guide the usage of
+   the developers.
+
 -  Ignore multiline source code outputs of Python3.14 in tracebacks for
    output comparison, Nuitka won't do those.
 
