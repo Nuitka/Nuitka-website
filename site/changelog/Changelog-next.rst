@@ -102,7 +102,9 @@ Bug Fixes
 -  **Python3.14:** Adapted to core changes by no longer inlining
    ``hacl`` code for this version. (Fixed in 2.8.6 already.)
 
--  **Python 3.14:** Follow allocator and GC changes for compiled frames.
+-  **Python 3.14:** Follow allocator changes and immortal flags changes.
+
+-  **Python 3.14:** Follow GC changes for compiled frames as well.
 
 -  **Python 3.14:** Catch attempts to clear a compiled suspended frame
    object.
