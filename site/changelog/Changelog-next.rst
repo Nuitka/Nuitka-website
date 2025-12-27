@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.0rc2**.
+It currently covers changes up to version **4.0rc3**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -127,6 +127,11 @@ Bug Fixes
 -  **Python3.14:** Added missing implicit dependency for ``_ctypes`` on
    **Windows**. (Fixed in 2.8.9 already.)
 
+-  **Python3.13+:** Fixed missing export of ``PyInterpreter_*`` API.
+
+-  **Python3.14:** Adapted to change in evaluation order of ``__exit__``
+   and ``__enter__``.
+
 Package Support
 ===============
 
@@ -207,6 +212,15 @@ New Features
    -  Don't use wall clock but process time for steps that are not doing
       IO like module optimization for more accurate values otherwise, it
       is however not very accurate still.
+
+-  **Python3.12+:** Added support for function type syntax (generics).
+
+-  **Python3.14:** Added groundwork for deferred evaluation of function
+   annotations.
+
+-  **Python3.14:** Added support for uncompiled generator integration
+   which is crucial for ``asyncio`` correctness and general usability
+   with modern frameworks.
 
 Optimization
 ============
@@ -296,6 +310,16 @@ Optimization
    -  Also avoids that a per variable set for the using scopes of it is
       to be maintained.
 
+-  Detect variable references discarded sooner for better micro-pass
+   efficiency. We were spending an extra pass on the whole module to
+   stabilize the variable usage, which can end up being a lot of work.
+
+-  After a module optimization pass found no changes, we no longer make
+   an extra micro pass to avoid stabilization bugs, but only check
+   against it not happening in debug mode. Depending on the number of
+   micro passes, this can be a relatively high performance gain. For the
+   ``telethon.tl.types`` module this was a 13% performance gain on top.
+
 Anti-Bloat
 ==========
 
@@ -331,6 +355,13 @@ Organizational
 
 -  **Quality:** Fix, wasn't passing assume yes for downloads for the
    commit hook.
+
+-  **UI:** Improved wording for missing C compiler message.
+
+-  **Debugging:** More clear verbose trace for dropped expressions.
+
+-  **Debugging:** Output what module had extra changes during debug
+   extra micro pass.
 
 Tests
 =====
