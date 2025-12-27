@@ -119,7 +119,7 @@ bug fixes.
 
 -  Faster dictionary iteration with our own replacement for
    ``PyDict_Next`` that avoids the DLL call overhead (in case of
-   non-static libpython) and does less unnecessary checks.
+   non-static ``libpython``) and does less unnecessary checks.
 
 -  Added optimization for ``str.count`` and ``str.format`` methods as
    well, this should help in some cases with compile time optimization.
