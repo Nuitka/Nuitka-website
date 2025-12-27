@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.0rc4**.
+It currently covers changes up to version **4.0rc5**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -139,6 +139,9 @@ Bug Fixes
 -  **Python3.14:** Adapted to change in evaluation order of ``__exit__``
    and ``__enter__``.
 
+-  **Multiprocessing:** Fixed issue where ``sys.argv`` was not yet
+   corrected when ``argparse`` was used early in spawned processes.
+
 Package Support
 ===============
 
@@ -169,6 +172,21 @@ Package Support
 
 New Features
 ============
+
+-  **UI:** Added support for ``--project`` parameter to build using
+   configuration from ``pyproject.toml`` (e.g. Poetry, Setuptools).
+
+   With this, you can simply run ``python -m nuitka --project
+   --mode=onefile`` and it will use the ``pyproject.toml`` or
+   ``setup.py/setup.cfg`` files to get the configuration and build the
+   Nuitka binary.
+
+   Previously Nuitka could only be used for building wheels with
+   ``build`` package, and for building wheels that is still the best
+   way.
+
+   The ``--project`` option is currently compatible with ``build`` and
+   ``poetry`` and detects the used build system automatically.
 
 -  **Zig:** Added experimental support for using **Zig** project's ``zig
    cc`` as a C compiler backend for **Nuitka**. This can be enabled by
@@ -228,6 +246,8 @@ New Features
 -  **Python3.14:** Added support for uncompiled generator integration
    which is crucial for ``asyncio`` correctness and general usability
    with modern frameworks.
+
+-  **Debugging:** Added ``--debug-self-forking`` to debug fork bombs.
 
 Optimization
 ============
@@ -370,17 +390,32 @@ Organizational
 -  **Debugging:** Output what module had extra changes during debug
    extra micro pass.
 
+-  **Quality:** Manage more development tools (``clang-format``, etc.)
+   via private pip space for better consistency and isolation.
+
 Tests
 =====
 
 -  Ignore multiline source code outputs of Python3.14 in tracebacks for
    output comparison, Nuitka won't do those.
 
+-  Added test cases for poetry and distutils. Also verify that
+   standalone mode works with ``--project`` for the supported build
+   systems.
+
+-  Made the distutils tests cases much more consistent.
+
 Cleanups
 ========
 
+-  Moved options to new ``nuitka.options`` package.
+
 -  **Python3.14:** Fixed a type mismatch warning seen with **MSVC**.
    (Fixed in 2.8.9 already.)
+
+-  Massive amounts of spelling cleanups. Correct spelling is more and
+   more places allows identification of bugs more immediately, therefore
+   these are very worthwhile.
 
 Summary
 =======

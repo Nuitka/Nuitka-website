@@ -130,6 +130,7 @@ pydantic
 pyenv
 pyenv"
 pylint
+pyproject
 pyproject"
 pyreadstat
 pyside
@@ -154,6 +155,7 @@ Scons"
 segfault
 segfaulted
 SEPA
+Setuptools
 Setuptools"
 shedskin
 shiboken

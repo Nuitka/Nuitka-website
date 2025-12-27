@@ -4,5 +4,5 @@
  API documentation
 ###################
 
-.. automodule:: nuitka.Options
+.. automodule:: nuitka.options.Options
    :members:
