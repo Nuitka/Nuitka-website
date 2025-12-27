@@ -675,6 +675,18 @@ project syntax:
 
    # Rest of your program goes here.
 
+Onefile Child Grace Time
+========================
+
+When stopping a onefile application, the child process is given a grace
+time to shut down before being hard killed. By default, Nuitka enforces
+a timeout. You can disable this timeout and allow for an infinite grace
+time (e.g. for debugging or special handlers) by using:
+
+.. code:: bash
+
+   --onefile-child-grace-time=infinity
+
 Reports
 =======
 

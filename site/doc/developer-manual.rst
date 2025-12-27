@@ -785,6 +785,40 @@ because Nuitka uses a lot of packages and imports between them.
 
    ./tests/reflected/compile_itself.py
 
+******************
+ Profiling Nuitka
+******************
+
+Nuitka has built-in capabilities for profiling its own execution, which
+is useful for finding performance bottlenecks in the compilation
+process.
+
+Compile-Time Profiling
+======================
+
+To profile the compilation process itself (identifying slow optimization
+passes, etc.), use the ``--devel-profile-compilation`` option. This uses
+Python's standard ``cProfile`` module to trace execution.
+
+.. code:: bash
+
+   python -m nuitka --devel-profile-compilation target.py
+
+Runtime Profiling (vmprof)
+==========================
+
+To profile the Nuitka runtime, use ``--debug-profile-runtime``. This
+enables ``vmprof`` based profiling. Note that this option was formerly
+named ``--profile`` and is for internal debugging.
+
+.. code:: bash
+
+   python -m nuitka --debug-profile-runtime target.py
+
+.. important::
+
+   This feature is currently broken and needs repair.
+
 *********************
  Internal/Plugin API
 *********************
