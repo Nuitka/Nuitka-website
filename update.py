@@ -7,7 +7,6 @@ import copy
 import datetime
 import os
 import re
-import shutil
 import subprocess
 import sys
 from io import StringIO
@@ -822,10 +821,16 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
 
     # Process with PostCSS
     processed_css = _processWithPostCSS(merged_css)
-    del merged_css
 
-    # Validate processed CSS: fallback to original if empty or invalid
-    assert processed_css
+    # Validate processed CSS: fallback to original if empty or
+    # invalid, but only in development mode.
+    if not processed_css:
+        assert development_mode
+        processed_css = merged_css
+
+        my_print("Warning, postcss failed, using original CSS")
+
+    del merged_css
 
     output_filename = "/_static/css/combined_%s.css" % getHashFromValues(processed_css)
 
