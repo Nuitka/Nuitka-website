@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **Nuitka V4.0**.
+It currently covers changes up to version **4.0rc2**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -191,6 +191,23 @@ New Features
 -  **Scons:** Allowed using Python versions only partially supported for
    **Nuitka** with **Scons**. (Added in 2.8.7 already.)
 
+-  **UI:** Added option ``--devel-profile-compilation`` for compile time
+   profiling. Also renamed the old runtime profiling option
+   ``--profile`` to ``--debug-profile-runtime``, that is however still
+   broken.
+
+-  **Reports:** Including CPU instr and cycle counters in timing on
+   native Linux.
+
+   -  With appropriate configuration on Linux this allows to get at very
+      precise timing configuration so we can judge even small compile
+      time improvements correctly. We then don't need many runs to
+      average out noise from other effects.
+
+   -  Don't use wall clock but process time for steps that are not doing
+      IO like module optimization for more accurate values otherwise, it
+      is however not very accurate still.
+
 Optimization
 ============
 
@@ -240,6 +257,45 @@ Optimization
 -  **Scons:** Stopped detecting installed **MinGW** to avoid overhead as
    it is not supported. (Fixed in 2.8.9 already.)
 
+-  Much faster Python passes.
+
+   -  The "Escape" and "Unknown" traces now have their own number
+      spaces. This allows to do some tests for a trace without using the
+      actual object.
+
+   -  Narrow the scope of variables to the outline scope that uses them,
+      so that they don't need to be dealt with in merging later code
+      where they don't ever change anymore and are not used at all.
+
+   -  When checking for unused variables, do not ask the trace
+      collection to filter its traces, instead work of the ones attached
+      in the variable already. This avoids a lot of searching work. Also
+      use a method to decide if a trace constitutes usage rather than a
+      long ``elif`` chain.
+
+   -  For "PASS 1" of ``telethon.tl.types`` which has been one of the
+      known trouble makers with many classes and type annotations all
+      changes combined improve the compilation time by 800%.
+
+-  Also decide presence of writing traces for parameter variables
+   faster.
+
+-  Faster variable trace maintenance.
+
+   -  We now trace variables in trace collection as a dictionary per
+      variable with a dictionary of the versions, this is closer to out
+      frequent usage per variable.
+
+   -  That makes it a lot easier to update variables after the tracing
+      is finished to know their users and writers.
+
+   -  Requires a lot less work, but also makes work less memory local
+      such that the performance gain is relatively small despite less
+      work being done.
+
+   -  Also avoids that a per variable set for the using scopes of it is
+      to be maintained.
+
 Anti-Bloat
 ==========
 
@@ -272,6 +328,9 @@ Organizational
 
 -  **Release:** Use lowercase names for source archives in PyPI uploads.
    (Fixed in 2.8.7 already.)
+
+-  **Quality:** Fix, wasn't passing assume yes for downloads for the
+   commit hook.
 
 Tests
 =====
