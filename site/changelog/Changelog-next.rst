@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.0rc3**.
+It currently covers changes up to version **4.0rc4**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -101,6 +101,11 @@ Bug Fixes
 
 -  **Python3.14:** Adapted to core changes by no longer inlining
    ``hacl`` code for this version. (Fixed in 2.8.6 already.)
+
+-  **Python 3.14:** Follow allocator and GC changes for compiled frames.
+
+-  **Python 3.14:** Catch attempts to clear a compiled suspended frame
+   object.
 
 -  Fixed a potential for mis-optimization for uses of locals
    ``locals()`` when transforming the variable name reference call.
@@ -366,7 +371,8 @@ Organizational
 Tests
 =====
 
-None yet.
+-  Ignore multiline source code outputs of Python3.14 in tracebacks for
+   output comparison, Nuitka won't do those.
 
 Cleanups
 ========
