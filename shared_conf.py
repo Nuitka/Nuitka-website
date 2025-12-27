@@ -16,7 +16,7 @@ ROOT = Path(__file__).parent.absolute().as_posix()  # The root directory
 # For autodoc to work
 sys.path.append(ROOT)
 
-from update import importNuitka  # isort:skip
+from nuitka_import import importNuitka  # isort:skip
 
 importNuitka()
 del sys.path[-1]

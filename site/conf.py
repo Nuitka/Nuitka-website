@@ -11,7 +11,7 @@ sys.path.extend([DOC_ROOT.as_posix(), DOC_ROOT.parent.as_posix()])
 from shared_conf import *
 
 # For autodoc to work we need to import Nuitka
-from update import importNuitka  # isort:skip
+from nuitka_import import importNuitka  # isort:skip
 
 nuitka = importNuitka()
 
