@@ -276,28 +276,6 @@ Optimization
       traces are easier to re-recognize. And this is a first step with
       immediate impacts.
 
--  **Standalone:** Also solve partially a TODO of minimizing
-   intermediate directories in r-paths of ELF platforms, by only putting
-   them there if the directory the point to will contain DLLs or
-   binaries. This removes unused elements and reduces r-path size.
-
--  **Windows:** Made the caching of external paths effective, which
-   significantly speeds up DLL resolution in subsequent compilations.
-   (Fixed in 2.8.6 already.)
-
--  Recognized module variable usages inside outlined functions that are
-   in a loop, which improves the effectiveness of caching. (Fixed in
-   2.8.6 already.)
-
--  **Optimization:** Avoid including ``tzdata`` on non-Windows
-   platforms. (Fixed in 2.8.7 already.)
-
--  **macOS:** Removed extended attributes from data files as well,
-   improving performance. (Fixed in 2.8.7 already.)
-
--  **Scons:** Stopped detecting installed **MinGW** to avoid overhead as
-   it is not supported. (Fixed in 2.8.9 already.)
-
 -  Much faster Python passes.
 
    -  The "Escape" and "Unknown" traces now have their own number
@@ -313,13 +291,6 @@ Optimization
       in the variable already. This avoids a lot of searching work. Also
       use a method to decide if a trace constitutes usage rather than a
       long ``elif`` chain.
-
-   -  For "PASS 1" of ``telethon.tl.types`` which has been one of the
-      known trouble makers with many classes and type annotations all
-      changes combined improve the compilation time by 800%.
-
--  Also decide presence of writing traces for parameter variables
-   faster.
 
 -  Faster variable trace maintenance.
 
@@ -337,20 +308,57 @@ Optimization
    -  Also avoids that a per variable set for the using scopes of it is
       to be maintained.
 
--  Detect variable references discarded sooner for better micro-pass
-   efficiency. We were spending an extra pass on the whole module to
-   stabilize the variable usage, which can end up being a lot of work.
+   -  Decide presence of writing traces for parameter variables faster.
 
--  After a module optimization pass found no changes, we no longer make
-   an extra micro pass to avoid stabilization bugs, but only check
-   against it not happening in debug mode. Depending on the number of
-   micro passes, this can be a relatively high performance gain. For the
-   ``telethon.tl.types`` module this was a 13% performance gain on top.
+-  Avoiding unnecessary micro passes.
+
+   -  Detect variable references discarded sooner for better micro-pass
+      efficiency. We were spending an extra pass on the whole module to
+      stabilize the variable usage, which can end up being a lot of
+      work.
+
+   -  After a module optimization pass found no changes, we no longer
+      make an extra micro pass to avoid stabilization bugs, but only
+      check against it not happening in debug mode. Depending on the
+      number of micro passes, this can be a relatively high performance
+      gain. For the ``telethon.tl.types`` module this was a 13%
+      performance gain on top.
+
+-  For "PASS 1" of ``telethon.tl.types`` which has been one of the known
+   trouble makers with many classes and type annotations all changes
+   combined improve the compilation time by 1500%.
+
+-  Faster code generation.
+
+   -  Indentation in generated C code is no longer performed to speed up
+      code generation. To restore readability, use the new option
+      ``--devel-generate-readable-code`` which will use ``clang-format``
+      to format the C code.
+
+-  Recognized module variable usages inside outlined functions that are
+   in a loop, which improves the effectiveness of caching at run-time.
+   (Added in 2.8.6 already.)
+
+-  **Standalone:** Also solve partially a TODO of minimizing
+   intermediate directories in r-paths of ELF platforms, by only putting
+   them there if the directory the point to will contain DLLs or
+   binaries. This removes unused elements and reduces r-path size.
+
+-  **Windows:** Made the caching of external paths effective, which
+   significantly speeds up DLL resolution in subsequent compilations.
+   (Fixed in 2.8.6 already.)
+
+-  **macOS:** Removed extended attributes from data files as well,
+   improving performance. (Fixed in 2.8.7 already.)
+
+-  **Scons:** Stopped detecting installed **MinGW** to avoid overhead as
+   it is not supported. (Fixed in 2.8.9 already.)
 
 Anti-Bloat
 ==========
 
-None yet.
+-  Avoid including ``tzdata`` on non-Windows platforms. (Fixed in 2.8.7
+   already.)
 
 Organizational
 ==============
