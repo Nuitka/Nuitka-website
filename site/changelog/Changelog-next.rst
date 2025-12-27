@@ -11,6 +11,8 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
+It currently covers changes up to version **Nuitka V4.0**.
+
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
 **************************************************
