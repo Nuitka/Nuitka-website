@@ -31,7 +31,6 @@ extensions = [
     # Sphinx's own extensions
     "sphinx.ext.autodoc",
     "sphinx.ext.extlinks",
-    "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
     #    "sphinx.ext.viewcode",
@@ -47,12 +46,6 @@ extensions = [
     "ablog",
     "carousel",
 ]
-
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),
-    "sphinx": ("https://www.sphinx-doc.org/en/master", None),
-}
-intersphinx_disabled_domains = ["std"]
 
 templates_path = [f"{ROOT}/_templates"]
 
