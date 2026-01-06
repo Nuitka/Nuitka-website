@@ -6,6 +6,7 @@ Nuitka-main
 Nuitka-Tests
 output
 output.*
+bundle-output
 .vscode/tags
 _build/
 *.mo
