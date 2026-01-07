@@ -10,13 +10,21 @@ from shared_conf import *
 html_baseurl = "./"
 master_doc = "index_bundle"
 
+
 # Keep only the bundle content, everything else is excluded
+# note: Sphinx requires index files to be explicitly included to construct the TOC
 include_patterns = [
-	"index_bundle.rst",
-	"variables.inc",
-	"dynamic.inc",
-	"doc/**",
-	"user-documentation/**",
+    "index_bundle.rst",
+    "variables.inc",
+    "dynamic.inc",
+
+    "user-documentation/index.rst",
+    "doc/index.rst",
+    "commercial/index.rst",
+
+    "user-documentation/**",
+    "doc/**",
+    "commercial/**",
 ]
 
 # Remove online only or site only extensions
