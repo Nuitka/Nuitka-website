@@ -1455,6 +1455,103 @@ def runPostProcessing():
 
     cleanBuildSVGs()
 
+# Post processing for the offline documentation bundle.
+def runBundlePostProcessing(output_dir):
+    my_print(f"Post-processing bundle in {output_dir}...")
+
+    # Remove files that require external resources
+    files_to_remove = (
+        "searchindex.js",
+        "searchtools.js",
+        "search.html",
+    )
+
+    for filename in files_to_remove:
+        deleteFile(os.path.join(output_dir, filename), must_exist=False)
+
+    # Remove external font files that won't work offline
+    fonts_path = os.path.join(output_dir, "_static/fonts")
+    if os.path.exists(fonts_path):
+        for filename in os.listdir(fonts_path):
+            if filename.lower().startswith("fontawesome"):
+                deleteFile(os.path.join(fonts_path, filename), must_exist=False)
+
+    # Process HTML files to remove external content and fix links for offline use
+    for html_file in getFileList(output_dir, only_suffixes=".html"):
+        doc = html.fromstring(getFileContents(html_file, mode="rb"))
+
+        file_dir = os.path.dirname(html_file)
+        depth = len(os.path.relpath(file_dir, output_dir).split(os.sep))
+        if os.path.relpath(file_dir, output_dir) == ".":
+            depth = 0
+        path_to_root = "../" * depth if depth > 0 else "./"
+
+        # Fix absolute paths to relative paths for offline viewing
+        for link_tag in doc.xpath("//a[@href]"):
+            href = link_tag.get("href")
+            if href.startswith("/") and not href.startswith("//"):
+                link_tag.set("href", path_to_root + href.lstrip("/"))
+
+        for img_tag in doc.xpath("//img[@src]"):
+            src = img_tag.get("src")
+            if src.startswith("/") and not src.startswith("//"):
+                img_tag.set("src", path_to_root + src.lstrip("/"))
+
+        for css_link in doc.xpath("//link[@href]"):
+            href = css_link.get("href")
+            if href.startswith("/") and not href.startswith("//"):
+                css_link.set("href", path_to_root + href.lstrip("/"))
+
+        for script_tag in doc.xpath("//script[@src]"):
+            src = script_tag.get("src")
+            if src.startswith("/") and not src.startswith("//"):
+                script_tag.set("src", path_to_root + src.lstrip("/"))
+            # Remove external scripts that require internet
+            elif src.startswith(("http://", "https://", "//")):
+                script_tag.getparent().remove(script_tag)
+                continue
+            # Remove search functionality scripts
+            elif "search" in src.lower() or "analytics" in src.lower():
+                script_tag.getparent().remove(script_tag)
+                continue
+
+        # Remove external scripts without src attribute (inline scripts with external calls)
+        for script_tag in doc.xpath("//script[not(@src)]"):
+            if script_tag.text and ("http://" in script_tag.text or "https://" in script_tag.text):
+                script_tag.getparent().remove(script_tag)
+
+        # Remove all iframes
+        for iframe in doc.xpath("//iframe"):
+            iframe.getparent().remove(iframe)
+
+        for style_tag in doc.xpath("//style"):
+            if style_tag.text and "responsive-google-slides" in style_tag.text:
+                style_tag.getparent().remove(style_tag)
+
+        # Remove search form
+        for search_form in doc.xpath("//form[@class='search']"):
+            search_form.getparent().remove(search_form)
+
+        for social_container in doc.xpath("//div[@class='share-button-container']"):
+            social_container.getparent().remove(social_container)
+
+        for lang_switcher in doc.xpath("//details[contains(@class, 'language-switcher')]"):
+            lang_switcher.getparent().remove(lang_switcher)
+
+        for blog_box in doc.xpath("//div[@class='blog-post-box']"):
+            blog_box.getparent().remove(blog_box)
+
+        result = html.tostring(
+            doc,
+            encoding="UTF-8",
+            method="html",
+            doctype="<!DOCTYPE html>",
+        )
+        with open(html_file, "wb") as output:
+            output.write(result)
+
+    my_print("Bundle post-processing complete.")
+
 
 def runDeploymentCommand():
     # spell-checker: ignore doctrees,buildinfo,apidoc
@@ -1706,6 +1803,15 @@ When given, the site is post processed. Default %default.""",
     )
 
     parser.add_option(
+        "--post-process-bundle",
+        action="store_true",
+        dest="post_process_bundle",
+        default=False,
+        help="""\
+When given, the bundle is post processed. Default %default.""",
+    )
+
+    parser.add_option(
         "--serve-site",
         action="store_true",
         dest="serve",
@@ -1792,6 +1898,9 @@ When given, the site is deployed. Default %default.""",
 
     if options.post_process:
         runPostProcessing()
+
+    if options.post_process_bundle:
+        runBundlePostProcessing(output_dir="bundle-output")
 
     if options.serve:
         runSphinxAutoBuild()
