@@ -89,7 +89,7 @@ intl = _site(
     "site",
     "the translations sub-site",
     source="site",
-    target="output/site",
+    target="output",
     conf="conf.py"
 )
 
@@ -97,7 +97,7 @@ site = _site(
     "site",
     "the website",
     source="site",
-    target="output/site",
+    target="output",
     conf="conf.py"
 )
 
