@@ -19,6 +19,8 @@ from lxml import html
 
 from nuitka_import import importNuitka
 
+from _docs import bundle_target
+
 importNuitka()
 
 # isort:start
@@ -1899,7 +1901,7 @@ When given, the site is deployed. Default %default.""",
         runPostProcessing()
 
     if options.post_process_bundle:
-        runBundlePostProcessing(output_dir="bundle-output")
+        runBundlePostProcessing(bundle_target)
 
     if options.serve:
         runSphinxAutoBuild()

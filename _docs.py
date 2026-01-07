@@ -84,29 +84,36 @@ def _site(name, help_part, *, source, target, conf):
     coll["build"].__doc__ = f"Build {help_part}"
     return coll
 
+# Target and configuration for different documentation sites
+main_target = "output"
+main_conf = "site/conf.py"
+
+bundle_target = "bundle-output"
+bundle_conf = "bundle/conf.py"
+
 # Sites
 intl = _site(
     "site",
     "the translations sub-site",
     source="site",
-    target="output",
-    conf="conf.py"
+    target=main_target,
+    conf=main_conf
 )
 
 site = _site(
     "site",
     "the website",
     source="site",
-    target="output",
-    conf="conf.py"
+    target=main_target,
+    conf=main_conf
 )
 
 bundle = _site(
     "bundle",
     "package documentation bundle.",
     source="site",
-    target="bundle-output",
-    conf="bundle/conf.py"
+    target=bundle_target,
+    conf=bundle_conf
 )
 
 ns = Collection(intl, site, bundle)
