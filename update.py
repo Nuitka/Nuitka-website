@@ -1504,16 +1504,15 @@ def runBundlePostProcessing(output_dir):
 
         for script_tag in doc.xpath("//script[@src]"):
             src = script_tag.get("src")
-            if src.startswith("/") and not src.startswith("//"):
-                script_tag.set("src", path_to_root + src.lstrip("/"))
+            if "search" in src.lower() or "analytics" in src.lower():
+                script_tag.getparent().remove(script_tag)
+                continue
             # Remove external scripts that require internet
             elif src.startswith(("http://", "https://", "//")):
                 script_tag.getparent().remove(script_tag)
                 continue
-            # Remove search functionality scripts
-            elif "search" in src.lower() or "analytics" in src.lower():
-                script_tag.getparent().remove(script_tag)
-                continue
+            elif src.startswith("/") and not src.startswith("//"):
+                script_tag.set("src", path_to_root + src.lstrip("/"))
 
         # Remove external scripts without src attribute (inline scripts with external calls)
         for script_tag in doc.xpath("//script[not(@src)]"):
