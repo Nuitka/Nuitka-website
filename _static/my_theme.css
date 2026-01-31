@@ -834,7 +834,7 @@ img.fp-circle-image {
 	}
 
 	.fp-circle-image-container {
-		width: auto;
+		width: 100%;
 		height: fit-content;
 		padding-bottom: 1rem;
 	}
