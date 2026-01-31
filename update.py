@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.12
 
-""" Main interface to Nuitka-Website build process."""
+"""Main interface to Nuitka-Website build process."""
 
 
 import copy
@@ -22,8 +22,6 @@ from nuitka_import import importNuitka
 importNuitka()
 
 # isort:start
-
-from playwright.sync_api import sync_playwright
 
 from nuitka.tools.quality.auto_format.AutoFormat import (
     withFileOpenedAndAutoFormatted,
@@ -1555,6 +1553,9 @@ def runUpdateGolden(
         for file in golden_dir.glob("*.png"):
             deleteFile(file, must_exist=False)
     golden_dir.mkdir(parents=True, exist_ok=True)
+
+    # Avoid dependency on playwright for other operations.
+    from playwright.sync_api import sync_playwright
 
     try:
         my_print("Starting reference images update...")
