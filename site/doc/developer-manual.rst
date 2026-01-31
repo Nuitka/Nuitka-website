@@ -3232,7 +3232,7 @@ applies to temporary variables used in re-formulations. These releases
 cause a reference to the object to the released, but no value change.
 They are typically the last use of the object in the function.
 
-The are similar to ``del``, but make no value change. For shared
+They are similar to ``del``, but make no value change. For shared
 variables this effect is most visible.
 
 Side Effects
