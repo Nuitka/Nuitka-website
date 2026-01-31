@@ -13,6 +13,7 @@ from io import StringIO
 from optparse import OptionParser
 from pathlib import Path
 from settings import development_mode
+import urllib.parse
 
 import requests
 from lxml import html
@@ -85,7 +86,68 @@ FA_REPLACEMENT_CLASS = {
 }
 
 
+ANNOTATED_EXTENSIONS_CACHE = None
+
+
+def get_annotated_file_extensions():
+    global ANNOTATED_EXTENSIONS_CACHE
+
+    if ANNOTATED_EXTENSIONS_CACHE is not None:
+        return ANNOTATED_EXTENSIONS_CACHE
+
+    extensions = set()
+    css_file = "_static/my_theme.css"
+
+    if not os.path.exists(css_file):
+        return extensions
+
+    css_content = getFileContents(css_file, encoding="utf-8")
+
+    matches = re.findall(r'a\[href\$="([^"]+)"\]', css_content)
+    extensions.update(matches)
+
+    ANNOTATED_EXTENSIONS_CACHE = extensions
+    return extensions
+
+
 SVG_CACHE = {}
+
+
+def check_link_file_type_annotations(doc, filename):
+    annotated_extensions = get_annotated_file_extensions()
+
+    if not annotated_extensions:
+        return
+
+    ignored_extensions = {
+        ".html", ".svg", ".php", ".asp", ".jsp", ".css", ".js",
+        ".jpeg", ".jpg", ".png", ".gif", ".bmp", ".webp", ".tiff",
+        ".mp4", ".mp3", ".avi", ".mov", ".mkv", ".xml", ".com"
+    }
+
+    unannotated_extensions = {}
+
+    for link in doc.xpath("//a[@href]"):
+        href = link.attrib.get("href", "")
+
+        # Skip external URLs, anchors, and special protocols
+        if href.startswith(("http://", "https://", "#", "mailto:", "tel:", "ftp://", "ftps://")) or not href:
+            continue
+
+        # Remove query params and fragment identifiers
+        href_lower = href.lower().split("?")[0].split("#")[0]
+
+        found_annotation = any(href_lower.endswith(ext) for ext in annotated_extensions)
+
+        if not found_annotation:
+            for potential_ext in re.findall(r"\.\w+$", href_lower):
+                if potential_ext in ignored_extensions:
+                    continue
+
+                if len(potential_ext) > 1 and potential_ext[1:].replace("_", "").isalnum():
+                    unannotated_extensions.setdefault(potential_ext, set()).add(filename)
+
+    return unannotated_extensions
 
 
 def get_svg_content(svg_path):
@@ -925,6 +987,71 @@ def fixupSymbols(document_bytes):
     return document_bytes
 
 
+def inlineSVGsInCss():
+    # Some SVGs use different viewBox dimensions, causing inconsistent sizing.
+    def ensure_viewbox_normalization(svg_str):
+        opening_tag, rest = svg_str.split(">", 1)
+        opening_tag += ">"
+
+        if re.search(r'\bviewBox\s*=', opening_tag, flags=re.IGNORECASE):
+            opening_tag = re.sub(
+                r'\bviewBox\s*=\s*"[^\"]*"',
+                'viewBox="0 0 640 512"',
+                opening_tag,
+                flags=re.IGNORECASE
+            )
+        else:
+            opening_tag = opening_tag.replace(
+                ">",
+                ' viewBox="0 0 640 512">'
+            )
+
+        return opening_tag + rest
+
+    if development_mode:
+        svg_output_dir = "output/_images/svg"
+        os.makedirs(svg_output_dir, exist_ok=True)
+
+        svg_source_abs = os.path.abspath("images/svg")
+        if os.path.islink(svg_output_dir):
+            os.unlink(svg_output_dir)
+        elif os.path.exists(svg_output_dir):
+            shutil.rmtree(svg_output_dir)
+
+        os.symlink(svg_source_abs, svg_output_dir)
+    else:
+        css_path = "output/_static/css"
+        css_files = getFileList(css_path, only_suffixes=".css")
+
+        for css_file in css_files:
+            css_content = getFileContents(css_file, encoding="utf-8")
+
+            def replace_svg_load(match):
+                svg_filename = match.group(1)
+                svg_path = os.path.join(SVG_SOURCE_PATH, svg_filename)
+
+                if not os.path.exists(svg_path):
+                    my_print(f"SVG file for CSS inlining not found: {svg_path}")
+                    return match.group(0)
+
+                # Parse and normalize SVG content
+                svg_content = get_svg_content(svg_path)
+                svg_content = ensure_viewbox_normalization(svg_content)
+                svg_content = re.sub(r"\s+", " ", svg_content.strip())
+                svg_content = svg_content.replace('"', "'")
+                svg_content_encoded = urllib.parse.quote(svg_content, safe='')
+
+                my_print(f"Inlining SVG: {svg_filename} into CSS file: {css_file}")
+
+                return f"url('data:image/svg+xml,{svg_content_encoded}')"
+
+            css_content = re.sub(
+                r'url\(\s*[\'"]?\.\./_images/svg/([^\'")]+)[\'"]?\s*\)',
+                replace_svg_load,
+                css_content,
+            )
+            putTextFileContents(css_file, css_content, encoding="utf-8")
+
 _postcss_cache = {}
 _terser_cache = {}
 
@@ -1181,12 +1308,18 @@ def runPostProcessing():
     file_list.remove("output/index.html")
     file_list.insert(0, "output/index.html")
 
+    all_unannotated_extensions = {}
     root_doc = None
     for filename in file_list:
         doc = html.fromstring(getFileContents(filename, mode="rb"))
 
         if root_doc is None:
             root_doc = doc
+
+        unannotated = check_link_file_type_annotations(doc, filename)
+        if unannotated:
+            for ext, filenames in unannotated.items():
+                all_unannotated_extensions.setdefault(ext, set()).update(filenames)
 
         # Check copybutton.js
         has_highlight = doc.xpath("//div[@class='highlight']")
@@ -1445,6 +1578,14 @@ def runPostProcessing():
         if not development_mode:
             _minifyHtml(filename)
 
+    if all_unannotated_extensions:
+        my_print("\n WARNING: Links with unannotated file types found:")
+        for ext in sorted(all_unannotated_extensions.keys()):
+            pages = sorted(all_unannotated_extensions[ext])
+            my_print(f"  Extension {ext}:")
+            for page in pages:
+                my_print(f"    - {page}")
+
     if development_mode:
         my_theme_filename = "output/_static/my_theme.css"
 
@@ -1453,7 +1594,10 @@ def runPostProcessing():
             os.unlink(my_theme_filename)
             os.symlink(os.path.abspath("_static/my_theme.css"), my_theme_filename)
 
-    cleanBuildSVGs()
+    inlineSVGsInCss()
+
+    if not development_mode:
+        cleanBuildSVGs()
 
 
 def runDeploymentCommand():
