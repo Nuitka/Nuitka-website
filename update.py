@@ -1792,9 +1792,6 @@ When given, the site is deployed. Default %default.""",
     if options.post_process:
         runPostProcessing()
 
-    if options.post_process_bundle:
-        runBundlePostProcessing(bundle_target)
-
     if options.serve:
         runSphinxAutoBuild()
 
