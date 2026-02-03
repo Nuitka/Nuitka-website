@@ -142,6 +142,9 @@ Bug Fixes
 -  **Multiprocessing:** Fixed issue where ``sys.argv`` was not yet
    corrected when ``argparse`` was used early in spawned processes.
 
+-  **Scons:** Fixed an issue where Zig was not used as a fallback when
+   MinGW64 was present but unusable.
+
 Package Support
 ===============
 
@@ -249,6 +252,9 @@ New Features
 
 -  **Debugging:** Added ``--debug-self-forking`` to debug fork bombs.
 
+-  **Windows:** Added ``--include-windows-runtime-dlls`` option to
+   control inclusion of Windows C runtime DLLs. Defaults to ``auto``.
+
 Optimization
 ============
 
@@ -354,6 +360,10 @@ Optimization
 -  **Scons:** Stopped detecting installed **MinGW** to avoid overhead as
    it is not supported. (Fixed in 2.8.9 already.)
 
+-  **Scons:** Added caching for MSVC information to reduce compilation
+   time and if already available, use that to detect Windows SDK
+   location rather that using ``vswhere.exe`` each time.
+
 Anti-Bloat
 ==========
 
@@ -401,6 +411,24 @@ Organizational
 -  **Quality:** Manage more development tools (``clang-format``, etc.)
    via private pip space for better consistency and isolation.
 
+-  **AI:** Enhanced pull request template with directions for AI-driven
+   PRs.
+
+-  **AI:** Added agent command ``create-mre`` to assist in creating a
+   minimal reproduction example (**MRE**).
+
+-  **User Manual:** Added documentation about redistribution
+   requirements for Python 3.12-3.14.
+
+-  **Quality:** Added ``--un-pushed`` argument to auto-format tool for
+   checking only un-pushed changes.
+
+-  **Scons:** Improved error message to point to Zig support if no C
+   compiler is found.
+
+-  **MonolithPy:** Follow rename of our Python fork to **MonolithPy** to
+   avoid confusion with the **Nuitka** compiler project itself.
+
 Tests
 =====
 
@@ -423,6 +451,9 @@ Tests
 
 -  Made the distutils tests cases much more consistent.
 
+-  **Watch:** Improved binary name detection from compilation reports
+   for better mode support beyond standalone mode.
+
 Cleanups
 ========
 
@@ -434,6 +465,12 @@ Cleanups
 -  Massive amounts of spelling cleanups. Correct spelling is more and
    more places allows identification of bugs more immediately, therefore
    these are very worthwhile.
+
+-  Code cleanup and style improvements in ``Errors`` and
+   ``OutputDirectories`` modules.
+
+-  Replaced usages of ``os.environ.get`` with ``os.getenv`` for
+   consistency.
 
 Summary
 =======
