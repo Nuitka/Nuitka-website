@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.0rc5**.
+It currently covers changes up to version **4.0rc8**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -145,6 +145,22 @@ Bug Fixes
 -  **Scons:** Fixed an issue where Zig was not used as a fallback when
    MinGW64 was present but unusable.
 
+-  **Windows:** Made onefile binary work on systems without runtime DLLs
+   installed as well.
+
+-  **Scons:** Made tracing robust against threaded outputs.
+
+-  **Python3.12+:** Enhanced workaround for loading of extension modules
+   with sub-packages to cover more cases.
+
+-  **Scons:** Fixed missing Zig version output.
+
+-  **Scons:** Fixed Zig detection to enforce PATH or CC usage on macOS
+   instead of download, since it's not available.
+
+-  **UI:** Fixed normalization of user paths, improving macOS support
+   for reporting.
+
 Package Support
 ===============
 
@@ -172,6 +188,14 @@ Package Support
 
 -  **Standalone:** Added support for the ``dataparser`` package. (Added
    in 2.8.7 already.)
+
+-  **Standalone:** Added support for ``puremagic``, ``pygment.lexers``
+   and ``tomli`` in standalone mode.
+
+-  **Standalone:** Added automatic detection of ``mypyc`` runtime
+   dependencies, no need to manually configure that anymore. Also our
+   configuration was often only correct for a single OS, and single
+   upstream versions which is now fixed for packages having it before.
 
 New Features
 ============
@@ -254,6 +278,14 @@ New Features
 
 -  **Windows:** Added ``--include-windows-runtime-dlls`` option to
    control inclusion of Windows C runtime DLLs. Defaults to ``auto``.
+
+-  **Python 3.14:** Added experimental support for deferred annotations.
+
+-  **Plugins:** Added option ``--qt-debug-plugins`` for debugging Qt
+   plugin loading.
+
+-  **DLLs:** Added support for DLL tags to potentially control inclusion
+   with more granularity.
 
 Optimization
 ============
@@ -364,11 +396,23 @@ Optimization
    time and if already available, use that to detect Windows SDK
    location rather that using ``vswhere.exe`` each time.
 
+-  Avoided large ``%`` string interpolations at compile time, these
+   could cause large code as a result.
+
+-  Avoid including ``importlib._bootstrap`` and
+   ``importlib._bootstrap_external`` as they are available as frozen
+   modules.
+
+-  Fixed un-hashable dictionary keys not being properly optimized,
+   forcing runtime handling.
+
 Anti-Bloat
 ==========
 
 -  Avoid including ``tzdata`` on non-Windows platforms. (Fixed in 2.8.7
    already.)
+
+-  Avoid ``pyparsing.testing`` in ``pyparsing`` package.
 
 Organizational
 ==============
@@ -429,6 +473,9 @@ Organizational
 -  **MonolithPy:** Follow rename of our Python fork to **MonolithPy** to
    avoid confusion with the **Nuitka** compiler project itself.
 
+-  **Scons:** Prefer English output and warn user for missing English
+   language pack with MSVC in case or outputs being made.
+
 Tests
 =====
 
@@ -470,7 +517,15 @@ Cleanups
    ``OutputDirectories`` modules.
 
 -  Replaced usages of ``os.environ.get`` with ``os.getenv`` for
-   consistency.
+   consistency and denser code.
+
+-  Moved **MSVC** re-dist detection to ``DllDependenciesWin32``.
+
+-  **Release:** Don't install ``zstandard`` by default anymore.
+
+-  **UI:** Tone down complaint about checksum mismatches.
+
+-  Static source files are now provided by Nuitka directly.
 
 Summary
 =======
