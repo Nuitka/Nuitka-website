@@ -1,14 +1,14 @@
 {
-    "recommendations": [
-        "aeschli.vscode-css-formatter",
-        "lextudio.restructuredtext",
-        "trond-snekvik.simple-rst",
-        "github.vscode-pull-request-github",
-        "jebbs.plantuml",
-        "ms-python.vscode-pylance",
-        "shuworks.vscode-table-formatter",
-        "streetsidesoftware.code-spell-checker",
-        "redhat.vscode-xml",
-        "swyddfa.esbonio"
-    ]
+  "recommendations": [
+    "aeschli.vscode-css-formatter",
+    "lextudio.restructuredtext",
+    "trond-snekvik.simple-rst",
+    "github.vscode-pull-request-github",
+    "jebbs.plantuml",
+    "ms-python.vscode-pylance",
+    "shuworks.vscode-table-formatter",
+    "streetsidesoftware.code-spell-checker",
+    "redhat.vscode-xml",
+    "swyddfa.esbonio"
+  ]
 }
