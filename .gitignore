@@ -6,7 +6,11 @@ Nuitka-main
 Nuitka-Tests
 output
 output.*
-bundle-output
+bundle/*
+!bundle/conf.py
+!bundle/index.rst
+bundle-rst
+bundle-html
 .vscode/tags
 _build/
 *.mo

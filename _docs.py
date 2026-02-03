@@ -4,7 +4,7 @@ from shutil import rmtree
 import os
 
 from invoke import Collection, task
-
+from builder_config import *
 
 @task(name="clean")
 def _clean(c):
@@ -32,6 +32,9 @@ def build(c, opts=None, language=None, source=None, target=None, nitpick=False):
     source = source or c.sphinx.source
     target = target or c.sphinx.target
     conf = c.sphinx.conf
+
+    if source == BUNDLE_DIR:
+        c.run('python3 -c "from bundler import generateBundleSource; generateBundleSource()"')
 
     if language:
         opts = f"-D language={language}"
@@ -63,8 +66,22 @@ def update(c, language="en"):
         if not Path(target).exists():
             build(c, target=target, opts=opts)
         c.run(f"pipenv run sphinx-intl update -p {target} -l {language}")
-        # for DIR in ['pages', 'posts', 'shop']:
-        #     rmtree(f'locales/{language}/LC_MESSAGES/{DIR}/')
+
+def bundle_rst(c):
+    c.run('python3 -c "from bundler import generateBundleSource, generateRSTBundle; generateBundleSource(); generateRSTBundle()"')
+
+
+def bundle_html(c):
+    source = c.sphinx.source
+    target = c.sphinx.target
+    conf = c.sphinx.conf
+    conf_dir = os.path.dirname(conf) if conf else source
+    cmd = f"pipenv run sphinx-build -W --keep-going -c {conf_dir} {source} {target}"
+    c.run(cmd)
+
+
+def bundle_postprocess(c):
+    c.run('python3 -c "from bundler import runHtmlPostprocessing; runHtmlPostprocessing()"')
 
 
 def _site(name, help_part, *, source, target, conf):
@@ -82,38 +99,38 @@ def _site(name, help_part, *, source, target, conf):
     )
     coll.__doc__ = f"Tasks for building {help_part}"
     coll["build"].__doc__ = f"Build {help_part}"
+
+    if name == "bundle":
+        from invoke import Task
+        coll.add_task(Task(bundle_rst, name="rst"))
+        coll.add_task(Task(bundle_html, name="html"))
+        coll.add_task(Task(bundle_postprocess, name="postprocess"))
+
     return coll
 
-# Target and configuration for different documentation sites
-main_target = "output"
-main_conf = "site/conf.py"
-
-bundle_target = "bundle-output"
-bundle_conf = "bundle/conf.py"
-
-# Sites
-intl = _site(
-    "site",
-    "the translations sub-site",
-    source="site",
-    target=main_target,
-    conf=main_conf
-)
 
 site = _site(
     "site",
     "the website",
     source="site",
-    target=main_target,
-    conf=main_conf
+    target=MAIN_TARGET,
+    conf=MAIN_CONF
+)
+
+intl = _site(
+    "intl",
+    "the translations sub-site",
+    source="intl",
+    target=MAIN_TARGET,
+    conf="intl/conf.py"
 )
 
 bundle = _site(
     "bundle",
-    "package documentation bundle.",
-    source="site",
-    target=bundle_target,
-    conf=bundle_conf
+    "package documentation bundle",
+    source=BUNDLE_DIR,
+    target=BUNDLE_HTML_DIR,
+    conf=BUNDLE_CONF
 )
 
-ns = Collection(intl, site, bundle)
+ns = Collection(site, intl, bundle)
