@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.0rc8**.
+It currently covers changes up to version **4.0rc9**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -161,6 +161,20 @@ Bug Fixes
 -  **UI:** Fixed normalization of user paths, improving macOS support
    for reporting.
 
+-  **Linux:** Fix, the workaround for ``memset`` zero length warning was
+   wrongly applied to **Clang** as well, but only **GCC** needs it and
+   **Clang** complained about it.
+
+-  **Linux:** More robust fallback to ``g++`` when ``gcc`` is too old
+   for C11 support.
+
+-  **Compatibility:** Fix, ``del`` of a subscript could cause wrong
+   runtime behavior due to missing control flow escape annotation for
+   the subscript value itself and the index.
+
+-  **macOS:** Fix, ``Info.plist`` user facing entitlements keys mapping
+   to multiple internal entitlements were not handled correctly.
+
 Package Support
 ===============
 
@@ -287,6 +301,9 @@ New Features
 -  **DLLs:** Added support for DLL tags to potentially control inclusion
    with more granularity.
 
+-  **macOS:** Added support for many more protected resource
+   entitlements (Siri, Bluetooth, HomeKit, etc.) to the bundle details.
+
 Optimization
 ============
 
@@ -377,10 +394,10 @@ Optimization
    in a loop, which improves the effectiveness of caching at run-time.
    (Added in 2.8.6 already.)
 
--  **Standalone:** Also solve partially a TODO of minimizing
-   intermediate directories in r-paths of ELF platforms, by only putting
-   them there if the directory the point to will contain DLLs or
-   binaries. This removes unused elements and reduces r-path size.
+-  **Standalone:** Solve partially a TODO of minimizing intermediate
+   directories in r-paths of ELF platforms, by only putting them there
+   if the directory the point to will contain DLLs or binaries. This
+   removes unused elements and reduces r-path size.
 
 -  **Windows:** Made the caching of external paths effective, which
    significantly speeds up DLL resolution in subsequent compilations.
@@ -413,6 +430,9 @@ Anti-Bloat
    already.)
 
 -  Avoid ``pyparsing.testing`` in ``pyparsing`` package.
+
+-  Added configuration to avoid compiled via C for large generated files
+   for the ``sqlfluff`` package.
 
 Organizational
 ==============
@@ -476,6 +496,22 @@ Organizational
 -  **Scons:** Prefer English output and warn user for missing English
    language pack with MSVC in case or outputs being made.
 
+-  **UI:** When running non-interactively, print the default response
+   that is assumed for user queries to stdout as well, so it becomes
+   visible in the logs.
+
+-  **UI:** Warn when using protected resources options without
+   standalone/bundle mode enabled on **macOS**.
+
+-  **Reports:** Sort DLLs and entry points in compilation reports by
+   destination path for deterministic output.
+
+-  **Quality:** Skip files with ``spell-checker: disable`` in
+   ``codespell`` checks.
+
+-  **Release:** Avoid compiling bytecode for inline copies that are not
+   compatible with the running **Python** version during install.
+
 Tests
 =====
 
@@ -500,6 +536,16 @@ Tests
 
 -  **Watch:** Improved binary name detection from compilation reports
    for better mode support beyond standalone mode.
+
+-  Allow downloading tools (like ``clang-format``) for all test cases.
+
+-  Added options to enforce **Zig** or **Clang** usage for C compiling.
+
+-  Suppress ``pip`` output when not running interactively to avoid test
+   output differences.
+
+-  Added ``nuitka.format`` and ``nuitka.package_config`` to
+   self-compilation tests.
 
 Cleanups
 ========
@@ -526,6 +572,9 @@ Cleanups
 -  **UI:** Tone down complaint about checksum mismatches.
 
 -  Static source files are now provided by Nuitka directly.
+
+-  Renamed C function ``modulecode_`` to ``module_code_`` for
+   consistency.
 
 Summary
 =======

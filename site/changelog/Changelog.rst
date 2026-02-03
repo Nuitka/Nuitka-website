@@ -873,6 +873,11 @@ Organizational
 -  **UI**: Show no-GIL in output of Python flavor in compilation if
    relevant.
 
+-  **License:** Changed the license of remaining project files to
+   **AGPLv3** granting an exception for created binaries much like gcc
+   does. As a result, going forward we need everybody to sign a CLA that
+   allows re-licensing.
+
 Tests
 =====
 
