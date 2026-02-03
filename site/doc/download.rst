@@ -244,13 +244,19 @@ Commercial <commercial>`.
  License
 *********
 
-**Nuitka** is licensed under the `Apache License, Version 2.0
-<http://www.apache.org/licenses/LICENSE-2.0>`_; you may not use it
+**Nuitka** is licensed under the `GNU Affero General Public License v3
+<https://www.gnu.org/licenses/agpl-3.0.html>`__; you may not use it
 except in compliance with the License. Unless required by applicable law
 or agreed to in writing, software distributed under the License is
 distributed on an **"as is" basis, without warranties or conditions of
 any kind**, either express or implied. See the License for the specific
 language governing permissions and limitations under the License.
+
+There is an exception to the AGPLv3 for the created binaries, which are
+not bound by the AGPLv3 requirements for the user's code. This is
+similar to how gcc (GPLv3)works, i.e. you can use Nuitka to compile your
+own code without any impact on the license of your code or your
+binaries.
 
 .. include:: ../variables.inc
 

@@ -25,12 +25,11 @@ This is the license text of Nuitka commercial.
 
    Part of Nuitka commercial.
 
-   Commercial grade license of Nuitka. No distribution to outside of the
-   buyer is allowed, the file must be kept secret. Usage is limited to
-   Nuitka. Changed versions, or versions of changes sent to the
-   copyright holder are automatically licensed to him under the Apache
-   License, Version 2.0 as used in proper Nuitka, to allow opening code
-   up later.
+   Commercial grade license of Nuitka. No distribution to outside of the buyer
+   is allowed, the file must be kept secret. Usage is limited to Nuitka. Changed
+   versions, or versions of changes sent to the copyright holder Kay Hayen are
+   automatically licensed to him under the Apache License, Version 2.0 to allow
+   opening and closing of the code by his discretion.
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
