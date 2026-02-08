@@ -52,10 +52,18 @@ pip
 
    # With "python" being the version where you want to install Nuitka
 
-   # Standard version:
+   # Standard version with minimal dependencies:
    python -m pip install -U --force-reinstall "https://github.com/Nuitka/Nuitka/archive/factory.zip"
-   # Commercial version (subscribers only)
+   # Standard version with onefile/app dependencies:
+   python -m pip install -U --force-reinstall "Nuitka[app] @ https://github.com/Nuitka/Nuitka/archive/factory.zip"
+   # Standard version with all dependencies:
+   python -m pip install -U --force-reinstall "Nuitka[all] @ https://github.com/Nuitka/Nuitka/archive/factory.zip"
+   # Commercial version with minimal dependencies (subscribers only)
    python -m pip install -U --force-reinstall "https://github.com/Nuitka/Nuitka-commercial/archive/staging.zip"
+   # Commercial version with onefile/app dependencies (subscribers only):
+   python -m pip install -U --force-reinstall "Nuitka[app] @ https://github.com/Nuitka/Nuitka-commercial/archive/staging.zip"
+   # Commercial version with all dependencies (subscribers only):
+   python -m pip install -U --force-reinstall "Nuitka[app] @ https://github.com/Nuitka/Nuitka-commercial/archive/staging.zip"
 
 **********************
  When is it released?
