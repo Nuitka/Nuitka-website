@@ -304,6 +304,16 @@ New Features
 -  **macOS:** Added support for many more protected resource
    entitlements (Siri, Bluetooth, HomeKit, etc.) to the bundle details.
 
+-  **Python:** Added support for ``@nuitka_ignore`` decorator to exclude
+   functions from compilation.
+
+   .. code:: python
+
+      @nuitka_ignore
+      def my_cpython_func():
+          # This function is not compiled, but stays bytecode
+          ...
+
 Optimization
 ============
 
