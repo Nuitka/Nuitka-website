@@ -49,5 +49,20 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "restructuredtext.linter.executablePath": "sphinx-lint"
+  "restructuredtext.linter.executablePath": "sphinx-lint",
+  "cSpell.languageSettings": [
+    {
+      "languageId": "restructuredtext",
+      "ignoreRegExpList": [
+        "/``.*?``/g",
+        "/^([ \\t]*)\\.\\. code::.*\\n(?:(?:\\s*\\n)|(?:\\1\\s+.*\\n))+/gm"
+      ]
+    },
+    {
+      "languageId": "markdown",
+      "ignoreRegExpList": [
+        "/`.*?`/g"
+      ]
+    }
+  ]
 }
