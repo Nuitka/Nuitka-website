@@ -45,6 +45,16 @@ git, Nuitka is automatically updated in your environment, too.
 Of course ``python setup.py install`` also works, but copies **Nuitka**
 into the environment and needs to be redone for every git update.
 
+To install dependencies for onefile or app mode, you can use ``pip``
+installing Nuitka from the current directory:
+
+.. code:: bash
+
+   # For develop install with app dependencies:
+   python -m pip install -e .[app]
+   # For standard install with app dependencies:
+   python -m pip install .[app]
+
 pip
 ===
 
