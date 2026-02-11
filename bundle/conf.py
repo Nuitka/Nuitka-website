@@ -9,12 +9,3 @@ from shared_conf import *
 # Offline bundle setup
 html_baseurl = "./"
 master_doc = "index"
-
-# Remove online only or site only extensions
-excluded_extensions = {
-	"ablog",
-	"sphinx_sitemap",
-	"carousel",
-}
-
-extensions = [ext for ext in extensions if ext not in excluded_extensions]
