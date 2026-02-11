@@ -1,7 +1,12 @@
+#!/usr/bin/env python3.12
+
+"""Bundle documentation for offline distribution."""
+
 from pathlib import Path
 import shutil
 import re
 import os
+from optparse import OptionParser
 from lxml import html
 
 from nuitka_import import importNuitka
@@ -15,6 +20,7 @@ from nuitka.utils.FileOperations import (
     getFileContents,
     getFileList,
 )
+from nuitka.utils.ReExecute import callExecProcess
 
 SITE = Path("site")
 DEST_SOURCE = Path(BUNDLE_DIR)
@@ -199,6 +205,8 @@ def generateRSTBundle():
         for path in bundle_source.glob(pattern):
             if not path.is_file() or path.suffix in {'.rst', '.inc'}:
                 continue
+            if "fontawesome" in path.parts:
+                continue
             rel = path.relative_to(bundle_source)
             target = rst_dest / rel
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -316,3 +324,94 @@ def runHtmlPostprocessing():
             output.write(result)
 
     my_print("Bundle post-processing complete.")
+
+
+def buildBundleHtml():
+    """Build HTML from bundle source using Sphinx."""
+    import subprocess
+
+    conf_dir = os.path.dirname(BUNDLE_CONF) if BUNDLE_CONF else BUNDLE_DIR
+    cmd = [
+        "pipenv",
+        "run",
+        "sphinx-build",
+        "-W",
+        "--keep-going",
+        "-c",
+        conf_dir,
+        BUNDLE_DIR,
+        BUNDLE_HTML_DIR,
+    ]
+    subprocess.run(cmd, check=True)
+    my_print(f"Built HTML bundle in '{BUNDLE_HTML_DIR}'")
+
+
+def main():
+    parser = OptionParser()
+
+    parser.add_option(
+        "--source",
+        action="store_true",
+        dest="source",
+        default=False,
+        help="Generate bundle source from site directory",
+    )
+
+    parser.add_option(
+        "--rst",
+        action="store_true",
+        dest="rst",
+        default=False,
+        help="Generate RST bundle (processes .rst/.inc files)",
+    )
+
+    parser.add_option(
+        "--html",
+        action="store_true",
+        dest="html",
+        default=False,
+        help="Build HTML from RST bundle using Sphinx",
+    )
+
+    parser.add_option(
+        "--postprocess",
+        action="store_true",
+        dest="postprocess",
+        default=False,
+        help="Post-process HTML bundle for offline use",
+    )
+
+    parser.add_option(
+        "--all",
+        action="store_true",
+        dest="all",
+        default=False,
+        help="Run all bundle steps (source, rst, html, postprocess)",
+    )
+
+    options, positional_args = parser.parse_args()
+
+    assert not positional_args, positional_args
+
+    if options.all:
+        generateBundleSource()
+        generateRSTBundle()
+        buildBundleHtml()
+        runHtmlPostprocessing()
+    else:
+        if options.source:
+            generateBundleSource()
+
+        if options.rst:
+            generateRSTBundle()
+
+        if options.html:
+            buildBundleHtml()
+
+        if options.postprocess:
+            runHtmlPostprocessing()
+
+
+if __name__ == "__main__":
+    importNuitka()
+    main()

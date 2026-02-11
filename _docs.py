@@ -6,6 +6,7 @@ import os
 from invoke import Collection, task
 from builder_config import *
 
+
 @task(name="clean")
 def _clean(c):
     output = Path(c.sphinx.target)
@@ -32,9 +33,6 @@ def build(c, opts=None, language=None, source=None, target=None, nitpick=False):
     source = source or c.sphinx.source
     target = target or c.sphinx.target
     conf = c.sphinx.conf
-
-    if source == BUNDLE_DIR:
-        c.run('python3 -c "from bundler import generateBundleSource; generateBundleSource()"')
 
     if language:
         opts = f"-D language={language}"
@@ -67,22 +65,6 @@ def update(c, language="en"):
             build(c, target=target, opts=opts)
         c.run(f"pipenv run sphinx-intl update -p {target} -l {language}")
 
-def bundle_rst(c):
-    c.run('python3 -c "from bundler import generateBundleSource, generateRSTBundle; generateBundleSource(); generateRSTBundle()"')
-
-
-def bundle_html(c):
-    source = c.sphinx.source
-    target = c.sphinx.target
-    conf = c.sphinx.conf
-    conf_dir = os.path.dirname(conf) if conf else source
-    cmd = f"pipenv run sphinx-build -W --keep-going -c {conf_dir} {source} {target}"
-    c.run(cmd)
-
-
-def bundle_postprocess(c):
-    c.run('python3 -c "from bundler import runHtmlPostprocessing; runHtmlPostprocessing()"')
-
 
 def _site(name, help_part, *, source, target, conf):
     self = sys.modules[__name__]
@@ -99,13 +81,6 @@ def _site(name, help_part, *, source, target, conf):
     )
     coll.__doc__ = f"Tasks for building {help_part}"
     coll["build"].__doc__ = f"Build {help_part}"
-
-    if name == "bundle":
-        from invoke import Task
-        coll.add_task(Task(bundle_rst, name="rst"))
-        coll.add_task(Task(bundle_html, name="html"))
-        coll.add_task(Task(bundle_postprocess, name="postprocess"))
-
     return coll
 
 
