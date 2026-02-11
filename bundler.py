@@ -123,16 +123,17 @@ def processRstFile(rst_file, bundle_dest, site, variables_to_remove, replacement
                 continue
             else:
                 skip_html = False
+
         if line.strip() == ".. raw:: html":
             skip_html = True
             continue
-        # Remove lines containing variables from variables.inc
+
         if any(f"|{var}|" in line for var in variables_to_remove):
             continue
-        # Remove include of variables.inc
+
         if ".. include::" in line and "variables.inc" in line:
             continue
-        # Inline other .inc files
+
         if ".. include::" in line and ".inc" in line:
             parts = line.split(".. include::")
             if len(parts) == 2:
@@ -141,8 +142,10 @@ def processRstFile(rst_file, bundle_dest, site, variables_to_remove, replacement
                 if inlined:
                     new_lines.extend(inlined)
                     continue
+
         for var, val in replacements.items():
             line = line.replace(f"|{var}|", val)
+
         new_lines.append(line)
 
     cleaned_lines = cleanBlankLines(new_lines)
@@ -186,7 +189,44 @@ def generateBundleSource():
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, target)
 
+    # Generate missing index.rst files for directories
+    generateMissingIndexes(DEST_SOURCE)
+
     my_print(f"Created bundle in '{DEST_SOURCE.as_posix()}'")
+
+
+def generateMissingIndexes(bundle_dir):
+    # Scan all subdirectories for missing index.rst files
+    for subdir in bundle_dir.iterdir():
+        if not subdir.is_dir():
+            continue
+
+        index_path = subdir / "index.rst"
+        if index_path.exists():
+            continue
+
+        # Find all .rst files in this directory (excluding index.rst)
+        rst_files = sorted([
+            f.stem for f in subdir.glob("*.rst")
+            if f.stem != "index"
+        ])
+
+        if not rst_files:
+            continue
+
+        # Generate index title from directory name
+        title = subdir.name.replace("-", " ").title()
+
+        # Generate index content
+        content = f"{title}\n{'=' * len(title)}\n\n"
+        content += ".. toctree::\n"
+        content += "   :maxdepth: 2\n\n"
+        for filename in rst_files:
+            content += f"   {filename}\n"
+
+        # Write the index file
+        index_path.write_text(content)
+        my_print(f"Generated {index_path}")
 
 
 def generateRstBundle():
@@ -330,7 +370,6 @@ def buildBundleHtml():
         "pipenv",
         "run",
         "sphinx-build",
-        "-W",
         "--keep-going",
         "-c",
         conf_dir,
