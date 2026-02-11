@@ -36,7 +36,8 @@ BUNDLE_SOURCE_PATTERNS = [
     "user-documentation/**/*",
 ]
 
-def get_variables_to_remove(site):
+
+def getVariablesToRemove(site):
     variables_inc_path = site / "variables.inc"
     variables_content = variables_inc_path.read_text()
     variables_to_remove = set()
@@ -46,7 +47,8 @@ def get_variables_to_remove(site):
             variables_to_remove.add(match.group(1))
     return variables_to_remove
 
-def get_replacements(site):
+
+def getReplacements(site):
     dynamic_inc_path = site / "dynamic.inc"
     dynamic_content = dynamic_inc_path.read_text()
     replacements = {}
@@ -68,7 +70,8 @@ def get_replacements(site):
             i += 1
     return replacements
 
-def copy_files_to_bundle(site, bundle_dest, patterns):
+
+def copyFilesToBundle(site, bundle_dest, patterns):
     seen = set()
     for pattern in patterns:
         for path in site.glob(pattern):
@@ -82,7 +85,8 @@ def copy_files_to_bundle(site, bundle_dest, patterns):
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, target)
 
-def inline_inc_file(inc_path_str, rst_dir, site):
+
+def inlineIncFile(inc_path_str, rst_dir, site):
     if inc_path_str.startswith("/"):
         inc_path = site / inc_path_str[1:]
     else:
@@ -92,7 +96,8 @@ def inline_inc_file(inc_path_str, rst_dir, site):
         return inc_content.splitlines()
     return None
 
-def clean_blank_lines(lines):
+
+def cleanBlankLines(lines):
     cleaned_lines = []
     prev_blank = False
     for line in lines:
@@ -103,7 +108,8 @@ def clean_blank_lines(lines):
         prev_blank = is_blank
     return cleaned_lines
 
-def process_rst_file(rst_file, bundle_dest, site, variables_to_remove, replacements, rst_dest):
+
+def processRstFile(rst_file, bundle_dest, site, variables_to_remove, replacements, rst_dest):
     rel_path = rst_file.relative_to(bundle_dest)
     content = rst_file.read_text()
     lines = content.splitlines()
@@ -131,7 +137,7 @@ def process_rst_file(rst_file, bundle_dest, site, variables_to_remove, replaceme
             parts = line.split(".. include::")
             if len(parts) == 2:
                 inc_path_str = parts[1].strip()
-                inlined = inline_inc_file(inc_path_str, rst_dir, site)
+                inlined = inlineIncFile(inc_path_str, rst_dir, site)
                 if inlined:
                     new_lines.extend(inlined)
                     continue
@@ -139,7 +145,7 @@ def process_rst_file(rst_file, bundle_dest, site, variables_to_remove, replaceme
             line = line.replace(f"|{var}|", val)
         new_lines.append(line)
 
-    cleaned_lines = clean_blank_lines(new_lines)
+    cleaned_lines = cleanBlankLines(new_lines)
     new_content = "\n".join(cleaned_lines)
 
     target_rst = rst_dest / rel_path
@@ -182,11 +188,11 @@ def generateBundleSource():
 
     my_print(f"Created bundle in '{DEST_SOURCE.as_posix()}'")
 
-def generateRSTBundle():
+
+def generateRstBundle():
     bundle_source = Path(BUNDLE_DIR)
     rst_dest = DEST_RST
 
-    # Preserve existing conf.py and index.rst from the bundle-rst directory
     preserved_files = {}
     for filename in ["conf.py", "index.rst"]:
         file_path = rst_dest / filename
@@ -197,7 +203,6 @@ def generateRSTBundle():
         shutil.rmtree(rst_dest)
     rst_dest.mkdir(parents=True)
 
-    # Restore preserved files to bundle-rst
     for filename, content in preserved_files.items():
         (rst_dest / filename).write_text(content)
 
@@ -212,24 +217,21 @@ def generateRSTBundle():
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, target)
 
-    # Get data for processing
-    variables_to_remove = get_variables_to_remove(SITE)
-    replacements = get_replacements(SITE)
+    variables_to_remove = getVariablesToRemove(SITE)
+    replacements = getReplacements(SITE)
 
-    # Find and process RST files from bundle source
     rst_files = list(bundle_source.glob("**/*.rst"))
-    # Exclude conf.py's directory level index.rst if it was already preserved
     rst_files = [f for f in rst_files if f.name not in preserved_files or f.parent != bundle_source]
 
     for rst_file in rst_files:
-        process_rst_file(rst_file, bundle_source, SITE, variables_to_remove, replacements, rst_dest)
+        processRstFile(rst_file, bundle_source, SITE, variables_to_remove, replacements, rst_dest)
 
     my_print(f"Created RST bundle in '{rst_dest.as_posix()}'")
+
 
 def runHtmlPostprocessing():
     my_print(f"Post-processing bundle in {DEST_HTML.as_posix()}...")
 
-    # Remove files that require external resources
     files_to_remove = (
         "searchindex.js",
         "searchtools.js",
@@ -239,14 +241,12 @@ def runHtmlPostprocessing():
     for filename in files_to_remove:
         deleteFile(os.path.join(DEST_HTML, filename), must_exist=False)
 
-    # Remove external font files that won't work offline
     fonts_path = os.path.join(DEST_HTML, "_static/fonts")
     if os.path.exists(fonts_path):
         for filename in os.listdir(fonts_path):
             if filename.lower().startswith("fontawesome"):
                 deleteFile(os.path.join(fonts_path, filename), must_exist=False)
 
-    # Process HTML files to remove external content and fix links for offline use
     for html_file in getFileList(DEST_HTML, only_suffixes=".html"):
         doc = html.fromstring(getFileContents(html_file, mode="rb"))
 
@@ -256,7 +256,6 @@ def runHtmlPostprocessing():
             depth = 0
         path_to_root = "../" * depth if depth > 0 else "./"
 
-        # Fix absolute paths to relative paths for offline viewing or rewrite to main site if not bundled
         for link_tag in doc.xpath("//a[@href]"):
             href = link_tag.get("href")
             if href.startswith("/") and not href.startswith("//"):
@@ -281,19 +280,16 @@ def runHtmlPostprocessing():
             if "search" in src.lower() or "analytics" in src.lower():
                 script_tag.getparent().remove(script_tag)
                 continue
-            # Remove external scripts that require internet
             elif src.startswith(("http://", "https://", "//")):
                 script_tag.getparent().remove(script_tag)
                 continue
             elif src.startswith("/") and not src.startswith("//"):
                 script_tag.set("src", path_to_root + src.lstrip("/"))
 
-        # Remove external scripts without src attribute (inline scripts with external calls)
         for script_tag in doc.xpath("//script[not(@src)]"):
             if script_tag.text and ("http://" in script_tag.text or "https://" in script_tag.text):
                 script_tag.getparent().remove(script_tag)
 
-        # Remove all iframes
         for iframe in doc.xpath("//iframe"):
             iframe.getparent().remove(iframe)
 
@@ -301,7 +297,6 @@ def runHtmlPostprocessing():
             if style_tag.text and "responsive-google-slides" in style_tag.text:
                 style_tag.getparent().remove(style_tag)
 
-        # Remove search form
         for search_form in doc.xpath("//form[@class='search']"):
             search_form.getparent().remove(search_form)
 
@@ -395,7 +390,7 @@ def main():
 
     if options.all:
         generateBundleSource()
-        generateRSTBundle()
+        generateRstBundle()
         buildBundleHtml()
         runHtmlPostprocessing()
     else:
@@ -403,7 +398,7 @@ def main():
             generateBundleSource()
 
         if options.rst:
-            generateRSTBundle()
+            generateRstBundle()
 
         if options.html:
             buildBundleHtml()
