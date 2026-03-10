@@ -75,6 +75,13 @@ pip
    # Commercial version with all dependencies (subscribers only):
    python -m pip install -U --force-reinstall "Nuitka[app] @ https://github.com/Nuitka/Nuitka-commercial/archive/staging.zip"
 
+uv
+===
+
+.. code:: bash
+
+  uv add "git+https://github.com/Nuitka/Nuitka.git@factory"
+
 **********************
  When is it released?
 **********************
