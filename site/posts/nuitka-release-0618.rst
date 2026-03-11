@@ -138,7 +138,7 @@ organizational changes.
 -  Standalone: Properly detect usage of hard imports from standard
    library in ``--follow-stdlib`` mode.
 
--  Standalone: Added data files for ``opensapi_spec_validator``.
+-  Standalone: Added data files for ``openapi_spec_validator``.
 
 -  MSYS2: Fix, need to normalize compiler paths before comparing.
 

@@ -173,7 +173,7 @@ polishing plugins and adding many new features.
 -  Added ability to persist source code changes done by plugins in the
    Python installation. This is considered experimental and needs write
    access to the Python installation, so this is best done in a
-   virtualenv and it may confuse plugins.
+   Virtualenv and it may confuse plugins.
 
 -  Added support for ``multiprocessing.tracker`` and spawn mode for all
    platforms. For non-default modes outside of Windows, you need to
@@ -277,7 +277,7 @@ polishing plugins and adding many new features.
 
 -  The ``--lto`` option was changed to require an argument, so that it
    can also be disabled. The default is ``auto`` which is the old
-   behaviour where it's enabled if possible.
+   behavior where it's enabled if possible.
 
 -  Changed ``--no-progress`` to ``--no-progressbar`` in order to make it
    more clear what it's about. Previously it was possible to relate it
