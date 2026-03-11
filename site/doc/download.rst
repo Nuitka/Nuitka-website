@@ -78,13 +78,37 @@ supported with hot fixes, indicated by the last of the 3 digits.
 
 .. code:: bash
 
+   # pip - Standard version with minimal dependencies
    python -m pip install -U Nuitka
+   # pip - Standard version with onefile/app dependencies
+   python -m pip install -U "Nuitka[app]"
+   # pip - Standard version with all dependencies
+   python -m pip install -U "Nuitka[all]"
+
+   # uv - Standard version with minimal dependencies
+   uv add Nuitka
+   # uv - Standard version with onefile/app dependencies
+   uv add "Nuitka[app]"
+   # uv - Standard version with all dependencies
+   uv add "Nuitka[all]"
 
 For the latest development version:
 
 .. code:: bash
 
+   # pip - Develop version with minimal dependencies
    python -m pip install -U "https://github.com/Nuitka/Nuitka/archive/develop.zip"
+   # pip - Develop version with onefile/app dependencies
+   python -m pip install -U "Nuitka[app] @ https://github.com/Nuitka/Nuitka/archive/develop.zip"
+   # pip - Develop version with all dependencies
+   python -m pip install -U "Nuitka[all] @ https://github.com/Nuitka/Nuitka/archive/develop.zip"
+
+   # uv - Develop version with minimal dependencies
+   uv add --reinstall "git+https://github.com/Nuitka/Nuitka.git@develop"
+   # uv - Develop version with onefile/app dependencies
+   uv add --reinstall "Nuitka[app] @ git+https://github.com/Nuitka/Nuitka.git@develop"
+   # uv - Develop version with all dependencies
+   uv add --reinstall "Nuitka[all] @ git+https://github.com/Nuitka/Nuitka.git@develop"
 
 .. note::
 
