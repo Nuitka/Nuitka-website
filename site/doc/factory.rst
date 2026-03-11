@@ -73,14 +73,25 @@ pip
    # Commercial version with onefile/app dependencies (subscribers only):
    python -m pip install -U --force-reinstall "Nuitka[app] @ https://github.com/Nuitka/Nuitka-commercial/archive/staging.zip"
    # Commercial version with all dependencies (subscribers only):
-   python -m pip install -U --force-reinstall "Nuitka[app] @ https://github.com/Nuitka/Nuitka-commercial/archive/staging.zip"
+   python -m pip install -U --force-reinstall "Nuitka[all] @ https://github.com/Nuitka/Nuitka-commercial/archive/staging.zip"
 
 uv
-===
+==
 
 .. code:: bash
 
-  uv add "git+https://github.com/Nuitka/Nuitka.git@factory"
+   # Standard version with minimal dependencies:
+   uv add --reinstall "git+https://github.com/Nuitka/Nuitka.git@factory"
+   # Standard version with onefile/app dependencies:
+   uv add --reinstall "Nuitka[app] @ git+https://github.com/Nuitka/Nuitka.git@factory"
+   # Standard version with all dependencies:
+   uv add --reinstall "Nuitka[all] @ git+https://github.com/Nuitka/Nuitka.git@factory"
+   # Commercial version with minimal dependencies (subscribers only)
+   uv add --reinstall "git+https://github.com/Nuitka/Nuitka-commercial.git@staging"
+   # Commercial version with onefile/app dependencies (subscribers only):
+   uv add --reinstall "Nuitka[app] @ git+https://github.com/Nuitka/Nuitka-commercial.git@staging"
+   # Commercial version with all dependencies (subscribers only):
+   uv add --reinstall "Nuitka[all] @ git+https://github.com/Nuitka/Nuitka-commercial.git@staging"
 
 **********************
  When is it released?
