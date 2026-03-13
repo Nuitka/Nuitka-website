@@ -82,9 +82,6 @@ This is the Nuitka roadmap, broken down by features.
    Currently only single digit is optimized, but with Python 3.12, we
    can do better now.
 
--  Add support for generic classes, these are not yet implemented which
-   is not acceptable mid-term.
-
 *************
  Python 3.13
 *************
@@ -94,9 +91,18 @@ This is the Nuitka roadmap, broken down by features.
    ``inspect`` without crashing, we need to audit data structures for
    more issues like one we found with list data allocations.
 
-**************************
- Nuitka-Python (standard)
-**************************
+*************
+ Python 3.14
+*************
+
+-  Deferred annotations are only activated with
+   ``--experimental=deferred-annotations``, and as such not yet enabled
+   by default. Once we solve the bloat issues it causes to add a
+   function per annotation container, we can enable it by default.
+
+***********************
+ MonolithPy (standard)
+***********************
 
 This is currently under way and not yet described here. The current
 Nuitka release has support for using it. Most work is focused on the aim
@@ -121,18 +127,6 @@ and DLL usages.
 
       As of Nuitka 2.6, there is an experimental flag to enable these,
       and we need to switch over to using it.
-
--  Enhanced tracing of loop exit merges
-
-   Tracing of exception exits is not done for function exits and module
-   exits at this time, meaning that the most merge intensive form of
-   tracing is not applied. However, with a for loop, and a bunch of code
-   on the inside, even if the actual exception exit doesn't matter much
-   more than if it happens at all, or for only very few variables
-   (iterated, iterated value, etc.) causes a full blown tracing to be
-   done. Experiments have shown, that this for some modules causing a
-   40% increase of work to do, and providing the most complex merges to
-   be done, which end up being used.
 
 -  More scalable class creation
 
@@ -304,22 +298,6 @@ and DLL usages.
    yet implemented. We need to revisit this once we got integer type
    specialization and loop iteration specialization both.
 
-********************
- macOS enhancements
-********************
-
--  While ``arm64`` (M1) only builds and ``x86_64`` (Intel) only builds
-   work, the value ``universal`` which of course implies twice the size,
-   and as such has other disadvantages, is not yet supported.
-
-   It will require two distinct compilations, and on the Python level,
-   some values, e.g. architecture, cannot be compile time decided on
-   macOS, which currently is even a potential weakness of the current
-   code.
-
-   So far we use macOS tools to split binaries that are universal, and
-   in this case we need to merge binaries into one with the same tools.
-
 ****************************************
  Container Builds (public + commercial)
 ****************************************
@@ -387,17 +365,15 @@ effectively with more than a single file.
    results anywhere.
 
 *************************************
- Features to be added for Nuitka 4.0
+ Features to be added for Nuitka 4.1
 *************************************
 
-[x] Activate more scalable code objects handling
-
-[ ] Enhanced tracing of loop exit merges
+[ ] Activate more scalable code objects handling by default
 
 [ ] More scalable class creation
 
 *************************************
- Features to be added for Nuitka 4.1
+ Features to be added for Nuitka 4.2
 *************************************
 
 [ ] Use performance potential for attribute access with Python 3.11
@@ -407,10 +383,8 @@ version.
 
 [ ] Document commercial Windows Service usage with examples.
 
-[ ] Document traceback encryption usage with examples.
-
 *************************************
- Features to be added for Nuitka 4.2
+ Features to be added for Nuitka 4.3
 *************************************
 
 [ ] Initial support for ctypes based direct calls of C code.

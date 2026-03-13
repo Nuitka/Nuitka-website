@@ -397,17 +397,6 @@ block.
    ``develop`` branch for that, unless of course, it's about factory
    code itself.
 
--  Personal branches (jorj, orsiris, others as well)
-
-   We are currently not using this, but it's an option.
-
--  Feature Branches
-
-   We are not currently using these. They could be used for long lived
-   changes that extend for multiple release cycles and are not ready
-   yet. Currently we perform all changes in steps that can be included
-   in releases or delay making those changes.
-
 ******************************
  Nuitka "git/github" Workflow
 ******************************
