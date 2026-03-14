@@ -566,11 +566,11 @@ Organizational
 
 -  **AI:** Added a workflow ``create-mre`` to assist in creating a
    Minimal Reproducible Example from a larger file triggering a Nuitka
-   bug.
+   bug. This has guidance on avoiding standalone mode and instructions
+   for reducing code to just produce a MRE that is really small.
 
--  **AI:** Added guidance on avoiding standalone mode initially and
-   clearer instructions for reducing code in the ``create-mre``
-   workflow.
+-  **AI:** Added a workflow ``fix-module-not-found-error`` for solving
+   simple ``ModuleNotFoundError`` at runtime errors.
 
 -  **AI:** Added further strategies for Minimal Reproducible Example
    (MRE) reduction to the agent workflow.
