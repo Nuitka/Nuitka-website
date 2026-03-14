@@ -4,7 +4,6 @@
   "name": "Ubuntu",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
-
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
   "features": {
@@ -19,7 +18,6 @@
     },
     "ghcr.io/hwaien/devcontainer-features/match-host-time-zone": {}
   },
-
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [
     8000
@@ -30,7 +28,6 @@
       "onAutoForward": "notify"
     }
   },
-
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": {
     "set_timezone": "sudo dpkg-reconfigure tzdata -f none",
@@ -41,11 +38,10 @@
     "pipenv_install": "pipenv install --dev",
     "default_development_mode": "echo '[DEFAULT]\\ndevelopment_mode = true' > state.ini"
   },
-
   // Start supervisord to manage background services like auto-update.sh
   "postStartCommand": {
     "playwright_install": "pipenv run playwright install && pipenv run playwright install-deps",
-    "start_supervisord": "export containerWorkspaceFolder=${containerWorkspaceFolder} && supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf",
+    "start_supervisord": "export containerWorkspaceFolder=${containerWorkspaceFolder} && mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs && supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf",
     "info_message": "echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:8000\\n\\n'"
   },
   // Configure tool-specific properties.
