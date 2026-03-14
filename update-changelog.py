@@ -98,7 +98,10 @@ class ChangelogGenerator:
             )
 
         major, minor, patch = map(int, match.groups())
-        previous_version = f"{major}.{minor}.{patch - 1}".rstrip(".0")
+        if patch == 1:
+            previous_version = f"{major}.{minor}"
+        else:
+            previous_version = f"{major}.{minor}.{patch - 1}"
         return f"{previous_version}..{self.target_version}"
 
     def getDevelopRange(self) -> str:
