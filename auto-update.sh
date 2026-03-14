@@ -1,7 +1,10 @@
 #!/bin/bash
 
+echo "Installing invoke if not already available..."
 python3 -m invoke --help 2>/dev/null >/dev/null || python3 -m pip install invoke
+echo "Installing virtualenv via invoke ..."
 python3 -m invoke virtualenv
+echo "Requirements installed."
 
 while true
 do
