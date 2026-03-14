@@ -20,7 +20,7 @@ but there are usually several topics.
 
 I do however think that I need to use my CI machine with more processing
 power rather than my normal desktop, or maybe even both, because the
-screen capture, compiling, VS Code, and all, may make the Video
+screen capture, compiling, Visual Studio, and all, may make the Video
 otherwise stutter a bit too much.
 
 ###########

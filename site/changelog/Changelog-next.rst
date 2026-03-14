@@ -64,17 +64,18 @@ Bug Fixes
    that debug builds correctly recognize all their specific built-in
    modules, preventing potential errors. (Fixed in 2.8.4 already.)
 
--  **macOS:** Fix, avoid setting ``$ORIGIN`` r-paths that end up unused
-   and in some cases cause errors because the header space is exhausted
-   preventing the build entirely. (Fixed in 2.8.5 already.)
+-  **macOS:** Fixed an issue where ``$ORIGIN`` r-paths were set but
+   ended up unused, which in some cases caused errors by exhausting the
+   header space and preventing the build entirely. (Fixed in 2.8.5
+   already.)
 
--  **macOS:** Fix, make sure to use system ``xattr`` binary.
+-  **macOS:** Fixed an issue to ensure the system ``xattr`` binary is
+   used.
 
-   Otherwise using ``arch -x86_64 python`` for compilation can fail when
-   some packages are installed that provide ``xattr`` too, as that is a
-   ``arm64`` binary only and then wouldn't work. (Fixed in 2.8.5
-   already.) ``arm64`` binary only and then wouldn't work. (Fixed in
-   2.8.5 already.)
+   Otherwise, using ``arch -x86_64 python`` for compilation could fail
+   when some packages are installed that provide ``xattr`` as well,
+   because that might be an ``arm64`` binary only and would not work.
+   (Fixed in 2.8.5 already.)
 
 -  **UI:** Fixed a misleading typo in the rejection message for
    unsupported Python 3.13.4. (Fixed in 2.8.5 already.)
@@ -109,9 +110,9 @@ Bug Fixes
 -  **Python 3.14:** Catch attempts to clear a compiled suspended frame
    object.
 
--  Fixed a potential for mis-optimization for uses of locals
-   ``locals()`` when transforming the variable name reference call.
-   (Fixed in 2.8.6 already.)
+-  Fixed a potential mis-optimization for uses of ``locals()`` when
+   transforming the variable name reference call. (Fixed in 2.8.6
+   already.)
 
 -  **Module:** Fixed ``pkgutil.iter_modules`` not working when loading a
    module into a namespace. (Fixed in 2.8.7 already.)
@@ -161,19 +162,20 @@ Bug Fixes
 -  **UI:** Fixed normalization of user paths, improving macOS support
    for reporting.
 
--  **Linux:** Fix, the workaround for ``memset`` zero length warning was
-   wrongly applied to **Clang** as well, but only **GCC** needs it and
-   **Clang** complained about it.
+-  **Linux:** Fixed the workaround for the ``memset`` zero length
+   warning, which was wrongly applied to **Clang**. Only **GCC**
+   requires it, and **Clang** complained about it.
 
 -  **Linux:** More robust fallback to ``g++`` when ``gcc`` is too old
    for C11 support.
 
--  **Compatibility:** Fix, ``del`` of a subscript could cause wrong
-   runtime behavior due to missing control flow escape annotation for
-   the subscript value itself and the index.
+-  **Compatibility:** Fixed a bug where ``del`` of a subscript could
+   cause wrong runtime behavior due to missing control flow escape
+   annotations for the subscript value itself and the index.
 
--  **macOS:** Fix, ``Info.plist`` user facing entitlements keys mapping
-   to multiple internal entitlements were not handled correctly.
+-  **macOS:** Fixed an issue where ``Info.plist`` user-facing
+   entitlements keys mapping to multiple internal entitlements were not
+   handled correctly.
 
 -  **UI:** Ensured tracing uses at least 80 characters for very narrow
    terminals to maintain readability.
@@ -184,11 +186,12 @@ Bug Fixes
 -  **Linux:** Fixed an issue where ``_XOPEN_SOURCE`` was mistakenly
    appended for Clang, causing warnings.
 
--  **Scons** Improved passed variables handling by detecting ``None`` or
-   invalid types earlier.
+-  **Scons:** Improved passed variables handling by detecting ``None``
+   or invalid types earlier.
 
--  Fix, when propagating class dictionaries needed extra micro passes to
-   ensure proper optimization of their traces for the new variables.
+-  Fixed a bug where propagating class dictionaries needed extra micro
+   passes to ensure proper optimization of their traces for the new
+   variables.
 
 -  **Scons:** Fixed an issue with process spawning when using ``rusage``
    capture.
@@ -224,7 +227,7 @@ Package Support
 -  **Standalone:** Added support for the ``dataparser`` package. (Added
    in 2.8.7 already.)
 
--  **Standalone:** Added support for ``puremagic``, ``pygment.lexers``
+-  **Standalone:** Added support for ``puremagic``, ``pygments.lexers``
    and ``tomli`` in standalone mode.
 
 -  **Standalone:** Added automatic detection of ``mypyc`` runtime
@@ -237,9 +240,6 @@ Package Support
 
 -  **Standalone:** Added support for the ``sentry_sdk``, ``jedi``,
    ``parso``, and ``line_profiler`` packages.
-
--  Avoided making duplicate hard imports by dropping assignments if the
-   variable was already assigned to the same value.
 
 -  **Standalone:** Added support for newer ``pandas`` versions.
 
@@ -266,27 +266,26 @@ New Features
    setting the ``CC`` environment variable to point to the ``zig`` or
    ``zig.exe`` executable.
 
--  Reports: Start to capture ``rusage`` capture for OSes that support
-   it.
+-  **Reports:** Started capturing ``rusage`` for OSes that support it.
 
-   -  Only POSIX compliant OSes will do it, **Linux**, **macOS**, and
-      all **BSD** variants do it, but **Android** does not.
-   -  Not yet part of the actual report, as need to figure out how to
-      use the and present the information.
+   -  Only POSIX-compliant OSes will do it (**Linux**, **macOS**, and
+      all **BSD** variants), but **Android** does not.
+   -  Not yet part of the actual report, as we need to figure out how to
+      use and present the information.
 
--  Scons: Added experimental support for enabling Thin LTO with
+-  **Scons:** Added experimental support for enabling Thin LTO with the
    **Clang** compiler.
 
--  Standalone: Honor ``--nofollow-import-to`` for stdlib modules as
+-  **Standalone:** Honor ``--nofollow-import-to`` for stdlib modules as
    well.
 
-   This allows users to manually reduce the standard library usage too,
-   but of course also to shoot themselves into their feet and have
-   crashes from extension modules not prepared for absence of standard
-   library modules.
+   This allows users to manually reduce standard library usage, but it
+   can also cause crashes from extension modules not prepared for the
+   absence of standard library modules.
 
--  Onefile: Allow to disable onefile timeout and hard killing on CTRL-C
-   entirely by providing ``--onefile-child-grace-time=infinity``.
+-  **Onefile:** Allowed disabling the onefile timeout and hard killing
+   on CTRL-C entirely by providing
+   ``--onefile-child-grace-time=infinity``.
 
 -  **Scons:** Added newer inline copy of **Scons** which supports Visual
    Studio 2026. (Added in 2.8.7 already.)
@@ -353,9 +352,12 @@ New Features
 Optimization
 ============
 
--  Find previous assignment traces faster
+-  Avoid making duplicate hard imports by dropping assignments if the
+   variable was already assigned to the same value.
 
-   -  The assignment and del nodes were using functions to find what
+-  Found previous assignment traces faster.
+
+   -  The assignment and ``del`` nodes were using functions to find what
       they already knew from the last micro pass. The
       ``self.variable_trace`` already kept track of the previous value
       trace situation.
@@ -365,38 +367,38 @@ Optimization
       eventually be very similar.
 
    -  Also speeds up the first micro pass even more, because it doesn't
-      have to search and do other things, if not previous trace exists,
-      that's then not attempted to be used.
+      have to search and do other things. If no previous trace exists,
+      none is attempted to be used.
 
-   -  Also the common check if no by name or merges of a value occurred
-      was always used inverted and now should be slightly faster to use
-      and allow to short circuit.
+   -  Also the common check if no by-name uses or merges of a value
+      occurred was always used inverted and now should be slightly
+      faster to use and allow to short-circuit.
 
-   -  While this accelerated the first micro pass by a lot for per
-      assignment work, it mainly means to cleanup the design such that
-      traces are easier to re-recognize. And this is a first step with
-      immediate impacts.
+   -  While this accelerated the first micro pass by a lot for
+      per-assignment work, it mainly means to cleanup the design such
+      that traces are easier to re-recognize. And this is a first step
+      with immediate impacts.
 
 -  Much faster Python passes.
 
    -  The "Escape" and "Unknown" traces now have their own number
-      spaces. This allows to do some tests for a trace without using the
-      actual object.
+      spaces. This allows doing some quick checks for a trace without
+      using the actual object, but just its number.
 
    -  Narrow the scope of variables to the outline scope that uses them,
       so that they don't need to be dealt with in merging later code
       where they don't ever change anymore and are not used at all.
 
    -  When checking for unused variables, do not ask the trace
-      collection to filter its traces, instead work of the ones attached
-      in the variable already. This avoids a lot of searching work. Also
-      use a method to decide if a trace constitutes usage rather than a
-      long ``elif`` chain.
+      collection to filter its traces. Instead it works off the ones
+      attached to the variable already. This avoids a lot of searching
+      work. It also uses a method to decide if a trace constitutes usage
+      rather than a long ``elif`` chain.
 
 -  Faster variable trace maintenance.
 
    -  We now trace variables in trace collection as a dictionary per
-      variable with a dictionary of the versions, this is closer to out
+      variable with a dictionary of the versions, this is closer to our
       frequent usage per variable.
 
    -  That makes it a lot easier to update variables after the tracing
@@ -406,12 +408,12 @@ Optimization
       such that the performance gain is relatively small despite less
       work being done.
 
-   -  Also avoids that a per variable set for the using scopes of it is
-      to be maintained.
+   -  It also avoids having to maintain a per-variable set for its using
+      scopes.
 
    -  Decide presence of writing traces for parameter variables faster.
 
--  Avoiding unnecessary micro passes.
+-  Avoid unnecessary micro passes.
 
    -  Detect variable references discarded sooner for better micro-pass
       efficiency. We were spending an extra pass on the whole module to
@@ -425,9 +427,9 @@ Optimization
       gain. For the ``telethon.tl.types`` module this was a 13%
       performance gain on top.
 
--  For "PASS 1" of ``telethon.tl.types`` which has been one of the known
-   trouble makers with many classes and type annotations all changes
-   combined improve the compilation time by 1500%.
+-  For "PASS 1" of ``telethon.tl.types``, which has been one of the
+   known troublemakers with many classes and type annotations, all
+   changes combined improve the compilation time by 1500%.
 
 -  Faster code generation.
 
@@ -440,9 +442,9 @@ Optimization
    in a loop, which improves the effectiveness of caching at run-time.
    (Added in 2.8.6 already.)
 
--  **Standalone:** Solve partially a TODO of minimizing intermediate
+-  **Standalone:** Partially solved a TODO of minimizing intermediate
    directories in r-paths of ELF platforms, by only putting them there
-   if the directory the point to will contain DLLs or binaries. This
+   if the directory they point to will contain DLLs or binaries. This
    removes unused elements and reduces r-path size.
 
 -  **Windows:** Made the caching of external paths effective, which
@@ -459,8 +461,8 @@ Optimization
    time and if already available, use that to detect Windows SDK
    location rather that using ``vswhere.exe`` each time.
 
--  Avoided large ``%`` string interpolations at compile time, these
-   could cause large code as a result.
+-  Avoid computing large ``%`` string interpolations at compile time.
+   These could cause constants to be included in the binary as a result.
 
 -  Avoid including ``importlib._bootstrap`` and
    ``importlib._bootstrap_external`` as they are available as frozen
@@ -475,7 +477,7 @@ Anti-Bloat
 -  Avoid including ``tzdata`` on non-Windows platforms. (Fixed in 2.8.7
    already.)
 
--  Avoid ``pyparsing.testing`` in ``pyparsing`` package.
+-  Avoid including ``pyparsing.testing`` in the ``pyparsing`` package.
 
 -  Added configuration to avoid compiled via C for large generated files
    for the ``sqlfluff`` package.
@@ -483,22 +485,22 @@ Anti-Bloat
 Organizational
 ==============
 
--  UI: Don't say ``--include-data-files-external`` doesn't work in
-   standalone mode
+-  **UI:** Don't say ``--include-data-files-external`` doesn't work in
+   standalone mode.
 
-   It actually does for a while, and we since renamed that option, but
-   the help still said it wouldn't work in standalone mode.
+   It actually has worked for a while, and we since renamed that option,
+   but the help still said it wouldn't work in standalone mode.
 
--  Debugging: Added assertions for code object creation
+-  **Debugging:** Added assertions for code object creation.
 
-   We wer getting assertions from Python when built with **Zig**, and
-   these are supposed to do those as well.
+   We were getting assertions from Python when built with **Zig**, and
+   these are supposed to provide those as well.
 
--  Debugging: In case of tool commands failing, output the too long
+-  **Debugging:** In case of tool commands failing, output the too long
    command line if that was the error given.
 
--  Anti-Bloat: Don't allow custom ``nofollow`` modes, point the user to
-   the correct option instead. This was never needed, but two ways of
+-  **Anti-Bloat:** Don't allow custom ``nofollow`` modes, point the user
+   to the correct option instead. This was never needed, but two ways of
    providing this user decision make no sense.
 
 -  UI: The help text for ``--include-data-files-external`` was updated
@@ -508,8 +510,8 @@ Organizational
 -  **Release:** Use lowercase names for source archives in PyPI uploads.
    (Fixed in 2.8.7 already.)
 
--  **Quality:** Fix, wasn't passing assume yes for downloads for the
-   commit hook.
+-  **Quality:** Fixed an issue where "assume yes" was not being passed
+   for downloads in the commit hook.
 
 -  **UI:** Improved wording for missing C compiler message.
 
@@ -558,8 +560,8 @@ Organizational
 -  **Release:** Avoid compiling bytecode for inline copies that are not
    compatible with the running **Python** version during install.
 
--  **Visual Code:** Ignored names in backticks and code blocks in
-   restructure text for spelling checks.
+-  **Visual Studio:** Ignored names in backticks and code blocks in ReST
+   for spelling checks.
 
 -  **Actions:** Ensured compilation reports are always recorded, even in
    case of errors, as they are most useful then.
