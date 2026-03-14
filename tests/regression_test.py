@@ -1,24 +1,27 @@
 import os
 from pathlib import Path
+
 import pytest
 from playwright.sync_api import sync_playwright
 
 from regression_utils import (
-    build_url,
-    sanitizeUrl,
-    compareImages,
-    GOLDEN_DIR,
     CURRENT_DIR,
-    DIFF_DIR,
-    DESKTOP_DEVICES,
-    MOBILE_DEVICES,
-    GOLDEN_PAGES,
     DEFAULT_WAIT_TIME,
+    DESKTOP_DEVICES,
+    DIFF_DIR,
+    GOLDEN_DIR,
+    GOLDEN_PAGES,
+    MOBILE_DEVICES,
+    build_url,
+    compareImages,
+    sanitizeUrl,
 )
 from settings import comparison_threshold
 
 
-def run_visual_test(browser_name, viewport_mode, page_path, wait_time=DEFAULT_WAIT_TIME):
+def run_visual_test(
+    browser_name, viewport_mode, page_path, wait_time=DEFAULT_WAIT_TIME
+):
     if viewport_mode == "desktop":
         device_config = DESKTOP_DEVICES[browser_name]
     elif viewport_mode == "mobile":
@@ -27,7 +30,7 @@ def run_visual_test(browser_name, viewport_mode, page_path, wait_time=DEFAULT_WA
         raise ValueError(f"Unknown viewport mode: {viewport_mode}")
 
     url = build_url(page_path)
-    safe_name = sanitizeUrl(page_path.lstrip('/') or "home")
+    safe_name = sanitizeUrl(page_path.lstrip("/") or "home")
 
     golden_path = f"{GOLDEN_DIR}/{browser_name}_{viewport_mode}_{safe_name}.png"
     current_path = f"{CURRENT_DIR}/{browser_name}_{viewport_mode}_{safe_name}.png"
@@ -50,13 +53,15 @@ def run_visual_test(browser_name, viewport_mode, page_path, wait_time=DEFAULT_WA
         if wait_time > 0:
             page.wait_for_timeout(wait_time)
 
-        page.add_style_tag(content="""
+        page.add_style_tag(
+            content="""
             * {
                 font-family: Arial, Helvetica, sans-serif !important;
                 -webkit-font-smoothing: none !important;
                 -moz-osx-font-smoothing: grayscale !important;
             }
-        """)
+        """
+        )
         page.wait_for_function("document.fonts.ready")
         page.screenshot(path=current_path, full_page=True, timeout=20000)
 
@@ -64,7 +69,9 @@ def run_visual_test(browser_name, viewport_mode, page_path, wait_time=DEFAULT_WA
         browser.close()
 
     if not os.path.exists(golden_path):
-        pytest.fail(f"Reference image not found: {golden_path}. Run update_golden_images first.")
+        pytest.fail(
+            f"Reference image not found: {golden_path}. Run update_golden_images first."
+        )
 
     is_same = compareImages(golden_path, current_path, diff_path, comparison_threshold)
     result = "✓ Passed" if is_same else "✗ Failed"
@@ -122,5 +129,7 @@ if __name__ == "__main__":
     print("This file is meant to be run with pytest.")
     print("Run all tests: pytest tests/regression.py")
     print("Examples:")
-    print("  Only desktop Chromium: pytest tests/regression.py -m 'desktop and chromium' -v")
+    print(
+        "  Only desktop Chromium: pytest tests/regression.py -m 'desktop and chromium' -v"
+    )
     print("  Only mobile: pytest tests/regression.py -m 'mobile' -v")
