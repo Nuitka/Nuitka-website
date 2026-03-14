@@ -33,17 +33,47 @@ It currently covers changes up to version **4.0rc11**.
 Bug Fixes
 =========
 
--  None yet
+-  **Python 3.14:** Fixed decorators breaking when disabling deferred
+   annotations. (Fixed in 4.0.1 already.)
+
+-  Fixed an issue where nested loops could have wrong traces. (Fixed in
+   4.0.1 already.)
+
+-  **Plugins:** Fixed run-time check of package configuration. (Fixed in
+   4.0.1 already.)
+
+-  **Compatibility:** Fixed ``__builtins__`` in compiled functions.
+   (Fixed in 4.0.1 already.)
+
+-  **Distutils:** Use correct UTF-8 decoding for TOML input file
+   parsing. (Fixed in 4.0.1 already.)
+
+-  Fixed an issue where multiple hard value assignments could cause
+   issues. (Fixed in 4.0.1 already.)
+
+Package Support
+===============
+
+-  **Standalone:** Added support for newer ``paddle`` version. (Added in
+   4.0.1 already.)
+
+-  **Standalone:** Added workaround for refcount checks of ``pandas``.
+   (Fixed in 4.0.1 already.)
 
 New Features
 ============
 
--  None yet
+-  **UI:** Added message to inform users about ``Nuitka[onefile]`` if
+   compression is not installed. (Added in 4.0.1 already.)
+
+-  **UI:** Added support for ``uv_build`` in the ``--project`` option.
+   (Added in 4.0.1 already.)
 
 Optimization
 ============
 
--  None yet
+-  Avoided including ``importlib._bootstrap`` and
+   ``importlib._bootstrap_external``. (Added in 4.0.1 already.)
 
 Anti-Bloat
 ==========
@@ -53,7 +83,8 @@ Anti-Bloat
 Organizational
 ==============
 
--  None yet
+-  **Debian:** Removed recommendation for ``libfuse2`` package as it is
+   no longer useful.
 
 Tests
 =====
@@ -63,7 +94,8 @@ Tests
 Cleanups
 ========
 
--  None yet
+-  **UI:** Fixed double space in Windows Runtime DLLs inclusion message.
+   (Fixed in 4.0.1 already.)
 
 Summary
 =======
