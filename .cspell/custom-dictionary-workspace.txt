@@ -83,13 +83,13 @@ MSVC
 MSYS2
 Multidist
 Nikola
+no_docstrings
 noarch
 nofollow
 nohup
 noinclude-data-files
 normpath
 notranslate
-no_docstrings
 NTFS
 Nuitka
 Numba
@@ -140,6 +140,7 @@ Setuptools
 shedskin
 shiboken
 SIGSEGV
+Siri
 skimage
 sklearn
 Sourcery
