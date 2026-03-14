@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.0rc10**.
+It currently covers changes up to version **4.0rc11**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -181,6 +181,21 @@ Bug Fixes
 -  **Compatibility:** Fixed an issue where nested loops could have
    incorrect traces, potentially leading to mis-optimizations.
 
+-  **Linux:** Fixed an issue where ``_XOPEN_SOURCE`` was mistakenly
+   appended for Clang, causing warnings.
+
+-  **Scons** Improved passed variables handling by detecting ``None`` or
+   invalid types earlier.
+
+-  Fix, when propagating class dictionaries needed extra micro passes to
+   ensure proper optimization of their traces for the new variables.
+
+-  **Scons:** Fixed an issue with process spawning when using ``rusage``
+   capture.
+
+-  **Scons:** Followed the file closing behavior of the standard
+   communicate closer to avoid potential hangs.
+
 Package Support
 ===============
 
@@ -225,6 +240,8 @@ Package Support
 
 -  Avoided making duplicate hard imports by dropping assignments if the
    variable was already assigned to the same value.
+
+-  **Standalone:** Added support for newer ``pandas`` versions.
 
 New Features
 ============
@@ -550,6 +567,16 @@ Organizational
 -  **AI:** Added a workflow ``create-mre`` to assist in creating a
    Minimal Reproducible Example from a larger file triggering a Nuitka
    bug.
+
+-  **AI:** Added guidance on avoiding standalone mode initially and
+   clearer instructions for reducing code in the ``create-mre``
+   workflow.
+
+-  **AI:** Added further strategies for Minimal Reproducible Example
+   (MRE) reduction to the agent workflow.
+
+-  **UI:** Reject input paths from standard library locations to prevent
+   compiling files from there as main files.
 
 Tests
 =====
