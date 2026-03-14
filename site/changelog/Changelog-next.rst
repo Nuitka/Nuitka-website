@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.0rc9**.
+It currently covers changes up to version **4.0rc10**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -175,6 +175,12 @@ Bug Fixes
 -  **macOS:** Fix, ``Info.plist`` user facing entitlements keys mapping
    to multiple internal entitlements were not handled correctly.
 
+-  **UI:** Ensured tracing uses at least 80 characters for very narrow
+   terminals to maintain readability.
+
+-  **Compatibility:** Fixed an issue where nested loops could have
+   incorrect traces, potentially leading to mis-optimizations.
+
 Package Support
 ===============
 
@@ -210,6 +216,15 @@ Package Support
    dependencies, no need to manually configure that anymore. Also our
    configuration was often only correct for a single OS, and single
    upstream versions which is now fixed for packages having it before.
+
+-  **Standalone:** Added support for the newer ``av`` (PyAV) package
+   version.
+
+-  **Standalone:** Added support for the ``sentry_sdk``, ``jedi``,
+   ``parso``, and ``line_profiler`` packages.
+
+-  Avoided making duplicate hard imports by dropping assignments if the
+   variable was already assigned to the same value.
 
 New Features
 ============
@@ -313,6 +328,10 @@ New Features
       def my_cpython_func():
           # This function is not compiled, but stays bytecode
           ...
+
+-  **UI:** Added support for merging user and standard YAML Nuitka
+   package configurations, currently only including proper merging of
+   implicit imports.
 
 Optimization
 ============
@@ -522,6 +541,16 @@ Organizational
 -  **Release:** Avoid compiling bytecode for inline copies that are not
    compatible with the running **Python** version during install.
 
+-  **Visual Code:** Ignored names in backticks and code blocks in
+   restructure text for spelling checks.
+
+-  **Actions:** Ensured compilation reports are always recorded, even in
+   case of errors, as they are most useful then.
+
+-  **AI:** Added a workflow ``create-mre`` to assist in creating a
+   Minimal Reproducible Example from a larger file triggering a Nuitka
+   bug.
+
 Tests
 =====
 
@@ -556,6 +585,11 @@ Tests
 
 -  Added ``nuitka.format`` and ``nuitka.package_config`` to
    self-compilation tests.
+
+-  Added colorization to test comparison diffs if a tty is available.
+
+-  Avoided using ``--nofollow-imports`` in tests as some Python flavors
+   do not work with it when using ``--mode=standalone``.
 
 Cleanups
 ========
