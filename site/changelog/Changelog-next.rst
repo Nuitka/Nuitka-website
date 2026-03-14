@@ -33,69 +33,119 @@ It currently covers changes up to version **4.0rc11**.
 Bug Fixes
 =========
 
--  **Python 3.14:** Fixed decorators breaking when disabling deferred
-   annotations. (Fixed in 4.0.1 already.)
+-  **Python 3.14:** Fix, decorators were breaking when disabling
+   deferred annotations. (Fixed in 4.0.1 already.)
 
--  Fixed an issue where nested loops could have wrong traces. (Fixed in
-   4.0.1 already.)
-
--  **Plugins:** Fixed run-time check of package configuration. (Fixed in
-   4.0.1 already.)
-
--  **Compatibility:** Fixed ``__builtins__`` in compiled functions.
+-  Fix, nested loops could have wrong traces lead to mis-optimization.
    (Fixed in 4.0.1 already.)
 
--  **Distutils:** Use correct UTF-8 decoding for TOML input file
-   parsing. (Fixed in 4.0.1 already.)
+-  **Plugins:** Fix, run-time check of package configuration was
+   incorrect. (Fixed in 4.0.1 already.)
 
--  Fixed an issue where multiple hard value assignments could cause
-   issues. (Fixed in 4.0.1 already.)
+-  **Compatibility:** Fix, ``__builtins__`` lacked necessary
+   compatibility in compiled functions. (Fixed in 4.0.1 already.)
+
+-  **Distutils:** Fix, incorrect UTF-8 decoding was used for TOML input
+   file parsing. (Fixed in 4.0.1 already.)
+
+-  Fix, multiple hard value assignments could cause compile time
+   crashes. (Fixed in 4.0.1 already.)
+
+-  Fix, string concatenation was not properly annotating exception
+   exits. (Fixed in 4.0.2 already.)
+
+-  **Windows:** Fix, ``--verbose-output`` and ``--show-modules-output``
+   did not work with forward slashes. (Fixed in 4.0.2 already.)
+
+-  **Python 3.14:** Fix, various compatibility issues including
+   dictionary watchers and inline values. (Fixed in 4.0.2 already.)
+
+-  **Python 3.14:** Fix, stack pointer initialization to ``localsplus``
+   was incorrect to avoid garbage collection issues. (Fixed in 4.0.2
+   already.)
+
+-  **Python 3.12+:** Fix, generic type variable scoping in classes was
+   incorrect. (Fixed in 4.0.2 already.)
+
+-  **Python 3.12+:** Fix, there were various issues with function
+   generics. (Fixed in 4.0.2 already.)
+
+-  **Python 3.8+:** Fix, names in named expressions were not mangled.
+   (Fixed in 4.0.2 already.)
+
+-  **Plugins:** Fix, module checksums were not robust against quoting
+   style of module-name entry in YAML configurations. (Fixed in 4.0.2
+   already.)
+
+-  **Plugins:** Fix, doing imports in queried expressions caused
+   corruption. (Fixed in 4.0.2 already.)
+
+-  **UI:** Fix, support for ``uv_build`` in the ``--project`` option was
+   broken. (Fixed in 4.0.2 already.)
+
+-  **Compatibility:** Fix, names assigned in assignment expressions were
+   not mangled. (Fixed in 4.0.2 already.)
 
 Package Support
 ===============
 
--  **Standalone:** Added support for newer ``paddle`` version. (Added in
+-  **Standalone:** Add support for newer ``paddle`` version. (Added in
    4.0.1 already.)
 
--  **Standalone:** Added workaround for refcount checks of ``pandas``.
+-  **Standalone:** Add workaround for refcount checks of ``pandas``.
    (Fixed in 4.0.1 already.)
+
+-  **Standalone:** Add support for newer ``h5py`` version. (Added in
+   4.0.2 already.)
+
+-  **Standalone:** Add support for newer ``scipy`` package. (Added in
+   4.0.2 already.)
 
 New Features
 ============
 
--  **UI:** Added message to inform users about ``Nuitka[onefile]`` if
+-  **UI:** Add message to inform users about ``Nuitka[onefile]`` if
    compression is not installed. (Added in 4.0.1 already.)
 
--  **UI:** Added support for ``uv_build`` in the ``--project`` option.
+-  **UI:** Add support for ``uv_build`` in the ``--project`` option.
    (Added in 4.0.1 already.)
+
+-  **Onefile:** Allow extra includes as well. (Added in 4.0.2 already.)
+
+-  **UI:** Add ``nuitka-project-set`` feature to define project
+   variables, checking for collisions with reserved runtime variables.
+   (Added in 4.0.2 already.)
 
 Optimization
 ============
 
--  Avoided including ``importlib._bootstrap`` and
+-  Avoid including ``importlib._bootstrap`` and
    ``importlib._bootstrap_external``. (Added in 4.0.1 already.)
 
 Anti-Bloat
 ==========
 
--  None yet
+-  Fix, memory bloat occurred when C compiling ``sqlalchemy``. (Fixed in
+   4.0.2 already.)
+
+-  Avoid using ``pydoc`` in ``PySimpleGUI``. (Added in 4.0.2 already.)
 
 Organizational
 ==============
 
--  **Debian:** Removed recommendation for ``libfuse2`` package as it is
+-  **Debian:** Remove recommendation for ``libfuse2`` package as it is
    no longer useful.
 
 Tests
 =====
 
--  None yet
+-  Install only necessary build tools for test cases.
 
 Cleanups
 ========
 
--  **UI:** Fixed double space in Windows Runtime DLLs inclusion message.
-   (Fixed in 4.0.1 already.)
+-  **UI:** Fix, there was a double space in the Windows Runtime DLLs
+   inclusion message. (Fixed in 4.0.1 already.)
 
 Summary
 =======
