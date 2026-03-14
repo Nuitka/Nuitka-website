@@ -20,10 +20,6 @@ def virtualenv(c):
     )
     c.run(f"{sys.executable} -m pipenv install --dev")
 
-    # Workaround pipenv failing to pin black version due to it being pre-release
-    # always.
-    c.run(f"{sys.executable} -m pipenv run python -m pip install black==24.10.0")
-
     # Install node while we are here, probably worth renaming the task
     c.run(f"npm install")
 

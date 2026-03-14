@@ -10,10 +10,7 @@ pylint = "*"
 doc8 = "*"
 sphinx-autobuild = "==2021.3.14"
 pipenv = "*"
-isort = "==5.13.2"
-black = "==24.10.0"
 asciinema-automation = "*"
-ordered-set = "*"
 zstandard = "*"
 esbonio = "*"
 pytest-playwright = "*"
@@ -53,4 +50,4 @@ pillow = "*"
 python_version = "3.12"
 
 [pipenv]
-allow_prereleases = true
+allow_prereleases = false
