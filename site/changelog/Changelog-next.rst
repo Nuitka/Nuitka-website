@@ -104,6 +104,22 @@ Bug Fixes
 -  **Scons:** Fix, repeated builds were not producing binary identical
    results. (Fixed in 4.0.3 already.)
 
+-  **Scons:** Fix, compiling with newer Python versions did not fall
+   back to Zig when the developer prompt MSVC was unusable, and error
+   reporting could crash. (Fixed in 4.0.4 already.)
+
+-  **Zig:** Fix, the workaround for Windows console mode ``attach`` or
+   ``disable`` was incorrectly applied on non-Windows platforms. (Fixed
+   in 4.0.4 already.)
+
+-  **Standalone:** Fix, linking with Python Build Standalone failed
+   because ``libHacl_Hash_SHA2`` was not filtered out unconditionally.
+   (Fixed in 4.0.4 already.)
+
+-  **Python 3.6+:** Fix, exceptions like ``CancelledError`` thrown into
+   an async generator awaiting an inner awaitable could be swallowed,
+   causing crashes. (Fixed in 4.0.4 already.)
+
 Package Support
 ===============
 
