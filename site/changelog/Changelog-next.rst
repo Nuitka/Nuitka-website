@@ -86,6 +86,24 @@ Bug Fixes
 -  **Compatibility:** Fix, names assigned in assignment expressions were
    not mangled. (Fixed in 4.0.2 already.)
 
+-  **Python 3.12+:** Fix, there were still various issues with function
+   generics. (Fixed in 4.0.3 already.)
+
+-  **Clang:** Fix, debug mode was disabled for clang generally, but only
+   ClangCL and macOS Clang didn't want it. (Fixed in 4.0.3 already.)
+
+-  **Zig:** Fix, ``--windows-console-mode=attach|disable`` was not
+   working when using Zig. (Fixed in 4.0.3 already.)
+
+-  **macOS:** Fix, yet another way self dependencies can look like,
+   needed to have support added. (Fixed in 4.0.3 already.)
+
+-  **Python 3.12+:** Fix, generic types in classes had bugs with
+   multiple type variables. (Fixed in 4.0.3 already.)
+
+-  **Scons:** Fix, repeated builds were not producing binary identical
+   results. (Fixed in 4.0.3 already.)
+
 Package Support
 ===============
 
@@ -141,11 +159,19 @@ Tests
 
 -  Install only necessary build tools for test cases.
 
+-  Avoided spurious failures in reference counting tests due to Python
+   internal caching differences. (Fixed in 4.0.3 already.)
+
+-  Fixed the parsing of the compilation report for reflected tests.
+
 Cleanups
 ========
 
 -  **UI:** Fix, there was a double space in the Windows Runtime DLLs
    inclusion message. (Fixed in 4.0.1 already.)
+
+-  **Onefile:** Separated files and defines for extra includes for
+   onefile boot and Python build.
 
 Summary
 =======
