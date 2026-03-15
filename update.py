@@ -106,7 +106,7 @@ def add_inline_svg(
                 "To fix, run the following command to copy it from the unpacked Pro+ tarball:\n"
             )
             my_print(
-                f"cp <tar_dir>/svgs/{style_folder}/{icon_name}.svg <project_dir>/{svg_path}\n"
+                f"cp ../fontawesome-pro-7.2.0-web/svgs/{style_folder}/{icon_name}.svg {svg_path}\n"
             )
 
         raise FileNotFoundError(f"SVG file not found: {svg_path}")
