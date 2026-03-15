@@ -120,6 +120,29 @@ Bug Fixes
    an async generator awaiting an inner awaitable could be swallowed,
    causing crashes. (Fixed in 4.0.4 already.)
 
+-  Fix, not all ordered set modules accepted generators for update.
+   (Fixed in 4.0.5 already.)
+
+-  **Plugins:** Disabled warning about rebuilding the ``pytokens``
+   extension module. (Fixed in 4.0.5 already.)
+
+-  **Standalone:** Filtered ``libHacl_Hash_SHA2`` from link libs
+   unconditionally. (Fixed in 4.0.5 already.)
+
+-  **Plugins:** Fixed automatic detection of ``mypyc`` runtime
+   dependencies, was including all top level modules of the containing
+   package by accident. (Fixed in 4.0.5 already.)
+
+-  **Debugging:** Disabled unusable unicode consistency checks for
+   Python versions 3.4 to 3.6. (Fixed in 4.0.5 already.)
+
+-  **Python3.12+** Avoided cloning call nodes on class level which
+   caused issues with generic functions in combination with decorators.
+   (Added in 4.0.5 already.)
+
+-  **Python 3.12+:** Added support for generic type variables in ``async
+   def`` functions. (Added in 4.0.5 already.)
+
 Package Support
 ===============
 
@@ -134,6 +157,11 @@ Package Support
 
 -  **Standalone:** Add support for newer ``scipy`` package. (Added in
    4.0.2 already.)
+
+-  **Plugins:** Revert accidental ``os.getenv`` over ``os.environ.get``
+   changes in anti-bloat configurations that stopped them from working.
+   Affected packages are ``networkx``, ``persistent``, and
+   ``tensorflow``. (Fixed in 4.0.5 already.)
 
 New Features
 ============
@@ -164,6 +192,9 @@ Anti-Bloat
 
 -  Avoid using ``pydoc`` in ``PySimpleGUI``. (Added in 4.0.2 already.)
 
+-  Avoided using ``doctest`` from ``zodbpickle``. (Added in 4.0.5
+   already.)
+
 Organizational
 ==============
 
@@ -188,6 +219,9 @@ Cleanups
 
 -  **Onefile:** Separated files and defines for extra includes for
    onefile boot and Python build.
+
+-  **Scons:** Provided nicer errors in case of "unset" variables being
+   used, so we can tell it.
 
 Summary
 =======
