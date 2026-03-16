@@ -18,6 +18,8 @@ nuitka = importNuitka()
 extensions += [
     # Blog extension
     "ablog",
+    "sphinx_sitemap",
+    "carousel",
 ]
 
 # Options for ABlog
