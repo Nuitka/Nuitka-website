@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 0 1 * *'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -32,11 +34,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pipenv-
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/Pipfile.lock') }}
+
       - name: Install dependencies
         run: |
           pip install pipenv
           pipenv install --dev
-          npm install --silent --no-fund --no-audit
+          npm ci --silent --no-fund --no-audit
           pipenv run playwright install && pipenv run playwright install-deps
 
       - name: Start app for screenshots
@@ -51,7 +59,6 @@ jobs:
           ARGS="--update-golden"
           pipenv run python update.py $ARGS
           echo "Golden images generated for chromium (all devices, all pages)"
-          ls -lah tests/golden/
 
       - name: Save golden images to cache
         id: save-cache
