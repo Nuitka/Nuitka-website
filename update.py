@@ -1523,7 +1523,7 @@ def runSphinxAutoBuild():
         "_static",
     ]
 
-    callExecProcess(args, uac=False)
+    callExecProcess(args, False)
 
 
 def runUpdateGolden(
