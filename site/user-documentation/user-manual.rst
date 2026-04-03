@@ -343,20 +343,28 @@ variables. Checkout this example:
    # nuitka-project-else:
    #    nuitka-project: --mode=standalone
 
+   # Set variables dynamically and use them later, e.g., for Windows metadata
+   # nuitka-project-if: {OS} == "Windows":
+   #    nuitka-project-set: MY_VERSION = __import__("mypkg").__version__
+   #    nuitka-project: --file-version={MY_VERSION}
+
    # The PySide6 plugin covers qt-plugins
    # nuitka-project: --enable-plugin=pyside6
    # nuitka-project: --include-qt-plugins=qml
 
 The comments must be at the start of lines, and the indentation inside
-them marks an end of blocks, much like in Python. There are currently no
-other keywords than the ones demonstrated above.
+them marks an end of blocks, much like in Python. The supported keywords
+are ``-if``, ``-else``, and ``-set`` as demonstrated above.
 
-You can put arbitrary Python expressions there, and if you want to
-access the version information of a package, for example, you could use
-``__import__("module_name").__version__`` if that would be the condition
-to decide whether to enable or disable specific Nuitka settings. The
-only thing Nuitka does before executing it as Python expressions is
-expanding ``{variable}`` for a pre-defined set of variables:
+You can put arbitrary Python expressions there. For example, if you want to
+access the version information of a package, you can use
+``__import__("module_name").__version__``. This can be used as a condition
+to decide whether to enable or disable specific Nuitka settings, or it can be evaluated
+and stored as a custom variable using ``nuitka-project-set: KEY = expression``.
+
+The only thing Nuitka does before executing these Python expressions is
+expanding ``{variable}`` for your custom variables and a pre-defined set of
+system variables:
 
 Table with supported variables:
 
