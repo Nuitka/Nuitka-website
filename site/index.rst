@@ -58,6 +58,7 @@ Python is already compatible with your system.
    :hidden:
    :caption: Other
 
+   kay/index
    |CREDITS_SYMBOL| Credits <doc/Credits>
    |IMPRESSUM_SYMBOL| Impressum <pages/impressum>
    pages/pyside2
