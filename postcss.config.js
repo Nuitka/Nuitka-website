@@ -92,8 +92,9 @@ module.exports = {
 				/^highlight/,
 				"nuitka-fa",
 				"nuitka-fw",
+				"copybtn",
 			],
-			defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+			defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)|\[.+?\]/g) || [],
 		}),
 
 		require("cssnano")({
