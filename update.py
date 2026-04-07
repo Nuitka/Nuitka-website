@@ -7,6 +7,7 @@ import copy
 import datetime
 import os
 import re
+import shutil
 import subprocess
 import sys
 from io import StringIO
@@ -84,10 +85,7 @@ FA_REPLACEMENT_CLASS = {
     "fa": "nuitka-fa",
     "fa-fw": "nuitka-fw",
 }
-
-
 ANNOTATED_EXTENSIONS_CACHE = None
-
 
 def get_annotated_file_extensions():
     global ANNOTATED_EXTENSIONS_CACHE
@@ -96,7 +94,7 @@ def get_annotated_file_extensions():
         return ANNOTATED_EXTENSIONS_CACHE
 
     extensions = set()
-    css_file = "_static/my_theme.css"
+    css_file = "_static/download_link_icons.css"
 
     if not os.path.exists(css_file):
         return extensions
@@ -148,6 +146,92 @@ def check_link_file_type_annotations(doc, filename):
                     unannotated_extensions.setdefault(potential_ext, set()).add(filename)
 
     return unannotated_extensions
+
+
+_download_link_icons_css_cache = None
+
+def getDownloadLinkIconsCss():
+    global _download_link_icons_css_cache
+
+    if _download_link_icons_css_cache is not None:
+        return _download_link_icons_css_cache
+
+    css_path = "_static/download_link_icons.css"
+    if not os.path.exists(css_path):
+        _download_link_icons_css_cache = ""
+        return ""
+
+    css_content = getFileContents(css_path, encoding="utf-8")
+
+    if not development_mode:
+        def replace_svg_url(match):
+            svg_filename = match.group(1)
+            svg_path_full = os.path.join(SVG_SOURCE_PATH, svg_filename)
+
+            if not os.path.exists(svg_path_full):
+                my_print(f"SVG file for CSS inlining not found: {svg_path_full}")
+                return match.group(0)
+
+            svg_str = get_svg_content(svg_path_full)
+            svg_str = re.sub(r"\s+", " ", svg_str.strip())
+            svg_str = svg_str.replace('"', "'")
+            return f"url('data:image/svg+xml,{urllib.parse.quote(svg_str, safe='')}')"
+
+        css_content = re.sub(
+            r'url\(\s*[\'"]?/_images/svg/([^\'")]+)[\'"]?\s*\)',
+            replace_svg_url,
+            css_content,
+        )
+
+    _download_link_icons_css_cache = css_content
+    return css_content
+
+
+def _parse_css_rules(css_content):
+    """Parse CSS into list of (selectors_str, declarations_content) tuples."""
+    rules = []
+    for match in re.finditer(r"([^{}]+)\{([^{}]*)\}", css_content, re.DOTALL):
+        selectors_str = match.group(1).strip()
+        declarations_content = match.group(2)
+        if selectors_str and declarations_content.strip():
+            rules.append((selectors_str, declarations_content))
+    return rules
+
+
+def getFilteredDownloadLinkIconsCss(doc):
+    """Return CSS with only rules for extensions actually used in links on the page."""
+    annotated_extensions = get_annotated_file_extensions()
+    if not annotated_extensions:
+        return ""
+
+    used_extensions = set()
+    for link in doc.xpath("//a[@href]"):
+        href = link.attrib.get("href", "").lower().split("?")[0].split("#")[0]
+        for ext in annotated_extensions:
+            if href.endswith(ext):
+                used_extensions.add(ext)
+
+    if not used_extensions:
+        return ""
+
+    full_css = getDownloadLinkIconsCss()
+    if not full_css:
+        return ""
+
+    filtered_parts = []
+    for selectors_str, declarations_content in _parse_css_rules(full_css):
+        # Split by comma to get individual selectors
+        selectors = [s.strip() for s in selectors_str.split(",")]
+        # Keep only selectors whose extension is used on this page
+        kept = []
+        for selector in selectors:
+            m = re.search(r'a\[href\$="([^"]+)"\]', selector)
+            if m and m.group(1) in used_extensions:
+                kept.append(selector)
+        if kept:
+            filtered_parts.append(",\n".join(kept) + " {" + declarations_content + "}")
+
+    return "\n".join(filtered_parts)
 
 
 def get_svg_content(svg_path):
@@ -988,29 +1072,10 @@ def fixupSymbols(document_bytes):
 
 
 def inlineSVGsInCss():
-    # Some SVGs use different viewBox dimensions, causing inconsistent sizing.
-    def ensure_viewbox_normalization(svg_str):
-        opening_tag, rest = svg_str.split(">", 1)
-        opening_tag += ">"
-
-        if re.search(r'\bviewBox\s*=', opening_tag, flags=re.IGNORECASE):
-            opening_tag = re.sub(
-                r'\bviewBox\s*=\s*"[^\"]*"',
-                'viewBox="0 0 640 512"',
-                opening_tag,
-                flags=re.IGNORECASE
-            )
-        else:
-            opening_tag = opening_tag.replace(
-                ">",
-                ' viewBox="0 0 640 512">'
-            )
-
-        return opening_tag + rest
-
+    # In development mode, symlink the SVG source directory so the dev server
+    # can serve /_images/svg/*.svg used by the per-page inline <style> tags
     if development_mode:
         svg_output_dir = "output/_images/svg"
-        os.makedirs(svg_output_dir, exist_ok=True)
 
         svg_source_abs = os.path.abspath("images/svg")
         if os.path.islink(svg_output_dir):
@@ -1018,39 +1083,8 @@ def inlineSVGsInCss():
         elif os.path.exists(svg_output_dir):
             shutil.rmtree(svg_output_dir)
 
+        os.makedirs(os.path.dirname(svg_output_dir), exist_ok=True)
         os.symlink(svg_source_abs, svg_output_dir)
-    else:
-        css_path = "output/_static/css"
-        css_files = getFileList(css_path, only_suffixes=".css")
-
-        for css_file in css_files:
-            css_content = getFileContents(css_file, encoding="utf-8")
-
-            def replace_svg_load(match):
-                svg_filename = match.group(1)
-                svg_path = os.path.join(SVG_SOURCE_PATH, svg_filename)
-
-                if not os.path.exists(svg_path):
-                    my_print(f"SVG file for CSS inlining not found: {svg_path}")
-                    return match.group(0)
-
-                # Parse and normalize SVG content
-                svg_content = get_svg_content(svg_path)
-                svg_content = ensure_viewbox_normalization(svg_content)
-                svg_content = re.sub(r"\s+", " ", svg_content.strip())
-                svg_content = svg_content.replace('"', "'")
-                svg_content_encoded = urllib.parse.quote(svg_content, safe='')
-
-                my_print(f"Inlining SVG: {svg_filename} into CSS file: {css_file}")
-
-                return f"url('data:image/svg+xml,{svg_content_encoded}')"
-
-            css_content = re.sub(
-                r'url\(\s*[\'"]?\.\./_images/svg/([^\'")]+)[\'"]?\s*\)',
-                replace_svg_load,
-                css_content,
-            )
-            putTextFileContents(css_file, css_content, encoding="utf-8")
 
 _postcss_cache = {}
 _terser_cache = {}
@@ -1550,6 +1584,13 @@ def runPostProcessing():
 
             if top_link_nav is not None and False:
                 top_link_nav.append(node)
+
+        icons_css = getFilteredDownloadLinkIconsCss(doc)
+        if icons_css:
+            (head_node,) = doc.xpath("head")
+            style_elem = html.Element("style")
+            style_elem.text = icons_css
+            head_node.append(style_elem)
 
         document_bytes = b"<!DOCTYPE html>\n" + html.tostring(
             doc, include_meta_content_type=True
