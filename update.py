@@ -7,12 +7,14 @@ import copy
 import datetime
 import os
 import re
+import shutil
 import subprocess
 import sys
 from io import StringIO
 from optparse import OptionParser
 from pathlib import Path
 from settings import development_mode
+import urllib.parse
 
 import requests
 from lxml import html
@@ -83,9 +85,153 @@ FA_REPLACEMENT_CLASS = {
     "fa": "nuitka-fa",
     "fa-fw": "nuitka-fw",
 }
+ANNOTATED_EXTENSIONS_CACHE = None
+
+def get_annotated_file_extensions():
+    global ANNOTATED_EXTENSIONS_CACHE
+
+    if ANNOTATED_EXTENSIONS_CACHE is not None:
+        return ANNOTATED_EXTENSIONS_CACHE
+
+    extensions = set()
+    css_file = "_static/download_link_icons.css"
+
+    if not os.path.exists(css_file):
+        return extensions
+
+    css_content = getFileContents(css_file, encoding="utf-8")
+
+    matches = re.findall(r'a\[href\$="([^"]+)"\]', css_content)
+    extensions.update(matches)
+
+    ANNOTATED_EXTENSIONS_CACHE = extensions
+    return extensions
 
 
 SVG_CACHE = {}
+
+
+def check_link_file_type_annotations(doc, filename):
+    annotated_extensions = get_annotated_file_extensions()
+
+    if not annotated_extensions:
+        return
+
+    ignored_extensions = {
+        ".html", ".svg", ".php", ".asp", ".jsp", ".css", ".js",
+        ".jpeg", ".jpg", ".png", ".gif", ".bmp", ".webp", ".tiff",
+        ".mp4", ".mp3", ".avi", ".mov", ".mkv", ".xml", ".com"
+    }
+
+    unannotated_extensions = {}
+
+    for link in doc.xpath("//a[@href]"):
+        href = link.attrib.get("href", "")
+
+        # Skip external URLs, anchors, and special protocols
+        if href.startswith(("http://", "https://", "#", "mailto:", "tel:", "ftp://", "ftps://")) or not href:
+            continue
+
+        # Remove query params and fragment identifiers
+        href_lower = href.lower().split("?")[0].split("#")[0]
+
+        found_annotation = any(href_lower.endswith(ext) for ext in annotated_extensions)
+
+        if not found_annotation:
+            for potential_ext in re.findall(r"\.\w+$", href_lower):
+                if potential_ext in ignored_extensions:
+                    continue
+
+                if len(potential_ext) > 1 and potential_ext[1:].replace("_", "").isalnum():
+                    unannotated_extensions.setdefault(potential_ext, set()).add(filename)
+
+    return unannotated_extensions
+
+
+_download_link_icons_css_cache = None
+
+def getDownloadLinkIconsCss():
+    global _download_link_icons_css_cache
+
+    if _download_link_icons_css_cache is not None:
+        return _download_link_icons_css_cache
+
+    css_path = "_static/download_link_icons.css"
+    if not os.path.exists(css_path):
+        _download_link_icons_css_cache = ""
+        return ""
+
+    css_content = getFileContents(css_path, encoding="utf-8")
+
+    if not development_mode:
+        def replace_svg_url(match):
+            svg_filename = match.group(1)
+            svg_path_full = os.path.join(SVG_SOURCE_PATH, svg_filename)
+
+            if not os.path.exists(svg_path_full):
+                my_print(f"SVG file for CSS inlining not found: {svg_path_full}")
+                return match.group(0)
+
+            svg_str = get_svg_content(svg_path_full)
+            svg_str = re.sub(r"\s+", " ", svg_str.strip())
+            svg_str = svg_str.replace('"', "'")
+            return f"url('data:image/svg+xml,{urllib.parse.quote(svg_str, safe='')}')"
+
+        css_content = re.sub(
+            r'url\(\s*[\'"]?/_images/svg/([^\'")]+)[\'"]?\s*\)',
+            replace_svg_url,
+            css_content,
+        )
+
+    _download_link_icons_css_cache = css_content
+    return css_content
+
+
+def _parse_css_rules(css_content):
+    """Parse CSS into list of (selectors_str, declarations_content) tuples."""
+    rules = []
+    for match in re.finditer(r"([^{}]+)\{([^{}]*)\}", css_content, re.DOTALL):
+        selectors_str = match.group(1).strip()
+        declarations_content = match.group(2)
+        if selectors_str and declarations_content.strip():
+            rules.append((selectors_str, declarations_content))
+    return rules
+
+
+def getFilteredDownloadLinkIconsCss(doc):
+    """Return CSS with only rules for extensions actually used in links on the page."""
+    annotated_extensions = get_annotated_file_extensions()
+    if not annotated_extensions:
+        return ""
+
+    used_extensions = set()
+    for link in doc.xpath("//a[@href]"):
+        href = link.attrib.get("href", "").lower().split("?")[0].split("#")[0]
+        for ext in annotated_extensions:
+            if href.endswith(ext):
+                used_extensions.add(ext)
+
+    if not used_extensions:
+        return ""
+
+    full_css = getDownloadLinkIconsCss()
+    if not full_css:
+        return ""
+
+    filtered_parts = []
+    for selectors_str, declarations_content in _parse_css_rules(full_css):
+        # Split by comma to get individual selectors
+        selectors = [s.strip() for s in selectors_str.split(",")]
+        # Keep only selectors whose extension is used on this page
+        kept = []
+        for selector in selectors:
+            m = re.search(r'a\[href\$="([^"]+)"\]', selector)
+            if m and m.group(1) in used_extensions:
+                kept.append(selector)
+        if kept:
+            filtered_parts.append(",\n".join(kept) + " {" + declarations_content + "}")
+
+    return "\n".join(filtered_parts)
 
 
 def get_svg_content(svg_path):
@@ -925,6 +1071,21 @@ def fixupSymbols(document_bytes):
     return document_bytes
 
 
+def inlineSVGsInCss():
+    # In development mode, symlink the SVG source directory so the dev server
+    # can serve /_images/svg/*.svg used by the per-page inline <style> tags
+    if development_mode:
+        svg_output_dir = "output/_images/svg"
+
+        svg_source_abs = os.path.abspath("images/svg")
+        if os.path.islink(svg_output_dir):
+            os.unlink(svg_output_dir)
+        elif os.path.exists(svg_output_dir):
+            shutil.rmtree(svg_output_dir)
+
+        os.makedirs(os.path.dirname(svg_output_dir), exist_ok=True)
+        os.symlink(svg_source_abs, svg_output_dir)
+
 _postcss_cache = {}
 _terser_cache = {}
 
@@ -1181,12 +1342,18 @@ def runPostProcessing():
     file_list.remove("output/index.html")
     file_list.insert(0, "output/index.html")
 
+    all_unannotated_extensions = {}
     root_doc = None
     for filename in file_list:
         doc = html.fromstring(getFileContents(filename, mode="rb"))
 
         if root_doc is None:
             root_doc = doc
+
+        unannotated = check_link_file_type_annotations(doc, filename)
+        if unannotated:
+            for ext, filenames in unannotated.items():
+                all_unannotated_extensions.setdefault(ext, set()).update(filenames)
 
         # Check copybutton.js
         has_highlight = doc.xpath("//div[@class='highlight']")
@@ -1418,6 +1585,13 @@ def runPostProcessing():
             if top_link_nav is not None and False:
                 top_link_nav.append(node)
 
+        icons_css = getFilteredDownloadLinkIconsCss(doc)
+        if icons_css:
+            (head_node,) = doc.xpath("head")
+            style_elem = html.Element("style")
+            style_elem.text = icons_css
+            head_node.append(style_elem)
+
         document_bytes = b"<!DOCTYPE html>\n" + html.tostring(
             doc, include_meta_content_type=True
         )
@@ -1445,6 +1619,14 @@ def runPostProcessing():
         if not development_mode:
             _minifyHtml(filename)
 
+    if all_unannotated_extensions:
+        my_print("\n WARNING: Links with unannotated file types found:")
+        for ext in sorted(all_unannotated_extensions.keys()):
+            pages = sorted(all_unannotated_extensions[ext])
+            my_print(f"  Extension {ext}:")
+            for page in pages:
+                my_print(f"    - {page}")
+
     if development_mode:
         my_theme_filename = "output/_static/my_theme.css"
 
@@ -1453,7 +1635,10 @@ def runPostProcessing():
             os.unlink(my_theme_filename)
             os.symlink(os.path.abspath("_static/my_theme.css"), my_theme_filename)
 
-    cleanBuildSVGs()
+    inlineSVGsInCss()
+
+    if not development_mode:
+        cleanBuildSVGs()
 
 
 def runDeploymentCommand():
