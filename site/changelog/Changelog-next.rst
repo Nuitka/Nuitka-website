@@ -156,6 +156,12 @@ Bug Fixes
 -  **Scons:** Fix, forced stdout and stderr paths as a feature was
    broken. (Fixed in 4.0.6 already.)
 
+-  Fix, replacing a branch did not accurately track shared active
+   variables causing optimization crashes. (Fixed in 4.0.7 already.)
+
+-  **macOS:** Fixed failure to remove extended attributes because files
+   need to be made writable first. (Fixed in 4.0.7 already.)
+
 Package Support
 ===============
 
@@ -175,6 +181,9 @@ Package Support
    changes in anti-bloat configurations that stopped them from working.
    Affected packages are ``networkx``, ``persistent``, and
    ``tensorflow``. (Fixed in 4.0.5 already.)
+
+-  **Standalone:** Added missing DLLs for ``openvino``. (Added in 4.0.7
+   already.)
 
 New Features
 ============
@@ -211,6 +220,12 @@ Anti-Bloat
 -  Avoided using ``doctest`` from ``zodbpickle``. (Added in 4.0.5
    already.)
 
+-  Avoided inclusion of ``cython`` when using ``pyav``. (Added in 4.0.7
+   already.)
+
+-  Avoided including ``typing_extensions`` when using ``numpy``. (Added
+   in 4.0.7 already.)
+
 Organizational
 ==============
 
@@ -223,6 +238,9 @@ Organizational
    as it is available everywhere, even Python 2.7, and we still want
    nicely formatted code when we read things. (Added in 4.0.6 already.)
 
+-  Removed no longer useful inline copy of ``wax_off``. We have our own
+   stubs generator project.
+
 Tests
 =====
 
@@ -232,6 +250,8 @@ Tests
    internal caching differences. (Fixed in 4.0.3 already.)
 
 -  Fixed the parsing of the compilation report for reflected tests.
+
+-  **Python 3.14:** Ignored a syntax error message change.
 
 Cleanups
 ========
