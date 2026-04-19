@@ -284,27 +284,30 @@ class ChangelogGenerator:
                 )
 
             prompt = f"""
-You are a technical writer writing an update for the changelog information of the Nuitka Python compiler on the Website. Your task is to
-integrate changelog entries in ReStructuredText (RST) format for the {target_str} into the existing
+You are a technical writer writing an update for the changelog information of
+the Nuitka Python compiler on the Website. Your task is to integrate changelog
+entries in ReStructuredText (RST) format for the {target_str} into the existing
 document under "site/changelog/Changelog-next.rst".
 
-Use the following git commit information to draft the changelog. Analyze each commit message to determine its category (e.g.,
-Bug Fixes, Optimization, New Features, Cleanups) and write a clear, concise summary for it.
+Use the following git commit information to draft the changelog. Analyze each
+commit message to determine its category (e.g., Bug Fixes, Optimization, New
+Features, Cleanups) and write a clear, concise summary for it.
 
-Follow these style guidelines precisely:
-- The output must be valid ReStructuredText and be in the style of other Changelog files in this repo.
-- Group related changes under appropriate existing headings like "Bug Fixes", "Optimization", etc.
-- Put new changelog items at the end of the section where they are added.
-- For each item, write in the past tense, ending with "{hotfix_suffix_hint}" only if it matches a hotfix pattern. For general develop changes, do not add "Fixed in..." unless certain.
-- For new features, "Added" should be used rather than "Fixed".{state_update_instruction}
+Follow these style guidelines precisely: - The output must be valid
+ReStructuredText and be in the style of other Changelog files in this repo. -
+Group related changes under appropriate existing headings like "Bug Fixes",
+"Optimization", etc. - Put new changelog items at the end of the section where
+they are added. - For each item, write in the past tense, ending with
+"{hotfix_suffix_hint}" only if it matches a hotfix pattern. For general develop
+changes, do not add "Fixed in..." unless certain. - For new features, "Added"
+should be used rather than "Fixed".{state_update_instruction}
 
 Here is the raw commit information:
 
---- RAW COMMIT DATA START ---
-{commit_data}
---- RAW COMMIT DATA END ---
+--- RAW COMMIT DATA START --- {commit_data} --- RAW COMMIT DATA END ---
 
-Generate only the ReStructuredText for the changelog section. Do not include any other explanatory text or headers.
+Integrate these changes to Changelog-next.rst document. Follow the style as
+found in Changelog files found in general.
 """
             print(prompt)
 

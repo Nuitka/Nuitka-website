@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.1rc3**.
+It currently covers changes up to version **4.1rc4**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -178,6 +178,10 @@ Bug Fixes
 -  **Compatibility:** Fix, loop ownership check in value traces was
    missing, causing issues with nested loops.
 
+-  **Windows:** Improved ``--windows-console-mode=attach`` to properly
+   handle console handles, enabling cases like ``os.system`` to work
+   nicely.
+
 Package Support
 ===============
 
@@ -226,6 +230,12 @@ New Features
 -  **Plugins:** Added support for the multiprocessing ``forkserver``
    context. (Added in 4.0.8 already.)
 
+-  **Reports:** Added structured resource usage (``rusage``) performance
+   information to compilation reports.
+
+-  **Reports:** Included individual module-level C compiler caching
+   (``ccache``/``clcache``) statistics in compilation reports.
+
 Optimization
 ============
 
@@ -238,6 +248,10 @@ Optimization
 
 -  **UI:** Output a warning for modules that remain unfinished after the
    third optimization pass.
+
+-  Added an extra micro pass trigger when new variables are introduced
+   or variable usage changes severely, ensuring optimizations are fully
+   propagated, avoiding unnecessary extra full passes.
 
 Anti-Bloat
 ==========
@@ -258,6 +272,9 @@ Anti-Bloat
 
 Organizational
 ==============
+
+-  **UI:** Relocated the warning about the available source code of
+   extension modules to be evaluated at a more appropriate time.
 
 -  **Debian:** Remove recommendation for ``libfuse2`` package as it is
    no longer useful.
@@ -292,6 +309,17 @@ Tests
 
 -  **Python 3.14:** Ignored a syntax error message change.
 
+-  **Python 3.14:** Added test execution support options to the main
+   test runner to use this version as well.
+
+-  Fixed an issue where the runner binary path was mishandled for the
+   third pass of reflected compilations.
+
+-  Removed the usage of obsolete plugins in reflected compilation tests.
+
+-  **Debugging:** Prevented boolean testing of ``namedtuples`` to avoid
+   unexpected bugs.
+
 Cleanups
 ========
 
@@ -307,6 +335,15 @@ Cleanups
 -  Refactored the process execution results to correctly utilize our
    ``namedtuples`` variant, that makes it easier to understand what code
    does with the results.
+
+-  **Quality:** Enabled automatic conversion of em-dashes and en-dashes
+   in code comments to the autoformat tool. AI won't stop producing them
+   and they can cause ``SyntaxError`` for older Python versions, nor is
+   unnecessarily using UTF-8 welcome.
+
+-  Ensured that cloned outline nodes are assigned their correct names
+   immediately upon creation, that avoids inconsistencies during their
+   creation.
 
 Summary
 =======
