@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.0rc11**.
+It currently covers changes up to version **4.1rc3**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -175,6 +175,9 @@ Bug Fixes
 -  **Python2:** Fixed ``FileNotFoundError`` compatibility fallback
    handling. (Fixed in 4.0.8 already.)
 
+-  **Compatibility:** Fix, loop ownership check in value traces was
+   missing, causing issues with nested loops.
+
 Package Support
 ===============
 
@@ -233,6 +236,9 @@ Optimization
    compilation to avoid loading ``libc`` for each trace. (Added in 4.0.8
    already.)
 
+-  **UI:** Output a warning for modules that remain unfinished after the
+   third optimization pass.
+
 Anti-Bloat
 ==========
 
@@ -265,6 +271,15 @@ Organizational
 -  Removed no longer useful inline copy of ``wax_off``. We have our own
    stubs generator project.
 
+-  **Release:** Added missing package to the CI container for building
+   Nuitka Debian packages.
+
+-  **Developer:** Updated AI instructions for creating Minimal
+   Reproducible Examples (MRE) to skip unneeded C compilation.
+
+-  **Debugging:** Added an internal function for checking if a string is
+   a valid Python identifier.
+
 Tests
 =====
 
@@ -288,6 +303,10 @@ Cleanups
 
 -  **Scons:** Provided nicer errors in case of "unset" variables being
    used, so we can tell it.
+
+-  Refactored the process execution results to correctly utilize our
+   ``namedtuples`` variant, that makes it easier to understand what code
+   does with the results.
 
 Summary
 =======
