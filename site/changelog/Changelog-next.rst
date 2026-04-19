@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.1rc4**.
+It currently covers changes up to version **4.1rc7**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -182,6 +182,33 @@ Bug Fixes
    handle console handles, enabling cases like ``os.system`` to work
    nicely.
 
+-  **Python2:** Fixed a compatibility issue where providing default
+   values to the ``mkdtemp`` function was failing.
+
+-  **Windows:** Fixed spurious issues with C23 embedding in 32-bit
+   MinGW64 by switching to ``coff_obj`` resource mode for it as well.
+
+-  **Plugins:** Fixed an issue where the ``post-import-code`` execution
+   could fail because the triggering sub-package was not yet available
+   in ``sys.modules``.
+
+-  **UI:** Fixed an issue where listing package DLLs with
+   ``--list-package-dlls`` was broken due to recent plugin lifecycle
+   changes.
+
+-  **UI:** Fixed ``--list-package-exe`` so that it properly works on
+   non-Windows platforms to detect executable files correctly.
+
+-  **Windows:** Fixed an issue where running batch files from within
+   Nuitka could unintentionally execute system-wide auto-run scripts by
+   explicitly disabling them in ``cmd.exe``.
+
+-  **UI:** Handled paths starting with ``{PROGRAM_DIR}`` the same as a
+   relative path when parsing the ``--onefile-tempdir-spec`` option.
+
+-  **Plugins:** Enhanced the auto-icon hack in PySide6 to use compatible
+   class names.
+
 Package Support
 ===============
 
@@ -205,8 +232,16 @@ Package Support
 -  **Standalone:** Added missing DLLs for ``openvino``. (Added in 4.0.7
    already.)
 
+-  Enhanced the package configuration YAML schema by adding the
+   ``relative_to`` parameter for ``from_filenames`` DLL specification,
+   avoiding error-prone purely relative paths.
+
 New Features
 ============
+
+-  **UI:** Added the ``--recommended-python-version`` option to display
+   recommended Python versions for supported, working, or commercial
+   usage.
 
 -  **UI:** Add message to inform users about ``Nuitka[onefile]`` if
    compression is not installed. (Added in 4.0.1 already.)
@@ -236,6 +271,9 @@ New Features
 -  **Reports:** Included individual module-level C compiler caching
    (``ccache``/``clcache``) statistics in compilation reports.
 
+-  Added support for detecting and correctly resolving the Python prefix
+   for the ``PyEnv on Homebrew`` Python flavor.
+
 Optimization
 ============
 
@@ -252,6 +290,16 @@ Optimization
 -  Added an extra micro pass trigger when new variables are introduced
    or variable usage changes severely, ensuring optimizations are fully
    propagated, avoiding unnecessary extra full passes.
+
+-  Provided scripts to compile Python statically with PGO tailored for
+   Nuitka on Linux, Windows, and macOS.
+
+-  Added support for running the Data Composer tool from a compiled
+   Nuitka binary without spawning an uncompiled Python process.
+
+-  Enhanced the usage of ``vectorcall`` for ``PyCFunction`` objects by
+   directly checking for its presence instead of relying purely on
+   flags, allowing more frequent use of this faster execution path.
 
 Anti-Bloat
 ==========
@@ -297,6 +345,28 @@ Organizational
 -  **Debugging:** Added an internal function for checking if a string is
    a valid Python identifier.
 
+-  **AI:** Added a task in Visual Studio Code to export the currently
+   selected Python interpreter path to a file, making it available as
+   "python" and "pip" matching the selected interpreter. This makes it
+   easier to use a specific version with no instructions needed.
+
+-  **AI:** Updated the rules to instruct AI to only generate useful
+   comments that add context not present in the code.
+
+-  **Containers:** Added template rendering support for Jinja2 (``.j2``)
+   container files in our internal Podman tools.
+
+-  **Projects:** Clarified the current status and rationale of Python
+   2.6 support in the developer manual.
+
+-  **Debugging:** Added experimental flag
+   ``--experimental=ignore-extra-micro-pass`` to allow ignoring extra
+   micro pass detection.
+
+-  **Visual Code:** Added integration scripts for ``bash`` and ``zsh``
+   autocompletion of Nuitka CLI options. These are now also integrated
+   into Visual Studio Code terminal profiles and the Debian package.
+
 Tests
 =====
 
@@ -319,6 +389,18 @@ Tests
 
 -  **Debugging:** Prevented boolean testing of ``namedtuples`` to avoid
    unexpected bugs.
+
+-  Added the ``Test`` suffix to syntax test files and disabled "python"
+   mode and spell checking for them to resolve issues reported in IDEs.
+
+-  Fixed newline handling in diff outputs from the output comparison
+   tool.
+
+-  Covered ``post-import-code`` functionality with a new subpackage test
+   case.
+
+-  Prevented the program test suite from running an unnecessary variant
+   to save execution time.
 
 Cleanups
 ========
@@ -344,6 +426,25 @@ Cleanups
 -  Ensured that cloned outline nodes are assigned their correct names
    immediately upon creation, that avoids inconsistencies during their
    creation.
+
+-  **Quality:** Updated to the latest versions of ``black`` and adopted
+   a faster ``isort`` execution by caching results.
+
+-  **Quality:** Modified the PyLint wrapper to exit gracefully instead
+   of raising an error when no matching files require checking.
+
+-  **Quality:** Avoided checking YAML package configuration files twice,
+   since autoformat already handles them.
+
+-  **Quality:** Ensured that YAML package configuration checks output
+   the original filename instead of the temporary one when a failure
+   occurs.
+
+-  **Quality:** Prevented pushing of tags from triggering git pre-push
+   quality checks.
+
+-  **Quality:** Silenced the output of ``optipng`` and ``jpegoptim``
+   during image optimization auto-formatting.
 
 Summary
 =======
