@@ -143,6 +143,19 @@ Bug Fixes
 -  **Python 3.12+:** Added support for generic type variables in ``async
    def`` functions. (Added in 4.0.5 already.)
 
+-  **Anaconda:** Fixed ``delvewheel`` plugin not working with Python
+   3.8+. This enhances compatibility with installed PyPI packages that
+   use it for their DLLs. (Fixed in 4.0.6 already.)
+
+-  **UI:** Fixed flushing outputs for prompts was not working in all
+   cases when progress bars were enabled. (Fixed in 4.0.6 already.)
+
+-  **UI:** Fixed missing unused variable warnings at C compile time when
+   using ``zig`` as a C compiler. (Fixed in 4.0.6 already.)
+
+-  **Scons:** Fix, forced stdout and stderr paths as a feature was
+   broken. (Fixed in 4.0.6 already.)
+
 Package Support
 ===============
 
@@ -178,6 +191,9 @@ New Features
    variables, checking for collisions with reserved runtime variables.
    (Added in 4.0.2 already.)
 
+-  **Scons:** Added new option to select ``--reproducible`` builds or
+   not. (Added in 4.0.6 already.)
+
 Optimization
 ============
 
@@ -200,6 +216,12 @@ Organizational
 
 -  **Debian:** Remove recommendation for ``libfuse2`` package as it is
    no longer useful.
+
+-  **Debian:** Used ``platformdirs`` instead of ``appdirs``.
+
+-  **Debugging:** Removed Python 3.11+ restriction for ``clang-format``
+   as it is available everywhere, even Python 2.7, and we still want
+   nicely formatted code when we read things. (Added in 4.0.6 already.)
 
 Tests
 =====
