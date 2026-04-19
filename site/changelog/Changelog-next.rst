@@ -162,6 +162,19 @@ Bug Fixes
 -  **macOS:** Fixed failure to remove extended attributes because files
    need to be made writable first. (Fixed in 4.0.7 already.)
 
+-  Fix, dict ``pop`` and ``setdefault`` using with ``:=`` rewrites
+   lacked exception-exit annotations for un-hashable keys. (Fixed in
+   4.0.8 already.)
+
+-  **Python 3.13:** Fixed the ``__parameters__`` attribute of generic
+   classes. (Fixed in 4.0.8 already.)
+
+-  **Python 3.11+:** Fixed starred arguments not working as type
+   variables. (Fixed in 4.0.8 already.)
+
+-  **Python2:** Fixed ``FileNotFoundError`` compatibility fallback
+   handling. (Fixed in 4.0.8 already.)
+
 Package Support
 ===============
 
@@ -203,11 +216,22 @@ New Features
 -  **Scons:** Added new option to select ``--reproducible`` builds or
    not. (Added in 4.0.6 already.)
 
+-  **Python 3.10+:** Added support for
+   ``importlib.metadata.package_distributions()``. (Added in 4.0.8
+   already.)
+
+-  **Plugins:** Added support for the multiprocessing ``forkserver``
+   context. (Added in 4.0.8 already.)
+
 Optimization
 ============
 
 -  Avoid including ``importlib._bootstrap`` and
    ``importlib._bootstrap_external``. (Added in 4.0.1 already.)
+
+-  **Linux:** Cached the ``syscall`` used for time keeping during
+   compilation to avoid loading ``libc`` for each trace. (Added in 4.0.8
+   already.)
 
 Anti-Bloat
 ==========
