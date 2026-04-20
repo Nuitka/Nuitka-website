@@ -64,7 +64,7 @@ FA_STYLE_MAP = {
     "fal": "light",
     "fad": "duotone",
     "fat": "thin",
-    "fass": "sharp-solid",
+    "fass": "sharp-solid",  # spell-checker: ignore fass
 }
 
 FA_UTILITY_CLASSES = {
@@ -110,6 +110,7 @@ def add_inline_svg(
             my_print(
                 "To fix, run the following command to copy it from the unpacked Pro+ tarball:\n"
             )
+            # spell-checker: ignore svgs
             my_print(
                 f"cp ../fontawesome-pro-7.2.0-web/svgs/{style_folder}/{icon_name}.svg {svg_path}\n"
             )
@@ -1624,7 +1625,7 @@ def runUpdateGolden(
 
     my_print("Summary:")
     my_print(f"- Browsers: {len(browsers)}")
-    my_print(f"- Viewports: {len(devices)}")
+    my_print(f"- Devices: {len(devices)}")
     my_print(f"- Pages: {len(pages)}")
     my_print(f"- Total images: {len(browsers) * len(devices) * len(pages)}")
     return 0
