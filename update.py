@@ -24,7 +24,7 @@ importNuitka()
 # isort:start
 
 from nuitka.tools.quality.auto_format.AutoFormat import (
-    withFileOpenedAndAutoFormatted,
+    withFileOpenedAndAutoFormatted as _withFileOpenedAndAutoFormatted,
 )
 from nuitka.tools.release.Documentation import checkRstLint
 from nuitka.Tracing import my_print
@@ -49,6 +49,11 @@ from regression_utils import (
     build_url,
     sanitizeUrl,
 )
+
+
+def withFileOpenedAndAutoFormatted(filename):
+    return _withFileOpenedAndAutoFormatted(filename, filename)
+
 
 my_print("Development mode:", development_mode)
 
