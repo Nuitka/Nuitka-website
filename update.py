@@ -2,7 +2,6 @@
 
 """Main interface to Nuitka-Website build process."""
 
-
 import copy
 import datetime
 import os
@@ -394,11 +393,11 @@ def updateDownloadPage():
                 r'href="(?:\./)?nuitka-(.*).noarch\.rpm(?:\.mirrorlist)?"', line
             )
 
-            try:
-                candidates.append(match.group(1))
-            except Exception:
+            if not match:
                 print("problem with line %r from '%s'" % (line, url))
-                raise
+                raise ValueError(line)
+
+            candidates.append(match.group(1))
 
         def get_numeric_version(x):
             if x.startswith("lp"):
@@ -438,11 +437,11 @@ def updateDownloadPage():
                 line,
             )
 
-            try:
-                candidates.append(match.group(1))
-            except Exception:
+            if not match:
                 print("problem with line %r from '%s'" % (line, url))
-                raise
+                raise ValueError(line)
+
+            candidates.append(match.group(1))
 
         max_prerelease = max(candidates, key=compareVersion)
 
@@ -701,9 +700,9 @@ def _splitRestByChapter(lines):
             section_markers.append((count, lines[count + 1].strip()))
 
     for count, (section_start_line, title) in enumerate(section_markers):
-        try:
+        if count + 1 < len(section_markers):
             end_line = section_markers[count + 1][0]
-        except IndexError:
+        else:
             end_line = None
 
         yield title, lines[section_start_line + 3 : end_line]
@@ -1342,11 +1341,10 @@ def runPostProcessing():
         top_link_nav = None
 
         if not has_top_nav:
-            try:
-                h1 = doc.xpath("//h1")[0]
-            except IndexError:
-                pass
-            else:
+            h1 = doc.xpath("//h1")
+
+            if h1:
+                h1 = h1[0]
                 top_nav = html.fromstring("""<div class="top_nav"></div>""")
                 h1.getparent().insert(h1.getparent().index(h1), top_nav)
 
@@ -1360,11 +1358,9 @@ def runPostProcessing():
                 social_container.getparent().remove(social_container)
                 top_link_nav.append(social_container)
 
-                try:
-                    blog_container = doc.xpath("//div[@class='blog-post-box']")[0]
-                except IndexError:
-                    pass
-                else:
+                blog_container = doc.xpath("//div[@class='blog-post-box']")
+                if blog_container:
+                    blog_container = blog_container[0]
                     blog_container.getparent().remove(blog_container)
                     top_nav.getparent().insert(
                         top_nav.getparent().index(top_nav) + 1, blog_container
