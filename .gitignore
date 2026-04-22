@@ -18,3 +18,4 @@ auto-update.log
 tests/current
 tests/diff
 state.ini
+.codex
