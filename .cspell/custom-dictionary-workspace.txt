@@ -21,6 +21,7 @@ chrpath
 clcache
 codespell
 conda
+condition-evals-to-constant
 cookiejar
 copybutton
 Crpytodome
