@@ -9,7 +9,6 @@ import re
 import shlex
 import subprocess
 import sys
-from io import StringIO
 from optparse import OptionParser
 from pathlib import Path
 from settings import development_mode
@@ -95,6 +94,9 @@ SVG_CACHE = {}
 
 class AssetProcessingError(RuntimeError):
     """Raised when website asset post-processing fails."""
+
+
+HTTP_REQUEST_TIMEOUT = 30
 
 
 def get_svg_content(svg_path):
@@ -233,64 +235,84 @@ def inlineFontAwesomeSvg(doc):
         )
 
 
-def updateDownloadPage():
-    page_source = requests.get("https://nuitka.net/releases/").text
+def _fetchUrlText(url, description):
+    try:
+        response = requests.get(url, timeout=HTTP_REQUEST_TIMEOUT)
+        response.raise_for_status()
+    except requests.RequestException as e:
+        raise RuntimeError(f"Failed to fetch {description} from {url}: {e}") from e
 
-    tree = html.parse(StringIO(page_source))
-    link_names = tree.xpath("//@href")
+    return response.text
 
+
+def _getReleaseVersionKey(value):
+    if value == "":
+        return []
+
+    value = (
+        value.replace("~pre", ".")
+        .replace("pre", ".")
+        .replace("~rc", ".")
+        .replace("rc", ".")
+        .replace("~nd", "")
+    )
+
+    parts = []
+    current = ""
+
+    for value_part in value:
+        if value_part in ".-+":
+            parts.append(current)
+            current = ""
+        elif value_part.isdigit() and (current.isdigit() or not current):
+            current += value_part
+        elif value_part.isdigit():
+            parts.append(current)
+            current = value_part
+        elif current == "":
+            current = value_part
+        elif current.isdigit():
+            parts.append(current)
+            current = value_part
+        elif current.isalpha() and value_part.isalpha():
+            current += value_part
+        else:
+            raise ValueError(
+                f"Unexpected version token {value_part!r} while parsing {value!r}"
+            )
+
+    if current != "":
+        parts.append(current)
+
+    parts = [int(part) if part.isdigit() else part for part in parts]
+
+    if "ds" in parts:
+        parts.remove("ds")
+
+    if not parts:
+        raise ValueError(f"Failed to split version string {value!r}")
+
+    return parts
+
+
+def _makePlainReleaseVersion(value):
+    return (
+        value.replace("+ds", "")
+        .replace("~pre", "pre")
+        .replace("~rc", "rc")
+        .split("-")[0]
+    )
+
+
+def _fetchReleasePageLinkNames():
+    page_source = _fetchUrlText("https://nuitka.net/releases/", "release listing")
+    tree = html.fromstring(page_source)
+    return tree.xpath("//@href")
+
+
+def _selectLatestReleaseVersions(link_names):
     max_pre_release = ""
     max_stable_release = ""
-
-    def get_numeric_version(value):
-        if value == "":
-            return []
-
-        value = (
-            value.replace("~pre", ".")
-            .replace("pre", ".")
-            .replace("~rc", ".")
-            .replace("rc", ".")
-            .replace("~nd", "")
-        )
-
-        parts = []
-
-        current = ""
-
-        for v in value:
-            if v in ".-+":
-                parts.append(current)
-                current = ""
-            elif v.isdigit() and (current.isdigit() or not current):
-                current += v
-            elif v.isdigit():
-                parts.append(current)
-                current = v
-            elif current == "":
-                current = v
-            elif current.isdigit():
-                parts.append(current)
-                current = v
-            elif current.isalpha() and v.isalpha():
-                current += v
-            else:
-                raise ValueError(
-                    f"Unexpected version token {v!r} while parsing {value!r}"
-                )
-
-        if current != "":
-            parts.append(current)
-
-        parts = [int(part) if part.isdigit() else part for part in parts]
-
-        if "ds" in parts:
-            parts.remove("ds")
-
-        if not parts:
-            raise ValueError(f"Failed to split version string {value!r}")
-
-        return parts
 
     for filename in link_names:
         # Navigation links
@@ -314,208 +336,168 @@ def updateDownloadPage():
         if not filename.endswith(".zip.sig"):
             continue
 
-        # print "FILE", filename
-
         filename = filename[len("nuitka_") : -len(".zip.sig")]
 
-        # print "VER", filename
-
         if "pre" in filename or "rc" in filename:
-            max_pre_release = max(max_pre_release, filename, key=get_numeric_version)
+            max_pre_release = max(max_pre_release, filename, key=_getReleaseVersionKey)
         else:
             max_stable_release = max(
-                max_stable_release, filename, key=get_numeric_version
+                max_stable_release, filename, key=_getReleaseVersionKey
             )
 
-    def makePlain(value):
-        value = (
-            value.replace("+ds", "")
-            .replace("~pre", "pre")
-            .replace("~rc", "rc")
-            .split("-")[0]
-        )
+    if not max_pre_release:
+        raise ValueError("Did not find any pre-release source archives")
 
-        return value
+    if not max_stable_release:
+        raise ValueError("Did not find any stable source archives")
 
-    my_print(
-        "Max pre-release is %s %s " % (max_pre_release, makePlain(max_pre_release))
+    return max_pre_release, max_stable_release
+
+
+def _getObsNumericVersion(value):
+    if value.startswith("lp"):
+        value = value[2:]
+    if value.startswith("bp"):
+        value = value[2:]
+
+    return int(value)
+
+
+def _splitObsVersion(value):
+    for part in value.split("."):
+        yield from part.split("rc")
+
+
+def _getObsVersionKey(value):
+    version_parts = value.split("-")
+
+    return tuple(
+        tuple(_getObsNumericVersion(part) for part in _splitObsVersion(value_part))
+        for value_part in version_parts
     )
-    my_print(
-        "Max stable release is %s %s "
-        % (max_stable_release, makePlain(max_stable_release))
-    )
 
-    output = ""
 
-    def extractDebVersion(path):
-        match = re.search(r"nuitka_(.*)_all\.deb", path)
+def _extractObsRpmCandidates(lines, url, *, prerelease):
+    if prerelease:
+        pattern = r'href="(?:\./)?nuitka-unstable-(.*).noarch\.rpm(?:\.mirrorlist)?"'
+        description = "pre-release"
+    else:
+        # spell-checker: ignore mirrorlist
+        pattern = r'href="(?:\./)?nuitka-(.*).noarch\.rpm(?:\.mirrorlist)?"'
+        description = "stable"
 
-        return match.group(1)
+    candidates = []
 
-    def makeRepositoryUrl(path):
-        return f"https://nuitka.net/{path}"
-
-    deb_info = {}
-
-    for line in output.split("\n"):
-        if not line:
+    for line in lines:
+        if ".rpm" not in line:
             continue
 
-        parts = line.split(os.path.sep)
-
-        if parts[0] != "deb":
-            raise ValueError(f"Unexpected Debian repository path {line!r}")
-
-        category = parts[1]
-        code_name = parts[2]
-
-        filename = parts[-1]
-
-        deb_info[category, code_name] = (
-            extractDebVersion(filename),
-            makeRepositoryUrl(line),
-        )
-
-    def checkOBS(repo_name):
-        url = (
-            "https://download.opensuse.org/repositories/home:/kayhayen/%s/noarch/"
-            % repo_name
-        )
-
-        command = "curl -s %s" % url
-
-        output = subprocess.check_output(command.split())
-        output = output.decode("utf8").split("\n")
-
-        candidates = []
-
-        for line in output:
-            if ".rpm" not in line:
+        if prerelease:
+            if "unstable" not in line:
                 continue
-
+        else:
             if "unstable" in line:
                 continue
 
             if "experimental" in line:
                 continue
 
-            # spell-checker: ignore mirrorlist
-            match = re.search(
-                r'href="(?:\./)?nuitka-(.*).noarch\.rpm(?:\.mirrorlist)?"', line
+        match = re.search(pattern, line)
+
+        if not match:
+            raise ValueError(
+                f"Failed to parse {description} OBS entry {line!r} from {url!r}"
             )
 
-            if not match:
-                print("problem with line %r from '%s'" % (line, url))
-                raise ValueError(line)
+        candidates.append(match.group(1))
 
-            candidates.append(match.group(1))
+    if not candidates:
+        raise ValueError(f"Did not find any {description} OBS RPMs in {url!r}")
 
-        def get_numeric_version(x):
-            if x.startswith("lp"):
-                x = x[2:]
-            if x.startswith("bp"):
-                x = x[2:]
+    return candidates
 
-            return int(x)
 
-        def splitVersion(v):
-            for w in v.split("."):
-                yield from w.split("rc")
+def _fetchObsRepositoryVersions(repo_name):
+    url = (
+        "https://download.opensuse.org/repositories/home:/kayhayen/%s/noarch/"
+        % repo_name
+    )
+    output_lines = _fetchUrlText(
+        url, f"OBS repository listing for {repo_name}"
+    ).splitlines()
 
-        def compareVersion(v):
-            v = v.split("-")
+    stable_candidates = _extractObsRpmCandidates(output_lines, url, prerelease=False)
+    prerelease_candidates = _extractObsRpmCandidates(output_lines, url, prerelease=True)
 
-            v = tuple(
-                tuple(get_numeric_version(x) for x in splitVersion(value))
-                for value in v
-            )
+    max_release = max(stable_candidates, key=_getObsVersionKey)
+    max_prerelease = max(prerelease_candidates, key=_getObsVersionKey)
 
-            return v
+    if "6.7" in max_prerelease:
+        raise RuntimeError(
+            f"Unexpected OBS pre-release candidate {max_prerelease!r} from {url!r}"
+        )
 
-        max_release = max(candidates, key=compareVersion)
+    my_print("Repo %s %s" % (repo_name, max_prerelease))
 
-        candidates = []
+    return max_release, max_prerelease
 
-        for line in output:
-            if ".rpm" not in line:
-                continue
 
-            if "unstable" not in line:
-                continue
-
-            match = re.search(
-                r'href="(?:\./)?nuitka-unstable-(.*).noarch\.rpm(?:\.mirrorlist)?"',
-                line,
-            )
-
-            if not match:
-                print("problem with line %r from '%s'" % (line, url))
-                raise ValueError(line)
-
-            candidates.append(match.group(1))
-
-        max_prerelease = max(candidates, key=compareVersion)
-
-        if "6.7" in max_prerelease:
-            raise RuntimeError(
-                f"Unexpected OBS pre-release candidate {max_prerelease!r} from {command!r}"
-            )
-
-        my_print("Repo %s %s" % (repo_name, max_prerelease))
-
-        return max_release, max_prerelease
-
-    min_rhel = 7
-    max_rhel = 8
-    min_fedora = 36
-    max_fedora = 36
-
-    rhel_rpm = {}
-    for rhel_number in range(min_rhel, max_rhel + 1):
-        stable, develop = checkOBS("RedHat_RHEL-%d" % rhel_number)
-
-        rhel_rpm["stable", rhel_number] = stable
-        rhel_rpm["develop", rhel_number] = develop
-
-    max_centos6_release, max_centos6_prerelease = checkOBS("CentOS_CentOS-6")
-    max_centos7_release, max_centos7_prerelease = checkOBS("CentOS_7")
-    max_centos8_release, max_centos8_prerelease = checkOBS("CentOS_8")
-
-    centos_rpm = {}
-    centos_rpm["stable", 6] = max_centos6_release
-    centos_rpm["develop", 6] = max_centos6_prerelease
-    centos_rpm["stable", 7] = max_centos7_release
-    centos_rpm["develop", 7] = max_centos7_prerelease
-    centos_rpm["stable", 8] = max_centos8_release
-    centos_rpm["develop", 8] = max_centos8_prerelease
-
-    fedora_rpm = {}
-    for fedora_number in range(min_fedora, max_fedora + 1):
-        stable, develop = checkOBS("Fedora_%d" % fedora_number)
-
-        fedora_rpm["stable", fedora_number] = stable
-        fedora_rpm["develop", fedora_number] = develop
-
-    opensuse_rpm = {}
-
-    min_leap_minor = 4
-    max_leap_minor = 4
-    for leap_minor in range(min_leap_minor, max_leap_minor + 1):
-        stable, develop = checkOBS(f"openSUSE_Leap_15.{leap_minor}")
-
-        opensuse_rpm["stable", leap_minor] = stable
-        opensuse_rpm["develop", leap_minor] = develop
-
-    max_sle_150_release, max_sle_150_prerelease = checkOBS("SLE_15")
-
-    findings = {
-        "plain_prerelease": makePlain(max_pre_release),
-        "deb_prerelease": max_pre_release,
-        "plain_stable": makePlain(max_stable_release),
-        "deb_stable": max_stable_release,
+def _fetchObsDownloadVersions():
+    obs_versions = {
+        "rhel": {},
+        "centos": {},
+        "fedora": {},
+        "opensuse": {},
+        "sle": {},
     }
 
-    templates = {}
+    for rhel_number in range(7, 9):
+        stable, develop = _fetchObsRepositoryVersions("RedHat_RHEL-%d" % rhel_number)
+
+        obs_versions["rhel"]["stable", rhel_number] = stable
+        obs_versions["rhel"]["develop", rhel_number] = develop
+
+    for centos_number, repo_name in (
+        (6, "CentOS_CentOS-6"),
+        (7, "CentOS_7"),
+        (8, "CentOS_8"),
+    ):
+        stable, develop = _fetchObsRepositoryVersions(repo_name)
+
+        obs_versions["centos"]["stable", centos_number] = stable
+        obs_versions["centos"]["develop", centos_number] = develop
+
+    for fedora_number in range(36, 37):
+        stable, develop = _fetchObsRepositoryVersions("Fedora_%d" % fedora_number)
+
+        obs_versions["fedora"]["stable", fedora_number] = stable
+        obs_versions["fedora"]["develop", fedora_number] = develop
+
+    for leap_minor in range(4, 5):
+        stable, develop = _fetchObsRepositoryVersions(f"openSUSE_Leap_15.{leap_minor}")
+
+        obs_versions["opensuse"]["stable", leap_minor] = stable
+        obs_versions["opensuse"]["develop", leap_minor] = develop
+
+    stable, develop = _fetchObsRepositoryVersions("SLE_15")
+    obs_versions["sle"]["stable", 15] = stable
+    obs_versions["sle"]["develop", 15] = develop
+
+    return obs_versions
+
+
+def _renderDownloadPageFiles(max_pre_release, max_stable_release, obs_versions):
+    plain_prerelease = _makePlainReleaseVersion(max_pre_release)
+    plain_stable = _makePlainReleaseVersion(max_stable_release)
+
+    my_print("Max pre-release is %s %s " % (max_pre_release, plain_prerelease))
+    my_print("Max stable release is %s %s " % (max_stable_release, plain_stable))
+
+    fedora_rpm = obs_versions["fedora"]
+    centos_rpm = obs_versions["centos"]
+    rhel_rpm = obs_versions["rhel"]
+    opensuse_rpm = obs_versions["opensuse"]
+    sle_rpm = obs_versions["sle"]
 
     def makeFedoraText(fedora_number, release):
         version = fedora_rpm[release, fedora_number]
@@ -543,6 +525,9 @@ def updateDownloadPage():
     def makeRepoLinkText(repo_name):
         return f"""`repository file <https://download.opensuse.org/repositories/home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"""
 
+    fedora_versions = sorted(
+        {fedora_number for _release, fedora_number in fedora_rpm}, reverse=True
+    )
     fedora_data = [
         (
             f"Fedora {fedora_number}",
@@ -550,7 +535,7 @@ def updateDownloadPage():
             makeFedoraText(fedora_number, "stable"),
             makeFedoraText(fedora_number, "develop"),
         )
-        for fedora_number in range(max_fedora, min_fedora - 1, -1)
+        for fedora_number in fedora_versions
     ]
 
     fedora_table = makeTable(
@@ -559,29 +544,25 @@ def updateDownloadPage():
 
     centos_data = [
         (
-            "CentOS 8",
-            makeRepoLinkText("CentOS_8"),
-            makeCentOSText(8, "stable"),
-            makeCentOSText(8, "develop"),
-        ),
-        (
-            "CentOS 7",
-            makeRepoLinkText("CentOS_7"),
-            makeCentOSText(7, "stable"),
-            makeCentOSText(7, "develop"),
-        ),
-        (
-            "CentOS 6",
-            makeRepoLinkText("CentOS_CentOS-6"),
-            makeCentOSText(6, "stable"),
-            makeCentOSText(6, "develop"),
-        ),
+            f"CentOS {centos_number}",
+            makeRepoLinkText(
+                "CentOS_CentOS-6" if centos_number == 6 else f"CentOS_{centos_number}"
+            ),
+            makeCentOSText(centos_number, "stable"),
+            makeCentOSText(centos_number, "develop"),
+        )
+        for centos_number in sorted(
+            {centos_number for _release, centos_number in centos_rpm}, reverse=True
+        )
     ]
 
     centos_table = makeTable(
         [["CentOS Version", "RPM Repository", "Stable", "Develop"]] + centos_data
     )
 
+    rhel_versions = sorted(
+        {rhel_number for _release, rhel_number in rhel_rpm}, reverse=True
+    )
     rhel_data = [
         (
             f"RHEL {rhel_number}",
@@ -589,13 +570,14 @@ def updateDownloadPage():
             makeRHELText(rhel_number, "stable"),
             makeRHELText(rhel_number, "develop"),
         )
-        for rhel_number in range(max_rhel, min_rhel - 1, -1)
+        for rhel_number in rhel_versions
     ]
 
     rhel_table = makeTable(
         [["RHEL Version", "RPM Repository", "Stable", "Develop"]] + rhel_data
     )
 
+    leap_minors = sorted({leap_minor for _release, leap_minor in opensuse_rpm})
     suse_data = [
         (
             f"openSUSE Leap 15.{leap_minor}",
@@ -603,7 +585,7 @@ def updateDownloadPage():
             makeLeapText(leap_minor, "stable"),
             makeLeapText(leap_minor, "develop"),
         )
-        for leap_minor in range(min_leap_minor, max_leap_minor + 1)
+        for leap_minor in leap_minors
     ]
 
     suse_data.insert(
@@ -611,17 +593,14 @@ def updateDownloadPage():
         (
             "SLE 15",
             makeRepoLinkText("SLE_15"),
-            makeVersionText(max_sle_150_release),
-            makeVersionText(max_sle_150_prerelease),
+            makeVersionText(sle_rpm["stable", 15]),
+            makeVersionText(sle_rpm["develop", 15]),
         ),
     )
 
     suse_table = makeTable(
         [["SUSE Version", "RPM Repository", "Stable", "Develop"]] + suse_data
     )
-
-    plain_prerelease = makePlain(max_pre_release)
-    plain_stable = makePlain(max_stable_release)
 
     source_table = makeTable(
         [["Branch", "zip", "tar.gz", "tar.bz2"]]
@@ -680,6 +659,18 @@ def updateDownloadPage():
         output_file.write(suse_table)
     with withFileOpenedAndAutoFormatted("site/doc/source-downloads.inc") as output_file:
         output_file.write(source_table)
+
+
+def updateDownloadPage():
+    link_names = _fetchReleasePageLinkNames()
+    max_pre_release, max_stable_release = _selectLatestReleaseVersions(link_names)
+    obs_versions = _fetchObsDownloadVersions()
+
+    _renderDownloadPageFiles(
+        max_pre_release=max_pre_release,
+        max_stable_release=max_stable_release,
+        obs_versions=obs_versions,
+    )
 
 
 # slugify is copied from
