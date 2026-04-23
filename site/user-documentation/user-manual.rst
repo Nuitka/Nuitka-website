@@ -353,18 +353,23 @@ variables. Checkout this example:
    # nuitka-project: --include-qt-plugins=qml
 
 The comments must be at the start of lines, and the indentation inside
-them marks an end of blocks, much like in Python. The supported keywords
-are ``-if``, ``-else``, and ``-set`` as demonstrated above.
+them marks an end of blocks, much like in Python. The supported
+directives are ``nuitka-project:``, ``nuitka-project-if:``,
+``nuitka-project-else:``, and ``nuitka-project-set:``.
 
-You can put arbitrary Python expressions there. For example, if you want to
-access the version information of a package, you can use
-``__import__("module_name").__version__``. This can be used as a condition
-to decide whether to enable or disable specific Nuitka settings, or it can be evaluated
-and stored as a custom variable using ``nuitka-project-set: KEY = expression``.
+Only ``nuitka-project-if:`` conditions and the expression part of
+``nuitka-project-set: KEY = expression`` are evaluated as Python. Plain
+``nuitka-project:`` lines are not Python expressions; they only use
+``{variable}`` expansion.
 
-The only thing Nuitka does before executing these Python expressions is
-expanding ``{variable}`` for your custom variables and a pre-defined set of
-system variables:
+For example, if you want to access the version information of a package,
+you can use ``__import__("module_name").__version__`` in a
+``nuitka-project-set`` directive. Custom variables defined that way can
+then be reused in later project directives.
+
+Before evaluating Python expressions or expanding option values, Nuitka
+expands ``{variable}`` for your custom variables and a pre-defined set
+of system variables:
 
 Table with supported variables:
 
