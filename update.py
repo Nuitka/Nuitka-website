@@ -6,6 +6,7 @@ import copy
 import datetime
 import os
 import re
+import shlex
 import subprocess
 import sys
 from io import StringIO
@@ -90,6 +91,10 @@ FA_REPLACEMENT_CLASS = {
 
 
 SVG_CACHE = {}
+
+
+class AssetProcessingError(RuntimeError):
+    """Raised when website asset post-processing fails."""
 
 
 def get_svg_content(svg_path):
@@ -270,7 +275,9 @@ def updateDownloadPage():
             elif current.isalpha() and v.isalpha():
                 current += v
             else:
-                assert False, (value, v)
+                raise ValueError(
+                    f"Unexpected version token {v!r} while parsing {value!r}"
+                )
 
         if current != "":
             parts.append(current)
@@ -280,7 +287,8 @@ def updateDownloadPage():
         if "ds" in parts:
             parts.remove("ds")
 
-        assert parts, value
+        if not parts:
+            raise ValueError(f"Failed to split version string {value!r}")
 
         return parts
 
@@ -297,7 +305,8 @@ def updateDownloadPage():
         if "CPython" in filename or "shedskin" in filename or "PySide" in filename:
             continue
 
-        assert filename.lower().startswith("nuitka"), filename
+        if not filename.lower().startswith("nuitka"):
+            raise ValueError(f"Unexpected release link target {filename!r}")
 
         if filename.endswith(".msi"):
             continue
@@ -354,7 +363,9 @@ def updateDownloadPage():
 
         parts = line.split(os.path.sep)
 
-        assert parts[0] == "deb"
+        if parts[0] != "deb":
+            raise ValueError(f"Unexpected Debian repository path {line!r}")
+
         category = parts[1]
         code_name = parts[2]
 
@@ -445,7 +456,10 @@ def updateDownloadPage():
 
         max_prerelease = max(candidates, key=compareVersion)
 
-        assert "6.7" not in max_prerelease, command
+        if "6.7" in max_prerelease:
+            raise RuntimeError(
+                f"Unexpected OBS pre-release candidate {max_prerelease!r} from {command!r}"
+            )
 
         my_print("Repo %s %s" % (repo_name, max_prerelease))
 
@@ -823,15 +837,24 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
     # orig_css = merged_css
 
     # Process with PostCSS
-    processed_css = _processWithPostCSS(merged_css)
+    try:
+        processed_css = _processWithPostCSS(merged_css)
+    except AssetProcessingError as e:
+        if not development_mode:
+            raise
+
+        processed_css = merged_css
+        my_print(f"Warning, {e}, using original CSS")
 
     # Validate processed CSS: fallback to original if empty or
     # invalid, but only in development mode.
     if not processed_css:
-        assert development_mode
+        if not development_mode:
+            raise AssetProcessingError("CSS processing produced empty output")
+
         processed_css = merged_css
 
-        my_print("Warning, postcss failed, using original CSS")
+        my_print("Warning, CSS processing produced empty output, using original CSS")
 
     del merged_css
 
@@ -877,8 +900,10 @@ s.parentNode.insertBefore(ci_search, s);
     if not development_mode:
         processed_js = _processWithTerser(js_set_contents)
 
-        if processed_js is not None:
-            js_set_contents = processed_js
+        if not processed_js:
+            raise AssetProcessingError("JS processing produced empty output")
+
+        js_set_contents = processed_js
 
     js_set_output_filename = "/_static/combined_%s.js" % getHashFromValues(
         js_set_contents
@@ -949,21 +974,36 @@ def _processWithNpmBuild(contents, script, suffix, cache, label):
         tmp_output_path = tmp_output.name
 
     try:
-        result = subprocess.run(
-            ["npm", "run", script],
-            env={**os.environ, "INPUT": tmp_input_path, "OUTPUT": tmp_output_path},
-            capture_output=True,
-            text=True,
-        )
+        try:
+            result = subprocess.run(
+                ["npm", "run", script],
+                env={
+                    **os.environ,
+                    "INPUT": tmp_input_path,
+                    "OUTPUT": tmp_output_path,
+                },
+                capture_output=True,
+                text=True,
+            )
+        except OSError as e:
+            raise AssetProcessingError(f"Unable to run {label} tool: {e}") from e
 
         if result.stdout.strip():
             my_print(f"{label} tool output: {result.stdout.strip()}")
 
         if result.returncode != 0:
-            my_print(f"{label} processing failed: {result.stderr.strip()}")
-            return None
+            message = result.stderr.strip() or result.stdout.strip()
+            raise AssetProcessingError(
+                f"{label} processing failed: {message or f'exit code {result.returncode}'}"
+            )
 
-        processed = getFileContents(tmp_output_path, mode="r", encoding="utf-8")
+        try:
+            processed = getFileContents(tmp_output_path, mode="r", encoding="utf-8")
+        except OSError as e:
+            raise AssetProcessingError(
+                f"Unable to read {label} output from {tmp_output_path}: {e}"
+            ) from e
+
         cache[contents] = processed
 
         processed_size = len(processed)
@@ -972,10 +1012,6 @@ def _processWithNpmBuild(contents, script, suffix, cache, label):
             my_print(
                 f"{label} reduced by {reduction_percent:.1f}% ({original_size} → {processed_size} bytes)"
             )
-
-    except Exception as e:
-        my_print(f"Unexpected error running {label} tool: {e}")
-        return None
     finally:
         deleteFile(tmp_input_path, must_exist=False)
         deleteFile(tmp_output_path, must_exist=False)
@@ -1024,27 +1060,31 @@ def _minifyHtml(filename):
             capture_output=True,
             text=True,
         )
+    except OSError as e:
+        raise AssetProcessingError(f"Unable to run HTML minifier: {e}") from e
 
-        if result.stdout.strip():
-            my_print(f"HTML-minifier output: {result.stdout.strip()}")
+    if result.stdout.strip():
+        my_print(f"HTML-minifier output: {result.stdout.strip()}")
 
-        if result.returncode != 0:
-            my_print(f"HTML-minifier failed: {result.stderr.strip()}")
-            return None
+    if result.returncode != 0:
+        message = result.stderr.strip() or result.stdout.strip()
+        raise AssetProcessingError(
+            f"HTML minifier failed for {filename}: {message or f'exit code {result.returncode}'}"
+        )
 
-        if os.path.exists(filename):
-            os.replace(filename, filename)
-        else:
-            my_print(f"Expected minified file not found: {filename}")
-            return None
+    if not os.path.exists(filename):
+        raise AssetProcessingError(
+            f"Expected minified HTML file was not produced: {filename}"
+        )
 
-    except Exception as e:
-        my_print(f"Unexpected error in HTML processing: {e}")
-        return None
-
-    _html_minifier_cache[filename] = getFileContents(
-        filename, mode="r", encoding="utf-8"
-    )
+    try:
+        _html_minifier_cache[filename] = getFileContents(
+            filename, mode="r", encoding="utf-8"
+        )
+    except OSError as e:
+        raise AssetProcessingError(
+            f"Unable to read minified HTML file {filename}: {e}"
+        ) from e
 
 
 def handleJavaScript(filename, doc):
@@ -1170,11 +1210,15 @@ def runPostProcessing():
             output_base_theme_path, mode="r", encoding="utf-8"
         )
         processed_theme_css = _processWithPostCSS(theme_css_content)
-        if processed_theme_css:
-            putTextFileContents(
-                filename=output_base_theme_path, contents=processed_theme_css
+        if not processed_theme_css:
+            raise AssetProcessingError(
+                f"CSS processing produced empty output for {output_base_theme_path}"
             )
-            my_print(f"Successfully processed and cleaned base theme")
+
+        putTextFileContents(
+            filename=output_base_theme_path, contents=processed_theme_css
+        )
+        my_print(f"Successfully processed and cleaned base theme")
 
     if os.path.exists(fa_fonts_path):
         for filename in os.listdir(fa_fonts_path):
@@ -1272,12 +1316,20 @@ def runPostProcessing():
 
             for first_child in current_hub_title:
                 if first_child.tag == "a":
+                    card_body = current_hub_title.xpath(
+                        "ancestor::div[contains(concat(' ', normalize-space(@class), ' '), ' hub-card ')][1]"
+                    )
+                    if not card_body:
+                        raise ValueError(
+                            "Hub card title is missing a hub-card ancestor"
+                        )
+
                     for sub_child in first_child:
                         first_child.remove(sub_child)
                         current_hub_title.insert(0, sub_child)
 
                     first_child.attrib["class"] = (
-                        current_hub_card.attrib["class"] + " hub-card-link"
+                        card_body[0].attrib["class"] + " hub-card-link"
                     )
 
                 break
@@ -1476,7 +1528,7 @@ def runDeploymentCommand():
         "ccache",
         "volatile",
         # PDF documentation for current release
-        "'doc/*.pdf'",
+        "doc/*.pdf",
         # Google ownership marker, do not touch, spell-checker: ignore googlee
         "googlee5244704183a9a15.html",
         # Link into blog, for compatibility with old blog subscriptions.
@@ -1484,11 +1536,20 @@ def runDeploymentCommand():
     ]
 
     target_dir = "/var/www/"
-    command = f'rsync -ravz {" ".join(f"--exclude={exclude}" for exclude in excluded)} --chown www-data:git --chmod Dg+x --delete-after output/ root@ssh.nuitka.net:{target_dir}'
+    command = [
+        "rsync",
+        "-ravz",
+        *(f"--exclude={exclude}" for exclude in excluded),
+        "--chown=www-data:git",
+        "--chmod=Dg+x",
+        "--delete-after",
+        "output/",
+        f"root@ssh.nuitka.net:{target_dir}",
+    ]
 
-    my_print(command)
+    my_print(" ".join(shlex.quote(part) for part in command))
 
-    assert 0 == os.system(command)
+    subprocess.run(command, check=True)
 
 
 def checkRestPages():
@@ -1780,7 +1841,8 @@ When given, the site is deployed. Default %default.""",
 
     options, positional_args = parser.parse_args()
 
-    assert not positional_args, positional_args
+    if positional_args:
+        raise ValueError(f"Unexpected positional arguments: {positional_args!r}")
 
     if options.docs:
         updateTranslationStatusPage()
