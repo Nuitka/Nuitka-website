@@ -484,6 +484,28 @@ def _fetchObsRepositoryVersions(repo_name):
     return max_release, max_prerelease
 
 
+def _discoverObsNumberedRepositories(prefix):
+    page_source = _fetchUrlText(
+        "https://download.opensuse.org/repositories/home:/kayhayen/",
+        "OBS repository root",
+    )
+    tree = html.fromstring(page_source)
+
+    discovered_repositories = {}
+
+    for href in tree.xpath("//@href"):
+        repo_name = href.rstrip("/").split("/")[-1]
+        match = re.fullmatch(rf"{re.escape(prefix)}_(\d+)", repo_name)
+
+        if match:
+            discovered_repositories[int(match.group(1))] = repo_name
+
+    if not discovered_repositories:
+        raise ValueError(f"Did not discover any OBS repositories for {prefix!r}")
+
+    return discovered_repositories
+
+
 def _fetchObsDownloadVersions():
     obs_versions = {
         "rhel": {},
@@ -509,8 +531,10 @@ def _fetchObsDownloadVersions():
         obs_versions["centos"]["stable", centos_number] = stable
         obs_versions["centos"]["develop", centos_number] = develop
 
-    for fedora_number in range(36, 37):
-        stable, develop = _fetchObsRepositoryVersions("Fedora_%d" % fedora_number)
+    for fedora_number, repo_name in sorted(
+        _discoverObsNumberedRepositories("Fedora").items()
+    ):
+        stable, develop = _fetchObsRepositoryVersions(repo_name)
 
         obs_versions["fedora"]["stable", fedora_number] = stable
         obs_versions["fedora"]["develop", fedora_number] = develop
