@@ -1653,6 +1653,190 @@ def runSphinxAutoBuild():
     callExecProcess(args, False)
 
 
+def _close_playwright_resource(
+    resource, description, *, raise_on_failure, playwright_error_type
+):
+    if resource is None:
+        return
+
+    try:
+        resource.close()
+    except playwright_error_type as e:
+        if raise_on_failure:
+            raise GoldenUpdateError(f"Failed to close {description}") from e
+
+        my_print(f"Additional cleanup failure for {description}: {e}")
+
+
+def _get_golden_device_config(browser_name, viewport_mode):
+    try:
+        if viewport_mode == "desktop":
+            return DESKTOP_DEVICES[browser_name]
+
+        if viewport_mode == "mobile":
+            return MOBILE_DEVICES[browser_name]
+    except KeyError as e:
+        raise ValueError(
+            f"No {viewport_mode} device configuration for {browser_name}"
+        ) from e
+
+    raise ValueError(f"Unknown viewport mode: {viewport_mode}")
+
+
+def _update_golden_page(
+    page,
+    *,
+    golden_dir,
+    browser_name,
+    viewport_mode,
+    page_path,
+    wait,
+    verbose,
+    playwright_error_type,
+    playwright_timeout_error_type,
+):
+    url = build_url(page_path)
+    safe_name = sanitizeUrl(page_path)
+    golden_path = golden_dir / f"{browser_name}_{viewport_mode}_{safe_name}.png"
+
+    if verbose:
+        my_print(
+            f"  Generating {browser_name} / {viewport_mode} / {page_path} -> {golden_path}"
+        )
+
+    try:
+        page.goto(url, timeout=20000)
+        if wait > 0:
+            page.wait_for_timeout(wait)
+
+        page.add_style_tag(
+            content="""
+        * {
+            font-family: Arial, Helvetica, sans-serif !important;
+            -webkit-font-smoothing: none !important;
+            -moz-osx-font-smoothing: grayscale !important;
+        }
+        """
+        )
+
+        page.wait_for_function("document.fonts.ready")
+        page.screenshot(
+            path=golden_path,
+            full_page=True,
+            timeout=20000,
+        )
+    except (OSError, playwright_timeout_error_type, playwright_error_type) as e:
+        raise GoldenUpdateError(
+            f"Failed to generate golden image for {browser_name} / {viewport_mode} / {page_path}"
+        ) from e
+
+
+def _update_golden_context(
+    browser,
+    *,
+    golden_dir,
+    browser_name,
+    viewport_mode,
+    pages,
+    wait,
+    verbose,
+    playwright_error_type,
+    playwright_timeout_error_type,
+):
+    context = None
+    context_completed = False
+
+    try:
+        device_config = _get_golden_device_config(browser_name, viewport_mode)
+
+        try:
+            context = browser.new_context(**device_config)
+        except playwright_error_type as e:
+            raise GoldenUpdateError(
+                f"Failed to create {viewport_mode} context for {browser_name}"
+            ) from e
+
+        try:
+            page = context.new_page()
+        except playwright_error_type as e:
+            raise GoldenUpdateError(
+                f"Failed to create a page in the {browser_name} / {viewport_mode} context"
+            ) from e
+
+        for page_path in pages:
+            _update_golden_page(
+                page,
+                golden_dir=golden_dir,
+                browser_name=browser_name,
+                viewport_mode=viewport_mode,
+                page_path=page_path,
+                wait=wait,
+                verbose=verbose,
+                playwright_error_type=playwright_error_type,
+                playwright_timeout_error_type=playwright_timeout_error_type,
+            )
+
+        context_completed = True
+    finally:
+        _close_playwright_resource(
+            context,
+            f"{browser_name} / {viewport_mode} context",
+            raise_on_failure=context_completed,
+            playwright_error_type=playwright_error_type,
+        )
+
+
+def _update_golden_browser(
+    playwright_context,
+    *,
+    golden_dir,
+    browser_name,
+    devices,
+    pages,
+    wait,
+    verbose,
+    playwright_error_type,
+    playwright_timeout_error_type,
+):
+    browser = None
+    browser_completed = False
+
+    try:
+        try:
+            browser_type = getattr(playwright_context, browser_name)
+        except AttributeError as e:
+            raise ValueError(f"Unknown browser: {browser_name}") from e
+
+        try:
+            browser = browser_type.launch(headless=True)
+        except playwright_error_type as e:
+            raise GoldenUpdateError(
+                f"Failed to launch browser {browser_name} for golden image updates"
+            ) from e
+
+        for viewport_mode in devices:
+            _update_golden_context(
+                browser,
+                golden_dir=golden_dir,
+                browser_name=browser_name,
+                viewport_mode=viewport_mode,
+                pages=pages,
+                wait=wait,
+                verbose=verbose,
+                playwright_error_type=playwright_error_type,
+                playwright_timeout_error_type=playwright_timeout_error_type,
+            )
+
+        browser_completed = True
+    finally:
+        _close_playwright_resource(
+            browser,
+            f"{browser_name} browser",
+            raise_on_failure=browser_completed,
+            playwright_error_type=playwright_error_type,
+        )
+
+
 def runUpdateGolden(
     browsers=None,
     devices=None,
@@ -1691,105 +1875,22 @@ def runUpdateGolden(
             "Playwright is required for golden image updates"
         ) from e
 
-    def close_playwright_resource(resource, description):
-        try:
-            resource.close()
-        except PlaywrightError as e:
-            if sys.exc_info()[0] is None:
-                raise GoldenUpdateError(f"Failed to close {description}") from e
-
-            my_print(f"Additional cleanup failure for {description}: {e}")
-
     my_print("Starting reference images update...")
 
     try:
         with sync_playwright() as p:
             for browser_name in browsers:
-                try:
-                    browser_type = getattr(p, browser_name)
-                except AttributeError as e:
-                    raise ValueError(f"Unknown browser: {browser_name}") from e
-
-                try:
-                    browser = browser_type.launch(headless=True)
-                except PlaywrightError as e:
-                    raise GoldenUpdateError(
-                        f"Failed to launch browser {browser_name} for golden image updates"
-                    ) from e
-
-                try:
-                    for viewport_mode in devices:
-                        if viewport_mode == "desktop":
-                            device_config = DESKTOP_DEVICES[browser_name]
-                        elif viewport_mode == "mobile":
-                            device_config = MOBILE_DEVICES[browser_name]
-                        else:
-                            raise ValueError(f"Unknown viewport mode: {viewport_mode}")
-
-                        try:
-                            context = browser.new_context(**device_config)
-                        except PlaywrightError as e:
-                            raise GoldenUpdateError(
-                                f"Failed to create {viewport_mode} context for {browser_name}"
-                            ) from e
-
-                        try:
-                            try:
-                                page = context.new_page()
-                            except PlaywrightError as e:
-                                raise GoldenUpdateError(
-                                    f"Failed to create a page in the {browser_name} / {viewport_mode} context"
-                                ) from e
-
-                            for page_path in pages:
-                                url = build_url(page_path)
-                                safe_name = sanitizeUrl(page_path)
-                                golden_path = (
-                                    golden_dir
-                                    / f"{browser_name}_{viewport_mode}_{safe_name}.png"
-                                )
-
-                                if verbose:
-                                    my_print(
-                                        f"  Generating {browser_name} / {viewport_mode} / {page_path} -> {golden_path}"
-                                    )
-
-                                try:
-                                    page.goto(url, timeout=20000)
-                                    if wait > 0:
-                                        page.wait_for_timeout(wait)
-
-                                    page.add_style_tag(
-                                        content="""
-                                    * {
-                                        font-family: Arial, Helvetica, sans-serif !important;
-                                        -webkit-font-smoothing: none !important;
-                                        -moz-osx-font-smoothing: grayscale !important;
-                                    }
-                                    """
-                                    )
-
-                                    page.wait_for_function("document.fonts.ready")
-                                    page.screenshot(
-                                        path=golden_path,
-                                        full_page=True,
-                                        timeout=20000,
-                                    )
-                                except (
-                                    OSError,
-                                    PlaywrightTimeoutError,
-                                    PlaywrightError,
-                                ) as e:
-                                    raise GoldenUpdateError(
-                                        f"Failed to generate golden image for {browser_name} / {viewport_mode} / {page_path}"
-                                    ) from e
-                        finally:
-                            close_playwright_resource(
-                                context,
-                                f"{browser_name} / {viewport_mode} context",
-                            )
-                finally:
-                    close_playwright_resource(browser, f"{browser_name} browser")
+                _update_golden_browser(
+                    p,
+                    golden_dir=golden_dir,
+                    browser_name=browser_name,
+                    devices=devices,
+                    pages=pages,
+                    wait=wait,
+                    verbose=verbose,
+                    playwright_error_type=PlaywrightError,
+                    playwright_timeout_error_type=PlaywrightTimeoutError,
+                )
     except (OSError, PlaywrightTimeoutError, PlaywrightError) as e:
         raise GoldenUpdateError("Golden image update failed") from e
 
