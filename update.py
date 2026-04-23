@@ -96,7 +96,46 @@ class AssetProcessingError(RuntimeError):
     """Raised when website asset post-processing fails."""
 
 
+class DocumentStructureError(ValueError):
+    """Raised when generated HTML is missing required structure."""
+
+
+class GoldenUpdateError(RuntimeError):
+    """Raised when golden image updates fail."""
+
+
 HTTP_REQUEST_TIMEOUT = 30
+
+
+def _require_xpath_results(document, xpath, *, filename, description):
+    result = document.xpath(xpath)
+
+    if not result:
+        raise DocumentStructureError(
+            f"{filename}: expected at least one {description} matching {xpath!r}"
+        )
+
+    return result
+
+
+def _require_single_xpath(document, xpath, *, filename, description):
+    result = _require_xpath_results(
+        document, xpath, filename=filename, description=description
+    )
+
+    if len(result) != 1:
+        raise DocumentStructureError(
+            f"{filename}: expected exactly one {description} matching {xpath!r}, found {len(result)}"
+        )
+
+    return result[0]
+
+
+def _require_element_tag(element, expected_tag, *, filename, description):
+    if element.tag != expected_tag:
+        raise DocumentStructureError(
+            f"{filename}: expected {description} to be <{expected_tag}>, got <{element.tag}>"
+        )
 
 
 def get_svg_content(svg_path):
@@ -195,7 +234,10 @@ def inlineImagesSvg(doc, filename):
 
         svg_path = f"{SVG_SOURCE_PATH}/{src_clean}"
 
-        assert os.path.exists(svg_path), (filename, src, svg_path)
+        if not os.path.exists(svg_path):
+            raise FileNotFoundError(
+                f"{filename}: image source {src!r} resolved to missing SVG {svg_path!r}"
+            )
 
         add_inline_svg(img_tag, svg_path)
 
@@ -913,13 +955,17 @@ def fixupSymbols(document_bytes):
 
     def replaceSymbol(value):
         value = value.group(0)
+        symbol_name = value.decode("utf-8", "replace")
 
         found = 0
         result = b""
 
         for line in contents.splitlines():
             if found == 1:
-                assert not line, value
+                if line:
+                    raise ValueError(
+                        f"Malformed symbol definition for {symbol_name}: expected a blank line after its directive in site/variables.inc"
+                    )
                 found = 2
                 continue
 
@@ -933,7 +979,10 @@ def fixupSymbols(document_bytes):
             if value in line:
                 found = 1
 
-        assert result, value
+        if not result:
+            raise ValueError(
+                f"Could not expand symbol {symbol_name} from site/variables.inc"
+            )
         return result
 
     document_bytes = re.sub(
@@ -1159,7 +1208,10 @@ def handleJavaScript(filename, doc):
             else:
                 script_tag.getparent().remove(script_tag)
 
-            assert script_tag.attrib["src"][0] == "/", script_tag.attrib["src"]
+            if not script_tag.attrib["src"].startswith("/"):
+                raise ValueError(
+                    f"{filename}: script source did not normalize to an absolute path: {script_tag.attrib['src']!r}"
+                )
             js_filenames.append(script_tag.attrib["src"][1:])
 
     if script_tag_first is not None:
@@ -1242,7 +1294,9 @@ def runPostProcessing():
         fav_icons = doc.xpath("//head/link[@rel='icon']")
 
         if not fav_icons:
-            (head_node,) = doc.xpath("head")
+            head_node = _require_single_xpath(
+                doc, "head", filename=filename, description="document head"
+            )
             for fav_icon in root_doc.xpath("//head/link[@rel='icon']"):
                 fav_icon = copy.deepcopy(fav_icon)
                 fav_icon.attrib["href"] = "/" + fav_icon.attrib["href"]
@@ -1266,7 +1320,12 @@ def runPostProcessing():
         ):
             if current_link.attrib["href"] in ("/", "#"):
                 parent_tag = current_link.getparent()
-                assert parent_tag.tag == "p", parent_tag
+                _require_element_tag(
+                    parent_tag,
+                    "p",
+                    filename=filename,
+                    description="hub navigation current link parent",
+                )
                 parent_tag.attrib["class"] = "hub-nav-current"
                 for child in current_link:
                     current_link.remove(child)
@@ -1307,26 +1366,29 @@ def runPostProcessing():
 
             for first_child in current_hub_title:
                 if first_child.tag == "a":
-                    card_body = current_hub_title.xpath(
-                        "ancestor::div[contains(concat(' ', normalize-space(@class), ' '), ' hub-card ')][1]"
+                    card_body = _require_single_xpath(
+                        current_hub_title,
+                        "ancestor::div[contains(concat(' ', normalize-space(@class), ' '), ' hub-card ')][1]",
+                        filename=filename,
+                        description="hub card ancestor",
                     )
-                    if not card_body:
-                        raise ValueError(
-                            "Hub card title is missing a hub-card ancestor"
-                        )
 
                     for sub_child in first_child:
                         first_child.remove(sub_child)
                         current_hub_title.insert(0, sub_child)
 
                     first_child.attrib["class"] = (
-                        card_body[0].attrib["class"] + " hub-card-link"
+                        card_body.attrib["class"] + " hub-card-link"
                     )
 
                 break
 
-        css_links = doc.xpath("//link[@rel='stylesheet']")
-        assert css_links
+        css_links = _require_xpath_results(
+            doc,
+            "//link[@rel='stylesheet']",
+            filename=filename,
+            description="stylesheet link",
+        )
 
         # Remove version trick from links, we don't need it really.
         for css_link in css_links:
@@ -1391,13 +1453,21 @@ def runPostProcessing():
                 top_nav = html.fromstring("""<div class="top_nav"></div>""")
                 h1.getparent().insert(h1.getparent().index(h1), top_nav)
 
-                (top_link_nav,) = doc.xpath("//nav[@class='top_link_nav']")
+                top_link_nav = _require_single_xpath(
+                    doc,
+                    "//nav[@class='top_link_nav']",
+                    filename=filename,
+                    description="top link navigation",
+                )
                 top_link_nav.getparent().remove(top_link_nav)
                 top_nav.append(top_link_nav)
 
-                social_container = doc.xpath("//div[@class='share-button-container']")[
-                    0
-                ]
+                social_container = _require_single_xpath(
+                    doc,
+                    "//div[@class='share-button-container']",
+                    filename=filename,
+                    description="share button container",
+                )
                 social_container.getparent().remove(social_container)
                 top_link_nav.append(social_container)
 
@@ -1493,7 +1563,10 @@ def runPostProcessing():
     if development_mode:
         my_theme_filename = "output/_static/my_theme.css"
 
-        assert os.path.exists(my_theme_filename), my_theme_filename
+        if not os.path.exists(my_theme_filename):
+            raise FileNotFoundError(
+                f"Development theme stylesheet not found: {my_theme_filename}"
+            )
         if not os.path.islink(my_theme_filename):
             os.unlink(my_theme_filename)
             os.symlink(os.path.abspath("_static/my_theme.css"), my_theme_filename)
@@ -1609,67 +1682,118 @@ def runUpdateGolden(
     golden_dir.mkdir(parents=True, exist_ok=True)
 
     # Avoid dependency on playwright for other operations.
-    from playwright.sync_api import sync_playwright
+    try:
+        from playwright.sync_api import Error as PlaywrightError
+        from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+        from playwright.sync_api import sync_playwright
+    except ImportError as e:
+        raise GoldenUpdateError(
+            "Playwright is required for golden image updates"
+        ) from e
+
+    def close_playwright_resource(resource, description):
+        try:
+            resource.close()
+        except PlaywrightError as e:
+            if sys.exc_info()[0] is None:
+                raise GoldenUpdateError(f"Failed to close {description}") from e
+
+            my_print(f"Additional cleanup failure for {description}: {e}")
+
+    my_print("Starting reference images update...")
 
     try:
-        my_print("Starting reference images update...")
         with sync_playwright() as p:
             for browser_name in browsers:
-                browser_type = getattr(p, browser_name)
-                browser = browser_type.launch(headless=True)
+                try:
+                    browser_type = getattr(p, browser_name)
+                except AttributeError as e:
+                    raise ValueError(f"Unknown browser: {browser_name}") from e
 
-                for viewport_mode in devices:
-                    if viewport_mode == "desktop":
-                        device_config = DESKTOP_DEVICES[browser_name]
-                    elif viewport_mode == "mobile":
-                        device_config = MOBILE_DEVICES[browser_name]
-                    else:
-                        raise ValueError(f"Unknown viewport mode: {viewport_mode}")
+                try:
+                    browser = browser_type.launch(headless=True)
+                except PlaywrightError as e:
+                    raise GoldenUpdateError(
+                        f"Failed to launch browser {browser_name} for golden image updates"
+                    ) from e
 
-                    context = browser.new_context(**device_config)
-                    page = context.new_page()
+                try:
+                    for viewport_mode in devices:
+                        if viewport_mode == "desktop":
+                            device_config = DESKTOP_DEVICES[browser_name]
+                        elif viewport_mode == "mobile":
+                            device_config = MOBILE_DEVICES[browser_name]
+                        else:
+                            raise ValueError(f"Unknown viewport mode: {viewport_mode}")
 
-                    for page_path in pages:
-                        url = build_url(page_path)
-                        safe_name = sanitizeUrl(page_path)
-                        golden_path = (
-                            golden_dir
-                            / f"{browser_name}_{viewport_mode}_{safe_name}.png"
-                        )
+                        try:
+                            context = browser.new_context(**device_config)
+                        except PlaywrightError as e:
+                            raise GoldenUpdateError(
+                                f"Failed to create {viewport_mode} context for {browser_name}"
+                            ) from e
 
-                        if verbose:
-                            my_print(
-                                f"  Generating {browser_name} / {viewport_mode} / {page_path} -> {golden_path}"
+                        try:
+                            try:
+                                page = context.new_page()
+                            except PlaywrightError as e:
+                                raise GoldenUpdateError(
+                                    f"Failed to create a page in the {browser_name} / {viewport_mode} context"
+                                ) from e
+
+                            for page_path in pages:
+                                url = build_url(page_path)
+                                safe_name = sanitizeUrl(page_path)
+                                golden_path = (
+                                    golden_dir
+                                    / f"{browser_name}_{viewport_mode}_{safe_name}.png"
+                                )
+
+                                if verbose:
+                                    my_print(
+                                        f"  Generating {browser_name} / {viewport_mode} / {page_path} -> {golden_path}"
+                                    )
+
+                                try:
+                                    page.goto(url, timeout=20000)
+                                    if wait > 0:
+                                        page.wait_for_timeout(wait)
+
+                                    page.add_style_tag(
+                                        content="""
+                                    * {
+                                        font-family: Arial, Helvetica, sans-serif !important;
+                                        -webkit-font-smoothing: none !important;
+                                        -moz-osx-font-smoothing: grayscale !important;
+                                    }
+                                    """
+                                    )
+
+                                    page.wait_for_function("document.fonts.ready")
+                                    page.screenshot(
+                                        path=golden_path,
+                                        full_page=True,
+                                        timeout=20000,
+                                    )
+                                except (
+                                    OSError,
+                                    PlaywrightTimeoutError,
+                                    PlaywrightError,
+                                ) as e:
+                                    raise GoldenUpdateError(
+                                        f"Failed to generate golden image for {browser_name} / {viewport_mode} / {page_path}"
+                                    ) from e
+                        finally:
+                            close_playwright_resource(
+                                context,
+                                f"{browser_name} / {viewport_mode} context",
                             )
+                finally:
+                    close_playwright_resource(browser, f"{browser_name} browser")
+    except (OSError, PlaywrightTimeoutError, PlaywrightError) as e:
+        raise GoldenUpdateError("Golden image update failed") from e
 
-                        page.goto(url, timeout=20000)
-                        if wait > 0:
-                            page.wait_for_timeout(wait)
-
-                        page.add_style_tag(
-                            content="""
-                        * {
-                            font-family: Arial, Helvetica, sans-serif !important;
-                            -webkit-font-smoothing: none !important;
-                            -moz-osx-font-smoothing: grayscale !important;
-                        }
-                        """
-                        )
-
-                        page.wait_for_function("document.fonts.ready")
-                        page.screenshot(path=golden_path, full_page=True, timeout=20000)
-
-                    context.close()
-                browser.close()
-
-        my_print("Update completed successfully!")
-
-    except Exception as e:
-        import traceback
-
-        my_print(f"Error during update: {e}")
-        traceback.print_exc()
-        return 1
+    my_print("Update completed successfully!")
 
     my_print("Summary:")
     my_print(f"- Browsers: {len(browsers)}")
