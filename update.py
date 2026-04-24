@@ -105,6 +105,7 @@ class GoldenUpdateError(RuntimeError):
 
 
 HTTP_REQUEST_TIMEOUT = 30
+RELEASE_POST_DATE_FORMAT = "%Y/%m/%d %H:%M"
 
 
 def _require_xpath_results(document, xpath, *, filename, description):
@@ -779,16 +780,50 @@ def _splitRestByChapter(lines):
         yield title, lines[section_start_line + 3 : end_line]
 
 
-def updateReleasePosts():
-    _updateReleasePosts("site/changelog/Changelog.rst")
-    _updateReleasePosts("site/changelog/Changelog-1.x.rst")
-    _updateReleasePosts("site/changelog/Changelog-0.x.rst")
+def _parseReleasePostDate(release_post_date):
+    try:
+        datetime.datetime.strptime(release_post_date, RELEASE_POST_DATE_FORMAT)
+    except ValueError as e:
+        raise ValueError(
+            "Expected --release-post-date in format YYYY/MM/DD HH:MM"
+        ) from e
+
+    return release_post_date
 
 
-def _updateReleasePosts(changelog_filename):
+def _getDefaultReleasePostDate():
+    return datetime.datetime.now(datetime.UTC).strftime("%Y/%m/%d")
+
+
+def _getReleasePostPublicationDate(txt_path, release_post_date):
+    if os.path.exists(txt_path):
+        with open(txt_path, encoding="utf-8") as input_file:
+            first_line = input_file.readline()
+
+        if not first_line.startswith(".. post:: "):
+            raise ValueError(f"{txt_path}: malformed post metadata line")
+
+        return first_line.removeprefix(".. post:: ").strip()
+
+    if release_post_date is None:
+        return _getDefaultReleasePostDate()
+
+    return release_post_date
+
+
+def updateReleasePosts(release_post_date=None):
+    _updateReleasePosts("site/changelog/Changelog.rst", release_post_date)
+    _updateReleasePosts("site/changelog/Changelog-1.x.rst", release_post_date)
+    _updateReleasePosts("site/changelog/Changelog-0.x.rst", release_post_date)
+
+
+def _updateReleasePosts(changelog_filename, release_post_date):
     count = 0
 
-    for title, lines in _splitRestByChapter(open(changelog_filename).readlines()):
+    with open(changelog_filename, encoding="utf-8") as changelog_file:
+        changelog_lines = changelog_file.readlines()
+
+    for title, lines in _splitRestByChapter(changelog_lines):
         title = title.lstrip()
         count += 1
 
@@ -835,11 +870,7 @@ Kay Hayen
         output_path = "site/posts"
         txt_path = os.path.join(output_path, f"{slug}.rst")
 
-        if os.path.exists(txt_path):
-            pub_date = open(txt_path).readline().split(maxsplit=2)[2].strip()
-        else:
-            pub_date = datetime.datetime.now() + datetime.timedelta(days=1)
-            pub_date = pub_date.strftime("%Y/%m/%d %H:%M")
+        pub_date = _getReleasePostPublicationDate(txt_path, release_post_date)
 
         lines = [
             ".. post:: %s\n" % pub_date,
@@ -855,8 +886,8 @@ Kay Hayen
             output_file.write("".join(lines))
 
 
-def updateDocs():
-    updateReleasePosts()
+def updateDocs(release_post_date=None):
+    updateReleasePosts(release_post_date=release_post_date)
 
 
 _translations = ("zh_CN/", "de_DE/")
@@ -1991,6 +2022,14 @@ When given, the rest files are updated and changelog is split into pages. Defaul
     )
 
     parser.add_option(
+        "--release-post-date",
+        dest="release_post_date",
+        default=None,
+        help="""\
+Publication date to use for newly generated release posts, formatted as YYYY/MM/DD HH:MM. Existing posts keep their current metadata, and new posts default to the current UTC day when this option is omitted.""",
+    )
+
+    parser.add_option(
         "--check-pages",
         action="store_true",
         dest="check_pages",
@@ -2084,9 +2123,15 @@ When given, the site is deployed. Default %default.""",
     if positional_args:
         raise ValueError(f"Unexpected positional arguments: {positional_args!r}")
 
+    release_post_date = (
+        _parseReleasePostDate(options.release_post_date)
+        if options.release_post_date is not None
+        else None
+    )
+
     if options.docs:
         updateTranslationStatusPage()
-        updateDocs()
+        updateDocs(release_post_date=release_post_date)
 
     if options.downloads:
         updateDownloadPage()
