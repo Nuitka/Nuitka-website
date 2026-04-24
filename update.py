@@ -208,17 +208,9 @@ def add_inline_svg(
 
     parent = element.getparent()
     tail = element.tail
-
-    element.tail = None
+    svg_element.tail = tail
 
     parent.replace(element, svg_element)
-
-    if tail:
-        tail_element = html.Element("span")
-
-        tail_element.text = tail
-
-        parent.append(tail_element)
 
 
 def inlineImagesSvg(doc, filename):
