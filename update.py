@@ -1620,7 +1620,6 @@ def runPostProcessing():
 
     cleanBuildSVGs()
 
-
 def runDeploymentCommand():
     # spell-checker: ignore doctrees,buildinfo,apidoc
 
