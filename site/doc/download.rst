@@ -127,32 +127,32 @@ For the latest development version:
 
       .. code:: bash
 
-         CODENAME=`egrep \\'UBUNTU_CODENAME|VERSION_CODENAME\\' /etc/os-release | sort | head -1 | cut -d= -f2`
-         if [ -z "$CODENAME" ]
-         then
-            CODENAME=`lsb_release -c -s`
+         sudo apt install ca-certificates gpg lsb-release wget
+         sudo install -d -m 0755 /etc/apt/keyrings
+         CODENAME=$(awk -F= '$1=="VERSION_CODENAME"{v=$2} $1=="UBUNTU_CODENAME"{u=$2} END{print (u?u:v)}' /etc/os-release)
+         if [ -z "$CODENAME" ]; then
+            CODENAME=$(lsb_release -c -s)
          fi
-         wget -O - https://nuitka.net/deb/archive.key.gpg | sudo apt-key add -
-         sudo apt-get install ca-certificates
-         sudo echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/stable/$CODENAME $CODENAME main"
-         sudo apt-get update
-         sudo apt-get install nuitka
+         wget -qO - https://nuitka.net/deb/archive.key.gpg | gpg --dearmor | sudo tee /etc/apt/keyrings/nuitka.gpg >/dev/null
+         echo "deb [signed-by=/etc/apt/keyrings/nuitka.gpg] https://nuitka.net/deb/stable/$CODENAME $CODENAME main" | sudo tee /etc/apt/sources.list.d/nuitka.list >/dev/null
+         sudo apt update
+         sudo apt install nuitka
 
    -  |DEBIAN_LOGO| |UBUNTU_LOGO| |MINT_LOGO| Develop: Debian/Ubuntu/Mint
       repositories
 
       .. code:: bash
 
-         CODENAME=`egrep \\'UBUNTU_CODENAME|VERSION_CODENAME\\' /etc/os-release | sort | head -1 | cut -d= -f2`
-         if [ -z "$CODENAME" ]
-         then
-            CODENAME=`lsb_release -c -s`
+         sudo apt install ca-certificates gpg lsb-release wget
+         sudo install -d -m 0755 /etc/apt/keyrings
+         CODENAME=$(awk -F= '$1=="VERSION_CODENAME"{v=$2} $1=="UBUNTU_CODENAME"{u=$2} END{print (u?u:v)}' /etc/os-release)
+         if [ -z "$CODENAME" ]; then
+            CODENAME=$(lsb_release -c -s)
          fi
-         wget -O - https://nuitka.net/deb/archive.key.gpg | sudo apt-key add -
-         sudo apt-get install ca-certificates
-         sudo echo >/etc/apt/sources.list.d/nuitka.list "deb https://nuitka.net/deb/develop/$CODENAME $CODENAME main"
-         sudo apt-get update
-         sudo apt-get install nuitka
+         wget -qO - https://nuitka.net/deb/archive.key.gpg | gpg --dearmor | sudo tee /etc/apt/keyrings/nuitka.gpg >/dev/null
+         echo "deb [signed-by=/etc/apt/keyrings/nuitka.gpg] https://nuitka.net/deb/develop/$CODENAME $CODENAME main" | sudo tee /etc/apt/sources.list.d/nuitka.list >/dev/null
+         sudo apt update
+         sudo apt install nuitka
 
    **RHEL**
 
