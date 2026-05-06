@@ -19,3 +19,4 @@ tests/current
 tests/diff
 state.ini
 .codex
+out.txt
