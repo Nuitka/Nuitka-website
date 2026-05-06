@@ -307,7 +307,9 @@ Here is the raw commit information:
 --- RAW COMMIT DATA START --- {commit_data} --- RAW COMMIT DATA END ---
 
 Integrate these changes to Changelog-next.rst document. Follow the style as
-found in Changelog files found in general.
+found in Changelog files found in general. After making the changes, run
+`./auto-format site/changelog/Changelog-next.rst` so the final result matches
+the repository formatting rules.
 """
             print(prompt)
 
