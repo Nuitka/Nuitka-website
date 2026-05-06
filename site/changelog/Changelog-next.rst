@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.1rc8**.
+It currently covers changes up to version **4.1rc9**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -219,6 +219,50 @@ Bug Fixes
 -  **Python 3.12+:** Aligned ``sum`` built-in float summation with
    CPython's compensated sum for better accuracy.
 
+-  **Python 3.10+:** Fixed uncompiled coroutine ``throw()`` return
+   handling by restoring completed coroutine results via
+   ``StopIteration.value`` rather than exposing them as ordinary return
+   values to the outer await chain.
+
+-  **Python 3.13+:** Fixed uncompiled coroutine ``cancel()/await``
+   suspension handling to ensure integration compatibility.
+
+-  **macOS:** Made finding ``create-dmg`` more robustly by also checking
+   the Homebrew path for Intel and from ``PATH`` properly.
+
+-  **Compatibility:** Fixed class frames to expose frame locals as well.
+
+-  **UI:** Detected ``static-libpython`` problems, which affected some
+   forms of Anaconda.
+
+-  **Distutils:** Rejected ``--project`` mixed with ``--main`` arguments
+   as it is not useful.
+
+-  **macOS:** Fixed to use ``zig`` from ``PATH`` or from ``ziglang``.
+
+-  **Distutils:** Fixed checking the wrong ``module-root`` config value
+   for ``uv`` build backend.
+
+-  **macOS:** Fixed not attempting to change removed (rejected) DLLs.
+
+-  **Distutils:** Fixed improper handling of empty ``module-root``
+   configuration.
+
+-  **Python 3.14:** Fixed an issue where tuple reuse was not fully
+   compatible, potentially causing crashes due to outdated hash caches.
+
+-  Fixed fake modules still being located, which could conflict with
+   existing modules.
+
+-  **Python 3.5+:** Fixed failure to send uncompiled coroutines the sent
+   value in ``yield from``.
+
+-  Fixed compilation issues with older ``gcc`` compilers lacking newer
+   intrinsic methods.
+
+-  **Standalone:** Fix, multiphase module extension modules with
+   post-load code were not working properly.
+
 Package Support
 ===============
 
@@ -288,6 +332,8 @@ New Features
 -  Added support for detecting and correctly resolving the Python prefix
    for the ``PyEnv on Homebrew`` Python flavor.
 
+-  **macOS:** Added support for ``rusage`` information for Scons.
+
 Optimization
 ============
 
@@ -330,6 +376,14 @@ Optimization
 
 -  Improved the caching of distribution name lookups to effectively
    avoid repeated IO operations across all package types.
+
+-  **Plugins:** Cached callback plugin dispatch for
+   ``onFunctionBodyParsing`` and ``onClassBodyParsing`` to skip argument
+   computation when no plugin overrides them.
+
+-  **Python 3.13:** Handled sub-packages of ``pathlib`` as hard modules.
+
+-  Handled hard attributes through merge traces as well.
 
 Anti-Bloat
 ==========
@@ -432,6 +486,12 @@ Tests
 -  Prevented the program test suite from running an unnecessary variant
    to save execution time.
 
+-  **macOS:** Ignored differences from GUI framework error traces in
+   headless runs in output comparisons.
+
+-  Reflected test for Nuitka, where it compiles itself and compares its
+   operation has been restored to functional state.
+
 Cleanups
 ========
 
@@ -481,6 +541,23 @@ Cleanups
 
 -  **Quality:** Enabled auto-formatting for the Nuitka devcontainer
    configuration file.
+
+-  **Watch:** Avoided absolute paths in compilation to make reports more
+   comparable across machines.
+
+-  **Quality:** Changed ``mdformat`` checks to run only once and
+   silently.
+
+-  **Scons:** Disabled format security errors in debug mode and moved
+   Python-related warning disables into common build setup code.
+
+-  **Quality:** Updated to the latest ``deepdiff`` version.
+
+-  **Scons:** Avoided MSVC telemetry since it can produce outputs that
+   break CI.
+
+-  **Debugging:** Enhanced non-deployment handler for importing excluded
+   modules.
 
 Summary
 =======
