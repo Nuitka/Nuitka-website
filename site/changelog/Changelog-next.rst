@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.1rc7**.
+It currently covers changes up to version **4.1rc8**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -209,6 +209,16 @@ Bug Fixes
 -  **Plugins:** Enhanced the auto-icon hack in PySide6 to use compatible
    class names.
 
+-  **Plugins:** Followed multiprocessing ``forkserver`` changes for
+   newer Python versions.
+
+-  **Python 3.12+:** Fixed generic class type parameters handling.
+
+-  **Python 3.12:** Fixed deferred evaluation of type aliases.
+
+-  **Python 3.12+:** Aligned ``sum`` built-in float summation with
+   CPython's compensated sum for better accuracy.
+
 Package Support
 ===============
 
@@ -235,6 +245,9 @@ Package Support
 -  Enhanced the package configuration YAML schema by adding the
    ``relative_to`` parameter for ``from_filenames`` DLL specification,
    avoiding error-prone purely relative paths.
+
+-  **Standalone:** Fixed missing ``flet_desktop`` app assets by
+   preserving the packaged runtime and sidecar DLLs.
 
 New Features
 ============
@@ -263,7 +276,8 @@ New Features
    already.)
 
 -  **Plugins:** Added support for the multiprocessing ``forkserver``
-   context. (Added in 4.0.8 already.)
+   context. (Added in 4.0.8 already, for 4.1 Python 3.6 and earlier, as
+   well as 3.14 support were added too.)
 
 -  **Reports:** Added structured resource usage (``rusage``) performance
    information to compilation reports.
@@ -300,6 +314,22 @@ Optimization
 -  Enhanced the usage of ``vectorcall`` for ``PyCFunction`` objects by
    directly checking for its presence instead of relying purely on
    flags, allowing more frequent use of this faster execution path.
+
+-  Cached frequently used declarations for top-level variables to speed
+   up C code generation.
+
+-  Sped up trace collection merging by avoiding unnecessary set creation
+   and using a set instead of a list for escaped traces.
+
+-  Optimized plugin hook execution by tracking overloaded methods and
+   added an option to show plugin usage statistics.
+
+-  Improved performance of module location by avoiding unnecessary
+   module name reconstruction and redundant filesystem checks for
+   pre-loaded packages.
+
+-  Improved the caching of distribution name lookups to effectively
+   avoid repeated IO operations across all package types.
 
 Anti-Bloat
 ==========
@@ -445,6 +475,12 @@ Cleanups
 
 -  **Quality:** Silenced the output of ``optipng`` and ``jpegoptim``
    during image optimization auto-formatting.
+
+-  **Visual Code:** Added the generated Python alias path file to the
+   ignore list.
+
+-  **Quality:** Enabled auto-formatting for the Nuitka devcontainer
+   configuration file.
 
 Summary
 =======
