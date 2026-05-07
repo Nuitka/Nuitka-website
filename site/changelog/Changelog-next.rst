@@ -57,8 +57,9 @@ Bug Fixes
 -  **Windows:** Fix, ``--verbose-output`` and ``--show-modules-output``
    did not work with forward slashes. (Fixed in 4.0.2 already.)
 
--  **Python 3.14:** Fix, various compatibility issues including
-   dictionary watchers and inline values. (Fixed in 4.0.2 already.)
+-  **Python 3.14:** Fix, there were various compatibility issues
+   including dictionary watchers and inline values. (Fixed in 4.0.2
+   already.)
 
 -  **Python 3.14:** Fix, stack pointer initialization to ``localsplus``
    was incorrect to avoid garbage collection issues. (Fixed in 4.0.2
@@ -129,10 +130,6 @@ Bug Fixes
 -  **Standalone:** Filtered ``libHacl_Hash_SHA2`` from link libs
    unconditionally. (Fixed in 4.0.5 already.)
 
--  **Plugins:** Fixed automatic detection of ``mypyc`` runtime
-   dependencies, was including all top level modules of the containing
-   package by accident. (Fixed in 4.0.5 already.)
-
 -  **Debugging:** Disabled unusable unicode consistency checks for
    Python versions 3.4 to 3.6. (Fixed in 4.0.5 already.)
 
@@ -143,15 +140,11 @@ Bug Fixes
 -  **Python 3.12+:** Added support for generic type variables in ``async
    def`` functions. (Added in 4.0.5 already.)
 
--  **Anaconda:** Fixed ``delvewheel`` plugin not working with Python
-   3.8+. This enhances compatibility with installed PyPI packages that
-   use it for their DLLs. (Fixed in 4.0.6 already.)
-
--  **UI:** Fixed flushing outputs for prompts was not working in all
+-  **UI:** Fix, flushing outputs for prompts was not working in all
    cases when progress bars were enabled. (Fixed in 4.0.6 already.)
 
--  **UI:** Fixed missing unused variable warnings at C compile time when
-   using ``zig`` as a C compiler. (Fixed in 4.0.6 already.)
+-  **UI:** Fix, unused variable warnings were missing at C compile time
+   when using ``zig`` as a C compiler. (Fixed in 4.0.6 already.)
 
 -  **Scons:** Fix, forced stdout and stderr paths as a feature was
    broken. (Fixed in 4.0.6 already.)
@@ -159,21 +152,21 @@ Bug Fixes
 -  Fix, replacing a branch did not accurately track shared active
    variables causing optimization crashes. (Fixed in 4.0.7 already.)
 
--  **macOS:** Fixed failure to remove extended attributes because files
+-  **macOS:** Fix, failed to remove extended attributes because files
    need to be made writable first. (Fixed in 4.0.7 already.)
 
 -  Fix, dict ``pop`` and ``setdefault`` using with ``:=`` rewrites
    lacked exception-exit annotations for un-hashable keys. (Fixed in
    4.0.8 already.)
 
--  **Python 3.13:** Fixed the ``__parameters__`` attribute of generic
-   classes. (Fixed in 4.0.8 already.)
+-  **Python 3.13:** Fix, the ``__parameters__`` attribute of generic
+   classes was not working. (Fixed in 4.0.8 already.)
 
--  **Python 3.11+:** Fixed starred arguments not working as type
+-  **Python 3.11+:** Fix, starred arguments were not working as type
    variables. (Fixed in 4.0.8 already.)
 
--  **Python2:** Fixed ``FileNotFoundError`` compatibility fallback
-   handling. (Fixed in 4.0.8 already.)
+-  **Python2:** Fix, ``FileNotFoundError`` compatibility fallback
+   handling was not working properly. (Fixed in 4.0.8 already.)
 
 -  **Compatibility:** Fix, loop ownership check in value traces was
    missing, causing issues with nested loops.
@@ -182,55 +175,51 @@ Bug Fixes
    handle console handles, enabling cases like ``os.system`` to work
    nicely.
 
--  **Python2:** Fixed a compatibility issue where providing default
-   values to the ``mkdtemp`` function was failing.
+-  **Python2:** Fix, there was a compatibility issue where providing
+   default values to the ``mkdtemp`` function was failing.
 
--  **Windows:** Fixed spurious issues with C23 embedding in 32-bit
-   MinGW64 by switching to ``coff_obj`` resource mode for it as well.
+-  **Windows:** Fix, there were spurious issues with C23 embedding in
+   32-bit MinGW64 by switching to ``coff_obj`` resource mode for it as
+   well.
 
--  **Plugins:** Fixed an issue where the ``post-import-code`` execution
-   could fail because the triggering sub-package was not yet available
-   in ``sys.modules``.
+-  **Plugins:** Fix, the ``post-import-code`` execution could fail
+   because the triggering sub-package was not yet available in
+   ``sys.modules``.
 
--  **UI:** Fixed an issue where listing package DLLs with
-   ``--list-package-dlls`` was broken due to recent plugin lifecycle
-   changes.
+-  **UI:** Fix, listing package DLLs with ``--list-package-dlls`` was
+   broken due to recent plugin lifecycle changes.
 
--  **UI:** Fixed ``--list-package-exe`` so that it properly works on
-   non-Windows platforms to detect executable files correctly.
-
--  **Windows:** Fixed an issue where running batch files from within
-   Nuitka could unintentionally execute system-wide auto-run scripts by
-   explicitly disabling them in ``cmd.exe``.
+-  **UI:** Fix, ``--list-package-exe`` was not working properly on
+   non-Windows platforms failing to detect executable files correctly.
 
 -  **UI:** Handled paths starting with ``{PROGRAM_DIR}`` the same as a
    relative path when parsing the ``--onefile-tempdir-spec`` option.
 
--  **Plugins:** Enhanced the auto-icon hack in PySide6 to use compatible
-   class names.
-
 -  **Plugins:** Followed multiprocessing ``forkserver`` changes for
    newer Python versions.
 
--  **Python 3.12+:** Fixed generic class type parameters handling.
+-  **Python 3.12+:** Fix, generic class type parameters handling was
+   incorrect.
 
--  **Python 3.12:** Fixed deferred evaluation of type aliases.
+-  **Python 3.12:** Fix, deferred evaluation of type aliases was
+   failing.
 
 -  **Python 3.12+:** Aligned ``sum`` built-in float summation with
    CPython's compensated sum for better accuracy.
 
--  **Python 3.10+:** Fixed uncompiled coroutine ``throw()`` return
-   handling by restoring completed coroutine results via
+-  **Python 3.10+:** Fix, uncompiled coroutine ``throw()`` return
+   handling was incorrect, restoring completed coroutine results via
    ``StopIteration.value`` rather than exposing them as ordinary return
    values to the outer await chain.
 
--  **Python 3.13+:** Fixed uncompiled coroutine ``cancel()/await``
-   suspension handling to ensure integration compatibility.
+-  **Python 3.13+:** Fix, uncompiled coroutine ``cancel()/await``
+   suspension handling was incorrect, improved to ensure integration
+   compatibility.
 
 -  **macOS:** Made finding ``create-dmg`` more robustly by also checking
    the Homebrew path for Intel and from ``PATH`` properly.
 
--  **Compatibility:** Fixed class frames to expose frame locals as well.
+-  **Compatibility:** Fix, class frames were not exposing frame locals.
 
 -  **UI:** Detected ``static-libpython`` problems, which affected some
    forms of Anaconda.
@@ -238,27 +227,26 @@ Bug Fixes
 -  **Distutils:** Rejected ``--project`` mixed with ``--main`` arguments
    as it is not useful.
 
--  **macOS:** Fixed to use ``zig`` from ``PATH`` or from ``ziglang``.
+-  **macOS:** Fix, ``zig`` from ``PATH`` or from ``ziglang`` was not
+   being used.
 
--  **Distutils:** Fixed checking the wrong ``module-root`` config value
-   for ``uv`` build backend.
+-  **Distutils:** Fix, the wrong ``module-root`` config value was being
+   checked for ``uv`` build backend.
 
--  **macOS:** Fixed not attempting to change removed (rejected) DLLs.
+-  **macOS:** Fix, was attempting to change removed (rejected) DLLs,
+   which of course failed and errored out.
 
--  **Distutils:** Fixed improper handling of empty ``module-root``
-   configuration.
+-  **Python 3.14:** Fix, tuple reuse was not fully compatible,
+   potentially causing crashes due to outdated hash caches.
 
--  **Python 3.14:** Fixed an issue where tuple reuse was not fully
-   compatible, potentially causing crashes due to outdated hash caches.
+-  Fix, fake modules were still being attempted to located when imported
+   by other code, which could conflict with existing modules.
 
--  Fixed fake modules still being located, which could conflict with
-   existing modules.
+-  **Python 3.5+:** Fix, failed to send uncompiled coroutines the sent
+   in value in ``yield from``.
 
--  **Python 3.5+:** Fixed failure to send uncompiled coroutines the sent
-   value in ``yield from``.
-
--  Fixed compilation issues with older ``gcc`` compilers lacking newer
-   intrinsic methods.
+-  Fix, older ``gcc`` compilers lacking newer intrinsic methods had
+   compilation issues that needed to be addressed.
 
 -  **Standalone:** Fix, multiphase module extension modules with
    post-load code were not working properly.
@@ -266,41 +254,32 @@ Bug Fixes
 -  Fix, Avoid using the non-inline copy of ``pkg_resources`` with the
    inline copy of Jinja2. These could mismatch and cause errors.
 
--  Fixed loops making releasing of previous values very unclear, causing
-   optimization errors.
+-  Fix, loops could make releasing of previous values very unclear,
+   causing optimization errors.
 
--  Fixed ``incbin`` resource mode not working with old ``gcc`` C++
+-  Fix, ``incbin`` resource mode was not working with old ``gcc`` C++
    fallback.
 
--  **Standalone:** Fixed duplicated Qt libraries with ``PySide6``
-   WebEngine framework support on macOS.
-
--  **Python 3.13+:** Fixed the need to check more flags for inline
-   values.
-
--  **Python 3.4 to 3.6:** Fixed bytecode demotion not working properly
-   for these versions, also bytecode only files not working properly for
-   importing scans.
+-  **Python 3.4 to 3.6:** Fix, bytecode demotion was not working
+   properly for these versions, also bytecode only files not working.
 
 -  **Plugins:** Added a check for the broken ``patchelf`` versions 0.10
    and 0.11 to prevent breaking Qt plugins.
 
 -  **Android:** Allowed ``patchelf`` version 0.18 on Android.
 
--  **Windows:** Fixed the header path for self uninstalled Python.
+-  **Windows:** Fix, the header path for self uninstalled Python was not
+   detected correctly.
 
--  **Release:** Fixed missing inclusion of the ``pkg_resources`` inline
-   copy for Python 2 to source distributions.
+-  **Release:** Fix, inclusion of the ``pkg_resources`` inline copy for
+   Python 2 to source distributions was missing.
 
 -  **UI:** Detected the OBS versions of SUSE Linux better.
 
 -  **Suse:** Allowed using ``patchelf`` 0.18.0 there too.
 
--  **Python 3.11:** Fix, aligned package and module dicts closer to
-   avoid a CPython bug.
-
--  **Plugins:** Fix, our protection workaround could confuse methods
-   used with ``PySide6``.
+-  **Python 3.11:** Fix, package and module dicts were not aligned close
+   enough to avoid a CPython bug.
 
 -  Fix, unbound compiled methods could crash when called without an
    object passed.
@@ -350,7 +329,7 @@ Package Support
    ``relative_to`` parameter for ``from_filenames`` DLL specification,
    avoiding error-prone purely relative paths.
 
--  **Standalone:** Fixed missing ``flet_desktop`` app assets by
+-  **Standalone:** Fix, ``flet_desktop`` app assets were missing, now
    preserving the packaged runtime and sidecar DLLs.
 
 -  **Standalone:** Added support for the ``tyro`` package.
@@ -361,8 +340,25 @@ Package Support
 
 -  **Standalone:** Added support for the ``plotly.graph`` package.
 
--  **Anaconda:** Fixed dependencies for the ``numpy`` conda package on
-   Windows.
+-  **Anaconda:** Fix, dependencies for the ``numpy`` conda package on
+   Windows were incorrect.
+
+-  **Plugins:** Enhanced the auto-icon hack in PySide6 to use compatible
+   class names.
+
+-  **Standalone:** Fix, Qt libraries were duplicated with ``PySide6``
+   WebEngine framework support on macOS.
+
+-  **Plugins:** Fix, automatic detection of ``mypyc`` runtime
+   dependencies was including all top level modules of the containing
+   package by accident. (Fixed in 4.0.5 already.)
+
+-  **Anaconda:** Fix, ``delvewheel`` plugin was not working with Python
+   3.8+. This enhances compatibility with installed PyPI packages that
+   use it for their DLLs. (Fixed in 4.0.6 already.)
+
+-  **Plugins:** Fix, our protection workaround could confuse methods
+   used with ``PySide6``.
 
 New Features
 ============
@@ -559,15 +555,16 @@ Tests
 -  Avoided spurious failures in reference counting tests due to Python
    internal caching differences. (Fixed in 4.0.3 already.)
 
--  Fixed the parsing of the compilation report for reflected tests.
+-  Fix, the parsing of the compilation report for reflected tests was
+   incorrect.
 
 -  **Python 3.14:** Ignored a syntax error message change.
 
 -  **Python 3.14:** Added test execution support options to the main
    test runner to use this version as well.
 
--  Fixed an issue where the runner binary path was mishandled for the
-   third pass of reflected compilations.
+-  Fix, the runner binary path was mishandled for the third pass of
+   reflected compilations.
 
 -  Removed the usage of obsolete plugins in reflected compilation tests.
 
@@ -577,8 +574,8 @@ Tests
 -  Added the ``Test`` suffix to syntax test files and disabled "python"
    mode and spell checking for them to resolve issues reported in IDEs.
 
--  Fixed newline handling in diff outputs from the output comparison
-   tool.
+-  Fix, newline handling in diff outputs from the output comparison tool
+   was incorrect.
 
 -  Covered ``post-import-code`` functionality with a new subpackage test
    case.
