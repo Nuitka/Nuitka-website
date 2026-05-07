@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.1rc10**.
+It currently covers changes up to version **4.1rc11**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -287,6 +287,42 @@ Bug Fixes
 
 -  **Android:** Allowed ``patchelf`` version 0.18 on Android.
 
+-  **Windows:** Fixed the header path for self uninstalled Python.
+
+-  **Release:** Fixed missing inclusion of the ``pkg_resources`` inline
+   copy for Python 2 to source distributions.
+
+-  **UI:** Detected the OBS versions of SUSE Linux better.
+
+-  **Suse:** Allowed using ``patchelf`` 0.18.0 there too.
+
+-  **Python 3.11:** Fix, aligned package and module dicts closer to
+   avoid a CPython bug.
+
+-  **Plugins:** Fix, our protection workaround could confuse methods
+   used with ``PySide6``.
+
+-  Fix, unbound compiled methods could crash when called without an
+   object passed.
+
+-  **Standalone:** Fix, multiphase module extension modules with
+   postload. (Fixed in 4.0.8 already.)
+
+-  **Onefile:** Fix, while waiting for the child, it may already be
+   terminated.
+
+-  **macOS:** Removed existing absolute rpaths for Homebrew and
+   MacPorts.
+
+-  **Python 3.14:** Avoided warning in CPython headers.
+
+-  **Python 3.14:** Followed allocator changes more closely.
+
+-  **Compatibility:** Avoided using ``pkg_resources`` for Jinja2
+   template location for loading.
+
+-  **No-GIL:** Applied some bug fixes to get basic things to work.
+
 Package Support
 ===============
 
@@ -318,6 +354,15 @@ Package Support
    preserving the packaged runtime and sidecar DLLs.
 
 -  **Standalone:** Added support for the ``tyro`` package.
+
+-  **Standalone:** Added data files for the ``perfetto`` package.
+
+-  **Standalone:** Added support for ``anyio`` process forking.
+
+-  **Standalone:** Added support for the ``plotly.graph`` package.
+
+-  **Anaconda:** Fixed dependencies for the ``numpy`` conda package on
+   Windows.
 
 New Features
 ============
@@ -359,6 +404,18 @@ New Features
    for the ``PyEnv on Homebrew`` Python flavor.
 
 -  **macOS:** Added support for ``rusage`` information for Scons.
+
+-  **UI:** Added the ``__compiled__.extension_filename`` attribute to
+   give the real filename of the containing extension module.
+
+-  **Windows:** Added support for ``--clang`` or ARM. (Added in 4.0.8
+   already.)
+
+-  **Windows:** Added support for resources names as not just integers,
+   important when we copy them from template files.
+
+-  **MacPorts:** Added basic support for this Python flavor. More work
+   will be needed to get it to work fully though.
 
 Optimization
 ============
@@ -413,6 +470,16 @@ Optimization
 
 -  Made constant blobs more compact by avoiding repeated identifiers and
    unnecessary fields.
+
+-  Enhanced Python compilation scripts further. (Fixed in 4.0.8
+   already.)
+
+-  Recognized late incomplete variables better. (Fixed in 4.0.8
+   already.)
+
+-  Made constant blobs more compact. (Fixed in 4.0.8 already.)
+
+-  Optimized calls with only constant keywords and variable posargs too.
 
 Anti-Bloat
 ==========
@@ -525,6 +592,14 @@ Tests
 -  Reflected test for Nuitka, where it compiles itself and compares its
    operation has been restored to functional state.
 
+-  Used the new method to clear internal caches if available for
+   reference counts.
+
+-  Disabled running nested loops test with Python 2.6.
+
+-  **Containers:** Detected Python 2 defaulting containers in Podman
+   tooling.
+
 Cleanups
 ========
 
@@ -594,6 +669,13 @@ Cleanups
 
 -  Split import module finding functionality into more pieces for
    enhanced readability.
+
+-  **Debugging:** Added more assertions for constants loading and
+   checking.
+
+-  **macOS:** Dropped the ``universal`` target arch.
+
+-  **Debugging:** Added more traces for deep hash verification.
 
 Summary
 =======
