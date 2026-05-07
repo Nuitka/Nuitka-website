@@ -40,11 +40,7 @@ extensions = [
     #    "sphinx_inline_tabs",
     "sphinxcontrib.youtube",
     "sphinx_favicon",
-    "sphinx_sitemap",
     "sphinxcontrib.asciinema",
-    # Blog extension
-    "ablog",
-    "carousel",
 ]
 
 templates_path = [f"{ROOT}/_templates"]
