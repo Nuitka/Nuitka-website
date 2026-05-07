@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.1rc9**.
+It currently covers changes up to version **4.1rc10**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -263,6 +263,30 @@ Bug Fixes
 -  **Standalone:** Fix, multiphase module extension modules with
    post-load code were not working properly.
 
+-  Fix, Avoid using the non-inline copy of ``pkg_resources`` with the
+   inline copy of Jinja2. These could mismatch and cause errors.
+
+-  Fixed loops making releasing of previous values very unclear, causing
+   optimization errors.
+
+-  Fixed ``incbin`` resource mode not working with old ``gcc`` C++
+   fallback.
+
+-  **Standalone:** Fixed duplicated Qt libraries with ``PySide6``
+   WebEngine framework support on macOS.
+
+-  **Python 3.13+:** Fixed the need to check more flags for inline
+   values.
+
+-  **Python 3.4 to 3.6:** Fixed bytecode demotion not working properly
+   for these versions, also bytecode only files not working properly for
+   importing scans.
+
+-  **Plugins:** Added a check for the broken ``patchelf`` versions 0.10
+   and 0.11 to prevent breaking Qt plugins.
+
+-  **Android:** Allowed ``patchelf`` version 0.18 on Android.
+
 Package Support
 ===============
 
@@ -292,6 +316,8 @@ Package Support
 
 -  **Standalone:** Fixed missing ``flet_desktop`` app assets by
    preserving the packaged runtime and sidecar DLLs.
+
+-  **Standalone:** Added support for the ``tyro`` package.
 
 New Features
 ============
@@ -385,6 +411,9 @@ Optimization
 
 -  Handled hard attributes through merge traces as well.
 
+-  Made constant blobs more compact by avoiding repeated identifiers and
+   unnecessary fields.
+
 Anti-Bloat
 ==========
 
@@ -450,6 +479,10 @@ Organizational
 -  **Visual Code:** Added integration scripts for ``bash`` and ``zsh``
    autocompletion of Nuitka CLI options. These are now also integrated
    into Visual Studio Code terminal profiles and the Debian package.
+
+-  **RPM:** Included the Python compile script for Linux.
+
+-  **RPM:** Removed the requirement for ``distutils`` in the spec.
 
 Tests
 =====
@@ -558,6 +591,9 @@ Cleanups
 
 -  **Debugging:** Enhanced non-deployment handler for importing excluded
    modules.
+
+-  Split import module finding functionality into more pieces for
+   enhanced readability.
 
 Summary
 =======
