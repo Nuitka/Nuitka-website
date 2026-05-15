@@ -1,0 +1,27 @@
+Outstanding update.py follow-ups after PR 176
+============================================
+
+1. Fix inline SVG tail placement in `add_inline_svg()`
+- `add_inline_svg()` at update.py:208-220 preserves `element.tail` by appending a new span to the parent after replacement.
+- That changes ordering when the replaced node has following siblings. A minimal reproduction turns `<svg></svg>tail<span>B</span>` into `<svg></svg><span>B</span><span>tail</span>`.
+- Preserve the tail on the replacement node itself or insert it immediately after the replacement sibling.
+
+2. Stop flattening SVG source paths during inlining
+- `inlineImagesSvg()` at update.py:223-242 resolves every local SVG via `os.path.basename(src)` into `images/svg/<basename>`.
+- That hides path information and will break nested SVG paths or duplicate basenames in different directories.
+- Resolve against the actual output/document-relative path or introduce an explicit source-path mapping.
+
+3. Make `_splitRestByChapter()` fail explicitly on malformed input
+- `_splitRestByChapter()` at update.py:740-755 still probes `lines[count + 2]` without guarding for truncated markers.
+- A malformed changelog currently fails via incidental indexing rather than a clear parse error.
+- Replace that with explicit boundary checks and a dedicated parse exception that includes the source line number/title context.
+
+4. Make release-post generation deterministic and file-safe
+- `_updateReleasePosts()` at update.py:767-818 still uses raw `open()` calls without context managers or explicit encoding.
+- New post dates are derived from `datetime.datetime.now() + datetime.timedelta(days=1)`, which makes output depend on wall-clock time and local timezone.
+- Switch to `with open(..., encoding="utf-8")` and define a deterministic date policy or explicit CLI/input override for generated posts.
+
+5. Remove dead language-switcher code before re-enabling it
+- `runPostProcessing()` at update.py:1490-1534 still contains an `or True` branch, an `and False` branch, and duplicate loops removing the same nodes.
+- `_getLanguageFromFilename()` at update.py:841-845 also returns `CN` for `zh_CN/...`, so the locale labeling is wrong if that code path is revived.
+- Either delete the disabled path entirely or finish it cleanly with real locale parsing and a single implementation path.
