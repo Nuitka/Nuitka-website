@@ -81,7 +81,13 @@ jobs:
     steps:
       - name: Create update summary
         run: |
-          echo "# Golden Images Update Complete" >> $GITHUB_STEP_SUMMARY
-          echo "**Triggered by:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
-          echo "New golden images have been generated, cached, and backup artifacts uploaded (90-day retention)." >> $GITHUB_STEP_SUMMARY
-          echo "Next visual regression test run will use these images as baseline."
+          if [ "${{ needs.update-golden.result }}" = "failure" ]; then
+            echo "# Golden Images Update Failed" >> $GITHUB_STEP_SUMMARY
+            echo "**Triggered by:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+            echo "The golden image update did not complete successfully." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "# Golden Images Update Complete" >> $GITHUB_STEP_SUMMARY
+            echo "**Triggered by:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+            echo "New golden images have been generated, cached, and backup artifacts uploaded (90-day retention)." >> $GITHUB_STEP_SUMMARY
+            echo "Next visual regression test run will use these images as baseline."
+          fi
