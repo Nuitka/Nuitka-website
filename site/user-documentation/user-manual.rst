@@ -193,6 +193,41 @@ Generally, the architectures that **Debian** or **RHEL** support can be
 considered good and tested, too; for example, **RISC-V** won't pose any
 issues.
 
+CPython ABI
+===========
+
+Nuitka uses CPython's private API, `which has no stability guarantees
+<https://docs.python.org/3/c-api/stable.html>`_ and may introduce breaking
+changes even between patch releases of CPython. Extension modules produced
+by Nuitka depend on some of these changes (e.g., symbols added in newer
+patch releases) [#]_.
+
+Due to how wheels are named, this means it may not be possible to publish
+wheels compiled by Nuitka that support all patch releases for a given
+minor version of CPython.
+
+This can be mitigated by setting the ``Requires-Python`` attribute of the
+wheel to only allow CPython patch versions that are known to work. If you
+are also publishing the source distribution, then package managers can fall
+back to building from source if the wheel is incompatible [#]_.
+
+.. [#]
+
+   In *theory*, this means that using an extension module on a different
+   CPython patch release than the one used to compile it can result in
+   undefined behaviour. In practice, changes in new patch releases are
+   usually backwards compatible and typically only involve adding or
+   removing symbols (which will produce a shared library load failure
+   in the worst case, not undefined behaviour).
+
+.. [#]
+
+   If you are not publishing the source distribution, a possible solution
+   is to compile the wheel with the earliest patch release that you want
+   to support for each given minor version of CPython. This prevents Nuitka
+   from using private API features added in newer patch releases (assuming
+   that breaking changes are unlikely).
+
 **************
  Installation
 **************
