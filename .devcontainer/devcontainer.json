@@ -1,55 +1,61 @@
 {
-	"name": "Ubuntu",
-	"build": {
-		"dockerfile": "Dockerfile",
-	},
-	"forwardPorts": [8000],
-	"portsAttributes": {
-		"8000": {
-			"label": "Nuitka Website",
-			"onAutoForward": "notify",
-		},
-	},
-	"postCreateCommand": {
-		"set_timezone": "sudo dpkg-reconfigure tzdata -f none",
-		"create_supervisor_log_dir": "sudo mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs",
-		"chown_supervisor_log_dir": "sudo chown -R vscode:vscode ${containerWorkspaceFolder}/.devcontainer/supervisor",
-		"npm_install": "npm install --silent --no-fund --no-audit",
-		"fix_paste": "echo \"bind 'set enable-bracketed-paste off'\" >> /home/vscode/.bashrc",
-		"pipenv_install": "pipenv install --dev",
-		"default_development_mode": "echo '[DEFAULT]\\ndevelopment_mode = true' > state.ini",
-	},
-	"postStartCommand": {
-		"playwright_install": "pipenv run playwright install && pipenv run playwright install-deps",
-		"start_supervisord": "export containerWorkspaceFolder=${containerWorkspaceFolder} && mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs && supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf",
-		"info_message": "echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:8000\\n\\n'",
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"samuelcolvin.jinjahtml",
-				"jebbs.plantuml",
-				"lextudio.restructuredtext",
-				"aeschli.vscode-css-formatter",
-				"ms-python.python",
-				"ms-python.vscode-pylance",
-				"GitHub.vscode-pull-request-github",
-				"trond-snekvik.simple-rst",
-				"shuworks.vscode-table-formatter",
-				"streetsidesoftware.code-spell-checker",
-				"redhat.vscode-xml",
-				"eamodio.gitlens",
-				"swyddfa.esbonio",
-				"google.geminicodeassist",
-				"esbenp.prettier-vscode",
-				"csstools.postcss",
-			],
-		},
-	},
-	"containerEnv": {
-		"PIPENV_VERBOSITY": "-1",
-		"DEVELOPMENT_MODE": "1",
-		"DEBIAN_FRONTEND": "noninteractive",
-		"LANG": "C",
-	},
+  "name": "Ubuntu",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [
+    8000
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "Nuitka Website",
+      "onAutoForward": "notify"
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,ro",
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,ro"
+  ],
+  "postCreateCommand": {
+    "set_timezone": "sudo dpkg-reconfigure tzdata -f none",
+    "create_supervisor_log_dir": "sudo mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs",
+    "chown_supervisor_log_dir": "sudo chown -R vscode:vscode ${containerWorkspaceFolder}/.devcontainer/supervisor",
+    "npm_install": "npm install --silent --no-fund --no-audit",
+    "fix_paste": "echo \"bind 'set enable-bracketed-paste off'\" >> /home/vscode/.bashrc",
+    "pipenv_install": "pipenv install --dev",
+    "default_development_mode": "echo '[DEFAULT]\\ndevelopment_mode = true' > state.ini"
+  },
+  "postStartCommand": {
+    "playwright_install": "pipenv run playwright install && pipenv run playwright install-deps",
+    "start_supervisord": "export containerWorkspaceFolder=${containerWorkspaceFolder} && mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs && supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf &",
+    "info_message": "echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:8000\\n\\n'"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "samuelcolvin.jinjahtml",
+        "jebbs.plantuml",
+        "lextudio.restructuredtext",
+        "aeschli.vscode-css-formatter",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "GitHub.vscode-pull-request-github",
+        "trond-snekvik.simple-rst",
+        "shuworks.vscode-table-formatter",
+        "streetsidesoftware.code-spell-checker",
+        "redhat.vscode-xml",
+        "eamodio.gitlens",
+        "swyddfa.esbonio",
+        "google.geminicodeassist",
+        "esbenp.prettier-vscode",
+        "csstools.postcss"
+      ]
+    }
+  },
+  "containerEnv": {
+    "PIPENV_VERBOSITY": "-1",
+    "DEVELOPMENT_MODE": "1",
+    "DEBIAN_FRONTEND": "noninteractive",
+    "LANG": "C"
+  }
 }
