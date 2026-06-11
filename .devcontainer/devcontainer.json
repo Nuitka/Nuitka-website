@@ -13,9 +13,7 @@
     }
   },
   "mounts": [
-    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,ro",
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,ro",
-    "source=${localEnv:HOME}/.opencode,target=/home/vscode/.opencode,type=bind,ro"
+    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,ro"
   ],
   "postCreateCommand": {
     "set_timezone": "sudo dpkg-reconfigure tzdata -f none",
