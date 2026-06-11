@@ -21,7 +21,7 @@ do
         echo ""
         echo "Error detected, sleeping somewhat to allow you to see it."
 
-        sleep 5
+        sleep 60
         continue
     fi
     # python3 -m invoke intl -l zh_CN
