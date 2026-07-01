@@ -270,6 +270,17 @@ def inlineFontAwesomeSvg(doc):
         )
 
 
+def fixHeaderlinkPuaChars(doc):
+    for anchor in doc.xpath("//a[@class='headerlink']"):
+        text = anchor.text_content()
+        if text and any(0xF000 <= ord(c) <= 0xF0FF for c in text):
+            anchor.text = None
+            for child in list(anchor):
+                anchor.remove(child)
+            icon = html.fromstring('<i class="fa fa-link" aria-hidden="true"></i>')
+            anchor.append(icon)
+
+
 def _fetchUrlText(url, description):
     try:
         response = requests.get(url, timeout=HTTP_REQUEST_TIMEOUT)
@@ -704,8 +715,7 @@ def _renderDownloadPageFiles(max_pre_release, max_stable_release, obs_versions):
 .. |NUITKA_VERSION_MINOR| replace:: %s
 
 .. |NUITKA_VERSION_NEXT| replace:: %s
-"""
-            % (plain_stable, plain_stable_minor, plain_stable_next),
+""" % (plain_stable, plain_stable_minor, plain_stable_next),
         )
 
     with withFileOpenedAndAutoFormatted("site/doc/fedora-downloads.inc") as output_file:
@@ -838,15 +848,13 @@ compatible Python compiler,  `"download now" </doc/download.html>`_.\n""",
                 + lines
             )
         else:
-            lines.append(
-                """
+            lines.append("""
 
 But yes, lets see what happens. Oh, and you will find its `latest
 version here </doc/download.html>`_.
 
 Kay Hayen
-"""
-            )
+""")
         if "release-038" in slug:
             slug += "---windows-support"
 
@@ -1591,6 +1599,7 @@ def runPostProcessing():
 
         doc = html.fromstring(document_bytes)
 
+        fixHeaderlinkPuaChars(doc)
         inlineImagesSvg(doc=doc, filename=filename)
         inlineFontAwesomeSvg(doc)
 
@@ -1756,15 +1765,13 @@ def _update_golden_page(
         if wait > 0:
             page.wait_for_timeout(wait)
 
-        page.add_style_tag(
-            content="""
+        page.add_style_tag(content="""
         * {
             font-family: Arial, Helvetica, sans-serif !important;
             -webkit-font-smoothing: none !important;
             -moz-osx-font-smoothing: grayscale !important;
         }
-        """
-        )
+        """)
 
         page.wait_for_function("document.fonts.ready")
         page.screenshot(
