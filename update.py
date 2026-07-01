@@ -1091,7 +1091,8 @@ def _processWithNpmBuild(contents, script, suffix, cache, label):
             raise AssetProcessingError(f"Unable to run {label} tool: {e}") from e
 
         if result.stdout.strip():
-            my_print(f"{label} tool output: {result.stdout.strip()}")
+            if verbose_mode:
+                my_print(f"{label} tool output: {result.stdout.strip()}")
 
         if result.returncode != 0:
             message = result.stderr.strip() or result.stdout.strip()
@@ -1109,7 +1110,7 @@ def _processWithNpmBuild(contents, script, suffix, cache, label):
         cache[contents] = processed
 
         processed_size = len(processed)
-        if original_size > 0:
+        if original_size > 0 and verbose_mode:
             reduction_percent = (original_size - processed_size) / original_size * 100
             my_print(
                 f"{label} reduced by {reduction_percent:.1f}% ({original_size} → {processed_size} bytes)"
@@ -1260,7 +1261,8 @@ def _minifyHtml(filename):
         raise AssetProcessingError(f"Unable to run HTML minifier: {e}") from e
 
     if result.stdout.strip():
-        my_print(f"HTML-minifier output: {result.stdout.strip()}")
+        if verbose_mode:
+            my_print(f"HTML-minifier output: {result.stdout.strip()}")
 
     if result.returncode != 0:
         message = result.stderr.strip() or result.stdout.strip()

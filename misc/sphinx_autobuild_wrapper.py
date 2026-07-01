@@ -2,11 +2,14 @@ import os
 import signal
 import subprocess
 import sys
+import time
 
 import psutil
 import setproctitle
 import sphinx_autobuild.build
 from sphinx_autobuild.build import show
+
+_ignore_before = 0.0
 
 
 def mySignalHandler(signal, frame):
@@ -23,12 +26,25 @@ def get_builder(watcher, sphinx_args, *, host, port, pre_build_commands):
 
     def build():
         """Generate the documentation using ``sphinx``."""
+        global _ignore_before
+
         if not watcher.filepath:
             return
         if watcher.filepath.endswith(".cast"):
             return
 
+        if _ignore_before:
+            try:
+                mtime = os.path.getmtime(watcher.filepath)
+                if mtime < _ignore_before:
+                    show(context=f"Skipping pre-build change: {watcher.filepath}")
+                    return
+            except OSError:
+                pass
+
         show(context=f"Detected change: {watcher.filepath}")
+
+        _ignore_before = time.time()
 
         show(context="python3 -m invoke site")
         subprocess.run("python3 -m invoke site".split(), check=False)
@@ -42,6 +58,8 @@ def get_builder(watcher, sphinx_args, *, host, port, pre_build_commands):
 
         show(context="python3 -m invoke post-process")
         subprocess.run("python3 -m invoke post-process".split(), check=False)
+
+        _ignore_before = 0.0
 
         show(context=f"Serving on http://{host}:{port}")
 
