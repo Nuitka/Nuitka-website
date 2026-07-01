@@ -120,11 +120,11 @@ includes plugins that achieve the following:
                versions of packages and older toolchain, **Nuitka Commercial**
                allows you to make it portable.
 
-           .. grid-item-card::  RHEL 7 support
+           .. grid-item-card:: :doc:`/doc/commercial/portable-linux-support`
 
                Deploy to **Linux** with a portable build result
 
-               If your program works on RHEL 7 (CentOS 7), then **Nuitka Commercial** can make it portable across all Linux versions,
+               If your program works on RHEL 7 (or CentOS 7 alikes), then **Nuitka Commercial** can make it portable across all standard Linux distributions,
                using a container build.
 
 
@@ -157,24 +157,24 @@ already justify the investment.
        .. grid:: 1 1 1 1
            :gutter: 1
 
-           .. grid-item-card::  Windows Service
+           .. grid-item-card:: :doc:`/doc/commercial/windows-service`
 
                Deploying your program as a **Windows Service** becomes trivial.
 
                For this, **Nuitka Commercial** has a dedicated plugin that makes deploying your practically unchanged program as a **Window Service** very easy.
-
-               :doc:`Read more.... <commercial/windows-service>`
 
    .. grid-item::
 
        .. grid:: 1 1 1 1
            :gutter: 1
 
-           .. grid-item-card::  Automatic Updates
+           .. grid-item-card:: :doc:`/doc/commercial/automatic-updates`
 
-               Support for automatic downloads, alerts to them, and automatic applying updates of your deployed software.
+               Support for automatic downloads, alerts to them, and
+               automatic applying updates of your deployed software.
 
-               The feature has not yet been fully implemented; we will add it in future updates.
+               Currently supported for **onefile** mode, with standalone
+               mode coming in a future update.
 
 *************
  Sponsorship
