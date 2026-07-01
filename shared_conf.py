@@ -7,7 +7,7 @@ from pathlib import Path
 
 # -- Project information
 project = "Nuitka the Python Compiler"
-copyright = f"{time.gmtime().tm_year}, Kay Hayen and Nuitka Contributors"
+copyright = f"{time.gmtime().tm_year}, Kay Hayen.  All rights reserved.  Content from this site may not be republished without prior written permission."
 author = "Kay Hayen"
 release = version = ""
 
