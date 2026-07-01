@@ -12,7 +12,10 @@ import subprocess
 import sys
 from optparse import OptionParser
 from pathlib import Path
+
 from settings import development_mode
+
+verbose_mode = False
 
 import requests
 from lxml import html
@@ -918,14 +921,18 @@ def _getTranslationFileSet(filename):
 
 def _makeCssCombined(css_filenames, css_links, has_asciinema):
     # Simply concatenate CSS files - let PostCSS handle the processing
-    merged_css = "\n".join(
-        getFileContents(css_filename)
-        for css_filename in sorted(css_filenames, key=lambda x: "my_" in x)
-    )
+    existing_files = [
+        f for f in sorted(css_filenames, key=lambda x: "my_" in x) if os.path.exists(f)
+    ]
+    if not existing_files:
+        return
 
-    # orig_css = merged_css
+    merged_css = "\n".join(getFileContents(f) for f in existing_files)
 
-    # Process with PostCSS
+    output_filename = "/_static/css/combined_%s.css" % getHashFromValues(merged_css)
+
+    output_path = f"output{output_filename}"
+
     try:
         processed_css = _processWithPostCSS(merged_css)
     except AssetProcessingError as e:
@@ -935,22 +942,16 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
         processed_css = merged_css
         my_print(f"Warning, {e}, using original CSS")
 
-    # Validate processed CSS: fallback to original if empty or
-    # invalid, but only in development mode.
     if not processed_css:
         if not development_mode:
             raise AssetProcessingError("CSS processing produced empty output")
 
         processed_css = merged_css
-
         my_print("Warning, CSS processing produced empty output, using original CSS")
 
-    del merged_css
-
-    output_filename = "/_static/css/combined_%s.css" % getHashFromValues(processed_css)
-
-    putTextFileContents(filename=f"output{output_filename}", contents=processed_css)
-    # putTextFileContents(filename=f"output{output_filename}.orig", contents=orig_css)
+    putTextFileContents(filename=output_path, contents=processed_css)
+    if verbose_mode:
+        my_print(f"Combined CSS: {output_filename} ({len(processed_css)} bytes)")
 
     css_links[0].attrib["href"] = output_filename
     for css_link in css_links[1:]:
@@ -997,6 +998,11 @@ s.parentNode.insertBefore(ci_search, s);
     js_set_output_filename = "/_static/combined_%s.js" % getHashFromValues(
         js_set_contents
     )
+
+    if verbose_mode:
+        my_print(
+            f"Combined JS: {js_set_output_filename} ({len(js_set_contents)} bytes)"
+        )
 
     filename = f"output{js_set_output_filename}"
 
@@ -1137,14 +1143,38 @@ def _processWithTerser(js_content):
     )
 
 
-_html_minifier_cache = {}
-
 _html_minifier_version = None
 
 HTML_MINIFIER_CACHE_DIR = Path(".html-minifier-cache")
 
+_html_minifier_persistent_cache = None
 
-def _getHtmlMinifierVersion() -> str:
+_html_minifier_stats = {"disk_hits": 0, "misses": 0}
+
+_previous_hashes = {}
+
+
+def _loadPreviousHashes():
+    global _previous_hashes
+    hash_file = HTML_MINIFIER_CACHE_DIR / "last_hashes.json"
+    if hash_file.exists():
+        try:
+            _previous_hashes = json.loads(
+                getFileContents(hash_file.as_posix(), mode="r", encoding="utf-8")
+            )
+        except (OSError, json.JSONDecodeError):
+            _previous_hashes = {}
+
+
+def _savePreviousHashes(hashes):
+    HTML_MINIFIER_CACHE_DIR.mkdir(exist_ok=True)
+    putTextFileContents(
+        (HTML_MINIFIER_CACHE_DIR / "last_hashes.json").as_posix(),
+        json.dumps(hashes, indent=2),
+    )
+
+
+def _getHtmlMinifierVersion():
     global _html_minifier_version
     if _html_minifier_version is None:
         try:
@@ -1161,7 +1191,11 @@ def _getHtmlMinifierVersion() -> str:
     return _html_minifier_version
 
 
-def _getHtmlMinifierCache() -> dict:
+def _getHtmlMinifierCache():
+    global _html_minifier_persistent_cache
+    if _html_minifier_persistent_cache is not None:
+        return _html_minifier_persistent_cache
+
     cache_file = HTML_MINIFIER_CACHE_DIR / "index.json"
     if cache_file.exists():
         try:
@@ -1169,11 +1203,14 @@ def _getHtmlMinifierCache() -> dict:
                 getFileContents(cache_file.as_posix(), mode="r", encoding="utf-8")
             )
             if cache_data.get("version") != _getHtmlMinifierVersion():
-                return {}
-            return cache_data.get("entries", {})
+                _html_minifier_persistent_cache = {}
+            else:
+                _html_minifier_persistent_cache = cache_data.get("entries", {})
         except (OSError, json.JSONDecodeError):
-            pass
-    return {}
+            _html_minifier_persistent_cache = {}
+    else:
+        _html_minifier_persistent_cache = {}
+    return _html_minifier_persistent_cache
 
 
 def _saveHtmlMinifierCache(cache: dict) -> None:
@@ -1186,24 +1223,31 @@ def _saveHtmlMinifierCache(cache: dict) -> None:
 
 def _minifyHtml(filename):
     """Process HTML content through HTML-MINIFIER"""
-    if filename in _html_minifier_cache:
-        with open(filename, "w", encoding="utf-8") as output:
-            output.write(_html_minifier_cache[filename])
-        return
-
     content_bytes = getFileContents(filename, mode="rb")
     content_hash = getHashFromValues(content_bytes)
 
     persistent_cache = _getHtmlMinifierCache()
 
     if content_hash in persistent_cache:
-        cached_result = persistent_cache[content_hash]
-        _html_minifier_cache[filename] = cached_result
+        _html_minifier_stats["disk_hits"] += 1
+        _previous_hashes[filename] = content_hash
         with open(filename, "w", encoding="utf-8") as output:
-            output.write(cached_result)
+            output.write(persistent_cache[content_hash])
         return
 
-    my_print("Minifying HTML:", filename)
+    _html_minifier_stats["misses"] += 1
+
+    prev_hash = _previous_hashes.get(filename)
+    if prev_hash is None:
+        reason = "new file"
+    elif prev_hash != content_hash:
+        reason = f"content changed ({prev_hash} -> {content_hash})"
+    else:
+        reason = "cache evicted (content unchanged)"
+    if verbose_mode:
+        my_print(
+            f"Minifying HTML ({content_hash}, {len(content_bytes)} bytes, {reason}): {filename}"
+        )
 
     try:
         result = subprocess.run(
@@ -1231,7 +1275,6 @@ def _minifyHtml(filename):
 
     try:
         minified = getFileContents(filename, mode="r", encoding="utf-8")
-        _html_minifier_cache[filename] = minified
         persistent_cache[content_hash] = minified
         _saveHtmlMinifierCache(persistent_cache)
     except OSError as e:
@@ -1357,24 +1400,7 @@ def runPostProcessing():
                 os.path.join("output", translation, delete_filename), must_exist=False
             )
 
-    output_base_theme_path = "output/_static/css/theme.css"
     fa_fonts_path = "output/_static/fonts"
-
-    if os.path.exists(output_base_theme_path):
-        my_print(f"Processing base theme with PostCSS...")
-        theme_css_content = getFileContents(
-            output_base_theme_path, mode="r", encoding="utf-8"
-        )
-        processed_theme_css = _processWithPostCSS(theme_css_content)
-        if not processed_theme_css:
-            raise AssetProcessingError(
-                f"CSS processing produced empty output for {output_base_theme_path}"
-            )
-
-        putTextFileContents(
-            filename=output_base_theme_path, contents=processed_theme_css
-        )
-        my_print(f"Successfully processed and cleaned base theme")
 
     if os.path.exists(fa_fonts_path):
         for filename in os.listdir(fa_fonts_path):
@@ -1387,6 +1413,8 @@ def runPostProcessing():
     file_list.insert(0, "output/index.html")
 
     root_doc = None
+    _loadPreviousHashes()
+
     for filename in file_list:
         doc = html.fromstring(getFileContents(filename, mode="rb"))
 
@@ -1449,7 +1477,6 @@ def runPostProcessing():
         for current_hub_card in doc.xpath(
             "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-body')]"
         ):
-
             has_arrow_div = current_hub_card.xpath("div[@class='hub-circle-button']")
 
             if not has_arrow_div:
@@ -1476,7 +1503,6 @@ def runPostProcessing():
         for current_hub_title in doc.xpath(
             "//div[contains(@class, 'hub-card-set')]//div[contains(@class, 'sd-card-title')]"
         ):
-
             for first_child in current_hub_title:
                 if first_child.tag == "a":
                     card_body = _require_single_xpath(
@@ -1513,7 +1539,7 @@ def runPostProcessing():
 
         if css_filenames := [
             os.path.normpath(
-                f'output/{os.path.relpath(os.path.dirname(filename), "output")}/{css_link.get("href")}'
+                f"output/{os.path.relpath(os.path.dirname(filename), 'output')}/{css_link.get('href')}"
             )
             for css_link in css_links
             if "combined_" not in css_link.get("href")
@@ -1673,6 +1699,20 @@ def runPostProcessing():
 
         if not development_mode:
             _minifyHtml(filename)
+
+    _savePreviousHashes(_previous_hashes)
+
+    if (
+        not development_mode
+        and _html_minifier_stats["misses"] + _html_minifier_stats["disk_hits"] > 0
+    ):
+        my_print(
+            "HTML minifier cache summary: %d disk hits, %d misses"
+            % (
+                _html_minifier_stats["disk_hits"],
+                _html_minifier_stats["misses"],
+            )
+        )
 
     if development_mode:
         my_theme_filename = "output/_static/my_theme.css"
@@ -2176,6 +2216,9 @@ When given, the site is deployed. Default %default.""",
     )
 
     options, positional_args = parser.parse_args()
+
+    global verbose_mode
+    verbose_mode = options.verbose
 
     if positional_args:
         raise ValueError(f"Unexpected positional arguments: {positional_args!r}")

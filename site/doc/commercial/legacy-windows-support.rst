@@ -1,14 +1,14 @@
 :orphan:
 
-##############################################
- Legacy Windows Support via Nuitka Commercial
-##############################################
+########################
+ Legacy Windows Support
+########################
 
 Standard **Nuitka** requires a reasonably modern toolchain (e.g. MSVC
 for Python 3.10+) which targets Windows 10 and newer. **Nuitka
 Commercial** extends this support to **Windows 7** and **Windows XP**
 for programs that are already compatible with these older operating
-systems.
+systems and much older Python versions.
 
 **************
  How It Works

@@ -1,0 +1,50 @@
+[tool.pyright]
+typeCheckingMode = "basic"
+pythonVersion = "3.12"
+
+reportAttributeAccessIssue = "none"
+reportMissingModuleSource = "none"
+reportMissingImports = "none"
+
+reportOptionalMemberAccess = "none"
+reportOptionalCall = "none"
+reportOptionalSubscript = "none"
+reportOptionalIterable = "none"
+reportOptionalOperand = "none"
+
+reportArgumentType = "none"
+reportAssignmentType = "none"
+reportCallIssue = "none"
+reportOperatorIssue = "none"
+reportGeneralTypeIssues = "none"
+
+reportRedeclaration = "none"
+reportPrivateImportUsage = "none"
+
+extraPaths = [
+    "Nuitka-develop",
+]
+
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/.*",
+    "**/output/**",
+    "**/intl/**",
+    "**/locales/**",
+    "*Mini*",
+]
+
+[tool.ruff]
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/.*",
+    "**/output/**",
+    "**/intl/**",
+    "**/locales/**",
+    "*Mini*",
+]
+
+[tool.ruff.lint]
+ignore = ["E402", "E731", "F401"]

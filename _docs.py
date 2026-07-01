@@ -35,7 +35,7 @@ def build(c, opts=None, language=None, source=None, target=None, nitpick=False):
         target = f"{target}/{language}"
     if nitpick:
         opts += " -n -W -T"
-    cmd = f"{sys.executable} -m pipenv run sphinx-build -W --keep-going {opts} {source} {target}"
+    cmd = f"{sys.executable} -m pipenv run sphinx-build -a -W --keep-going {opts} {source} {target}"
     c.run(cmd)
 
 
