@@ -87,6 +87,10 @@
 
    <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
 
+.. |CANCEL_SYMBOL| raw:: html
+
+   <i class="fa fa-fw fa-xmark-circle" aria-hidden="true"></i>
+
 ..
    TODO: Use these
 

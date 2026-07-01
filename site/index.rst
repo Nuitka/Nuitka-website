@@ -44,6 +44,8 @@ Python is already compatible with your system.
    |PROTECTION_SYMBOL| Commercial Features <doc/commercial>
    |RESELLERS_SYMBOL| Reseller Information <commercial/resellers>
    |VM_SYMBOL| Nuitka VM <doc/bundles>
+   |REFUND_SYMBOL| Refund Policy <commercial/refund-policy>
+   |CANCEL_SYMBOL| Cancellation <commercial/cancellation-policy>
 
 .. toctree::
    :titlesonly:
@@ -61,7 +63,6 @@ Python is already compatible with your system.
    |CREDITS_SYMBOL| Credits <doc/Credits>
    |IMPRESSUM_SYMBOL| Impressum <pages/impressum>
    |PRIVACY_SYMBOL| Privacy Policy <pages/privacy-policy>
-   |REFUND_SYMBOL| Refund Policy <commercial/refund-policy>
    pages/pyside2
    pages/pyqt5
 
