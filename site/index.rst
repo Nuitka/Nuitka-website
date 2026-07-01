@@ -60,6 +60,7 @@ Python is already compatible with your system.
 
    |CREDITS_SYMBOL| Credits <doc/Credits>
    |IMPRESSUM_SYMBOL| Impressum <pages/impressum>
+   |PRIVACY_SYMBOL| Privacy Policy <pages/privacy-policy>
    pages/pyside2
    pages/pyqt5
 

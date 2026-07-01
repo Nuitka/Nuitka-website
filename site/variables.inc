@@ -79,6 +79,10 @@
 
    <i class="fa fa-fw fa-info-circle" aria-hidden="true"></i>
 
+.. |PRIVACY_SYMBOL| raw:: html
+
+   <i class="fa fa-fw fa-lock" aria-hidden="true"></i>
+
 ..
    TODO: Use these
 
