@@ -102,13 +102,14 @@ includes plugins that achieve the following:
 
 .. grid:: 1 1 2 2
    :gutter: 1
+   :class-container: hub-card-set commercial-feature-hub
 
    .. grid-item::
 
        .. grid:: 1 1 1 1
            :gutter: 1
 
-           .. grid-item-card::  Windows 7
+           .. grid-item-card:: :doc:`/doc/commercial/legacy-windows-support`
 
                Deploy to **Windows 7** or even **Windows XP**
 
@@ -132,13 +133,11 @@ includes plugins that achieve the following:
        .. grid:: 1 1 1 1
            :gutter: 1
 
-           .. grid-item-card:: Commercial-only packages
+           .. grid-item-card:: :doc:`/doc/commercial/commercial-only-packages`
 
                For a select few packages, these are supported only with **Nuitka Commercial**. For example, we made patches for older
                packages like PySide2, or because the package is
                for accepting payments for your commercial product.
-
-               :doc:`Read more.... <commercial/commercial-only-packages>`
 
 *************
  Convenience
@@ -150,6 +149,8 @@ will have, and that are all effort to implement yourself, but come with
 already justify the investment.
 
 .. grid:: 1 1 2 2
+   :gutter: 1
+   :class-container: hub-card-set commercial-feature-hub
 
    .. grid-item::
 
@@ -163,6 +164,8 @@ already justify the investment.
                For this, **Nuitka Commercial** has a dedicated plugin that makes deploying your practically unchanged program as a **Window Service** very easy.
 
                :doc:`Read more.... <commercial/windows-service>`
+
+   .. grid-item::
 
        .. grid:: 1 1 1 1
            :gutter: 1

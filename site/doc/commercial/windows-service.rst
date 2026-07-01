@@ -64,6 +64,6 @@ options to provide a proper version resource.
    launched as a Windows service.
 
 Go `back to Nuitka commercial
-</doc/commercial.html#special-needs-commercial-only-use-cases>`__
-overview to learn about more features or to subscribe to `Nuitka
-commercial </doc/commercial.html#pricing>`__.
+</doc/commercial.html#older-oses-and-special-needs>`__ overview to learn
+about more features or to subscribe to `Nuitka commercial
+</doc/commercial.html#pricing>`__.
