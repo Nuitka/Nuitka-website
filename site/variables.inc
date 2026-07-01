@@ -83,6 +83,10 @@
 
    <i class="fa fa-fw fa-lock" aria-hidden="true"></i>
 
+.. |REFUND_SYMBOL| raw:: html
+
+   <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
+
 ..
    TODO: Use these
 
