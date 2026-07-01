@@ -4,6 +4,7 @@
 
 import copy
 import datetime
+import json
 import os
 import re
 import shlex
@@ -1138,12 +1139,68 @@ def _processWithTerser(js_content):
 
 _html_minifier_cache = {}
 
+_html_minifier_version = None
+
+HTML_MINIFIER_CACHE_DIR = Path(".html-minifier-cache")
+
+
+def _getHtmlMinifierVersion() -> str:
+    global _html_minifier_version
+    if _html_minifier_version is None:
+        try:
+            minifier_pkg = json.loads(
+                getFileContents(
+                    "node_modules/html-minifier-next/package.json",
+                    mode="r",
+                    encoding="utf-8",
+                )
+            )
+            _html_minifier_version = minifier_pkg.get("version", "unknown")
+        except (OSError, json.JSONDecodeError):
+            _html_minifier_version = "unknown"
+    return _html_minifier_version
+
+
+def _getHtmlMinifierCache() -> dict:
+    cache_file = HTML_MINIFIER_CACHE_DIR / "index.json"
+    if cache_file.exists():
+        try:
+            cache_data = json.loads(
+                getFileContents(cache_file.as_posix(), mode="r", encoding="utf-8")
+            )
+            if cache_data.get("version") != _getHtmlMinifierVersion():
+                return {}
+            return cache_data.get("entries", {})
+        except (OSError, json.JSONDecodeError):
+            pass
+    return {}
+
+
+def _saveHtmlMinifierCache(cache: dict) -> None:
+    HTML_MINIFIER_CACHE_DIR.mkdir(exist_ok=True)
+    putTextFileContents(
+        (HTML_MINIFIER_CACHE_DIR / "index.json").as_posix(),
+        json.dumps({"version": _getHtmlMinifierVersion(), "entries": cache}, indent=2),
+    )
+
 
 def _minifyHtml(filename):
     """Process HTML content through HTML-MINIFIER"""
     if filename in _html_minifier_cache:
         with open(filename, "w", encoding="utf-8") as output:
             output.write(_html_minifier_cache[filename])
+        return
+
+    content_bytes = getFileContents(filename, mode="rb")
+    content_hash = getHashFromValues(content_bytes)
+
+    persistent_cache = _getHtmlMinifierCache()
+
+    if content_hash in persistent_cache:
+        cached_result = persistent_cache[content_hash]
+        _html_minifier_cache[filename] = cached_result
+        with open(filename, "w", encoding="utf-8") as output:
+            output.write(cached_result)
         return
 
     my_print("Minifying HTML:", filename)
@@ -1173,9 +1230,10 @@ def _minifyHtml(filename):
         )
 
     try:
-        _html_minifier_cache[filename] = getFileContents(
-            filename, mode="r", encoding="utf-8"
-        )
+        minified = getFileContents(filename, mode="r", encoding="utf-8")
+        _html_minifier_cache[filename] = minified
+        persistent_cache[content_hash] = minified
+        _saveHtmlMinifierCache(persistent_cache)
     except OSError as e:
         raise AssetProcessingError(
             f"Unable to read minified HTML file {filename}: {e}"
