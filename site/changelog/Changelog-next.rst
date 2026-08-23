@@ -385,6 +385,12 @@ Bug Fixes
    meta path loader, since probes during loader setup otherwise wrote to
    an uninitialized file handle and crashed.
 
+-  **PGO:** Fix, executing the compiled binary during Python PGO did not
+   work for uninstalled Python, where the execution environment setup
+   was missing. It is now executed via a script if necessary, and
+   internal ``NUITKA_*`` environment variables are no longer passed to
+   it, since they could cause the created binary to fail at runtime.
+
 -  **Onefile:** Fix, memory issues with parallel zstandard compression
    are now avoided on 32 bit Python in general, since the check is based
    on the Python itself rather than the x86 architecture, and Android
@@ -396,6 +402,12 @@ Bug Fixes
    directory was created.
 
 -  **Zig:** Fix, need to use the newest ``zig`` on macOS.
+
+-  **Zig:** Fix, produced binaries for the native CPU architecture of
+   the compilation machine by default, making them not portable to older
+   machines. Nuitka now creates machine portable binaries by default,
+   with the new ``--target-arch`` option allowing to select a higher
+   baseline ISA for speed.
 
 -  **NoGil:** Fix, frames objects are now owned by the frame object
    rather than the generator.
@@ -468,6 +480,8 @@ Package Support
    instead of comparisons that caused too many modules to be included
    when Qt was used.
 
+-  **Plugins:** Detects Qt plugin XML and webview modules automatically.
+
 -  **Plugins:** Fix, avoided a warning when the ``gi`` module is not
    usable.
 
@@ -486,29 +500,17 @@ Package Support
 New Features
 ============
 
--  **Python 3.14:** Added support for ``__annotate__`` for classes, and
-   delaying class level annotations when the
-   ``--experimental=deferred-annotations`` flag is given. With 4.2, this
-   is the default mode. (Added in 4.1.1 already.)
-
--  **Plugins:** Added the ability to resolve variable references to
-   compile-time constants during tree building, used for ``pyqtgraph``
-   to resolve ``QT_LIB``, enabling dead code elimination of unused Qt
-   binding branches. (Added in 4.1.3 already.)
-
--  **Python 3.7+:** Added support for ``importlib.resources.contents``
-   and ``importlib.resources.is_resource``, which had been overlooked so
-   far. (Added in 4.1.3 already.)
-
--  **Python 3.12+:** Added support for the no-argument form of
-   ``importlib.resources.files()`` as well.
-
 -  **Python 3.14:** Pronounced Python 3.14 as officially supported.
+
+-  **Python 3.14:** Made deferred annotations the default mode.
 
 -  **Python 3.14:** Added support for module-level deferred annotations,
    and Python source generation for ``__annotate__`` functions.
 
--  **Python 3.14:** Made deferred annotations the default mode.
+-  **Python 3.14:** Added support for ``__annotate__`` for classes, and
+   delaying class level annotations when the
+   ``--experimental=deferred-annotations`` flag is given. With 4.2, this
+   is the default mode. (Added in 4.1.1 already.)
 
 -  **Python 3.14:** Added the
    ``--experimental=no-bytecode-to-compiled-fallback`` flag for
@@ -517,26 +519,40 @@ New Features
 -  **Python 3.15:** Added initial support for compiling with Python
    3.15.
 
--  **OS400:** Detected IBMi Python as a flavor.
+-  **Python 3.7+:** Added support for ``importlib.resources.contents``
+   and ``importlib.resources.is_resource``, which had been overlooked so
+   far. (Added in 4.1.3 already.)
 
--  **Zig:** Created machine portable binaries by default.
+-  **Python 3.12+:** Added support for the no-argument form of
+   ``importlib.resources.files()`` as well.
 
--  **Plugins:** Detected Qt plugin XML and webview modules
-   automatically.
+-  **Linux:** Added support for ``app`` mode, creating a ``.desktop``
+   file for the compiled result, usable with standalone and onefile.
 
--  **Plugins:** Added an interface for changing module declarations.
+-  **Installer:** Added an installer for Windows via NSIS with
+   ``--windows-create-installer``, and relocated the macOS DMG creation
+   into the installer as ``--macos-create-installer``.
+
+-  **Installer:** Added support for a Linux installer via AppImage with
+   ``--linux-create-installer``, using ``appimagetool`` from ``PATH`` or
+   a cached download.
+
+-  **OS400:** Detects IBMi Python as a flavor.
+
+-  **Plugins:** Added the ability to resolve variable references to
+   compile-time constants during tree building, used for ``pyqtgraph``
+   to resolve ``QT_LIB``, enabling dead code elimination of unused Qt
+   binding branches. (Added in 4.1.3 already.)
+
+-  **Plugins:** Added the ``onMetaPathLoaderEntryTemplate`` plugin
+   method, allowing plugins to modify the template arguments used to
+   generate the meta path loader entries for modules.
 
 -  **Plugins:** Added the ability to set defines differently for onefile
    builds and backend builds.
 
--  **Plugins:** Added separate ``plugin-warning`` and ``plugin-error``
-   levels for plugin messages in package configuration, allowing plugins
-   to report errors.
-
 -  **UI:** Added the ``--update-check`` option to check if a newer
    Nuitka version is available.
-
--  **UI:** Added Python version related variables for project expansion.
 
 -  **macOS:** Added the ``--macos-app-macos-min-version`` option for the
    minimum app version, and set ``CFBundleVersion``.
@@ -544,26 +560,15 @@ New Features
 -  **macOS:** Added the ``--macos-app-category-type`` option to set the
    app category for the app store.
 
--  **macOS:** Added experimental auto-use of the Homebrew clang.
-
--  **Linux:** Added support for "app" mode that creates a desktop file.
-
--  **Installer:** Added an installer command for Windows, and relocated
-   the macOS DMG into it.
-
--  **Installer:** Added support for a Linux installer via AppImage too.
-
--  **PGO:** Executed compiled binaries using scripts if necessary.
-
 -  **PGO:** Added the ``--pgo-python-error-exit`` option to control
    error-exit handling.
 
--  **Reports:** Added totals for C compilation and linking as well.
+-  **Reports:** Added totals for C compilation and linking as well,
+   reporting the accumulated user and system CPU time and module count
+   of compilation, and the CPU time of linking, next to the existing
+   code generation totals.
 
--  **Debugging:** Added the ``--devel-no-bytecode-to-compiled-fallback``
-   option to check coverage.
-
--  **Watch:** Added a ``wait_for`` condition for test cases of
+-  **Testing:** Added a ``wait_for`` condition for test cases of
    ``nuitka-watch``, where a case is skipped until the condition is met,
    used e.g. to wait for pip installs to start working.
 
@@ -692,6 +697,16 @@ Organizational
 
 -  **Docs:** Updated the man pages with the new CodeMeter plugin
    options.
+
+-  **Plugins:** Added separate ``plugin-warning`` and ``plugin-error``
+   levels for plugin messages in package configuration, allowing plugins
+   to report errors.
+
+-  **UI:** Added ``{PYTHON_VERSION}`` and ``{PYTHON_VERSION_FULL}``
+   variables for project expansion.
+
+-  **Debugging:** Added the ``--devel-no-bytecode-to-compiled-fallback``
+   option to check coverage.
 
 -  **Quality:** Added checker tools for pyright, basedpyright, ruff, and
    clangd, plus initial cleanups for fewer linter errors.

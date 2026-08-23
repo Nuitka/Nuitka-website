@@ -136,6 +136,13 @@ end of their prefix run:
 Other sections are not grouped this way, but keep items of the same prefix together where it is
 natural.
 
+### Ordering inside New Features
+
+- An entry that pronounces a Python version as officially supported (e.g. "**Python 3.14:**
+  Pronounced Python 3.14 as officially supported.") is always the first entry of New Features.
+- Hotfix entries are **not** grouped together in New Features. Place them by relevance among the
+  develop entries, keeping their `(Added in X.Y.Z already.)` suffix.
+
 ### Skipping commits
 
 - Skip `fixup!` commits entirely, they are folded into the entry of the commit they fix.
