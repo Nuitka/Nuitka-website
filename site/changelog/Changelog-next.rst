@@ -33,26 +33,43 @@ It currently covers changes up to version **4.2rc1**.
 Bug Fixes
 =========
 
--  **Python3:** Fix, nested generators did not publish exceptions
-   properly. (Fixed in 4.1.1 already.)
+-  **Python3:** Fix, nested generators did not make the exception being
+   handled in the delegating generator visible to the code they delegate
+   to, so ``sys.exc_info()`` gave wrong results there. (Fixed in 4.1.1
+   already.)
+
+   .. code:: python
+
+      import sys
+
+
+      def inner():
+          print(sys.exc_info()[0])  # 4.1: None (bug), 4.1.1: KeyError (correct)
+          yield 1
+
+
+      def outer():
+          try:
+              raise KeyError("caught")
+          except KeyError:
+              yield from inner()
+
+
+      next(outer())
 
 -  **Python 3.10+:** Fix, compiled coroutines left the result of their
    send slot uninitialized when they finished by raising, so callers
    like ``asyncio`` could observe garbage values. (Fixed in 4.1.1
    already.)
 
--  **Python 3.14:** Fix, for Python debug module mode, the runtime
-   access for reference tracing needed handling, and adapted headers
-   were not used for MSVC non-modules anymore, where they are not
-   needed. (Fixed in 4.1.1 already.)
+-  **Python 3.14:** Fix, debug builds in module mode needed handling for
+   the reference tracing runtime access, and adapted headers are no
+   longer used for MSVC, where the compiler and runtime layouts match.
+   (Fixed in 4.1.1 already.)
 
 -  **Plugins:** Fix, ``mypyc`` runtime detection didn't happen for
    submodules of a package, which affected at least the ``chardet``
    module. (Fixed in 4.1.1 already.)
-
--  **Plugins:** Fix, ``pkg_resources`` newer version lost some features
-   with newer versions where e.g. the ``EggProvider`` imports fail.
-   (Fixed in 4.1.1 already.)
 
 -  **Windows:** Enabled UTF-8 mode for attached consoles, since
    otherwise the CRT runtime could hang or corrupt outputs and inputs.
@@ -67,10 +84,12 @@ Bug Fixes
    small files when using multiple threads. (Fixed in 4.1.1 already.)
 
 -  **macOS:** Fix, needed to make sure header padding is possible for
-   ``--mode=dll`` mode as well. (Fixed in 4.1.1 already.)
+   ``--mode=dll`` mode as well, otherwise ``install_name_tool`` cannot
+   rewrite the load paths of the output. (Fixed in 4.1.1 already.)
 
--  **macOS:** Fix, did not include existing signatures for frameworks
-   anymore. (Fixed in 4.1.1 already.)
+-  **macOS:** Fix, existing signatures of frameworks were no longer
+   copied, as they became invalid after relocation and broke re-signing
+   of the binaries. (Fixed in 4.1.1 already.)
 
 -  **macOS:** Fix, added handling for another form of self dependency
    from absolute paths. (Fixed in 4.1.1 already.)
@@ -90,12 +109,16 @@ Package Support
 -  **Plugins:** Fix, PyQt5 markdown data files caused errors on Linux,
    they are now excluded. (Fixed in 4.1.1 already.)
 
+-  **Plugins:** Added support for newer ``pkg_resources`` versions,
+   where the ``EggProvider`` was removed. (Added in 4.1.1 already.)
+
 New Features
 ============
 
 -  **Python 3.14:** Added support for ``__annotate__`` for classes, and
-   delaying class level annotations when the experimental flag is given.
-   (Added in 4.1.1 already.)
+   delaying class level annotations when the
+   ``--experimental=deferred-annotations`` flag is given. With 4.2, this
+   is the default mode. (Added in 4.1.1 already.)
 
 Optimization
 ============
