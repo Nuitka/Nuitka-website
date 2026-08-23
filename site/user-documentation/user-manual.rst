@@ -608,6 +608,12 @@ For the **macOS** bundle, ``--macos-app-macos-min-version`` sets the
 minimum macOS version the app requires, and
 ``--macos-app-category-type`` sets the app category for the app store.
 
+For the **Linux** app mode, ``--linux-app-icon`` selects the icon for
+the desktop file, ``--linux-app-license`` the SPDX license expression of
+the application, and ``--linux-app-console-mode`` controls whether a
+terminal is opened on launch. The application ID is derived from
+``--company-name`` and ``--product-name``.
+
 Installer
 =========
 
@@ -786,8 +792,9 @@ Version Information
 
 You can attach copyright and trademark information, company name,
 product name, and other elements to your compilation. You will see it in
-the version information for the created binary on **Windows** or the
-application bundle on **macOS**.
+the version information for the created binary on **Windows**, the
+application bundle on **macOS**, and in the desktop file and AppStream
+metadata of **Linux** app mode.
 
 .. note::
 
@@ -803,6 +810,13 @@ use in version information. Defaults to the base filename of the created
 binary; for example, when compiling ``MySoftware.py``, it becomes
 ``MySoftware``, but you can override it as you choose.
 
+Company Name
+------------
+
+With the ``--company-name`` option, you specify the company name to use
+in version information. On **Linux** app mode, it is used together with
+the product name to derive the application ID, and is required for that.
+
 Product Version
 ---------------
 
@@ -815,14 +829,18 @@ information. It must be up to 4 numbers; for example, ``1.0.0.0`` and
 ``1.0`` will also be accepted. For **Windows** version information,
 **Nuitka** adds zeros automatically. Non-numbers are not allowed here.
 
+On **Linux** app mode, the product or file version is used as the
+release version in the AppStream metadata.
+
 File Description
 ----------------
 
 You can also describe the created binary for use in the version
-information with the option ``--file-description``, by default on
-**Windows**, because it's mandatory in version information **Nuitka**
-uses the binary filename, so for example, ``MySoftware.py`` becomes
-``MySoftware.exe``, but it's better for you to provide one.
+information with the option ``--file-description``. On **Windows**,
+because it's mandatory in version information, **Nuitka** defaults it to
+the binary filename, so for example, ``MySoftware.py`` becomes
+``MySoftware.exe``, but it's better for you to provide one. On **Linux**
+app mode, it is used as the summary of the AppStream metadata.
 
 Copyright
 ---------
