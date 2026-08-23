@@ -915,6 +915,8 @@ Nuitka repository. These are its entries:
 +------------------------------------+------------------------------------------------------------------------------------+
 | ``onefile_reproducible``           | Whether the onefile binary is reproducible                                         |
 +------------------------------------+------------------------------------------------------------------------------------+
+| ``onefile_source_dir``             | Onefile source directory path, if onefile mode                                     |
++------------------------------------+------------------------------------------------------------------------------------+
 | ``scons_error_report_data``        | Scons error report data                                                            |
 +------------------------------------+------------------------------------------------------------------------------------+
 | ``scons_resource_usage_data``      | Scons resource usage data                                                          |
@@ -953,6 +955,25 @@ Nuitka repository. These are its entries:
 +------------------------------------+------------------------------------------------------------------------------------+
 | ``performance_totals``             | Timing totals for optimization passes, code generation, C compilation, and linking |
 +------------------------------------+------------------------------------------------------------------------------------+
+| ``linker_cpu``                     | Linker CPU usage information from Scons resource usage                             |
++------------------------------------+------------------------------------------------------------------------------------+
+
+On top of these, the template has the following helper functions
+available:
+
++------------------------------+----------------------------------------+
+| Function                     | Purpose                                |
++==============================+========================================+
+| ``get_distribution_license`` | Get the license text of a distribution |
++------------------------------+----------------------------------------+
+| ``get_distribution_name``    | Get the name of a distribution         |
++------------------------------+----------------------------------------+
+| ``get_distribution_version`` | Get the version of a distribution      |
++------------------------------+----------------------------------------+
+| ``quoted``                   | Quote a list of strings                |
++------------------------------+----------------------------------------+
+| ``len``                      | Check the length of lists              |
++------------------------------+----------------------------------------+
 
 If you have a template, you can use it like this
 ``--report-template=your_template.rst.j2:your_report.rst``. Using a
