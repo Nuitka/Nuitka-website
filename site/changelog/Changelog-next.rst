@@ -36,11 +36,10 @@ Bug Fixes
 -  **Python3:** Fix, nested generators did not publish exceptions
    properly. (Fixed in 4.1.1 already.)
 
--  **Python 3.10+:** Fix, coroutine ``am_send`` could return wrong
-   result values. (Fixed in 4.1.1 already.)
-
--  **Python 3.14:** Fix, needed to emulate ``PYTHON_FROZEN_MODULES`` for
-   accelerated mode as well. (Fixed in 4.1.1 already.)
+-  **Python 3.10+:** Fix, compiled coroutines left the result of their
+   send slot uninitialized when they finished by raising, so callers
+   like ``asyncio`` could observe garbage values. (Fixed in 4.1.1
+   already.)
 
 -  **Python 3.14:** Fix, for Python debug module mode, the runtime
    access for reference tracing needed handling, and adapted headers
@@ -48,20 +47,20 @@ Bug Fixes
    needed. (Fixed in 4.1.1 already.)
 
 -  **Plugins:** Fix, ``mypyc`` runtime detection didn't happen for
-   submodules, which affected at least the ``chardet`` module. (Fixed in
-   4.1.1 already.)
+   submodules of a package, which affected at least the ``chardet``
+   module. (Fixed in 4.1.1 already.)
 
--  **Plugins:** Fix, ``pkg_resources`` had lost some features with newer
-   versions where the ``EggProvider`` imports fail. (Fixed in 4.1.1
-   already.)
+-  **Plugins:** Fix, ``pkg_resources`` newer version lost some features
+   with newer versions where e.g. the ``EggProvider`` imports fail.
+   (Fixed in 4.1.1 already.)
 
 -  **Windows:** Enabled UTF-8 mode for attached consoles, since
    otherwise the CRT runtime could hang or corrupt outputs and inputs.
    (Fixed in 4.1.1 already.)
 
--  **Windows:** Fix, multiprocessing was not fully working in onefile
-   DLL mode, since spawning needs to point to the outer binary, not the
-   DLL. (Fixed in 4.1.1 already.)
+-  **Windows:** Fix, ``multiprocessing`` was not fully working in
+   onefile DLL mode, since spawning needs to point to the outer binary,
+   not the DLL. (Fixed in 4.1.1 already.)
 
 -  **Windows:** Fix, memory issue for 32 bit Python onefile compression,
    where parallel zstandard compression ran into memory issues for even
