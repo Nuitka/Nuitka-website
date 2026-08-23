@@ -695,7 +695,8 @@ Organizational
    to report errors.
 
 -  **UI:** Added ``{PYTHON_VERSION}`` and ``{PYTHON_VERSION_FULL}``
-   variables for project expansion.
+   variables for project expansion, expanding to e.g. ``3.10`` and
+   ``3.10.11`` respectively.
 
 -  **Debugging:** Added the ``--devel-no-bytecode-to-compiled-fallback``
    option to check coverage.
