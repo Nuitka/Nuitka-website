@@ -69,11 +69,6 @@ This is the Nuitka roadmap, broken down by features.
    sharing improvements by generating code variants rather that
    duplicating stuff.
 
--  Nested async compressions are not yet fully compatible, some newly
-   allowed, strange forms, are failing ``test_testcoroutines`` and need
-   to be supported eventually, although real code is very unlikely to
-   encounter it.
-
 *************
  Python 3.12
 *************
@@ -86,19 +81,9 @@ This is the Nuitka roadmap, broken down by features.
  Python 3.13
 *************
 
--  The No-GIL variant of Python 3.13 is not currently working with
-   Nuitka and needs more work. Right now it seems we cannot import
-   ``inspect`` without crashing, we need to audit data structures for
-   more issues like one we found with list data allocations.
-
-*************
- Python 3.14
-*************
-
--  Deferred annotations are only activated with
-   ``--experimental=deferred-annotations``, and as such not yet enabled
-   by default. Once we solve the bloat issues it causes to add a
-   function per annotation container, we can enable it by default.
+-  The No-GIL variant of Python 3.13 is somewhat working with Nuitka
+   now, but needs even more auditing for data structure issues, e.g. one
+   we found with list data allocations, and performance work.
 
 ***********************
  MonolithPy (standard)
@@ -112,21 +97,6 @@ and DLL usages.
 ************************
  Scalability (standard)
 ************************
-
--  More compact code objects handling
-
-   Code objects and their creation is among the oldest code in Nuitka
-   and lacks 2 features. First, their creation cannot be delayed, so
-   they consume memory even if never used and module load time as well.
-
-   We have since began to create constants from binary blobs. These too
-   are also always created before use, but in some cases, we want to
-   become able to delay this step.
-
-   .. note::
-
-      As of Nuitka 2.6, there is an experimental flag to enable these,
-      and we need to switch over to using it.
 
 -  More scalable class creation
 
@@ -294,9 +264,14 @@ and DLL usages.
 
 -  Cover all built-ins of Python
 
-   Currently a few built-ins, even as important as ``enumerate`` are not
-   yet implemented. We need to revisit this once we got integer type
-   specialization and loop iteration specialization both.
+   Currently a few built-ins, e.g. ``map``, ``filter``, ``min``,
+   ``max``, ``pow``, ``round``, ``print``, ``sorted``, and ``reversed``
+   are not yet reformulated into Nuitka nodes. For ``enumerate`` and
+   ``zip``, this has happened in 4.2, but full optimization of them
+   remains to be done. We need to revisit this once we got integer type
+   specialization and loop iteration specialization both as well as
+   generator expression inlining. Some of those built-ins will then
+   become Python level inline functions.
 
 ****************************************
  Container Builds (public + commercial)
@@ -340,11 +315,6 @@ effectively with more than a single file.
  Regression Testing User Compilation
 *************************************
 
--  Creating more content in `Nuitka-Watch
-   <https://github.com/Nuitka/Nuitka-Watch>`_ and fine tuning the tools
-   to detect changes in the compilation due to upstream changes, as well
-   as changes due to newer Nuitka separately.
-
 -  We should teach our users to have this in place for doing it with
    their own code base, allowing them to see changes due to new Nuitka
    or new PyPI packages individually.
@@ -361,36 +331,30 @@ effectively with more than a single file.
 **********
 
 -  The test runner is prepared to take coverage of Nuitka during
-   execution, and we have as job for it, but we don't yet render the
-   results anywhere.
-
-*************************************
- Features to be added for Nuitka 4.1
-*************************************
-
-[ ] Activate more scalable code objects handling by default
-
-[ ] More scalable class creation
-
-*************************************
- Features to be added for Nuitka 4.2
-*************************************
-
-[ ] Use performance potential for attribute access with Python 3.11
-version.
-
-[ ] Document commercial file embedding publicly with examples.
-
-[ ] Document commercial Windows Service usage with examples.
+   execution, and we have a rendering tool code for it, but the results
+   are not yet published anywhere.
 
 *************************************
  Features to be added for Nuitka 4.3
 *************************************
 
-[ ] Initial support for ctypes based direct calls of C code.
+[ ] More scalable class creation, maybe through PGO, and enhancing
+   inlining of helper functions where possible.
 
-[ ] Tuple unpacking for values that support indexing should be
-   optimized.
+[ ] Use performance potential for attribute access with Python 3.11
+   version.
+
+*************************************
+ Features to be added for Nuitka 4.4
+*************************************
+
+[ ] Document commercial file embedding publicly with examples.
+
+*************************************
+ Features to be added for Nuitka 4.5
+*************************************
+
+[ ] Initial support for ctypes based direct calls of C code.
 
 [ ] Add download updating for standalone as well, onefile for windows
 works.
