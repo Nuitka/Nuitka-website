@@ -70,7 +70,8 @@ Bug Fixes
 -  **Python 3.11/3.12:** Fix, optimized class calls bypassing
    ``object_new`` did not initialize the managed dict inline values, so
    the first attribute assignment fell back to a separately allocated
-   dictionary. (Fixed in 4.1.2 already.)
+   dictionary, which was non-optimal and caused incompatibility in
+   corner cases. (Fixed in 4.1.2 already.)
 
 -  **Python 3.11+:** Fix, compiled frame locals were not stored in the
    interpreter frame ``localsplus`` slots, making them invisible to
@@ -79,8 +80,9 @@ Bug Fixes
 -  **Python 3.12+:** Fix, the ``__type_params__`` attribute of generic
    functions was always empty. (Fixed in 4.1.2 already.)
 
--  **Python 3.14:** Fix, critical frame details were released before
-   clearing frames, which could cause crashes. (Fixed in 4.1.2 already.)
+-  **Python 3.14:** Fix, frame locals were cleared too late in the
+   deallocator, after the code object and extra locals were already
+   released, which could cause crashes. (Fixed in 4.1.2 already.)
 
 -  **Python 3.14:** Fix, type complaint exception messages now use the
    ``__qualname__`` of the offending type, as CPython does. (Fixed in
@@ -118,8 +120,9 @@ Bug Fixes
    from absolute paths. (Fixed in 4.1.1 already.)
 
 -  **macOS:** Fix, detection of statically linked libraries did not
-   work, since the ``file`` command output was not used yet. (Fixed in
-   4.1.2 already.)
+   work, since the ``file`` command output was not used yet, so they
+   were treated like dynamic ones, leading to errors. (Fixed in 4.1.2
+   already.)
 
 -  **macOS:** Fix, detected another variation of self dependencies,
    where a less-versioned binary depends on its more versioned self.
@@ -169,8 +172,8 @@ Optimization
 ============
 
 -  **Python 3.14:** Added ``_zstd`` and ``_remote_debugging`` to the
-   standard library extension modules known to raise on import. (Fixed
-   in 4.1.2 already.)
+   standard library modules known to never raise on import, allowing
+   their imports to be optimized accordingly. (Fixed in 4.1.2 already.)
 
 Anti-Bloat
 ==========
