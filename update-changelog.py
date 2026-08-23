@@ -261,9 +261,7 @@ class ChangelogGenerator:
         is_hotfix = self.target_version and self.is_hotfix_format(self.target_version)
 
         if actions:
-            print(
-                f"\n--- Found {len(actions)} relevant commits, preparing prompt for Gemini ---"
-            )
+            print(f"\n--- Found {len(actions)} relevant commits, preparing prompt ---")
             commit_data = "\n\n".join(actions)
 
             target_str = (
