@@ -276,3 +276,18 @@ for 64 bits, and just ``Arch: x86`` for 32 bits.
 The C compiler will be picked to match that more or less automatically.
 If you specify it explicitly, and it mismatches, you will get a warning
 about the mismatch and informed that your compiler choice was rejected.
+
+Targeting a CPU Architecture Baseline
+=====================================
+
+By default, Nuitka creates binaries that run on older machines of the
+same architecture, using the baseline ISA of the target architecture.
+The option ``--target-arch=...`` selects a higher baseline ISA, e.g.
+``x86-64-v3``, for better speed on newer CPUs, at the cost of no longer
+running on older ones. This is not for cross compilation, which requires
+a Python of the target architecture anyway.
+
+.. note::
+
+   Check your C compiler's documentation for the valid values, wrong
+   ones cause build errors.

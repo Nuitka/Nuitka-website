@@ -275,6 +275,16 @@ To view it, run the following command:
 
    python -m nuitka --help
 
+Update Check
+============
+
+By default, **Nuitka** checks for newer releases of itself and warns
+when it is outdated. The ``--update-check`` option controls this, with
+``never`` to disable the checking, ``force`` to force checking now,
+``error`` to make outdated versions abort, ``warning`` (default) to
+warn, or ``info`` to merely inform. This can also be set via the
+environment variable ``NUITKA_UPDATE_CHECK``.
+
 **************
  Python Flags
 **************
@@ -593,6 +603,10 @@ With ``--mode=app`` or the macOS specific option
 file for the compiled result, usable with standalone and onefile, making
 it easy for desktop environments to find and launch your application.
 
+For the **macOS** bundle, ``--macos-app-macos-min-version`` sets the
+minimum macOS version the app requires, and
+``--macos-app-category-type`` sets the app category for the app store.
+
 Installer
 ---------
 
@@ -741,6 +755,12 @@ time (e.g. for debugging or special handlers) by using:
 .. code:: bash
 
    --onefile-child-grace-time=infinity
+
+The onefile bootstrap forwards manually sent ``SIGINT``, ``SIGQUIT``,
+and ``SIGTERM`` to the child process. Signals originating from the
+terminal, e.g. Ctrl-C, reach both parent and child already and are not
+forwarded again, avoiding duplicate delivery. On non-Windows, the child
+is also terminated when the parent exits.
 
 Reports
 =======
