@@ -10,22 +10,18 @@ This skill covers producing changelog entries in the Nuitka website repository f
 
 ## Workflow
 
-1. Generate the prompt. There are three invocation modes:
+1. Generate the prompt:
 
    ```
    python3 update-changelog.py 4.1.3 --nuitka-repo ../Nuitka-develop   # hotfix
-   python3 update-changelog.py 4.2rc2 --nuitka-repo ../Nuitka-develop  # pre-release with new version
-   python3 update-changelog.py --nuitka-repo ../Nuitka-develop         # develop catch-up to HEAD
+   python3 update-changelog.py 4.2 --nuitka-repo ../Nuitka-develop     # final release
+   python3 update-changelog.py 4.2rc3 --nuitka-repo ../Nuitka-develop  # pre-release
    ```
 
-   - `VERSION` like `4.1.3` (X.Y.Z) is treated as a hotfix, anything else (e.g. `4.2rc2`) as a
-     develop/pre-release update.
-   - Without `VERSION`, the range is the last documented version to HEAD, for catching up the
-     current develop work.
+   - `VERSION` is required and must be one of: hotfix `X.Y.Z` (e.g. `4.1.3`), final `X.Y` (e.g.
+     `4.2`), or pre-release `X.YrcN` (e.g. `4.2rc3`). Anything else is rejected.
    - The line "It currently covers changes up to version **...**." tracks the last `VERSION`
-     argument passed to the script and is updated by the script itself, never by hand. A catch-up
-     run without `VERSION` does not update it, and does not mean the changelog for that version is
-     complete.
+     argument passed to the script and is updated by the script itself, never by hand.
    - Running with a `VERSION` that is already the documented state yields an empty range, that is
      expected.
    - `--website-repo PATH` allows running from outside the website repo.
@@ -34,7 +30,9 @@ This skill covers producing changelog entries in the Nuitka website repository f
      commit data.
 
 2. Process the prompt: turn every relevant commit into entries in
-   `site/changelog/Changelog-next.rst`, following the content rules below.
+   `site/changelog/Changelog-next.rst`, following the content rules below. When done, verify
+   coverage mechanically: extract every unique commit subject from the prompt and check each one
+   against the changelog, so that no commit is missed by eyeballing.
 
 3. When the entries are done, always run:
 

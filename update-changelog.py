@@ -399,8 +399,7 @@ def main():
         "version",
         metavar="VERSION",
         type=str,
-        nargs="?",
-        help="The version to process. If format 'X.Y.Z' (e.g. 2.8.5), treats as Hotfix. Otherwise (e.g. 4.0rc5), treats as Pre-release update and updates changelog state. If omitted, performs a dry-run check of pending develop changes.",
+        help="The version to process. Hotfix format 'X.Y.Z' (e.g. 4.1.3), final format 'X.Y' (e.g. 4.2), or pre-release format 'X.YrcN' (e.g. 4.2rc3).",
     )
     parser.add_argument(
         "--nuitka-repo",
@@ -422,6 +421,17 @@ def main():
     )
 
     args = parser.parse_args()
+
+    if not (
+        re.match(r"^\d+\.\d+\.\d+$", args.version)
+        or re.match(r"^\d+\.\d+(rc\d+)?$", args.version)
+    ):
+        sys.exit(
+            """\
+Error, version '%s' is not valid. Use hotfix format 'X.Y.Z' (e.g. 4.1.3), \
+final format 'X.Y' (e.g. 4.2), or pre-release format 'X.YrcN' (e.g. 4.2rc3)."""
+            % args.version
+        )
 
     generator = ChangelogGenerator(
         args.nuitka_repo, args.version, website_repo=args.website_repo

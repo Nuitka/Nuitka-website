@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.2rc1**.
+It currently covers changes up to version **4.2rc3**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -219,9 +219,10 @@ Bug Fixes
    over the set of escapable variables had unstable ordering, causing
    behavior differences between otherwise identical builds.
 
--  **Linux:** Fix, decoding of localized filenames only copied the
-   bytes, so multi-byte characters in paths were not decoded at all, now
-   the environment locale is respected with a UTF-8 fallback.
+-  Fix, decoding of localized filenames only copied the bytes, so
+   multi-byte characters in paths were not decoded at all. On Linux the
+   environment locale is now respected with a UTF-8 fallback, and
+   FreeBSD and NetBSD use the macOS UTF-8 handling.
 
 -  **Python 2:** Fix, when Nuitka itself was compiled by Nuitka,
    executing Scons could race on the import lock, since
@@ -499,6 +500,9 @@ New Features
    and ``importlib.resources.is_resource``, which had been overlooked so
    far. (Added in 4.1.3 already.)
 
+-  **Python 3.12+:** Added support for the no-argument form of
+   ``importlib.resources.files()`` as well.
+
 -  **Python 3.14:** Pronounced Python 3.14 as officially supported.
 
 -  **Python 3.14:** Added support for module-level deferred annotations,
@@ -558,6 +562,10 @@ New Features
 
 -  **Debugging:** Added the ``--devel-no-bytecode-to-compiled-fallback``
    option to check coverage.
+
+-  **Watch:** Added a ``wait_for`` condition for test cases of
+   ``nuitka-watch``, where a case is skipped until the condition is met,
+   used e.g. to wait for pip installs to start working.
 
 Optimization
 ============
@@ -792,11 +800,16 @@ Cleanups
 
 -  Cleaned up the pylint watching code.
 
--  **Watch:** The ``nuitka-watch`` tool now waits for pip installs to
-   become usable, retries git operations on all platforms, outputs which
-   pip update failed and which wait condition was reached, writes XML
-   reports like ElementTree does, and improved the automatic staging of
-   changes.
+-  **Watch:** The ``nuitka-watch`` tool retries git operations on all
+   platforms.
+
+-  **Watch:** The ``nuitka-watch`` tool outputs which pip update failed.
+
+-  **Watch:** The ``nuitka-watch`` tool writes XML reports like
+   ElementTree does.
+
+-  **Watch:** Improved the automatic staging of changes of
+   ``nuitka-watch``.
 
 -  The warning about a missing ``clang-format`` binary now uses the
    shared once-per-warning mechanism, instead of a hand-coded flag.
