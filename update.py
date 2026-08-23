@@ -30,7 +30,7 @@ from nuitka.tools.quality.auto_format.AutoFormat import (
     withFileOpenedAndAutoFormatted as _withFileOpenedAndAutoFormatted,
 )
 from nuitka.tools.release.Documentation import checkRstLint
-from nuitka.Tracing import my_print
+from nuitka.Tracing import OurLogger
 from nuitka.utils.FileOperations import (
     deleteFile,
     getFileContents,
@@ -53,12 +53,14 @@ from regression_utils import (
     sanitizeUrl,
 )
 
+website_logger = OurLogger("Nuitka-Website")
+
 
 def withFileOpenedAndAutoFormatted(filename):
     return _withFileOpenedAndAutoFormatted(filename, filename)
 
 
-my_print("Development mode:", development_mode)
+website_logger.info(f"Development mode: {development_mode}")
 
 FA_STYLE_MAP = {
     "fas": "solid",
@@ -156,13 +158,13 @@ def add_inline_svg(
 ):
     if not os.path.exists(svg_path):
         if is_fa_icon and style_folder and icon_name:
-            my_print(f"Missing Font Awesome SVG: {svg_path}")
-            my_print(
-                "To fix, run the following command to copy it from the unpacked Pro+ tarball:\n"
-            )
             # spell-checker: ignore svgs
-            my_print(
-                f"cp ../fontawesome-pro-7.2.0-web/svgs/{style_folder}/{icon_name}.svg {svg_path}\n"
+            website_logger.warning(
+                f"""\
+Missing Font Awesome SVG: {svg_path}
+To fix, run the following command to copy it from the unpacked Pro+ tarball:
+cp ../fontawesome-pro-7.2.0-web/svgs/{style_folder}/{icon_name}.svg {svg_path}""",
+                keep_format=True,
             )
 
         raise FileNotFoundError(f"SVG file not found: {svg_path}")
@@ -487,7 +489,7 @@ def _fetchObsRepositoryVersions(repo_name):
             f"Unexpected OBS pre-release candidate {max_prerelease!r} from {url!r}"
         )
 
-    my_print("Repo %s %s" % (repo_name, max_prerelease))
+    website_logger.info("Repo %s %s" % (repo_name, max_prerelease))
 
     return max_release, max_prerelease
 
@@ -564,8 +566,12 @@ def _renderDownloadPageFiles(max_pre_release, max_stable_release, obs_versions):
     plain_prerelease = _makePlainReleaseVersion(max_pre_release)
     plain_stable = _makePlainReleaseVersion(max_stable_release)
 
-    my_print("Max pre-release is %s %s " % (max_pre_release, plain_prerelease))
-    my_print("Max stable release is %s %s " % (max_stable_release, plain_stable))
+    website_logger.info(
+        "Max pre-release is %s %s " % (max_pre_release, plain_prerelease)
+    )
+    website_logger.info(
+        "Max stable release is %s %s " % (max_stable_release, plain_stable)
+    )
 
     fedora_rpm = obs_versions["fedora"]
     centos_rpm = obs_versions["centos"]
@@ -940,18 +946,22 @@ def _makeCssCombined(css_filenames, css_links, has_asciinema):
             raise
 
         processed_css = merged_css
-        my_print(f"Warning, {e}, using original CSS")
+        website_logger.warning(f"{e}, using original CSS")
 
     if not processed_css:
         if not development_mode:
             raise AssetProcessingError("CSS processing produced empty output")
 
         processed_css = merged_css
-        my_print("Warning, CSS processing produced empty output, using original CSS")
+        website_logger.warning(
+            "CSS processing produced empty output, using original CSS"
+        )
 
     putTextFileContents(filename=output_path, contents=processed_css)
     if verbose_mode:
-        my_print(f"Combined CSS: {output_filename} ({len(processed_css)} bytes)")
+        website_logger.info(
+            f"Combined CSS: {output_filename} ({len(processed_css)} bytes)"
+        )
 
     css_links[0].attrib["href"] = output_filename
     for css_link in css_links[1:]:
@@ -1000,7 +1010,7 @@ s.parentNode.insertBefore(ci_search, s);
     )
 
     if verbose_mode:
-        my_print(
+        website_logger.info(
             f"Combined JS: {js_set_output_filename} ({len(js_set_contents)} bytes)"
         )
 
@@ -1092,7 +1102,7 @@ def _processWithNpmBuild(contents, script, suffix, cache, label):
 
         if result.stdout.strip():
             if verbose_mode:
-                my_print(f"{label} tool output: {result.stdout.strip()}")
+                website_logger.info(f"{label} tool output: {result.stdout.strip()}")
 
         if result.returncode != 0:
             message = result.stderr.strip() or result.stdout.strip()
@@ -1112,7 +1122,7 @@ def _processWithNpmBuild(contents, script, suffix, cache, label):
         processed_size = len(processed)
         if original_size > 0 and verbose_mode:
             reduction_percent = (original_size - processed_size) / original_size * 100
-            my_print(
+            website_logger.info(
                 f"{label} reduced by {reduction_percent:.1f}% ({original_size} → {processed_size} bytes)"
             )
     finally:
@@ -1246,7 +1256,7 @@ def _minifyHtml(filename):
     else:
         reason = "cache evicted (content unchanged)"
     if verbose_mode:
-        my_print(
+        website_logger.info(
             f"Minifying HTML ({content_hash}, {len(content_bytes)} bytes, {reason}): {filename}"
         )
 
@@ -1262,7 +1272,7 @@ def _minifyHtml(filename):
 
     if result.stdout.strip():
         if verbose_mode:
-            my_print(f"HTML-minifier output: {result.stdout.strip()}")
+            website_logger.info(f"HTML-minifier output: {result.stdout.strip()}")
 
     if result.returncode != 0:
         message = result.stderr.strip() or result.stdout.strip()
@@ -1708,7 +1718,7 @@ def runPostProcessing():
         not development_mode
         and _html_minifier_stats["misses"] + _html_minifier_stats["disk_hits"] > 0
     ):
-        my_print(
+        website_logger.info(
             "HTML minifier cache summary: %d disk hits, %d misses"
             % (
                 _html_minifier_stats["disk_hits"],
@@ -1767,7 +1777,7 @@ def runDeploymentCommand():
         f"root@ssh.nuitka.net:{target_dir}",
     ]
 
-    my_print(" ".join(shlex.quote(part) for part in command))
+    website_logger.info(" ".join(shlex.quote(part) for part in command))
 
     subprocess.run(command, check=True)
 
@@ -1806,7 +1816,7 @@ def runSphinxAutoBuild():
         "_static",
     ]
 
-    callExecProcess(args, False)
+    callExecProcess(args=args, shell=False, logger=website_logger)
 
 
 def _close_playwright_resource(
@@ -1821,7 +1831,7 @@ def _close_playwright_resource(
         if raise_on_failure:
             raise GoldenUpdateError(f"Failed to close {description}") from e
 
-        my_print(f"Additional cleanup failure for {description}: {e}")
+        website_logger.warning(f"Additional cleanup failure for {description}: {e}")
 
 
 def _get_golden_device_config(browser_name, viewport_mode):
@@ -1856,8 +1866,8 @@ def _update_golden_page(
     golden_path = golden_dir / f"{browser_name}_{viewport_mode}_{safe_name}.png"
 
     if verbose:
-        my_print(
-            f"  Generating {browser_name} / {viewport_mode} / {page_path} -> {golden_path}"
+        website_logger.info(
+            f"Generating {browser_name} / {viewport_mode} / {page_path} -> {golden_path}"
         )
 
     try:
@@ -2005,16 +2015,16 @@ def runUpdateGolden(
     wait = wait or DEFAULT_WAIT_TIME
 
     if verbose:
-        my_print("Configuration:")
-        my_print(f"- Browsers: {browsers}")
-        my_print(f"- Devices: {devices}")
-        my_print(f"- Pages: {pages}")
-        my_print(f"- Wait time: {wait} ms")
-        my_print(f"- Clean directory: {'Yes' if clean else 'No'}")
+        website_logger.info("Configuration:")
+        website_logger.info(f"- Browsers: {browsers}")
+        website_logger.info(f"- Devices: {devices}")
+        website_logger.info(f"- Pages: {pages}")
+        website_logger.info(f"- Wait time: {wait} ms")
+        website_logger.info(f"- Clean directory: {'Yes' if clean else 'No'}")
 
     golden_dir = Path(GOLDEN_DIR)
     if clean and golden_dir.exists():
-        my_print(f"Cleaning reference images directory: {golden_dir}")
+        website_logger.info(f"Cleaning reference images directory: {golden_dir}")
         for file in golden_dir.glob("*.png"):
             deleteFile(file, must_exist=False)
     golden_dir.mkdir(parents=True, exist_ok=True)
@@ -2029,7 +2039,7 @@ def runUpdateGolden(
             "Playwright is required for golden image updates"
         ) from e
 
-    my_print("Starting reference images update...")
+    website_logger.info("Starting reference images update...")
 
     try:
         with sync_playwright() as p:
@@ -2048,13 +2058,13 @@ def runUpdateGolden(
     except (OSError, PlaywrightTimeoutError, PlaywrightError) as e:
         raise GoldenUpdateError("Golden image update failed") from e
 
-    my_print("Update completed successfully!")
+    website_logger.info("Update completed successfully!")
 
-    my_print("Summary:")
-    my_print(f"- Browsers: {len(browsers)}")
-    my_print(f"- Devices: {len(devices)}")
-    my_print(f"- Pages: {len(pages)}")
-    my_print(f"- Total images: {len(browsers) * len(devices) * len(pages)}")
+    website_logger.info("Summary:")
+    website_logger.info(f"- Browsers: {len(browsers)}")
+    website_logger.info(f"- Devices: {len(devices)}")
+    website_logger.info(f"- Pages: {len(pages)}")
+    website_logger.info(f"- Total images: {len(browsers) * len(devices) * len(pages)}")
     return 0
 
 
