@@ -277,6 +277,9 @@ and DLL usages.
  Container Builds (public + commercial)
 ****************************************
 
+The commercial `Portable Linux Support
+</doc/commercial.html#portable-linux>`__ provides container builds.
+
 Providing containers with old Linux, and optimally compiled CPython with
 ``podman`` such that building with Nuitka on Fedora latest and Ubuntu
 latest can be done fully automatically and still run on very old Linux.
@@ -290,9 +293,10 @@ Nuitka optimized CPython that is portable for Linux easier to access.
  Automatic Updates
 *******************
 
-The running application needs to check for updates, and update itself
-automatically, optionally after user prompt, on a restart, or after
-successful update.
+The commercial `Automatic Updates
+</doc/commercial/automatic-updates.html>`__ feature enables the running
+application to check for updates, and update itself automatically,
+optionally after user prompt, on a restart, or after successful update.
 
 This has been implemented for onefile mode only. Unfortunately that is
 not good for macOS which often require app mode, i.e. standalone mode
@@ -301,6 +305,9 @@ effectively with more than a single file.
 ***********************************
  Traceback Encryption (commercial)
 ***********************************
+
+The commercial `Traceback Encryption
+</doc/commercial/traceback-encryption.html>`__ feature:
 
 -  Right now tracebacks are entirely encrypted. But in a future update,
    you can decide which information is transferred, and what information
@@ -350,13 +357,13 @@ effectively with more than a single file.
  Features to be added for Nuitka 4.4
 *************************************
 
-[ ] Document commercial file embedding publicly with examples.
+[ ] Add download updating for standalone as well, extending the
+   commercial `Automatic Updates
+   </doc/commercial/automatic-updates.html>`__ feature, onefile for
+   windows works.
 
 *************************************
  Features to be added for Nuitka 4.5
 *************************************
 
 [ ] Initial support for ctypes based direct calls of C code.
-
-[ ] Add download updating for standalone as well, onefile for windows
-works.
