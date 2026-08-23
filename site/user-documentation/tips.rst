@@ -232,8 +232,11 @@ redist versions (same for all versions):
 +----------------------------+-------------+--------------------+
 | MingGW64 version           | Redist Year | CPython            |
 +============================+=============+====================+
-| WinLibs automatic download | 2015        | 2.6, 2.7, 3.4-3.13 |
+| WinLibs automatic download | 2015        | 2.6, 2.7, 3.4-3.12 |
 +----------------------------+-------------+--------------------+
+
+For Python 3.13 or higher, using MingGW64 requires the experimental
+option ``--experimental=force-mingw64``.
 
 Once the corresponding runtime libraries are installed on the target
 system, you may remove all ``api-ms-crt-*.dll`` files from your Nuitka

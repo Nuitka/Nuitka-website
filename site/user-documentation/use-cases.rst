@@ -307,6 +307,28 @@ Currently, these expanded tokens are available:
    mechanism, and on Windows this is how you are compatible with
    ``pythonw.exe`` which is behaving like ``{NONE}``.
 
+********************
+ Installer Creation
+********************
+
+Since 4.2, Nuitka can create installers for the compiled standalone or
+onefile result.
+
+On **Windows**, an NSIS based installer is created with the
+``--windows-create-installer`` option. It defaults to a setup executable
+named after the program with a ``-setup.exe`` suffix, and has further
+options for the install directory, shortcuts, a license file, and the
+installation scope, see ``--help`` output for the details.
+
+On **Linux**, an AppImage installer is created with the
+``--linux-create-installer`` option.
+
+.. code:: bash
+
+   python -m nuitka --mode=standalone --windows-create-installer program.py
+   python -m nuitka --mode=standalone --macos-create-installer program.py
+   python -m nuitka --mode=standalone --linux-create-installer program.py
+
 *******************
  Setuptools Wheels
 *******************
@@ -460,11 +482,6 @@ binary, or symlinking to it, you can then achieve the miracle.
 
 This allows to combine very different programs into one.
 
-.. note::
-
-   This feature is still experimental. Use with care and report your
-   findings should you encounter anything that is undesirable behavior
-
 This mode works with standalone, onefile, and mere acceleration. It does
 not work with module mode.
 
@@ -513,7 +530,7 @@ This is an example workflow that builds on all 3 OSes
             script-name: your_main_program.py
             # many more Nuitka options available, see action doc, but it's best
             # to use nuitka-project: options in your code, so e.g. you can make
-            # a difference for macOS and create an app bundle there.
+            # a difference for macOS and Linux, and create an app bundle there.
             mode: app
 
          - name: Upload Artifacts
@@ -528,11 +545,12 @@ This is an example workflow that builds on all 3 OSes
 
 If your app is a GUI, e.g. ``your_main_program.py`` should contain these
 comments as explained in :ref:`nuitka-project-options` since on macOS
-this should then be a bundle.
+and Linux this should then be a bundle.
 
 .. code:: python
 
-   # Compilation mode, standalone everywhere, except on macOS there app bundle
+   # Compilation mode, standalone everywhere, except on macOS and Linux
+   # there app bundle
    # nuitka-project: --mode=app
    #
    # Debugging options, controlled via environment variable at compile time.

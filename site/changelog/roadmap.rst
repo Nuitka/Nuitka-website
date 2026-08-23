@@ -344,6 +344,8 @@ effectively with more than a single file.
 [ ] Use performance potential for attribute access with Python 3.11
    version.
 
+[ ] Make ``--experimental=force-mingw64`` the default for MinGW64.
+
 *************************************
  Features to be added for Nuitka 4.4
 *************************************

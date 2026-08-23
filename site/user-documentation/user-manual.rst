@@ -50,7 +50,8 @@ a **C++** compiler for **C++03** [#]_.
 -  The **MinGW64** compiler (used with ``--mingw64``) option, must be
    the one Nuitka downloads, and it enforces that because there were
    frequent breakage with the complete tooling used. But note that
-   MinGW64 does not work with Python 3.13 or higher.
+   MinGW64 does not work with Python 3.13 or higher, unless the
+   experimental option ``--experimental=force-mingw64`` is used.
 
    ``--mingw64`` enforces using this compiler.
 
@@ -578,6 +579,43 @@ These create application bundles with icons on **macOS**:
    manually. Instead, it seamlessly converts various formats, such as
    **PNG** and others on the go during the build process.
 
+App Mode
+--------
+
+With ``--mode=app`` or the macOS specific option
+``--macos-create-app-bundle``, an application bundle is created on
+**macOS**, complete with icons and version information. Since 4.2,
+``--mode=app`` also works on **Linux**, where it creates a ``.desktop``
+file for the compiled result, usable with standalone and onefile, making
+it easy for desktop environments to find and launch your application.
+
+Installer
+---------
+
+Since 4.2, **Nuitka** can create installers for the compiled standalone
+or onefile result.
+
+On **Windows**, an NSIS based installer is created with the
+``--windows-create-installer`` option. It defaults to a setup executable
+named after the program with a ``-setup.exe`` suffix, and has further
+options for the install directory, shortcuts, a license file, and the
+installation scope, see ``--help`` output for the details.
+
+On **macOS**, the DMG creation, previously part of the app bundle
+options, is now done as an installer with ``--macos-create-installer``,
+replacing the former ``--macos-app-create-dmg`` option.
+
+On **Linux**, an AppImage installer is created with the
+``--linux-create-installer`` option, using ``appimagetool`` from
+``PATH`` or a cached download, and ``--linux-installer-output`` changes
+the output filename.
+
+.. code:: bash
+
+   python -m nuitka --mode=standalone --windows-create-installer program.py
+   python -m nuitka --mode=standalone --macos-create-installer program.py
+   python -m nuitka --mode=standalone --linux-create-installer program.py
+
 **MacOS** Entitlements
 ======================
 
@@ -787,10 +825,134 @@ influences, data file paths, DLLs, and reasons why things are included
 and why not.
 
 Also, another form is available, where the report is free form and
-according to a Jinja2 template of yours and or one that **Nuitka**
-includes. The same information used to produce the XML file is
-accessible. No documentation of it is available yet. However, it will be
-relatively easy for a source code reader familiar with Jinja2.
+according to a Jinja2 template of yours, and one that is included in
+Nuitka. The same information as used to produce the XML file is
+accessible.
+
+For the template, the data is a dictionary with the same information as
+used for the XML report. The authoritative list is the
+``_getReportInputData`` function in ``nuitka/reports/Reports.py`` of the
+Nuitka repository. These are its entries:
+
++------------------------------------+------------------------------------------------------------------------------------+
+| Entry                              | Content                                                                            |
++====================================+====================================================================================+
+| ``module_names``                   | Full names of all compiled modules                                                 |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_kinds``                   | Module full name to its node kind name                                             |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_sources``                 | Module full name to its source reference                                           |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_inclusion_infos``         | Module full name to inclusion information                                          |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_plugin_influences``       | Module full name to plugin influences                                              |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_timing_infos``            | Module full name to optimization timing information                                |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_generation_timing_infos`` | Module full name to code generation timing information                             |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_usages``                  | Module full name to used modules                                                   |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_distributions``           | Module full name to used distributions                                             |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``distribution_modules``           | Distribution name to modules from it                                               |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_distribution_usages``     | Module full name to distributions of used modules                                  |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_distribution_names``      | Module full name to used distribution names                                        |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``all_distributions``              | All used distributions, sorted                                                     |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_distribution_installers`` | Distribution name to its installer name                                            |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_distribution_vendored``   | Distribution name to whether it is vendored                                        |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_exclusions``              | Module full name to excluded module and reason                                     |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``included_metadata``              | Distribution name to included metadata reasons                                     |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``memory_infos``                   | Memory usage information                                                           |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``python_exe``                     | Python executable used                                                             |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``python_flavor``                  | Python flavor name                                                                 |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``python_version``                 | Full Python version                                                                |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``os_name``                        | Operating system name                                                              |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``arch_name``                      | Architecture name                                                                  |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``gil``                            | Whether the used Python has the GIL                                                |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``filesystem_encoding``            | Filesystem encoding                                                                |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``os_release``                     | Operating system release string                                                    |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``nuitka_version``                 | Nuitka version                                                                     |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``nuitka_commercial_version``      | Nuitka commercial version or "not installed"                                       |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``nuitka_aborted``                 | Whether the compilation was aborted                                                |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``nuitka_exception``               | Exception that aborted the compilation, if any                                     |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``user_data``                      | User data from ``--report-user-provided``                                          |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``data_composer``                  | Data composer report values                                                        |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``output_run_filename``            | Result filename that is to be run                                                  |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``backend_executable``             | Backend executable filename                                                        |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``backend_executable_size``        | Backend executable size in bytes                                                   |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``onefile_executable``             | Onefile executable filename, if onefile mode                                       |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``onefile_executable_size``        | Onefile executable size in bytes                                                   |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``onefile_resource_mode``          | Resource mode used for the onefile binary                                          |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``onefile_reproducible``           | Whether the onefile binary is reproducible                                         |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``scons_error_report_data``        | Scons error report data                                                            |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``scons_resource_usage_data``      | Scons resource usage data                                                          |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``scons_ccache_stats``             | ccache statistics per module                                                       |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``installer_executable``           | Installer filename, if one was created                                             |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``installer_backend``              | Installer backend name                                                             |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``installer_tool_version``         | Installer tool version                                                             |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``c_compiler``                     | C compiler used                                                                    |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``cpp_flags``                      | Pre-processor flags                                                                |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``c_flags``                        | C flags                                                                            |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``cc_flags``                       | C compiler flags                                                                   |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``cxx_flags``                      | C++ compiler flags                                                                 |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``ld_flags``                       | Linker flags                                                                       |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``the_cc_name``                    | C compiler name                                                                    |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``the_compiler``                   | C compiler binary                                                                  |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``backend_resource_mode``          | Resource mode used for the backend binary                                          |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``backend_reproducible``           | Whether the backend binary is reproducible                                         |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``module_object_sizes``            | Object sizes per module                                                            |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``compilation_mode``               | Compilation mode used                                                              |
++------------------------------------+------------------------------------------------------------------------------------+
+| ``performance_totals``             | Timing totals for optimization passes, code generation, C compilation, and linking |
++------------------------------------+------------------------------------------------------------------------------------+
 
 If you have a template, you can use it like this
 ``--report-template=your_template.rst.j2:your_report.rst``. Using a
