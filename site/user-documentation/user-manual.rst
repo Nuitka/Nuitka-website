@@ -275,16 +275,6 @@ To view it, run the following command:
 
    python -m nuitka --help
 
-Update Check
-============
-
-By default, **Nuitka** checks for newer releases of itself and warns
-when it is outdated. The ``--update-check`` option controls this, with
-``never`` to disable the checking, ``force`` to force checking now,
-``error`` to make outdated versions abort, ``warning`` (default) to
-warn, or ``info`` to merely inform. This can also be set via the
-environment variable ``NUITKA_UPDATE_CHECK``.
-
 **************
  Python Flags
 **************
@@ -556,6 +546,17 @@ refers to alongside the onefile executable produced.
 
 .. _tweaks:
 
+*******************************
+ Nuitka Update Available Check
+*******************************
+
+By default, **Nuitka** checks for newer releases of itself and warns
+when it is outdated. The ``--update-check`` option controls this, with
+``never`` to disable the checking, ``force`` to force checking now,
+``error`` to make outdated versions abort, ``warning`` (default) to
+warn, or ``info`` to merely inform. This can also be set via the
+environment variable ``NUITKA_UPDATE_CHECK``.
+
 ********
  Tweaks
 ********
@@ -594,7 +595,7 @@ These create application bundles with icons on **macOS**:
    **PNG** and others on the go during the build process.
 
 App Mode
---------
+========
 
 With ``--mode=app`` or the macOS specific option
 ``--macos-create-app-bundle``, an application bundle is created on
@@ -608,7 +609,7 @@ minimum macOS version the app requires, and
 ``--macos-app-category-type`` sets the app category for the app store.
 
 Installer
----------
+=========
 
 Since 4.2, **Nuitka** can create installers for the compiled standalone
 or onefile result.
