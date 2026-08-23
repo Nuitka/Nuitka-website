@@ -97,14 +97,14 @@ Bug Fixes
    break conditional configuration. (Fixed in 4.1.3 already.)
 
 -  **Standalone:** Fix, standard library path detection for the "Python
-   Build Standalone" flavor needed to consider symlinks in directory
+   Build Standalone" flavor now considers symlinks in directory
    components. (Fixed in 4.1.2 already.)
 
 -  **Plugins:** Fix, ``mypyc`` runtime detection didn't happen for
    submodules of a package, which affected at least the ``chardet``
    module. (Fixed in 4.1.1 already.)
 
--  **Windows:** Enabled UTF-8 mode for attached consoles, since
+-  **Windows:** Enables UTF-8 mode for attached consoles, since
    otherwise the CRT runtime could hang or corrupt outputs and inputs.
    (Fixed in 4.1.1 already.)
 
@@ -129,23 +129,23 @@ Bug Fixes
    folders without read permission, these are now ignored. (Fixed in
    4.1.3 already.)
 
--  **macOS:** Fix, needed to make sure header padding is possible for
-   ``--mode=dll`` mode as well, otherwise ``install_name_tool`` cannot
-   rewrite the load paths of the output. (Fixed in 4.1.1 already.)
+-  **macOS:** Fix, header padding is now also possible for
+   ``--mode=dll``, since otherwise ``install_name_tool`` cannot rewrite
+   the load paths of the output. (Fixed in 4.1.1 already.)
 
 -  **macOS:** Fix, existing signatures of frameworks were no longer
    copied, as they became invalid after relocation and broke re-signing
    of the binaries. (Fixed in 4.1.1 already.)
 
--  **macOS:** Fix, added handling for another form of self dependency
-   from absolute paths. (Fixed in 4.1.1 already.)
+-  **macOS:** Fix, now handles another form of self dependency from
+   absolute paths. (Fixed in 4.1.1 already.)
 
 -  **macOS:** Fix, detection of statically linked libraries did not
    work, since the ``file`` command output was not used yet, so they
    were treated like dynamic ones, leading to errors. (Fixed in 4.1.2
    already.)
 
--  **macOS:** Fix, detected another variation of self dependencies,
+-  **macOS:** Fix, now detects another variation of self dependencies,
    where a less-versioned binary depends on its more versioned self.
    (Fixed in 4.1.2 already.)
 
@@ -165,9 +165,9 @@ Bug Fixes
    library path, since that is not a usable path when Nuitka itself is
    compiled in accelerated mode, now ``types.__file__`` is used instead.
 
--  Fix, reference count handling when trimming the ``importlib``
-   bootstrap frames off the traceback on error exit, since very early
-   failures can have no traceback at all.
+-  Fix, trimming the ``importlib`` bootstrap frames off the traceback on
+   error exit now handles missing tracebacks, since very early failures
+   can have no traceback at all.
 
 -  Fix, when creating generator, coroutine, and asyncgen objects, the
    assignment of closure variables was not checked for exceptions, so
@@ -211,9 +211,8 @@ Bug Fixes
    ``importlib_resources`` are now treated as possibly raising, since
    they can be broken in broken installs.
 
--  Fix, directories that need to be ignored during file listing crashed
-   on case-insensitive filesystems when a directory name differed in
-   case.
+-  Fix, file listing no longer crashes on case-insensitive filesystems
+   when a directory that needs to be ignored differs in actual case.
 
 -  Fix, the optimization was not fully deterministic, since iterating
    over the set of escapable variables had unstable ordering, causing
@@ -260,8 +259,8 @@ Bug Fixes
    ``athrow`` wrappers were left unclosed, so using them again could
    misbehave.
 
--  **Python 3.9+:** Fixed a reference leak where generic aliases did not
-   release its values when being released.
+-  **Python 3.9+:** Fix, generic aliases did not release their values
+   when being released, now they do.
 
 -  **Python 3.11+:** Fix, a ``__class_getitem__`` set to ``None`` or a
    non-callable now makes the type non-subscriptable with ``TypeError``
@@ -283,8 +282,8 @@ Bug Fixes
    ``async``/``await`` error messages and the ``with`` statement
    attribute lookup order.
 
--  **Python 3.14:** Fix, was reference count leaking the
-   ``__annotate__`` functions.
+-  **Python 3.14:** Fix, reference count leaked the ``__annotate__``
+   functions, now they are properly released.
 
 -  **Python 3.14.7+:** Fix, the error message for source files with
    encoding issues matches CPython 3.14.7 changes, where the byte
@@ -358,9 +357,10 @@ Bug Fixes
 -  **macOS:** Fix, now checks for the ``create-dmg`` tool availability
    early during options processing.
 
--  **macOS:** Fix, avoided permission issues in dependency scans.
+-  **macOS:** Fix, dependency scans no longer run into permission
+   issues.
 
--  **macOS:** Fix, no longer crashed at runtime on Chinese app names.
+-  **macOS:** Fix, no longer crashes at runtime on Chinese app names.
 
 -  **macOS:** Fix, now unlocks the keychain more robustly for CI and ssh
    contexts.
@@ -376,10 +376,10 @@ Bug Fixes
    name set now gives a clear error message telling where to set it,
    instead of failing later in confusing ways.
 
--  **Distutils:** Fixed the entry point options to pass the project name
+-  **Distutils:** Fix, the entry point options now pass the project name
    through, so ``--main-entry-point`` builds derive their output name
-   from the project, and renamed the misnamed ``--project-requires``
-   option.
+   from the project, and the misnamed ``--project-requires`` option was
+   renamed.
 
 -  **PGO:** Fix, the Python PGO output is now initialized before the
    meta path loader, since probes during loader setup otherwise wrote to
@@ -396,7 +396,12 @@ Bug Fixes
    on the Python itself rather than the x86 architecture, and Android
    32/64 bit detection was corrected.
 
--  **Onefile:** Enhanced SIGINT handling for onefile mode.
+-  **Onefile:** Fix, manually sent signals were not forwarded to the
+   Python process in onefile mode, and on non-Windows the child process
+   was not terminated on them at all. It now distinguishes signals from
+   the terminal, forwarding only manually sent ones, terminates the
+   child process on non-Windows, and suppresses duplicated ``SIGINT``
+   delivery to the child.
 
 -  **Report:** Fix, could crash when writing the report before the build
    directory was created.
@@ -409,7 +414,7 @@ Bug Fixes
    with the new ``--target-arch`` option allowing to select a higher
    baseline ISA for speed.
 
--  **NoGil:** Fix, frames objects are now owned by the frame object
+-  **NoGil:** Fix, frame objects are now owned by the frame object
    rather than the generator.
 
 -  **NoGil:** Fix, clearing list objects now stores the item pointer
@@ -419,6 +424,9 @@ Bug Fixes
 -  **NoGil:** Now tracks more connections in our ``tp_traverse`` methods
    of compiled types.
 
+-  **UI:** Fix, no longer emits a false missing-file warning for
+   ``--include-data-files-external``.
+
 -  **AIX:** Added COFF dump based DLL dependency detection, with various
    fixes to the parsing, e.g. ignoring hex values and ``exp`` archive
    members, column based parsing, more error checks, and listing only
@@ -426,9 +434,6 @@ Bug Fixes
 
 -  **AIX:** The Python DLL locating code is now more general, and a
    wrong structure entry for the ``dladdr`` helper was corrected.
-
--  **UI:** Fix, avoided a false missing-file warning for
-   ``--include-data-files-external``.
 
 Package Support
 ===============
@@ -439,7 +444,7 @@ Package Support
 -  **Standalone:** Added support for the ``mssql_python`` package.
    (Added in 4.1.1 already.)
 
--  **Standalone:** No longer proposed to recompile the
+-  **Standalone:** No longer proposes to recompile the
    ``charset_normalizer`` extension module. (Added in 4.1.1 already.)
 
 -  **Standalone:** Added support for the ``emoji`` package. (Added in
@@ -455,8 +460,8 @@ Package Support
    where the ``EggProvider`` was removed. (Added in 4.1.1 already.)
 
 -  **Plugins:** Fix, build artifacts with ``.a``, ``.prl``, and ``.la``
-   suffixes in QML directories were no longer included. (Fixed in 4.1.2
-   already.)
+   suffixes in QML directories were no longer included, now they are
+   included again. (Fixed in 4.1.2 already.)
 
 -  **Standalone:** Added automatic detection of ``cffi`` dependencies.
 
@@ -472,8 +477,8 @@ Package Support
    ``univers.maven`` package, where its ``list2tuple`` function was
    replaced with a non-recursive version.
 
--  **Standalone:** Fix, needed to include platform specific ``gi``
-   modules as well.
+-  **Standalone:** Fix, platform specific ``gi`` modules are now
+   included as well.
 
 -  **Plugins:** Fix, added the missing ``webview.platforms.win32``
    dependency for newer ``pywebview``, and fixed accidental assignments
@@ -487,10 +492,10 @@ Package Support
 
 -  **Plugins:** Added support for ``Tcl`` and ``Tk`` from zip files.
 
--  **Plugins:** Needed to also ignore object files on Windows for
+-  **Plugins:** Fix, object files on Windows are now also ignored for
    ``PySide6``.
 
--  **macOS:** Solved the need for a onefile workaround with ``PySide2``.
+-  **macOS:** No longer needs the onefile workaround for ``PySide2``.
 
 -  **macOS:** Added a workaround for a ``PySide6`` packaging issue.
 
@@ -555,7 +560,7 @@ New Features
    Nuitka version is available.
 
 -  **macOS:** Added the ``--macos-app-macos-min-version`` option for the
-   minimum app version, and set ``CFBundleVersion``.
+   minimum app version, and now sets ``CFBundleVersion``.
 
 -  **macOS:** Added the ``--macos-app-category-type`` option to set the
    app category for the app store.
@@ -567,10 +572,6 @@ New Features
    reporting the accumulated user and system CPU time and module count
    of compilation, and the CPU time of linking, next to the existing
    code generation totals.
-
--  **Testing:** Added a ``wait_for`` condition for test cases of
-   ``nuitka-watch``, where a case is skipped until the condition is met,
-   used e.g. to wait for pip installs to start working.
 
 Optimization
 ============
@@ -792,6 +793,10 @@ Tests
    programs like Qt WebEngine modify themselves on launch.
 
 -  **Python 3.15:** Added support for running tests with it.
+
+-  Added a ``wait_for`` condition for test cases of ``nuitka-watch``,
+   where a case is skipped until the condition is met, used e.g. to wait
+   for pip installs to start working.
 
 Cleanups
 ========

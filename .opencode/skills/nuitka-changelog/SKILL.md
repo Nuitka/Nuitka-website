@@ -164,6 +164,10 @@ The audience is the experienced Nuitka and Python user:
 - For fixes, describe the wrong behavior in past tense and the corrected behavior in present tense
   ("was handling ... incorrectly, now ..."), avoid formulations like "handled X correctly" that put
   the fix itself in the past.
+- Never state the corrected behavior in past tense: not "Enabled UTF-8 mode", "added handling for",
+  "avoided permission issues", "no longer crashed", "solved the need", but "Enables UTF-8 mode",
+  "now handles", "no longer runs into", "no longer crashes", "no longer needs". Past tense is only
+  for the wrong behavior and for the change event itself ("Added support for", "Renamed").
 - Avoid redundancy, do not repeat the topic word within an entry (e.g. "compiler binary was a
   symlink" after already naming ccache), and avoid filler phrases like "closing a gap".
 - Name the actual helpers and options (e.g. `has_builtin_module`).
