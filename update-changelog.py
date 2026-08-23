@@ -5,17 +5,25 @@ import os
 import re
 import subprocess
 import sys
+from contextlib import redirect_stdout
 from typing import List, Optional
 
 from packaging.version import parse as parse_version
 
 
 class ChangelogGenerator:
-    def __init__(self, repo_dir: str, target_version: Optional[str] = None):
+    def __init__(
+        self,
+        repo_dir: str,
+        target_version: Optional[str] = None,
+        website_repo: str = ".",
+    ):
         self.repo_dir = repo_dir
         self.target_version = target_version
         self.delimiter = "PCT_DELIMITER"
-        self.changelog_file = "site/changelog/Changelog-next.rst"
+        self.changelog_file = os.path.join(
+            website_repo, "site/changelog/Changelog-next.rst"
+        )
         self.last_documented_version = self.parse_last_documented_version()
 
     def _runGitCommand(self, args: List[str]) -> Optional[str]:
@@ -240,18 +248,24 @@ class ChangelogGenerator:
                             pass
 
                     if include_fixup:
-                        action = (
-                            f"Fixup for '{original_subject}' (from version {original_version_str}) is in this update.\n"
-                            f"Consider adding its details.\n"
-                            f"Fixup commit details ({commit_hash}):\n---\n{subject_line}\n\n{body}\n---"
-                        )
+                        action = f"""Fixup for '{original_subject}' (from version {original_version_str}) is in this update.
+Consider adding its details.
+Fixup commit details ({commit_hash}):
+---
+{subject_line}
+
+{body}
+---"""
                         actions_to_take.append(action)
             else:
-                action = (
-                    f"Non-fixup commit '{subject_line}' is in this update.\n"
-                    f"Consider adding its details.\n"
-                    f"Commit details ({commit_hash}):\n---\n{subject_line}\n\n{body}\n---"
-                )
+                action = f"""Non-fixup commit '{subject_line}' is in this update.
+Consider adding its details.
+Commit details ({commit_hash}):
+---
+{subject_line}
+
+{body}
+---"""
                 actions_to_take.append(action)
 
         return actions_to_take
@@ -269,17 +283,31 @@ class ChangelogGenerator:
                 if is_hotfix
                 else "upcoming release"
             )
-            hotfix_suffix_hint = (
-                f"(Fixed in {self.target_version} already.)" if is_hotfix else "release"
-            )
+
+            hotfix_suffix_hint = f"(Fixed in {self.target_version} already.)"
+            added_suffix_hint = f"(Added in {self.target_version} already.)"
+
+            if is_hotfix:
+                suffix_rule = (
+                    f'Append "{hotfix_suffix_hint}" to entries of fixes, and '
+                    f'"{added_suffix_hint}" to new features and package support '
+                    f"additions. For new features and package support additions, "
+                    f'use "Added" rather than "Fixed".'
+                )
+            else:
+                suffix_rule = (
+                    'For develop changes, do not add a "Fixed in ... already." '
+                    'suffix unless certain. For new features, use "Added" '
+                    'rather than "Fixed".'
+                )
 
             state_update_instruction = ""
             if not is_hotfix and self.target_version and self.last_documented_version:
-                state_update_instruction = (
-                    f"\nThe document currently states: 'It currently covers changes up to version **{self.last_documented_version}**.'\n"
-                    f"Please update this line to: 'It currently covers changes up to version **{self.target_version}**.'\n"
-                    "Include this updated line at the very beginning of your output.\n"
-                )
+                state_update_instruction = f"""
+The document currently states: 'It currently covers changes up to version **{self.last_documented_version}**.'
+Please update this line to: 'It currently covers changes up to version **{self.target_version}**.'
+Include this updated line at the very beginning of your output.
+"""
 
             prompt = f"""
 You are a technical writer writing an update for the changelog information of
@@ -288,18 +316,48 @@ entries in ReStructuredText (RST) format for the {target_str} into the existing
 document under "site/changelog/Changelog-next.rst".
 
 Use the following git commit information to draft the changelog. Analyze each
-commit message to determine its category (e.g., Bug Fixes, Optimization, New
-Features, Cleanups) and write a clear, concise summary for it.
+commit message to determine its category and write a clear, concise summary
+for it.
 
-Follow these style guidelines precisely: - The output must be valid
-ReStructuredText and be in the style of other Changelog files in this repo. -
-Group related changes under appropriate existing headings like "Bug Fixes",
-"Optimization", etc. - Put new changelog items at the end of the section where
-they are added. - For each item, write in the past tense, ending with
-"{hotfix_suffix_hint}" only if it matches a hotfix pattern. For general develop
-changes, do not add "Fixed in..." unless certain. - For new features, "Added"
-should be used rather than "Fixed".{state_update_instruction}
+Follow these style guidelines precisely:
 
+- The output must be valid ReStructuredText and be in the style of other
+  Changelog files in this repo.
+- Integrate the new entries into the existing sections of
+  "site/changelog/Changelog-next.rst": Bug Fixes, Package Support, New
+  Features, Optimization, Anti-Bloat, Organizational, Tests, Cleanups. Do
+  not add new headings.
+- Write in past tense. {suffix_rule}
+- Skip fixup commits, they are folded into the entry of the commit they fix.
+- Skip trivial or internal changes without general relevance for users, e.g.
+  fixes to features that are not yet the default.
+- The audience is the experienced Nuitka and Python user, so explain the
+  actual mechanism and the user visible consequence of a change, not just
+  internal jargon. When in doubt, check the code to describe things
+  correctly, and add a short code example when it clarifies a fix, showing
+  the behavior before and after the fix.
+- Within "Bug Fixes", keep entries grouped by their bold prefix in this
+  order: generic Python fixes without a prefix, Python version fixes
+  (**Python 3.x:** or **Python3:**), Standalone, Plugins, Windows, macOS,
+  Linux, and other platforms. Append new entries at the end of their group.
+- Use a bold prefix for the scope of an item, e.g. **Windows:**, **macOS:**,
+  **Linux:**, **Plugins:**, **Standalone:**, **UI:**, **Debian:**, **RPM:**,
+  **Debugging:**, **Quality:**, **Compatibility:**, **Release:**,
+  **Project:**. Inside the "Tests" section, no prefix is needed for plain
+  test changes.
+- Release process and packaging changes (RPM, Debian, etc.) belong to
+  "Organizational", user visible warnings and handling of user options use
+  the **UI:** prefix.
+- Quote in double backticks: option names (e.g. ``--disable-ccache``),
+  module and package names, environment variables, exception, function, and
+  attribute names, and architecture names (e.g. ``x86_64``).
+- Quote with double quotes only the flavor name "Python Build Standalone",
+  since that name is highly misleading, and no other flavor names.
+- Name the actual helpers and option names, e.g. ``has_builtin_module``.
+- Avoid redundancy, do not repeat the topic word within an entry.
+- State the mechanism neutrally, describe what was missing, rather than
+  over-asserting the failure mode.
+{state_update_instruction}
 Here is the raw commit information:
 
 --- RAW COMMIT DATA START --- {commit_data} --- RAW COMMIT DATA END ---
@@ -335,11 +393,31 @@ def main():
         default="../Nuitka-develop",
         help="Path to the Nuitka repository (default: ../Nuitka-develop)",
     )
+    parser.add_argument(
+        "--website-repo",
+        dest="website_repo",
+        default=".",
+        help="Path to the Nuitka website repository (default: current directory)",
+    )
+    parser.add_argument(
+        "--output",
+        dest="output",
+        default=None,
+        help="Write the generated prompt to a file instead of stdout",
+    )
 
     args = parser.parse_args()
 
-    generator = ChangelogGenerator(args.nuitka_repo, args.version)
-    generator.generate()
+    generator = ChangelogGenerator(
+        args.nuitka_repo, args.version, website_repo=args.website_repo
+    )
+
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as output_file:
+            with redirect_stdout(output_file):
+                generator.generate()
+    else:
+        generator.generate()
 
 
 if __name__ == "__main__":
