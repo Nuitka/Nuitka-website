@@ -118,7 +118,8 @@ Bug Fixes
 
 -  **Windows:** Fix, console attaching did not work for onefile DLL mode
    with runtime DLLs included, since the DLL uses a separate CRT
-   instance with uninitialized stdio streams. (Fixed in 4.1.3 already.)
+   instance with uninitialized stdio streams, so Python level output and
+   input were not working. (Fixed in 4.1.3 already.)
 
 -  **Windows:** Fix, relative paths for the onefile temp directory
    specification did not work in onefile DLL mode. (Fixed in 4.1.3
@@ -281,8 +282,9 @@ Cleanups
 -  **Quality:** Enforced the required versions for the private pipspace
    packages used for YAML formatting. (Fixed in 4.1.2 already.)
 
--  Wrapped links in informational messages with proper styling for
-   better readability. (Fixed in 4.1.3 already.)
+-  Fixed the styling of links in informational messages, as the
+   underline of the link was not reset and leaked into the following
+   text. (Fixed in 4.1.3 already.)
 
 -  **Quality:** Updated to the latest ``ruamel.yaml`` package and
    stopped using its private interface. (Fixed in 4.1.3 already.)
