@@ -88,6 +88,14 @@ Bug Fixes
    ``__qualname__`` of the offending type, as CPython does. (Fixed in
    4.1.2 already.)
 
+-  **Python 3.14:** Fix, the ``ctypes`` dependency configuration did not
+   work in flavors where ``_ctypes`` is a built-in module rather than an
+   extension module. (Fixed in 4.1.3 already.)
+
+-  **Python 3.12+:** Fix, the ``has_builtin_module`` helper of Nuitka
+   package configuration did not return a boolean value, which could
+   break conditional configuration. (Fixed in 4.1.3 already.)
+
 -  **Standalone:** Fix, standard library path detection for the "Python
    Build Standalone" flavor needed to consider symlinks in directory
    components. (Fixed in 4.1.2 already.)
@@ -107,6 +115,18 @@ Bug Fixes
 -  **Windows:** Fix, memory issue for 32 bit Python onefile compression,
    where parallel zstandard compression ran into memory issues for even
    small files when using multiple threads. (Fixed in 4.1.1 already.)
+
+-  **Windows:** Fix, console attaching did not work for onefile DLL mode
+   with runtime DLLs included, since the DLL uses a separate CRT
+   instance with uninitialized stdio streams. (Fixed in 4.1.3 already.)
+
+-  **Windows:** Fix, relative paths for the onefile temp directory
+   specification did not work in onefile DLL mode. (Fixed in 4.1.3
+   already.)
+
+-  **Windows:** Fix, DLL dependency scanning failed when it encountered
+   folders without read permission, these are now ignored. (Fixed in
+   4.1.3 already.)
 
 -  **macOS:** Fix, needed to make sure header padding is possible for
    ``--mode=dll`` mode as well, otherwise ``install_name_tool`` cannot
@@ -131,6 +151,14 @@ Bug Fixes
 -  **Debian:** Fix, ``--disable-ccache`` did not work when the compiler
    binary was a symlink, e.g. from the Debian ``ccache`` package. (Fixed
    in 4.1.2 already.)
+
+-  **Linux:** Fix, large constant blobs could cause linker errors on the
+   ``x86_64`` architecture, since the default small code model limits
+   code and data to 2GB, now the medium code model is used in that case.
+   (Fixed in 4.1.3 already.)
+
+-  **AIX:** Fix, potential memory leak in the ``dladdr`` helper. (Fixed
+   in 4.1.3 already.)
 
 Package Support
 ===============
@@ -168,6 +196,15 @@ New Features
    ``--experimental=deferred-annotations`` flag is given. With 4.2, this
    is the default mode. (Added in 4.1.1 already.)
 
+-  **Plugins:** Added the ability to resolve variable references to
+   compile-time constants during tree building, used for ``pyqtgraph``
+   to resolve ``QT_LIB``, enabling dead code elimination of unused Qt
+   binding branches. (Added in 4.1.3 already.)
+
+-  **Python 3.7+:** Added support for ``importlib.resources.contents``
+   and ``importlib.resources.is_resource``, which had been overlooked so
+   far. (Added in 4.1.3 already.)
+
 Optimization
 ============
 
@@ -183,6 +220,12 @@ Anti-Bloat
 
 -  Avoided including ``matplotlib`` due to ``pandas`` plotting. (Fixed
    in 4.1.1 already.)
+
+-  Avoided including ``setuptools_scm`` when using ``shtab``. (Fixed in
+   4.1.3 already.)
+
+-  Avoided including ``setuptools`` when using ``vcs_versioning``.
+   (Fixed in 4.1.3 already.)
 
 Organizational
 ==============
@@ -201,6 +244,10 @@ Organizational
 
 -  **UI:** Fix, duplicate data file targets were not detected, which now
    warns and uses the first variant. (Fixed in 4.1.1 already.)
+
+-  **RPM:** Fix, the inline copy of ``atomicwrites`` was still needed
+   for the update check, and is no longer executed during RPM builds.
+   (Fixed in 4.1.3 already.)
 
 Tests
 =====
@@ -233,6 +280,12 @@ Cleanups
 
 -  **Quality:** Enforced the required versions for the private pipspace
    packages used for YAML formatting. (Fixed in 4.1.2 already.)
+
+-  Wrapped links in informational messages with proper styling for
+   better readability. (Fixed in 4.1.3 already.)
+
+-  **Quality:** Updated to the latest ``ruamel.yaml`` package and
+   stopped using its private interface. (Fixed in 4.1.3 already.)
 
 Summary
 =======
