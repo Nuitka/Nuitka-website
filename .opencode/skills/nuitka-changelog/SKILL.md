@@ -10,14 +10,20 @@ This skill covers producing changelog entries in the Nuitka website repository f
 
 ## Workflow
 
-1. Generate the prompt:
+1. Generate the prompt. There are three invocation modes:
 
    ```
-   python3 update-changelog.py <VERSION> --nuitka-repo ../Nuitka-develop
+   python3 update-changelog.py 4.1.3 --nuitka-repo ../Nuitka-develop   # hotfix
+   python3 update-changelog.py 4.2rc2 --nuitka-repo ../Nuitka-develop  # pre-release with new version
+   python3 update-changelog.py --nuitka-repo ../Nuitka-develop         # develop catch-up to HEAD
    ```
 
-   - `VERSION` like `4.1.3` (X.Y.Z) is treated as a hotfix, anything else (e.g. `4.2rc1`) as a
+   - `VERSION` like `4.1.3` (X.Y.Z) is treated as a hotfix, anything else (e.g. `4.2rc2`) as a
      develop/pre-release update.
+   - Without `VERSION`, the range is the last documented version to HEAD, for catching up the
+     current develop work.
+   - Running with a `VERSION` that is already the documented state yields an empty range, that is
+     expected.
    - `--website-repo PATH` allows running from outside the website repo.
    - `--output FILE` writes the prompt to a file instead of stdout.
    - This prints "Processing changelog for: ..." plus a technical writer prompt containing the raw
@@ -34,6 +40,22 @@ This skill covers producing changelog entries in the Nuitka website repository f
 
    The user often edits the file themselves in between. Read the file again before each edit,
    preserve their edits, and learn from them.
+
+## Pre-release (develop) updates
+
+What differs from the hotfix workflow:
+
+- The range starts at the commit that introduced the last documented version. It may contain commits
+  already covered by earlier hotfix passes, so skip every commit whose change is already present in
+  `Changelog-next.rst`, do not create duplicate entries.
+- The script uses `git log --no-merges`, so merge commits never appear in the prompt, and skips
+  release-cycle commits ("New stable release.", "New release cycle.", ...).
+- New entries get no `(Fixed in X.Y.Z already.)` or `(Added in X.Y.Z already.)` suffix, and are
+  appended at the end of their group in each section, keeping the prefix grouping.
+- A develop update covers commits up to the release of the version being documented. Commits after a
+  "New release cycle." commit belong to the next version and go to its changelog instead.
+- Develop commits get their own entries even when related work was already announced in a hotfix
+  entry.
 
 ## Researching commits
 
@@ -72,6 +94,8 @@ stays empty keeps the placeholder `-  None yet.` (with trailing period).
 - Release process, packaging (RPM, Debian), license, project tooling -> Organizational.
 - Test suite changes -> Tests.
 - Code quality, tools, styling -> Cleanups.
+- Adding new tooling or functional enhancements of quality tools (new checker tools, new autoformat
+  behaviors, hook behavior changes) -> Organizational, not Cleanups.
 - User visible warnings and handling of user options -> **UI:** prefix (e.g. duplicate data file
   warning), placed per its category, usually Organizational or Bug Fixes.
 - Release/packaging fixes -> Organizational with **Release:**, **RPM:**, or **Debian:** prefix.
@@ -88,7 +112,13 @@ For develop updates, no such suffix unless certain.
 
 ### Grouping inside Bug Fixes
 
-Keep entries grouped by bold prefix in this order, appending new entries at the end of their group:
+Bug Fixes consists of groups that must stay separated: one group per hotfix batch (e.g. all 4.1.1
+entries) and one group for all develop changes. The different rc versions of a develop cycle do
+**not** form separate groups, they are one develop group. Groups are ordered by time: hotfix batches
+first, the develop group last, appended after the existing hotfix groups.
+
+Within each group, keep entries grouped by bold prefix in this order, appending new entries at the
+end of their prefix run:
 
 1. Generic Python fixes without a prefix.
 2. Python version fixes: `**Python 3.x:**`, `**Python 3.x+:**`, `**Python3:**`.
@@ -97,7 +127,9 @@ Keep entries grouped by bold prefix in this order, appending new entries at the 
 5. `**Windows:**`.
 6. `**macOS:**`.
 7. `**Linux:**` (and `**Debian:**` as part of the Linux group).
-8. Other platforms (e.g. `**AIX:**`) at the end.
+8. Other non-platform prefixes (e.g. `**Distutils:**`, `**PGO:**`, `**Onefile:**`, `**Report:**`,
+   `**Zig:**`, `**NoGil:**`, `**UI:**`).
+9. Other platforms (e.g. `**AIX:**`) at the end.
 
 Other sections are not grouped this way, but keep items of the same prefix together where it is
 natural.
@@ -118,6 +150,9 @@ The audience is the experienced Nuitka and Python user:
   values".
 - State the mechanism neutrally: describe what was missing rather than over-asserting the failure
   mode (e.g. "the output was not used yet", not "was never obtained").
+- For fixes, describe the wrong behavior in past tense and the corrected behavior in present tense
+  ("was handling ... incorrectly, now ..."), avoid formulations like "handled X correctly" that put
+  the fix itself in the past.
 - Avoid redundancy, do not repeat the topic word within an entry (e.g. "compiler binary was a
   symlink" after already naming ccache).
 - Name the actual helpers and options (e.g. `has_builtin_module`).
@@ -129,7 +164,8 @@ The audience is the experienced Nuitka and Python user:
 - Double backticks for: option names (`--disable-ccache`, `--mode=dll`), module and package names,
   environment variables (`PYTHON_FROZEN_MODULES`), exception, function, and attribute names
   (`sys.exc_info()`, `__qualname__`), experimental flag names
-  (`--experimental=deferred-annotations`), architecture names (`x86_64`).
+  (`--experimental=deferred-annotations`), architecture names (`x86_64`), and Python keywords
+  (`async`, `await`, `with`).
 - Double quotes only for the flavor name `"Python Build Standalone"`, since that name is highly
   misleading. No other flavor names get quoted.
 

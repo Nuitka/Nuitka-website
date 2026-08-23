@@ -154,6 +154,7 @@ class ChangelogGenerator:
             "git",
             "log",
             "-p",
+            "--no-merges",
             f"--format=%n{self.delimiter}%n%H%n%s%n%b",
             "--reverse",
             git_range,
@@ -188,6 +189,7 @@ class ChangelogGenerator:
             return []
 
         actions_to_take = []
+        seen_subjects = set()
         # Only parse version if it is a hotfix X.Y.Z
         current_version_obj = parse_version(self.target_version) if is_hotfix else None
 
@@ -206,13 +208,20 @@ class ChangelogGenerator:
             if not subject_line:
                 continue
 
-            if subject_line.startswith("Merge branch 'hotfix/"):
-                continue
-            if (
-                subject_line == "New hotfix release."
-                or subject_line == "New pre-release."
+            if subject_line in (
+                "New hotfix release.",
+                "New pre-release.",
+                "New stable release.",
+                "New release cycle.",
             ):
                 continue
+            if subject_line in seen_subjects:
+                # The same change can appear multiple times in a range, e.g.
+                # via a hotfix branch and its merge into develop, keep only
+                # the first occurrence.
+                continue
+            seen_subjects.add(subject_line)
+
             lower_subject = subject_line.lower()
             if "minor cleanup" in lower_subject or "minor spelling" in lower_subject:
                 continue
@@ -329,6 +338,8 @@ Follow these style guidelines precisely:
   not add new headings.
 - Write in past tense. {suffix_rule}
 - Skip fixup commits, they are folded into the entry of the commit they fix.
+- Skip commits whose change is already present in the document from
+  earlier hotfix passes, do not create duplicate entries.
 - Skip trivial or internal changes without general relevance for users, e.g.
   fixes to features that are not yet the default.
 - The audience is the experienced Nuitka and Python user, so explain the
@@ -336,10 +347,13 @@ Follow these style guidelines precisely:
   internal jargon. When in doubt, check the code to describe things
   correctly, and add a short code example when it clarifies a fix, showing
   the behavior before and after the fix.
-- Within "Bug Fixes", keep entries grouped by their bold prefix in this
-  order: generic Python fixes without a prefix, Python version fixes
-  (**Python 3.x:** or **Python3:**), Standalone, Plugins, Windows, macOS,
-  Linux, and other platforms. Append new entries at the end of their group.
+- Within "Bug Fixes", each hotfix batch and the develop changes form
+  their own group, and the develop group is appended after the hotfix
+  groups. Within each group, keep entries grouped by their bold prefix
+  in this order: generic Python fixes without a prefix, Python version
+  fixes (**Python 3.x:** or **Python3:**), Standalone, Plugins, Windows,
+  macOS, Linux, other non-platform prefixes, and other platforms last.
+  Append new entries at the end of their prefix run.
 - Use a bold prefix for the scope of an item, e.g. **Windows:**, **macOS:**,
   **Linux:**, **Plugins:**, **Standalone:**, **UI:**, **Debian:**, **RPM:**,
   **Debugging:**, **Quality:**, **Compatibility:**, **Release:**,
@@ -349,8 +363,9 @@ Follow these style guidelines precisely:
   "Organizational", user visible warnings and handling of user options use
   the **UI:** prefix.
 - Quote in double backticks: option names (e.g. ``--disable-ccache``),
-  module and package names, environment variables, exception, function, and
-  attribute names, and architecture names (e.g. ``x86_64``).
+  module and package names, environment variables, exception, function,
+  and attribute names, architecture names (e.g. ``x86_64``), and Python
+  keywords (e.g. ``async``, ``await``, ``with``).
 - Quote with double quotes only the flavor name "Python Build Standalone",
   since that name is highly misleading, and no other flavor names.
 - Name the actual helpers and option names, e.g. ``has_builtin_module``.

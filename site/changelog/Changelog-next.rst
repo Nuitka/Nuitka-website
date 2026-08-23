@@ -161,6 +161,255 @@ Bug Fixes
 -  **AIX:** Fix, potential memory leak in the ``dladdr`` helper. (Fixed
    in 4.1.3 already.)
 
+-  Fix, no longer depended on ``os.__file__`` for detecting the standard
+   library path, since that is not a usable path when Nuitka itself is
+   compiled in accelerated mode, now ``types.__file__`` is used instead.
+
+-  Fix, reference count handling when trimming the ``importlib``
+   bootstrap frames off the traceback on error exit, since very early
+   failures can have no traceback at all.
+
+-  Fix, when creating generator, coroutine, and asyncgen objects, the
+   assignment of closure variables was not checked for exceptions, so
+   such assignments could be wrongly optimized away.
+
+   .. code:: python
+
+      def make(flag):
+          if flag:
+              raise ValueError
+
+          x = 1
+
+          def gen():
+              yield x  # x is a closure variable
+
+          return gen()
+
+      make(True)  # must raise ValueError here
+
+-  Fix, when running a package main module with ``--python-flag=-m``,
+   the ``__spec__`` value was ``None``, breaking code that uses it, e.g.
+   ``importlib.resources.files()``, now a proper ``ModuleSpec`` is set.
+
+   .. code:: python
+
+      # package_main/__main__.py
+      import importlib.resources
+
+      # Running as "python -m package_main", this needs __spec__.
+      print(importlib.resources.files("package_main"))
+
+-  Fix, for fixed import modules, accessing a missing import name used
+   the attribute lookup and raised ``AttributeError``, now it raises
+   ``ImportError`` as CPython does.
+
+-  Fix, directories that need to be ignored during file listing crashed
+   on case-insensitive filesystems when a directory name differed in
+   case.
+
+-  Fix, the optimization was not fully deterministic, since iterating
+   over the set of escapable variables had unstable ordering, causing
+   behavior differences between otherwise identical builds.
+
+-  **Linux:** Fix, decoding of localized filenames only copied the
+   bytes, so multi-byte characters in paths were not decoded at all, now
+   the environment locale is respected with a UTF-8 fallback.
+
+-  **Python 2:** Fix, when Nuitka itself was compiled by Nuitka,
+   executing Scons could race on the import lock, since
+   ``subprocess.Popen(close_fds=True)`` imports the ``resource`` module
+   late, which is now pre-loaded.
+
+-  **Python 2.6:** Fix, ``re.sub(flags=...)`` does not work there, now a
+   wrapper is used when flags argument is needed.
+
+-  **Python 3.5:** Fix, now uses ``PyImport_CreateModuleFromInitfunc``
+   for the meta path loader.
+
+-  **Python 3.7+:** Fix, the outermost iterator of an async
+   comprehension was wrongly awaited, since whether the qualifier is
+   async was not checked before wrapping, causing a ``TypeError`` at
+   runtime.
+
+   .. code:: python
+
+      import asyncio
+
+      async def source():
+          yield 1
+          yield 2
+
+      async def main():
+          # The outermost iterator of an async comprehension must be
+          # a plain iterable, it must not be awaited.
+          return [i for x in [1] async for i in source()]
+
+      print(asyncio.run(main()))  # [1, 2], not TypeError
+
+-  **Python 3.8+:** Fix, when ``anext()`` or ``aclose()`` failed with
+   "asynchronous generator is already running", the ``asend`` and
+   ``athrow`` wrappers were left unclosed, so using them again could
+   misbehave.
+
+-  **Python 3.9+:** Fixed a reference leak where generic aliases did not
+   release its values when being released.
+
+-  **Python 3.11+:** Fix, a ``__class_getitem__`` set to ``None`` or a
+   non-callable now makes the type non-subscriptable with ``TypeError``
+   correctly.
+
+-  **Python 3.12.4+:** Fix, throwing an exception into the ``asend`` or
+   ``athrow`` wrappers of an already running async generator was not
+   rejected, which could run the generator body concurrently.
+
+-  **Python 3.13+:** Fix, was rejecting clearing of suspended frames in
+   general, now only generator-owned suspended frames are rejected, as
+   CPython does.
+
+-  **Python 3.13+:** Fix, when adapting header files, an assertion in
+   ``pycore_long.h`` referenced a stripped macro, causing link errors in
+   debug builds.
+
+-  **Python 3.14:** Fix, now follows the CPython changes in
+   ``async``/``await`` error messages and the ``with`` statement
+   attribute lookup order.
+
+-  **Python 3.14:** Fix, was reference count leaking the
+   ``__annotate__`` functions.
+
+-  **Python 3.14.7+:** Fix, the error message for source files with
+   encoding issues matches CPython 3.14.7 changes, where the byte
+   position is reported relative to the seek point after the encoding
+   declaration.
+
+-  **Python 3.15:** Fix, follow ``__cached__`` module attribute removal.
+
+-  **Python 3.15:** Fix, follow the ``TypeVarTuple`` object changes.
+
+-  **Python 3.15:** Fix, follow the changes in duplicate parameter and
+   encoding error messages.
+
+-  **Python 3.15:** Fix, follow the complex call argument error message
+   changes.
+
+-  **Python 3.15:** Fix, the ``_math_integer`` extension module reports
+   its ``__name__`` wrongly as ``math.integer``, which is now worked
+   around as well.
+
+-  **Compatibility:** Fix, the ``__builtins__`` value of compiled
+   functions is not always a module, but can already be a dict, e.g. for
+   functions created with ``exec``, so accessing ``__builtins__`` failed
+   in those cases.
+
+   .. code:: python
+
+      import builtins
+
+      namespace = {"__builtins__": vars(builtins)}
+
+      exec(
+          """
+      def f():
+          return 42
+      """,
+          namespace,
+      )
+
+      f = namespace["f"]
+      print(f.__builtins__ is vars(builtins))  # must be True
+
+-  **Plugins:** Fix, permission errors during DLL and data file scans
+   now give a clear error message pointing at the unreadable directory
+   and its likely cause, instead of crashing outright.
+
+-  **Plugins:** Fix, ``replacements_re`` were not really working newline
+   neutral.
+
+-  **Plugins:** Fix, now splits comma-separated
+   ``--noinclude-qt-plugins`` just like ``--include-qt-plugins``.
+
+-  **Windows:** Fix, the length check for generated C source filenames
+   only considered the basename, so long build directory paths could
+   exceed the path length limit, now the full path is budgeted and a
+   hashed name is used when needed.
+
+-  **Windows:** Fix, removing an environment variable during startup did
+   not clear the underlying process environment, so unset variables
+   could still be visible to child processes, causing issues with PGO at
+   times.
+
+-  **Windows:** Fix, prevented a file handle leak in the pefile-based
+   DLL dependency detection, which is used for ARM64 or with
+   ``--experimental=force-dependencies-pefile``, since the PE file was
+   not closed after use.
+
+-  **MSYS2:** Fix, DLL configuration paths were not normalized, which
+   turned them into illegal paths errors during compilation.
+
+-  **macOS:** Fix, now checks for the ``create-dmg`` tool availability
+   early during options processing.
+
+-  **macOS:** Fix, avoided permission issues in dependency scans.
+
+-  **macOS:** Fix, no longer crashed at runtime on Chinese app names.
+
+-  **macOS:** Fix, now unlocks the keychain more robustly for CI and ssh
+   contexts.
+
+-  **Linux:** Fix, onefile mode now links ``pthread`` explicitly, which
+   older Linux versions require, since there ``pthread`` is not yet part
+   of ``libc``.
+
+-  **Distutils:** Fix, for ``--project`` the ``tool.nuitka`` options
+   were not used.
+
+-  **Distutils:** Fix, using ``--project`` with a project that has no
+   name set now gives a clear error message telling where to set it,
+   instead of failing later in confusing ways.
+
+-  **Distutils:** Fixed the entry point options to pass the project name
+   through, so ``--main-entry-point`` builds derive their output name
+   from the project, and renamed the misnamed ``--project-requires``
+   option.
+
+-  **PGO:** Fix, the Python PGO output is now initialized before the
+   meta path loader, since probes during loader setup otherwise wrote to
+   an uninitialized file handle and crashed.
+
+-  **Onefile:** Fix, memory issues with parallel zstandard compression
+   are now avoided on 32 bit Python in general, since the check is based
+   on the Python itself rather than the x86 architecture, and Android
+   32/64 bit detection was corrected.
+
+-  **Onefile:** Enhanced SIGINT handling for onefile mode.
+
+-  **Report:** Fix, could crash when writing the report before the build
+   directory was created.
+
+-  **Zig:** Fix, need to use the newest ``zig`` on macOS.
+
+-  **NoGil:** Fix, frames objects are now owned by the frame object
+   rather than the generator.
+
+-  **NoGil:** Fix, clearing list objects now stores the item pointer
+   atomically and frees with shared-aware allocation in GIL-disabled
+   builds.
+
+-  **NoGil:** Now tracks more connections in our ``tp_traverse`` methods
+   of compiled types.
+
+-  **AIX:** Added COFF dump based DLL dependency detection, with various
+   fixes to the parsing, e.g. ignoring hex values and ``exp`` archive
+   members, column based parsing, more error checks, and listing only
+   the native architecture.
+
+-  **AIX:** The Python DLL locating code is now more general, and a
+   wrong structure entry for the ``dladdr`` helper was corrected.
+
+-  **UI:** Fix, avoided a false missing-file warning for
+   ``--include-data-files-external``.
+
 Package Support
 ===============
 
@@ -189,6 +438,40 @@ Package Support
    suffixes in QML directories were no longer included. (Fixed in 4.1.2
    already.)
 
+-  **Standalone:** Added automatic detection of ``cffi`` dependencies.
+
+-  **Standalone:** Added support for newer ``scipy``.
+
+-  **Standalone:** Added support for newer ``sqlfluff``.
+
+-  **Standalone:** Added support for newer ``datasets``.
+
+-  **Standalone:** Added support for newest ``toga``.
+
+-  **Standalone:** Added a workaround for deep recursion in the
+   ``univers.maven`` package, where its ``list2tuple`` function was
+   replaced with a non-recursive version.
+
+-  **Standalone:** Fix, needed to include platform specific ``gi``
+   modules as well.
+
+-  **Plugins:** Fix, added the missing ``webview.platforms.win32``
+   dependency for newer ``pywebview``, and fixed accidental assignments
+   instead of comparisons that caused too many modules to be included
+   when Qt was used.
+
+-  **Plugins:** Fix, avoided a warning when the ``gi`` module is not
+   usable.
+
+-  **Plugins:** Added support for ``Tcl`` and ``Tk`` from zip files.
+
+-  **Plugins:** Needed to also ignore object files on Windows for
+   ``PySide6``.
+
+-  **macOS:** Solved the need for a onefile workaround with ``PySide2``.
+
+-  **macOS:** Added a workaround for a ``PySide6`` packaging issue.
+
 New Features
 ============
 
@@ -206,12 +489,96 @@ New Features
    and ``importlib.resources.is_resource``, which had been overlooked so
    far. (Added in 4.1.3 already.)
 
+-  **Python 3.14:** Pronounced Python 3.14 as officially supported.
+
+-  **Python 3.14:** Added support for module-level deferred annotations,
+   and Python source generation for ``__annotate__`` functions.
+
+-  **Python 3.14:** Made deferred annotations the default mode.
+
+-  **Python 3.14:** Added the
+   ``--experimental=no-bytecode-to-compiled-fallback`` flag for
+   requiring bytecode code generation to succeed.
+
+-  **Python 3.15:** Added initial support for compiling with Python
+   3.15.
+
+-  **OS400:** Detected IBMi Python as a flavor.
+
+-  **Zig:** Created machine portable binaries by default.
+
+-  **Plugins:** Detected Qt plugin XML and webview modules
+   automatically.
+
+-  **Plugins:** Added an interface for changing module declarations.
+
+-  **UI:** Added the ``--update-check`` option to check if a newer
+   Nuitka version is available.
+
+-  **UI:** Added Python version related variables for project expansion.
+
+-  **macOS:** Added the ``--macos-app-macos-min-version`` option for the
+   minimum app version, and set ``CFBundleVersion``.
+
+-  **macOS:** Added the ``--macos-app-category-type`` option to set the
+   app category for the app store.
+
+-  **macOS:** Added experimental auto-use of the Homebrew clang.
+
+-  **Linux:** Added support for "app" mode that creates a desktop file.
+
+-  **Installer:** Added an installer command for Windows, and relocated
+   the macOS DMG into it.
+
+-  **Installer:** Added support for a Linux installer via AppImage too.
+
+-  **PGO:** Executed compiled binaries using scripts if necessary.
+
+-  **PGO:** Added the ``--pgo-python-error-exit`` option to control
+   error-exit handling.
+
+-  **Reports:** Added totals for C compilation and linking as well.
+
+-  **Debugging:** Added the ``--devel-no-bytecode-to-compiled-fallback``
+   option to check coverage.
+
 Optimization
 ============
 
 -  **Python 3.14:** Added ``_zstd`` and ``_remote_debugging`` to the
    standard library modules known to never raise on import, allowing
    their imports to be optimized accordingly. (Fixed in 4.1.2 already.)
+
+-  Replaced our uses of ``PyCallable_Check`` with a direct ``tp_call``
+   NULL check, which avoids the expensive ``__call__`` attribute lookup
+   fallback that ``PyCallable_Check`` does.
+
+-  Runtime ``isinstance`` checks now use our own implementation with the
+   faster type checking helpers, instead of the generic
+   ``PyObject_IsInstance``.
+
+-  Made the new style code objects the default. These are treated as
+   constant objects now and remove the need for a special path to
+   generate them. It reduces the generated code volume by a lot.
+
+-  Loop value traces for the same loop are now considered the same,
+   regardless of being complete or incomplete, enabling more merging of
+   optimization traces.
+
+-  The constant blob is now always created as an object file, removing
+   the special Windows resource mode, and the blob creation code was
+   made generic.
+
+-  Loader tables no longer need a NULL terminator, since the entry count
+   is now passed into the using code, making them more compact.
+
+-  The shape of ``iter`` results is now always known, enabling more
+   optimizations in general. As a consequence, ``os.uname()[0]``, the OS
+   name, is now known at compile time, allowing platform checks based on
+   it to be statically optimized.
+
+-  Added ``enumerate`` and ``zip`` built-in nodes, in preparation of
+   full optimization for them.
 
 Anti-Bloat
 ==========
@@ -227,6 +594,10 @@ Anti-Bloat
 
 -  Avoided including ``setuptools`` when using ``vcs_versioning``.
    (Fixed in 4.1.3 already.)
+
+-  Avoided using ``click`` when using ``httpx``.
+
+-  Avoided a ``toga`` cleanup error during program shutdown on Windows.
 
 Organizational
 ==============
@@ -249,6 +620,66 @@ Organizational
 -  **RPM:** Fix, the inline copy of ``atomicwrites`` was still needed
    for the update check, and is no longer executed during RPM builds.
    (Fixed in 4.1.3 already.)
+
+-  **Release:** Better error message for build failures in the PyPI
+   release script.
+
+-  **Zed:** Added autoformatting on save for source files and Nuitka
+   Package Configuration files.
+
+-  **AI:** Added the ``--assume-yes-for-downloads`` flag to autoformat
+   commands.
+
+-  **AI:** Expanded agent guidance with a verification matrix, skill
+   index, and syntax restrictions.
+
+-  **AI:** Disallowed local imports unless necessary.
+
+-  **AI:** Pointed to the CMD files for repo tools on Windows.
+
+-  **AI:** Modernized the agent config, removing cursor compatibility,
+   splitting rules into multiple files, and dropping OpenAI and Gemini
+   specific files.
+
+-  **Visual Code:** Also generated a clangd config for the OS/Python
+   combination.
+
+-  **Visual Code:** No longer started the pylint check automatically.
+
+-  **Quality:** Added checker tools for pyright, basedpyright, ruff, and
+   clangd, plus initial cleanups for fewer linter errors.
+
+-  **Quality:** Added ``--assume-yes-for-downloads`` support to the
+   checker tools.
+
+-  **Quality:** Use PyLint from the private pip space.
+
+-  **Quality:** Autoformat now removes empty module configurations from
+   the YAML package configuration, which had accumulated when config
+   features were removed.
+
+-  **Quality:** The autoformat tool now outputs the diff when generated
+   files would change with the ``--check`` option.
+
+-  **Quality:** Autoformat converts em-dashes to regular dashes in C
+   files.
+
+-  **Quality:** Autoformat removes the spaces between words in
+   ``spell-checker: ignore`` lines.
+
+-  **Quality:** The repo ruff configuration no longer formats, since our
+   own autoformat is used, and more unwanted warnings were disabled.
+
+-  **Quality:** Autoformat now respects the exclusion of certain areas
+   for JSON files and image files too, which it previously formatted and
+   optimized regardless.
+
+-  **Quality:** The git pre-push hook no longer fails on submodules that
+   are not checked out, skipping the missing files.
+
+-  **Quality:** The YAML checker no longer outputs traces on success,
+   only reporting problems, and the autoformat progress bar total was
+   improved.
 
 Tests
 =====
@@ -273,6 +704,33 @@ Tests
    exceptions, which was relatively easy to trigger, e.g. with
    ``SystemExit`` being set. (Fixed in 4.1.1 already.)
 
+-  Added support for compiled-only and uncompiled-only exclusive output
+   lines to the output comparison tool, allowing tests of
+   Nuitka-exclusive features while still comparing the rest of the
+   output.
+
+-  Allowed file accesses under system library paths in tests for the
+   Debian Python flavor, since its Python relies on system-packaged
+   libraries.
+
+-  No longer update resume information for "only" search mode runs.
+
+-  **Python 3.11+:** Normalized traceback comparison by dropping the PEP
+   657 caret lines from CPython's output, which Nuitka does not produce,
+   and stripping blank lines between frames.
+
+-  Added ``--no-debug-immortal-assumptions`` to PySide tests.
+
+-  **Linux:** Allowed reading the ``/usr/share/zoneinfo`` directory
+   itself in test file access checks, not just paths below it, since the
+   system time zone info lives there.
+
+-  Added app bundle mode and signature verification to the comparison
+   test tool, where the signature is verified before running, since some
+   programs like Qt WebEngine modify themselves on launch.
+
+-  **Python 3.15:** Added support for running tests with it.
+
 Cleanups
 ========
 
@@ -288,6 +746,38 @@ Cleanups
 
 -  **Quality:** Updated to the latest ``ruamel.yaml`` package and
    stopped using its private interface. (Fixed in 4.1.3 already.)
+
+-  Generated internal class names in the node code now start with an
+   underscore, so it is obvious they must not be used directly, and the
+   stable alias names should be used instead.
+
+-  Cleaned up the pylint watching code.
+
+-  **Watch:** The ``nuitka-watch`` tool now waits for pip installs to
+   become usable, retries git operations on all platforms, outputs which
+   pip update failed and which wait condition was reached, writes XML
+   reports like ElementTree does, and improved the automatic staging of
+   changes.
+
+-  The warning about a missing ``clang-format`` binary now uses the
+   shared once-per-warning mechanism, instead of a hand-coded flag.
+
+-  Completed the finalization of dead trailing statements, so that
+   removed dead statements free their nodes properly when optimization
+   removes them.
+
+-  Nuitka's internal value hashing is now stable for dict values, with
+   sorted items, where previously the insertion order was used. Since
+   dicts with the same contents can have different insertion orders,
+   equal dicts could hash differently, which matters for reproducible
+   builds and caching, preparing this for future use.
+
+-  The Jinja2 inline copy no longer imports the ``pkg_resources`` inline
+   copy unless ``PackageLoader`` is used.
+
+-  **Windows:** ``pdb`` files included as data files are now properly
+   traced, avoiding warnings in onefile mode, and allowing manual
+   copying of such files to be rejected in the future.
 
 Summary
 =======
