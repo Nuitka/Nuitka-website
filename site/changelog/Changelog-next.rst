@@ -67,6 +67,29 @@ Bug Fixes
    longer used for MSVC, where the compiler and runtime layouts match.
    (Fixed in 4.1.1 already.)
 
+-  **Python 3.11/3.12:** Fix, optimized class calls bypassing
+   ``object_new`` did not initialize the managed dict inline values, so
+   the first attribute assignment fell back to a separately allocated
+   dictionary. (Fixed in 4.1.2 already.)
+
+-  **Python 3.11+:** Fix, compiled frame locals were not stored in the
+   interpreter frame ``localsplus`` slots, making them invisible to
+   CPython frame introspection. (Fixed in 4.1.2 already.)
+
+-  **Python 3.12+:** Fix, the ``__type_params__`` attribute of generic
+   functions was always empty. (Fixed in 4.1.2 already.)
+
+-  **Python 3.14:** Fix, critical frame details were released before
+   clearing frames, which could cause crashes. (Fixed in 4.1.2 already.)
+
+-  **Python 3.14:** Fix, type complaint exception messages now use the
+   ``__qualname__`` of the offending type, as CPython does. (Fixed in
+   4.1.2 already.)
+
+-  **Standalone:** Fix, standard library path detection for the "Python
+   Build Standalone" flavor needed to consider symlinks in directory
+   components. (Fixed in 4.1.2 already.)
+
 -  **Plugins:** Fix, ``mypyc`` runtime detection didn't happen for
    submodules of a package, which affected at least the ``chardet``
    module. (Fixed in 4.1.1 already.)
@@ -94,6 +117,18 @@ Bug Fixes
 -  **macOS:** Fix, added handling for another form of self dependency
    from absolute paths. (Fixed in 4.1.1 already.)
 
+-  **macOS:** Fix, detection of statically linked libraries did not
+   work, since the ``file`` command output was not used yet. (Fixed in
+   4.1.2 already.)
+
+-  **macOS:** Fix, detected another variation of self dependencies,
+   where a less-versioned binary depends on its more versioned self.
+   (Fixed in 4.1.2 already.)
+
+-  **Debian:** Fix, ``--disable-ccache`` did not work when the compiler
+   binary was a symlink, e.g. from the Debian ``ccache`` package. (Fixed
+   in 4.1.2 already.)
+
 Package Support
 ===============
 
@@ -106,11 +141,21 @@ Package Support
 -  **Standalone:** No longer proposed to recompile the
    ``charset_normalizer`` extension module. (Added in 4.1.1 already.)
 
+-  **Standalone:** Added support for the ``emoji`` package. (Added in
+   4.1.2 already.)
+
+-  **Standalone:** Added support for the ``mitmproxy`` package. (Added
+   in 4.1.2 already.)
+
 -  **Plugins:** Fix, PyQt5 markdown data files caused errors on Linux,
    they are now excluded. (Fixed in 4.1.1 already.)
 
 -  **Plugins:** Added support for newer ``pkg_resources`` versions,
    where the ``EggProvider`` was removed. (Added in 4.1.1 already.)
+
+-  **Plugins:** Fix, build artifacts with ``.a``, ``.prl``, and ``.la``
+   suffixes in QML directories were no longer included. (Fixed in 4.1.2
+   already.)
 
 New Features
 ============
@@ -123,7 +168,9 @@ New Features
 Optimization
 ============
 
--  None yet.
+-  **Python 3.14:** Added ``_zstd`` and ``_remote_debugging`` to the
+   standard library extension modules known to raise on import. (Fixed
+   in 4.1.2 already.)
 
 Anti-Bloat
 ==========
@@ -180,6 +227,9 @@ Cleanups
 
 -  Fixed pylint warnings in the coverage rendering tool. (Fixed in 4.1.1
    already.)
+
+-  **Quality:** Enforced the required versions for the private pipspace
+   packages used for YAML formatting. (Fixed in 4.1.2 already.)
 
 Summary
 =======
