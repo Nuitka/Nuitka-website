@@ -204,6 +204,13 @@ Bug Fixes
    the attribute lookup and raised ``AttributeError``, now it raises
    ``ImportError`` as CPython does.
 
+-  Fix, fixed imports that failed at runtime could segfault, now the
+   failure is handled properly.
+
+-  Fix, the hard import modules ``site``, ``pkg_resources``, and
+   ``importlib_resources`` are now treated as possibly raising, since
+   they can be broken in broken installs.
+
 -  Fix, directories that need to be ignored during file listing crashed
    on case-insensitive filesystems when a directory name differed in
    case.
@@ -472,6 +479,9 @@ Package Support
 
 -  **macOS:** Added a workaround for a ``PySide6`` packaging issue.
 
+-  **macOS:** Added a non-deployment handler for ``urllib.request``,
+   catching the common case where ``certifi`` is not used.
+
 New Features
 ============
 
@@ -511,6 +521,13 @@ New Features
    automatically.
 
 -  **Plugins:** Added an interface for changing module declarations.
+
+-  **Plugins:** Added the ability to set defines differently for onefile
+   builds and backend builds.
+
+-  **Plugins:** Added separate ``plugin-warning`` and ``plugin-error``
+   levels for plugin messages in package configuration, allowing plugins
+   to report errors.
 
 -  **UI:** Added the ``--update-check`` option to check if a newer
    Nuitka version is available.
@@ -580,6 +597,9 @@ Optimization
 -  Added ``enumerate`` and ``zip`` built-in nodes, in preparation of
    full optimization for them.
 
+-  Expanded dual type operations with previously missing sub helpers,
+   and fixed mistakes for existing ones.
+
 Anti-Bloat
 ==========
 
@@ -601,6 +621,10 @@ Anti-Bloat
 
 Organizational
 ==============
+
+-  **Actions:** Introduced an "integration" branch as an intermediate
+   step before develop, for PRs that are not considered fully
+   merge-safe, or that may hit a hotfix release instead.
 
 -  **Project:** Corrected a few mistakes done when changing the license,
    referencing the runtime exception everywhere and using a proper link
@@ -633,6 +657,10 @@ Organizational
 -  **AI:** Expanded agent guidance with a verification matrix, skill
    index, and syntax restrictions.
 
+-  **AI:** Made it clear that the issue template is to be followed
+   strictly by AI assistants, and that issues ignoring it will be closed
+   as invalid.
+
 -  **AI:** Disallowed local imports unless necessary.
 
 -  **AI:** Pointed to the CMD files for repo tools on Windows.
@@ -645,6 +673,17 @@ Organizational
    combination.
 
 -  **Visual Code:** No longer started the pylint check automatically.
+
+-  **Modules:** Merged upstream enhancements into the inline ``stubgen``
+   copy, improving the generated type stubs.
+
+-  **Actions:** Enabled Python 3.14 in CI.
+
+-  **Actions:** Dropped an unneeded requirements file installation in
+   CI.
+
+-  **Docs:** Updated the man pages with the new CodeMeter plugin
+   options.
 
 -  **Quality:** Added checker tools for pyright, basedpyright, ruff, and
    clangd, plus initial cleanups for fewer linter errors.

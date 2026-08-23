@@ -22,6 +22,10 @@ This skill covers producing changelog entries in the Nuitka website repository f
      develop/pre-release update.
    - Without `VERSION`, the range is the last documented version to HEAD, for catching up the
      current develop work.
+   - The line "It currently covers changes up to version **...**." tracks the last `VERSION`
+     argument passed to the script and is updated by the script itself, never by hand. A catch-up
+     run without `VERSION` does not update it, and does not mean the changelog for that version is
+     complete.
    - Running with a `VERSION` that is already the documented state yields an empty range, that is
      expected.
    - `--website-repo PATH` allows running from outside the website repo.
@@ -139,6 +143,8 @@ natural.
 - Skip `fixup!` commits entirely, they are folded into the entry of the commit they fix.
 - Skip trivial or internal changes without general relevance for users, e.g. fixes to features that
   are not yet the default (unless the user says otherwise).
+- Never drop a commit whose content is not understood. Instead, check the code, add an entry with
+  the best possible description, and inform the user about it, so they can decide.
 
 ### Audience and wording
 
@@ -154,8 +160,10 @@ The audience is the experienced Nuitka and Python user:
   ("was handling ... incorrectly, now ..."), avoid formulations like "handled X correctly" that put
   the fix itself in the past.
 - Avoid redundancy, do not repeat the topic word within an entry (e.g. "compiler binary was a
-  symlink" after already naming ccache).
+  symlink" after already naming ccache), and avoid filler phrases like "closing a gap".
 - Name the actual helpers and options (e.g. `has_builtin_module`).
+- Terminology: handlers for runtime situations where something is missing, failing to work (e.g.
+  `certifi` not present) are called "non-deployment handler", not "deployment handling".
 - For hotfix entries that describe a change of behavior, showing what it was and what it is now can
   be done in a code example comment, e.g. `# 4.1: None (bug), 4.1.1: KeyError (correct)`.
 
