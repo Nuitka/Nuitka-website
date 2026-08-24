@@ -29,13 +29,15 @@ well as private conversations or issue tracker.
    and behave absolutely compatible.
 
    Feature parity has been reached for CPython 2.6 and 2.7. We do not
-   target any older CPython release. For CPython 3.4 up to 3.14 it also
+   target any older CPython release. For CPython 3 up to 3.14 it also
    has been reached. We do not target the older and practically unused
    CPython 3.0 to 3.3 releases.
 
-   This milestone was reached. Dropping support for Python 2.6 and 3.3
-   is an option, should this prove to be any benefit. Currently it is
-   not, as it extends the test coverage only.
+   This milestone was reached. Dropping support for Python 2.6 is an
+   option, should this prove to be any benefit. At this time, the
+   benefits are small still, as keeping it extends the test coverage and
+   gives a minimal environment for large scale changes to test with only
+   a subset of functionality that needs to be implemented immediately.
 
 #. Create the most efficient native code from this. This means to be
    fast with the basic Python object handling.
@@ -181,6 +183,30 @@ format call Nuitka source code.
 Should you encounter problems with applying the changes to the checked
 out file, you can always execute it with ``COMMIT_UNCHECKED=1``
 environment set.
+
+*********************************
+ Reporting Bugs and Creating MRE
+*********************************
+
+For complex bugs such as compiler crashes, it is often necessary to
+reduce the source code to a Minimal Reproducible Example (MRE) to
+isolate the cause.
+
+Nuitka includes an agent workflow to assist with this process. You can
+refer to the workflow definition at ``.agent/workflows/create-mre.md``
+for the recommended strategy, or if using a compatible agent, trigger it
+directly.
+
+.. important::
+
+   Of course the AI can only do so much, as a human you may need to
+   guide it better or try different strategies, but the AI is there to
+   help us.
+
+The general process involves: 1. Identifying the specific command
+triggering the crash. 2. Iteratively removing code blocks (imports,
+functions, branches) and verifying if the crash persists. 3. Reducing
+the example until it is minimal and self-contained.
 
 *********************
  Coding Rules Python
@@ -335,7 +361,7 @@ Look at this code examples from Python:
 This pretty much is what makes properties bad. One would hope ``B().x``
 to be ``2``, but instead it's not changed. Because of the way properties
 take the functions and not members, and because they then are not part
-of the class, they cannot be overloaded without re-declaring them.
+of the class, they cannot be overloaded without redeclaring them.
 
 Overloading is then not at all obvious anymore. Now imagine having a
 setter and only overloading the getter. How to update the property
@@ -395,6 +421,13 @@ block.
    time**, so do not base your patches on it, please prefer the
    ``develop`` branch for that, unless of course, it's about factory
    code itself.
+
+-  Feature Branches
+
+   We are not currently using these. They could be used for long lived
+   changes that extend for multiple release cycles and are not ready
+   yet. Currently we perform all changes in steps that can be included
+   in releases or delay making those changes.
 
 ******************************
  Nuitka "git/github" Workflow
@@ -662,11 +695,17 @@ For fine grained control, it has the following options:
                          The standard CPython3.11 test suite. Execute this for
                          all corner cases to be covered. With Python 2.x these
                          are not run. Default is True.
+   --skip-cpython312-tests
+                         The standard CPython3.12 test suite. Execute this for
+                         all corner cases to be covered. With Python 2.x these
+                         are not run. Default is True.
+   --skip-cpython313-tests
+                         The standard CPython3.13 test suite. Execute this for
+                         all corner cases to be covered. With Python 2.x these
+                         are not run. Default is True.
    --no-python2.6        Do not use Python 2.6 even if available on the system.
                          Default is False.
    --no-python2.7        Do not use Python 2.7 even if available on the system.
-                         Default is False.
-   --no-python3.3        Do not use Python 3.3 even if available on the system.
                          Default is False.
    --no-python3.4        Do not use Python 3.4 even if available on the system.
                          Default is False.
@@ -683,6 +722,10 @@ For fine grained control, it has the following options:
    --no-python3.10       Do not use Python 3.10 even if available on the system.
                          Default is False.
    --no-python3.11       Do not use Python 3.11 even if available on the system.
+                         Default is False.
+   --no-python3.12       Do not use Python 3.12 even if available on the system.
+                         Default is False.
+   --no-python3.13       Do not use Python 3.13 even if available on the system.
                          Default is False.
    --coverage            Make a coverage analysis, that does not really check.
                          Default is False.
@@ -773,40 +816,6 @@ because Nuitka uses a lot of packages and imports between them.
 
    ./tests/reflected/compile_itself.py
 
-******************
- Profiling Nuitka
-******************
-
-Nuitka has built-in capabilities for profiling its own execution, which
-is useful for finding performance bottlenecks in the compilation
-process.
-
-Compile-Time Profiling
-======================
-
-To profile the compilation process itself (identifying slow optimization
-passes, etc.), use the ``--devel-profile-compilation`` option. This uses
-Python's standard ``cProfile`` module to trace execution.
-
-.. code:: bash
-
-   python -m nuitka --devel-profile-compilation target.py
-
-Runtime Profiling (vmprof)
-==========================
-
-To profile the Nuitka runtime, use ``--debug-profile-runtime``. This
-enables ``vmprof`` based profiling. Note that this option was formerly
-named ``--profile`` and is for internal debugging.
-
-.. code:: bash
-
-   python -m nuitka --debug-profile-runtime target.py
-
-.. important::
-
-   This feature is currently broken and needs repair.
-
 *********************
  Internal/Plugin API
 *********************
@@ -857,31 +866,31 @@ Added new CPython suites
 
 When adding a test suite, for a new version, proceed like this, of
 course while adapting of course the names. These are the commands used
-for adding CPython311 based on the CPython310 branch.
+for adding CPython313 based on the CPython312 branch.
 
 .. code:: bash
 
    # Switch to a new branch.
-   git checkout CPython310
-   git branch CPython311
-   git checkout CPython311
+   git checkout CPython312
+   git branch CPython313
+   git checkout CPython313
 
    # Delete all but root commit
    git reset --hard `git log --root --oneline --reverse | head -1 | cut -d' ' -f1`
 
    # Switch test data to upstream ones.
    rm -rf test
-   cp -r ~/repos/Nuitka-references/final/Python-3.11.0/Lib/test test
+   cp -r ~/repos/Nuitka-references/final/Python-3.13.0/Lib/test test
    git add test
 
    # Update commit message to mention proper Python version.
-   git commit --amend -m "Initial commit of Python tests as in 3.11.0"
+   git commit --amend -m "Initial commit of Python tests as in 3.13.0"
 
    # Push to github, setting upstream for branch.
    git push -u
 
    # Cherry pick the removal commits from previous branches.
-   git log origin/CPython310 --reverse --oneline | grep ' Removed' | cut -d' ' -f1 | xargs git cherry-pick
+   git log origin/CPython312 --reverse --oneline | grep ' Removed' | cut -d' ' -f1 | xargs git cherry-pick
    # When being prompted for merge conflicts with the deleted files:
    git status | sed -n 's/deleted by them://p' | xargs git rm --ignore-unmatch x ; git cherry-pick --continue
 
@@ -889,27 +898,27 @@ for adding CPython311 based on the CPython310 branch.
    git push
 
    # Cherry pick the first commit of 'run_all.py', the copy it from the last state, and amend the commits.
-   git log --reverse origin/CPython310 --oneline -- run_all.py | head -1 | cut -d' ' -f1 | xargs git cherry-pick
-   git checkout origin/CPython310 -- run_all.py
+   git log --reverse origin/CPython312 --oneline -- run_all.py | head -1 | cut -d' ' -f1 | xargs git cherry-pick
+   git checkout origin/CPython312 -- run_all.py
    chmod +x run_all.py
-   sed -i -e 's#python3.10#python3.11#' run_all.py
+   sed -i -e 's#python3.12#python3.13#' run_all.py
    git commit --amend --no-edit run_all.py
 
    # Same for 'update_doctest_generated.py'
-   git log --reverse origin/CPython310 --oneline -- update_doctest_generated.py | head -1 | cut -d' ' -f1 | xargs git cherry-pick
-   git checkout origin/CPython310 -- update_doctest_generated.py
+   git log --reverse origin/CPython312 --oneline -- update_doctest_generated.py | head -1 | cut -d' ' -f1 | xargs git cherry-pick
+   git checkout origin/CPython312 -- update_doctest_generated.py
    chmod +x update_doctest_generated.py
-   sed -i -e 's#python3.10#python3.11#' update_doctest_generated.py
+   sed -i -e 's#python3.12#python3.13#' update_doctest_generated.py
    git commit --amend --no-edit update_doctest_generated.py
 
    # Same for .gitignore
-   git log --reverse origin/CPython310 --oneline -- .gitignore | head -1 | cut -d' ' -f1 | xargs git cherry-pick
-   git checkout origin/CPython310 -- .gitignore
+   git log --reverse origin/CPython312 --oneline -- .gitignore | head -1 | cut -d' ' -f1 | xargs git cherry-pick
+   git checkout origin/CPython312 -- .gitignore
    git commit --amend --no-edit .gitignore
 
    # Now cherry-pick all commits of test support, these disable network, audio, GUI, random filenames and more
    # and are crucial for deterministic outputs and non-reliance on outside stuff.
-   git log --reverse origin/CPython310 --oneline -- test/support/__init__.py | tail -n +2 | cut -d' ' -f1 | xargs git cherry-pick
+   git log --reverse origin/CPython312 --oneline -- test/support/__init__.py | tail -n +2 | cut -d' ' -f1 | xargs git cherry-pick
 
    git push
 
@@ -947,7 +956,7 @@ The logo was submitted by "dr. Equivalent". It's source is contained in
    .. image:: doc/images/Nuitka-Logo-Vertical.png
       :alt: Nuitka Logo
 
-From these logos, PNG images, and "favicons", and are derived.
+From these logos, PNG images, and fav icons, and are derived.
 
 The exact ImageMagick commands are in
 ``nuitka/tools/release/Documentation``, but are not executed each time,
@@ -1760,9 +1769,10 @@ return value. This is very much in line with that the Python C-API does.
 
 Every helper function that contains code that might raise needs these
 variables. After a failed call, our variant of ``PyErr_Fetch`` called
-``FETCH_ERROR_OCCURRED`` must be used to catch the defined error, unless
-some quick exception cases apply. The quick exception means, ``NULL``
-return from C-API without a set exception means e.g. ``StopIteration``.
+``FETCH_ERROR_OCCURRED_STATE`` must be used to catch the defined error,
+unless some quick exception cases apply. The quick exception means,
+``NULL`` return from C-API without a set exception means e.g.
+``StopIteration``.
 
 As an optimization, functions that raise exceptions, but are known not
 to do so, for whatever reason, could only be asserted to not do so.
@@ -1844,7 +1854,7 @@ Problems were
    for large programs, especially in standalone mode.
 
 -  The massive amount of constant creation codes gave backend C
-   compilers a much harder time than necessary to analyse it all at
+   compilers a much harder time than necessary to analyze it all at
    once.
 
 The current approach is as follows. Code generation detects constants
@@ -2332,31 +2342,23 @@ operations.
 
 .. code:: python
 
-   # This will be one expression node
-   def get_published_exc_info():
-      if sys.version_info < (3,12):
-         return sys.exc_info()
-      else:
-         return sys.exception()
-
    try:
-      block()
-   except: # in case of exception, tmp_current_exception is referring tstate->exc_state
-      tmp_preserved_exception_state = get_published_exc_info()
-      set_sys_exc_info(tmp_current_exception)
+       block()
+   except:
+       # These are special nodes that access the exception, and don't really
+       # use the "sys" module.
+       tmp_exc_type = sys.exc_info()[0]
+       tmp_exc_value = sys.exc_info()[1]
 
-      try:
-         # exception_matches is a comparison operation, also a special node.
-         if exception_matches(get_exception_type(tmp_current_exception), (A,)):
-            e = get_exception_value(tmp_current_exception)
-            handlerA(e)
-         elif exception_matches(get_exception_type(tmp_current_exception), (B,)):
-            e = get_exception_value(tmp_current_exception)
-            handlerB(e)
-         else:
-            handlerElse()
-      finally:
-         set_sys_exc_info(tmp_preserved_exception_state)
+       # exception_matches is a comparison operation, also a special node.
+       if exception_matches(tmp_exc_type, (A,)):
+           e = tmp_exc_value
+           handlerA(e)
+       elif exception_matches(tmp_exc_type, (B,)):
+           e = tmp_exc_value
+           handlerB(e)
+       else:
+           handlerElse()
 
 For Python3, the assigned ``e`` variables get deleted at the end of the
 handler block. Should that value be already deleted, that ``del`` does
@@ -2399,80 +2401,6 @@ use special references, that access the C++ and don't go via
 
 This means, that the different handlers and their catching run time
 behavior are all explicit and reduced the branches.
-
-Exception Groups
-----------------
-
-.. code:: python
-
-   try:
-      block()
-   except* (A, B) as eg:
-      handlerAorB(eg)
-   except* (B) as eg:
-      print("ValueError handling", sys.exc_info())
-      handlerB(eg)
-
-.. code:: python
-
-   try:
-       block()
-   except:
-      try:
-         tmp_preserved_exception_state = get_published_exc_info()
-
-         # For now, this is a C helper, EXCEPTION_GROUP_MATCH, could be also a
-         # helper function later.
-         def exception_group_match(exc_type, exc_value, exc_tb, match_against):
-            if not isinstance(tmp_exc_type, BaseExceptionGroup):
-               exc_type = ExceptionGroup
-               exc_value = ExceptionGroup("", (exc_type,))
-               exc_tb = None
-
-            matches = []
-            rest = []
-            for candidate in match_against:
-               if exception_matches(exception_type, exception_value, candidate):
-                  matches.append(candidate)
-               else:
-                  rest.append(candidate)
-
-            return matches != [], matches, rest
-
-         is_match, matches, rest = exception_group_match(tmp_current_exception, (A,B)):
-         try:
-            if is_match:
-               try:
-                  set_sys_exc_info(ExceptionGroup("", matches))
-
-                  e = tmp_exc_value
-                  handlerAorB(e)
-               finally:
-                  del e
-
-               set_sys_exc_info(rest)
-
-         finally:
-            is_match, matches, rest = exception_group_match(rest, (B,)):
-            if is_match:
-               try:
-                  set_sys_exc_info(ExceptionGroup("", matches))
-
-                  e = tmp_exc_value
-                  handlerAorB(e)
-               finally:
-                     del e
-
-               set_sys_exc_info(ExceptionGroup("", rest))
-
-         if rest and not isinstance(sys.exc_info()[0], BaseExceptionGroup):
-            raise ExceptionGroup("", rest)
-      except:
-         raise
-      else:
-         set_sys_exc_info(tmp_preserved_exception_state)
-      finally:
-         del tmp_preserved_exception_state
 
 Statement ``try``/``except`` with ``else``
 ------------------------------------------
@@ -2639,8 +2567,8 @@ function object ever exists.
 
    list_value = _listcontr_helper(range(8))
 
-The difference is that with Python3, the function "_listcontr_helper" is
-really there and named ``<listcontraction>`` (or ``<listcomp>`` as of
+The difference is that with Python3, the function ``_listcontr_helper``
+is really there and named ``<listcontraction>`` (or ``<listcomp>`` as of
 Python3.7 or higher), whereas with Python2 the function is only an
 outline, so it can readily access the containing name space.
 
@@ -3220,7 +3148,7 @@ applies to temporary variables used in re-formulations. These releases
 cause a reference to the object to the released, but no value change.
 They are typically the last use of the object in the function.
 
-They are similar to ``del``, but make no value change. For shared
+The are similar to ``del``, but make no value change. For shared
 variables this effect is most visible.
 
 Side Effects
@@ -3368,7 +3296,7 @@ Goals/Allowances to the task
 
    .. note::
 
-      The "cffi" interface maybe won't have the issue, but it's not
+      The ``cffi`` interface maybe won't have the issue, but it's not
       something we need to write or test the code for.
 
 #. Allowance: May use ``ctypes`` module at compile time to ask things
@@ -3728,7 +3656,7 @@ written traces, are turned into loop merges. Knowledge is not completely
 removed about everything assigned or changed in the loop, but then it's
 not trusted anymore.
 
-From that basis, the ``break`` exits are analysed, and merged, building
+From that basis, the ``break`` exits are analyzed, and merged, building
 up the post loop state, and ``continue`` exits of the loop replacing the
 unknown part of the loop entry state. The loop end is considered a
 ``continue`` for this purpose.
@@ -4527,6 +4455,16 @@ This an area where to drop random ideas on our minds, to later sort it
 out, and out it into action, which could be code changes, plan changes,
 issues created, etc.
 
+-  Debugging memory leak template, to be added to develop docs
+
+   .. code:: python
+
+      # nuitka-project: --follow-import-to=LeakingModule
+      from LeakingModule import main
+      from nuitka.tools.testing.Common import checkReferenceCount
+
+      checkReferenceCount(main)
+
 -  Make "SELECT_METACLASS" meta class selection transparent.
 
    Looking at the "SELECT_METACLASS" it should become an anonymous
@@ -4601,7 +4539,8 @@ issues created, etc.
       d = next(a)
 
    If we fail to detect the aliasing nature, we will calculate ``d``
-   wrongly. We may incref and decref values to trace it.
+   wrongly. We could have to increase and decrease integer usage counts
+   values to trace it.
 
    Aliasing is automatically traced already in SSA form. The ``b`` is
    assigned to version of ``a``. So, that should allow to replace it
@@ -4617,12 +4556,7 @@ issues created, etc.
 
 -  Tail recursion optimization.
 
-   Functions that return the results of calls, can be optimized. The
-   Stackless Python does it already.
-
--  Integrate with "upx" compression.
-
-   Calling "upx" on the created binaries, would be easy.
+   Functions that return the results of calls, can be optimized.
 
 -  In-lining constant "exec" and "eval".
 
@@ -4687,23 +4621,6 @@ issues created, etc.
 In this chapter, we keep track of prongs of action currently ongoing.
 This can get detailed and shows things we strive for.
 
-Builtin optimization
-====================
-
-Definitely want to get built-in names under full control, so that
-variable references to module variables do not have a twofold role.
-Currently they reference the module variable and also the potential
-built-in as a fallback.
-
-In terms of generated code size and complexity for modules with many
-variables and uses of them that is horrible. But ``some_var`` (normally)
-cannot be a built-in and therefore needs no code to check for that each
-time.
-
-This is also critical to getting to whole program optimization. Being
-certain what is what there on module level, will enable more definitely
-knowledge about data flows and module interfaces.
-
 Class Creation Overhead Reduction
 =================================
 
@@ -4716,18 +4633,6 @@ In the end, empty classes should be able to be statically converted to
 calls to ``type`` with static dictionaries. The inlining of class
 creation function is also needed for this, but on Python3 cannot happen
 yet.
-
-Memory Usage at Compile Time
-============================
-
-We will need to store more and more information in the future. Getting
-the tree to be tight shaped is therefore an effort, where we will be
-spending time too.
-
-The mix-ins prevent slots usage, so lets try and get rid of those. The
-"children having" should become more simple and faster code. I am even
-thinking of even generating code in the meta class, so it's both optimal
-and doesn't need that mix-in any more. This is going to be ugly then.
 
 Coverage Testing
 ================
@@ -4759,3 +4664,15 @@ Caching of Python level compilation
 While the C compilation result is already cached with `ccache` and
 friends now, we need to also cover our bases and save the resulting node
 tree of potential expensive optimization on the module level.
+
+*************************
+ Updates for this Manual
+*************************
+
+This document is written in REST. That is an ASCII format which is
+readable to human, but easily used to generate PDF or HTML documents.
+
+You will find the current source under:
+https://github.com/Nuitka/Nuitka/blob/develop/Developer_Manual.rst
+
+And the current PDF under: https://nuitka.net/doc/Developer_Manual.pdf
