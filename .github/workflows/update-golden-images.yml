@@ -15,17 +15,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
       - name: Cache Pipenv dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
@@ -55,7 +55,7 @@ jobs:
 
       - name: Save golden images to cache
         id: save-cache
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: tests/golden/
           key: golden-images-main-${{ github.sha }}
