@@ -120,9 +120,9 @@ includes plugins that achieve the following:
                versions of packages and older toolchain, **Nuitka Commercial**
                allows you to make it portable.
 
-           .. _portable-linux:
-
            .. grid-item-card:: :doc:`/doc/commercial/portable-linux-support`
+
+               .. _portable-linux:
 
                Deploy to **Linux** with a portable build result
 
