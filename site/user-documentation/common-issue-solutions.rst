@@ -211,6 +211,10 @@ too low; there is no end to them.
    # MSVC
    fatal error C1002: compiler is out of heap space in pass 2
    fatal error C1001: Internal compiler error
+   # zig
+   error: unable to build compiler_rt: OutOfMemory
+   error: sub-compilation of libubsan failed
+       note: memory allocation failure
 
 There are several approaches you can explore here.
 
