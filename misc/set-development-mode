@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Set DEVELOPMENT_MODE in state.ini, creating the file with a default
+# configuration when it does not exist yet.
+#
+# Usage: set-development-mode true|false
+
+set -e
+
+cd "$(dirname "$0")/.." || exit 1
+
+STATE_FILE="state.ini"
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 true|false" >&2
+    exit 1
+fi
+
+case "$1" in
+    true | false)
+        ;;
+    *)
+        echo "Usage: $0 true|false" >&2
+        exit 1
+        ;;
+esac
+
+if [ ! -f "$STATE_FILE" ]; then
+    cat > "$STATE_FILE" <<EOF
+[DEFAULT]
+development_mode = $1
+EOF
+    echo "Created $STATE_FILE with development_mode = $1"
+    exit 0
+fi
+
+if grep -qiE '^development_mode[[:space:]]*=' "$STATE_FILE"; then
+    sed -i -E 's/^development_mode[[:space:]]*=.*$/development_mode = '"$1"'/i' "$STATE_FILE"
+else
+    # No development_mode entry yet, add it to the DEFAULT section.
+    if ! grep -qE '^\[DEFAULT\]' "$STATE_FILE"; then
+        echo "[DEFAULT]" >> "$STATE_FILE"
+    fi
+
+    echo "development_mode = $1" >> "$STATE_FILE"
+fi
+
+echo "Set development_mode = $1 in $STATE_FILE"
