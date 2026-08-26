@@ -13,31 +13,10 @@
 Thank you for downloading Nuitka. Please consider becoming a Nuitka
 commercial subscriber.
 
-.. raw:: html
+.. include:: nuitka-commercial.inc
 
-   <style>
-       .responsive-google-slides {
-           position: relative;
-           padding-bottom: 56.25%; /* 16:9 Ratio */
-           height: 0;
-           overflow: hidden;
-       }
-       .responsive-google-slides iframe {
-           border: 0;
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100% !important;
-           height: 100% !important;
-       }
-   </style>
-
-   <div class="responsive-google-slides">
-       <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQ8gKXjTPukmeULWnjqSWWOKzopxEQ-LqfPYbvHE4wEPuYTnj3JmYFc8fm-EriAYgXzEbI-kWwaaQN/embed?rm=minimal&start=true&loop=true&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-   </div>
-
-Nuitka Standard vs Commercial
-=============================
+Nuitka Standard vs Nuitka Commercial
+====================================
 
 The standard edition is what you download here. It lacks features that
 commercial users might want for IP protection. Nuitka standard bundles
@@ -62,9 +41,9 @@ supported with hot fixes, indicated by the last of the 3 digits.
 
 .. note::
 
-   Stable releases are supposed to work for you. Develop releases are
-   snapshots of the current ``develop`` branch in git, usually also
-   relatively stable, but also rarely break.
+   Stable releases are the recommended choice and work reliably for
+   production use. Develop releases are pre-releases of the next stable
+   release; they are generally stable too, but may occasionally break.
 
 .. note::
 

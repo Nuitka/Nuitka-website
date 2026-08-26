@@ -1,6 +1,8 @@
 from typing import List, cast
 
 from docutils import nodes
+from docutils.parsers.rst.directives import flag
+from docutils.statemachine import StringList
 from sphinx.util.docutils import SphinxDirective
 
 
@@ -84,6 +86,7 @@ class CarouselContent(SphinxDirective):
     option_spec = {
         "doc": str,
         "url": str,
+        "nested": flag,
     }
 
     def run(self) -> List[nodes.Node]:
@@ -95,6 +98,59 @@ class CarouselContent(SphinxDirective):
 
         if self.content:
             content_lines = list(self.content)
+
+            if "nested" in self.options:
+                # Treat the full content block as nested RST. This allows
+                # slides whose body is structured content (e.g. grids).
+                heading_text = content_lines[0]
+                heading_node = nodes.raw(
+                    "",
+                    f'<h2 class="carousel-heading">{heading_text}</h2>',
+                    format="html",
+                )
+                container.append(heading_node)
+
+                if "doc" in self.options:
+                    doc_name = self.options["doc"]
+                    env = self.env
+                    if env.found_docs and doc_name in env.found_docs:
+                        link_url = env.app.builder.get_relative_uri(
+                            env.docname, doc_name
+                        )
+                    else:
+                        link_url = f"{doc_name}.html"  # fallback
+                elif "url" in self.options:
+                    link_url = self.options["url"]
+                else:
+                    link_url = None
+
+                # The last content line acts as the call-to-action text when
+                # a link is provided, otherwise it is part of the body.
+                if link_url:
+                    body_lines = content_lines[1:-1]
+                    cta_line = content_lines[-1].strip()
+                else:
+                    body_lines = content_lines[1:]
+                    cta_line = None
+
+                if body_lines:
+                    nested = nodes.container()
+                    self.state.nested_parse(
+                        StringList(body_lines), self.content_offset, nested
+                    )
+                    container.append(nested)
+
+                if link_url and cta_line:
+                    cta_html = f'<a href="{link_url}" class="carousel-button-link">{cta_line} <i class="fa fa-fw fa-arrow-right sd-text-white" aria-hidden="true"></i></a>'
+                    cta_node = nodes.raw(
+                        "",
+                        f'<div class="carousel-button">{cta_html}</div>',
+                        format="html",
+                    )
+                    container.append(cta_node)
+
+                return [container]
+
             heading_text = content_lines[0]
             heading_node = nodes.raw(
                 "", f'<h2 class="carousel-heading">{heading_text}</h2>', format="html"

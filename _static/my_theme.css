@@ -112,6 +112,7 @@ h2 {
 
 h3 {
 	margin-bottom: 10px !important;
+	margin-top: 30px;
 }
 
 button svg {
@@ -889,13 +890,24 @@ details.sd-dropdown > .sd-summary-content {
 .carousel * a:visited,
 .carousel * a:hover,
 .carousel * a:active {
-	all: unset;
 	cursor: pointer;
 }
 
+/* Stack all slides in one grid cell, so the carousel always reserves the
+   height of the tallest slide and does not jump when auto-advancing. */
+.carousel-content {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	align-items: center;
+}
+
 .carousel-main {
-	display: none;
-	padding: 0rem 3rem 3rem 3rem;
+	grid-area: 1 / 1;
+	min-width: 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+	padding: 0rem 3rem 1rem 3rem;
 }
 
 .carousel .carousel-radio {
@@ -929,9 +941,14 @@ details.sd-dropdown > .sd-summary-content {
 	transform: translateY(0);
 }
 
-.carousel-main .carousel-button .carousel-button-link {
+.carousel-main .carousel-button .carousel-button-link,
+.carousel-main .carousel-button .carousel-button-link:visited,
+.carousel-main .carousel-button .carousel-button-link:hover,
+.carousel-main .carousel-button .carousel-button-link:active {
 	display: flex;
 	gap: 5px;
+	color: white;
+	text-decoration: none;
 }
 
 .carousel-tabs-side {
@@ -943,6 +960,11 @@ details.sd-dropdown > .sd-summary-content {
 		display: flex;
 		justify-content: center;
 		gap: 1rem;
+	}
+
+	/* Without side tabs, the empty container must not add a flex gap. */
+	.carousel-tabs-side:empty {
+		display: none;
 	}
 }
 
@@ -971,6 +993,14 @@ details.sd-dropdown > .sd-summary-content {
 
 .carousel-tab-heading {
 	margin-bottom: 0.5rem;
+}
+
+.carousel-tab-side .carousel-tab-side-link,
+.carousel-tab-side .carousel-tab-side-link:visited,
+.carousel-tab-side .carousel-tab-side-link:hover,
+.carousel-tab-side .carousel-tab-side-link:active {
+	color: inherit;
+	text-decoration: none;
 }
 
 .carousel-progress {
@@ -1028,7 +1058,10 @@ details.sd-dropdown > .sd-summary-content {
 	label[for="carousel-tab-2"],
 .carousel-radio#carousel-tab-3:checked
 	~ .carousel-top
-	label[for="carousel-tab-3"] {
+	label[for="carousel-tab-3"],
+.carousel-radio#carousel-tab-4:checked
+	~ .carousel-top
+	label[for="carousel-tab-4"] {
 	background: var(--our-color-blue);
 	color: white;
 	border-color: var(--our-color-blue);
@@ -1051,8 +1084,13 @@ details.sd-dropdown > .sd-summary-content {
 #carousel-tab-3:checked
 	~ .carousel-top
 	~ .carousel-content
-	.carousel-main:nth-child(4) {
-	display: block;
+	.carousel-main:nth-child(4),
+#carousel-tab-4:checked
+	~ .carousel-top
+	~ .carousel-content
+	.carousel-main:nth-child(5) {
+	visibility: visible;
+	opacity: 1;
 }
 
 /* Show the duration bar only for the active tab */
@@ -1071,6 +1109,10 @@ details.sd-dropdown > .sd-summary-content {
 .carousel-radio#carousel-tab-3:checked
 	~ .carousel-top
 	label[for="carousel-tab-3"]
+	.carousel-duration,
+.carousel-radio#carousel-tab-4:checked
+	~ .carousel-top
+	label[for="carousel-tab-4"]
 	.carousel-duration {
 	display: block;
 }

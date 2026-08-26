@@ -23,9 +23,13 @@
 .. |COMING_SOON_CLOCK| image:: /images/svg/coming-soon-clock.svg
    :width: 30%
 
+.. |SUPPORTED_PYTHON_MAX| replace::
+
+   3.14
+
 .. |SUPPORTED_PYTHONS| replace::
 
-   **Python 3** (3.4 - 3.14) and **Python 2** (2.6, 2.7)
+   **Python 3** (3.4 - |SUPPORTED_PYTHON_MAX|) and **Python 2** (2.6, 2.7)
 
 .. |SHOPPING_CART_SYMBOL| raw:: html
 
