@@ -50,7 +50,7 @@
 
       .. carousel-content:: Feature Rich
          :nested:
-         :doc: /doc/download
+         :doc: /doc/commercial
 
          Feature Rich - So Many Things Cannot Fit Here
 

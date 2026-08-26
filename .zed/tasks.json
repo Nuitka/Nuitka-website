@@ -1,0 +1,44 @@
+[
+  {
+    "label": "run development mode",
+    "command": "./misc/set-development-mode",
+    "args": [
+      "true"
+    ],
+    "hide": "on_success"
+  },
+  {
+    "label": "run production mode",
+    "command": "./misc/set-development-mode",
+    "args": [
+      "false"
+    ],
+    "hide": "on_success"
+  },
+  {
+    "label": "rebuild all pages",
+    "command": "killall",
+    "args": [
+      "-SIGUSR2",
+      "sphinx-autobuild"
+    ],
+    "hide": "on_success"
+  },
+  {
+    "label": "auto-format current file",
+    "command": "./auto-format",
+    "args": [
+      "$ZED_FILE"
+    ]
+  },
+  {
+    "label": "auto-format documents and code",
+    "command": "./auto-format *.py site/*.rst site/*/*.rst site/*.inc site/*/*.inc *.json .devcontainer/*.json .vscode/*.json"
+  },
+  {
+    "label": "view auto-update log",
+    "command": "tail -F auto-update.log",
+    "reveal": "no_focus",
+    "hide": "never"
+  }
+]

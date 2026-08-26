@@ -1,6 +1,6 @@
 .. important::
 
-   Click the buttons in the boxes above for Stripe payment (bank
+   Click the buttons in the boxes below for Stripe payment (bank
    transfer, credit card, SEPA debit charge, etc).
 
 .. grid:: 1 2 2 3
