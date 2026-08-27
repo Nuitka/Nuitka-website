@@ -39,7 +39,7 @@ The tool automatically handles Python version selection, pip dependency
 installation, and optional wheel packages. A custom ``requirements.txt``
 can be provided for project-specific dependencies.
 
-Go `back to Nuitka commercial
+Go `back to Nuitka Commercial
 </doc/commercial.html#older-oses-and-special-needs>`__ overview to learn
-about more features or to subscribe to `Nuitka commercial
+about more features or to subscribe to `Nuitka Commercial
 </doc/commercial.html#pricing>`__.

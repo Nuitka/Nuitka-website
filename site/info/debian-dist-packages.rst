@@ -10,18 +10,18 @@
 
 Python from Debian packages is not generally suitable for use on any
 other OS, because they are changed such, that they work only on Debian.
-Instead create a virtualenv and use a virtualenv with PyPI packages or
-Anaconda instead. These are designed to be used on all Linux OSes.
+Instead, create a virtualenv and use PyPI packages or Anaconda. These
+are designed to be used on all Linux OSes.
 
 ************
  Background
 ************
 
 Debian and distributions based on it, e.g. Ubuntu and Mint, are
-widespread and popular among Linux users, because it's very easy to
-install, you get a maintained.
+widespread and popular among Linux users, because it is very easy to
+install and well maintained.
 
-As part of the their goals, Debian wants to remove duplication between
+As part of their goals, Debian wants to remove duplication between
 packages, have packages in standard places, and generally clean up
 things. As a result, data files are moved to ``/etc``, used DLLs are in
 ``/usr/lib``, and to make that possible, patches are applied during
@@ -31,10 +31,10 @@ packaging to the source.
  Example
 *********
 
-This is the change, that Debian does to ``certifi``. The code is
-changed, such that a data file is found not near the Python code, like
-most Python packages do it, using ``importlib.resources`` but rather a
-hard coded path is used.
+This is the change Debian makes to ``certifi``: the code is changed so
+that a data file is found not near the Python code (as most Python
+packages do, using ``importlib.resources``), but rather at a hard-coded
+path.
 
 .. code::
 
@@ -78,16 +78,16 @@ hard coded path is used.
  Consequence
 *************
 
-Using Debian for standalone to port things to other OSes, means, that
-some of the packages will not find the data files. Nuitka would have to
-undo the effect of all these patches, making the code portable again.
-That is of course not viable.
+Using Debian for standalone builds that you port to other OSes means
+that some of the packages will not find the data files. Nuitka would
+have to undo the effect of all these patches, making the code portable
+again. That is of course not viable.
 
 ****************
  Recommendation
 ****************
 
-For being portable on Linux, generally it is recommended to use a
+For portable builds on Linux, it is generally recommended to use a
 portable Python distribution.
 
 One way is to use packages from PyPI over system Debian packages, but
@@ -102,5 +102,5 @@ The harder way is to use Anaconda over Debian Python. The advantage
 there is that similar to Debian, this has a set of supported packages,
 and even though they are usually a bit older, chances are that the
 version used there is also already well supported by Nuitka. And
-Anaconda will run on older Linux no problem, and therefore standalone
-distributions created with it will as well.
+Anaconda runs on older Linux without issue, so standalone distributions
+created with it will too.

@@ -21,7 +21,7 @@ served here in the `Nuitka Commercial area. </doc/commercial.html>`_.
 **********************
 
 Nuitka uses GitHub for public issue tracking (commercial users have a
-private tracker available) and your can report the issue on the `issue
+private tracker available) and you can report the issue on the `issue
 tracker <https://github.com/Nuitka/Nuitka/issues>`_ there.
 
 .. _discord-server:

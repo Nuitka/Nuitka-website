@@ -102,7 +102,7 @@ Regarding types, the state is:
 
 -  Types are always ``PyObject *``, and only a few C types, e.g.
    ``nuitka_bool`` and ``nuitka_void`` and more are coming. Even for
-   objects, often it's know that things are e.g. really a
+   objects, often it's known that things are e.g. really a
    ``PyTupleObject **``, but no C type is available for that yet.
 
 -  There are a some specific use of types beyond "compile time
@@ -176,9 +176,9 @@ In order to set up hooks, you need to execute these commands:
 
 These commands will make sure that the ``autoformat-nuitka-source`` is
 run on every staged file content at the time you do the commit. For C
-files, it may complain unavailability of ``clang-format``, follow it's
-advice. You may call the above tool at all times, without arguments to
-format call Nuitka source code.
+files, it may complain about the unavailability of ``clang-format``,
+follow its advice. You may call the above tool at all times, without
+arguments to format call Nuitka source code.
 
 Should you encounter problems with applying the changes to the checked
 out file, you can always execute it with ``COMMIT_UNCHECKED=1``
@@ -313,16 +313,16 @@ that easily recognized.
 
 This makes these easy to recognize even in their definition.
 
-Prefer list contractions over built-ins
-=======================================
+Prefer list comprehensions over built-ins
+=========================================
 
 This concerns ``map``, ``filter``, and ``apply``. Usage of these
 built-ins is highly discouraged within Nuitka source code. Using them is
 considered worth a warning by "PyLint" e.g. "Used built-in function
-'map'". We should use list contractions instead, because they are more
+'map'". We should use list comprehensions instead, because they are more
 readable.
 
-List contractions are a generalization for all of them. We love
+List comprehensions are a generalization for all of them. We love
 readability and with Nuitka as a compiler, there won't be any
 performance difference at all.
 
@@ -336,7 +336,7 @@ But of course, Nuitka is the project to free us from what is faster and
 to allow us to use what is more readable, so whatever is faster, we
 don't care. We make all options equally fast and let people choose.
 
-For Nuitka the choice is list contractions as these are more easily
+For Nuitka the choice is list comprehensions as these are more easily
 changed and readable.
 
 Look at this code examples from Python:
@@ -1092,8 +1092,7 @@ processes:
 
 -  ``clang_mode``
 
-   Clang compiler mode, default on macOS X and FreeBSD, optional on
-   Linux.
+   Clang compiler mode, default on macOS and FreeBSD, optional on Linux.
 
 -  ``mingw_mode``
 
@@ -1658,10 +1657,7 @@ obviously gives an exception.
 
 Other overloads do not currently exist in Nuitka, but through the
 iteration length, most cases could be addressed, e.g. ``list`` nodes
-typical know their element counts.
-
-The C side
-==========
+typically know their element counts. The C side ==========
 
 When a slot is not optimized away at compile time however, we need to
 generate actual code for it. We figure out what this could be by looking
@@ -1698,11 +1694,11 @@ function used in the ``builtin_len`` implementation:
        return PyMapping_Size(o);
    }
 
-On the C level, every Python object (the ``PyObject *``) as a type named
-``ob_type`` and most of its elements are slots. Sometimes they form a
-group, here ``tp_as_sequence`` and then it may or may not contain a
-function. This one is tried in preference. Then, if that fails, next up
-the mapping size is tried.
+On the C level, every Python object (the ``PyObject *``) has a type
+named ``ob_type`` and most of its elements are slots. Sometimes they
+form a group, here ``tp_as_sequence`` and then it may or may not contain
+a function. This one is tried in preference. Then, if that fails, next
+up the mapping size is tried.
 
 .. code:: C
 
@@ -2471,7 +2467,8 @@ non-empty locals for it, which is hidden away in "prepare_class_dict"
 below.
 
 What's noteworthy, is that this dictionary, could e.g. be an
-``OrderDict``. I am not sure, what ``__prepare__`` is allowed to return.
+``OrderedDict``. I am not sure, what ``__prepare__`` is allowed to
+return.
 
 .. code:: python3
 
@@ -2545,8 +2542,8 @@ Generally they are turned into calls of function bodies with
 List Contractions
 -----------------
 
-The list contractions of Python2 are different from those of Python3, in
-that they don't actually do any closure variable taking, and that no
+The list comprehensions of Python2 are different from those of Python3,
+in that they don't actually do any closure variable taking, and that no
 function object ever exists.
 
 .. code:: python
@@ -2572,11 +2569,11 @@ is really there and named ``<listcontraction>`` (or ``<listcomp>`` as of
 Python3.7 or higher), whereas with Python2 the function is only an
 outline, so it can readily access the containing name space.
 
-Set Contractions
-----------------
+Set Comprehensions
+------------------
 
-The set contractions of Python2.7 are like list contractions in Python3,
-in that they produce an actual helper function:
+The set comprehensions of Python 2.7 are like list comprehensions in
+Python 3, in that they produce an actual helper function:
 
 .. code:: python
 
@@ -2596,11 +2593,11 @@ in that they produce an actual helper function:
 
    set_value = _setcontr_helper(range(8))
 
-Dictionary Contractions
------------------------
+Dictionary Comprehensions
+-------------------------
 
-The dictionary contractions of are like list contractions in Python3, in
-that they produce an actual helper function:
+The dictionary comprehensions are like list comprehensions in Python 3,
+in that they produce an actual helper function:
 
 .. code:: python
 
@@ -2730,7 +2727,7 @@ tasked to do the difficult stuff. Our example becomes this:
        star_dict_arg=star_dict,
    )
 
-The call to ``_complex_call`` is be a direct function call with no
+The call to ``_complex_call`` is a direct function call with no
 parameter parsing overhead. And the call in its end, is a special call
 operation, which relates to the ``PyObject_Call`` C-API.
 
@@ -3873,8 +3870,8 @@ The following is the intended interface:
    about. The type shape offers methods that allow to check if certain
    operations are at all supported or not. These can always return
    ``True`` (yes), ``False`` (no), and ``None`` (cannot decide). In the
-   case of the later, optimizations may not be able do much about it.
-   Lets call these values "tri-state".
+   case of the latter, optimizations may not be able to do much about
+   it. Lets call these values "tri-state".
 
    There is also the value shape of a node. This can go deeper, and be
    more specific to a given node.
@@ -4442,7 +4439,7 @@ and it is for example like this:
 We always add the version, so that when tests run on as old versions as
 Python 2.6, the installation would fail with that version, so we need to
 make a version requirement. Sometimes we use older versions for Python2
-than for Python3, ``Jinaj2`` being a notable candidate, but generally we
+than for Python3, ``Jinja2`` being a notable candidate, but generally we
 ought to avoid that. For many tools only being available for currently
 3.7 or higher is good enough, esp. if they are run as development tools,
 like ``autoformat-nuitka-source`` is.
@@ -4479,7 +4476,7 @@ issues created, etc.
 
    The trace collection trace should become the place, where variables
    or values track their use state. The iterator should keep track of
-   the "next()" calls made to it, so it can tell which value to given in
+   the "next()" calls made to it, so it can tell which value to give in
    that case.
 
    That would solve the "iteration of constants" as a side effect and it
@@ -4625,7 +4622,7 @@ Class Creation Overhead Reduction
 =================================
 
 This is more of a meta goal. Some work for the metaclass has already
-been done, but that is Python2 only currently. Being able to to decide
+been done, but that is Python2 only currently. Being able to decide
 built-ins and to distinguish between global only variables, and
 built-ins more clearly will help this a lot.
 

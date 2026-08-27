@@ -11,11 +11,11 @@
 *****************
 
 The most credits are deserved by my ever loving and forgiving wife, who
-bares with me for spending literally all my spare and other time
+bears with me for spending literally all my spare and other time
 thinking of Nuitka.
 
 See an image of her on Twitter and make her happy with donations and
-Nuitka Commercial subscripts.
+Nuitka Commercial subscriptions.
 
 .. raw:: html
 
@@ -57,7 +57,7 @@ The order is sorted by time.
    "standalone" mode implementation was created by him.
 
 -  Juan Carlos Paco: Submitted cleanup patches, created a Nuitka GUI and
-   a Ninja IDE plugin for Nuitka. Both of no longer actively maintained
+   a Ninja IDE plugin for Nuitka. Both are no longer actively maintained
    though.
 
 -  "Dr. Equivalent": Submitted the Nuitka Logo.
@@ -73,7 +73,7 @@ The order is sorted by time.
 
 -  Andrew Leech: Submitted github pull request to allow using "-m
    nuitka" to call the compiler. Also pull request to improve
-   ``bist_nuitka`` and to do the registration.
+   ``bdist_nuitka`` and to do the registration.
 
 -  Paweł K: Submitted github pull request to remove glibc from
    standalone distribution, saving size and improving robustness

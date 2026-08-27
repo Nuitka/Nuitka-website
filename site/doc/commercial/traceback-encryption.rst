@@ -16,8 +16,8 @@ Additionally, presenting raw, technical tracebacks to users can be
 confusing, unprofessional, and might even give them an incorrect
 impression of your software's stability or quality.
 
-**Nuitka Commercial's Traceback Encryption** feature elegantly solves
-these problems.
+The traceback encryption feature of **Nuitka Commercial** elegantly
+solves these problems.
 
 It allows your compiled application to output encrypted tracebacks when
 an unhandled exception occurs. To the end-user, this appears as an
@@ -162,8 +162,7 @@ The actual example execution:
       raise KeyError(2)
    KeyError: 2
 
-
-Go `back to Nuitka commercial
+Go `back to Nuitka Commercial
 </doc/commercial.html#protection-vs-reverse-engineering>`__ overview to
-learn about more features or to subscribe to `Nuitka commercial
+learn about more features or to subscribe to `Nuitka Commercial
 </doc/commercial.html#pricing>`__.

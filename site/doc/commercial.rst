@@ -63,7 +63,7 @@ includes plugins that achieve the following:
 
                For best protection of your program at runtime, you need to make sure that DLLs and Python extension modules cannot be swapped out.
 
-               Therefore, **Nuitka VM** allows you to DLL files as part of an executable that runs inside a protected VM (provided by a different product), that then is used to prevent that attack vector as well.
+               Therefore, **Nuitka VM** lets you embed DLL files as part of an executable that runs inside a protected VM (provided by a different product), that then is used to prevent that attack vector as well.
 
    .. grid-item::
 
@@ -73,18 +73,18 @@ includes plugins that achieve the following:
            .. grid-item-card:: :doc:`/doc/commercial/traceback-encryption`
 
                When your program is deployed and crashing, you could take
-               potentially successful steps against these tracebacks appearing.
+               steps to prevent these tracebacks from appearing.
                But when you need to support your client, you must be able to
                tell why your software is crashing.
 
-               Python tracebacks are suitable for this, but you cannot want them
-               to be readable to the user. At this point, traceback encryption
+               Python tracebacks are suitable for this, but you do not want
+               them to be readable to the user. At this point, traceback encryption
                comes in handy. **Nuitka Commercial** allows you to encrypt all
                traceback outputs. They still carry the information you want, but
                *only you* will be able to decode them.
 
-               Symmetric encryption (and asymmetric encryption in a future
-               update) are available for you to use there.
+               Symmetric encryption is available now, with asymmetric
+               encryption planned for a future update.
 
            .. grid-item-card:: Encrypted Outputs :doc:`/doc/commercial/traceback-encryption`
 
@@ -94,7 +94,7 @@ includes plugins that achieve the following:
                and standard error.
 
                You will be able to decode outputs as necessary, and we will make
-               sure, it's not readable to anybody but you.
+               sure it is not readable to anybody but you.
 
 ******************************
  Older OSes and Special Needs
@@ -113,8 +113,9 @@ includes plugins that achieve the following:
 
                Deploy to **Windows 7** or even **Windows XP**
 
-               We cannot make your program work those OSes unless it already
-               does. For example, Qt6 requires even a newer Windows 10 version, not just any.
+               We cannot make your program work on those OSes unless it
+               already does. For example, Qt6 requires at least a recent
+               Windows 10 version.
 
                But if it works with **Python** on these OSes, using older
                versions of packages and older toolchain, **Nuitka Commercial**
@@ -126,7 +127,7 @@ includes plugins that achieve the following:
 
                Deploy to **Linux** with a portable build result
 
-               If your program works on RHEL 7 (or CentOS 7 alikes), then **Nuitka Commercial** can make it portable across all standard Linux distributions,
+               If your program works on RHEL 7 (or CentOS 7 derivatives), then **Nuitka Commercial** can make it portable across all standard Linux distributions,
                using a container build.
 
 
@@ -138,17 +139,17 @@ includes plugins that achieve the following:
            .. grid-item-card:: :doc:`/doc/commercial/commercial-only-packages`
 
                For a select few packages, these are supported only with **Nuitka Commercial**. For example, we made patches for older
-               packages like PySide2, or because the package is
-               for accepting payments for your commercial product.
+               packages like PySide2, or because the package handles
+               accepting payments for your commercial product.
 
 *************
  Convenience
 *************
 
-In this instance, you have special wishes that only commercial customers
-will have, and that are all effort to implement yourself, but come with
-**Nuitka Commercial** included. The time saved for development may
-already justify the investment.
+In this instance, you may have specific needs that only commercial
+customers have, which would require significant effort to implement
+yourself, but which are included with **Nuitka Commercial**. The time
+saved for development may already justify the investment.
 
 .. grid:: 1 1 2 2
    :gutter: 1
@@ -161,9 +162,9 @@ already justify the investment.
 
            .. grid-item-card:: :doc:`/doc/commercial/windows-service`
 
-               Deploying your program as a **Windows Service** becomes trivial.
+                Deploying your program as a **Windows Service** becomes trivial.
 
-               For this, **Nuitka Commercial** has a dedicated plugin that makes deploying your practically unchanged program as a **Window Service** very easy.
+                For this, **Nuitka Commercial** has a dedicated plugin that makes deploying your practically unchanged program as a **Windows Service** very easy.
 
    .. grid-item::
 
@@ -217,12 +218,12 @@ You can use **Nuitka Commercial** on
 
 -  **All** your software, deploy as many products and copies as you want
 
--  Even **after ending the subscription** you can continue using what
-   you have had in the end.
+-  Even **after ending the subscription**, you can continue using the
+   version you had at the time of cancellation.
 
 Essentially, you are as free with **Nuitka Commercial** as with standard
-**Nuitka**. You are only prohibited to distribute **Nuitka Commercial**
-version to third parties.
+**Nuitka**. You are only prohibited from distributing **Nuitka
+Commercial** to third parties.
 
 **********
  Delivery
@@ -233,14 +234,14 @@ version to third parties.
    ``Nuitka-commercial`` which contains **Nuitka Commercial**.
 #. Optionally, you can give more users in your GitHub organization
    access via access tokens.
-#. **Nuitka Commercial** is a drop-in replacement of **Nuitka** with
+#. **Nuitka Commercial** is a drop-in replacement for **Nuitka** with
    only more options.
 
 **********************
  Reseller Information
 **********************
 
-For resellers there is a this page with the information needed:
+For resellers, there is a page with the information needed:
 :doc:`/commercial/resellers`
 
 ********************
@@ -260,9 +261,9 @@ Please use `this form to contact us
 with the intent of buying Nuitka services, but you still have open
 questions.
 
-You can also ask us to solve your deployment, where working in your
-environment, we set up the compilation, debug it, and you will
-compensate us for our time spent.
+You can also ask us to solve your deployment: we work in your
+environment, set up the compilation, debug it, and you compensate us for
+the time spent.
 
 .. important::
 

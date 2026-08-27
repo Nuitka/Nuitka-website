@@ -75,7 +75,7 @@ tries to correct them in non-deployment mode. Here is an example where
 **Nuitka** changes a message that asks to ``pip install ...`` a package.
 That, of course, is not the issue, and instead, **Nuitka** makes the
 program point the user to the ``--include-module`` option to use. With
-that, the ``imageio`` plugin will work.
+that, the ``imageio`` package will work.
 
 .. code:: yaml
 
@@ -162,7 +162,7 @@ taken care of.
 **Nuitka** handles it for all packages known to do that; for example,
 ``joblib``. However, you may encounter a situation where the detection
 of this fails. To turn off this protection, read about the
-:ref:`fork-bombs` option.
+:ref:`fork-bombs` section.
 
 To debug fork bombs, use the ``--experimental=debug-self-forking``
 option to check program fork behavior. To minimize risks associated with

@@ -9,8 +9,8 @@
 ****************************
 
 When Nuitka produces a compiled package right next to its source code,
-might not be loaded. This happens when a directory with the same name as
-the package exists alongside the compiled package. place.
+it might not be loaded. This happens when a directory with the same name
+as the package exists alongside the compiled package.
 
 ************
  Background
@@ -43,8 +43,8 @@ the compiled code will be used.
    ...
    Nuitka:WARNING: The compilation result is hidden by package directory 'kitty'.
    Nuitka:WARNING: Importing will not use compiled code while it exists because it
-   Nuitka:WARNING: has precedence while both exist, out e.g. '--output-dir=output' to
-   Nuitka:WARNING: sure is importable.
+   Nuitka:WARNING: has precedence while both exist, use e.g. '--output-dir=output' to
+   Nuitka:WARNING: make sure it is importable.
    Nuitka:WARNING:     Complex topic! More information can be found at
    Nuitka:WARNING: https://nuitka.net/info/compiled-package-hidden-by-package.html
    Nuitka: Successfully created

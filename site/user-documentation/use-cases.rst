@@ -137,7 +137,7 @@ also feasible, use Nuitka like this:
 
    Data files located inside the package will not be embedded by this
    process, you need to copy them yourself with this approach.
-   Alternatively, you can use the `file embedding of Nuitka commercial
+   Alternatively, you can use the `file embedding of Nuitka Commercial
    <https://nuitka.net/doc/commercial/protect-data-files.html>`__.
 
 *********************************
@@ -235,6 +235,8 @@ your program is impacted, make sure to read the section
    There are more platform-specific options, e.g. related to icons,
    splash screen, and version information, consider the ``--help``
    output for the details of these and check the section :ref:`tweaks`.
+
+.. _path-specs:
 
 For the unpacking, by default a unique user temporary path one is used,
 and then deleted, however this default
@@ -403,8 +405,8 @@ can add this to your ``setup.py``.
 
 .. note::
 
-   To temporarily disable the compilation, you could the remove above
-   line, or edit the value to ``False`` by or take its value from an
+   To temporarily disable the compilation, you could remove the above
+   line, edit the value to ``False``, or take its value from an
    environment variable if you so choose, e.g.
    ``bool(os.getenv("USE_NUITKA", "True"))``. This is up to you.
 
@@ -416,7 +418,7 @@ Or you could put it in your ``setup.cfg``
    build_with_nuitka = true
 
 And last, but not least, Nuitka also supports the new ``build`` meta, so
-when you have a ``pyproject.toml`` already, simple replace or add this
+when you have a ``pyproject.toml`` already, simply replace or add this
 value:
 
 .. code:: toml
@@ -453,7 +455,7 @@ value:
 
    Whatever approach you take, data files in these wheels are not
    handled by Nuitka at all, but by setuptools. You can, however, use
-   the data file embedding of Nuitka commercial. In that case, you
+   the data file embedding of Nuitka Commercial. In that case, you
    actually would embed the files inside the extension module itself,
    and not as a file in the wheel.
 

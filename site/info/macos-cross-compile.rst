@@ -8,37 +8,36 @@
  The Problem in a Few Words
 ****************************
 
-Python on macOS runs on 2 arches, x86_64 and arm. From CPython there is
-a ``universal`` binary, which can run on either one. On PyPI there are
-binary packages, which run on only one of them, and you may also install
-packages, which then will not build universal binaries, but ones for
-your host architecture. These are not suitable for deployment unless
-manually checked and corrected.
+Python on macOS runs on two architectures, x86_64 and arm64. From
+CPython there is a ``universal`` binary, which can run on either one. On
+PyPI there are binary packages, which run on only one of them, and you
+may also install packages, which then will not build universal binaries,
+but ones for your host architecture. These are not suitable for
+deployment unless manually checked and corrected.
 
 ************
  Background
 ************
 
-Then macOS switched the CPU platform, this was done in a way such that
+When macOS switched CPU platforms, this was done in a way such that
 binaries can support both platforms. You can call these "fat" or
 universal. Every user has a given architecture and the macOS picks the
 part of the binary that works for them.
 
 On some machines, specifically ``x86_64`` machines, it is important that
-the CPU is supported. On ``arm64`` there is Rosetta which allows to
-emulate the old CPU, so code available only for that CPU can still run,
-but the other way around, does not exist.
+the CPU is supported. On ``arm64`` there is Rosetta which allows
+emulating the old CPU, so code available only for x86_64 can still run;
+the reverse is not possible.
 
 *********
  Example
 *********
 
-So how does this affect you. Well, you might be running a Python
+So how does this affect you? Well, you might be running a Python
 installation, where e.g. the ``cryptography`` package is not actually
 working on ``x86_64``.
 
-This is an example of a terrible stack trace given, that is totally
-misleading:
+This is an example of a terrible and totally misleading stack trace:
 
 .. code::
 
@@ -62,21 +61,21 @@ misleading:
 *************
 
 When you try to cross compile on macOS, the best is to first make sure
-your program runs with ``arch -x86_64 python main.py`` and fix and
+your program runs with ``arch -x86_64 python main.py`` and fix any
 issues that come up.
 
 ****************
  Recommendation
 ****************
 
-Sticking with CPython which is best supported and should give best
+Sticking with CPython, which is best supported and should give the best
 portability to older macOS, can also be harder. It seems that using
 ``arch -x86_64 python -m pip install ...`` in a dedicated virtualenv
-only used to do the cross compile may allow you easy testing, and
-eradicates the issue entirely.
+used only for the cross compile may allow you easy testing and avoids
+the issue entirely.
 
-You still get to test your program with Python on both arches, but you
-always had to do that. And unfortunately, increasingly it's likely that
-newer PyPI packages will just not work properly on ``x86_64``. More and
-more, people will stop caring about the old systems and break things
-without noticing and notice.
+You still get to test your program with Python on both architectures,
+but you always had to do that. And unfortunately, increasingly it is
+likely that newer PyPI packages will just not work properly on
+``x86_64``. More and more, people will stop caring about the old systems
+and break things without noticing.

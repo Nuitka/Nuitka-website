@@ -34,7 +34,7 @@ outputs, so that users of the executable cannot access these. This a
 private repository of plugins that you pay to get access to.
 Additionally, you can purchase priority support.
 
-`Learn more about Nuitka commercial </doc/commercial.html>`_
+`Learn more about Nuitka Commercial </doc/commercial.html>`_
 
 The current release is Nuitka |NUITKA_VERSION|. Stable releases are
 supported with hot fixes, indicated by the last of the 3 digits.
@@ -257,8 +257,8 @@ language governing permissions and limitations under the License.
 
 There is an exception to the AGPLv3 for the created binaries, which are
 not bound by the AGPLv3 requirements for the user's code. This is
-similar to how gcc (GPLv3)works, i.e. you can use Nuitka to compile your
-own code without any impact on the license of your code or your
+similar to how gcc (GPLv3) works, i.e. you can use Nuitka to compile
+your own code without any impact on the license of your code or your
 binaries.
 
 .. include:: ../variables.inc

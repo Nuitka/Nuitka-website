@@ -4,10 +4,10 @@
  Commercial-only Packages
 ##########################
 
-There currently are two packages that are with commercial only support.
-They are exceptions though, generally the support is in proper Nuitka.
+Currently, two packages have commercial-only support. These are
+exceptions, though — generally, support is included in standard Nuitka.
 Due to the relatively low price, no trials are available, but these are
-known to work excellent.
+known to work excellently.
 
 *********
  PySide2
@@ -22,9 +22,9 @@ PySide6 which contains these patches and is freely available.
  Web3/eth-hash
 ***************
 
-This requires a plugin ``ethereum`` that handles the backend selection.
-We have chosen to only offer as part of the commercial subscription,
-since this was paid for by a commercial customer and is absolutely a
-sign of a commercial application. When you process crypto payments or
-money, you can definitely ought to subscribe to Nuitka commercial
-anyway, as things are otherwise not secure enough.
+Web3/eth-hash requires the ``ethereum`` plugin, which handles backend
+selection. We have chosen to offer it only as part of the commercial
+subscription, since this was paid for by a commercial customer and is
+absolutely a sign of a commercial application. When you process crypto
+payments or money, you definitely ought to subscribe to Nuitka
+Commercial anyway, as things are otherwise not secure enough.

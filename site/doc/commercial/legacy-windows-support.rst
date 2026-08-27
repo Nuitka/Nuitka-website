@@ -58,7 +58,7 @@ The legacy Windows builds are provided through a container. Contact us
 for access to the container image and instructions specific to your
 deployment needs.
 
-Go `back to Nuitka commercial
+Go `back to Nuitka Commercial
 </doc/commercial.html#older-oses-and-special-needs>`__ overview to learn
-about more features or to subscribe to `Nuitka commercial
+about more features or to subscribe to `Nuitka Commercial
 </doc/commercial.html#pricing>`__.

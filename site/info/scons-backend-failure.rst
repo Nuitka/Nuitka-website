@@ -10,7 +10,7 @@
 
 Nuitka uses a "Backend C" compiler to create program code. That applies
 to all outputs: extension modules, accelerated binaries, standalone, or
-onefile. During this final phase, a compilation error occurred.
+onefile. During this final phase, a compilation error can occur.
 
 ************
  Background
@@ -39,14 +39,14 @@ Make sure only to use a supported C compiler. Most often, the problem is
 caused by using the wrong C compiler, so check :ref:`C Compiler
 <nuitka-requirements>` out.
 
-But when then you still have C compiler errors, they can also come from
-lack of disc space, from lack of system memory or other external
-factors.
+But if you still have C compiler errors, they can also come from lack of
+disk space, from lack of system memory or other external factors.
 
-It assumed that network drives do work. "Chinese" characters in build
-paths and module names are believed to be handled correctly. However,
-this can occur. Make sure you avoid having those, and if that helps,
-make sure to report the issue so we can improve it.
+It is assumed that network drives work. Non-ASCII (e.g. Chinese)
+characters in build paths and module names are believed to be handled
+correctly. However, problems can still occur. Make sure you avoid having
+those, and if that helps, make sure to report the issue so we can
+improve it.
 
 ***********
  Reporting

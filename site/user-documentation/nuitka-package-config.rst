@@ -19,9 +19,9 @@ data files, sometimes modules depend on other modules in a hidden way,
 and for standalone DLLs might have to be included, that are loaded
 dynamically and therefore also invisible.
 
-Another are is compatibility hacks, and removing bloat from code or just
-making sure, you are not using an unsupported version or wrong options
-for a package.
+Another area is compatibility hacks, and removing bloat from code or
+just making sure, you are not using an unsupported version or wrong
+options for a package.
 
 To make it easier to deal with missing DLLs, implicit imports, data
 files, bloat etc. Nuitka has a system with Yaml files. These ship inside
@@ -83,9 +83,9 @@ everything automatically. This is executed via
 ``git`` if you install the git hook (see Developer Manual for that).
 
 There is also a Yaml schema file to check your files against and that in
-Visual Code is automatically applied to the Yaml files and that then
-supports you with auto-completion in Visual Code. So actually doing the
-change in PR form can be easier than not.
+Visual Studio Code is automatically applied to the Yaml files and that
+then supports you with auto-completion in Visual Studio Code. So
+actually doing the change in PR form can be easier than not.
 
 ***************
  Documentation
@@ -237,7 +237,7 @@ Features
 |     ``when``: when_ is documented in a separate section
 
 The recommended way goes by filename. The ``by_code`` version is still
-in flux and depends on compile time importing code, making it vulernable
+in flux and depends on compile time importing code, making it vulnerable
 to compile time issues in many ways.
 
 Examples
@@ -360,7 +360,7 @@ do that here.
 .. note::
 
    For avoiding optional modules imports, see the ``no-auto-follow``
-   that is applicable in implict imports section.
+   that is applicable in implicit imports section.
 
 Features
 --------
@@ -412,8 +412,8 @@ Examples
 In this example, environment variables needed to resolve the path of the
 Qt plugins and the fonts directory are used. This is only needed on
 Linux and on standalone, and here is how the standard configuration does
-it. And there there more mundane implicit requirements, that come from
-the package using an extension module and on the inside ``cv2``.
+it. And there are more mundane implicit requirements, that come from the
+package using an extension module and on the inside ``cv2``.
 
 .. code:: yaml
 
@@ -432,11 +432,11 @@ the package using an extension module and on the inside ``cv2``.
 For the ``no-auto-follow`` this shows how to not follow to a module,
 even with ``--follow-imports`` being given just because of this module
 doing an import. If another one does the import, it will be followed
-into still, but this particular modules not not cause it. The message
-given is shown when that happens. If if is ``ignore``, nothing will be
+into still, but this particular module will not cause it. The message
+given is shown when that happens. If it is ``ignore``, nothing will be
 displayed.
 
-In this concrete example, ``tdqm`` would register with ``pandas``
+In this concrete example, ``tqdm`` would register with ``pandas``
 methods if possible, but handles it not being found gracefully. No need
 to include it just to do that, if ``pandas`` is otherwise unused.
 
@@ -775,7 +775,7 @@ handling, e.g. in the configuration of another package.s
 
 Due to differences in DLL and data file layout, conda packages (from
 Anaconda) will be different. But running ``anaconda`` is not sufficient,
-in case the package from from ``pip install`` rather than ``conda
+in case the package is from ``pip install`` rather than ``conda
 install``, so this allows to make a difference for this.
 
 It returns a boolean value. No need to check for ``anaconda``, that is
@@ -788,10 +788,10 @@ implied of course, and probably should never be used, but this instead.
 Python Flags
 ------------
 
-Also, the global (or module local in the future) compilation modules,
-like ``no_asserts``, ``no_docstrings``, and ``no_annotations`` are
-available. These are for use in ``anti-bloat`` where packages sometimes
-will not work unless helped somewhat.
+Also, the global (or module local in the future) compilation flags, like
+``no_asserts``, ``no_docstrings``, and ``no_annotations`` are available.
+These are for use in ``anti-bloat`` where packages sometimes will not
+work unless helped somewhat.
 
 Modules Available
 -----------------

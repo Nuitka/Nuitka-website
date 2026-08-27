@@ -14,11 +14,8 @@ is missing essential bits and will not work.
 
 .. note::
 
-   important
-
-   As of Nuitka 4.0, only accelerated mode which is not commonly what
-   you use, is the only thing that does not work. accelerated mode does
-   not.
+   As of Nuitka 4.0, only accelerated mode (which is not commonly what
+   you use) does not work. Standalone and onefile modes are supported.
 
 ************
  Background
@@ -27,8 +24,8 @@ is missing essential bits and will not work.
 Nuitka needs to be able to access all files, in order to inspect them
 and to make them work on other machines. With Windows Store Python, when
 Nuitka tries to even look at ``sys.executable`` (typically your
-``python.exe`` on Windows), an ``OSError`` is given rather than the
-needed look at e.g. Windows Resources to keep.
+``python.exe`` on Windows), an ``OSError`` is raised, preventing Nuitka
+from inspecting e.g. Windows Resources that it needs.
 
 *************
  Consequence
@@ -36,14 +33,14 @@ needed look at e.g. Windows Resources to keep.
 
 Because of these limitations, it was decided that this Python will not
 be supported by Nuitka and you need to install a supported one. Check
-out https://nuitka.net/doc/user-manual.html#requirements which lists
-CPython and Anaconda as supported.
+out https://nuitka.net/user-documentation/user-manual.html#requirements
+which lists CPython and Anaconda as supported.
 
 ****************
  Recommendation
 ****************
 
-Sticking with CPython which is best supported and should give best
+Use CPython, which is best supported and should give the best
 portability. It will work as well as the Windows App Store Python for
-you, under the hood it's the same code after all, but it's the official
-Python form for Windows.
+you — under the hood it is the same code — but it is the official Python
+distribution for Windows.

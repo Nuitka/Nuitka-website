@@ -20,7 +20,7 @@ After compilation, the machine code, when making memory accesses, should
 stay within the boundaries of memory owned by the process. When
 unexpected situations or corruptions occur, then the OS level protection
 steps in and stops a program with ``SIGSEGV`` which you have just hit -
-if a compiled program to this page pointed you.
+if a compiled program pointed you to this page.
 
 *************
  Consequence
@@ -73,19 +73,19 @@ these checks with ``--no-debug-immortal-assumptions`` and see what else
 happens.
 
 It's rare that the above step doesn't find bugs in **Nuitka** if that's
-where they are. The crash can also be within an extension modules that
+where they are. The crash can also be within an extension module that
 you use in standalone mode. It has been observed that missing data files
-and missing implicit dependencies are not observed, and in this case,
+and missing implicit dependencies are not detected, and in this case,
 the C code, lacking checks, can cause all kinds of errors, and is to
-blame. Including data files sometimes the solution. Sometimes adding
+blame. Sometimes including data files is the solution. Sometimes adding
 missing implicit imports is.
 
 ***********
  Reporting
 ***********
 
-If you have a segfault, always make an issue report since these are not
-normal, even if you manage to work around them. With ``--debugger``, you
-will get a stack output that will be extremely useful. Please also try
-to reduce the test case as much as possible. Often, imports of 3rd-party
-code will be enough to produce your issue.
+If you experience a segfault, always file an issue report, since these
+are not normal, even if you manage to work around it. With
+``--debugger``, you will get a stack output that will be extremely
+useful. Please also try to reduce the test case as much as possible.
+Often, imports of 3rd-party code will be enough to produce your issue.

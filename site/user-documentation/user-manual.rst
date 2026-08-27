@@ -60,11 +60,10 @@ a **C++** compiler for **C++03** [#]_.
    platforms, it can be used for all architectures it supports.
 
 -  The **Clang-cl** compiler can be used if provided by the **Visual
-   Studio** installer or Using ``--clang`` on Windows enforces the one
+   Studio** installer. Using ``--clang`` on Windows enforces the one
    from Visual Studio.
 
--  The **Clang** compiler can be used from from the **MinGW64**
-   download.
+-  The **Clang** compiler can be used from the **MinGW64** download.
 
    Using ``--mingw64 --clang`` enforces using this **Clang**.
 
@@ -155,8 +154,8 @@ possible.
    -  **Anaconda Python is supported:** The Anaconda distribution is
       making special adaptations for some ``conda`` packages that lead
       to errors and might have to be reported as issues, such that
-      special treatment can needed, but we add them as soon as they are
-      reported.
+      special treatment may be needed, but we add them as soon as they
+      are reported.
 
    -  **Python from Microsoft Store**: Don't download Python from
       **Microsoft Store**, as it doesn't work properly.
@@ -205,9 +204,9 @@ from the source without installation.
 
 .. note::
 
-   All of **Nuitka** dependencies are optional. The PyPI package
+   All of **Nuitka's** dependencies are optional. The PyPI package
    installs the ones we cannot include as inline copies, but for example
-   ``zstandard`` can be detected as installed in different Python
+   ``zstandard`` can be detected as installed in a different Python
    installation with no issues.
 
 Notice for integration with **GitHub Workflows**, there is this
@@ -334,7 +333,7 @@ Python's standard behaviors apply unless modified by these flags.
 One clean way to provide options to Nuitka, which you can always use for
 your program, is to put them into the main file you compile. There is
 even support for conditional options and options using pre-defined
-variables. Checkout this example:
+variables. Check out this example:
 
 .. code:: python
 
@@ -934,7 +933,7 @@ Nuitka repository. These are its entries:
 +------------------------------------+------------------------------------------------------------------------------------+
 | ``nuitka_version``                 | Nuitka version                                                                     |
 +------------------------------------+------------------------------------------------------------------------------------+
-| ``nuitka_commercial_version``      | Nuitka commercial version or "not installed"                                       |
+| ``nuitka_commercial_version``      | Nuitka Commercial version or "not installed"                                       |
 +------------------------------------+------------------------------------------------------------------------------------+
 | ``nuitka_aborted``                 | Whether the compilation was aborted                                                |
 +------------------------------------+------------------------------------------------------------------------------------+

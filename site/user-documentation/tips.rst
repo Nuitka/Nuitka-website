@@ -67,12 +67,12 @@ example, they spuriously cause errors or hang indefinitely or don't work
 at all.
 
 Nuitka will pick up ``ccache`` if located in system ``PATH``, and it
-will also be possible to provide if by setting ``NUITKA_CCACHE_BINARY``
+will also be possible to provide it by setting ``NUITKA_CCACHE_BINARY``
 to the full path of the binary. This is useful in CI systems where
 environments might be non-standard.
 
-For the MSVC compilers and ClangCL setups, using the ``clcache`` is
-automatic and included in Nuitka.
+For MSVC compilers and ClangCL setups, ``clcache`` is used automatically
+and is included in Nuitka.
 
 On macOS and Intel, there is an automatic download of a ``ccache``
 binary from our site. For arm64 arches, it's recommended to use this
@@ -137,8 +137,8 @@ The fastest binaries of ``pystone.exe`` on Windows with 64 bits version
 of Python proved to be significantly faster with MinGW64, roughly 20%
 better score. So, it is recommended for use over MSVC. Using
 ``clang-cl.exe`` of Clang was faster than MSVC but still significantly
-slower than MinGW64 and will be harder to use, so it that's not
-recommended as well.
+slower than MinGW64 and will be harder to use, so it is not recommended
+either.
 
 On Linux, for ``pystone.bin``, the binary produced by ``clang6`` was
 faster than ``gcc-6.3``, but not significantly. Since gcc is more often
@@ -213,7 +213,7 @@ supported, unless you want to target Windows 7.
 +------------------+-------------+-----------+
 | Visual C version | Redist Year | CPython   |
 +==================+=============+===========+
-| 14.3             | 2022        | 3.13-3.10 |
+| 14.3             | 2022        | 3.10-3.14 |
 +------------------+-------------+-----------+
 | 14.2             | 2019        | 3.5-3.10  |
 +------------------+-------------+-----------+

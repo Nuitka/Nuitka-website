@@ -175,6 +175,6 @@ Use ``--auto-update-debug`` during compilation to enable debug traces
 that show the update thread's activity, URLs being fetched, and whether
 updates were found or applied.
 
-Go `back to Nuitka commercial </doc/commercial.html#convenience>`__
+Go `back to Nuitka Commercial </doc/commercial.html#convenience>`__
 overview to learn about more features or to subscribe to `Nuitka
-commercial </doc/commercial.html#pricing>`__.
+Commercial </doc/commercial.html#pricing>`__.

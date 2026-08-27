@@ -7,7 +7,7 @@
 *****
 
 The Nuitka development has become richer by me developing online once in
-a while. This obvious has a lot of constraints to address, but it will
+a while. This obviously has a lot of constraints to address, but it will
 happen on a regular basis.
 
 *****
@@ -22,7 +22,7 @@ channel of the Discord.
 The main chat on Gitter will be linked a chat room on Discord, so for
 people not on Discord, they still have that available.
 
-The stream will be recorded in Youtube and later put online, I do not
+The stream will be recorded in YouTube and later put online, I do not
 have the resources, to maybe put out only a few excerpts, not sure how
 good it's going to be. There will be quality issues in the beginning.
 And I don't want to spend a lot of time editing material that might not
@@ -31,7 +31,7 @@ get watched all that much.
 Discord could be used for a call-in part. I could un-mute people and
 discuss one on one with viewers, live on air, answering questions.
 
-So expect to see me streaming to Youtube on my existing channel that I
+So expect to see me streaming to YouTube on my existing channel that I
 cleaned up a bit: https://www.youtube.com/c/KayHayen
 
 ******
@@ -43,8 +43,8 @@ depend much on my family situation. I will announce start dates some
 days ahead of time on Twitter and to the Streams react bot.
 
 I usually plan to stream with one lunch/sports break, on my CEST morning
-and an another one in the afternoon or evening time, if I can spell a
-full day. This is essentially a work day on Nuitka for me.
+and another one in the afternoon or evening time, if I can spell a full
+day. This is essentially a work day on Nuitka for me.
 
 ******
  What
@@ -70,5 +70,5 @@ while and that's sort of interesting.
 I think I could e.g. go with streaming on Sunday and announcing the
 topic on Friday in a blog post, and/or a Twitter post. Then when going
 live, a Discord ping is done, and maybe a few hours before. Gitter chat
-will also get a text message. Youtube has the bell, that I might ask
+will also get a text message. YouTube has the bell, that I might ask
 people to use, but I don't like asking these things.

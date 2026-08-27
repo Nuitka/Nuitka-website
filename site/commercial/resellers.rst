@@ -23,9 +23,8 @@ questions and processes.
          <https://buy.stripe.com/5kAeXC1rM0bO6nCeV4>`__ which allows you
          to pay via credit card, Stripe, and more methods.
 
-      -  **Nuitka Sponsor:** 1000 EUR (Upgrading to this license
-         guarantees customers the absolute best and most immediate
-         support possible)
+      -  **Nuitka Sponsor:** 1000 EUR (This license guarantees customers
+         the absolute best and most immediate support possible)
 
          Make your purchase via `this link
          <https://buy.stripe.com/aEU16M2vQ6AcdQ46oz>`__ which allows you
@@ -37,24 +36,24 @@ questions and processes.
 -  **Q: How do I place an order?**
 
    -  A: You can place an order anytime via the links above. The price
-      will remain throughout your offer process. Should a price change
-      between the time you made an offer to the end customer and them
-      accepting it and your attempt to execute it, we will give you the
-      old price.
+      will remain throughout your offer process. If the price changes
+      between the time you make an offer to the end customer and their
+      acceptance, we will honor the old price.
 
 -  **Q: Do subscriptions automatically renew?**
 
    -  A: The links given are for subscriptions that do not automatically
-      re-new. As the reseller, you are supposed to get in contact with
+      renew. As the reseller, you are supposed to get in contact with
       the end customer at the end of their one year term and make an
       offer for renewal.
 
-      We will also inform them, and cancel their access if this process
+      We will also inform them and cancel their access if this process
       fails.
 
 -  **Q: What is your return policy?**
 
-   -  A: All sales are final. We do not offer returns or refunds.
+   -  A: All sales are final. We do not offer returns or refunds. See
+      the :doc:`refund policy </commercial/refund-policy>` for details.
 
 -  **Q: What marketing materials are available to me?**
 
@@ -85,7 +84,7 @@ questions and processes.
 
 -  **Q: When will the product be delivered?**
 
-   -  A: The product will be delivered after purchase only.
+   -  A: The product is delivered only after purchase.
 
 -  **Q: Are there any trials available?**
 
@@ -93,7 +92,7 @@ questions and processes.
 
 **Additional Resources**
 
--  **Product Catalog:** [Link to your latest product catalog]
+-  **Product Catalog:** https://nuitka.net/doc/commercial.html
 
 -  **Contact Information:**
 
@@ -121,4 +120,4 @@ questions and processes.
 **Nuitka Services**
 
 **If you can't find what you're looking for here, please reach out to
-your dedicated contact or our general support team.**
+your dedicated contact or our general support team at kay@nuitka.net.**

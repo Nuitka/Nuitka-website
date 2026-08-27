@@ -23,7 +23,7 @@ You feed Nuitka your Python app, it does a lot of clever things, and
 then creates an executable or extension module, or even a Python wheel.
 
 Nuitka is distributed under the GNU Affero General Public License v3
-with an Exception for created binaries. Nuitka commercial is a private
+with an Exception for created binaries. Nuitka Commercial is a private
 repository that you pay to access and get plugins for commercial usage.
 
 ********************************
@@ -35,9 +35,9 @@ Now
 
 Right now Nuitka is a good replacement for the Python interpreter. It
 compiles **every** language construct in all relevant CPython versions,
-and even the irrelevant ones like 2.6 and 3.4. It translates Python into
-a C program that then is linked against libpython to execute exactly
-like CPython. It is extremely compatible.
+and even older ones like 2.6 and 3.4. It translates Python into a C
+program that then is linked against libpython to execute exactly like
+CPython. It is extremely compatible.
 
 Nuitka is already slightly faster than CPython, but there is work to be
 done to include as many C optimizations as possible. We currently get a
@@ -100,10 +100,10 @@ some control flow optimizations are also applied - but this is just the
 start. Constant folding will see big gains as the type inference matures
 and more variables are opened up to become constants.
 
-For milestone 4 the first steps are in place achieve type inference. The
-results are encouraging, but it will need a lot more work before this
-can be made the default approach. Remember that this is still Python,
-Nuitka cannot be guaranteed to perfectly guess type information.
+For milestone 4 the first steps are in place to achieve type inference.
+The results are encouraging, but it will need a lot more work before
+this can be made the default approach. Remember that this is still
+Python, Nuitka cannot be guaranteed to perfectly guess type information.
 
 We have yet to start on milestones 5 and 6. There is still quite a way
 to go until we hit the "future".

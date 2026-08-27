@@ -8,7 +8,7 @@
  Overview
 **********
 
-Nuitka commercial is unlike Nuitka **not** Free Software. It is under a
+Nuitka Commercial is unlike Nuitka **not** Free Software. It is under a
 license that forbids the distribution of its source code or binaries.
 
 That however does not impact your software at all, nor how you use
@@ -19,11 +19,11 @@ without any restrictions.
  License Text
 **************
 
-This is the license text of Nuitka commercial.
+This is the license text of Nuitka Commercial.
 
 .. code::
 
-   Part of Nuitka commercial.
+   Part of Nuitka Commercial.
 
    Commercial grade license of Nuitka. No distribution to outside of the buyer
    is allowed, the file must be kept secret. Usage is limited to Nuitka. Changed
@@ -39,10 +39,10 @@ Intended consequences are
 
 #. You do not get to sue me, just like with Nuitka itself.
 
-#. You have to keep Nuitka commercial secret, but you get its source
+#. You have to keep Nuitka Commercial secret, but you get its source
    code so you can check that there is no malice.
 
-#. If you modify Nuitka commercial and send it to me, you automatically
+#. If you modify Nuitka Commercial and send it to me, you automatically
    relicense to Apache license, such that I effectively can use it in
-   any way, including keeping it in Nuitka commercial, and also making
-   it part of Nuitka standard (the Free Software) edition.
+   any way, including keeping it in Nuitka Commercial, and also making
+   it part of Nuitka Standard (the Free Software) edition.

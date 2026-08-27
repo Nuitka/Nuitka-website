@@ -1,12 +1,12 @@
 .. meta::
-   :description: Nuitka commercial refund policy.
+   :description: Nuitka Commercial refund policy.
    :keywords: refund,policy,commercial,nuitka
 
 ###############
  Refund Policy
 ###############
 
-Nuitka commercial subscriptions grant **access** to commercial features,
+Nuitka Commercial subscriptions grant **access** to commercial features,
 priority support, and private packages. They do not sell software
 licenses for a standalone product.
 
@@ -14,7 +14,7 @@ licenses for a standalone product.
  No Refunds
 ************
 
-**Refunds are not provided** for Nuitka commercial subscriptions. Once
+**Refunds are not provided** for Nuitka Commercial subscriptions. Once
 access has been granted, the subscription is considered fulfilled.
 
 The standard (free) version of Nuitka can be used to verify that Nuitka
@@ -25,7 +25,7 @@ commercial subscription.
  Issue Resolution
 ******************
 
-If you encounter problems using Nuitka commercial features:
+If you encounter problems using Nuitka Commercial features:
 
 -  **Higher-tier commercial users** (priority support packages) are
    entitled to direct issue resolution. Bugs affecting your use of

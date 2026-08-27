@@ -1,12 +1,12 @@
 .. meta::
-   :description: How to cancel your Nuitka commercial subscription.
+   :description: How to cancel your Nuitka Commercial subscription.
    :keywords: cancel,cancellation,subscription,commercial,nuitka
 
 #####################
  Cancellation Policy
 #####################
 
-To cancel your Nuitka commercial subscription, use the Stripe customer
+To cancel your Nuitka Commercial subscription, use the Stripe customer
 portal linked below. You will need to **log in with the email address**
 you used when purchasing your subscription.
 

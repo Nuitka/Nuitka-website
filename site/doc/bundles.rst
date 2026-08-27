@@ -46,7 +46,7 @@ and handling of Themida and WinLicense is automatic.
 File Embedding
 ==============
 
-While Nuitka commercial already allows the embedding of data files, with
+While Nuitka Commercial already allows the embedding of data files, with
 Nuitka VM and Themida/WinLicense, it is also possible to embed the
 CPython DLL extension modules, and DLLs used by it into one single
 binary. That, on its own, is making it much harder to attack with file
@@ -62,16 +62,16 @@ files.
 Enhanced anti-debugger
 ======================
 
-Nuitka commercial has its own ``anti-debugger`` plugin, currently not
+Nuitka Commercial has its own ``anti-debugger`` plugin, currently not
 listed as an official feature. But Themida has the more advanced
 protection at this time.
 
 C Macros contained in Python code
 =================================
 
-This code example using the VM Tiger Red, there is a large variety of
-VMs available, with different properties, they all work in the same way
-to be activated for a piece of code.
+This code example uses the VM Tiger Red, there is a large variety of VMs
+available, with different properties, they all work in the same way to
+be activated for a piece of code.
 
 .. code:: python
 
@@ -118,7 +118,8 @@ but you can choose to edit this by simply executing e.g.
 
 You can then provide your own options. You do not have to configure
 anything in terms of includes files, used VMs, etc. Nuitka handles that
-all automatically for you, and this for curious and advanced users only.
+all automatically for you, and this is for curious and advanced users
+only.
 
 *********
  Pricing
@@ -142,9 +143,9 @@ higher price.
 
 .. note::
 
-   At the price, Nuitka Services cannot handle trial versions.
+   At this price point, Nuitka Services cannot handle trial versions.
 
 .. note::
 
-   You need to own a Themida or WinLicense license, that you can
-   purchase them from Oreans Themida separately.
+   You need to own a Themida or WinLicense license, which you can
+   purchase from Oreans Themida separately.

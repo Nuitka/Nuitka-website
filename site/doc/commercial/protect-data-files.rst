@@ -19,11 +19,11 @@ Your program continues to use standard Python mechanisms from ``open``,
 load the data as a file or a stream from within the binary without ever
 hitting the disk.
 
-All of this is happening with your original code base, i.e. you are not
-making any modification, that is incompatible with Python. This is one
-of the major goals. Your code will still run directly in Python during
-development, and during deployment, the files are embedded by merely
-adding a Nuitka commercial option.
+All of this is happening with your original code base, i.e. you do not
+make any modifications that would be incompatible with Python. This is
+one of the major goals. Your code will still run directly in Python
+during development, and during deployment, the files are embedded by
+merely adding a Nuitka Commercial option.
 
 **********
  Examples
@@ -58,7 +58,7 @@ not shown) that doesn't contain your QML files, not the icon file.
 
 The code can do simply this, and refer to the icon file relative to
 where the code lives which will work with standard Python, standard
-Nuitka, and for embedding with Nuitka commercial.
+Nuitka, and for embedding with Nuitka Commercial.
 
 .. code:: python
 
@@ -67,7 +67,7 @@ Nuitka, and for embedding with Nuitka commercial.
    )
    app.setWindowIcon(QIcon(icon_filename))
 
-For Nuitka commercial, the options to include the data file and to then
+For Nuitka Commercial, the options to include the data file and to then
 embed it are as follows:
 
 .. code:: bash
@@ -81,10 +81,10 @@ Nuitka means, in this case, we use a data directory. Generally e.g.
 paths entirely. After that, embedding options work on target paths. And
 with the ``/**`` part of the patterns (could also use ``qmlpolarchart``)
 we ask it to include all these files as embedded. This being a pattern
-allows you to include only a subset
+allows you to include only a subset.
 
 In standard Nuitka, you end up with something like this. And note, that
-onefile mode is merely a self extracting archive, i.e. these files will
+onefile mode is merely a self-extracting archive, i.e. these files will
 be on the customer disk for inspection:
 
 .. code::
@@ -103,17 +103,17 @@ be on the customer disk for inspection:
    For extension modules and DLLs used, this doesn't affect things. This
    is about merely about data files. This is where ``--onefile`` comes
    in and hides these from the view and need for deployment, but it
-   cannot replace Nuitka commercial and its inclusion of data files
+   cannot replace Nuitka Commercial and its inclusion of data files
    inside the main binary.
 
 **********************************************************
  Using ``open``, ``os.listdir``, ``os.path.isfile``, etc.
 **********************************************************
 
-As you can see from below code, the traditional Python file handling
-just works, and we took large efforts to get standard ``open`` to work
-seamlessly. It is not the easiest way to use data files, but a very
-common usage in third-party packages and the idea of Nuitka commercial
+As you can see from the code below, the traditional Python file handling
+just works, and we put significant effort into making standard ``open``
+work seamlessly. It is not the easiest way to use data files, but a very
+common usage in third-party packages and the idea of Nuitka Commercial
 is to make work, what worked before, see below for the more modern
 approaches.
 
@@ -203,7 +203,7 @@ require to use ``__file__``. However, it's limited in getting the data.
    import pkgutil
    print(
       "Contents of data file 1:",
-      repr(pkgutil.get_data(__package__, "data_file1.txt")
+      repr(pkgutil.get_data(__package__, "data_file1.txt"))
    )
 
 **************************
@@ -213,7 +213,7 @@ require to use ``__file__``. However, it's limited in getting the data.
 The ``pkg_resources`` was one of the first to offer ways of accessing
 data files from packages in a fashion that does not require to use
 ``__file__``. It has since become less popular and was never part of
-standard Python, but extremely wide spread and is still in use.
+standard Python, but it is extremely widespread and still in use.
 
 .. code:: python
 
@@ -238,8 +238,8 @@ standard Python, but extremely wide spread and is still in use.
  Use of ``importlib.resources`` and ``importlib_resources (backport)``
 ***********************************************************************
 
-The most recent addition to standard library is also available as a
-backport and both are supported by Nuitka commercial file embedding.
+The most recent addition to the standard library is also available as a
+backport and both are supported by Nuitka Commercial file embedding.
 
 .. code:: python
 
@@ -271,7 +271,7 @@ backport and both are supported by Nuitka commercial file embedding.
  Using Jinja2
 **************
 
-Jinja does a few special things with files, and Nuitka commercial
+Jinja does a few special things with files, and Nuitka Commercial
 however supports it as well, without changes. We iterate here over
 various approaches seen, that all work. File system loaders and package
 loaders are all fine.
@@ -305,7 +305,7 @@ loaders are all fine.
    template = env.get_template("templates/data_file5.txt")
    print("Template loaded via package loader:", template)
 
-Go `back to Nuitka commercial
+Go `back to Nuitka Commercial
 </doc/commercial.html#protection-vs-reverse-engineering>`__ overview to
-learn about more features or to subscribe to `Nuitka commercial
+learn about more features or to subscribe to `Nuitka Commercial
 </doc/commercial.html#pricing>`__.

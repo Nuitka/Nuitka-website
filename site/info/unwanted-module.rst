@@ -9,7 +9,7 @@
 ****************************
 
 Some specific modules have a lot of dependencies, which then become part
-of the compilation. That will make compile time much longer and
+of the compilation. This makes compilation time much longer and the
 distribution size much bigger than necessary. The time increases might
 be due to an explosion in module count. DLLs from unwanted modules can
 also cause an increase in size.
@@ -25,12 +25,11 @@ too long of a compile-time or too large of a distribution size.
 currently is ``IPython`` which will use just about every syntax
 highlighting, language parsing, rendering, and more frameworks, leading
 to a compilation that takes a very long time. However, many packages
-import ``IPython`` and offers ways to integrate with it.
+import ``IPython`` and offer ways to integrate with it.
 
 Another example is ``Numba``. **Nuitka** does not support its JIT in
-standalone mode of **Nuitka**, but still pull in the dependencies that
-themselves require huge DLLs, while they are not going to be usable
-anyway.
+standalone mode, but still pulls in dependencies that themselves require
+huge DLLs, while they are not going to be usable anyway.
 
 Nuitka follows imports when you say so, and in standalone mode
 specifically, it is the default to do so. You can exclude specific
@@ -43,8 +42,8 @@ You appear to have come across code that is not yet dealt with.
 
 .. note::
 
-   Checkout the `Nuitka Package Configuration
-   <https://nuitka.net/doc/nuitka-package-config.html>`__. page to find
+   Check out the `Nuitka Package Configuration
+   <https://nuitka.net/doc/nuitka-package-config.html>`__ page to find
    out how to help with ``anti-bloat`` additions. There are plenty of
    examples; if you need help, feel free to ask.
 
@@ -80,10 +79,10 @@ warnings. Naturally, you are subject to all the disadvantages mentioned.
  Consequence
 *************
 
-While you can ignore these warnings, it's best to at least attempt to
-turn off the following in the named module. Otherwise, you can turn the
-warning off or ignore it. It is not an error of any kind; it is just an
-indicator pointer to get this resolved.
+While you can ignore these warnings, it is best to at least attempt to
+disable the offending imports in the named module. Otherwise, you can
+turn the warning off or ignore it. It is not an error of any kind; it is
+just an indicator to help get this resolved.
 
 ****************
  Recommendation
@@ -102,7 +101,7 @@ If you do not care, you can add ``--noinclude-unittest-mode=allow`` or
 whatever options are triggering this.
 
 If you do not care and do not want to see the message, you can disable
-the mnemonic with ``--nowarn-mnemonic=unwanted-module`` and carry on,
-the warning will no longer show itself, but the impact of including too
-much in your compilation will persist, and new instances will not be
+the mnemonic with ``--nowarn-mnemonic=unwanted-module`` and carry on.
+The warning will no longer appear, but the impact of including too much
+in your compilation will persist, and new instances will not be
 reported.

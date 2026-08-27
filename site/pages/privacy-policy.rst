@@ -1,5 +1,5 @@
 .. meta::
-   :description: Nuitka commercial privacy policy — how we collect and handle user data.
+   :description: Nuitka Commercial privacy policy — how we collect and handle user data.
    :keywords: privacy,policy,data,protection,gdpr,commercial,nuitka
 
 ################
@@ -7,15 +7,15 @@
 ################
 
 This privacy policy applies to the commercial offering of Nuitka,
-including Nuitka commercial features, license management, and the Nuitka
+including Nuitka Commercial features, license management, and the
 subscription service.
 
 *********************
  Current Data Policy
 *********************
 
-As of today, **Nuitka commercial does not collect, store, or process any
-personal data** from its users. The commercial plugins and the Nuitka
+As of today, **Nuitka Commercial does not collect, store, or process any
+personal data** from users. The commercial plugins and the Nuitka
 compiler itself operate entirely on your local machine and do not
 transmit any information back to us.
 
@@ -23,7 +23,7 @@ transmit any information back to us.
  Future Data Policy
 ********************
 
-In future versions, the Nuitka commercial software will perform the
+In future versions, the Nuitka Commercial software will perform the
 following data processing to enable license validation and provide
 update notifications:
 
@@ -54,11 +54,11 @@ transmitted automatically.
 The data described above is collected exclusively for the following
 purposes:
 
--  **License validation** — ensuring that a Nuitka commercial license is
+-  **License validation** — ensuring that a Nuitka Commercial license is
    valid and used within its permitted terms.
 
 -  **Update notifications** — informing users when a newer version of
-   Nuitka commercial is available.
+   Nuitka Commercial is available.
 
 Abbreviated IP addresses and machine identifiers are stored only for the
 duration of these operations and are automatically purged from our logs
@@ -77,7 +77,7 @@ and Nuitka Services).
  Third-Party Services
 **********************
 
-Nuitka commercial does not share data with any third-party analytics,
+Nuitka Commercial does not share data with any third-party analytics,
 advertising, or tracking services. License validation and update checks
 communicate exclusively with servers operated by or on behalf of Nuitka
 Services.

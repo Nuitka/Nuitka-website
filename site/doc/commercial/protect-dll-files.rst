@@ -5,12 +5,12 @@
 ###################
 
 Your Python application on Windows relies on Dynamic Link Libraries
-(DLLs) or shared libraries for essential functionalities. These
-include Python extension modules compiled from C/C++/Rust, or
-third-party libraries that your program interfaces with. While these
-components are crucial for your application's operation, leaving them as
-separate, unprotected files on the end-user's system exposes your
-software to attacks.
+(DLLs) or shared libraries for essential functionalities. These include
+Python extension modules compiled from C/C++/Rust, or third-party
+libraries that your program interfaces with. While these components are
+crucial for your application's operation, leaving them as separate,
+unprotected files on the end-user's system exposes your software to
+attacks.
 
 *****************************
  **Nuitka VM** to the Rescue
@@ -34,8 +34,7 @@ integrity and security of your deployed software.
    The **Nuitka VM** product is not **Nuitka Commercial** and requires a
    separate product purchase and is currently only Windows.
 
-
-Go `back to Nuitka commercial
+Go `back to Nuitka Commercial
 </doc/commercial.html#protection-vs-reverse-engineering>`__ overview to
-learn about more features or to subscribe to `Nuitka commercial
+learn about more features or to subscribe to `Nuitka Commercial
 </doc/commercial.html#pricing>`__.

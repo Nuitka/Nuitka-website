@@ -59,14 +59,14 @@ This is where **Nuitka Commercial** comes to the rescue.
    strings important-data.exe | grep SuperSecret
    strings important-data.exe | grep getKey
 
-With **Nuitka Commercial's** ``data-hiding`` plugin, the result is
-completely different. The ``strings`` command finds nothing. The secret
-is no longer present in plain text in the file. This plugin, available
-with a **Nuitka Commercial** subscription, provides a unique and
-powerful level of protection by encrypting your constant data, making it
-inaccessible to trivial reverse engineering attempts.
+With the ``data-hiding`` plugin from **Nuitka Commercial**, the result
+is completely different. The ``strings`` command finds nothing. The
+secret is no longer present in plain text in the file. This plugin,
+available with a **Nuitka Commercial** subscription, provides a unique
+and powerful level of protection by encrypting your constant data,
+making it inaccessible to trivial reverse engineering attempts.
 
-Go `back to Nuitka commercial
+Go `back to Nuitka Commercial
 </doc/commercial.html#protection-vs-reverse-engineering>`__ overview to
-learn about more features or to subscribe to `Nuitka commercial
+learn about more features or to subscribe to `Nuitka Commercial
 </doc/commercial.html#pricing>`__.

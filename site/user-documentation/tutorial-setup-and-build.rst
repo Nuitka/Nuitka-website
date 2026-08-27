@@ -4,8 +4,8 @@
  Tutorial Setup and Build
 ##########################
 
-This is basic steps if you have nothing installed, of course if you have
-any of the parts, just skip it.
+These are the basic steps if you have nothing installed. If you already
+have any of the parts, just skip them.
 
 *******
  Setup
@@ -36,9 +36,11 @@ Install Nuitka
 Create a folder for the Python code
 ===================================
 
--  ``mkdir`` HelloWorld
+.. code:: bash
 
--  make a python file named **hello.py**
+   mkdir HelloWorld
+
+Make a Python file named **hello.py**
 
 .. code:: python
 
