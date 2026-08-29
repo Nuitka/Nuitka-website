@@ -63,6 +63,18 @@ html {
 	margin-bottom: 2rem;
 }
 
+.hub-card-set .sd-col {
+	margin-bottom: 0;
+}
+
+.hub-card-set .sd-container-fluid {
+	margin-bottom: 0 !important;
+}
+
+.hub-card-set .sd-card {
+	margin-bottom: 1rem;
+}
+
 .sd-w-100 {
 	width: 95% !important;
 }
