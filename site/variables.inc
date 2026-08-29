@@ -105,3 +105,7 @@
 .. |GITTER_BADGE| image:: /images/svg/gitter-badge.svg
    :alt: Join the chat at https://gitter.im/Nuitka-chat/community
    :target: https://gitter.im/Nuitka-chat/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
+.. |DISCORD_BADGE| image:: /images/svg/discord-badge.svg
+   :alt: Join the Nuitka Discord
+   :target: https://discord.gg/nZ9hr9tUck
