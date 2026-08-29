@@ -59,6 +59,13 @@ html {
 	white-space: normal;
 }
 
+a.reference.external::after {
+	content: " ↗";
+	font-size: 0.75em;
+	opacity: 0.6;
+	vertical-align: super;
+}
+
 .sd-col {
 	margin-bottom: 2rem;
 }
