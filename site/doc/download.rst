@@ -10,8 +10,9 @@
  General
 *********
 
-Thank you for downloading Nuitka. Please consider becoming a Nuitka
-commercial subscriber.
+Thank you for downloading Nuitka. This is the standard edition, free and
+open source. Please also consider becoming a Nuitka commercial
+subscriber for IP protection features.
 
 .. include:: nuitka-commercial.inc
 
@@ -20,24 +21,25 @@ Nuitka Standard vs Nuitka Commercial
 
 The standard edition is what you download here. It lacks features that
 commercial users might want for IP protection. Nuitka standard bundles
-your code, dependencies and data into a single executable if you want.
-It also does acceleration, just running faster in the same environment,
-and can produce extension modules as well.
+your code, dependencies, and data into a single executable, accelerates
+your program to run faster in the same environment, and can also produce
+extension modules.
 
-`Get Nuitka Standard </doc/download.html>`_
+:ref:`Install Nuitka Standard <quick-install>`
 
 Nuitka Commercial
 =================
 
-The commercial edition additionally protects your code, data and
-outputs, so that users of the executable cannot access these. This a
+The commercial edition additionally protects your code, data, and
+outputs, so that users of the executable cannot access these. This is a
 private repository of plugins that you pay to get access to.
 Additionally, you can purchase priority support.
 
 `Learn more about Nuitka Commercial </doc/commercial.html>`_
 
 The current release is Nuitka |NUITKA_VERSION|. Stable releases are
-supported with hot fixes, indicated by the last of the 3 digits.
+supported with hotfix releases, indicated by the third version number,
+e.g. 4.2.1 is a hotfix of 4.2.
 
 .. note::
 
@@ -47,7 +49,9 @@ supported with hot fixes, indicated by the last of the 3 digits.
 
 .. note::
 
-   During releases package builds can lag behind for a couple of days.
+   Package builds may lag behind a release by a couple of days.
+
+.. _quick-install:
 
 ***************
  Quick Install
@@ -187,13 +191,13 @@ For the latest development version:
 
       .. include:: fedora-downloads.inc
 
-   **Suse**
+   **openSUSE**
 
    - |SUSE_LOGO| repositories
 
       .. code:: bash
 
-         # Detect the OpenSUSE leap version
+         # Detect the openSUSE Leap version
          eval `grep VERSION_ID= /etc/os-release`
 
          # Add Nuitka repo
@@ -215,8 +219,8 @@ For the latest development version:
 
 .. dropdown:: macOS
 
-   No installer is available for macOS. Use the source packages, clone from
-   git, or use PyPI.
+   There is no installer for macOS. Use PyPI with ``python -m pip install
+   Nuitka``, clone from git, or use the source packages.
 
 .. dropdown:: Source Code
 
