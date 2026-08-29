@@ -43,6 +43,12 @@ html {
 	text-align: center;
 }
 
+.external-link-icon {
+	font-size: 0.7em;
+	margin-left: 0.3em;
+	vertical-align: -0.05em;
+}
+
 .wy-nav-top svg {
 	width: 30px;
 	float: left;
