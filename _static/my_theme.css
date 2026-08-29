@@ -43,6 +43,12 @@ html {
 	text-align: center;
 }
 
+.external-link-icon {
+	font-size: 0.7em;
+	margin-left: 0.3em;
+	vertical-align: -0.05em;
+}
+
 .wy-nav-top svg {
 	width: 30px;
 	float: left;
@@ -57,13 +63,6 @@ html {
 
 .wy-table-responsive table td {
 	white-space: normal;
-}
-
-a.reference.external::after {
-	content: " ↗";
-	font-size: 0.75em;
-	opacity: 0.6;
-	vertical-align: super;
 }
 
 .sd-col {

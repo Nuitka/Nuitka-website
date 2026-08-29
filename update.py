@@ -1569,6 +1569,11 @@ def runPostProcessing():
                 or link.attrib["href"].startswith("https:")
             ) and "nuitka.net" not in link.attrib["href"]:
                 link.attrib["target"] = "_blank"
+                link.append(
+                    html.fromstring(
+                        '<i class="fa fa-arrow-up-right-from-square external-link-icon" aria-hidden="true"></i>'
+                    )
+                )
 
         for link in doc.xpath("//link[@rel='canonical']"):
             if link.attrib["href"].endswith("/index.html"):
