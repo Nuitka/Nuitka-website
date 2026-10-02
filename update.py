@@ -687,15 +687,15 @@ def _renderDownloadPageFiles(max_pre_release, max_stable_release, obs_versions):
         + [
             (
                 "Stable",
-                f"`Nuitka {plain_stable}.zip <https://nuitka.net/releases/Nuitka-{plain_stable}.zip>`__",
-                f"`Nuitka {plain_stable}.tar.gz <https://nuitka.net/releases/Nuitka-{plain_stable}.tar.gz>`__",
-                f"`Nuitka {plain_stable}.tar.bz2 <https://nuitka.net/releases/Nuitka-{plain_stable}.tar.bz2>`__",
+                f"`Nuitka {plain_stable}.zip <https://nuitka.net/releases/nuitka-{plain_stable}.zip>`__",
+                f"`Nuitka {plain_stable}.tar.gz <https://nuitka.net/releases/nuitka-{plain_stable}.tar.gz>`__",
+                f"`Nuitka {plain_stable}.tar.bz2 <https://nuitka.net/releases/nuitka-{plain_stable}.tar.bz2>`__",
             ),
             (
                 "Develop",
-                f"`Nuitka {plain_prerelease}.zip <https://nuitka.net/releases/Nuitka-{plain_prerelease}.zip>`__",
-                f"`Nuitka {plain_prerelease}.tar.gz <https://nuitka.net/releases/Nuitka-{plain_prerelease}.tar.gz>`__",
-                f"`Nuitka {plain_prerelease}.tar.bz2 <https://nuitka.net/releases/Nuitka-{plain_prerelease}.tar.bz2>`__",
+                f"`Nuitka {plain_prerelease}.zip <https://nuitka.net/releases/nuitka-{plain_prerelease}.zip>`__",
+                f"`Nuitka {plain_prerelease}.tar.gz <https://nuitka.net/releases/nuitka-{plain_prerelease}.tar.gz>`__",
+                f"`Nuitka {plain_prerelease}.tar.bz2 <https://nuitka.net/releases/nuitka-{plain_prerelease}.tar.bz2>`__",
             ),
         ]
     )
