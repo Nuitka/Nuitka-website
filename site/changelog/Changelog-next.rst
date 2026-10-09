@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.3rc3**.
+It currently covers changes up to version **4.3rc4**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -100,10 +100,64 @@ Bug Fixes
    previous directory on success, now it does so also on errors, which
    the ``nuitka-watch`` tool depends on.
 
+-  Fix, recursion decisions for modules restored from the bytecode cache
+   could differ from a cold cache, since the excluded module names were
+   derived from the decision cache rather than the module usages.
+
+-  Fix, temporary variable names in cloned outline functions, e.g. from
+   comprehensions in ``finally`` blocks, could collide with the ones of
+   the original, giving wrong results.
+
+-  Fix, async generator expressions had a code object kind of a plain
+   generator, which could give incorrect behavior for them.
+
+-  Fix, the generator heap space was limited to a hard coded 1024 bytes,
+   which could overflow and crash for very complex generators, now the
+   exact needed size is captured, which also reduces context memory for
+   running generators.
+
+-  Fix, dictionaries put into containers were not escaped, so mutating a
+   constant dictionary through the container could corrupt compile time
+   decisions made for it.
+
 -  **Python 3.5+:** Fix, generators decorated with ``types.coroutine``
    were not awaitable, since the compiled generator type did not
    implement the ``__await__`` slot, which returns itself for iterable
    coroutines now, and raises the matching ``TypeError`` otherwise.
+
+-  **Python 3.5+:** Fix, two phase initialization of extension modules
+   below compiled packages was not working, as their module definition
+   was not executed, which e.g. left ``gi._gi`` without its attributes.
+
+-  **Python 3.5:** Fix, the runtime YAML checks used exact ``dict`` type
+   comparisons, which failed for the ordered dictionaries used before
+   Python 3.6, giving errors for valid configurations.
+
+-  **Python 3.6+:** Fix, the ``__classcell__`` value was set through the
+   dictionary API, which is wrong when the class namespace is a custom
+   mapping returned by the ``__prepare__`` method, and is now set
+   through the mapping interface like the class body does.
+
+-  **Python 3.7+:** Fix, asynchronous generator expressions inside
+   synchronous generator expressions were detected as making the outer
+   expression asynchronous as well, while only the inner scope is
+   asynchronous.
+
+-  **Python 3.7+:** Fix, namespace packages did not set ``__file__`` to
+   ``None`` like CPython does since that version, which could make
+   detecting namespace packages already loaded at compile time differ.
+
+-  **Python 3.10+:** Fix, duplicate constant keys of mapping patterns
+   were not rejected at compile time, duplicate non-constant keys were
+   not checked at match time, and class pattern matching leaked
+   references in some cases.
+
+-  **Python 3.11+:** Fix, the ``except*`` support was incomplete and
+   barely usable, now each handler is matched against the remaining
+   exception group in sequence, the match is published as the current
+   exception for ``sys.exc_info()`` and a bare ``raise``, exceptions
+   raised by handlers are collected, and the unhandled remainder is
+   raised again with the matching context.
 
 -  **Python 3.12+:** Fix, the ``__bound__`` of type variables was always
    ``None``, since the bound was not used when creating them.
@@ -120,9 +174,19 @@ Bug Fixes
    wrong, since compiled frames lack the function object for the runtime
    to determine it from, which is now patched.
 
+-  **Python 3.12+:** Fix, the patched ``sys._getframemodulename`` looked
+   up ``__name__`` as an attribute of ``f_globals`` instead of a
+   dictionary key, required the depth argument although it is optional,
+   and registered a wrong method name.
+
 -  **Python 3.14+:** Fix, ``__annotate__`` functions now have frames,
    since they can use closure variables and must be able to raise
    errors.
+
+-  **Python 3.14+:** Fix, objects that are already immortal had their
+   reference counter modified by the static immortal handling, degrading
+   them from static immortals to plain immortals and changing e.g.
+   ``sys.getrefcount`` values, which is now avoided.
 
 -  **Python 3.15:** Fix, the ``_math_integer`` extension module was
    missing from the standard library modules known to never raise on
@@ -152,6 +216,9 @@ Bug Fixes
    letter check when testing if a filename is inside a path, so e.g.
    relative report paths could escape their prefix.
 
+-  **Windows:** Fix, the increased stack size was not applied to onefile
+   DLL mode, as it was only done in EXE mode.
+
 -  **MSYS2:** Fix, normalized paths were missing in plugin and DLL
    handling, e.g. for the ``pywin32`` system directory and ``glfw``
    library paths.
@@ -165,9 +232,26 @@ Bug Fixes
    since these only exist as ARM64 binaries in newer Xcode versions,
    which broke e.g. the test tooling in translated ``x86_64`` processes.
 
+-  **macOS:** Fix, debugging translated ``x86_64`` binaries on Rosetta
+   did not work, since the ``lldb`` shim of newer Xcode is ARM64 only,
+   now getting the ``arch`` prefix, and the debug server requires the
+   binary to allow being debugged, so accelerated mode with a
+   ``--debugger`` is now signed with the entitlements that standalone
+   mode already uses.
+
 -  **Compatibility:** Fix, nested frames used the same exception line
    number storage, leading to corruption of either the inner or outer
    line numbers in exceptions, they now have separate storage.
+
+-  **Compatibility:** Fix, values used in ``and`` and ``or`` expressions
+   could lose their escape tracking, so e.g. adding to a set through
+   them could corrupt values, they now handle their operands like the
+   conditional expressions do.
+
+-  **Scons:** Fix, the linker response file workaround for command line
+   length limits was only used for GCC mode, so linking could fail with
+   many modules for Clang and Zig modes, which now benefit from it as
+   well.
 
 -  **AIX:** Fix, COFF dump based dependency detection for archives now
    extracts object members to a temporary file before dumping them,
@@ -195,8 +279,23 @@ Package Support
 -  **Plugins:** Made ``PySide6`` work in module mode using configuration
    references.
 
+-  **Plugins:** Added support for ``gi.repository`` namespaces, using
+   virtual modules that resolve them at run time and include their
+   typelib dependencies, replacing the previous inclusion of all typelib
+   files.
+
 New Features
 ============
+
+-  **Python 3.13:** Added support for the new internal
+   ``_IncompleteInputError`` exception, e.g. when used in tuples of
+   caught exception types.
+
+-  **Python 3.13:** Added a "FrameLocalsProxy" implementation, with
+   frame locals of compiled functions now held in a C struct that the
+   frame can point at, and available for all scopes with
+   ``--experimental=force-locals-frame-proxy``, where the proxy is a
+   write-through mapping, coming with a performance penalty.
 
 -  **Python 3.14:** Added source generation for function calls and more
    hard import types for ``__annotate__`` functions. (Added in 4.2.1
@@ -221,6 +320,29 @@ New Features
    ``include-config``, and configure the main module through the
    ``<main>`` pseudo name.
 
+-  **Plugins:** Added support for virtual modules, i.e. modules that
+   plugins provide generated source code for, used for modules that only
+   exist at run time, and that can also be included on the command line.
+
+-  **PGO:** The class dictionary shape of ``__prepare__`` call results
+   is now detected and captured, allowing classes with a plain
+   dictionary namespace to benefit from optimizations, with mismatches
+   ignored by default, raising a ``RuntimeError`` when the
+   ``pgo-assertions`` non-deployment flag is active, and aborting in
+   debug mode.
+
+-  Added the ``__uncompiled__`` module value for modules provided as
+   bytecode, with the same information as ``__compiled__``, so
+   ``globals().get("__uncompiled__", globals().get("__compiled__"))``
+   tells whether Nuitka provided a module, whether compiled or as
+   bytecode, and the new ``python_runtime_dir`` and ``process_exe``
+   fields of ``__compiled__`` replace the deprecated
+   ``__nuitka_binary_dir`` and ``__nuitka_binary_exe`` variables.
+
+-  **Plugins:** Implicit imports can now have a reason provided by the
+   plugin, and compilation reports include implicit module usages with
+   it, making it easier to see where and why a module was added.
+
 Optimization
 ============
 
@@ -231,6 +353,10 @@ Optimization
 
 -  **Standalone:** Enabled LTO for the "Python Build Standalone" flavor
    as well, since it is known to be supported. (Added in 4.2.2 already.)
+
+-  **Standalone:** The import lowering to fixed and hard imports now
+   also handles the ``fromlist`` submodule imports that ``__import__``
+   performs, so those apply there correctly.
 
 -  Unpacking from values that are known to be indexable now uses direct
    subscript access instead of the iterator protocol, making e.g. ``a, b
@@ -263,6 +389,28 @@ Optimization
 
 -  Avoided passing the frozen module count as a C define, since that
    could break caching, using an accessor function instead.
+
+-  Module and class code objects are now specialized with fixed details,
+   saving constant blob space, and the module code object name is now
+   always ``<module>``, which actual upstream code relies on to identify
+   module frames.
+
+-  Generator expression code objects are now specialized, since they
+   lack attributes of functions, saving space and sharing the
+   ``<genexpr>`` name.
+
+-  Direct CPython C-API calls were replaced with Nuitka helper
+   replacements where they exist, e.g. ``LOOKUP_ATTRIBUTE`` and
+   ``SET_SUBSCRIPT``, which is mostly a cleanup, but relevant for the
+   locals dictionary handling at startup.
+
+-  Binary operations of compile time constants are now folded during
+   tree building already, avoiding optimization churn and giving
+   compatible ``match`` behavior, e.g. for folded complex literals.
+
+-  Compile time constant folding now uses the same limits as CPython for
+   too large results, e.g. 128 bit integers for multiplication, 256
+   items for collections, and 4096 characters for strings.
 
 Anti-Bloat
 ==========
@@ -310,6 +458,22 @@ Organizational
    without a remote, comparing against the merge base or default branch
    instead.
 
+-  **Docs:** Removed the Doxygen based API documentation generation and
+   its tooling, as it never reached a usable state and is not used
+   anymore.
+
+-  **Scons:** Slow C compilation reports now name the C file that caused
+   them, making it easier to identify scalability problems.
+
+-  **Quality:** The private pip space is now usable with multiple
+   site-packages layouts, e.g. from different Python installations of
+   it, considering all of them instead of refusing.
+
+-  **UI:** Added the ``--pgo-json`` option to write the PGO input file
+   contents as JSON for debugging and testing, and the
+   ``--devel-pgo-warn-unknown`` option to report PGO values that are not
+   usable.
+
 Tests
 =====
 
@@ -339,6 +503,10 @@ Tests
 -  Avoided specifying default file reference choices in the CPython
    comparison tool, where they only cause warnings.
 
+-  The test runner now supports the ``_3.py`` suffix for tests that
+   require Python 3 at minimum, replacing the previous ``32`` suffix
+   that was used for those.
+
 Cleanups
 ========
 
@@ -360,6 +528,18 @@ Cleanups
 
 -  **Debugging:** Fixed that disabling all free lists was not fully
    effective, since the release path still used them.
+
+-  Unbound local and closure errors are now formatted by helpers from
+   the frame's code object, removing the per-raise-point variable name
+   constants and inline exception chaining.
+
+-  Removed dead code for generator expression frames that was no longer
+   used.
+
+-  Removed the ``--experimental=old-code-objects`` support, as the
+   constants blob based code objects are the only mechanism now.
+
+-  De-duplicated the ``MODLIBS`` entries used for linking.
 
 Summary
 =======
