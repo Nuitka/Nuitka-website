@@ -34,17 +34,59 @@ It currently covers changes up to version **4.3rc1**.
 Bug Fixes
 =========
 
--  None yet.
+-  Fix, comparisons and add or subtract operations of Python ``long``
+   values with C ``long`` operands could produce wrong results. (Fixed
+   in 4.2.1 already.)
+
+-  **Python 3.14:** Fix, deferred annotations did not work with hard
+   import names, e.g. ``io.BytesIO``, since those were unnecessarily
+   generated as ``__import__`` calls. (Fixed in 4.2.1 already.)
+
+-  **Python 3.14:** Fix, the
+   ``--devel-no-bytecode-to-compiled-fallback`` option was not honored
+   when source generation for an ``__annotate__`` function failed, where
+   the fallback to compiled code happened anyway. (Fixed in 4.2.1
+   already.)
+
+-  **Python 3.14:** Fix, source generation for ``__annotate__``
+   functions did not handle closures, constants, and calls correctly.
+   Closure variables were then rejected to fall back to compiled code,
+   and values like non-finite floats, empty sets, and types from modules
+   are rendered as valid source. (Fixed in 4.2.1 already.)
+
+-  **Plugins:** Fix, nested uses of the ``forkserver`` context were not
+   working. (Fixed in 4.2.1 already.)
 
 Package Support
 ===============
 
--  None yet.
+-  **Standalone:** Added support for newer ``PyAV``. (Added in 4.2.1
+   already.)
+
+-  **Standalone:** Fix, ``vtk8`` was no longer working, since the
+   package path configuration was needlessly restricted to ``vtk``
+   version 9 and higher. (Fixed in 4.2.1 already.)
+
+-  **Standalone:** Added support for the latest ``toga`` on macOS, with
+   the ``toga_cocoa.resources`` dependency now included. (Added in 4.2.1
+   already.)
+
+-  **Plugins:** Fix, the ``PySide6`` ``singleShot`` timer workaround
+   protected the wrong argument when called with more arguments,
+   allowing the issue it is meant to avoid to occur. (Fixed in 4.2.1
+   already.)
 
 New Features
 ============
 
--  None yet.
+-  **Python 3.14:** Added source generation for function calls and more
+   hard import types for ``__annotate__`` functions. (Added in 4.2.1
+   already.)
+
+-  **Python 3.14:** Added source generation for more constant value
+   types for ``__annotate__`` functions, e.g. ``bytes``, ``range``,
+   ``slice``, ``bytearray``, and ``complex`` values, including
+   non-finite components. (Added in 4.2.1 already.)
 
 Optimization
 ============
@@ -54,22 +96,31 @@ Optimization
 Anti-Bloat
 ==========
 
--  None yet.
+-  Avoided using ``pydoc`` in the official ``PySimpleGUI`` package as
+   well, which so far was only done for the non-official one. (Fixed in
+   4.2.1 already.)
 
 Organizational
 ==============
 
--  None yet.
+-  **UI:** Made the ``--file-description`` help text clear that it is no
+   longer Windows only, as it is also used as the summary of the
+   AppStream metadata of Linux ``--mode=app`` mode. (Fixed in 4.2.1
+   already.)
 
 Tests
 =====
 
--  None yet.
+-  Added support for the ``win32``, ``linux``, and ``macos`` variables
+   in ``wait_for`` conditions of ``nuitka-watch`` test cases. (Added in
+   4.2.1 already.)
 
 Cleanups
 ========
 
--  None yet.
+-  The temporary filename context manager now deletes the file itself,
+   also on errors, simplifying its users such that don't have to do it.
+   (Fixed in 4.2.1 already.)
 
 Summary
 =======
