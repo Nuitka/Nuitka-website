@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.3rc6**.
+It currently covers changes up to version **4.3rc7**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -134,6 +134,10 @@ Bug Fixes
    script directory before the current directory, while CPython searches
    the current directory first in module mode.
 
+-  Fix, keyword arguments that built-ins do not accept, e.g.
+   ``sorted(iterable=...)`` or ``zip(iterables=...)``, were not rejected
+   like CPython does.
+
 -  **Python 2:** Fix, class bodies gave the internal line number in
    tracebacks instead of the class statement line that CPython reports.
 
@@ -187,6 +191,10 @@ Bug Fixes
    allows, while for ``exec`` these arguments are positional only in
    Python 3.11 and 3.12, which is now enforced as well.
 
+-  **Python 3.11+:** Fix, when the frame free list was full, releasing a
+   frame could crash, since the interpreter frame linkage was cleared
+   only after the frame was released.
+
 -  **Python 3.12:** Fix, type variables of a class had the wrong scope,
    which put them into the class dictionary instead of an enclosing
    scope, they now get a dedicated scope, making them usable from
@@ -222,6 +230,10 @@ Bug Fixes
 -  **Python 3.13:** Fix, the new internal ``_IncompleteInputError``
    exception was not supported, e.g. when used in tuples of caught
    exception types.
+
+-  **Python 3.14:** Fix, template strings had their literal parts
+   wrongly combined when interpolations were adjacent, since empty
+   string parts were not added reliably.
 
 -  **Python 3.14+:** Fix, ``__annotate__`` functions now have frames,
    since they can use closure variables and must be able to raise
@@ -265,6 +277,10 @@ Bug Fixes
    files gave duplicate module entries when included by the user, now
    the recompile decision decides the preferred one, like it already did
    for package ``__init__`` files.
+
+-  **Standalone:** Fix, included symlinks whose target was not yet
+   copied were dereferenced, now they are copied after the files, so
+   their targets are present and the links can be preserved.
 
 -  **Reports:** Fix, plugin report data was silently discarded, since
    the report generation did not use the key/value pairs and swallowed
@@ -334,6 +350,20 @@ Bug Fixes
    raised on non-Windows, so compiling very large generated source files
    cannot crash the C compiler child processes with a stack overflow.
 
+-  **Distutils:** Fix, the project expected data files check reported
+   files like ``py.typed`` that Nuitka ignores by default as missing,
+   and treated user included extra data files as a mismatch, now only
+   actually missing files are an error.
+
+-  **Distutils:** Fix, generated main entry point files in the source
+   directory could shadow the modules they import for project name based
+   builds, since that directory was only ignored for output folder based
+   builds before.
+
+-  **Watch:** Fix, the pipenv lock file of a case was looked up in the
+   case directory rather than the result path, giving wrong paths on
+   updates.
+
 -  **AIX:** Fix, COFF dump based dependency detection for archives now
    extracts object members to a temporary file before dumping them,
    since the direct member selection was not portable.
@@ -363,6 +393,13 @@ Package Support
 -  **Standalone:** Added ``gevent.selectors`` to the implicit imports of
    ``gevent``.
 
+-  **Standalone:** Added lazy loader support for newer
+   ``huggingface_hub``, covering the ``huggingface_hub.utils`` module
+   with its class based lazy module.
+
+-  **Standalone:** Added support for the ``wirerope`` package, working
+   around compiled function type checks using anti-bloat replacements.
+
 -  **Plugins:** Fix, the ``PySide6`` ``singleShot`` timer workaround
    protected the wrong argument when called with more arguments,
    allowing the issue it is meant to avoid to occur. (Fixed in 4.2.1
@@ -379,6 +416,11 @@ Package Support
 -  **Plugins:** Added support for newer versions of the ``lazy_loader``
    package, using its ``attach_stub`` interface rather than the private
    stub visitor.
+
+-  **Plugins:** Fix, compiled methods in ``PySide6`` signal slots failed
+   with a ``SystemError`` on Shiboken builds using the unlimited API,
+   e.g. conda-forge, which call ``PyFunction_GetDefaults``, with cached
+   wrappers now used when a probe detects this issue.
 
 New Features
 ============
@@ -403,6 +445,11 @@ New Features
    compiled C code, with the providing functions using real Python cell
    objects rather than compiled cells, as ``annotationlib`` requires for
    re-wrapping them.
+
+-  **Python 3.14:** Added source generation for many more constructs of
+   ``__annotate__`` functions, e.g. all binary operators, set displays,
+   template strings, the ``abs`` and ``repr`` unary operations, built-in
+   references, and ``ctypes.CDLL``.
 
 -  **Python 3.15:** Pronounced Python 3.15 as partially supported.
 
@@ -451,6 +498,11 @@ New Features
 -  **Plugins:** Added support for redacting option values, so plugins
    can mark their sensitive options, and compilation reports and the
    logged command line show them as "REDACTED" instead.
+
+-  **UI:** Added support for disabling the onefile splash screen at
+   runtime, by setting the ``NUITKA_SPLASH_SCREEN`` environment variable
+   to ``0`` or ``off``, e.g. for automated tests, with the application
+   side dismissal of the splash screen still working.
 
 Optimization
 ============
@@ -548,6 +600,20 @@ Optimization
    are groundwork for intermediate value type selection and not used
    yet.
 
+-  Direct imports were added, where modules are imported through their
+   loader entry with a shared load state under the module lock of the
+   import machinery, so that pre- and post-load trigger modules are
+   directly linked, and a module is run only once regardless of the load
+   path.
+
+-  Built-ins like ``open``, ``print``, ``sorted``, ``reversed``,
+   ``enumerate``, ``zip``, and ``memoryview`` now have specs and
+   generated nodes, going through the hard import node machinery,
+   replacing the manually written ``open`` nodes.
+
+-  Incomplete loop variables are now resolved in the same optimization
+   pass that discovered them, avoiding an unnecessary extra full pass.
+
 Anti-Bloat
 ==========
 
@@ -639,6 +705,14 @@ Organizational
    crashes for new files, reading the source contents once and only
    updating the target file when the BOM changes.
 
+-  **Quality:** The auto-format tool now replaces all forms of
+   typographic dashes and hyphens in text files and Python comments with
+   plain dashes.
+
+-  **Coverage:** Publishing coverage data now copies the files into the
+   coverage directory directly, since the CI does the uploading, instead
+   of the previous ``scp`` transfer.
+
 Tests
 =====
 
@@ -720,6 +794,10 @@ Cleanups
 
 -  The meta path loader now uses the ``OS_LISTDIR`` helper instead of
    its own duplicate of the ``os.listdir`` wrapping.
+
+-  **Debugging:** Removed an invalid assertion when throwing into an
+   async generator, since the ownership was transferred and the
+   exception state could already be released.
 
 Summary
 =======
