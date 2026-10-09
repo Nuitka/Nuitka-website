@@ -57,6 +57,38 @@ Bug Fixes
 -  **Plugins:** Fix, nested uses of the ``forkserver`` context were not
    working. (Fixed in 4.2.1 already.)
 
+-  **Compatibility:** Fix, conditional expressions did not decide their
+   type shapes from the branches properly, which could lead to wrong
+   optimization of list appends and subscript operations. (Fixed in
+   4.2.2 already.)
+
+-  **Compatibility:** Fix, keyword arguments created from ``str``
+   subclass instances were rejected, since the check compared the exact
+   type instead of allowing subclasses. (Fixed in 4.2.2 already.)
+
+-  **Windows:** Fix, MSYS2 builds now link the compiler runtime
+   statically, avoiding a runtime dependency on e.g.
+   ``libwinpthread-1.dll``, which also fixes module mode requiring that
+   DLL. (Fixed in 4.2.2 already.)
+
+-  **MSYS2:** Fix, adapting Python header files did not work on that
+   flavor yet. (Fixed in 4.2.2 already.)
+
+-  **macOS:** Fix, newer Xcode versions only ship tools like
+   ``install_name_tool``, ``lipo``, ``nm``, and ``otool`` as ARM64
+   binaries, which fail to run in an ``x86_64`` translated process.
+   These are now invoked with ``arch -arm64`` as needed, and the same
+   for the C compiler and ``ccache``. (Fixed in 4.2.2 already.)
+
+-  **Debian:** Fix, onefile mode was no longer usable when the ``zstd``
+   inline copy is absent, e.g. in the official Debian package, since the
+   system ``zstd`` and ``zlib`` are now linked statically instead.
+   (Fixed in 4.2.2 already.)
+
+-  **Installer:** Fix, Linux installer creation crashed in onefile mode,
+   now informs the user that ``--mode=app-dist`` (or
+   ``--mode=standalone``) mode is required. (Fixed in 4.2.2 already.)
+
 Package Support
 ===============
 
@@ -91,7 +123,13 @@ New Features
 Optimization
 ============
 
--  None yet.
+-  **Standalone:** Moved implicit import consideration from module
+   recursion into the optimization pass, avoiding an unnecessary third
+   pass for standard library modules using a cold bytecode cache. (Added
+   in 4.2.2 already.)
+
+-  **Standalone:** Enabled LTO for the "Python Build Standalone" flavor
+   as well, since it is known to be supported. (Added in 4.2.2 already.)
 
 Anti-Bloat
 ==========
@@ -107,6 +145,9 @@ Organizational
    longer Windows only, as it is also used as the summary of the
    AppStream metadata of Linux ``--mode=app`` mode. (Fixed in 4.2.1
    already.)
+
+-  **Release:** Added ``clangd`` to the CI container to allow checking
+   with it. (Added in 4.2.2 already.)
 
 Tests
 =====
