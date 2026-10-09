@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.3rc5**.
+It currently covers changes up to version **4.3rc6**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -129,6 +129,13 @@ Bug Fixes
    generators, coroutines, and async generators was not preserved, the
    frame is now added to an existing traceback, and the traceback of an
    exception instance that is thrown is used when none is given.
+
+-  Fix, the import scan for ``--python-flag=-m`` searched the main
+   script directory before the current directory, while CPython searches
+   the current directory first in module mode.
+
+-  **Python 2:** Fix, class bodies gave the internal line number in
+   tracebacks instead of the class statement line that CPython reports.
 
 -  **Python 3.5+:** Fix, generators decorated with ``types.coroutine``
    were not awaitable, since the compiled generator type did not
@@ -307,6 +314,12 @@ Bug Fixes
    them could corrupt values, they now handle their operands like the
    conditional expressions do.
 
+-  **PGO:** Fix, the ``isolated`` Python flag did not work with Python
+   PGO mode, since its input build is accelerated and loads the standard
+   library from ``sys.path``, for which the isolation is now skipped,
+   while accelerated mode now rejects the flag with an error, as Nuitka
+   empties ``sys.path`` there.
+
 -  **Scons:** Fix, the linker response file workaround for command line
    length limits was only used for GCC mode, so linking could fail with
    many modules for Clang and Zig modes, which now benefit from it as
@@ -344,6 +357,12 @@ Package Support
 
 -  **Standalone:** Added support for Tkinter version 9.1.
 
+-  **Standalone:** Added support for the ``onnxruntime`` DLLs on
+   non-Windows.
+
+-  **Standalone:** Added ``gevent.selectors`` to the implicit imports of
+   ``gevent``.
+
 -  **Plugins:** Fix, the ``PySide6`` ``singleShot`` timer workaround
    protected the wrong argument when called with more arguments,
    allowing the issue it is meant to avoid to occur. (Fixed in 4.2.1
@@ -378,6 +397,12 @@ New Features
    types for ``__annotate__`` functions, e.g. ``bytes``, ``range``,
    ``slice``, ``bytearray``, and ``complex`` values, including
    non-finite components. (Added in 4.2.1 already.)
+
+-  **Python 3.14:** Added support for closure variables in
+   ``__annotate__`` functions, which no longer need to fall back to
+   compiled C code, with the providing functions using real Python cell
+   objects rather than compiled cells, as ``annotationlib`` requires for
+   re-wrapping them.
 
 -  **Python 3.15:** Pronounced Python 3.15 as partially supported.
 
@@ -422,6 +447,10 @@ New Features
    30 days, with a value of 0 disabling it, and performed at most every
    ``NUITKA_CLCACHE_CLEANUP_INTERVAL_DAYS`` days, defaulting to 7,
    replacing the previous maximum size based full cleanup.
+
+-  **Plugins:** Added support for redacting option values, so plugins
+   can mark their sensitive options, and compilation reports and the
+   logged command line show them as "REDACTED" instead.
 
 Optimization
 ============
@@ -513,6 +542,12 @@ Optimization
    literals and concatenation instead of building and converting lists,
    which speeds up tree visits for many node types.
 
+-  Added more C float helper variants for comparisons and binary
+   operations, e.g. ``RICH_COMPARE_LE_CFLOAT_CFLOAT`` and
+   ``BINARY_OPERATION_ADD_CFLOAT_FLOAT``, fixing missing overloads, they
+   are groundwork for intermediate value type selection and not used
+   yet.
+
 Anti-Bloat
 ==========
 
@@ -597,6 +632,13 @@ Organizational
 -  **Scons:** ccache files are now stored in a directory per Python ABI
    version, so that cache cleanup does not interfere between versions.
 
+-  **Quality:** The git patching now tolerates files that are staged but
+   already deleted from the working tree, instead of crashing.
+
+-  **Quality:** The BOM transfer of the auto-format tool no longer
+   crashes for new files, reading the source contents once and only
+   updating the target file when the BOM changes.
+
 Tests
 =====
 
@@ -635,6 +677,10 @@ Tests
    ``skip``, ``search``, ``coverage``, and ``all`` shortcuts adjusted,
    and partial runs no longer update or delete the resume state.
 
+-  The output comparison tool now normalizes temporary file names of
+   Windows error messages as well, like it already did for POSIX
+   ``/tmp`` paths.
+
 Cleanups
 ========
 
@@ -671,6 +717,9 @@ Cleanups
 
 -  Node classes can now use comma separated conditions, e.g. ranges, in
    their ``python_version_spec`` declaration.
+
+-  The meta path loader now uses the ``OS_LISTDIR`` helper instead of
+   its own duplicate of the ``os.listdir`` wrapping.
 
 Summary
 =======
