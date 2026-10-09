@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.3rc8**.
+It currently covers changes up to version **4.3rc9**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -146,6 +146,11 @@ Bug Fixes
 -  Fix, return exits were generated for functions and outlines whose
    returns cannot complete, e.g. inside a ``finally`` block that raises,
    which is now determined with a ``mayReturn`` check first.
+
+-  Fix, return values that were prevented from an actual return, e.g. by
+   a ``finally`` block or context manager exit that raises, were not
+   released and leaked, and now the exception exits release them,
+   including breaks and continues from return handlers.
 
 -  **Python 2:** Fix, class bodies gave the internal line number in
    tracebacks instead of the class statement line that CPython reports.
@@ -381,6 +386,10 @@ Bug Fixes
 -  **AIX:** Fix, COFF dump based dependency detection for archives now
    extracts object members to a temporary file before dumping them,
    since the direct member selection was not portable.
+
+-  **AIX:** Fix, the Python DLL is now properly detected, so it no
+   longer needs to be added as a data file, which was conflicting with
+   the DLL.
 
 -  **OpenBSD:** Added support for getting the binary path on OpenBSD 8
    using the ``getexecpath`` function intended for that.
@@ -763,6 +772,13 @@ Organizational
    related report changes for PyPI updates, while newly added or removed
    packages remain in the diff for review.
 
+-  **Debugging:** Added the ``--debug-address-sanitizer`` option to
+   compile and link with AddressSanitizer instrumentation, known to work
+   with GCC and Clang, and implying debug information, with leak
+   detection disabled by default for the compiled program, since Python
+   and third party libraries intend to leak, and it can be enabled with
+   ``ASAN_OPTIONS=detect_leaks=1``.
+
 Tests
 =====
 
@@ -848,6 +864,10 @@ Cleanups
 -  **Debugging:** Removed an invalid assertion when throwing into an
    async generator, since the ownership was transferred and the
    exception state could already be released.
+
+-  Removed dead code and unused slots, e.g. for closure variable
+   demotion, generator return checks, and trace collection variable
+   versions.
 
 Summary
 =======
