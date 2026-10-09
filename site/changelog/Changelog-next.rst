@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.3rc1**.
+It currently covers changes up to version **4.3rc2**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -89,6 +89,56 @@ Bug Fixes
    now informs the user that ``--mode=app-dist`` (or
    ``--mode=standalone``) mode is required. (Fixed in 4.2.2 already.)
 
+-  Fix, when outline functions were removed, e.g. class bodies that
+   raise, the variable tracing was not undone, so the value traces could
+   be inconsistent, this is now reversed properly.
+
+-  Fix, cloned outline functions did not copy the variables they take
+   from the enclosing scope, so the clones could lack closure variables.
+
+-  Fix, the context manager for directory changes only restored the
+   previous directory on success, now it does so also on errors, which
+   the ``nuitka-watch`` tool depends on.
+
+-  **Python 3.12+:** Fix, the ``__bound__`` of type variables was always
+   ``None``, since the bound was not used when creating them.
+
+-  **Python 3.15:** Fix, the ``_math_integer`` extension module was
+   missing from the standard library modules known to never raise on
+   import, which prevented optimizing its imports.
+
+-  **Python 3.15:** Fix, the ``Py_GetPath`` API was no longer available,
+   requiring an explicit declaration again.
+
+-  **Python 3.15:** Fix, the older inline copy of Scons no longer works
+   there, now all Python 3.7+ versions use the newer copy that was
+   previously only used on Windows.
+
+-  **Python 3.15:** Fix, creating ``long`` objects triggered assertions
+   there, since the tag field needs initialization before setting the
+   sign and digit count.
+
+-  **Standalone:** Fix, the source package ``__init__.py`` is now
+   preferred over a C extension ``__init__.so`` or ``__init__.pyd``
+   file, respecting the recompile decisions of the user, whose plugin
+   queries are now also cached.
+
+-  **Windows:** Fix, the experimental MinGW64 usage with Python 3.13 and
+   higher did not work in Python debug mode, as the internal structure
+   offsets for debug builds were missing.
+
+-  **macOS:** Fix, code signing no longer mutates the keychain file,
+   since the ``security`` commands change it in place, a temporary copy
+   is now used instead.
+
+-  **Compatibility:** Fix, nested frames used the same exception line
+   number storage, leading to corruption of either the inner or outer
+   line numbers in exceptions, they now have separate storage.
+
+-  **AIX:** Fix, COFF dump based dependency detection for archives now
+   extracts object members to a temporary file before dumping them,
+   since the direct member selection was not portable.
+
 Package Support
 ===============
 
@@ -120,6 +170,16 @@ New Features
    ``slice``, ``bytearray``, and ``complex`` values, including
    non-finite components. (Added in 4.2.1 already.)
 
+-  **Python 3.15:** Pronounced Python 3.15 as partially supported, with
+   Python 3.16 now being the only not yet supported version.
+
+-  **Python 3.15:** Added support for unpacking in comprehensions, e.g.
+   ``[*i for i in values]`` and ``{**d for d in mappings}``, including
+   the async variants.
+
+-  **Python 3.15:** Added the internal structure offsets needed for
+   Windows support.
+
 Optimization
 ============
 
@@ -130,6 +190,14 @@ Optimization
 
 -  **Standalone:** Enabled LTO for the "Python Build Standalone" flavor
    as well, since it is known to be supported. (Added in 4.2.2 already.)
+
+-  Unpacking from values that are known to be indexable now uses direct
+   subscript access instead of the iterator protocol, making e.g. ``a, b
+   = some_tuple`` a lot faster, with starred unpacking to follow once
+   this has proven stable.
+
+-  The ``io.open`` built-in is now treated like ``open``, so that file
+   tracing for embedded data files applies to it as well.
 
 Anti-Bloat
 ==========
@@ -149,6 +217,26 @@ Organizational
 -  **Release:** Added ``clangd`` to the CI container to allow checking
    with it. (Added in 4.2.2 already.)
 
+-  **Release:** Made it clear that on Python 3.14 and higher, the
+   standard library ``compression.zstd`` is used instead of the
+   ``zstandard`` package in the requirements.
+
+-  **AI:** Added the ``setup-pr-branch`` skill for setting up fork pull
+   request branches for pushing updates, pointed the
+   ``module-not-found`` skill at the MRE workflow, and ignored the
+   scratch folder used for AI work.
+
+-  **Docs:** Made it clear in the Developer Manual that Python 3.14 is
+   covered by feature parity.
+
+-  **Docs:** Integrated the website documentation changes into the User
+   Manual, including the report template data tables and the CPU
+   architecture baseline section.
+
+-  **Quality:** Disabled more ``ruff`` warnings that are not important
+   for Nuitka, and enhanced the ``clangd`` and Visual Code configuration
+   for correctness.
+
 Tests
 =====
 
@@ -156,12 +244,28 @@ Tests
    in ``wait_for`` conditions of ``nuitka-watch`` test cases. (Added in
    4.2.1 already.)
 
+-  Added ``--devel-no-bytecode-to-compiled-fallback`` to
+   ``nuitka-watch`` compilations with Python 3.14 and higher, requiring
+   that annotate functions do not fall back to compiled code for the
+   packages we actively monitor.
+
+-  The test runner now displays the full Python version string, which is
+   useful for release candidate versions, where the numeric version
+   alone is ambiguous.
+
+-  Allowed to specify test names without their version specific suffixes
+   in the test runner.
+
 Cleanups
 ========
 
 -  The temporary filename context manager now deletes the file itself,
    also on errors, simplifying its users such that don't have to do it.
    (Fixed in 4.2.1 already.)
+
+-  **Quality:** Addressed the warnings reported by the ``clangd`` LSP,
+   adding shared headers for the long digit, dictionary internal, power,
+   and repeat helpers, and organizing the IDE only includes.
 
 Summary
 =======
