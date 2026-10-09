@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.3rc2**.
+It currently covers changes up to version **4.3rc3**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -100,8 +100,29 @@ Bug Fixes
    previous directory on success, now it does so also on errors, which
    the ``nuitka-watch`` tool depends on.
 
+-  **Python 3.5+:** Fix, generators decorated with ``types.coroutine``
+   were not awaitable, since the compiled generator type did not
+   implement the ``__await__`` slot, which returns itself for iterable
+   coroutines now, and raises the matching ``TypeError`` otherwise.
+
 -  **Python 3.12+:** Fix, the ``__bound__`` of type variables was always
    ``None``, since the bound was not used when creating them.
+
+-  **Python 3.12+:** Fix, the awaitables of ``aclose()`` and
+   ``athrow()`` of asynchronous generators were not closed when they
+   terminated the generator, so reusing them gave ``StopIteration``
+   instead of the matching errors, and for Python 3.13 and higher,
+   ``asend().close()`` and ``athrow().close()`` now use
+   ``throw(GeneratorExit)``.
+
+-  **Python 3.12+:** Fix, the ``__module__`` attribute of type
+   variables, parameter specifications, and type variable tuples was
+   wrong, since compiled frames lack the function object for the runtime
+   to determine it from, which is now patched.
+
+-  **Python 3.14+:** Fix, ``__annotate__`` functions now have frames,
+   since they can use closure variables and must be able to raise
+   errors.
 
 -  **Python 3.15:** Fix, the ``_math_integer`` extension module was
    missing from the standard library modules known to never raise on
@@ -127,9 +148,22 @@ Bug Fixes
    higher did not work in Python debug mode, as the internal structure
    offsets for debug builds were missing.
 
+-  **Windows:** Fix, NTFS junctions were not resolved before the drive
+   letter check when testing if a filename is inside a path, so e.g.
+   relative report paths could escape their prefix.
+
+-  **MSYS2:** Fix, normalized paths were missing in plugin and DLL
+   handling, e.g. for the ``pywin32`` system directory and ``glfw``
+   library paths.
+
 -  **macOS:** Fix, code signing no longer mutates the keychain file,
    since the ``security`` commands change it in place, a temporary copy
    is now used instead.
+
+-  **macOS:** Fix, the architecture prefix is now also applied to
+   ``git`` and other tool invocations in the process execution helpers,
+   since these only exist as ARM64 binaries in newer Xcode versions,
+   which broke e.g. the test tooling in translated ``x86_64`` processes.
 
 -  **Compatibility:** Fix, nested frames used the same exception line
    number storage, leading to corruption of either the inner or outer
@@ -158,6 +192,9 @@ Package Support
    allowing the issue it is meant to avoid to occur. (Fixed in 4.2.1
    already.)
 
+-  **Plugins:** Made ``PySide6`` work in module mode using configuration
+   references.
+
 New Features
 ============
 
@@ -180,6 +217,10 @@ New Features
 -  **Python 3.15:** Added the internal structure offsets needed for
    Windows support.
 
+-  Package configuration can now reference other configurations with
+   ``include-config``, and configure the main module through the
+   ``<main>`` pseudo name.
+
 Optimization
 ============
 
@@ -198,6 +239,30 @@ Optimization
 
 -  The ``io.open`` built-in is now treated like ``open``, so that file
    tracing for embedded data files applies to it as well.
+
+-  Loop value traces now detect identity stability of values, enabling
+   more optimizations, and when the loop analysis gives up, the continue
+   traces are now reversed properly, which could otherwise produce false
+   results.
+
+-  Slice values built from constants are now cached, except when they
+   contain mutable values, which are still created at runtime to avoid
+   corruption.
+
+-  Internal source code references are now actually used again, which
+   was lost in a memory saving refactor years ago, lowering the
+   generated code amount for some constructs.
+
+-  Replaced runtime assertions with static assertions where possible,
+   using a shared ``STATIC_ASSERT`` helper.
+
+-  The meta path loader entries now reference their pre-load, post-load,
+   and parent entries directly rather than relying on name based
+   lookups, with the main module now determined by a flag rather than
+   its name.
+
+-  Avoided passing the frozen module count as a C define, since that
+   could break caching, using an accessor function instead.
 
 Anti-Bloat
 ==========
@@ -237,6 +302,14 @@ Organizational
    for Nuitka, and enhanced the ``clangd`` and Visual Code configuration
    for correctness.
 
+-  **UI:** The error message for ``--static-libpython=yes`` with the
+   "Python Build Standalone" flavor now includes a hint for downloading
+   the full build that supports it.
+
+-  **Quality:** Made the check for unpushed files work for branches
+   without a remote, comparing against the merge base or default branch
+   instead.
+
 Tests
 =====
 
@@ -256,6 +329,16 @@ Tests
 -  Allowed to specify test names without their version specific suffixes
    in the test runner.
 
+-  Enhanced the XML comparison utility to run Nuitka with
+   ``--generate-c-only`` and ``--nofollow-imports``, comparing the XML
+   output files directly.
+
+-  Fixed the ``BrotliUsing`` and ``PmwUsing`` tests to specify
+   standalone mode, so they become usable of their own.
+
+-  Avoided specifying default file reference choices in the CPython
+   comparison tool, where they only cause warnings.
+
 Cleanups
 ========
 
@@ -266,6 +349,17 @@ Cleanups
 -  **Quality:** Addressed the warnings reported by the ``clangd`` LSP,
    adding shared headers for the long digit, dictionary internal, power,
    and repeat helpers, and organizing the IDE only includes.
+
+-  **Quality:** Updated the inline copy of ``hedley`` to the latest
+   version, and added the dump backtraces declaration for the ``clangd``
+   LSP.
+
+-  Generalized the deferred release handling in code generation, now
+   allowing values to be released at the end of their code scope when
+   needed.
+
+-  **Debugging:** Fixed that disabling all free lists was not fully
+   effective, since the release path still used them.
 
 Summary
 =======
