@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.3rc4**.
+It currently covers changes up to version **4.3rc5**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -120,6 +120,16 @@ Bug Fixes
    constant dictionary through the container could corrupt compile time
    decisions made for it.
 
+-  Fix, ``visitTree`` recursed once per node, so very deep node trees
+   could exceed the Python recursion limit and raise ``RecursionError``
+   during finalization, variable closure and inlining, they are now
+   visited iteratively, which is also a lot faster.
+
+-  Fix, the traceback of exceptions thrown into not yet started
+   generators, coroutines, and async generators was not preserved, the
+   frame is now added to an existing traceback, and the traceback of an
+   exception instance that is thrown is used when none is given.
+
 -  **Python 3.5+:** Fix, generators decorated with ``types.coroutine``
    were not awaitable, since the compiled generator type did not
    implement the ``__await__`` slot, which returns itself for iterable
@@ -147,6 +157,12 @@ Bug Fixes
    ``None`` like CPython does since that version, which could make
    detecting namespace packages already loaded at compile time differ.
 
+-  **Python 3.8+:** Fix, assignment expressions inside generator
+   expressions bound their target in the module when the enclosing
+   function did not otherwise use the name, since it had no such
+   variable, now the target is made a variable of the enclosing
+   function.
+
 -  **Python 3.10+:** Fix, duplicate constant keys of mapping patterns
    were not rejected at compile time, duplicate non-constant keys were
    not checked at match time, and class pattern matching leaked
@@ -158,6 +174,19 @@ Bug Fixes
    exception for ``sys.exc_info()`` and a bare ``raise``, exceptions
    raised by handlers are collected, and the unhandled remainder is
    raised again with the matching context.
+
+-  **Python 3.11+:** Fix, the ``eval`` built-in did not accept
+   ``globals`` and ``locals`` as keyword arguments that Python 3.13
+   allows, while for ``exec`` these arguments are positional only in
+   Python 3.11 and 3.12, which is now enforced as well.
+
+-  **Python 3.12:** Fix, type variables of a class had the wrong scope,
+   which put them into the class dictionary instead of an enclosing
+   scope, they now get a dedicated scope, making them usable from
+   methods and bases, but not visible as class attributes.
+
+-  **Python 3.12:** Fix, threading could dead lock, since the evaluation
+   breaker did not consider work indications of the main thread.
 
 -  **Python 3.12+:** Fix, the ``__bound__`` of type variables was always
    ``None``, since the bound was not used when creating them.
@@ -179,6 +208,14 @@ Bug Fixes
    dictionary key, required the depth argument although it is optional,
    and registered a wrong method name.
 
+-  **Python 3.12+:** Fix, the bound of type variables was evaluated
+   immediately, instead of only when ``__bound__`` is accessed, which
+   could run expressions too early, especially in classes.
+
+-  **Python 3.13:** Fix, the new internal ``_IncompleteInputError``
+   exception was not supported, e.g. when used in tuples of caught
+   exception types.
+
 -  **Python 3.14+:** Fix, ``__annotate__`` functions now have frames,
    since they can use closure variables and must be able to raise
    errors.
@@ -187,6 +224,11 @@ Bug Fixes
    reference counter modified by the static immortal handling, degrading
    them from static immortals to plain immortals and changing e.g.
    ``sys.getrefcount`` values, which is now avoided.
+
+-  **Python 3.14+:** Fix, the compiled types used the CPython generic
+   attribute and allocation functions directly, which debug mode on
+   Windows rejects, they are now set up by ``Nuitka_PyType_Ready`` from
+   indicators instead.
 
 -  **Python 3.15:** Fix, the ``_math_integer`` extension module was
    missing from the standard library modules known to never raise on
@@ -203,10 +245,27 @@ Bug Fixes
    there, since the tag field needs initialization before setting the
    sign and digit count.
 
+-  **Python 3.15:** Fix, the layout of type variable objects gained a
+   ``qualname`` field that needs to be filled in from the code object of
+   the function that computes the value.
+
 -  **Standalone:** Fix, the source package ``__init__.py`` is now
    preferred over a C extension ``__init__.so`` or ``__init__.pyd``
    file, respecting the recompile decisions of the user, whose plugin
    queries are now also cached.
+
+-  **Standalone:** Fix, packages with both source and extension module
+   files gave duplicate module entries when included by the user, now
+   the recompile decision decides the preferred one, like it already did
+   for package ``__init__`` files.
+
+-  **Reports:** Fix, plugin report data was silently discarded, since
+   the report generation did not use the key/value pairs and swallowed
+   all errors, it is now included and validated.
+
+-  **Plugins:** Fix, plugins that put files into the build directory
+   could not do that after other processing, as the directory was
+   removed before the final result callback, which is now called first.
 
 -  **Windows:** Fix, the experimental MinGW64 usage with Python 3.13 and
    higher did not work in Python debug mode, as the internal structure
@@ -253,9 +312,21 @@ Bug Fixes
    many modules for Clang and Zig modes, which now benefit from it as
    well.
 
+-  **Scons:** Fix, the target of the build is now always created as
+   ``_nuitka_temp`` with the proper extension in the build directory and
+   renamed into place after the build, avoiding paths that the C
+   compiler cannot encode, e.g. for Unicode output binary filenames.
+
+-  **Scons:** Fix, the stack size limit of the scons process is now
+   raised on non-Windows, so compiling very large generated source files
+   cannot crash the C compiler child processes with a stack overflow.
+
 -  **AIX:** Fix, COFF dump based dependency detection for archives now
    extracts object members to a temporary file before dumping them,
    since the direct member selection was not portable.
+
+-  **OpenBSD:** Added support for getting the binary path on OpenBSD 8
+   using the ``getexecpath`` function intended for that.
 
 Package Support
 ===============
@@ -271,6 +342,8 @@ Package Support
    the ``toga_cocoa.resources`` dependency now included. (Added in 4.2.1
    already.)
 
+-  **Standalone:** Added support for Tkinter version 9.1.
+
 -  **Plugins:** Fix, the ``PySide6`` ``singleShot`` timer workaround
    protected the wrong argument when called with more arguments,
    allowing the issue it is meant to avoid to occur. (Fixed in 4.2.1
@@ -284,12 +357,12 @@ Package Support
    typelib dependencies, replacing the previous inclusion of all typelib
    files.
 
+-  **Plugins:** Added support for newer versions of the ``lazy_loader``
+   package, using its ``attach_stub`` interface rather than the private
+   stub visitor.
+
 New Features
 ============
-
--  **Python 3.13:** Added support for the new internal
-   ``_IncompleteInputError`` exception, e.g. when used in tuples of
-   caught exception types.
 
 -  **Python 3.13:** Added a "FrameLocalsProxy" implementation, with
    frame locals of compiled functions now held in a C struct that the
@@ -306,15 +379,15 @@ New Features
    ``slice``, ``bytearray``, and ``complex`` values, including
    non-finite components. (Added in 4.2.1 already.)
 
--  **Python 3.15:** Pronounced Python 3.15 as partially supported, with
-   Python 3.16 now being the only not yet supported version.
+-  **Python 3.15:** Pronounced Python 3.15 as partially supported.
 
 -  **Python 3.15:** Added support for unpacking in comprehensions, e.g.
    ``[*i for i in values]`` and ``{**d for d in mappings}``, including
    the async variants.
 
--  **Python 3.15:** Added the internal structure offsets needed for
-   Windows support.
+-  **Python 3.15:** Added support for the new ``frozendict`` type as a
+   constant, including optimization of its constant values, where deep
+   copies are only made when nested values can still change.
 
 -  Package configuration can now reference other configurations with
    ``include-config``, and configure the main module through the
@@ -331,9 +404,9 @@ New Features
    ``pgo-assertions`` non-deployment flag is active, and aborting in
    debug mode.
 
--  Added the ``__uncompiled__`` module value for modules provided as
-   bytecode, with the same information as ``__compiled__``, so
-   ``globals().get("__uncompiled__", globals().get("__compiled__"))``
+-  **UI:** Added the ``__uncompiled__`` module value for modules
+   provided as bytecode, with the same information as ``__compiled__``,
+   so ``globals().get("__uncompiled__", globals().get("__compiled__"))``
    tells whether Nuitka provided a module, whether compiled or as
    bytecode, and the new ``python_runtime_dir`` and ``process_exe``
    fields of ``__compiled__`` replace the deprecated
@@ -342,6 +415,13 @@ New Features
 -  **Plugins:** Implicit imports can now have a reason provided by the
    plugin, and compilation reports include implicit module usages with
    it, making it easier to see where and why a module was added.
+
+-  **Windows:** Added age based cleanup for ``clcache``, removing cache
+   entries not modified for a while, controlled by the
+   ``NUITKA_CLCACHE_MAX_AGE_DAYS`` environment variable, defaulting to
+   30 days, with a value of 0 disabling it, and performed at most every
+   ``NUITKA_CLCACHE_CLEANUP_INTERVAL_DAYS`` days, defaulting to 7,
+   replacing the previous maximum size based full cleanup.
 
 Optimization
 ============
@@ -412,6 +492,27 @@ Optimization
    too large results, e.g. 128 bit integers for multiplication, 256
    items for collections, and 4096 characters for strings.
 
+-  **macOS:** The Homebrew rpath scan is now limited to directories that
+   hold libraries, pruning include, docs and other trees, which
+   previously registered tens of thousands of paths on every standalone
+   build.
+
+-  Package configuration parsing now prefers the C based ``CSafeLoader``
+   of a libyaml built PyYAML when available, and caches the ordered
+   loader class, making it several times faster on the large
+   configuration file.
+
+-  The ``try``/``else`` construct no longer uses an indicator variable
+   when the handling aborts, since only normal completion of the ``try``
+   block can reach the ``else`` block then.
+
+-  Loop traces that are not used no longer mark late attached continue
+   traces as used, which could prevent dead assignment removal.
+
+-  The generated ``getVisitableNodes`` implementations now use tuple
+   literals and concatenation instead of building and converting lists,
+   which speeds up tree visits for many node types.
+
 Anti-Bloat
 ==========
 
@@ -474,6 +575,28 @@ Organizational
    ``--devel-pgo-warn-unknown`` option to report PGO values that are not
    usable.
 
+-  **AI:** The verification rules now hint at using the WSL host Python
+   installations through ``/mnt/c``.
+
+-  **Debian:** The package builder image script now uses archive URLs
+   for old Debian and Ubuntu releases, trusts the expired ``jessie``
+   archive key explicitly, and includes ``aptitude`` needed for the
+   dependency resolution of pbuilder.
+
+-  **Quality:** The pre-push hook now allows downloads for the
+   ``pylint`` checks, like the formatting checks already do.
+
+-  **Quality:** Tools of the private pip space that cannot be executed
+   at all are quietly treated as not existing, so that a broken binary
+   no longer stops their download.
+
+-  **UI:** The anti-bloat plugin option help no longer advertises the
+   ``nofollow`` choice, which was only available as a regular user
+   command line option since last release.
+
+-  **Scons:** ccache files are now stored in a directory per Python ABI
+   version, so that cache cleanup does not interfere between versions.
+
 Tests
 =====
 
@@ -506,6 +629,11 @@ Tests
 -  The test runner now supports the ``_3.py`` suffix for tests that
    require Python 3 at minimum, replacing the previous ``32`` suffix
    that was used for those.
+
+-  The test runners now support ``--pattern`` filters and a ``--skip``
+   option that implies resuming, with the ``only``, ``resume``,
+   ``skip``, ``search``, ``coverage``, and ``all`` shortcuts adjusted,
+   and partial runs no longer update or delete the resume state.
 
 Cleanups
 ========
@@ -540,6 +668,9 @@ Cleanups
    constants blob based code objects are the only mechanism now.
 
 -  De-duplicated the ``MODLIBS`` entries used for linking.
+
+-  Node classes can now use comma separated conditions, e.g. ranges, in
+   their ``python_version_spec`` declaration.
 
 Summary
 =======
