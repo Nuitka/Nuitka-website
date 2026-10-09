@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.3rc7**.
+It currently covers changes up to version **4.3rc8**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -138,6 +138,15 @@ Bug Fixes
    ``sorted(iterable=...)`` or ``zip(iterables=...)``, were not rejected
    like CPython does.
 
+-  Fix, ``getattr(obj, name, default)`` returned the default for any
+   exception raised by the attribute lookup and left other exceptions
+   set, which could later surface as a ``SystemError`` from an unrelated
+   call, and now only an ``AttributeError`` gives the default.
+
+-  Fix, return exits were generated for functions and outlines whose
+   returns cannot complete, e.g. inside a ``finally`` block that raises,
+   which is now determined with a ``mayReturn`` check first.
+
 -  **Python 2:** Fix, class bodies gave the internal line number in
    tracebacks instead of the class statement line that CPython reports.
 
@@ -167,6 +176,11 @@ Bug Fixes
 -  **Python 3.7+:** Fix, namespace packages did not set ``__file__`` to
    ``None`` like CPython does since that version, which could make
    detecting namespace packages already loaded at compile time differ.
+
+-  **Python 3.7+:** Fix, the UTF-8 mode is now auto-enabled for the
+   ``C`` and ``POSIX`` locales like CPython does, avoiding broken
+   non-ASCII paths there, and command line arguments are decoded with
+   surrogate handling.
 
 -  **Python 3.8+:** Fix, assignment expressions inside generator
    expressions bound their target in the module when the enclosing
@@ -400,6 +414,10 @@ Package Support
 -  **Standalone:** Added support for the ``wirerope`` package, working
    around compiled function type checks using anti-bloat replacements.
 
+-  **Standalone:** Fix, the ``imgui_bundle`` GLFW backend used a
+   different GLFW library than the ``glfw`` package, and three copies of
+   it were included, now the one needed library is shared by both.
+
 -  **Plugins:** Fix, the ``PySide6`` ``singleShot`` timer workaround
    protected the wrong argument when called with more arguments,
    allowing the issue it is meant to avoid to occur. (Fixed in 4.2.1
@@ -448,8 +466,9 @@ New Features
 
 -  **Python 3.14:** Added source generation for many more constructs of
    ``__annotate__`` functions, e.g. all binary operators, set displays,
-   template strings, the ``abs`` and ``repr`` unary operations, built-in
-   references, and ``ctypes.CDLL``.
+   template strings, the ``abs`` and ``repr`` unary operations,
+   ``type(x)`` calls, built-in references including anonymous ones like
+   ``NoneType`` or ``function``, and ``ctypes.CDLL``.
 
 -  **Python 3.15:** Pronounced Python 3.15 as partially supported.
 
@@ -503,6 +522,15 @@ New Features
    runtime, by setting the ``NUITKA_SPLASH_SCREEN`` environment variable
    to ``0`` or ``off``, e.g. for automated tests, with the application
    side dismissal of the splash screen still working.
+
+-  **AIX:** Added the ``xcoff_obj`` resource mode, generating XCOFF64
+   object files with the constants blob directly instead of C source
+   arrays, which avoids the size limits of the ``code`` mode, and can be
+   selected with the ``NUITKA_RESOURCE_MODE`` environment variable.
+
+-  **UI:** Made the ``--main-entry-point`` option usable without
+   ``--project``, requiring a project name for the output naming and
+   making sure the entry point module is included.
 
 Optimization
 ============
@@ -614,6 +642,11 @@ Optimization
 -  Incomplete loop variables are now resolved in the same optimization
    pass that discovered them, avoiding an unnecessary extra full pass.
 
+-  **Scons:** Large data blobs on ``x86_64`` Linux now use the medium
+   code model and large data sections for the ``incbin`` and ``linker``
+   resource modes, so blobs beyond the 2 GB range of the small code
+   model no longer give relocation errors.
+
 Anti-Bloat
 ==========
 
@@ -712,6 +745,23 @@ Organizational
 -  **Coverage:** Publishing coverage data now copies the files into the
    coverage directory directly, since the CI does the uploading, instead
    of the previous ``scp`` transfer.
+
+-  **Debugging:** Added the ``keep-dependency-walker-files``
+   experimental option, which keeps the output and configuration files
+   of the Dependency Walker on Windows for inspection instead of
+   deleting them.
+
+-  **UI:** On non-glibc Linux, e.g. musl based systems, importing
+   extension modules from a statically linked binary, e.g. with
+   ``-static``, now gives a ``RuntimeError`` explaining that dynamic
+   loading is not supported, instead of the low level "Dynamic loading
+   not supported" error, and this can be disabled with
+   ``--no-deployment-flag=static-extension-loading``.
+
+-  **Watch:** Added the ``--accept-pypi-bumps`` option, which accepts
+   version bumps of existing packages in ``Pipfile.lock`` files and
+   related report changes for PyPI updates, while newly added or removed
+   packages remain in the diff for review.
 
 Tests
 =====
