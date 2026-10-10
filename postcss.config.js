@@ -71,7 +71,7 @@ module.exports = {
 
 		require("autoprefixer"),
 
-		require("@fullhuman/postcss-purgecss").default({
+		require("@fullhuman/postcss-purgecss")({
 			content: ["output/**/*.html"],
 			safelist: [
 				// Font Awesome classes
