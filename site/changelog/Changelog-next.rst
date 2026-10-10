@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.3rc9**.
+It currently covers changes up to version **4.3rc10**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -35,12 +35,13 @@ Bug Fixes
 =========
 
 -  Fix, comparisons and add or subtract operations of Python ``long``
-   values with C ``long`` operands could produce wrong results. (Fixed
-   in 4.2.1 already.)
+   values with C ``long`` operands could produce incorrect results.
+   (Fixed in 4.2.1 already.)
 
 -  **Python 3.14:** Fix, deferred annotations did not work with hard
    import names, e.g. ``io.BytesIO``, since those were unnecessarily
-   generated as ``__import__`` calls. (Fixed in 4.2.1 already.)
+   generated as ``__import__`` calls, now we detect the need for it.
+   (Fixed in 4.2.1 already.)
 
 -  **Python 3.14:** Fix, the
    ``--devel-no-bytecode-to-compiled-fallback`` option was not honored
@@ -66,13 +67,13 @@ Bug Fixes
    subclass instances were rejected, since the check compared the exact
    type instead of allowing subclasses. (Fixed in 4.2.2 already.)
 
--  **Windows:** Fix, MSYS2 builds now link the compiler runtime
-   statically, avoiding a runtime dependency on e.g.
+-  **Windows:** Fix, the ``MinGW`` variant of **MSYS2** now links the
+   compiler runtime statically, avoiding a runtime dependency on e.g.
    ``libwinpthread-1.dll``, which also fixes module mode requiring that
    DLL. (Fixed in 4.2.2 already.)
 
--  **MSYS2:** Fix, adapting Python header files did not work on that
-   flavor yet. (Fixed in 4.2.2 already.)
+-  **Windows:** Fix, adapting Python header files did not work on
+   ``MinGW`` variant of **MSYS2** yet. (Fixed in 4.2.2 already.)
 
 -  **macOS:** Fix, newer Xcode versions only ship tools like
    ``install_name_tool``, ``lipo``, ``nm``, and ``otool`` as ARM64
@@ -86,19 +87,21 @@ Bug Fixes
    (Fixed in 4.2.2 already.)
 
 -  **Installer:** Fix, Linux installer creation crashed in onefile mode,
-   now informs the user that ``--mode=app-dist`` (or
-   ``--mode=standalone``) mode is required. (Fixed in 4.2.2 already.)
+   which it is not designed for, now informs the user that
+   ``--mode=app-dist`` (or ``--mode=standalone``) mode is required.
+   (Fixed in 4.2.2 already.)
 
 -  Fix, when outline functions were removed, e.g. class bodies that
-   raise, the variable tracing was not undone, so the value traces could
-   be inconsistent, this is now reversed properly.
+   raise, the variable tracing for them was not properly undone, so the
+   value traces could become inconsistent.
 
 -  Fix, cloned outline functions did not copy the variables they take
-   from the enclosing scope, so the clones could lack closure variables.
+   from the enclosing scope, so the clones could lack closure variables,
+   if they got removed in the other variant.
 
 -  Fix, the context manager for directory changes only restored the
    previous directory on success, now it does so also on errors, which
-   the ``nuitka-watch`` tool depends on.
+   the ``nuitka-watch`` tool pip retries depends on.
 
 -  Fix, recursion decisions for modules restored from the bytecode cache
    could differ from a cold cache, since the excluded module names were
@@ -106,24 +109,26 @@ Bug Fixes
 
 -  Fix, temporary variable names in cloned outline functions, e.g. from
    comprehensions in ``finally`` blocks, could collide with the ones of
-   the original, giving wrong results.
+   the original, giving wrong results potentially.
 
--  Fix, async generator expressions had a code object kind of a plain
-   generator, which could give incorrect behavior for them.
+-  Fix, async generator expressions had a code object kind matching that
+   of a plain generator, which could give incorrect behavior for them.
 
--  Fix, the generator heap space was limited to a hard coded 1024 bytes,
-   which could overflow and crash for very complex generators, now the
-   exact needed size is captured, which also reduces context memory for
-   running generators.
+-  Fix, the generator heap space using for storing temporary values
+   during ``yield`` was limited to a hard coded 1024 bytes, which could
+   overflow and crash for very complex generators, now the exact needed
+   size is captured, which also reduces context memory for most running
+   generators.
 
 -  Fix, dictionaries put into containers were not escaped, so mutating a
    constant dictionary through the container could corrupt compile time
-   decisions made for it.
+   decisions made for it, if they got modified through the container
+   access.
 
 -  Fix, ``visitTree`` recursed once per node, so very deep node trees
    could exceed the Python recursion limit and raise ``RecursionError``
    during finalization, variable closure and inlining, they are now
-   visited iteratively, which is also a lot faster.
+   visited iteratively.
 
 -  Fix, the traceback of exceptions thrown into not yet started
    generators, coroutines, and async generators was not preserved, the
@@ -151,6 +156,29 @@ Bug Fixes
    a ``finally`` block or context manager exit that raises, were not
    released and leaked, and now the exception exits release them,
    including breaks and continues from return handlers.
+
+-  Fix, extra directories from the ``global-sys-path`` package
+   configuration were only registered late, so packages they enable
+   could be cached as not found by other modules, they are now added as
+   soon as the providing module is recursed, with import caches flushed
+   when new paths are added.
+
+-  Fix, build time imports for compile time computations, e.g. metadata,
+   could import a different module than the one Nuitka found for the
+   build, or none at all when it is only in a directory Nuitka knows,
+   now the containing directory of the found module is temporarily
+   prepended to ``sys.path``.
+
+-  Fix, compile time results of ``importlib.metadata.entry_points`` had
+   no truth value, so an empty result was considered true, and branches
+   on it were taken unexpectedly, they now know their truth value from
+   their contents.
+
+-  Fix, distribution metadata, e.g. included with ``include-metadata``,
+   was bound only to the first top-level package and silently dropped
+   when that one was not included, now any included package of the
+   distribution can serve that purpose, and metadata of a distribution
+   without any included package gives an explicit error.
 
 -  **Python 2:** Fix, class bodies gave the internal line number in
    tracebacks instead of the class statement line that CPython reports.
@@ -301,6 +329,18 @@ Bug Fixes
    copied were dereferenced, now they are copied after the files, so
    their targets are present and the links can be preserved.
 
+-  **Standalone:** Fix, DLLs used by ``openvino`` and ``av`` were
+   duplicated when they were already included through their package, and
+   could then be found instead of the package directory one, where
+   OpenVINO discovers its frontends and plugins, and versioned shared
+   libraries like ``libopenvino.so.2503`` are no longer included from
+   data file directories.
+
+-  **Standalone:** Fix, shared libraries next to the main script or in
+   directories added with ``global-sys-path`` were dropped when reducing
+   the used DLLs, now these program directories are considered part of
+   the search path and kept.
+
 -  **Reports:** Fix, plugin report data was silently discarded, since
    the report generation did not use the key/value pairs and swallowed
    all errors, it is now included and validated.
@@ -319,6 +359,11 @@ Bug Fixes
 
 -  **Windows:** Fix, the increased stack size was not applied to onefile
    DLL mode, as it was only done in EXE mode.
+
+-  **Windows:** Fix, some non-ASCII DBCS paths cannot be handled by
+   Dependency Walker, which would then not find dependencies in them,
+   and the ``pefile`` based tool is now used for affected binaries
+   instead, with a warning given once.
 
 -  **MSYS2:** Fix, normalized paths were missing in plugin and DLL
    handling, e.g. for the ``pywin32`` system directory and ``glfw``
@@ -449,6 +494,22 @@ Package Support
    e.g. conda-forge, which call ``PyFunction_GetDefaults``, with cached
    wrappers now used when a probe detects this issue.
 
+-  **Plugins:** Fix, the ``torch`` config module detection only matched
+   exact ``config`` and ``_config`` names, missing modules like
+   ``torch._inductor.config_comms``, whose ``_compile_ignored_keys``
+   were then left unhandled.
+
+-  **Plugins:** Fix, the ``torch.jit`` plugin missed ``script_method``
+   uses, and ``script`` or ``script_method`` used as decorators without
+   a call, so modules using these forms were not handled.
+
+-  **Plugins:** The ``source-inclusion`` plugin now records source files
+   by intercepting ``linecache.getlines`` during the probe run, so that
+   ``inspect.getsource``, ``inspect.getsourcelines``, and
+   ``inspect.findsource`` all work, its probe timeout defaults to no
+   timeout, and plugin cache contribution values no longer need to
+   include the plugin name.
+
 New Features
 ============
 
@@ -540,6 +601,12 @@ New Features
 -  **UI:** Made the ``--main-entry-point`` option usable without
    ``--project``, requiring a project name for the output naming and
    making sure the entry point module is included.
+
+-  **Plugins:** Package configuration merging now works for all
+   sections, extending lists and updating mappings, so user
+   configurations can extend the standard configuration of a module,
+   with only mismatching entry types giving an error that names the
+   module and section.
 
 Optimization
 ============
@@ -656,6 +723,10 @@ Optimization
    resource modes, so blobs beyond the 2 GB range of the small code
    model no longer give relocation errors.
 
+-  The tree visiting now uses an iterative traversal rather than
+   recursion, which saves a large part of the time spent on the visiting
+   mechanics and speeds up the optimizations overall.
+
 Anti-Bloat
 ==========
 
@@ -723,8 +794,8 @@ Organizational
 
 -  **Debian:** The package builder image script now uses archive URLs
    for old Debian and Ubuntu releases, trusts the expired ``jessie``
-   archive key explicitly, and includes ``aptitude`` needed for the
-   dependency resolution of pbuilder.
+   archive key explicitly, and includes ``aptitude`` and
+   ``build-essential`` needed for the dependency resolution of pbuilder.
 
 -  **Quality:** The pre-push hook now allows downloads for the
    ``pylint`` checks, like the formatting checks already do.
@@ -778,6 +849,9 @@ Organizational
    detection disabled by default for the compiled program, since Python
    and third party libraries intend to leak, and it can be enabled with
    ``ASAN_OPTIONS=detect_leaks=1``.
+
+-  **Quality:** Suppressed more warnings for the ``clangd`` LSP, e.g.
+   unused includes and internal undefined references in C code.
 
 Tests
 =====
