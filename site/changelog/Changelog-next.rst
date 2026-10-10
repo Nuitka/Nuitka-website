@@ -150,12 +150,13 @@ Bug Fixes
 
 -  Fix, return exits were generated for functions and outlines whose
    returns cannot complete, e.g. inside a ``finally`` block that raises,
-   which is now determined with a ``mayReturn`` check first.
+   which is now determined with a ``mayReturn`` check first. This avoids
+   dead code generated, that the C compiler might warn about.
 
 -  Fix, return values that were prevented from an actual return, e.g. by
-   a ``finally`` block or context manager exit that raises, were not
-   released and leaked, and now the exception exits release them,
-   including breaks and continues from return handlers.
+   a ``finally`` block or context manager exit that raises, were leaked,
+   and now the exception exits release them, including breaks and
+   continues from return handlers.
 
 -  Fix, extra directories from the ``global-sys-path`` package
    configuration were only registered late, so packages they enable
@@ -164,15 +165,14 @@ Bug Fixes
    when new paths are added.
 
 -  Fix, build time imports for compile time computations, e.g. metadata,
-   could import a different module than the one Nuitka found for the
-   build, or none at all when it is only in a directory Nuitka knows,
-   now the containing directory of the found module is temporarily
-   prepended to ``sys.path``.
+   could import a different module than the import scan found for the
+   build, or even none at all when it is only in a directory the import
+   scan knows, now the containing directory of the found module is
+   temporarily prepended to ``sys.path`` making sure it matches.
 
 -  Fix, compile time results of ``importlib.metadata.entry_points`` had
-   no truth value, so an empty result was considered true, and branches
-   on it were taken unexpectedly, they now know their truth value from
-   their contents.
+   truth value for empty result, and as a result branches checking that
+   were taken unexpectedly.
 
 -  Fix, distribution metadata, e.g. included with ``include-metadata``,
    was bound only to the first top-level package and silently dropped
@@ -436,8 +436,10 @@ Bug Fixes
    longer needs to be added as a data file, which was conflicting with
    the DLL.
 
--  **OpenBSD:** Added support for getting the binary path on OpenBSD 8
-   using the ``getexecpath`` function intended for that.
+-  **Scons:** Large data blobs on ``x86_64`` Linux now use the medium
+      code model and large data sections for the ``incbin`` and
+      ``linker`` resource modes, so blobs beyond the 2 GB range of the
+      small code model no longer give relocation errors.
 
 Package Support
 ===============
@@ -513,11 +515,15 @@ Package Support
 New Features
 ============
 
--  **Python 3.13:** Added a "FrameLocalsProxy" implementation, with
-   frame locals of compiled functions now held in a C struct that the
-   frame can point at, and available for all scopes with
-   ``--experimental=force-locals-frame-proxy``, where the proxy is a
-   write-through mapping, coming with a performance penalty.
+-  **Python 3.15:** Pronounce Python 3.15 as experimentally supported.
+
+-  **Python 3.13:** Added a compatible frames locals proxy
+   implementation, with frame locals of compiled functions now held in a
+   C struct that the frame can point at, and available for all scopes
+   with ``--experimental=force-locals-frame-proxy``, where the proxy is
+   a write-through mapping, but coming with a performance penalty. We
+   want to only selectively enable that for functions known to need it
+   in future releases.
 
 -  **Python 3.14:** Added source generation for function calls and more
    hard import types for ``__annotate__`` functions. (Added in 4.2.1
@@ -539,12 +545,6 @@ New Features
    template strings, the ``abs`` and ``repr`` unary operations,
    ``type(x)`` calls, built-in references including anonymous ones like
    ``NoneType`` or ``function``, and ``ctypes.CDLL``.
-
--  **Python 3.15:** Pronounced Python 3.15 as partially supported.
-
--  **Python 3.15:** Added support for unpacking in comprehensions, e.g.
-   ``[*i for i in values]`` and ``{**d for d in mappings}``, including
-   the async variants.
 
 -  **Python 3.15:** Added support for the new ``frozendict`` type as a
    constant, including optimization of its constant values, where deep
@@ -627,9 +627,6 @@ Optimization
    subscript access instead of the iterator protocol, making e.g. ``a, b
    = some_tuple`` a lot faster, with starred unpacking to follow once
    this has proven stable.
-
--  The ``io.open`` built-in is now treated like ``open``, so that file
-   tracing for embedded data files applies to it as well.
 
 -  Loop value traces now detect identity stability of values, enabling
    more optimizations, and when the loop analysis gives up, the continue
@@ -718,14 +715,14 @@ Optimization
 -  Incomplete loop variables are now resolved in the same optimization
    pass that discovered them, avoiding an unnecessary extra full pass.
 
--  **Scons:** Large data blobs on ``x86_64`` Linux now use the medium
-   code model and large data sections for the ``incbin`` and ``linker``
-   resource modes, so blobs beyond the 2 GB range of the small code
-   model no longer give relocation errors.
+-  ``visitTree`` now uses an iterative traversal rather than recursion,
+   which saves a large part of the time spent on the visiting mechanics
+   and speeds up the optimizations overall.
 
--  The tree visiting now uses an iterative traversal rather than
-   recursion, which saves a large part of the time spent on the visiting
-   mechanics and speeds up the optimizations overall.
+-  The ``io.open`` built-in is now treated like ``open``.
+
+-  **OpenBSD:** Added support for getting the binary path on OpenBSD 8
+   using the ``getexecpath`` function intended for that.
 
 Anti-Bloat
 ==========
@@ -781,8 +778,8 @@ Organizational
    them, making it easier to identify scalability problems.
 
 -  **Quality:** The private pip space is now usable with multiple
-   site-packages layouts, e.g. from different Python installations of
-   it, considering all of them instead of refusing.
+   ``site-packages`` layouts, e.g. from different Python installations
+   of it, considering all of them instead of refusing.
 
 -  **UI:** Added the ``--pgo-json`` option to write the PGO input file
    contents as JSON for debugging and testing, and the
@@ -850,8 +847,9 @@ Organizational
    and third party libraries intend to leak, and it can be enabled with
    ``ASAN_OPTIONS=detect_leaks=1``.
 
--  **Quality:** Suppressed more warnings for the ``clangd`` LSP, e.g.
-   unused includes and internal undefined references in C code.
+-  **Quality:** Suppressed or solved more warnings for the ``clangd``
+   LSP, e.g. unused includes and internal undefined references in C
+   code.
 
 Tests
 =====
