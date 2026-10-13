@@ -96,6 +96,20 @@ class ChangelogGenerator:
     def is_hotfix_format(self, version: str) -> bool:
         return bool(re.match(r"^\d+\.\d+\.\d+$", version))
 
+    def _refExists(self, ref: str) -> bool:
+        """Check if a git reference resolves to a commit."""
+        try:
+            subprocess.run(
+                ["git", "rev-parse", "--verify", "--quiet", f"{ref}^{{commit}}"],
+                cwd=self.repo_dir,
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            return True
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            return False
+
     def getHotfixRange(self) -> str:
         """Calculate the git log range based on the hotfix version."""
         match = re.match(r"^(\d+)\.(\d+)\.(\d+)$", self.target_version)
@@ -110,7 +124,27 @@ class ChangelogGenerator:
             previous_version = f"{major}.{minor}"
         else:
             previous_version = f"{major}.{minor}.{patch - 1}"
-        return f"{previous_version}..{self.target_version}"
+
+        if self._refExists(f"refs/tags/{self.target_version}"):
+            end_ref = self.target_version
+        else:
+            hotfix_branch = f"hotfix/{self.target_version}"
+            if self._refExists(f"refs/heads/{hotfix_branch}"):
+                print(
+                    f"Tag '{self.target_version}' is not set yet, using branch '{hotfix_branch}' instead."
+                )
+                end_ref = hotfix_branch
+            else:
+                end_ref = self.find_commit_for_version(self.target_version)
+                if not end_ref:
+                    sys.exit(
+                        f"Error: Neither tag '{self.target_version}' nor branch '{hotfix_branch}' exists in '{self.repo_dir}'."
+                    )
+                print(
+                    f"Tag '{self.target_version}' and branch '{hotfix_branch}' are missing, using commit {end_ref} that set the version instead."
+                )
+
+        return f"{previous_version}..{end_ref}"
 
     def getDevelopRange(self) -> str:
         """Calculate the git log range for develop/pre-release mode."""
@@ -163,7 +197,7 @@ class ChangelogGenerator:
         output = self._runGitCommand(cmd)
         if not output:
             return []
-        return output.split(f"\n{self.delimiter}\n")
+        return ("\n" + output).split(f"\n{self.delimiter}\n")
 
     def processCommits(self) -> List[str]:
         # Determine mode
