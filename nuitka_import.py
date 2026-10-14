@@ -42,8 +42,12 @@ def _updateCheckout(branch, update):
         )
 
         # Install the commit hooks
-        subprocess.run(["./Nuitka-develop/misc/install-git-hooks.py"], check=True)
+        subprocess.run(
+            ["./Nuitka-develop/misc/install-git-hooks.py", "--no-codespell"],
+            check=True,
+        )
         shutil.copy("./Nuitka-develop/.git/hooks/pre-commit", ".git/hooks/pre-commit")
+        shutil.copy("./Nuitka-develop/.git/hooks/pre-push", ".git/hooks/pre-push")
 
         # Now we can drop the .git to make sure it doesn't confuse anything.
         shutil.rmtree("./Nuitka-develop/.git")
