@@ -43,6 +43,6 @@ not working for your use case, is not grounds for a refund.
 
 For questions about this policy, contact:
 
-   **Kay Hayen** — kay@nuitka.net
+   **Kay Hayen** - kay@nuitka.net
 
 *Last updated: July 2025*

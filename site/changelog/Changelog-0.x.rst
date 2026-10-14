@@ -1,7 +1,7 @@
 :orphan:
 
 ####################
- Releases 0.1 — 0.9
+ Releases 0.1 - 0.9
 ####################
 
 .. include:: ../changelog/changes-hub.inc

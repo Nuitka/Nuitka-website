@@ -1,5 +1,5 @@
 .. meta::
-   :description: Nuitka Commercial privacy policy — how we collect and handle user data.
+   :description: Nuitka Commercial privacy policy - how we collect and handle user data.
    :keywords: privacy,policy,data,protection,gdpr,commercial,nuitka
 
 ################
@@ -38,8 +38,8 @@ update notifications:
    OS installation) will be transmitted to verify that a license is used
    within its permitted scope and to correlate update check requests.
 
-No other information — such as your source code, compiled binaries, file
-names, project configurations, or any personal data — will ever be
+No other information - such as your source code, compiled binaries, file
+names, project configurations, or any personal data - will ever be
 transmitted automatically.
 
 .. note::
@@ -54,10 +54,10 @@ transmitted automatically.
 The data described above is collected exclusively for the following
 purposes:
 
--  **License validation** — ensuring that a Nuitka Commercial license is
+-  **License validation** - ensuring that a Nuitka Commercial license is
    valid and used within its permitted terms.
 
--  **Update notifications** — informing users when a newer version of
+-  **Update notifications** - informing users when a newer version of
    Nuitka Commercial is available.
 
 Abbreviated IP addresses and machine identifiers are stored only for the
@@ -69,7 +69,7 @@ within a reasonable timeframe (no longer than 90 days).
 ********************
 
 For users in the European Economic Area, the legal basis for the planned
-processing is **Article 6(1)(b) GDPR** — processing necessary for the
+processing is **Article 6(1)(b) GDPR** - processing necessary for the
 performance of a contract (the commercial license agreement between you
 and Nuitka Services).
 
@@ -96,7 +96,7 @@ Under applicable data protection laws, you have the right to:
 
 For any privacy-related inquiries, please contact:
 
-   **Kay Hayen** — kay@nuitka.net
+   **Kay Hayen** - kay@nuitka.net
 
 ************************
  Changes to This Policy

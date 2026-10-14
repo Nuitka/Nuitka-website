@@ -39,7 +39,7 @@ XP**, provided your program does the same when run directly with
 **Nuitka Commercial** cannot make your program work on an older OS if it
 does not already work there. For example:
 
--  **Qt6** requires at least a recent **Windows 10** version — no
+-  **Qt6** requires at least a recent **Windows 10** version - no
    version of Qt6 runs on Windows 7 or XP. Compiling with an older
    toolchain does not help.
 

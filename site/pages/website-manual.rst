@@ -245,7 +245,7 @@ use to streamline our collaboration on the **Nuitka website**.
 Sphinx
 ======
 
-The **Nuitka website** is powered by **Sphinx** — a documentation
+The **Nuitka website** is powered by **Sphinx** - a documentation
 generation tool widely used in the software development community. We
 use **Sphinx** to render user-friendly web pages for Nuitka, which you
 are looking at. To get more details about Sphinx, see `Sphinx
