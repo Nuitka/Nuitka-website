@@ -153,6 +153,27 @@ def get_svg_content(svg_path):
     return SVG_CACHE[svg_path]
 
 
+def _applyFontSizeFromStyle(svg_element, style_value):
+    start = style_value.find("font-size")
+    end = style_value.find(";", start)
+
+    if end == -1:
+        end = len(style_value)
+
+    font_size = style_value[start:end].split(":", 1)[1].strip()
+    font_size_value = re.search(r"\d+", font_size).group()
+
+    svg_element.set("width", font_size_value)
+    svg_element.set("height", font_size_value)
+
+
+def _applyFontAwesomeClasses(svg_element, element):
+    class_attr = svg_element.get("class", element.get("class", ""))
+    class_list = class_attr.split()
+    class_list = [FA_REPLACEMENT_CLASS.get(cl, cl) for cl in class_list]
+    svg_element.set("class", " ".join(class_list))
+
+
 def add_inline_svg(
     element, svg_path, is_fa_icon=False, style_folder=None, icon_name=None
 ):
@@ -188,29 +209,14 @@ cp ../fontawesome-pro-7.2.0-web/svgs/{style_folder}/{icon_name}.svg {svg_path}""
 
         # For cases when we are using font-size as width like we do in the arrow icon
         if attr == "style" and "font-size" in value:
-            start = value.find("font-size")
-            end = value.find(";", start)
-
-            if end == -1:
-                end = len(value)
-
-            font_size = value[start:end].split(":", 1)[1].strip()
-            font_size_value = re.search(r"\d+", font_size).group()
-
-            svg_element.set("width", font_size_value)
-            svg_element.set("height", font_size_value)
+            _applyFontSizeFromStyle(svg_element, value)
 
             continue
 
         svg_element.set(attr, element.get(attr))
 
-    attrs = dict(svg_element.attrib)
-
-    if is_fa_icon and "width" not in attrs:
-        class_attr = svg_element.get("class", element.get("class", ""))
-        class_list = class_attr.split()
-        class_list = [FA_REPLACEMENT_CLASS.get(cl, cl) for cl in class_list]
-        svg_element.set("class", " ".join(class_list))
+    if is_fa_icon and "width" not in svg_element.attrib:
+        _applyFontAwesomeClasses(svg_element, element)
 
     parent = element.getparent()
     tail = element.tail
@@ -562,127 +568,103 @@ def _fetchObsDownloadVersions():
     return obs_versions
 
 
-def _renderDownloadPageFiles(max_pre_release, max_stable_release, obs_versions):
-    plain_prerelease = _makePlainReleaseVersion(max_pre_release)
-    plain_stable = _makePlainReleaseVersion(max_stable_release)
+def _makeVersionText(version):
+    return f"""Nuitka {version.split("-", 1)[0]}"""
 
-    website_logger.info(
-        "Max pre-release is %s %s " % (max_pre_release, plain_prerelease)
+
+def _makeRepoLinkText(repo_name):
+    return (
+        "`repository file <https://download.opensuse.org/repositories/"
+        f"home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"
     )
-    website_logger.info(
-        "Max stable release is %s %s " % (max_stable_release, plain_stable)
-    )
 
-    fedora_rpm = obs_versions["fedora"]
-    centos_rpm = obs_versions["centos"]
-    rhel_rpm = obs_versions["rhel"]
-    opensuse_rpm = obs_versions["opensuse"]
-    sle_rpm = obs_versions["sle"]
 
-    def makeFedoraText(fedora_number, release):
-        version = fedora_rpm[release, fedora_number]
-
-        return f"""Nuitka {version.split("-", 1)[0]}"""
-
-    def makeCentOSText(centos_number, release):
-        version = centos_rpm[release, centos_number]
-
-        return f"""Nuitka {version.split("-", 1)[0]}"""
-
-    def makeRHELText(rhel_number, release):
-        version = rhel_rpm[release, rhel_number]
-
-        return f"""Nuitka {version.split("-", 1)[0]}"""
-
-    def makeLeapText(leap_number, release):
-        version = opensuse_rpm[release, leap_number]
-
-        return f"""Nuitka {version.split("-", 1)[0]}"""
-
-    def makeVersionText(version):
-        return f"""Nuitka {version.split("-", 1)[0]}"""
-
-    def makeRepoLinkText(repo_name):
-        return f"""`repository file <https://download.opensuse.org/repositories/home:/kayhayen/{repo_name}/home:kayhayen.repo>`__"""
-
+def _makeFedoraTable(fedora_rpm):
     fedora_versions = sorted(
         {fedora_number for _release, fedora_number in fedora_rpm}, reverse=True
     )
     fedora_data = [
         (
             f"Fedora {fedora_number}",
-            makeRepoLinkText(f"Fedora_{fedora_number}"),
-            makeFedoraText(fedora_number, "stable"),
-            makeFedoraText(fedora_number, "develop"),
+            _makeRepoLinkText(f"Fedora_{fedora_number}"),
+            _makeVersionText(fedora_rpm["stable", fedora_number]),
+            _makeVersionText(fedora_rpm["develop", fedora_number]),
         )
         for fedora_number in fedora_versions
     ]
 
-    fedora_table = makeTable(
+    return makeTable(
         [["Fedora Version", "RPM Repository", "Stable", "Develop"]] + fedora_data
     )
 
+
+def _makeCentosTable(centos_rpm):
     centos_data = [
         (
             f"CentOS {centos_number}",
-            makeRepoLinkText(
+            _makeRepoLinkText(
                 "CentOS_CentOS-6" if centos_number == 6 else f"CentOS_{centos_number}"
             ),
-            makeCentOSText(centos_number, "stable"),
-            makeCentOSText(centos_number, "develop"),
+            _makeVersionText(centos_rpm["stable", centos_number]),
+            _makeVersionText(centos_rpm["develop", centos_number]),
         )
         for centos_number in sorted(
             {centos_number for _release, centos_number in centos_rpm}, reverse=True
         )
     ]
 
-    centos_table = makeTable(
+    return makeTable(
         [["CentOS Version", "RPM Repository", "Stable", "Develop"]] + centos_data
     )
 
+
+def _makeRhelTable(rhel_rpm):
     rhel_versions = sorted(
         {rhel_number for _release, rhel_number in rhel_rpm}, reverse=True
     )
     rhel_data = [
         (
             f"RHEL {rhel_number}",
-            makeRepoLinkText("RedHat_RHEL-%d" % rhel_number),
-            makeRHELText(rhel_number, "stable"),
-            makeRHELText(rhel_number, "develop"),
+            _makeRepoLinkText("RedHat_RHEL-%d" % rhel_number),
+            _makeVersionText(rhel_rpm["stable", rhel_number]),
+            _makeVersionText(rhel_rpm["develop", rhel_number]),
         )
         for rhel_number in rhel_versions
     ]
 
-    rhel_table = makeTable(
+    return makeTable(
         [["RHEL Version", "RPM Repository", "Stable", "Develop"]] + rhel_data
     )
 
-    leap_minors = sorted({leap_minor for _release, leap_minor in opensuse_rpm})
+
+def _makeSuseTable(opensuse_rpm, sle_rpm):
     suse_data = [
         (
             f"openSUSE Leap 15.{leap_minor}",
-            makeRepoLinkText(f"openSUSE_Leap_15.{leap_minor}"),
-            makeLeapText(leap_minor, "stable"),
-            makeLeapText(leap_minor, "develop"),
+            _makeRepoLinkText(f"openSUSE_Leap_15.{leap_minor}"),
+            _makeVersionText(opensuse_rpm["stable", leap_minor]),
+            _makeVersionText(opensuse_rpm["develop", leap_minor]),
         )
-        for leap_minor in leap_minors
+        for leap_minor in sorted({leap_minor for _release, leap_minor in opensuse_rpm})
     ]
 
     suse_data.insert(
         0,
         (
             "SLE 15",
-            makeRepoLinkText("SLE_15"),
-            makeVersionText(sle_rpm["stable", 15]),
-            makeVersionText(sle_rpm["develop", 15]),
+            _makeRepoLinkText("SLE_15"),
+            _makeVersionText(sle_rpm["stable", 15]),
+            _makeVersionText(sle_rpm["develop", 15]),
         ),
     )
 
-    suse_table = makeTable(
+    return makeTable(
         [["SUSE Version", "RPM Repository", "Stable", "Develop"]] + suse_data
     )
 
-    source_table = makeTable(
+
+def _makeSourceTable(plain_prerelease, plain_stable):
+    return makeTable(
         [["Branch", "zip", "tar.gz", "tar.bz2"]]
         + [
             (
@@ -700,6 +682,8 @@ def _renderDownloadPageFiles(max_pre_release, max_stable_release, obs_versions):
         ]
     )
 
+
+def _writeDynamicInc(plain_stable):
     major, minor = plain_stable.split(".")[:2]
     major = int(major)
     minor = int(minor)
@@ -728,16 +712,30 @@ def _renderDownloadPageFiles(max_pre_release, max_stable_release, obs_versions):
 """ % (plain_stable, plain_stable_minor, plain_stable_next),
         )
 
+
+def _renderDownloadPageFiles(max_pre_release, max_stable_release, obs_versions):
+    plain_prerelease = _makePlainReleaseVersion(max_pre_release)
+    plain_stable = _makePlainReleaseVersion(max_stable_release)
+
+    website_logger.info(
+        "Max pre-release is %s %s " % (max_pre_release, plain_prerelease)
+    )
+    website_logger.info(
+        "Max stable release is %s %s " % (max_stable_release, plain_stable)
+    )
+
+    _writeDynamicInc(plain_stable)
+
     with withFileOpenedAndAutoFormatted("site/doc/fedora-downloads.inc") as output_file:
-        output_file.write(fedora_table)
+        output_file.write(_makeFedoraTable(obs_versions["fedora"]))
     with withFileOpenedAndAutoFormatted("site/doc/centos-downloads.inc") as output_file:
-        output_file.write(centos_table)
+        output_file.write(_makeCentosTable(obs_versions["centos"]))
     with withFileOpenedAndAutoFormatted("site/doc/rhel-downloads.inc") as output_file:
-        output_file.write(rhel_table)
+        output_file.write(_makeRhelTable(obs_versions["rhel"]))
     with withFileOpenedAndAutoFormatted("site/doc/suse-downloads.inc") as output_file:
-        output_file.write(suse_table)
+        output_file.write(_makeSuseTable(obs_versions["opensuse"], obs_versions["sle"]))
     with withFileOpenedAndAutoFormatted("site/doc/source-downloads.inc") as output_file:
-        output_file.write(source_table)
+        output_file.write(_makeSourceTable(plain_prerelease, plain_stable))
 
 
 def updateDownloadPage():
@@ -1036,7 +1034,8 @@ def fixupSymbols(document_bytes):
             if found == 1:
                 if line:
                     raise ValueError(
-                        f"Malformed symbol definition for {symbol_name}: expected a blank line after its directive in site/variables.inc"
+                        f"Malformed symbol definition for {symbol_name}: expected a blank line "
+                        "after its directive in site/variables.inc"
                     )
                 found = 2
                 continue
@@ -1071,11 +1070,7 @@ _postcss_cache = {}
 _terser_cache = {}
 
 
-def _processWithNpmBuild(contents, script, suffix, cache, label):
-    """Generic processor for content via an npm script"""
-    if contents in cache:
-        return cache[contents]
-
+def _executeNpmBuildTool(contents, script, suffix, label):
     original_size = len(contents)
 
     with withTemporaryFile(suffix=suffix, mode="w", delete=False) as tmp_input:
@@ -1096,6 +1091,7 @@ def _processWithNpmBuild(contents, script, suffix, cache, label):
                 },
                 capture_output=True,
                 text=True,
+                check=False,
             )
         except OSError as e:
             raise AssetProcessingError(f"Unable to run {label} tool: {e}") from e
@@ -1116,18 +1112,30 @@ def _processWithNpmBuild(contents, script, suffix, cache, label):
             raise AssetProcessingError(
                 f"Unable to read {label} output from {tmp_output_path}: {e}"
             ) from e
-
-        cache[contents] = processed
-
-        processed_size = len(processed)
-        if original_size > 0 and verbose_mode:
-            reduction_percent = (original_size - processed_size) / original_size * 100
-            website_logger.info(
-                f"{label} reduced by {reduction_percent:.1f}% ({original_size} → {processed_size} bytes)"
-            )
     finally:
         deleteFile(tmp_input_path, must_exist=False)
         deleteFile(tmp_output_path, must_exist=False)
+
+    processed_size = len(processed)
+    if original_size > 0 and verbose_mode:
+        reduction_percent = (original_size - processed_size) / original_size * 100
+        website_logger.info(
+            f"{label} reduced by {reduction_percent:.1f}% ({original_size} → {processed_size} bytes)"
+        )
+
+    return processed
+
+
+def _processWithNpmBuild(contents, script, suffix, cache, label):
+    """Generic processor for content via an npm script"""
+    if contents in cache:
+        return cache[contents]
+
+    processed = _executeNpmBuildTool(
+        contents=contents, script=script, suffix=suffix, label=label
+    )
+
+    cache[contents] = processed
 
     return processed
 
@@ -1166,15 +1174,20 @@ _previous_hashes = {}
 
 
 def _loadPreviousHashes():
-    global _previous_hashes
+    _previous_hashes.clear()
+
     hash_file = HTML_MINIFIER_CACHE_DIR / "last_hashes.json"
-    if hash_file.exists():
-        try:
-            _previous_hashes = json.loads(
-                getFileContents(hash_file.as_posix(), mode="r", encoding="utf-8")
-            )
-        except (OSError, json.JSONDecodeError):
-            _previous_hashes = {}
+    if not hash_file.exists():
+        return
+
+    try:
+        hashes = json.loads(
+            getFileContents(hash_file.as_posix(), mode="r", encoding="utf-8")
+        )
+    except (OSError, json.JSONDecodeError):
+        return
+
+    _previous_hashes.update(hashes)
 
 
 def _savePreviousHashes(hashes):
@@ -1186,6 +1199,7 @@ def _savePreviousHashes(hashes):
 
 
 def _getHtmlMinifierVersion():
+    # Singleton, pylint: disable=global-statement
     global _html_minifier_version
     if _html_minifier_version is None:
         try:
@@ -1203,6 +1217,7 @@ def _getHtmlMinifierVersion():
 
 
 def _getHtmlMinifierCache():
+    # Singleton, pylint: disable=global-statement
     global _html_minifier_persistent_cache
     if _html_minifier_persistent_cache is not None:
         return _html_minifier_persistent_cache
@@ -1266,6 +1281,7 @@ def _minifyHtml(filename):
             env={**os.environ, "INPUT": filename},
             capture_output=True,
             text=True,
+            check=False,
         )
     except OSError as e:
         raise AssetProcessingError(f"Unable to run HTML minifier: {e}") from e
@@ -1296,6 +1312,9 @@ def _minifyHtml(filename):
 
 
 def handleJavaScript(filename, doc):
+    # Many cases of script tags to deal with,
+    # pylint: disable=too-many-branches,too-many-statements
+
     # Check copybutton.js
     has_highlight = doc.xpath("//div[@class='highlight']")
 
@@ -1387,7 +1406,7 @@ def handleJavaScript(filename, doc):
 
 
 def cleanBuildSVGs():
-    for dirpath, dirnames, filenames in os.walk("output/_images"):
+    for dirpath, _dirnames, filenames in os.walk("output/_images"):
         for filename in filenames:
             if not filename.endswith(".svg"):
                 continue
@@ -1398,6 +1417,9 @@ def cleanBuildSVGs():
 def runPostProcessing():
     # Compress the CSS and JS files into one file, clean up links, and
     # do other touch ups. spell-checker: ignore searchindex,searchtools
+    #
+    # Many processing steps are done for each document,
+    # pylint: disable=too-many-branches,too-many-locals,too-many-statements
 
     for delete_filename in (
         "searchindex.js",
@@ -1504,7 +1526,8 @@ def runPostProcessing():
 
                 current_hub_card.append(
                     html.fromstring(
-                        """<div class="hub-circle-button"><i class="fa fa-arrow-circle-right" aria-hidden="true" style="font-size: 25px;"></i></div>"""
+                        """<div class="hub-circle-button"><i class="fa fa-arrow-circle-right" """
+                        """aria-hidden="true" style="font-size: 25px;"></i></div>"""
                     )
                 )
 
@@ -2139,8 +2162,11 @@ When given, the rest files are updated and changelog is split into pages. Defaul
         "--release-post-date",
         dest="release_post_date",
         default=None,
-        help="""\
-Publication date to use for newly generated release posts, formatted as YYYY/MM/DD HH:MM. Existing posts keep their current metadata, and new posts default to the current UTC day when this option is omitted.""",
+        help=(
+            "Publication date to use for newly generated release posts, formatted as "
+            "YYYY/MM/DD HH:MM. Existing posts keep their current metadata, and new posts "
+            "default to the current UTC day when this option is omitted."
+        ),
     )
 
     parser.add_option(
@@ -2234,6 +2260,7 @@ When given, the site is deployed. Default %default.""",
 
     options, positional_args = parser.parse_args()
 
+    # Module level configuration, pylint: disable=global-statement
     global verbose_mode
     verbose_mode = options.verbose
 
