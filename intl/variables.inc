@@ -26,4 +26,4 @@
 
 .. |SUPPORTED_PYTHONS| replace::
 
-   **Python 3** (3.4 — |SUPPORTED_PYTHON_MAX|) and **Python 2** (2.6, 2.7)
+   **Python 3** (3.4 - |SUPPORTED_PYTHON_MAX|) and **Python 2** (2.6, 2.7)

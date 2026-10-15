@@ -18,6 +18,6 @@ through Stripe.
 
 For questions or issues with cancellation, contact:
 
-   **Kay Hayen** — kay@nuitka.net
+   **Kay Hayen** - kay@nuitka.net
 
 *Last updated: July 2025*

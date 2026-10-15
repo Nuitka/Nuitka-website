@@ -42,5 +42,5 @@ which lists CPython and Anaconda as supported.
 
 Use CPython, which is best supported and should give the best
 portability. It will work as well as the Windows App Store Python for
-you — under the hood it is the same code — but it is the official Python
+you - under the hood it is the same code - but it is the official Python
 distribution for Windows.

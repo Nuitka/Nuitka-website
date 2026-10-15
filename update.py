@@ -1746,7 +1746,7 @@ def runPostProcessing():
 
 
 def runDeploymentCommand():
-    # spell-checker: ignore doctrees,buildinfo,apidoc
+    # spell-checker: ignore apidoc,buildinfo,doctrees
 
     excluded = [
         # Build information from Sphinx

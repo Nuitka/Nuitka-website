@@ -5,7 +5,7 @@
 ##########################
 
 Currently, two packages have commercial-only support. These are
-exceptions, though — generally, support is included in standard Nuitka.
+exceptions, though - generally, support is included in standard Nuitka.
 Due to the relatively low price, no trials are available, but these are
 known to work excellently.
 
