@@ -99,10 +99,142 @@ Bug Fixes
    prefix is now removed for the file system paths. (Fixed in 4.3.1
    already.)
 
+-  Fix, ``dict.fromkeys`` nodes were marked as unable to raise for
+   iterables without a known small length, so e.g. unhashable keys or a
+   raising iterator could go unhandled and crash. They are now always
+   considered able to raise, while the compile time computation remains
+   limited to small known iterables. (Fixed in 4.3.2 already.)
+
+-  Fix, isolated mode (``--python-flag=isolated``) still registered the
+   meta path based loader's ``sys.path_hooks`` entry, which always
+   raised ``ImportError``, so a path hook was present where none should
+   be. No path hook is now registered at all. (Fixed in 4.3.2 already.)
+
+-  Fix, the inline ordered dictionary used on Python 2.6 had
+   ``setdefault`` return ``None`` instead of the value, which could
+   break YAML configuration handling there. It now returns the value
+   like the built-in ``dict`` method. (Fixed in 4.3.2 already.)
+
+-  Fix, closing a generator or coroutine before it was started returned
+   success without marking it as finished, so its state stayed
+   ``GEN_CREATED`` or ``CORO_CREATED`` and a later ``next()`` would
+   start the body instead of raising ``StopIteration``. Closing now
+   marks it as finished. (Fixed in 4.3.2 already.)
+
+-  Fix, a ``break`` or ``continue`` of a loop created inside a
+   ``finally`` block released the pending return value, although it does
+   not abandon the ``return``, so a released object could be returned.
+   The release now only happens for loops that were active when the
+   return handler was entered. (Fixed in 4.3.2 already.)
+
+-  **Python 3.5+:** Fix, coroutine and async generator returns did not
+   run the local variable cleanup, so their locals dictionary and the
+   values it holds stayed alive after finishing. The return exit now
+   releases them like the exception exits already did. (Fixed in 4.3.2
+   already.)
+
+-  **Python 3.8+:** Fix, an uncaught ``KeyboardInterrupt`` gave exit
+   code 1 instead of the SIGINT style exit code CPython uses since 3.8,
+   i.e. ``128 + SIGINT`` on POSIX and ``0xC000013A`` on Windows. (Fixed
+   in 4.3.2 already.)
+
+-  **Python 3.13+:** Fix, ``--python-flag=no_warnings`` gave errors,
+   since the warning options were applied before the meta path based
+   loader was ready, while the interpreter imports the ``warnings``
+   module during startup on 3.13. The disabling now happens after the
+   loader setup. (Fixed in 4.3.2 already.)
+
+-  **Python 3.14:** Fix, creating single character and empty ``bytes``
+   objects used the internal ``_Py_SINGLETON`` macro, which is fragile
+   there, and now accesses the runtime static objects directly. (Fixed
+   in 4.3.2 already.)
+
+-  **Python 3.14:** Fix, the ``ValueError`` message of ``list.index()``
+   did not match CPython 3.14, which uses the static text
+   ``list.index(x): x not in list`` instead of naming the value. (Fixed
+   in 4.3.2 already.)
+
+-  **Plugins:** Fix, the ``PySide6`` signal workaround kept the receiver
+   objects alive, since it held references to the compiled methods
+   rather than only to their function objects, which is all that needs
+   protection from the over-release issue. Receivers are now released
+   normally. (Fixed in 4.3.2 already.)
+
+-  **Plugins:** Fix, the ``PySide6`` signal workaround could crash
+   during shutdown, since PySide6 releases the compiled function object
+   once too often, potentially after interpreter finalization. A
+   keep-alive reference is now leaked for the function to survive this,
+   and the wrappers use weak references to the receiver, dropping
+   connections and cached wrappers when it is released, which also keeps
+   memory usage under control. (Fixed in 4.3.2 already.)
+
+-  **macOS:** Fix, onefile signal forwarding did not handle signals sent
+   directly to the bootstrap process, since ``kill(2)`` delivers
+   ``si_code == 0`` there rather than ``SI_USER``. Signals are now
+   always forwarded on macOS, and the child suppresses the duplicate
+   SIGINT it already received from the terminal process group. (Fixed in
+   4.3.2 already.)
+
+-  **macOS:** Fix, code signing with a keychain file could fail because
+   ``codesign`` only searches the keychains in the user's search list,
+   and the temporary copy used for signing was not part of it. The
+   temporary keychain is now added to the search list while signing and
+   the previous list restored afterwards, and identity names are
+   resolved to their unique hashes so other keychains cannot make them
+   ambiguous. (Fixed in 4.3.2 already.)
+
+-  **Compatibility:** Fix, floating point power operations handled
+   underflow as an error and infinite results without ``errno`` as
+   success. Underflow now gives the zero result, and infinite results
+   raise ``OverflowError``, matching CPython's ``_Py_ADJUST_ERANGE1``.
+   (Fixed in 4.3.2 already.)
+
+-  **Module:** Fix, loader entry names were always prefixed with the
+   package prefix in module mode, even when the compiled unit was built
+   under its full dotted name, so imports were attempted with duplicated
+   names like ``ns.sub.ns.sub.pkg.models``. Only entries rooted at the
+   loaded leaf name are prefixed now. (Fixed in 4.3.2 already.)
+
+-  **Onefile:** Fix, when the child process was terminated by a signal,
+   the bootstrap used ``WEXITSTATUS`` on its status, reporting success
+   instead of the signal exit code. It now reports ``128 + signal``.
+   (Fixed in 4.3.2 already.)
+
+-  **Onefile:** Fix, the compressor failed with ``libzstd`` builds
+   without multithreading support, since a positive thread count is
+   rejected there. The thread count is now limited to the supported
+   range, and the ``zstandard`` fallback uses a single thread. (Fixed in
+   4.3.2 already.)
+
+-  **Onefile:** Fix, the child exit code could be lost when the child
+   was reaped by the signal handler, since the main wait then got
+   ``ECHILD`` and reported 0. The reaped status is now recorded and used
+   for the exit code. (Fixed in 4.3.2 already.)
+
+-  **BSD:** Fix, onefile binaries were not linked with ``pthread``,
+   although the parent monitoring thread uses ``pthread_create()`` and
+   ``pthread_detach()``, which need it on the BSDs as well. (Fixed in
+   4.3.2 already.)
+
+-  **BSD:** Fix, defining ``_POSIX_C_SOURCE`` on BSD systems restricted
+   the system headers to strict POSIX, hiding BSD specific interfaces,
+   e.g. ``getexecpath`` was left undeclared in the onefile bootstrap on
+   OpenBSD. It is no longer defined there. (Fixed in 4.3.2 already.)
+
+-  **BSD:** Fix, the ``sendfile()`` fallback for file copying reported
+   success even when reading or writing failed, since it returned a
+   boolean while the caller compared against -1, and the read error
+   check tested the function rather than the byte count. It now returns
+   the copied byte count, handles ``EINTR``, completes short writes, and
+   is also used on FreeBSD. (Fixed in 4.3.2 already.)
+
 Package Support
 ===============
 
--  None yet.
+-  **Standalone:** Added the missing ``._uuid`` dependency for the
+   ``psycopg_c._psycopg`` extension module, like it already existed for
+   ``psycopg_binary._psycopg``, so its dynamically imported UUID module
+   is included. (Added in 4.3.2 already.)
 
 New Features
 ============
@@ -117,6 +249,10 @@ New Features
    hooks that fail without setting an exception or raise an unreported
    one, and a missing export function now gives an ``ImportError``
    naming both functions that were tried. (Added in 4.3.1 already.)
+
+-  **OpenBSD:** Added onefile mode support, removing OpenBSD from the
+   list of systems where only standalone mode was supported. (Added in
+   4.3.2 already.)
 
 Optimization
 ============
@@ -142,6 +278,10 @@ Organizational
    which failed. The executable permission is now removed from the
    copied files, keeping only ``rules`` executable. (Fixed in 4.3.1
    already.)
+
+-  **Docs:** Documented Clang as the default compiler on OpenBSD in the
+   Developer Manual, matching the compiler settings that already forced
+   it there. (Fixed in 4.3.2 already.)
 
 Tests
 =====
