@@ -21,26 +21,30 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Determine runner image
+        id: runner-image
+        run: echo "name=${ImageOS}" >> "$GITHUB_OUTPUT"
+
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Cache Pipenv dependencies
         uses: actions/cache@v6
         with:
           path: ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+          key: ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-py312-pipenv-${{ hashFiles('**/Pipfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-pipenv-
+            ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-py312-pipenv-
 
       - name: Cache Playwright browsers
         uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/Pipfile.lock') }}
+          key: ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-playwright-${{ hashFiles('**/Pipfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-playwright-
+            ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-playwright-
 
       - name: Install dependencies
         run: |
