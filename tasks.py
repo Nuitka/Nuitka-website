@@ -1,3 +1,5 @@
+"""Invoke tasks for building and serving the Nuitka website."""
+
 import os
 import sys
 
@@ -26,7 +28,7 @@ def virtualenv(c, sync=False):
         c.run(f"{sys.executable} -m pipenv install --dev")
 
     # Install node while we are here, probably worth renaming the task
-    c.run(f"npm install")
+    c.run("npm install")
 
 
 @task
