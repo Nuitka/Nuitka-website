@@ -183,6 +183,14 @@ Bug Fixes
    resolved to their unique hashes so other keychains cannot make them
    ambiguous. (Fixed in 4.3.2 already.)
 
+-  **macOS:** Fix, the onefile parent bootstrap could forward SIGINT
+   after the child had already received the same signal from the
+   terminal process group, so the duplicate arrived only when the
+   handler was already running and interrupted the shutdown. When the
+   signal did not come from the parent, the handler now waits briefly
+   for a possible forwarding while SIGINT is blocked, so a duplicate
+   that arrives then is suppressed. (Fixed in 4.3.2 already.)
+
 -  **Compatibility:** Fix, floating point power operations handled
    underflow as an error and infinite results without ``errno`` as
    success. Underflow now gives the zero result, and infinite results
@@ -227,6 +235,86 @@ Bug Fixes
    check tested the function rather than the byte count. It now returns
    the copied byte count, handles ``EINTR``, completes short writes, and
    is also used on FreeBSD. (Fixed in 4.3.2 already.)
+
+-  Fix, when the stop argument of ``list.index()`` failed its index
+   conversion, the ``LIST_INDEX4`` helper released the start index a
+   second time, risking a crash from the over-release. It is now only
+   released once. (Fixed in 4.3.3 already.)
+
+-  Fix, sequence item access converted oversized indices with
+   ``PyNumber_AsSsize_t`` and no exception type, so indices that did not
+   fit ``Py_ssize_t`` were clamped to the platform maximum instead of
+   raising ``IndexError`` like CPython. The conversion now passes
+   ``PyExc_IndexError``, so such indices raise the matching
+   ``IndexError``. (Fixed in 4.3.3 already.)
+
+-  Fix, the compiled ``chr()`` used ``PyInt_AsLong`` and replaced
+   conversion errors with a generic ``TypeError``, so ``__index__``
+   errors did not propagate, floats were accepted on Python 2 and gave
+   the wrong message before Python 3.9, and values outside the C ``int``
+   range gave the wrong exception. It now uses
+   ``Nuitka_PyLong_AsLongAndOverflow``, rejects floats, propagates
+   ``__index__`` errors, and gives ``OverflowError`` before Python 3.13
+   and ``ValueError`` afterwards. (Fixed in 4.3.3 already.)
+
+-  Fix, ``HAS_ATTR_BOOL2`` did not release the result of the attribute
+   lookup after converting it to a boolean, so a reference leaked on
+   every call. The result is now released. (Fixed in 4.3.3 already.)
+
+-  **Python 2:** Fix, the ``BUILTIN_RANGE3`` helper checked the
+   converted end value for failure instead of the converted step value,
+   so ``range()`` with an object step that failed conversion left the
+   error unhandled and could crash. The step conversion is now checked.
+   (Fixed in 4.3.3 already.)
+
+-  **Python 3.12+:** Fix, the replacement for
+   ``sys._getframemodulename()`` converted its depth with an unbounded
+   ``Py_ssize_t``, so values beyond the C ``int`` range were used for
+   frame traversal instead of raising ``OverflowError`` like CPython.
+   The conversion now uses ``PyLong_AsLongAndOverflow`` and rejects
+   values that do not fit a C ``int``. (Fixed in 4.3.3 already.)
+
+-  **Python 3.15+:** Fix, the meta path based loader set ``__spec__``,
+   ``__file__``, and ``__path__`` on extension modules only after
+   executing them, so the module code did not see them. The attributes
+   are now set before execution, and the module is registered in
+   ``sys.modules`` only after it executed successfully. (Fixed in 4.3.3
+   already.)
+
+-  **Compatibility:** Fix, in-place addition of a ``list`` or ``tuple``
+   with a right value of unknown type used sequence concatenation
+   whenever the value was a sequence, so a ``__radd__`` method of e.g. a
+   ``tuple`` or ``str`` subclass was ignored. The number add slot of the
+   right value is now tried first, and concatenation only happens when
+   it is absent. (Fixed in 4.3.3 already.)
+
+   .. code:: python
+
+      class TupleWithRightAdd(tuple):
+          def __radd__(self, other):
+              return "TupleWithRightAdd.__radd__"
+
+
+      values = [1]
+      values += TupleWithRightAdd((2,))
+
+      # 4.3.2: [1, 2] (wrong)
+      # 4.3.3: "TupleWithRightAdd.__radd__" (correct)
+
+-  **Multidist:** Fix, the runners generated for entry points called the
+   user main function unconditionally, so importing one in a
+   multiprocessing child process executed the program again. The call is
+   now guarded by a ``__name__ == "__main__"`` check. (Fixed in 4.3.3
+   already.)
+
+-  **Onefile:** Fix, the SIGINT deduplication handler published the last
+   SIGINT time only after waiting for a possible parent forward, so
+   handlers in other threads could not suppress duplicates during the
+   delay, an interrupted sleep shortened the wait, and ``errno`` was not
+   preserved for the saved Python handler. It now distinguishes terminal
+   delivery where the platform reports it, publishes the timestamp
+   before waiting, retries interrupted sleeps, and restores ``errno``.
+   (Fixed in 4.3.3 already.)
 
 Package Support
 ===============
@@ -283,10 +371,23 @@ Organizational
    Developer Manual, matching the compiler settings that already forced
    it there. (Fixed in 4.3.2 already.)
 
+-  **Actions:** Fix, the retry for the initial compilation that
+   downloads compilers was only done on macOS, so transient runner
+   failures on other systems failed the workflow. It is now used on all
+   operating systems, and the produced files are cleaned up before each
+   attempt. (Fixed in 4.3.3 already.)
+
 Tests
 =====
 
--  None yet.
+-  **Windows:** Fix, runtime tracing used the Dependency Walker module
+   tree, which resolves names through the search order and includes
+   delay loaded DLLs that were never used, so files could be reported as
+   loaded that never were. It now uses only the profiling log, with
+   ``PATH`` search disabled via a Dependency Walker configuration file,
+   which also makes the tracing substantially faster by not scanning
+   ``PATH``, and the GitHub Actions workarounds for modules found there
+   are no longer needed. (Fixed in 4.3.2 already.)
 
 Cleanups
 ========
