@@ -1,5 +1,6 @@
+"""Visual regression tests comparing rendered pages against golden images."""
+
 import os
-from pathlib import Path
 
 import pytest
 from playwright.sync_api import sync_playwright
@@ -14,14 +15,13 @@ from regression_utils import (
     MOBILE_DEVICES,
     build_url,
     compareImages,
+    preparePageForScreenshot,
     sanitizeUrl,
 )
 from settings import comparison_threshold
 
 
-def run_visual_test(
-    browser_name, viewport_mode, page_path, wait_time=DEFAULT_WAIT_TIME
-):
+def _captureScreenshot(browser_name, viewport_mode, page_path, current_path, wait_time):
     if viewport_mode == "desktop":
         device_config = DESKTOP_DEVICES[browser_name]
     elif viewport_mode == "mobile":
@@ -29,6 +29,28 @@ def run_visual_test(
     else:
         raise ValueError(f"Unknown viewport mode: {viewport_mode}")
 
+    url = build_url(page_path)
+
+    print(f"Using device settings: {device_config}")
+
+    with sync_playwright() as p:
+        browser_type = getattr(p, browser_name)
+        browser = browser_type.launch(headless=True)
+        context = browser.new_context(**device_config)
+        page = context.new_page()
+
+        print(f"  Navigating to {url}")
+        page.goto(url, timeout=20000)
+        preparePageForScreenshot(page, wait_time)
+        page.screenshot(path=current_path, full_page=True, timeout=20000)
+
+        context.close()
+        browser.close()
+
+
+def run_visual_test(
+    browser_name, viewport_mode, page_path, wait_time=DEFAULT_WAIT_TIME
+):
     url = build_url(page_path)
     safe_name = sanitizeUrl(page_path.lstrip("/") or "home")
 
@@ -40,33 +62,14 @@ def run_visual_test(
     os.makedirs(os.path.dirname(diff_path), exist_ok=True)
 
     print(f"Testing {browser_name} / {viewport_mode} / {page_path}")
-    print(f"Using device settings: {device_config}")
 
-    with sync_playwright() as p:
-        browser_type = getattr(p, browser_name)
-        browser = browser_type.launch(headless=True)
-        context = browser.new_context(**device_config)
-        page = context.new_page()
-
-        print(f"  Navigating to {url}")
-        page.goto(url, timeout=20000)
-        if wait_time > 0:
-            page.wait_for_timeout(wait_time)
-
-        page.add_style_tag(
-            content="""
-            * {
-                font-family: Arial, Helvetica, sans-serif !important;
-                -webkit-font-smoothing: none !important;
-                -moz-osx-font-smoothing: grayscale !important;
-            }
-        """
-        )
-        page.wait_for_function("document.fonts.ready")
-        page.screenshot(path=current_path, full_page=True, timeout=20000)
-
-        context.close()
-        browser.close()
+    _captureScreenshot(
+        browser_name=browser_name,
+        viewport_mode=viewport_mode,
+        page_path=page_path,
+        current_path=current_path,
+        wait_time=wait_time,
+    )
 
     if not os.path.exists(golden_path):
         pytest.fail(

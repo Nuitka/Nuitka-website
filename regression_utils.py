@@ -1,7 +1,7 @@
+"""Utilities for preparing and comparing visual regression screenshots."""
+
 import math
-import os
 import re
-import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -69,6 +69,48 @@ def build_url(page_path, base_url="http://localhost:8000"):
     return f"{base_url}{page_path}"
 
 
+SCREENSHOT_STYLE = """
+* {
+    font-family: Arial, Helvetica, sans-serif !important;
+    -webkit-font-smoothing: none !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+*, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+}
+"""
+
+
+def preparePageForScreenshot(page, wait_time):
+    # Freeze animations before taking screenshots. The carousel auto-advances
+    # on the animationend event of a 5 second CSS animation, which would race
+    # with the wait time and produce non-deterministic screenshots otherwise.
+    page.add_style_tag(content=SCREENSHOT_STYLE)
+
+    if wait_time > 0:
+        page.wait_for_timeout(wait_time)
+
+    page.wait_for_function("document.fonts.ready")
+
+
+def _saveDiffImage(canvas_current, diff, diff_path, max_width, max_height):
+    highlight = canvas_current.copy()
+    draw = ImageDraw.Draw(highlight)
+
+    for x in range(max_width):
+        for y in range(max_height):
+            pixel_diff = diff.getpixel((x, y))
+            diff_sum = (
+                sum(pixel_diff[:3]) if isinstance(pixel_diff, tuple) else pixel_diff
+            )
+            if diff_sum > 30:
+                draw.point((x, y), fill=(255, 0, 0))
+
+    highlight.save(diff_path)
+
+
 def compareImages(golden_path, current_path, diff_path=None, threshold=15):
     golden = Image.open(golden_path).convert("RGB")
     current = Image.open(current_path).convert("RGB")
@@ -89,17 +131,7 @@ def compareImages(golden_path, current_path, diff_path=None, threshold=15):
         return True
 
     if diff_path:
-        highlight = canvas_current.copy()
-        draw = ImageDraw.Draw(highlight)
-        for x in range(max_width):
-            for y in range(max_height):
-                pixel_diff = diff.getpixel((x, y))
-                diff_sum = (
-                    sum(pixel_diff[:3]) if isinstance(pixel_diff, tuple) else pixel_diff
-                )
-                if diff_sum > 30:
-                    draw.point((x, y), fill=(255, 0, 0))
-        highlight.save(diff_path)
+        _saveDiffImage(canvas_current, diff, diff_path, max_width, max_height)
         print(f"  RMS difference: {rms:.2f}, diff saved to {diff_path}")
 
     return False
