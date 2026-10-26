@@ -48,23 +48,23 @@ jobs:
         uses: actions/cache@v6
         with:
           path: ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-py312-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+          key: ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-v2-py312-pipenv-${{ hashFiles('**/Pipfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-py312-pipenv-
+            ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-v2-py312-pipenv-
 
       - name: Cache Playwright browsers
         uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-playwright-${{ hashFiles('**/Pipfile.lock') }}
+          key: ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-v2-playwright-${{ hashFiles('**/Pipfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-playwright-
+            ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-v2-playwright-
 
       - name: Install dependencies
         run: |
           echo "Installing dependencies..."
           pip install pipenv
-          pipenv install --dev
+          pipenv sync --dev
           npm ci --silent --no-fund --no-audit
           pipenv run playwright install && pipenv run playwright install-deps
 

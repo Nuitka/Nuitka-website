@@ -13,12 +13,17 @@ os.environ["PIPENV_IGNORE_VIRTUALENVS"] = "1"
 
 
 @task
-def virtualenv(c):
+def virtualenv(c, sync=False):
     """create and install env"""
     c.run(
         f"{sys.executable} -m pipenv 2>/dev/null >/dev/null || {sys.executable} -m pip install -U pipenv"
     )
-    c.run(f"{sys.executable} -m pipenv install --dev")
+
+    if sync:
+        # CI uses the lock file as the source of truth and must not re-lock.
+        c.run(f"{sys.executable} -m pipenv sync --dev")
+    else:
+        c.run(f"{sys.executable} -m pipenv install --dev")
 
     # Install node while we are here, probably worth renaming the task
     c.run(f"npm install")
