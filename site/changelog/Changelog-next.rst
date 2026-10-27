@@ -261,6 +261,11 @@ Bug Fixes
    lookup after converting it to a boolean, so a reference leaked on
    every call. The result is now released. (Fixed in 4.3.3 already.)
 
+-  Fix, the ``list.copy`` node always registered an exception exit,
+   while the code generation assumed that the operation cannot raise, so
+   dead code for an error that was never considered was emitted. (Fixed
+   in 4.3.3 already.)
+
 -  **Python 2:** Fix, the ``BUILTIN_RANGE3`` helper checked the
    converted end value for failure instead of the converted step value,
    so ``range()`` with an object step that failed conversion left the
