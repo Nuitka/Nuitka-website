@@ -204,7 +204,8 @@ sys.exit(app.exec())`;
   let nextEvent = 0;
   let playing = false;
   let lastFrame = 0;
-  let windowOpen = false;
+  // The window is visible in the HTML, so it shows without JavaScript too.
+  let windowOpen = !programWindow.hidden;
 
   const renderLine = (parts) => {
     const div = document.createElement("div");
@@ -303,6 +304,10 @@ sys.exit(app.exec())`;
   };
 
   const play = () => {
+    // Only one animation frame chain may run.
+    if (playing) {
+      return;
+    }
     if (position >= duration) {
       seek(0);
     }
@@ -346,12 +351,31 @@ sys.exit(app.exec())`;
   const rows = programWindow.querySelectorAll("tbody tr");
   const status = programWindow.querySelector(".intro-window-status");
 
+  const visibleRows = () => Array.from(rows).filter((row) => !row.hidden);
+
+  // Rows form a grid with one tab stop, arrows move, Enter or Space select.
+  const focusRow = (row) => {
+    rows.forEach((other) => {
+      other.tabIndex = other === row ? 0 : -1;
+    });
+    row.focus();
+  };
+
+  const selectRow = (row) => {
+    rows.forEach((other) => {
+      const selected = other === row;
+      other.classList.toggle("intro-row-selected", selected);
+      other.setAttribute("aria-selected", String(selected));
+    });
+  };
+
   const resetProgram = () => {
     search.value = "";
-    rows.forEach((row) => {
+    rows.forEach((row, index) => {
       row.hidden = false;
-      row.classList.remove("intro-row-selected");
+      row.tabIndex = index === 0 ? 0 : -1;
     });
+    selectRow(null);
     status.textContent = `${rows.length} items`;
   };
 
@@ -360,17 +384,51 @@ sys.exit(app.exec())`;
     rows.forEach((row) => {
       row.hidden = !row.textContent.toLowerCase().includes(text);
     });
+    const shown = visibleRows();
+    rows.forEach((row) => {
+      row.tabIndex = row === shown[0] ? 0 : -1;
+    });
+    status.textContent = `${shown.length} items`;
   });
 
   rows.forEach((row) => {
     row.addEventListener("click", () => {
-      rows.forEach((other) => other.classList.remove("intro-row-selected"));
-      row.classList.add("intro-row-selected");
+      selectRow(row);
+      focusRow(row);
+    });
+    row.addEventListener("keydown", (event) => {
+      const shown = visibleRows();
+      const index = shown.indexOf(row);
+      if (event.key === "Enter" || event.key === " ") {
+        selectRow(row);
+      } else if (event.key === "ArrowDown" && index < shown.length - 1) {
+        focusRow(shown[index + 1]);
+      } else if (event.key === "ArrowUp" && index > 0) {
+        focusRow(shown[index - 1]);
+      } else {
+        return;
+      }
+      event.preventDefault();
     });
   });
 
+  // Export really downloads the rows that are shown, like the program would.
+  const csvField = (text) => (/[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text);
+
   programWindow.querySelector(".intro-window-export").addEventListener("click", () => {
-    status.textContent = `Exported ${rows.length} rows to stock.csv`;
+    const table = programWindow.querySelector(".intro-window-table table");
+    const lines = [table.tHead.rows[0], ...visibleRows()].map((row) =>
+      Array.from(row.cells, (cell) => csvField(cell.textContent.trim())).join(","),
+    );
+    const url = URL.createObjectURL(new Blob([`${lines.join("\r\n")}\r\n`], { type: "text/csv" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "stock.csv";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    status.textContent = `Exported ${lines.length - 1} rows to stock.csv`;
   });
 
   programWindow.querySelector(".intro-window-close").addEventListener("click", () => {

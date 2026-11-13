@@ -1486,6 +1486,11 @@ details.sd-dropdown > .sd-summary-content {
 	background: var(--our-carousel-light-blue);
 }
 
+.intro-window-table tbody tr:focus-visible {
+	outline: 2px solid var(--our-color-blue);
+	outline-offset: -2px;
+}
+
 .intro-window-export {
 	font: inherit;
 	color: inherit;
@@ -1559,15 +1564,18 @@ ol.intro-steps li {
 	margin-right: 8px;
 	border-radius: 100%;
 	text-align: center;
-	color: white;
+	/* Dark text on the light colors, white only on dark blue, for contrast. */
+	color: #404040;
 	background: var(--our-color-yellow);
 }
 
 li:nth-of-type(2) > .intro-step .intro-step-title::before {
+	color: #111;
 	background: var(--our-color-blue);
 }
 
 li:nth-of-type(3) > .intro-step .intro-step-title::before {
+	color: white;
 	background: var(--our-color-dark-blue);
 }
 
@@ -1645,15 +1653,17 @@ li:nth-of-type(3) > .intro-step .intro-step-title::before {
 	line-height: 36px;
 	border-radius: 100%;
 	text-align: center;
-	color: white;
+	color: #404040;
 	background: var(--our-color-yellow);
 }
 
 .intro-path:nth-of-type(3n + 2) .intro-path-title::before {
+	color: #111;
 	background: var(--our-color-blue);
 }
 
 .intro-path:nth-of-type(3n + 3) .intro-path-title::before {
+	color: white;
 	background: var(--our-color-dark-blue);
 }
 
@@ -1786,10 +1796,12 @@ li:nth-of-type(3) > .intro-step .intro-step-title::before {
 
 .intro-io-cmd {
 	background: var(--our-color-blue);
+	color: #111 !important;
 }
 
 .intro-io-out {
 	background: var(--our-color-green);
+	color: #111 !important;
 }
 
 .intro-io-run {

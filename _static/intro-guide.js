@@ -103,7 +103,27 @@ const initIntroBuilder = () => {
 	const formatButtons = builder.querySelectorAll(".intro-builder-format button");
 	let format = "cli";
 
-	const quote = (value) => (/[\s"']/.test(value) ? `"${value.replace(/"/g, '\\"')}"` : value);
+	// Shell quoting is only for the command line. Double quotes work in cmd,
+	// PowerShell and POSIX shells alike, but these characters are still
+	// special in some of them, so we warn instead of guessing the shell.
+	const shellSpecial = /[$`"!%]/;
+	const shellQuote = (value) => (/^[\w.\\/:=+,@-]+$/.test(value) ? value : `"${value}"`);
+
+	// Project options take the rest of the comment line as one value.
+	const formatOption = ([name, value], forShell) => {
+		if (value === undefined) {
+			return name;
+		}
+		return `${name}=${forShell ? shellQuote(value) : value}`;
+	};
+
+	// The destination of a data folder must be relative to the distribution,
+	// so absolute paths and ".." parts are reduced to the folder name.
+	const dataDestination = (source) => {
+		const parts = source.split(/[\\/]+/).filter((part) => part && part !== ".");
+		const outside = /^([a-zA-Z]:|[\\/~])/.test(source) || parts.includes("..");
+		return outside ? parts.slice(-1).join("/") : parts.join("/");
+	};
 
 	const code = (text) => {
 		const element = document.createElement("code");
@@ -111,7 +131,7 @@ const initIntroBuilder = () => {
 		return element;
 	};
 
-	const describe = (mode, base, inBuild) => {
+	const describe = (mode, base, inBuild, warn) => {
 		const where = inBuild ? "build\\" : "";
 		const parts = {
 			standalone: ["You get the folder ", code(`${where}${base}.dist`), " with ", code(`${base}.exe`), " inside. Copy the whole folder."],
@@ -122,6 +142,9 @@ const initIntroBuilder = () => {
 		}[mode];
 		if (mode !== "module") {
 			parts.push(" On Linux and macOS, executables end in ", code(".bin"), ".");
+		}
+		if (warn) {
+			parts.push(" Your shell may treat ", code('$ ` " ! %'), " in names specially, renaming the files is easiest.");
 		}
 		what.replaceChildren(...parts);
 	};
@@ -143,41 +166,46 @@ const initIntroBuilder = () => {
 			});
 		});
 
-		const options = [`--mode=${mode}`];
+		// Options as [name, value] pairs, quoted only when shown as a command.
+		const options = [["--mode", mode]];
 		const plugin = data.get("plugin");
 		if (plugin) {
-			options.push(`--enable-plugins=${plugin}`);
+			options.push(["--enable-plugins", plugin]);
 		}
 		const datadir = (data.get("datadir") || "").trim().replace(/[\\/]+$/, "");
-		if (makesDist && datadir) {
-			options.push(`--include-data-dir=${quote(`${datadir}=${datadir}`)}`);
+		const destination = dataDestination(datadir);
+		if (makesDist && datadir && destination) {
+			options.push(["--include-data-dir", `${datadir}=${destination}`]);
 		}
 		if (makesExe && data.get("noconsole")) {
-			options.push("--windows-console-mode=disable");
+			options.push(["--windows-console-mode", "disable"]);
 		}
 		const icon = (data.get("icon") || "").trim();
 		if (makesExe && icon) {
-			options.push(`--windows-icon-from-ico=${quote(icon)}`);
+			options.push(["--windows-icon-from-ico", icon]);
 		}
 		if (data.get("outdir")) {
-			options.push("--output-dir=build");
+			options.push(["--output-dir", "build"]);
 		}
 		if (data.get("clean")) {
-			options.push("--remove-output");
+			options.push(["--remove-output"]);
 		}
 		if (data.get("report")) {
-			options.push("--report=compilation-report.xml");
+			options.push(["--report", "compilation-report.xml"]);
 		}
 
+		const warn = format === "cli" && [script, ...options.map(([, value]) => value || "")].some((value) => shellSpecial.test(value));
+
 		if (format === "cli") {
-			output.textContent = `python -m nuitka ${options.join(" ")} ${quote(script)}`;
+			const args = options.map((option) => formatOption(option, true));
+			output.textContent = `python -m nuitka ${args.join(" ")} ${shellQuote(script)}`;
 		} else {
-			const lines = options.map((option) => `# nuitka-project: ${option}`);
-			lines.push("", `# Put these lines at the top of ${script}, then run:`, `#   python -m nuitka ${quote(script)}`);
+			const lines = options.map((option) => `# nuitka-project: ${formatOption(option, false)}`);
+			lines.push("", `# Put these lines at the top of ${script}, then run:`, `#   python -m nuitka ${shellQuote(script)}`);
 			output.textContent = lines.join("\n");
 		}
 
-		describe(mode, base, Boolean(data.get("outdir")));
+		describe(mode, base, Boolean(data.get("outdir")), warn);
 	};
 
 	form.addEventListener("input", update);

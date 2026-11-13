@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="intro-window" hidden role="dialog" aria-label="Stock Viewer, the compiled program">
+        <div class="intro-window" role="dialog" aria-label="Stock Viewer, the compiled program">
             <div class="intro-window-title">
                 <span class="intro-window-name">Stock Viewer</span>
                 <button type="button" class="intro-window-close" aria-label="Close Stock Viewer">&#10005;</button>
@@ -29,7 +29,7 @@
             <div class="intro-window-body">
                 <input class="intro-window-search" id="intro-window-search" type="text" placeholder="Search parts..." aria-label="Search parts" autocomplete="off">
                 <div class="intro-window-table">
-                    <table>
+                    <table role="grid" aria-label="Stock" aria-multiselectable="false">
                         <thead><tr><th>Part</th><th>Description</th><th>In stock</th><th>Location</th></tr></thead>
                         <tbody>
                             <tr><td>BRG-6204</td><td>Ball bearing 6204-2RS</td><td class="intro-num">412</td><td>A-03</td></tr>
