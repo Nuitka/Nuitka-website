@@ -1,0 +1,53 @@
+<div class="intro-builder" id="intro-builder">
+    <form class="intro-builder-form" autocomplete="off">
+        <fieldset class="intro-builder-modes">
+            <legend>What do you want to hand over?</legend>
+            <label><input type="radio" name="mode" value="standalone" checked> <span><b>A folder</b> to copy or put in an installer</span></label>
+            <label><input type="radio" name="mode" value="onefile"> <span><b>One file</b> to send or download</span></label>
+            <label><input type="radio" name="mode" value="app"> <span><b>A desktop app</b>, a bundle on macOS</span></label>
+            <label><input type="radio" name="mode" value="accelerated"> <span><b>Nothing</b>, I run it faster myself</span></label>
+            <label><input type="radio" name="mode" value="module"> <span><b>A compiled module</b> to import</span></label>
+        </fieldset>
+
+        <div class="intro-builder-fields">
+            <label>Main file
+                <input type="text" name="script" value="your_program.py" spellcheck="false">
+            </label>
+            <label>GUI toolkit
+                <select name="plugin">
+                    <option value="">None or other</option>
+                    <option value="pyside6">PySide6</option>
+                    <option value="pyqt6">PyQt6</option>
+                    <option value="pyside2">PySide2</option>
+                    <option value="pyqt5">PyQt5</option>
+                    <option value="tk-inter">Tkinter</option>
+                </select>
+            </label>
+            <label data-needs="dist">Data folder to include
+                <input type="text" name="datadir" placeholder="e.g. assets" spellcheck="false">
+            </label>
+            <label data-needs="exe">Windows icon
+                <input type="text" name="icon" placeholder="e.g. app.ico" spellcheck="false">
+            </label>
+        </div>
+
+        <div class="intro-builder-checks">
+            <label data-needs="exe"><input type="checkbox" name="noconsole"> No console window on Windows</label>
+            <label><input type="checkbox" name="outdir"> Put results in a <code>build</code> folder</label>
+            <label><input type="checkbox" name="clean" checked> Delete the intermediate C files afterwards</label>
+            <label><input type="checkbox" name="report"> Write a compilation report</label>
+        </div>
+    </form>
+
+    <div class="intro-builder-result">
+        <div class="intro-builder-head">
+            <p class="intro-builder-what" aria-live="polite">You get the folder <code>your_program.dist</code> with the program inside.</p>
+            <div class="intro-builder-format" role="group" aria-label="Show as">
+                <button type="button" data-format="cli" aria-pressed="true" class="intro-selected">Command</button>
+                <button type="button" data-format="project" aria-pressed="false">In your code</button>
+            </div>
+        </div>
+        <div class="highlight-bash notranslate"><div class="highlight"><pre class="intro-builder-cmd">python -m nuitka --mode=standalone --remove-output your_program.py</pre></div></div>
+    </div>
+</div>
+<script src="/_static/intro-guide.js"></script>

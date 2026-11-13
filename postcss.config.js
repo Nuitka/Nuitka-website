@@ -86,6 +86,8 @@ module.exports = {
 				/^hub-/,
 				// Classes that might be added by JS
 				/^carousel/,
+				// Intro page terminal, line classes are created by JS
+				/^intro-/,
 				/^active$/,
 				/^current/,
 				// Utility classes
