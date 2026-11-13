@@ -1,0 +1,56 @@
+<div class="intro-demo" id="intro-demo">
+    <div class="intro-stage">
+        <div class="intro-term">
+            <div class="intro-term-bar">
+                <span class="intro-term-title">Windows PowerShell</span>
+                <span class="intro-term-buttons" aria-hidden="true">&#8212; &#9633; &#10005;</span>
+            </div>
+            <div class="intro-term-screen" role="log" aria-label="Recording: compiling a PySide6 program with Nuitka">
+                <div><span class="intro-t-p">PS C:\work\stock-viewer&gt; </span>python -m nuitka --mode=onefile --enable-plugins=pyside6 --windows-console-mode=disable --output-filename=StockViewer.exe stock_viewer.py</div>
+                <div><span class="intro-t-tag">Nuitka:</span> Successfully created 'StockViewer.exe'.</div>
+                <div><span class="intro-t-p">PS C:\work\stock-viewer&gt; </span>.\StockViewer.exe</div>
+            </div>
+            <div class="intro-term-controls">
+                <button type="button" class="intro-play" aria-label="Play">
+                    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg>
+                </button>
+                <div class="intro-progress" role="slider" tabindex="0" aria-label="Recording position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+                    <div class="intro-progress-fill"></div>
+                </div>
+                <span class="intro-time">0:00</span>
+            </div>
+        </div>
+
+        <div class="intro-window" role="dialog" aria-label="Stock Viewer, the compiled program">
+            <div class="intro-window-title">
+                <span class="intro-window-name">Stock Viewer</span>
+                <button type="button" class="intro-window-close" aria-label="Close Stock Viewer">&#10005;</button>
+            </div>
+            <div class="intro-window-body">
+                <input class="intro-window-search" id="intro-window-search" type="text" placeholder="Search parts..." aria-label="Search parts" autocomplete="off">
+                <div class="intro-window-table">
+                    <table role="grid" aria-label="Stock" aria-multiselectable="false">
+                        <thead><tr><th>Part</th><th>Description</th><th>In stock</th><th>Location</th></tr></thead>
+                        <tbody>
+                            <tr><td>BRG-6204</td><td>Ball bearing 6204-2RS</td><td class="intro-num">412</td><td>A-03</td></tr>
+                            <tr><td>BLT-M8x30</td><td>Hex bolt M8 x 30, zinc</td><td class="intro-num">2380</td><td>B-11</td></tr>
+                            <tr><td>SEN-PT100</td><td>PT100 temperature sensor</td><td class="intro-num">37</td><td>C-02</td></tr>
+                            <tr><td>FLT-HY10</td><td>Hydraulic filter 10 um</td><td class="intro-num">64</td><td>A-07</td></tr>
+                            <tr><td>VLV-BV25</td><td>Ball valve DN25</td><td class="intro-num">18</td><td>D-01</td></tr>
+                            <tr><td>CBL-CAT6</td><td>Cat6 patch cable 2 m</td><td class="intro-num">155</td><td>C-09</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" class="intro-window-export">Export CSV</button>
+            </div>
+            <div class="intro-window-status" aria-live="polite">6 items</div>
+        </div>
+    </div>
+
+    <ol class="intro-steps">
+        <li><button type="button" class="intro-step" data-step="0"><span class="intro-step-title">Your code</span>An ordinary PySide6 program. Nothing in it is written for Nuitka.</button></li>
+        <li><button type="button" class="intro-step" data-step="1"><span class="intro-step-title">One command</span>Nuitka translates it to C, compiles it, and bundles Python and Qt with it.</button></li>
+        <li><button type="button" class="intro-step" data-step="2"><span class="intro-step-title">Your program</span>A single <code>StockViewer.exe</code> that runs on a PC without Python.</button></li>
+    </ol>
+</div>
+<script src="/_static/intro-demo.js"></script>

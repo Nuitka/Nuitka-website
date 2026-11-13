@@ -1224,3 +1224,739 @@ details.sd-dropdown > .sd-summary-content {
 		align-items: center;
 	}
 }
+
+/* Intro page: terminal recording of a Nuitka build and the resulting program.
+   The terminal follows the asciinema theme, everything else our colors. */
+
+.intro-demo {
+	margin: 24px 0 32px;
+}
+
+.intro-stage {
+	position: relative;
+}
+
+.intro-term {
+	background: #121314;
+	color: #cccccc;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.intro-term-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 6px 12px;
+	background: #2b2d30;
+	color: #d9d9d9;
+	font-size: 0.8rem;
+}
+
+.intro-term-buttons {
+	letter-spacing: 0.9em;
+	color: #8a8a8a;
+}
+
+.intro-term-screen {
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"Courier New", Courier, monospace;
+	font-size: 13px;
+	line-height: 1.45;
+	height: 26em;
+	padding: 12px 14px;
+	overflow-y: auto;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.intro-term-screen > div {
+	min-height: 1.45em;
+}
+
+.intro-term-screen > div:last-child::after {
+	content: "";
+	display: inline-block;
+	width: 0.6em;
+	height: 1.1em;
+	vertical-align: -0.2em;
+	background: #cccccc;
+	animation: intro-blink 1s steps(1) infinite;
+}
+
+@keyframes intro-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+.intro-t-p {
+	color: #26b0d7;
+}
+
+.intro-t-kw {
+	color: #ddaf3c;
+}
+
+.intro-t-str {
+	color: #4ebf22;
+}
+
+.intro-t-num {
+	color: #b954e1;
+}
+
+.intro-t-fn {
+	color: #26b0d7;
+}
+
+.intro-t-tag {
+	color: #54e1b9;
+}
+
+.intro-t-ok {
+	color: #4ebf22;
+	font-weight: bold;
+}
+
+.intro-t-bar {
+	color: var(--our-color-yellow);
+}
+
+.intro-t-dim {
+	color: #555;
+}
+
+.intro-t-note {
+	color: #8a8a8a;
+	font-style: italic;
+}
+
+.intro-term-controls {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 12px;
+	background: #2b2d30;
+	color: #d9d9d9;
+	font-size: 0.8rem;
+}
+
+.intro-play {
+	background: none;
+	border: none;
+	color: inherit;
+	padding: 2px;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.intro-progress {
+	flex: 1;
+	height: 4px;
+	background: var(--our-carousel-light-blue);
+	cursor: pointer;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.intro-progress-fill {
+	width: 0;
+	height: 100%;
+	background: var(--our-color-yellow);
+}
+
+.intro-time {
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+/* The compiled program, drawn as a plain light desktop window. */
+.intro-window {
+	position: absolute;
+	right: 4%;
+	top: 8%;
+	width: min(460px, calc(100% - 24px));
+	background: #f3f3f3;
+	color: #1b1b1b;
+	border: 1px solid #b9b9b9;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+	font-family: "Segoe UI", system-ui, sans-serif;
+	font-size: 13px;
+	animation: intro-open 0.25s ease-out;
+}
+
+.intro-window[hidden] {
+	display: none;
+}
+
+@keyframes intro-open {
+	0% {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.intro-window-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 12px;
+	font-size: 12px;
+	height: 32px;
+}
+
+.intro-window-close {
+	width: 44px;
+	height: 100%;
+	border: none;
+	background: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+.intro-window-close:hover {
+	background: #c42b1c;
+	color: white;
+}
+
+.intro-window-body {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 10px;
+	background: #fafafa;
+	border-top: 1px solid #d0d0d0;
+}
+
+.intro-window-search {
+	font: inherit;
+	padding: 4px 6px;
+	border: 1px solid #c4c4c4;
+	border-radius: 3px;
+	background: white;
+	color: inherit;
+}
+
+.intro-window-table {
+	background: white;
+	border: 1px solid #c4c4c4;
+	max-height: 190px;
+	overflow: auto;
+}
+
+.intro-window-table table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 12.5px;
+}
+
+.intro-window-table th {
+	background: #ececec;
+	font-weight: normal;
+	text-align: left;
+	padding: 3px 6px;
+	border-bottom: 1px solid #d0d0d0;
+	white-space: nowrap;
+}
+
+.intro-window-table td {
+	padding: 3px 6px;
+	border-bottom: 1px solid #eeeeee;
+	white-space: nowrap;
+	cursor: default;
+}
+
+.intro-window-table td.intro-num {
+	text-align: right;
+}
+
+.intro-window-table tr[hidden] {
+	display: none;
+}
+
+.intro-window-table tr.intro-row-selected td {
+	background: var(--our-carousel-light-blue);
+}
+
+.intro-window-table tbody tr:focus-visible {
+	outline: 2px solid var(--our-color-blue);
+	outline-offset: -2px;
+}
+
+.intro-window-export {
+	font: inherit;
+	color: inherit;
+	padding: 4px 10px;
+	border: 1px solid #adadad;
+	border-radius: 3px;
+	background: #efefef;
+	cursor: pointer;
+}
+
+.intro-window-export:hover {
+	border-color: var(--our-color-blue);
+}
+
+.intro-window-status {
+	padding: 3px 10px;
+	font-size: 12px;
+	border-top: 1px solid #d0d0d0;
+}
+
+/* The three steps below the terminal, also used to jump in the recording. */
+ol.intro-steps {
+	display: flex;
+	gap: 12px;
+	margin: 16px 0 0 !important;
+	padding: 0;
+	list-style: none !important;
+	counter-reset: intro-step;
+}
+
+ol.intro-steps li {
+	flex: 1;
+	list-style: none !important;
+	margin: 0 !important;
+	counter-increment: intro-step;
+}
+
+.intro-step {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	padding: 12px 14px;
+	border: 2px solid transparent;
+	border-radius: 6px;
+	background: var(--our-lightgrey);
+	color: #404040;
+	font: inherit;
+	font-size: 0.95rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.intro-step:hover {
+	border-color: var(--our-carousel-light-blue);
+}
+
+.intro-step-title {
+	display: block;
+	margin-bottom: 4px;
+	font-weight: bold;
+	font-size: 1.05rem;
+}
+
+.intro-step-title::before {
+	content: counter(intro-step);
+	display: inline-block;
+	width: 1.6em;
+	height: 1.6em;
+	line-height: 1.6em;
+	margin-right: 8px;
+	border-radius: 100%;
+	text-align: center;
+	/* Dark text on the light colors, white only on dark blue, for contrast. */
+	color: #404040;
+	background: var(--our-color-yellow);
+}
+
+li:nth-of-type(2) > .intro-step .intro-step-title::before {
+	color: #111;
+	background: var(--our-color-blue);
+}
+
+li:nth-of-type(3) > .intro-step .intro-step-title::before {
+	color: white;
+	background: var(--our-color-dark-blue);
+}
+
+.intro-step.intro-step-active {
+	background: var(--our-carousel-light-blue);
+	border-color: var(--our-color-blue);
+}
+
+@media screen and (max-width: 768px) {
+	ol.intro-steps {
+		flex-direction: column;
+	}
+
+	.intro-term-screen {
+		font-size: 11px;
+		height: 28em;
+	}
+
+	.intro-window {
+		right: 12px;
+		top: 40px;
+	}
+
+	.intro-window-table {
+		max-height: 150px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.intro-window,
+	.intro-term-screen > div:last-child::after {
+		animation: none;
+	}
+}
+
+/* Intro page: beginner guide with numbered steps, tab sets, input and
+   output of examples, and the command builder. */
+
+.intro-path {
+	position: relative;
+	padding: 0 0 8px 52px;
+	counter-increment: intro-path;
+}
+
+.intro-path::before {
+	content: "";
+	position: absolute;
+	left: 17px;
+	top: 40px;
+	bottom: 4px;
+	width: 2px;
+	background: var(--our-carousel-light-blue);
+}
+
+.intro-path:not(:has(+ .intro-path))::before {
+	display: none;
+}
+
+.rst-content div.intro-path-title p {
+	margin-bottom: 8px;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 36px;
+}
+
+.intro-path-title::before {
+	content: counter(intro-path);
+	font-size: 20px;
+	font-weight: bold;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+	border-radius: 100%;
+	text-align: center;
+	color: #404040;
+	background: var(--our-color-yellow);
+}
+
+.intro-path:nth-of-type(3n + 2) .intro-path-title::before {
+	color: #111;
+	background: var(--our-color-blue);
+}
+
+.intro-path:nth-of-type(3n + 3) .intro-path-title::before {
+	color: white;
+	background: var(--our-color-dark-blue);
+}
+
+/* Program output, a code block without highlighting and copy button.
+   Sphinx puts our class first, so the theme's div[class^=highlight]
+   rules do not apply and are repeated here. */
+
+.rst-content div.intro-out {
+	margin: 1px 0 24px;
+	overflow-x: auto;
+	border: 1px solid #e1e4e5;
+	border-left: 3px solid var(--our-color-green);
+}
+
+.rst-content div.intro-out div[class^="highlight"] {
+	margin: 0;
+	padding: 0;
+	border: none;
+	background: #fff;
+}
+
+.rst-content div.intro-out pre {
+	display: block;
+	margin: 0;
+	padding: 12px;
+	overflow: auto;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"Courier New", Courier, monospace;
+	font-size: 12px;
+	line-height: 1.4;
+	white-space: pre-wrap;
+	word-break: break-word;
+	color: #404040;
+}
+
+.intro-out .copybtn {
+	display: none;
+}
+
+/* Tab sets, without JavaScript all tabs show with their labels. */
+
+.intro-tabs {
+	margin-bottom: 24px;
+}
+
+.intro-tabbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-bottom: 12px;
+}
+
+.intro-tabbar-button,
+.intro-builder-format button {
+	padding: 6px 14px;
+	border: 2px solid transparent;
+	border-radius: 6px;
+	background: var(--our-lightgrey);
+	color: #404040;
+	font: inherit;
+	font-size: 0.9rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.intro-tabbar-button:hover,
+.intro-builder-format button:hover {
+	border-color: var(--our-carousel-light-blue);
+}
+
+/* Selection is a class, PurgeCSS cannot see attributes set by JS. */
+.intro-tabbar-button.intro-selected,
+.intro-builder-format button.intro-selected {
+	background: var(--our-carousel-light-blue);
+	border-color: var(--our-color-blue);
+	font-weight: bold;
+}
+
+.rst-content .intro-tab > p.rubric {
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+.rst-content .intro-tabs-ready > .intro-tab > .intro-tab-label {
+	display: none;
+}
+
+.intro-tabs-ready > .intro-tab {
+	padding: 16px 16px 0;
+	border: 1px solid #e1e4e5;
+	border-radius: 6px;
+}
+
+.intro-tabs-ready > .intro-tab::after {
+	content: "";
+	display: block;
+	height: 1px;
+}
+
+/* Example input and output, read from top to bottom. */
+
+.intro-io {
+	margin-bottom: 24px;
+	padding-left: 16px;
+	border-left: 2px solid var(--our-carousel-light-blue);
+}
+
+.rst-content div.intro-io-label p {
+	margin: 0;
+	font-size: 0.75rem;
+	line-height: 1.6;
+}
+
+.rst-content div.intro-io-label {
+	display: inline-block;
+	margin: 8px 0 8px -27px;
+	padding: 2px 10px;
+	border-radius: 999px;
+	color: white;
+	font-size: 0.75rem;
+	font-weight: bold;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.intro-io-in {
+	background: var(--our-color-yellow);
+	color: #404040 !important;
+}
+
+.intro-io-cmd {
+	background: var(--our-color-blue);
+	color: #111 !important;
+}
+
+.intro-io-out {
+	background: var(--our-color-green);
+	color: #111 !important;
+}
+
+.intro-io-run {
+	background: var(--our-color-dark-blue);
+}
+
+.intro-io-files {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+	gap: 12px;
+	align-items: start;
+	margin-bottom: 24px;
+}
+
+.rst-content .intro-io-files div[class*="highlight-"] {
+	margin: 0;
+}
+
+/* Long commands wrap instead of hiding options off screen. */
+.rst-content .intro-io div.highlight-bash div.highlight pre,
+.rst-content .intro-builder-result div.highlight pre {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+/* Command builder */
+
+.intro-builder {
+	margin-bottom: 24px;
+	padding: 16px;
+	border-radius: 6px;
+	background: var(--our-lightgrey);
+}
+
+.intro-builder-modes {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	gap: 8px;
+	margin: 0 0 16px;
+	padding: 0;
+	border: 0;
+}
+
+.intro-builder-modes legend {
+	margin-bottom: 8px;
+	padding: 0;
+	font-size: 1.05rem;
+	font-weight: bold;
+}
+
+.intro-builder-modes label {
+	display: flex;
+	gap: 8px;
+	align-items: flex-start;
+	margin: 0;
+	padding: 10px 12px;
+	border: 2px solid transparent;
+	border-radius: 6px;
+	background: white;
+	font-size: 0.9rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.intro-builder-modes label:hover {
+	border-color: var(--our-carousel-light-blue);
+}
+
+.intro-builder-modes label:has(input:checked) {
+	background: var(--our-carousel-light-blue);
+	border-color: var(--our-color-blue);
+}
+
+.intro-builder-modes input {
+	margin-top: 4px;
+}
+
+.intro-builder-fields {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.intro-builder-fields label {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin: 0;
+	font-size: 0.9rem;
+	font-weight: bold;
+}
+
+.intro-builder-fields input,
+.intro-builder-fields select {
+	width: 100%;
+	font-weight: normal;
+}
+
+.intro-builder-checks {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 24px;
+	margin-bottom: 16px;
+	font-size: 0.9rem;
+}
+
+.intro-builder-checks label {
+	margin: 0;
+	cursor: pointer;
+}
+
+.intro-builder-off {
+	opacity: 0.45;
+}
+
+.intro-builder-head {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px 12px;
+	margin-bottom: 8px;
+}
+
+.rst-content p.intro-builder-what {
+	flex: 1 1 300px;
+	margin: 0;
+	font-size: 0.95rem;
+}
+
+.intro-builder-format {
+	display: flex;
+	gap: 4px;
+}
+
+.intro-builder-format button:not(.intro-selected) {
+	background: white;
+}
+
+.rst-content .intro-builder-result div[class^="highlight"] {
+	margin: 0;
+	background: white;
+}
+
+@media screen and (max-width: 768px) {
+	.intro-path {
+		padding-left: 44px;
+	}
+
+	.intro-io-files {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.intro-tabs-ready > .intro-tab {
+		padding: 12px 12px 0;
+	}
+}
