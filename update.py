@@ -1799,11 +1799,10 @@ def runDeploymentCommand():
         "rsync",
         "-ravz",
         *(f"--exclude={exclude}" for exclude in excluded),
-        "--chown=www-data:git",
-        "--chmod=Dg+x",
+        "--chmod=D755,F644",
         "--delete-after",
         "output/",
-        f"root@ssh.nuitka.net:{target_dir}",
+        f"deploy@ssh.nuitka.net:{target_dir}",
     ]
 
     website_logger.info(" ".join(shlex.quote(part) for part in command))
