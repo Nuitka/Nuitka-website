@@ -12,8 +12,8 @@ ln -s Nuitka-develop/tests Nuitka-Tests
 
 for cast in `ls -1 casts`
 do
-    result_name=doc/casts/${cast%.sh}.cast
+    result_name=site/casts/${cast%.sh}.cast
     echo "Making $result_name from '$cast' :"
 
-    asciinema-automation --timeout 3600 --asciinema-arguments "--overwrite -c 'env -i PS=\"$ \" PATH=$PATH PYTHONPATH=$PYTHONPATH bash --noprofile --norc" casts/$cast $result_name
+    asciinema-automation --timeout 3600 --asciinema-arguments "--overwrite -c 'env -i PS=\"$ \" PATH=$PATH PYTHONPATH=$PYTHONPATH bash --noprofile --norc'" casts/$cast $result_name
 done

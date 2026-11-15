@@ -1224,3 +1224,204 @@ details.sd-dropdown > .sd-summary-content {
 		align-items: center;
 	}
 }
+
+/* Recordings of the "asciinema" directive, it renders a div without a
+   class, the player inside is created by JavaScript. */
+
+.rst-content div[id^="asciicast-"] {
+	margin-bottom: 24px;
+}
+
+/* Tabs of sphinx-design in our colors, inactive labels stay readable. */
+
+.sd-tab-set {
+	--sd-color-tabs-label-active: var(--our-color-dark-blue);
+	--sd-color-tabs-label-hover: var(--our-color-dark-blue);
+	--sd-color-tabs-label-inactive: #595959;
+	--sd-color-tabs-underline-active: var(--our-color-blue);
+	--sd-color-tabs-underline-hover: var(--our-carousel-light-blue);
+	margin-bottom: 24px;
+}
+
+/* The tab content has its own padding above its bottom line, also for
+   margins of nested last blocks, e.g. the last code block of an example.
+   Only the chain of last blocks, not every last block inside them. */
+.rst-content .sd-tab-content > :last-child,
+.rst-content .sd-tab-content > :last-child > :last-child,
+.rst-content .sd-tab-content > :last-child > :last-child > :last-child,
+.rst-content .sd-tab-content > :last-child > :last-child > :last-child > :last-child,
+.rst-content
+	.sd-tab-content
+	> :last-child
+	> :last-child
+	> :last-child
+	> :last-child
+	> :last-child {
+	margin-bottom: 0;
+}
+
+/* Cards in a row, spaced by the grid gutter only. The site wide column
+   margin is for stacked cards and would add to the gap after the grid. */
+.step-cards .sd-col {
+	margin-bottom: 0;
+}
+
+/* Numbered steps of tours, from the "tour-step" directive. Number circles
+   use dark text on the light colors and white on dark blue for contrast. */
+
+/* No bottom padding, so the margin of the last block merges with the one
+   of the next step and gaps stay the same as between other blocks. */
+.tour-step {
+	position: relative;
+	padding: 0 0 0 52px;
+	counter-increment: tour-step;
+}
+
+.tour-step::before {
+	content: "";
+	position: absolute;
+	left: 17px;
+	top: 40px;
+	bottom: 0;
+	width: 2px;
+	background: var(--our-carousel-light-blue);
+}
+
+.tour-step:not(:has(+ .tour-step))::before {
+	display: none;
+}
+
+.rst-content p.tour-step-title {
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 36px;
+}
+
+.tour-step-title::before {
+	content: counter(tour-step);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+	border-radius: 100%;
+	text-align: center;
+	color: #404040;
+	background: var(--our-color-yellow);
+}
+
+.tour-step:nth-of-type(3n + 2) .tour-step-title::before {
+	color: #111;
+	background: var(--our-color-blue);
+}
+
+.tour-step:nth-of-type(3n + 3) .tour-step-title::before {
+	color: white;
+	background: var(--our-color-dark-blue);
+}
+
+/* Parts of examples, from the "example-part" directive. */
+
+.example-part {
+	margin-left: 10px;
+	padding-left: 16px;
+	border-left: 2px solid var(--our-carousel-light-blue);
+}
+
+.rst-content p.example-part-label {
+	display: inline-block;
+	margin: 0 0 8px -27px;
+	padding: 2px 10px;
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: bold;
+	letter-spacing: 0.05em;
+	line-height: 1.6;
+	text-transform: uppercase;
+}
+
+.example-part-input .example-part-label {
+	color: #404040;
+	background: var(--our-color-yellow);
+}
+
+.example-part-command .example-part-label,
+.example-part-output .example-part-label {
+	color: #111;
+	background: var(--our-color-blue);
+}
+
+.example-part-output .example-part-label {
+	background: var(--our-color-green);
+}
+
+.example-part-run .example-part-label {
+	color: white;
+	background: var(--our-color-dark-blue);
+}
+
+.example-part-columns {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+	/* Stacked on phones, rows are as far apart as other blocks. */
+	gap: 24px 12px;
+	align-items: start;
+	margin-bottom: 24px;
+}
+
+.rst-content .example-part-columns div[class^="highlight"] {
+	margin: 0;
+}
+
+/* Content starts right below its label, without the 1px top margin the
+   theme gives code blocks. */
+.rst-content .example-part-body > :first-child,
+.rst-content .example-part-body > :first-child div[class^="highlight"] {
+	margin-top: 0;
+}
+
+/* Long commands wrap instead of hiding options off screen. */
+.rst-content .example-part div.highlight-bash div.highlight pre {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+/* Which Nuitka and Python a "nuitka-example" was recorded with. */
+
+.rst-content p.nuitka-example-recorded {
+	margin-left: 10px;
+	padding-left: 18px;
+	color: #595959;
+	font-size: 0.85rem;
+}
+
+/* Text printed by programs, from the "program-output" directive. */
+
+.rst-content .program-output div[class^="highlight"] {
+	border-left: 3px solid var(--our-color-green);
+}
+
+.rst-content .program-output div.highlight {
+	background: white;
+}
+
+.rst-content .program-output div.highlight pre {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.program-output .copybtn {
+	display: none;
+}
+
+@media screen and (max-width: 768px) {
+	.tour-step {
+		padding-left: 44px;
+	}
+
+	.example-part-columns {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
