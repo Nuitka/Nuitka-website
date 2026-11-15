@@ -1243,12 +1243,27 @@ details.sd-dropdown > .sd-summary-content {
 	margin-bottom: 24px;
 }
 
+/* The tab content has its own padding above its bottom line, also for
+   margins of nested last blocks, e.g. the last code block of an example. */
+.rst-content .sd-tab-content > :last-child,
+.rst-content .sd-tab-content > :last-child :last-child {
+	margin-bottom: 0;
+}
+
+/* Cards in a row, spaced by the grid gutter only. The site wide column
+   margin is for stacked cards and would add to the gap after the grid. */
+.step-cards .sd-col {
+	margin-bottom: 0;
+}
+
 /* Numbered steps of tours, from the "tour-step" directive. Number circles
    use dark text on the light colors and white on dark blue for contrast. */
 
+/* No bottom padding, so the margin of the last block merges with the one
+   of the next step and gaps stay the same as between other blocks. */
 .tour-step {
 	position: relative;
-	padding: 0 0 8px 52px;
+	padding: 0 0 0 52px;
 	counter-increment: tour-step;
 }
 
@@ -1257,7 +1272,7 @@ details.sd-dropdown > .sd-summary-content {
 	position: absolute;
 	left: 17px;
 	top: 40px;
-	bottom: 4px;
+	bottom: 0;
 	width: 2px;
 	background: var(--our-carousel-light-blue);
 }
@@ -1267,7 +1282,7 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 .rst-content p.tour-step-title {
-	margin-bottom: 8px;
+	margin-bottom: 10px;
 	font-size: 20px;
 	font-weight: bold;
 	line-height: 36px;
@@ -1305,10 +1320,6 @@ details.sd-dropdown > .sd-summary-content {
 	border-left: 2px solid var(--our-carousel-light-blue);
 }
 
-.example-part + .example-part {
-	padding-top: 8px;
-}
-
 .rst-content p.example-part-label {
 	display: inline-block;
 	margin: 0 0 8px -27px;
@@ -1344,13 +1355,21 @@ details.sd-dropdown > .sd-summary-content {
 .example-part-columns {
 	display: grid;
 	grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-	gap: 12px;
+	/* Stacked on phones, rows are as far apart as other blocks. */
+	gap: 24px 12px;
 	align-items: start;
 	margin-bottom: 24px;
 }
 
 .rst-content .example-part-columns div[class^="highlight"] {
 	margin: 0;
+}
+
+/* Content starts right below its label, without the 1px top margin the
+   theme gives code blocks. */
+.rst-content .example-part-body > :first-child,
+.rst-content .example-part-body > :first-child div[class^="highlight"] {
+	margin-top: 0;
 }
 
 /* Long commands wrap instead of hiding options off screen. */

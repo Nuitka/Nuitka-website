@@ -16,7 +16,8 @@ it changes for your team.
    :poster: npt:0:2
 
 .. grid:: 1 1 3 3
-   :gutter: 2
+   :gutter: 3
+   :class-container: step-cards
 
    .. grid-item-card:: 1. Your code
 
