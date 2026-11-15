@@ -1,0 +1,18 @@
+{
+  // Run esbonio through Pipenv so the virtualenv is resolved dynamically.
+  // `env` lets Zed's shell PATH find pipenv, so no machine-specific paths
+  // are hardcoded here. The `server` argument is required by esbonio 2.x.
+  "lsp": {
+    "esbonio": {
+      "binary": {
+        "path": "/usr/bin/env",
+        "arguments": [
+          "pipenv",
+          "run",
+          "esbonio",
+          "server"
+        ]
+      }
+    }
+  }
+}
