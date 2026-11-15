@@ -1244,9 +1244,19 @@ details.sd-dropdown > .sd-summary-content {
 }
 
 /* The tab content has its own padding above its bottom line, also for
-   margins of nested last blocks, e.g. the last code block of an example. */
+   margins of nested last blocks, e.g. the last code block of an example.
+   Only the chain of last blocks, not every last block inside them. */
 .rst-content .sd-tab-content > :last-child,
-.rst-content .sd-tab-content > :last-child :last-child {
+.rst-content .sd-tab-content > :last-child > :last-child,
+.rst-content .sd-tab-content > :last-child > :last-child > :last-child,
+.rst-content .sd-tab-content > :last-child > :last-child > :last-child > :last-child,
+.rst-content
+	.sd-tab-content
+	> :last-child
+	> :last-child
+	> :last-child
+	> :last-child
+	> :last-child {
 	margin-bottom: 0;
 }
 
@@ -1376,6 +1386,15 @@ details.sd-dropdown > .sd-summary-content {
 .rst-content .example-part div.highlight-bash div.highlight pre {
 	white-space: pre-wrap;
 	word-break: break-word;
+}
+
+/* Which Nuitka and Python a "nuitka-example" was recorded with. */
+
+.rst-content p.nuitka-example-recorded {
+	margin-left: 10px;
+	padding-left: 18px;
+	color: #595959;
+	font-size: 0.85rem;
 }
 
 /* Text printed by programs, from the "program-output" directive. */

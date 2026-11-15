@@ -1,0 +1,26 @@
+{
+ "hash": "545ce8f448551fec031af2ae21b48fdc1a7d2bec8bf8a2c3a2a8cb287f7272bb",
+ "recorded_with": {
+  "nuitka": "4.4rc2",
+  "python": "3.14",
+  "system": "Linux"
+ },
+ "input_files": [
+  "pricing.py",
+  "main.py"
+ ],
+ "command": "python -m nuitka --mode=module pricing.py",
+ "log": "Nuitka: Successfully created 'pricing.cpython-314-x86_64-linux-gnu.so'.",
+ "output_files": [
+  "main.py",
+  "pricing.cpython-314-x86_64-linux-gnu.so",
+  "pricing.py",
+  "pricing.pyi"
+ ],
+ "new_files": [
+  "pricing.cpython-314-x86_64-linux-gnu.so",
+  "pricing.pyi"
+ ],
+ "run_command": "python main.py",
+ "run_output": "[113.05, 282.62, 22.6]\n"
+}

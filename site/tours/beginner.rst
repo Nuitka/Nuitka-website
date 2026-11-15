@@ -39,8 +39,8 @@ Nuitka supports |SUPPORTED_PYTHONS|.
 
 These five steps take you from a Python file to a program you can hand
 to someone else. Every command works the same on Windows, Linux, and
-macOS. Only the names of the files created differ, as noted along the
-way.
+macOS. Only the names of the files created differ: on Windows, programs
+end in ``.exe``.
 
 .. tour-step:: Check Python
 
@@ -51,30 +51,19 @@ way.
 
       python --version
 
-   .. program-output::
-
-      Python 3.13.9
-
    On Linux and macOS the command may be called ``python3``. Use that
    name everywhere below then.
 
 .. tour-step:: Install Nuitka
 
    Nuitka is a normal Python package. Install it into the same Python,
-   ideally into the virtual environment of your project.
+   ideally into the virtual environment of your project, and check that
+   it runs.
 
    .. code:: bash
 
       python -m pip install -U Nuitka
       python -m nuitka --version
-
-   .. program-output::
-
-      4.4
-      Commercial: None
-      Python: 3.13.9 ...
-      Flavor: CPython Official
-      ...
 
 .. tour-step:: Have a C compiler
 
@@ -116,29 +105,11 @@ way.
    quickest check that everything is set up. Use your own program, or
    this ``hello.py``:
 
-   .. code:: python
+   .. nuitka-example:: hello.py
+      :name: hello-accelerated
+      :run: {program}
 
       print("Hello from compiled Python")
-
-   .. code:: bash
-
-      python -m nuitka hello.py
-
-   .. program-output::
-
-      Nuitka: Starting Python compilation with:
-      Nuitka:   Version '4.4' on Python 3.13 (flavor 'CPython Official') commercial grade 'not installed'.
-      Nuitka: Completed Python level compilation and optimization.
-      Nuitka: Generating source code for C backend compiler.
-      Nuitka: Running C compilation via Scons.
-      Nuitka: Successfully created 'hello.exe'.
-
-   Run ``hello.exe`` (``./hello.bin`` on Linux and macOS). It prints
-   exactly what ``python hello.py`` prints.
-
-   .. program-output::
-
-      Hello from compiled Python
 
 .. tour-step:: Make it portable
 
@@ -147,16 +118,21 @@ way.
    works from its folder, then switch to ``onefile`` if you want a
    single file.
 
-   .. code:: bash
+   .. nuitka-example:: hello.py
+      :name: hello-standalone
+      :options: --mode=standalone
+      :run: {program}
+      :show: command output run
 
-      python -m nuitka --mode=standalone hello.py
-      python -m nuitka --mode=onefile hello.py
+      print("Hello from compiled Python")
 
-   .. program-output::
+   .. nuitka-example:: hello.py
+      :name: hello-onefile
+      :options: --mode=onefile
+      :run: {program}
+      :show: command output run
 
-      Nuitka: Successfully created 'hello.dist\hello.exe'.
-      Nuitka-Onefile: Creating single file from dist folder, this may take a while.
-      Nuitka: Successfully created 'hello.exe'.
+      print("Hello from compiled Python")
 
 ***********************
  Which mode do I need?
@@ -207,8 +183,9 @@ modules end in ``.so``.
  Examples by category
 **********************
 
-Each example shows the input, the command, what Nuitka creates, and what
-happens when the result runs. Logs are shortened to the important lines.
+Each example is compiled and run with the shown command when the website
+is built. What Nuitka creates, the important lines of its log, and what
+the program prints are taken from that run.
 
 .. tab-set::
 
@@ -219,132 +196,85 @@ happens when the result runs. Logs are shortened to the important lines.
       exit code work exactly like with Python, so scripts and schedulers
       that call it do not change.
 
-      .. example-part:: input
-         :columns:
+      .. nuitka-example:: csvsum.py
+         :options: --mode=onefile
+         :run: {program} sales.csv --column amount
+         :cast:
 
-         .. code:: text
+         import argparse
+         import csv
+         from collections import defaultdict
 
-            csvsum/
-            ├── csvsum.py
-            └── sales.csv
+         parser = argparse.ArgumentParser(description="Sum a CSV column per group.")
+         parser.add_argument("file")
+         parser.add_argument("--group", default="region")
+         parser.add_argument("--column", default="amount")
+         args = parser.parse_args()
 
-         .. code:: python
+         totals = defaultdict(float)
+         with open(args.file, newline="") as f:
+             for row in csv.DictReader(f):
+                 totals[row[args.group]] += float(row[args.column])
 
-            import argparse
-            import csv
-            from collections import defaultdict
+         for group, total in sorted(totals.items()):
+             print(f"{group:<10} {total:>12,.2f}")
 
-            parser = argparse.ArgumentParser(description="Sum a CSV column per group.")
-            parser.add_argument("file")
-            parser.add_argument("--group", default="region")
-            parser.add_argument("--column", default="amount")
-            args = parser.parse_args()
+   .. tab-item:: Qt GUI
 
-            totals = defaultdict(float)
-            with open(args.file, newline="") as f:
-                for row in csv.DictReader(f):
-                    totals[row[args.group]] += float(row[args.column])
+      A Qt program. The plugin for your Qt binding makes sure the Qt
+      plugins, translations, and libraries it needs are included. On
+      Windows, add ``--windows-console-mode=disable`` to not open a
+      console window, and ``--windows-icon-from-ico=notes.ico`` for an
+      icon. On macOS, ``--mode=app`` creates ``notes.app``.
 
-            for group, total in sorted(totals.items()):
-                print(f"{group:<10} {total:>12,.2f}")
+      .. nuitka-example:: notes.py
+         :options: --mode=app --enable-plugins=pyside6
+         :requires: PySide6
 
-      .. example-part:: command
+         import sys
 
-         .. code:: bash
-
-            python -m nuitka --mode=onefile csvsum.py
-
-      .. example-part:: output
-         :columns:
-
-         .. code:: text
-
-            csvsum/
-            ├── csvsum.py
-            ├── csvsum.exe     <- new
-            └── sales.csv
-
-         .. program-output::
-
-            Nuitka: Running C compilation via Scons.
-            Nuitka-Onefile: Creating single file from dist folder, this may take a while.
-            Nuitka: Successfully created 'csvsum.exe'.
-
-      .. example-part:: run
-
-         .. code:: bash
-
-            csvsum.exe sales.csv --column amount
-
-         .. program-output::
-
-            North          1,560.25
-            South          1,396.25
-            West           2,045.00
-
-   .. tab-item:: Desktop GUI
-
-      A Qt program with an icon and no console window. The plugin for
-      your Qt binding makes sure the Qt plugins, translations, and
-      libraries it needs are included.
-
-      .. example-part:: input
-         :columns:
-
-         .. code:: text
-
-            notes/
-            ├── notes.py
-            └── notes.ico
-
-         .. code:: python
-
-            import sys
-
-            from PySide6.QtWidgets import (
-                QApplication, QMainWindow, QPlainTextEdit)
+         from PySide6.QtWidgets import (
+             QApplication, QMainWindow, QPlainTextEdit)
 
 
-            def main():
-                app = QApplication(sys.argv)
-                window = QMainWindow()
-                window.setWindowTitle("Notes")
-                window.setCentralWidget(QPlainTextEdit())
-                window.resize(480, 320)
-                window.show()
-                return app.exec()
+         def main():
+             app = QApplication(sys.argv)
+             window = QMainWindow()
+             window.setWindowTitle("Notes")
+             window.setCentralWidget(QPlainTextEdit())
+             window.resize(480, 320)
+             window.show()
+             return app.exec()
 
 
-            if __name__ == "__main__":
-                sys.exit(main())
+         if __name__ == "__main__":
+             sys.exit(main())
 
-      .. example-part:: command
+   .. tab-item:: Tkinter GUI
 
-         .. code:: bash
+      Tkinter comes with Python, its plugin includes the Tcl and Tk
+      files it needs.
 
-            python -m nuitka --mode=app --enable-plugins=pyside6 --windows-console-mode=disable --windows-icon-from-ico=notes.ico notes.py
+      .. nuitka-example:: greeter.py
+         :options: --mode=app --enable-plugins=tk-inter
 
-      .. example-part:: output
-         :columns:
+         import tkinter as tk
 
-         .. code:: text
+         root = tk.Tk()
+         root.title("Greeter")
 
-            notes/
-            ├── notes.py
-            ├── notes.ico
-            └── notes.exe      <- new, with icon
+         name = tk.StringVar(value="World")
+         greeting = tk.StringVar()
 
-         .. program-output::
+         tk.Entry(root, textvariable=name).pack(padx=12, pady=6)
+         tk.Button(
+             root,
+             text="Greet",
+             command=lambda: greeting.set(f"Hello {name.get()}!"),
+         ).pack()
+         tk.Label(root, textvariable=greeting).pack(padx=12, pady=6)
 
-            Nuitka-Plugins:pyside6: Including Qt plugins 'iconengines,imageformats,platforms,styles,tls' below 'PySide6\qt-plugins'.
-            Nuitka-Onefile: Creating single file from dist folder, this may take a while.
-            Nuitka: Successfully created 'notes.exe'.
-
-      .. example-part:: run
-
-         Double-click ``notes.exe``. The Notes window opens, with no
-         console window behind it. On macOS, the same command creates
-         ``notes.app``, use ``--macos-app-icon`` for its icon.
+         root.mainloop()
 
    .. tab-item:: Data files
 
@@ -353,73 +283,30 @@ happens when the result runs. Logs are shortened to the important lines.
       default, so you name the data files. Locate them relative to
       ``__file__``, which works in Python and in every Nuitka mode.
 
-      .. example-part:: input
-         :columns:
+      .. nuitka-example:: report.py
+         :options: --mode=standalone --include-data-dir=templates=templates --include-data-files=config.json=config.json
+         :run: {program}
 
-         .. code:: text
+         import json
+         import os
+         from string import Template
 
-            report/
-            ├── report.py
-            ├── config.json
-            └── templates/
-                └── report.html
-
-         .. code:: python
-
-            import json
-            import os
-            from string import Template
-
-            HERE = os.path.dirname(__file__)
+         HERE = os.path.dirname(__file__)
 
 
-            def main():
-                with open(os.path.join(HERE, "config.json")) as f:
-                    config = json.load(f)
-                with open(os.path.join(HERE, "templates", "report.html")) as f:
-                    page = Template(f.read()).substitute(config)
+         def main():
+             with open(os.path.join(HERE, "config.json")) as f:
+                 config = json.load(f)
+             with open(os.path.join(HERE, "templates", "report.html")) as f:
+                 page = Template(f.read()).substitute(config)
 
-                with open("report.html", "w") as f:
-                    f.write(page)
-                print("Wrote report.html for", config["company"])
+             with open("report.html", "w") as f:
+                 f.write(page)
+             print("Wrote report.html for", config["company"])
 
 
-            if __name__ == "__main__":
-                main()
-
-      .. example-part:: command
-
-         .. code:: bash
-
-            python -m nuitka --mode=standalone --include-data-dir=templates=templates --include-data-files=config.json=config.json report.py
-
-      .. example-part:: output
-         :columns:
-
-         .. code:: text
-
-            report.dist/       <- new, copy this folder
-            ├── report.exe
-            ├── config.json
-            ├── templates/
-            │   └── report.html
-            ├── python313.dll
-            └── ...
-
-         .. program-output::
-
-            Nuitka: Running C compilation via Scons.
-            Nuitka: Successfully created 'report.dist\report.exe'.
-
-      .. example-part:: run
-
-         .. code:: bash
-
-            report.dist\report.exe
-
-         .. program-output::
-
-            Wrote report.html for ACME Industrial
+         if __name__ == "__main__":
+             main()
 
       Files that users edit after installation should live next to the
       program instead, see :ref:`onefile-finding-files`.
@@ -431,144 +318,63 @@ happens when the result runs. Logs are shortened to the important lines.
       a virtual environment that contains only what the program uses,
       otherwise everything that gets imported is included too.
 
-      .. example-part:: input
-         :columns:
+      .. nuitka-example:: forecast.py
+         :options: --mode=standalone
+         :requires: numpy pandas
+         :run: {program}
 
-         .. code:: text
-
-            forecast/
-            ├── forecast.py
-            └── sales.csv       (one row per sale)
-
-         .. code:: python
-
-            import numpy as np
-            import pandas as pd
+         import numpy as np
+         import pandas as pd
 
 
-            def main():
-                sales = pd.read_csv("sales.csv", parse_dates=["date"])
-                daily = sales.groupby("date")["amount"].sum()
+         def main():
+             sales = pd.read_csv("sales.csv", parse_dates=["date"])
+             daily = sales.groupby("date")["amount"].sum()
 
-                days = np.arange(len(daily))
-                slope, offset = np.polyfit(days, daily.to_numpy(), 1)
-                nxt = slope * len(daily) + offset
+             days = np.arange(len(daily))
+             slope, offset = np.polyfit(days, daily.to_numpy(), 1)
+             nxt = slope * len(daily) + offset
 
-                print(f"{len(daily)} days, trend {slope:+.2f} per day")
-                print(f"Forecast for next day: {nxt:.2f}")
+             print(f"{len(daily)} days, trend {slope:+.2f} per day")
+             print(f"Forecast for next day: {nxt:.2f}")
 
 
-            if __name__ == "__main__":
-                main()
-
-      .. example-part:: command
-
-         .. code:: bash
-
-            python -m venv venv
-            venv\Scripts\python -m pip install Nuitka numpy pandas
-            venv\Scripts\python -m nuitka --mode=standalone forecast.py
-
-      .. example-part:: output
-         :columns:
-
-         .. code:: text
-
-            forecast.dist/     <- new
-            ├── forecast.exe
-            ├── numpy/
-            ├── pandas/
-            └── ...
-
-         .. program-output::
-
-            Nuitka: Completed Python level compilation and optimization.
-            Nuitka: Running C compilation via Scons.
-            Nuitka: Successfully created 'forecast.dist\forecast.exe'.
-
-      .. example-part:: run
-
-         .. code:: bash
-
-            forecast.dist\forecast.exe
-
-         .. program-output::
-
-            5 days, trend +83.51 per day
-            Forecast for next day: 2666.12
+         if __name__ == "__main__":
+             main()
 
    .. tab-item:: Web service
 
       A small Flask service, served by Waitress, that runs on a server
       without Python installed. Templates are data files, so they are
-      included like in the data files example.
+      included like in the data files example. The run is stopped after
+      a few seconds.
 
-      .. example-part:: input
-         :columns:
+      .. nuitka-example:: status.py
+         :options: --mode=standalone --include-data-dir=templates=templates
+         :requires: flask waitress
+         :run: {program}
+         :timeout: 10
 
-         .. code:: text
+         import platform
 
-            status/
-            ├── status.py
-            └── templates/
-                └── index.html
+         from flask import Flask, render_template
+         from waitress import serve
 
-         .. code:: python
-
-            import platform
-
-            from flask import Flask, render_template
-            from waitress import serve
-
-            app = Flask(__name__)
+         app = Flask(__name__)
 
 
-            @app.route("/")
-            def index():
-                return render_template(
-                    "index.html", host=platform.node())
+         @app.route("/")
+         def index():
+             return render_template(
+                 "index.html", host=platform.node())
 
 
-            if __name__ == "__main__":
-                print("Serving on http://0.0.0.0:8000")
-                serve(app, host="0.0.0.0", port=8000)
+         if __name__ == "__main__":
+             print("Serving on http://0.0.0.0:8000", flush=True)
+             serve(app, host="0.0.0.0", port=8000)
 
-      .. example-part:: command
-
-         .. code:: bash
-
-            python -m nuitka --mode=standalone --include-data-dir=templates=templates status.py
-
-      .. example-part:: output
-         :columns:
-
-         .. code:: text
-
-            status.dist/       <- new
-            ├── status.exe
-            ├── templates/
-            │   └── index.html
-            └── ...
-
-         .. program-output::
-
-            Nuitka: Running C compilation via Scons.
-            Nuitka: Successfully created 'status.dist\status.exe'.
-
-      .. example-part:: run
-
-         .. code:: bash
-
-            status.dist\status.exe
-
-         .. program-output::
-
-            Serving on http://0.0.0.0:8000
-
-      Opening ``http://<server>:8000`` in a browser shows the page
-      rendered from ``templates/index.html``. Copy ``status.dist`` to the
-      server, or into a slim container image, and start it from a
-      service manager.
+      Copy the ``status.dist`` folder to the server, or into a slim
+      container image, and start it from a service manager.
 
    .. tab-item:: Faster module
 
@@ -576,61 +382,21 @@ happens when the result runs. Logs are shortened to the important lines.
       e.g. the one with the hot loop or the logic you do not want to
       ship as source. The rest of the program imports it like before.
 
-      .. example-part:: input
-         :columns:
+      .. nuitka-example:: pricing.py
+         :options: --mode=module
+         :run: python main.py
 
-         .. code:: text
-
-            shop/
-            ├── main.py
-            └── pricing.py
-
-         .. code:: python
-
-            def net_price(gross, discount, tax_rate):
-                price = gross * (1 - discount)
-                return round(price * (1 + tax_rate), 2)
+         def net_price(gross, discount, tax_rate):
+             price = gross * (1 - discount)
+             return round(price * (1 + tax_rate), 2)
 
 
-            def price_list(items, discount=0.05, tax_rate=0.19):
-                return [net_price(gross, discount, tax_rate)
-                        for gross in items]
-
-      .. example-part:: command
-
-         .. code:: bash
-
-            python -m nuitka --mode=module pricing.py
-
-      .. example-part:: output
-         :columns:
-
-         .. code:: text
-
-            shop/
-            ├── main.py
-            ├── pricing.py
-            ├── pricing.cp313-win_amd64.pyd  <- new
-            └── pricing.pyi                  <- new, for editors
-
-         .. program-output::
-
-            Nuitka: Running C compilation via Scons.
-            Nuitka: Successfully created 'pricing.cp313-win_amd64.pyd'.
-
-      .. example-part:: run
-
-         .. code:: bash
-
-            python -c "import pricing; print(pricing.price_list([100, 250, 19.99]))"
-
-         .. program-output::
-
-            [113.05, 282.62, 22.6]
+         def price_list(items, discount=0.05, tax_rate=0.19):
+             return [net_price(gross, discount, tax_rate)
+                     for gross in items]
 
       Python prefers the compiled module over ``pricing.py`` in the same
-      folder. It works only with the Python version it was compiled
-      for, here 3.13.
+      folder. It works only with the Python version it was compiled for.
 
 *******************************
  Keep the options in your code

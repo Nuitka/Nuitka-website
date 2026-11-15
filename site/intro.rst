@@ -12,7 +12,7 @@ Someone suggested Nuitka for your project, maybe a colleague, maybe an
 AI assistant. This page shows what it does in under a minute, and what
 it changes for your team.
 
-.. asciinema:: ./casts/intro-demo.cast
+.. nuitka-example-cast:: csvsum
    :poster: npt:0:2
 
 .. grid:: 1 1 3 3

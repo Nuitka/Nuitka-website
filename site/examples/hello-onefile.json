@@ -1,0 +1,44 @@
+{
+ "hash": "b3ff14ca63323fdedf04fada287cea27e9e63717d5cfa75414c85a300589460a",
+ "recorded_with": {
+  "nuitka": "4.4rc2",
+  "python": "3.14",
+  "system": "Linux"
+ },
+ "input_files": [
+  "hello.py"
+ ],
+ "command": "python -m nuitka --mode=onefile hello.py",
+ "log": "Nuitka-Onefile: Creating single file from dist folder, this may take a while.\nNuitka: Successfully created 'hello.bin'.",
+ "output_files": [
+  "hello.bin",
+  "hello.dist/",
+  "hello.dist/_codecs_cn.so",
+  "hello.dist/_codecs_hk.so",
+  "hello.dist/_codecs_iso2022.so",
+  "hello.dist/_codecs_jp.so",
+  "hello.dist/_codecs_kr.so",
+  "hello.dist/_codecs_tw.so",
+  "hello.dist/_csv.so",
+  "hello.dist/_multibytecodec.so",
+  "hello.dist/_pickle.so",
+  "hello.dist/_random.so",
+  "hello.dist/_struct.so",
+  "hello.dist/_zstd.so",
+  "hello.dist/binascii.so",
+  "hello.dist/fcntl.so",
+  "hello.dist/hello.bin",
+  "hello.dist/libpython3.14.so.1.0",
+  "hello.dist/libzstd.so.1",
+  "hello.dist/math.so",
+  "hello.dist/unicodedata.so",
+  "hello.dist/zlib.so",
+  "hello.py"
+ ],
+ "new_files": [
+  "hello.bin",
+  "hello.dist/"
+ ],
+ "run_command": "./hello.bin",
+ "run_output": "Hello from compiled Python\n"
+}

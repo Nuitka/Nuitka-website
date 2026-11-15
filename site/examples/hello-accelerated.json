@@ -1,0 +1,22 @@
+{
+ "hash": "3e9c51199202d049fcbf1040bb200a24b2813fd81f856ab346e7918d12859309",
+ "recorded_with": {
+  "nuitka": "4.4rc2",
+  "python": "3.14",
+  "system": "Linux"
+ },
+ "input_files": [
+  "hello.py"
+ ],
+ "command": "python -m nuitka hello.py",
+ "log": "Nuitka: Successfully created 'hello.bin'.",
+ "output_files": [
+  "hello.bin",
+  "hello.py"
+ ],
+ "new_files": [
+  "hello.bin"
+ ],
+ "run_command": "./hello.bin",
+ "run_output": "Hello from compiled Python\n"
+}
