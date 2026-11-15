@@ -45,6 +45,7 @@ extensions = [
     # Blog extension
     "ablog",
     "carousel",
+    "examples",
 ]
 
 templates_path = [f"{ROOT}/_templates"]
