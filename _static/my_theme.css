@@ -1225,6 +1225,13 @@ details.sd-dropdown > .sd-summary-content {
 	}
 }
 
+/* Recordings of the "asciinema" directive, it renders a div without a
+   class, the player inside is created by JavaScript. */
+
+.rst-content div[id^="asciicast-"] {
+	margin-bottom: 24px;
+}
+
 /* Tabs of sphinx-design in our colors, inactive labels stay readable. */
 
 .sd-tab-set {
