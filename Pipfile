@@ -46,7 +46,7 @@ pillow = "*"
 ablog = "==0.11.13"
 
 [requires]
-python_version = "3.12"
+python_version = "3.14"
 
 [pipenv]
 allow_prereleases = false

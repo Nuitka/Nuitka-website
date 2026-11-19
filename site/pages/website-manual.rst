@@ -203,7 +203,7 @@ Manual Way
 ==========
 
 This section described how to build the **Nuitka** website manually.
-Enhancements of all kinds are welcome. You will need Python 3.10 and
+Enhancements of all kinds are welcome. You will need Python 3.14 and
 ``pipenv`` to build it.
 
 .. code:: bash

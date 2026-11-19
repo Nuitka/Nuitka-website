@@ -42,15 +42,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
-          python-version: "3.12"
+          python-version: "3.14"
 
       - name: Cache Pipenv dependencies
         uses: actions/cache@v6
         with:
           path: ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-v2-py312-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+          key: ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-v2-py314-pipenv-${{ hashFiles('**/Pipfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-v2-py312-pipenv-
+            ${{ runner.os }}-${{ steps.runner-image.outputs.name }}-v2-py314-pipenv-
 
       - name: Cache Playwright browsers
         uses: actions/cache@v6

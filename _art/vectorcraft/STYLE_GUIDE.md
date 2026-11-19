@@ -142,8 +142,9 @@ The approved commercial palette extends these with a metallic ramp derived from 
 | `nuitka-commercial-champagne` | `#F7D98B` | 247, 217, 139 | Specular highlight          |
 | `nuitka-commercial-ink`       | `#2A1A08` | 42, 26, 8     | Text on gold/champagne      |
 
-The approved commercial asset lives in `_static/brand/` and is gitignored until the site uses it.
-The gold outer-arm inlay is part of the approved commercial emblem treatment.
+The approved commercial asset lives in `_static/brand/`. The site uses its inline derivative at
+`images/svg/nuitka-commercial-lockup.svg`, while the `_static/brand/` copies remain gitignored build
+output. The gold outer-arm inlay is part of the approved commercial emblem treatment.
 
 ### 2.6 Action / CI sub-brand colours
 
@@ -335,8 +336,9 @@ ______________________________________________________________________
 
 ## 7. Commercial lockup - **approved 2026-11-18**
 
-The commercial palette and lockup are approved. The asset lives in `_static/brand/` and is
-gitignored until the site references it.
+The commercial palette and lockup are approved. The site uses the inline derivative at
+`images/svg/nuitka-commercial-lockup.svg`; the `_static/brand/` copies remain gitignored build
+output.
 
 - Core emblem and wordmark proportions are unchanged.
 - The commercial emblem uses a **gold outer-arm inlay**: the two large outer N arms are filled with
