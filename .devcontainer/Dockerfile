@@ -1,6 +1,8 @@
-FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
+FROM mcr.microsoft.com/devcontainers/python:3.14-bookworm
 
 # 1. Replicate 'apt-packages' feature
+# Keep the distro Python development packages: Nuitka builds use them even
+# though the website build itself runs on the image's Python 3.14.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
     python3-dev \
@@ -23,8 +25,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 3. Replicate 'bash-command' feature
-# Note: Expanded --break to --break-system-packages which is the standard for Ubuntu 24.04 (PEP 668)
-RUN python3 -m pip install --break-system-packages invoke pipenv
+# Install the site build tools into the image's Python 3.14 environment.
+RUN python3 -m pip install invoke pipenv
 
 # 4. Replicate 'match-host-time-zone' feature
 # Your existing postCreateCommand 'dpkg-reconfigure tzdata' handles the configuration,
