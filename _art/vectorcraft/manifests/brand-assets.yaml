@@ -3,7 +3,7 @@
 # deterministically. Keep IDs stable; change status and paths only after verification.
 
 manifest_version: 1
-generated: "2026-11-17"
+generated: "2026-11-19"
 brand_system: "Nuitka Website VectorCraft Brand System"
 style_spec: "_art/vectorcraft/style-spec.json"
 style_guide: "_art/vectorcraft/STYLE_GUIDE.md"
@@ -223,14 +223,15 @@ assets:
     source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
     artboard: "commercial-lockup"
     semantic_intent: "Enterprise-grade commercial tier lockup. Approved palette; available for site integration."
-    visual_description: "Light 1200x300 field, precision bronze frame and divider, dark Inter wordmark, emblem with gold outer-arm inlay (the inner arms stay brand blue/yellow), approved gold COMMERCIAL pill, and ENTERPRISE EDITION kicker."
+    visual_description: "Light 1200x300 field, precision bronze frame, dark Inter wordmark, emblem with gold outer-arm inlay (the inner arms stay brand blue/yellow), and a baseline COMMERCIAL label in bronze. The 2px commercial-metal rule sits 42px after the wordmark; the label is centered in the remaining space before the frame edge. No pill or kicker."
     palette: ["surface-content", "commercial-bronze", "commercial-gold", "commercial-metal", "commercial-champagne", "commercial-ink", "logo-grey", "logo-blue", "logo-yellow"]
-    typography: "Inter SemiBold for wordmark and label; Inter Regular for the kicker"
-    alt_text: "Nuitka Commercial lockup on a light field with a bronze geometric frame and a gold COMMERCIAL pill."
+    typography: "Inter SemiBold for wordmark and COMMERCIAL label; label 28px, 0.14em tracking"
+    alt_text: "Nuitka Commercial lockup on a light field with a bronze geometric frame, a gold rule, and a baseline COMMERCIAL label."
     outputs:
       - { path: "_static/brand/nuitka-commercial-lockup.svg", format: "svg", size: "1200x300", status: "approved" }
       - { path: "_static/brand/nuitka-commercial-lockup.png", format: "png", size: "1200x300", status: "approved" }
-    note: "Commercial palette approved 2026-11-18. Gitignored until the site references it."
+    site_inline_source: "images/svg/nuitka-commercial-lockup.svg"
+    note: "Commercial palette approved 2026-11-18. The commercial page uses the inline copy in images/svg, kept in sync by export-approved.sh; the _static/brand copies remain gitignored until separately force-added."
 
 # Review-only assets
 review_assets:

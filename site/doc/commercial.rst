@@ -13,6 +13,10 @@ As a commercial user of Python, you need these critical features only
 **outputs**, and **tracebacks** while still enjoying major convenience
 features for your application.
 
+.. image:: ../../images/svg/nuitka-commercial-lockup.svg
+   :alt: Nuitka Commercial
+   :class: commercial-logo
+
 ************************************
  Protection vs. Reverse Engineering
 ************************************

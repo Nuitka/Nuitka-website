@@ -231,9 +231,9 @@ Enhancements of all kinds are welcome. You will need Python 3.10 and
    python3 -m invoke serve
 
    # Browse it (Linux)
-   xdg-open http://localhost:8080
+   xdg-open http://localhost:27272
    # Browse it (Windows)
-   explorer http://localhost:8080
+   explorer http://localhost:27272
 
 *************
  How We Work

@@ -45,6 +45,7 @@ from nuitka.utils.Rest import makeTable
 from regression_utils import (
     DEFAULT_WAIT_TIME,
     DESKTOP_DEVICES,
+    DEV_SERVER_PORT,
     GOLDEN_DIR,
     GOLDEN_PAGES,
     MOBILE_DEVICES,
@@ -1826,6 +1827,8 @@ def runSphinxAutoBuild():
         os.path.join(os.path.dirname(__file__), "misc", "sphinx_autobuild_wrapper.py"),
         "site",
         "output",
+        "--port",
+        str(DEV_SERVER_PORT),
         "--watch",
         "misc",
         "--watch",

@@ -43,8 +43,10 @@ ______________________________________________________________________
 **Resolved 2026-11-18:** the commercial palette is approved. It uses the metallic ramp derived from
 sponsor amber `#B45F06` and brand yellow `#FFD43B`, plus the gold **outer-arm inlay** selected for
 the emblem. The light commercial lockup is promoted to
-`_static/brand/nuitka-commercial-lockup.svg/png` (gitignored until the site references it). The
-legacy flat tier-card colours remain unchanged for now.
+`_static/brand/nuitka-commercial-lockup.svg/png`. The commercial features page uses the inline
+derivative at `images/svg/nuitka-commercial-lockup.svg`, kept in sync by `export-approved.sh`; the
+`_static/brand` copies stay gitignored until separately force-added. The legacy flat tier-card
+colours remain unchanged for now.
 
 ______________________________________________________________________
 
@@ -158,3 +160,6 @@ ______________________________________________________________________
 | 2026-11-17 | WORDMARK   | Inter SemiBold 600 approved; effective 216 px; −27/1000 em N-u kerning. NanumGothic replaced, not retained during development. |
 | 2026-11-17 | COMMERCIAL | Gold inlay outer arms selected for the commercial emblem; light lockup. Palette approved 2026-11-18.                           |
 | 2026-11-18 | TODO-002   | Commercial palette approved; gold outer-arm inlay; light commercial lockup promoted to `_static/brand`.                        |
+| 2026-11-19 | COMMERCIAL | Right side simplified to a 2 px gold rule + larger baseline COMMERCIAL label; pill and kicker removed.                         |
+| 2026-11-19 | COMMERCIAL | Rule moved 50% closer to the wordmark; COMMERCIAL label centered in the remaining space.                                       |
+| 2026-11-19 | COMMERCIAL | Lockup integrated at the top of `site/doc/commercial.rst` through the inlined `images/svg` derivative.                         |

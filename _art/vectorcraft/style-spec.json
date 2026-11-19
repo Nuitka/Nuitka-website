@@ -3,9 +3,9 @@
   "schemaVersion": "1.0",
   "name": "Nuitka Website VectorCraft Brand System",
   "id": "nuitka-vectorcraft-style-spec",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "created": "2026-11-17",
-  "updated": "2026-11-18",
+  "updated": "2026-11-19",
   "description": "Declarative visual specification for Nuitka website artwork produced with VectorCraft. Values in the 'source' block are extracted verbatim from the repository. Values marked 'derived' are calculated extensions of those source colours. The dark palette remains TODO/review-only; the commercial metal ramp was approved on 2026-11-18.",
   "sourceEvidence": {
     "brandPalette": "site/pages/website-manual.rst (Color Palette section)",
@@ -544,7 +544,7 @@
         ],
         "source": "approved derivation from #B45F06",
         "status": "approved",
-        "usage": "Deep metal shadow, pill outline, lower gradient stop."
+        "usage": "Deep metal shadow, frame accent, lower gradient stop."
       },
       "nuitka-commercial-gold": {
         "hex": "#D99A2B",
@@ -803,7 +803,7 @@
         }
       ],
       "status": "approved",
-      "usage": "Approved commercial tier frame, pill fill, gold outer-arm inlay, and precision geometric accents."
+      "usage": "Approved commercial gold rule, gold outer-arm inlay, and metal accents."
     },
     "commercial-metal-radial": {
       "type": "radial",
@@ -833,7 +833,7 @@
         }
       ],
       "status": "approved",
-      "usage": "Approved commercial tier highlight behind badges and the COMMERCIAL pill."
+      "usage": "Approved commercial tier highlight behind badges and the baseline COMMERCIAL label."
     },
     "action-ci": {
       "type": "linear",
@@ -1250,10 +1250,10 @@
       "status": "approved",
       "delivery": "approved",
       "mark": "Core emblem with the two large outer N arms in the approved commercial metal gradient; the two inner arms stay brand blue/yellow. A precision geometric frame carries the tier signal without changing the wordmark.",
-      "tierIndicator": "A horizontal pill reading COMMERCIAL, uppercase, 0.12em tracking, body bold, height 28-36 px at 1200 px lockup width.",
-      "frame": "1.5 px outer rule in commercial-bronze on light, 8 px radius, 12 px inset; commercial-metal on dark. No bevels or drop shadows that would rasterize.",
-      "pairing": "Emblem + wordmark retains the core proportion; the bronze rule and gold pill sit to the right, separated by a 24 px rule segment.",
-      "backgrounds": "Default light variant: surface-content with a bronze frame/divider and an approved gold pill. A dark-surface variant is deferred to TODO-001; on dark, use commercial-metal plus champagne highlights. Never place gold text on white without commercial-ink or a bronze outline.",
+      "tierIndicator": "A baseline label reading COMMERCIAL, uppercase, 0.14em tracking, Inter SemiBold 28 px at 1200 px lockup width, in commercial-bronze. A 2 px commercial-metal rule sits 42 px after the wordmark; the label is centered in the remaining space before the frame's right edge. No pill or kicker.",
+      "frame": "1.5 px outer rule in commercial-bronze on light, 8 px radius, 24 px inset; commercial-metal on dark. No bevels or drop shadows that would rasterize.",
+      "pairing": "Emblem + wordmark retains the core proportion; the gold rule 42 px after the wordmark and the bronze COMMERCIAL label centered in the remaining field sit on the wordmark's optical line.",
+      "backgrounds": "Default light variant: surface-content with a bronze frame, a 2 px commercial-metal rule, and a bronze baseline COMMERCIAL label. A dark-surface variant is deferred to TODO-001; on dark, use commercial-metal plus champagne highlights. Never place gold text on white without commercial-ink or a bronze outline.",
       "forbidden": "No crowns, laurels, shields, or faux-3D gloss. The tier signal must read as engineering precision, not luxury clip-art."
     },
     "ci": {

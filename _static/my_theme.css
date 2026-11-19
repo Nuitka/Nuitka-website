@@ -1224,3 +1224,19 @@ details.sd-dropdown > .sd-summary-content {
 		align-items: center;
 	}
 }
+
+/* Nuitka Commercial lockup on the commercial page */
+.commercial-logo {
+	display: block;
+	width: 100%;
+	max-width: 620px;
+	height: auto;
+	margin: 1.75rem auto 2.25rem;
+}
+
+@media (max-width: 600px) {
+	.commercial-logo {
+		max-width: 100%;
+		margin: 1.25rem auto 1.75rem;
+	}
+}

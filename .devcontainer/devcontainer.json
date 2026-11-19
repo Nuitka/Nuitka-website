@@ -4,10 +4,10 @@
     "dockerfile": "Dockerfile"
   },
   "forwardPorts": [
-    8000
+    27272
   ],
   "portsAttributes": {
-    "8000": {
+    "27272": {
       "label": "Nuitka Website",
       "onAutoForward": "notify"
     }
@@ -27,7 +27,7 @@
   "postStartCommand": {
     "playwright_install": "pipenv run playwright install && pipenv run playwright install-deps",
     "start_supervisord": "export containerWorkspaceFolder=${containerWorkspaceFolder} && mkdir -p ${containerWorkspaceFolder}/.devcontainer/supervisor/logs && supervisord -c ${containerWorkspaceFolder}/.devcontainer/supervisor/supervisord.conf &",
-    "info_message": "echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:8000\\n\\n'"
+    "info_message": "echo -e '\\n\\nINFO: auto-update.sh is running via supervisord.\\n- To view its logs: A terminal tab \"View Auto-Update Log\" should open automatically.\\n- Nuitka Website: Open in your browser at http://127.0.0.1:27272\\n\\n'"
   },
   "customizations": {
     "vscode": {

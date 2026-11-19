@@ -16,12 +16,12 @@ https://nuitka.net/pages/website-manual.html with all the details
 Right now, this is very much possible to improve in so many ways. Your
 turn!
 
-********
-Tests
-********
+*******
+ Tests
+*******
 
-This project includes **visual regression tests** to ensure
-the UI remains consistent across changes.
+This project includes **visual regression tests** to ensure the UI
+remains consistent across changes.
 
 Golden Images
 =============
@@ -31,11 +31,13 @@ Golden images act as the **baseline reference** for visual comparisons.
 Generate Golden Images
 ----------------------
 
-Golden images can now be generated either **locally** or via **GitHub Actions CI**.
+Golden images can now be generated either **locally** or via **GitHub
+Actions CI**.
 
 **Local (CLI) Method:**
 
-.. code-block:: bash
+.. code:: bash
+
    python update.py --update-golden \
      --browsers chromium,firefox,webkit \
      --devices desktop,mobile \
@@ -46,17 +48,23 @@ Golden images can now be generated either **locally** or via **GitHub Actions CI
 
 **CI Method (GitHub Actions):**
 
-The `Update Golden Images` workflow automatically runs on pushes to main branches
-or can be triggered manually to update the golden images in CI.
+The `Update Golden Images` workflow automatically runs on pushes to main
+branches or can be triggered manually to update the golden images in CI.
 
-- The workflow uses **matrix combinations** of browsers (Chromium, Firefox, WebKit) and devices (desktop, mobile).
-- Generated golden images are **cached** for faster subsequent test runs.
-- A backup of golden images is uploaded as an **artifact** with 90-day retention.
+-  The workflow uses **matrix combinations** of browsers (Chromium,
+   Firefox, WebKit) and devices (desktop, mobile).
 
-Trigger the workflow manually in GitHub under **Actions → Update Golden Images → Run workflow**,
-or via GitHub CLI:
+-  Generated golden images are **cached** for faster subsequent test
+   runs.
 
-.. code-block:: bash
+-  A backup of golden images is uploaded as an **artifact** with 90-day
+   retention.
+
+Trigger the workflow manually in GitHub under **Actions → Update Golden
+Images → Run workflow**, or via GitHub CLI:
+
+.. code:: bash
+
    gh workflow run "Update Golden Images" --ref <branch> \
      -f browsers="chromium,firefox,webkit" \
      -f devices="desktop,mobile" \
@@ -65,74 +73,85 @@ or via GitHub CLI:
 CLI Options
 -----------
 
-- ``--browsers`` → Browsers to test (Chromium, Firefox, WebKit)
-- ``--devices`` → Viewports (desktop, mobile)
-- ``--pages`` → Pages to capture (e.g., ``home,about``)
-- ``--wait`` → Delay (in ms) before taking the screenshot
-- ``--clean`` → Remove old screenshots before generating
-- ``--verbose`` → Enable detailed logging
+-  ``--browsers`` → Browsers to test (Chromium, Firefox, WebKit)
+
+-  ``--devices`` → Viewports (desktop, mobile)
+
+-  ``--pages`` → Pages to capture (e.g., ``home,about``)
+
+-  ``--wait`` → Delay (in ms) before taking the screenshot
+
+-  ``--clean`` → Remove old screenshots before generating
+
+-  ``--verbose`` → Enable detailed logging
 
 Running Tests
 =============
 
-All tests are executed with **pytest**. The suite includes explicit visual regression tests for each browser (**Chromium**, **Firefox**, **WebKit**) and viewport mode (**desktop**, **mobile**), parametrized across the golden pages.
+All tests are executed with **pytest**. The suite includes explicit
+visual regression tests for each browser (**Chromium**, **Firefox**,
+**WebKit**) and viewport mode (**desktop**, **mobile**), parametrized
+across the golden pages.
 
 Prerequisites
---------------
+-------------
 
-- Ensure your local server is running at ``http://localhost:8000``.
-- Activate your environment: run inside your **pipenv** shell.
+-  Ensure your local server is running at ``http://localhost:27272``.
+
+-  Activate your environment: run inside your **pipenv** shell.
 
 Basic Commands
----------------
+--------------
 
 Run all tests (60 total: 10 pages × 3 browsers × 2 viewports):
 
-.. code-block:: bash
+.. code:: bash
 
    pytest tests/regression_test.py -v
 
 Selective Execution with Markers
 --------------------------------
 
-Use markers to run subsets (e.g., only desktop Chromium).
-Available markers: ``desktop``, ``mobile``, ``chromium``, ``firefox``, ``webkit``.
+Use markers to run subsets (e.g., only desktop Chromium). Available
+markers: ``desktop``, ``mobile``, ``chromium``, ``firefox``, ``webkit``.
 
-- All desktop tests:
+-  All desktop tests:
 
-  .. code-block:: bash
+   .. code:: bash
 
-     pytest tests/regression_test.py -m "desktop" -v
+      pytest tests/regression_test.py -m "desktop" -v
 
-- All mobile tests:
+-  All mobile tests:
 
-  .. code-block:: bash
+   .. code:: bash
 
-     pytest tests/regression_test.py -m "mobile" -v
+      pytest tests/regression_test.py -m "mobile" -v
 
-- Specific combo (e.g., mobile Chromium):
+-  Specific combo (e.g., mobile Chromium):
 
-  .. code-block:: bash
+   .. code:: bash
 
-     pytest tests/regression_test.py -m "mobile and chromium" -v
+      pytest tests/regression_test.py -m "mobile and chromium" -v
 
-- Single test function (e.g., desktop Firefox):
+-  Single test function (e.g., desktop Firefox):
 
-  .. code-block:: bash
+   .. code:: bash
 
-     pytest tests/regression_test.py::test_visual_desktop_firefox -v
+      pytest tests/regression_test.py::test_visual_desktop_firefox -v
 
-- Specific page in a test (e.g., home page on mobile WebKit):
+-  Specific page in a test (e.g., home page on mobile WebKit):
 
-  .. code-block:: bash
+   .. code:: bash
 
-     pytest tests/regression_test.py::test_visual_mobile_webkit[/] -v
+      pytest tests/regression_test.py::test_visual_mobile_webkit[/] -v
 
 Test Output
 ===========
 
 The following directories are created when running tests:
 
-- **CURRENT_DIR** → Latest screenshots from the test run
-- **DIFF_DIR** → Visual diffs highlighting failed comparisons
-- **GOLDEN_DIR** → Baseline golden reference images
+-  **CURRENT_DIR** → Latest screenshots from the test run
+
+-  **DIFF_DIR** → Visual diffs highlighting failed comparisons
+
+-  **GOLDEN_DIR** → Baseline golden reference images

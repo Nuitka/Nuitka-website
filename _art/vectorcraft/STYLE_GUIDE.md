@@ -168,8 +168,8 @@ compliant; the site-wide audit and remediation remain open. Measured WCAG 2.x co
 - `#7AB8E4` on `#1F1D1D`: **7.83:1** - safe body text on dark.
 - `#B45F06` on white: **4.58:1** - just passes for body text.
 
-Never place thin gold text directly on white. Use `commercial-ink` text inside a gold pill, or place
-gold on `surface-dark`. The commercial palette was approved on 2026-11-18.
+Never place thin gold text directly on white. Use `commercial-ink` text on gold fills, or the bronze
+baseline label on light. The commercial palette was approved on 2026-11-18.
 
 **Remediation checklist for TODO-003:**
 
@@ -186,20 +186,20 @@ ______________________________________________________________________
 
 Full machine-readable stops are in `style-spec.json`. Summary:
 
-| Name                      | Type   | Direction        | Stops                                                                 | Use                                                  |
-| ------------------------- | ------ | ---------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
-| `logo-blue`               | Linear | 135°             | `#5A9FD4` → `#306998`                                                 | Blue ribbon arms                                     |
-| `logo-yellow`             | Linear | 135°             | `#FFD43B` → `#FFE873`                                                 | Yellow ribbon arms                                   |
-| `logo-grey`               | Linear | 180°             | `#DBDBDB` → `#ADADAD`                                                 | Emblem substrate                                     |
-| `logo-grey-dark`          | Linear | 180°             | `#4A4545` → `#2A2727`                                                 | Dark emblem substrate **(TODO-001, review-only)**    |
-| `nuitka-signature`        | Linear | 120°             | `#2A3990` → `#599DD2` → `#7FC4EC`                                     | Hero bands, CTA panels                               |
-| `nuitka-signature-deep`   | Linear | 135°             | `#1F1D1D` → `#232A44` → `#2A3990` → `#599DD2`                         | Dark hero / OG field                                 |
-| `hero-radial-glow`        | Radial | centre 50% / 15% | white 16% → 5% → 0%                                                   | Optional vignette                                    |
-| `commercial-metal`        | Linear | 135°             | `#6E3F0A` → `#8C5A1B` → `#D99A2B` → `#F7D98B` → `#E3B04B` → `#B9791F` | Approved commercial frame, pill, and outer-arm inlay |
-| `commercial-metal-radial` | Radial | top centre       | `#FFE8A3` → `#F7D98B` → `#D99A2B` → `#8C5A1B` → `#6E3F0A`             | Approved commercial highlight                        |
-| `action-ci`               | Linear | 135°             | `#00916E` → `#2A3990`                                                 | CI/Actions badge                                     |
-| `action-watch`            | Linear | 135°             | `#2A3990` → `#599DD2`                                                 | Watch/benchmarking badge                             |
-| `docs-header`             | Linear | 90°              | `#599DD2` → `#1C5E89`                                                 | Documentation bands                                  |
+| Name                      | Type   | Direction        | Stops                                                                 | Use                                               |
+| ------------------------- | ------ | ---------------- | --------------------------------------------------------------------- | ------------------------------------------------- |
+| `logo-blue`               | Linear | 135°             | `#5A9FD4` → `#306998`                                                 | Blue ribbon arms                                  |
+| `logo-yellow`             | Linear | 135°             | `#FFD43B` → `#FFE873`                                                 | Yellow ribbon arms                                |
+| `logo-grey`               | Linear | 180°             | `#DBDBDB` → `#ADADAD`                                                 | Emblem substrate                                  |
+| `logo-grey-dark`          | Linear | 180°             | `#4A4545` → `#2A2727`                                                 | Dark emblem substrate **(TODO-001, review-only)** |
+| `nuitka-signature`        | Linear | 120°             | `#2A3990` → `#599DD2` → `#7FC4EC`                                     | Hero bands, CTA panels                            |
+| `nuitka-signature-deep`   | Linear | 135°             | `#1F1D1D` → `#232A44` → `#2A3990` → `#599DD2`                         | Dark hero / OG field                              |
+| `hero-radial-glow`        | Radial | centre 50% / 15% | white 16% → 5% → 0%                                                   | Optional vignette                                 |
+| `commercial-metal`        | Linear | 135°             | `#6E3F0A` → `#8C5A1B` → `#D99A2B` → `#F7D98B` → `#E3B04B` → `#B9791F` | Approved commercial gold rule and outer-arm inlay |
+| `commercial-metal-radial` | Radial | top centre       | `#FFE8A3` → `#F7D98B` → `#D99A2B` → `#8C5A1B` → `#6E3F0A`             | Approved commercial highlight                     |
+| `action-ci`               | Linear | 135°             | `#00916E` → `#2A3990`                                                 | CI/Actions badge                                  |
+| `action-watch`            | Linear | 135°             | `#2A3990` → `#599DD2`                                                 | Watch/benchmarking badge                          |
+| `docs-header`             | Linear | 90°              | `#599DD2` → `#1C5E89`                                                 | Documentation bands                               |
 
 Angles are CSS-style clockwise from “to top”: 0° up, 90° right, 135° down-right, 180° down. All
 gradient stops are opaque unless the JSON explicitly gives an opacity.
@@ -343,14 +343,14 @@ gitignored until the site references it.
   `commercial-metal`; the two inner arms keep the brand blue/yellow. This is the tier signal inside
   the mark itself.
 - Default variant is **light**: `surface-content`, dark Inter wordmark, the inlaid emblem,
-  `commercial-bronze` frame/divider, and an approved gold pill. A dark-surface commercial variant is
-  deferred to TODO-001.
+  `commercial-bronze` frame, a 2 px `commercial-metal` rule, and the bronze baseline COMMERCIAL
+  label. A dark-surface commercial variant is deferred to TODO-001.
 - Add a **precision geometric frame**: 1.5 px `commercial-bronze` rule on light (or
-  `commercial-metal` on dark), 8 px radius, 12 px inset.
-- Add a **COMMERCIAL pill** to the right of the wordmark, separated by a 24 px rule segment:
-  uppercase, 0.12em tracking, bold sans, 28-36 px height at 1200 px lockup width.
-- Pill fill: `commercial-metal` or `commercial-metal-radial`. Pill text: `commercial-ink` on
-  champagne/gold, or `commercial-champagne` on bronze.
+  `commercial-metal` on dark), 8 px radius, 24 px inset.
+- Add a **baseline COMMERCIAL label** to the right of the wordmark, separated by a **2 px
+  `commercial-metal` rule** placed **42 px after the wordmark** (half the old gap): uppercase,
+  0.14em tracking, Inter SemiBold 28 px at 1200 px lockup width, `commercial-bronze`; center the
+  label in the remaining space before the frame's right edge. No pill, no kicker.
 - No crowns, laurels, shields, bevels, or faux-3D gloss. The signal is engineering precision, not
   luxury clip-art.
 
@@ -380,6 +380,9 @@ ______________________________________________________________________
 - PNG: `_static/brand/{asset}-{theme}{suffix}.png`
 - WebP: `_static/brand/{asset}-{theme}.webp`
 - Review-only: `_art/vectorcraft/review/{asset}-{theme}-review.{svg,png,webp}`
+- RST inline SVG: derive `images/svg/{asset}.svg` from the approved SVG, stripping the XML
+  declaration and adding a page-specific `<title>`/`<desc>`; the site post-processor inlines it from
+  there. `export-approved.sh` performs this for the commercial lockup.
 
 Use lowercase kebab-case. Theme suffixes are `-light`, `-dark`, `-mono`, `-mono-dark`; omit `-light`
 when there is only one default light variant. Never overwrite the historical files in `images/svg/`

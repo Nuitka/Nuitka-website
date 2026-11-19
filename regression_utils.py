@@ -7,7 +7,9 @@ from urllib.parse import urlparse
 
 from PIL import Image, ImageChops, ImageDraw
 
-BASE_URL = "http://localhost:8000"
+DEV_SERVER_PORT = 27272
+
+BASE_URL = f"http://localhost:{DEV_SERVER_PORT}"
 
 ROOT = Path(__file__).parent.resolve()
 
@@ -59,7 +61,7 @@ def sanitizeUrl(url):
     return re.sub(r"[^a-zA-Z0-9_-]", "_", path)
 
 
-def build_url(page_path, base_url="http://localhost:8000"):
+def build_url(page_path, base_url=BASE_URL):
     if not page_path:
         return base_url
     if page_path.startswith("/") and base_url.endswith("/"):

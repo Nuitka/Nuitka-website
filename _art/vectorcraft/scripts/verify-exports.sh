@@ -11,6 +11,7 @@ FILES=(
   "$ROOT/_static/brand/nuitka-watch-lockup.svg"
   "$ROOT/_static/brand/nuitka-docs-lockup.svg"
   "$ROOT/_static/brand/nuitka-commercial-lockup.svg"
+  "$ROOT/images/svg/nuitka-commercial-lockup.svg"
   "$ROOT/_static/Nuitka-Logo-Symbol.svg"
 )
 

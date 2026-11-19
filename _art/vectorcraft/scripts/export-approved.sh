@@ -56,6 +56,34 @@ png 7 72  "$OUT/nuitka-docs-lockup.png"
 svg 4 "$OUT/nuitka-commercial-lockup.svg"
 png 4 72  "$OUT/nuitka-commercial-lockup.png"
 
+# The commercial page loads the lockup through images/svg so update.py can inline
+# it. Keep that copy in sync with the approved export; strip the XML declaration
+# because the post-processor inserts the file as an HTML fragment.
+python3 - "$OUT/nuitka-commercial-lockup.svg" "$ROOT/images/svg/nuitka-commercial-lockup.svg" <<'PY'
+import re
+import sys
+from pathlib import Path
+
+source, destination = map(Path, sys.argv[1:])
+svg = re.sub(r"^<\?xml[^>]*\?>\s*", "", source.read_text(encoding="utf-8"))
+svg = re.sub(
+    r"<title>.*?</title>",
+    "<title>Nuitka Commercial</title>",
+    svg,
+    count=1,
+    flags=re.DOTALL,
+)
+svg = re.sub(
+    r"<desc>.*?</desc>",
+    "<desc>Nuitka Commercial lockup with gold outer-arm emblem inlay "
+    "and a baseline COMMERCIAL label.</desc>",
+    svg,
+    count=1,
+    flags=re.DOTALL,
+)
+destination.write_text(svg, encoding="utf-8")
+PY
+
 # Review-only variants (never published; dark theme is still TODO-001)
 svg 1 "$REVIEW/nuitka-logo-horizontal-dark-review.svg"
 png 1 72  "$REVIEW/nuitka-logo-horizontal-dark-review.png"
