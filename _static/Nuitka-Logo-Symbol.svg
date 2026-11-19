@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="299.759" height="300.451" viewBox="0 0 299.759 300.451">
+  <defs>
+    <linearGradient id="logo-grey" x1="149.88" y1="0" x2="149.88" y2="300.451" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#dbdbdb"/>
+      <stop offset="1" stop-color="#adadad"/>
+    </linearGradient>
+    <linearGradient id="logo-blue" x1="133.969" y1="0.731" x2="299.821" y2="166.583" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5a9fd4"/>
+      <stop offset="1" stop-color="#306998"/>
+    </linearGradient>
+    <linearGradient id="logo-yellow" x1="0.253" y1="134.447" x2="166.105" y2="300.299" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffd43b"/>
+      <stop offset="1" stop-color="#ffe873"/>
+    </linearGradient>
+    <linearGradient id="logo-blue-2" x1="0.4" y1="181.391" x2="119.309" y2="300.299" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5a9fd4"/>
+      <stop offset="1" stop-color="#306998"/>
+    </linearGradient>
+    <linearGradient id="logo-yellow-2" x1="180.749" y1="0.711" x2="299.658" y2="119.619" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffd43b"/>
+      <stop offset="1" stop-color="#ffe873"/>
+    </linearGradient>
+  </defs>
+  <title>Nuitka-Logo-Horizontal.svg</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g>
+      <path d="M27.568 0 L272.191 0 C287.417 0 299.759 12.342 299.759 27.568 L299.759 272.884 C299.759 288.109 287.417 300.451 272.191 300.451 L27.568 300.451 C12.343 300.451 0 288.109 0 272.884 L0 27.568 C0 12.343 12.342 0 27.568 0 Z" fill="url(#logo-grey)"/>
+      <g>
+        <polygon points="134.096,0.604 134.096,127.822 172.678,166.709 299.694,166.709 299.694,127.822 172.476,127.822 172.476,0.604" fill="url(#logo-blue)"/>
+        <polygon points="0.38,134.32 0.38,173.207 127.598,173.207 127.598,300.425 165.978,300.425 165.978,173.207 127.397,134.32" fill="url(#logo-yellow)"/>
+      </g>
+      <polygon points="0.377,181.414 0.377,220.201 81.157,220.201 81.157,300.276 119.333,300.276 119.333,181.414" fill="url(#logo-blue-2)"/>
+      <polygon points="299.681,119.592 299.681,80.809 218.901,80.809 218.901,0.734 180.726,0.734 180.726,119.596" fill="url(#logo-yellow-2)"/>
+    </g>
+  </g>
+</svg>

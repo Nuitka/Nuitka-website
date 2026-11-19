@@ -1,0 +1,355 @@
+# Nuitka VectorCraft asset manifest
+# Every planned or produced image is defined here so an agent can regenerate it
+# deterministically. Keep IDs stable; change status and paths only after verification.
+
+manifest_version: 1
+generated: "2026-11-17"
+brand_system: "Nuitka Website VectorCraft Brand System"
+style_spec: "_art/vectorcraft/style-spec.json"
+style_guide: "_art/vectorcraft/STYLE_GUIDE.md"
+todo_index: "_art/vectorcraft/TODO.md"
+
+roots:
+  art_source: "_art/vectorcraft"
+  masters: "_art/vectorcraft/src"
+  manifests: "_art/vectorcraft/manifests"
+  review: "_art/vectorcraft/review"
+  published: "_static/brand"
+  legacy_symbol: "_static/Nuitka-Logo-Symbol.svg"
+
+export_rules:
+  editorial_mode: "master keeps editable text; export copies are outlined"
+  svg:
+    outline_text: true
+    preserve_editing: false
+    forbid_elements: ["text", "tspan", "image", "foreignObject"]
+    require_viewbox: true
+    max_size_kb: 512
+  png:
+    outline_source: true
+    logo_background: "transparent"
+    opengraph_background: "white"
+    retina_suffix: "@2x"
+  webp:
+    quality: 88
+    background: "white for OpenGraph cards"
+  review:
+    suffix: "-review"
+    publish: false
+
+wordmark:
+  approved:
+    family: "Inter"
+    style: "SemiBold"
+    weight: 600
+    effective_size: 216
+    tracking: 0
+    n_to_u_kerning: "-27/1000 em (equivalent to -3 px at the 112 px sample size)"
+  legacy:
+    family: "NanumGothic"
+    style: "Regular"
+    note: "Previous original; not retained during development. Do not use for new artwork."
+  rule: "Master keeps editable text; every export outlines it. Do not retype the wordmark in another face."
+
+# Source masters
+masters:
+  - id: "nuitka-master-template"
+    path: "_art/vectorcraft/src/nuitka-master-template.vectorcraft"
+    status: "approved"
+    purpose: "Named swatches, gradients, artboard presets, and the OpenGraph export settings."
+    artboards:
+      - name: "brand-board"
+        size: "1200x630"
+        status: "approved"
+        description: "Visible brand board with core palette, surfaces, gradients, dark-theme review warning, and the approved commercial palette note."
+      - name: "og-hero"
+        size: "1200x630"
+        status: "planned"
+        description: "Reserved OpenGraph hero composition."
+      - name: "docs-architecture"
+        size: "1000x560"
+        status: "planned"
+        description: "Reserved documentation architecture diagram frame."
+      - name: "badge-square"
+        size: "400x400"
+        status: "planned"
+        description: "Reserved square product/feature badge."
+      - name: "lockup-horizontal"
+        size: "1200x300"
+        status: "planned"
+        description: "Reserved generic horizontal sub-brand lockup."
+      - name: "favicon"
+        size: "512x512"
+        status: "planned"
+        description: "Reserved favicon master."
+    export_settings:
+      state: "configured"
+      note: "document.exportForScreens stored the 1200x630 PNG, 2400x1260 PNG @2x, and 1200x630 WebP review settings in the document."
+
+  - id: "nuitka-logos"
+    path: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    status: "approved"
+    purpose: "Editable logo suite with separate named artboards for core, monochrome, dark, commercial, and CI/tooling variants."
+    artboards:
+      - "core-horizontal-light"
+      - "core-horizontal-dark"
+      - "core-horizontal-mono"
+      - "core-symbol-light"
+      - "commercial-lockup"
+      - "ci-lockup"
+      - "watch-lockup"
+      - "docs-lockup"
+      - "core-horizontal-mono-dark"
+      - "vertical-lockup"
+
+# Produced assets
+assets:
+  - id: "nuitka-logo-horizontal-light"
+    status: "approved"
+    kind: "logo-lockup"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "core-horizontal-light"
+    semantic_intent: "Primary horizontal logo for light surfaces, documentation headers, and partner lockups."
+    visual_description: "Full-colour emblem at left; black Inter SemiBold wordmark at right; wordmark sits under the emblem height; 1200x260 artboard with safe margins."
+    palette: ["logo-blue", "logo-yellow", "logo-grey", "text-heading"]
+    typography: "Inter SemiBold 600, effective 216 px, tracking 0, N-u kerning -27/1000 em (outlined on export)"
+    alt_text: "Nuitka logo: a grey rounded square with blue and yellow interlocking ribbon arms forming an N, followed by the word Nuitka."
+    outputs:
+      - { path: "_static/brand/nuitka-logo-horizontal-light.svg", format: "svg", size: "1200x260", status: "approved" }
+      - { path: "_static/brand/nuitka-logo-horizontal-light.png", format: "png", size: "1200x260", status: "approved" }
+      - { path: "_static/brand/nuitka-logo-horizontal-light@2x.png", format: "png", size: "2400x520", status: "approved" }
+    verification:
+      doc_inspect: "passed"
+      render_preview_1024: "passed"
+      no_text_or_image_in_svg: "passed"
+      viewbox: "passed"
+
+  - id: "nuitka-logo-horizontal-mono"
+    status: "approved"
+    kind: "logo-lockup"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "core-horizontal-mono"
+    semantic_intent: "High-contrast monochrome horizontal logo for constrained print, embroidery, and low-colour use."
+    visual_description: "Knockout treatment: black rounded square, white ribbon N, black wordmark. Preserves the emblem geometry without relying on the brand gradients."
+    palette: ["text-heading", "surface-paper"]
+    typography: "Inter SemiBold 600, effective 216 px, tracking 0, N-u kerning -27/1000 em (outlined on export)"
+    alt_text: "Monochrome Nuitka logo with a black square, white ribbon N, and black wordmark."
+    outputs:
+      - { path: "_static/brand/nuitka-logo-horizontal-mono.svg", format: "svg", size: "1200x260", status: "approved" }
+      - { path: "_static/brand/nuitka-logo-horizontal-mono.png", format: "png", size: "1200x260", status: "approved" }
+    verification:
+      doc_inspect: "passed"
+      render_preview_1024: "passed"
+      no_text_or_image_in_svg: "passed"
+      viewbox: "passed"
+
+  - id: "nuitka-symbol-light"
+    status: "approved"
+    kind: "logo-symbol"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "core-symbol-light"
+    semantic_intent: "Square emblem for badges and the legacy footer logo path."
+    visual_description: "Full-colour ribbon N on the rounded grey square; 300x300 symbol centred on a 400x400 artboard with 50 px margins."
+    palette: ["logo-blue", "logo-yellow", "logo-grey"]
+    alt_text: "Nuitka emblem: a grey rounded square with blue and yellow interlocking ribbon arms forming an N."
+    outputs:
+      - { path: "_static/brand/nuitka-symbol-light.svg", format: "svg", size: "400x400", status: "approved" }
+      - { path: "_static/brand/nuitka-symbol-light.png", format: "png", size: "400x400", status: "approved" }
+      - { path: "_static/brand/nuitka-symbol-light@2x.png", format: "png", size: "800x800", status: "approved" }
+      - { path: "_static/Nuitka-Logo-Symbol.svg", format: "svg", size: "299.759x300.451 (cropped selection)", status: "approved", note: "Fixes the footer reference in _templates/footer.html; no text content." }
+    verification:
+      doc_inspect: "passed"
+      render_preview_1024: "passed"
+      no_text_or_image_in_svg: "passed"
+      viewbox: "passed"
+
+  - id: "nuitka-ci-lockup"
+    status: "approved"
+    kind: "sub-brand-lockup"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "ci-lockup"
+    semantic_intent: "Modular badge for GitHub Actions, CI status, and build-pipeline documentation."
+    visual_description: "Light card with a green-to-blue action spine, full-colour Nuitka lockup at left, divider, and the label CI / Nuitka Actions."
+    palette: ["action-ci", "surface-content", "border-default", "nuitka-ci", "nuitka-tooling"]
+    typography: "Inter SemiBold for wordmark and label; Inter Regular for the kicker and subline"
+    alt_text: "Nuitka CI/Actions badge with a green gradient spine and the label CI."
+    outputs:
+      - { path: "_static/brand/nuitka-ci-lockup.svg", format: "svg", size: "1200x300", status: "approved" }
+      - { path: "_static/brand/nuitka-ci-lockup.png", format: "png", size: "1200x300", status: "approved" }
+    verification:
+      render_preview_1024: "passed"
+      no_text_or_image_in_svg: "passed"
+      viewbox: "passed"
+
+  - id: "nuitka-watch-lockup"
+    status: "approved"
+    kind: "sub-brand-lockup"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "watch-lockup"
+    semantic_intent: "Badge for Nuitka-Watch, benchmarking dashboards, and performance comparisons."
+    visual_description: "Light card with a dark-blue-to-blue watch spine, full-colour lockup, divider, and the label WATCH / Nuitka-Watch benchmarks."
+    palette: ["action-watch", "surface-content", "border-default", "nuitka-watch"]
+    typography: "Inter SemiBold for wordmark and label; Inter Regular for the kicker and subline"
+    alt_text: "Nuitka Watch badge with a blue gradient spine and the label WATCH."
+    outputs:
+      - { path: "_static/brand/nuitka-watch-lockup.svg", format: "svg", size: "1200x300", status: "approved" }
+      - { path: "_static/brand/nuitka-watch-lockup.png", format: "png", size: "1200x300", status: "approved" }
+    verification:
+      render_preview_1024: "passed"
+      no_text_or_image_in_svg: "passed"
+      viewbox: "passed"
+
+  - id: "nuitka-docs-lockup"
+    status: "approved"
+    kind: "sub-brand-lockup"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "docs-lockup"
+    semantic_intent: "Documentation section header badge for the manual, API, and architecture pages."
+    visual_description: "Light card with a blue documentation spine, full-colour lockup, divider, and the label DOCS / Nuitka documentation."
+    palette: ["docs-header", "surface-content", "border-default", "nuitka-tooling"]
+    typography: "Inter SemiBold for wordmark and label; Inter Regular for the kicker and subline"
+    alt_text: "Nuitka documentation badge with a blue gradient spine and the label DOCS."
+    outputs:
+      - { path: "_static/brand/nuitka-docs-lockup.svg", format: "svg", size: "1200x300", status: "approved" }
+      - { path: "_static/brand/nuitka-docs-lockup.png", format: "png", size: "1200x300", status: "approved" }
+    verification:
+      render_preview_1024: "passed"
+      no_text_or_image_in_svg: "passed"
+      viewbox: "passed"
+
+  - id: "nuitka-commercial-lockup"
+    status: "approved"
+    kind: "commercial-lockup"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "commercial-lockup"
+    semantic_intent: "Enterprise-grade commercial tier lockup. Approved palette; available for site integration."
+    visual_description: "Light 1200x300 field, precision bronze frame and divider, dark Inter wordmark, emblem with gold outer-arm inlay (the inner arms stay brand blue/yellow), approved gold COMMERCIAL pill, and ENTERPRISE EDITION kicker."
+    palette: ["surface-content", "commercial-bronze", "commercial-gold", "commercial-metal", "commercial-champagne", "commercial-ink", "logo-grey", "logo-blue", "logo-yellow"]
+    typography: "Inter SemiBold for wordmark and label; Inter Regular for the kicker"
+    alt_text: "Nuitka Commercial lockup on a light field with a bronze geometric frame and a gold COMMERCIAL pill."
+    outputs:
+      - { path: "_static/brand/nuitka-commercial-lockup.svg", format: "svg", size: "1200x300", status: "approved" }
+      - { path: "_static/brand/nuitka-commercial-lockup.png", format: "png", size: "1200x300", status: "approved" }
+    note: "Commercial palette approved 2026-11-18. Gitignored until the site references it."
+
+# Review-only assets
+review_assets:
+  - id: "nuitka-logo-horizontal-dark"
+    status: "review-only"
+    todo: "TODO-001"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "core-horizontal-dark"
+    semantic_intent: "Dark-surface horizontal logo for the future dark theme."
+    visual_description: "Full-colour emblem on the dark grey substrate gradient, white Inter SemiBold wordmark, on a #1F1D1D field."
+    palette: ["logo-blue", "logo-yellow", "logo-grey-dark", "text-on-dark", "surface-dark"]
+    alt_text: "Nuitka logo in a dark treatment: blue and yellow ribbon N on a dark square with a white wordmark."
+    outputs:
+      - { path: "_art/vectorcraft/review/nuitka-logo-horizontal-dark-review.svg", format: "svg", size: "1200x260", status: "review-only" }
+      - { path: "_art/vectorcraft/review/nuitka-logo-horizontal-dark-review.png", format: "png", size: "1200x260", status: "review-only" }
+    note: "Do not publish until the dark theme exists."
+
+  - id: "nuitka-logo-horizontal-mono-dark"
+    status: "review-only"
+    todo: "TODO-001"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "core-horizontal-mono-dark"
+    semantic_intent: "Single-ink light-on-dark horizontal logo for the future dark theme."
+    visual_description: "White rounded square, black ribbon N, white Inter SemiBold wordmark on a #1F1D1D field."
+    palette: ["text-on-dark", "text-heading", "surface-dark"]
+    alt_text: "Monochrome white Nuitka logo on a dark background."
+    outputs:
+      - { path: "_art/vectorcraft/review/nuitka-logo-horizontal-mono-dark-review.svg", format: "svg", size: "1200x260", status: "review-only" }
+      - { path: "_art/vectorcraft/review/nuitka-logo-horizontal-mono-dark-review.png", format: "png", size: "1200x260", status: "review-only" }
+    note: "Do not publish until the dark theme exists."
+
+# Planned artwork
+planned_assets:
+  - id: "nuitka-og-hero"
+    status: "planned"
+    kind: "opengraph-hero"
+    source: "_art/vectorcraft/src/nuitka-master-template.vectorcraft"
+    artboard: "og-hero"
+    size: "1200x630"
+    intent: "Home page and release OpenGraph card with the signature-deep gradient and a large serif headline."
+    outputs:
+      - { path: "_static/brand/nuitka-og-hero.svg", format: "svg", status: "planned" }
+      - { path: "_static/brand/nuitka-og-hero.png", format: "png", size: "1200x630", status: "planned" }
+      - { path: "_static/brand/nuitka-og-hero@2x.png", format: "png", size: "2400x1260", status: "planned" }
+      - { path: "_static/brand/nuitka-og-hero.webp", format: "webp", size: "1200x630", status: "planned" }
+
+  - id: "nuitka-docs-architecture"
+    status: "planned"
+    kind: "documentation-diagram"
+    source: "_art/vectorcraft/src/nuitka-master-template.vectorcraft"
+    artboard: "docs-architecture"
+    size: "1000x560"
+    intent: "Reusable architecture and pipeline diagram frame."
+    outputs:
+      - { path: "_static/brand/nuitka-docs-architecture.svg", format: "svg", status: "planned" }
+      - { path: "_static/brand/nuitka-docs-architecture@2x.png", format: "png", size: "2000x1120", status: "planned" }
+
+  - id: "nuitka-feature-badge"
+    status: "planned"
+    kind: "feature-badge"
+    source: "_art/vectorcraft/src/nuitka-master-template.vectorcraft"
+    artboard: "badge-square"
+    size: "400x400"
+    intent: "Square feature or tooling badge."
+    outputs:
+      - { path: "_static/brand/nuitka-feature-badge.svg", format: "svg", status: "planned" }
+      - { path: "_static/brand/nuitka-feature-badge.png", format: "png", size: "400x400", status: "planned" }
+
+  - id: "nuitka-lockup-horizontal-template"
+    status: "planned"
+    kind: "lockup-template"
+    source: "_art/vectorcraft/src/nuitka-master-template.vectorcraft"
+    artboard: "lockup-horizontal"
+    size: "1200x300"
+    intent: "Generic horizontal sub-brand frame for partner integrations."
+    outputs: []
+
+  - id: "nuitka-favicon"
+    status: "planned"
+    kind: "favicon"
+    source: "_art/vectorcraft/src/nuitka-master-template.vectorcraft"
+    artboard: "favicon"
+    size: "512x512"
+    intent: "Favicon and touch-icon derivatives."
+    outputs:
+      - { path: "_static/brand/nuitka-favicon.svg", format: "svg", status: "planned" }
+      - { path: "_static/brand/nuitka-favicon-180.png", format: "png", size: "180x180", status: "planned" }
+      - { path: "_static/brand/nuitka-favicon-32.png", format: "png", size: "32x32", status: "planned" }
+
+  - id: "nuitka-vertical-lockup"
+    status: "planned"
+    kind: "logo-lockup"
+    source: "_art/vectorcraft/src/nuitka-logos.vectorcraft"
+    artboard: "vertical-lockup"
+    size: "640x760"
+    intent: "Vertical emblem-over-wordmark composition for covers and square placements."
+    outputs: []
+
+# Verification and publication gates
+gates:
+  publication:
+    - "status is approved"
+    - "TODO-001 closed for dark variants; commercial palette approved 2026-11-18"
+    - "SVG contains no text, tspan, image, or foreignObject"
+    - "SVG has viewBox"
+    - "file size under 512 KB"
+    - "render_preview at max_side 1024 was inspected"
+  review:
+    - "target path is under _art/vectorcraft/review/"
+    - "filename uses the -review suffix"
+    - "manifest status is review-only or blocked"
+
+# Regeneration commands (MCP)
+regeneration:
+  open_master: "open_file {path: _art/vectorcraft/src/nuitka-master-template.vectorcraft}"
+  open_logos: "open_file {path: _art/vectorcraft/src/nuitka-logos.vectorcraft}"
+  inspect: "doc_inspect {depth: 3}"
+  preview: "render_preview {max_side: 1024, artboard: N}"
+  export_svg: "export {path, format: svg, artboard: N, outlineText: true}"
+  export_png: "export {path, format: png, artboard: N, scale: 1|2, options: {background: transparent}}"
+  export_review: "export to _art/vectorcraft/review/<name>-review.svg with outlineText: true"
+  verify: "run _art/vectorcraft/scripts/verify-exports.py"

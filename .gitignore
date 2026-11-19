@@ -21,3 +21,8 @@ tests/diff
 state.ini
 .codex
 out.txt
+
+# Generated artwork: do not track until the site references it.
+# Add with `git add -f` when these assets are ready to publish.
+_art/vectorcraft/review/
+_static/brand/

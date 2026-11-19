@@ -1,0 +1,1378 @@
+{
+  "$comment": "No remote JSON Schema is published for this project yet; do not add a $schema URL until a real schema is hosted.",
+  "schemaVersion": "1.0",
+  "name": "Nuitka Website VectorCraft Brand System",
+  "id": "nuitka-vectorcraft-style-spec",
+  "version": "1.0.3",
+  "created": "2026-11-17",
+  "updated": "2026-11-18",
+  "description": "Declarative visual specification for Nuitka website artwork produced with VectorCraft. Values in the 'source' block are extracted verbatim from the repository. Values marked 'derived' are calculated extensions of those source colours. The dark palette remains TODO/review-only; the commercial metal ramp was approved on 2026-11-18.",
+  "sourceEvidence": {
+    "brandPalette": "site/pages/website-manual.rst (Color Palette section)",
+    "siteTheme": "sphinx_rtd_theme 3.0.2 theme.css + _static/my_theme.css",
+    "themeOverride": "_static/my_theme.css",
+    "postcss": "postcss.config.js (font-family rewrites, purged Font Awesome rules)",
+    "logoMaster": [
+      "Nuitka-develop/doc/Logo/Nuitka-Logo-Symbol.svg",
+      "Nuitka-develop/doc/Logo/Nuitka-Logo-Horizontal.svg",
+      "Nuitka-develop/doc/Logo/Nuitka-Logo-Vertical.svg"
+    ],
+    "logoRasterReferences": [
+      "Nuitka-develop/doc/images/Nuitka-Logo-Symbol.png",
+      "Nuitka-develop/doc/images/Nuitka-Logo-Horizontal.png",
+      "Nuitka-develop/doc/images/Nuitka-Logo-Vertical.png",
+      "images/nuitka-website-logo.png"
+    ],
+    "siteLogoUsage": "_templates/footer.html (28 x 28 symbol, /_static/Nuitka-Logo-Symbol.svg)",
+    "artSourceRoot": "_art/ (working sources; outside the Sphinx source tree and never copied as-is)",
+    "staticOutput": "_static/ (Sphinx html_static_path; copied to output/_static)",
+    "publishRule": "Only post-processed export copies may be written into _static/. _art/ is never copied wholesale.",
+    "build": "Sphinx 7.4.7 + sphinx_rtd_theme 3.0.2, post-processed by update.py"
+  },
+
+  "colors": {
+    "brandCore": {
+      "nuitka-primary": {
+        "hex": "#599DD2",
+        "rgb": [
+          89,
+          157,
+          210
+        ],
+        "hsl": [
+          206,
+          57,
+          59
+        ],
+        "source": "site/pages/website-manual.rst",
+        "status": "source",
+        "usage": "Primary brand blue. Graphics, fills, large display shapes. Not body-text safe on white (2.93:1)."
+      },
+      "nuitka-accent": {
+        "hex": "#FFD43B",
+        "rgb": [
+          255,
+          212,
+          59
+        ],
+        "hsl": [
+          47,
+          100,
+          62
+        ],
+        "source": "site/pages/website-manual.rst",
+        "status": "source",
+        "usage": "Primary accent yellow. Highlights, badges, focus marks, commercial metal source colour."
+      },
+      "nuitka-neutral": {
+        "hex": "#CCCCCC",
+        "rgb": [
+          204,
+          204,
+          204
+        ],
+        "hsl": [
+          0,
+          0,
+          80
+        ],
+        "source": "site/pages/website-manual.rst",
+        "status": "source",
+        "usage": "Brand grey. Logo emblem substrate, inactive UI, dividers."
+      },
+      "nuitka-secondary": {
+        "hex": "#2A3990",
+        "rgb": [
+          42,
+          57,
+          144
+        ],
+        "hsl": [
+          231,
+          55,
+          36
+        ],
+        "source": "site/pages/website-manual.rst",
+        "status": "source",
+        "usage": "Dark blue. Enterprise/CI sub-brand, deep gradient anchors, headings on light surfaces."
+      },
+      "nuitka-green": {
+        "hex": "#00916E",
+        "rgb": [
+          0,
+          145,
+          110
+        ],
+        "hsl": [
+          166,
+          100,
+          28
+        ],
+        "source": "site/pages/website-manual.rst",
+        "status": "source",
+        "usage": "Secondary green. CI/action badges, success states, small graphic accents. Text on white only at large sizes (3.88:1)."
+      }
+    },
+
+    "logoGradientStops": {
+      "logoBlueStart": {
+        "hex": "#5A9FD4",
+        "rgb": [
+          90,
+          159,
+          212
+        ],
+        "source": "Nuitka-Logo-Symbol.svg linearGradient C",
+        "status": "source"
+      },
+      "logoBlueEnd": {
+        "hex": "#306998",
+        "rgb": [
+          48,
+          105,
+          152
+        ],
+        "source": "Nuitka-Logo-Symbol.svg linearGradient C",
+        "status": "source"
+      },
+      "logoYellowStart": {
+        "hex": "#FFD43B",
+        "rgb": [
+          255,
+          212,
+          59
+        ],
+        "source": "Nuitka-Logo-Symbol.svg linearGradient E",
+        "status": "source"
+      },
+      "logoYellowEnd": {
+        "hex": "#FFE873",
+        "rgb": [
+          255,
+          232,
+          115
+        ],
+        "source": "Nuitka-Logo-Symbol.svg linearGradient E",
+        "status": "source"
+      },
+      "logoGreyStart": {
+        "hex": "#ADADAD",
+        "rgb": [
+          173,
+          173,
+          173
+        ],
+        "source": "Nuitka-Logo-Symbol.svg linearGradient A (bottom stop)",
+        "status": "source"
+      },
+      "logoGreyEnd": {
+        "hex": "#DBDBDB",
+        "rgb": [
+          219,
+          219,
+          219
+        ],
+        "source": "Nuitka-Logo-Symbol.svg linearGradient A (top stop)",
+        "status": "source"
+      }
+    },
+
+    "light": {
+      "surface-page": {
+        "hex": "#EDF0F2",
+        "rgb": [
+          237,
+          240,
+          242
+        ],
+        "source": "sphinx_rtd_theme body background",
+        "status": "source",
+        "usage": "Outer page canvas behind the content column."
+      },
+      "surface-content": {
+        "hex": "#FCFCFC",
+        "rgb": [
+          252,
+          252,
+          252
+        ],
+        "source": "sphinx_rtd_theme .wy-nav-content-wrap / .wy-nav-content",
+        "status": "source",
+        "usage": "Primary artboard background for light artwork."
+      },
+      "surface-paper": {
+        "hex": "#FFFFFF",
+        "rgb": [
+          255,
+          255,
+          255
+        ],
+        "source": "sphinx_rtd_theme code background / .top_link_nav",
+        "status": "source",
+        "usage": "Cards, code blocks, maximum-contrast artboards."
+      },
+      "surface-elevated": {
+        "hex": "#F8F9FA",
+        "rgb": [
+          248,
+          249,
+          250
+        ],
+        "source": "_static/my_theme.css --our-lightgrey",
+        "status": "source",
+        "usage": "Raised panels, coming-soon container, quiet cards."
+      },
+      "surface-subtle": {
+        "hex": "#F9F9F9",
+        "rgb": [
+          249,
+          249,
+          249
+        ],
+        "source": "_static/my_theme.css details.sd-dropdown",
+        "status": "source",
+        "usage": "Dropdowns and low-emphasis surfaces."
+      },
+      "surface-table-stripe": {
+        "hex": "#F3F6F6",
+        "rgb": [
+          243,
+          246,
+          246
+        ],
+        "source": "sphinx_rtd_theme table stripe",
+        "status": "source",
+        "usage": "Tabular zebra rows and diagram panel fills."
+      },
+      "surface-code": {
+        "hex": "#FFFFFF",
+        "rgb": [
+          255,
+          255,
+          255
+        ],
+        "source": "sphinx_rtd_theme inline code / code block background",
+        "status": "source",
+        "usage": "Code blocks; keep syntax colours isolated from brand art."
+      },
+      "border-default": {
+        "hex": "#E1E4E5",
+        "rgb": [
+          225,
+          228,
+          229
+        ],
+        "source": "sphinx_rtd_theme border / divider",
+        "status": "source",
+        "usage": "Hairlines, table borders, diagram connectors."
+      },
+      "border-strong": {
+        "hex": "#CCCCCC",
+        "rgb": [
+          204,
+          204,
+          204
+        ],
+        "source": "_static/my_theme.css --our-color-grey",
+        "status": "source",
+        "usage": "Strong dividers, disabled outlines."
+      },
+      "text-primary": {
+        "hex": "#404040",
+        "rgb": [
+          64,
+          64,
+          64
+        ],
+        "source": "sphinx_rtd_theme body color",
+        "status": "source",
+        "usage": "Body copy on light surfaces."
+      },
+      "text-heading": {
+        "hex": "#1F1D1D",
+        "rgb": [
+          31,
+          29,
+          29
+        ],
+        "source": "sphinx_rtd_theme dark chrome, used here as display ink",
+        "status": "derived",
+        "usage": "Headline and wordmark ink for maximum optical weight."
+      },
+      "text-link": {
+        "hex": "#1C5E89",
+        "rgb": [
+          28,
+          94,
+          137
+        ],
+        "source": "_static/my_theme.css paragraph and top-nav links",
+        "status": "source",
+        "usage": "Accessible link blue on light surfaces (6.80:1 on #FCFCFC)."
+      },
+      "text-link-hover": {
+        "hex": "#3091D1",
+        "rgb": [
+          48,
+          145,
+          209
+        ],
+        "source": "sphinx_rtd_theme a:hover",
+        "status": "source",
+        "usage": "Hover state only; not for static text."
+      },
+      "accent-visited": {
+        "hex": "#9B59B6",
+        "rgb": [
+          155,
+          89,
+          182
+        ],
+        "source": "sphinx_rtd_theme a:visited",
+        "status": "source",
+        "usage": "Visited links; never use in brand marks."
+      }
+    },
+
+    "dark": {
+      "_status": "todo",
+      "_delivery": "review-only",
+      "_siteUsage": "blocked-until-dark-theme-exists",
+      "_todoId": "TODO-001",
+      "_note": "The current Nuitka site has no dark theme. These tokens are anchored to the existing sphinx_rtd_theme dark chrome (#1F1D1D, #343131, #B3B3B3) and are proposed for future dark artwork. Dark images and logo variants may be produced for review, but they must not be written to _static/ or referenced by site templates until the dark theme work is scheduled and approved.",
+      "surface-dark": {
+        "hex": "#1F1D1D",
+        "rgb": [
+          31,
+          29,
+          29
+        ],
+        "source": "sphinx_rtd_theme .rst-versions",
+        "status": "source",
+        "usage": "Primary dark artboard background."
+      },
+      "surface-dark-elevated": {
+        "hex": "#2A2727",
+        "rgb": [
+          42,
+          39,
+          39
+        ],
+        "source": "derived from #1F1D1D and #343131",
+        "status": "derived",
+        "usage": "Raised cards and inset panels on dark."
+      },
+      "surface-dark-chrome": {
+        "hex": "#343131",
+        "rgb": [
+          52,
+          49,
+          49
+        ],
+        "source": "sphinx_rtd_theme .wy-nav-side",
+        "status": "source",
+        "usage": "Sidebar / shell surfaces."
+      },
+      "surface-dark-code": {
+        "hex": "#171515",
+        "rgb": [
+          23,
+          21,
+          21
+        ],
+        "source": "derived shade of #1F1D1D",
+        "status": "derived",
+        "usage": "Dark code blocks and terminal panels."
+      },
+      "border-dark": {
+        "hex": "#3E3A3A",
+        "rgb": [
+          62,
+          58,
+          58
+        ],
+        "source": "derived from #343131",
+        "status": "derived",
+        "usage": "Hairlines and diagram frame lines on dark."
+      },
+      "border-dark-strong": {
+        "hex": "#565151",
+        "rgb": [
+          86,
+          81,
+          81
+        ],
+        "source": "derived from #343131",
+        "status": "derived",
+        "usage": "Selected outlines and strong dividers on dark."
+      },
+      "text-on-dark": {
+        "hex": "#FCFCFC",
+        "rgb": [
+          252,
+          252,
+          252
+        ],
+        "source": "sphinx_rtd_theme light content colour",
+        "status": "source",
+        "usage": "Primary text on dark (16.35:1 on #1F1D1D)."
+      },
+      "text-muted-on-dark": {
+        "hex": "#B3B3B3",
+        "rgb": [
+          179,
+          179,
+          179
+        ],
+        "source": "sphinx_rtd_theme .wy-breadcrumbs-extra",
+        "status": "source",
+        "usage": "Secondary text on dark (8.00:1 on #1F1D1D)."
+      },
+      "nuitka-primary-on-dark": {
+        "hex": "#7AB8E4",
+        "rgb": [
+          122,
+          184,
+          228
+        ],
+        "source": "derived tint of #599DD2",
+        "status": "derived",
+        "usage": "Brand blue for text and thin strokes on dark (7.83:1 on #1F1D1D)."
+      },
+      "nuitka-secondary-on-dark": {
+        "hex": "#8E9BE8",
+        "rgb": [
+          142,
+          155,
+          232
+        ],
+        "source": "derived tint of #2A3990",
+        "status": "derived",
+        "usage": "Dark-blue accent text and connectors on dark."
+      },
+      "nuitka-green-on-dark": {
+        "hex": "#4FD1AC",
+        "rgb": [
+          79,
+          209,
+          172
+        ],
+        "source": "derived tint of #00916E",
+        "status": "derived",
+        "usage": "CI/action accents on dark."
+      },
+      "logo-grey-dark-start": {
+        "hex": "#2A2727",
+        "rgb": [
+          42,
+          39,
+          39
+        ],
+        "source": "derived from surface-dark-elevated",
+        "status": "derived",
+        "usage": "Bottom stop for the monochrome dark logo substrate."
+      },
+      "logo-grey-dark-end": {
+        "hex": "#4A4545",
+        "rgb": [
+          74,
+          69,
+          69
+        ],
+        "source": "derived from #343131",
+        "status": "derived",
+        "usage": "Top stop for the monochrome dark logo substrate."
+      }
+    },
+
+    "commercial": {
+      "_status": "approved",
+      "_delivery": "approved",
+      "_decision": "approved",
+      "_approved": "2026-11-18",
+      "_note": "The commercial palette is approved. It extends the core brand with a metallic ramp derived from sponsor amber #B45F06 and brand yellow #FFD43B. Existing flat pricing-grid tier colours (#78C933, #403472, #B45F06, #007DD6) remain source values for the legacy cards, while the approved commercial lockup uses the metal ramp and a gold outer-arm emblem inlay.",
+      "tier-commercial": {
+        "hex": "#78C933",
+        "rgb": [
+          120,
+          201,
+          51
+        ],
+        "source": "_static/my_theme.css .nuitka-offer-commercial",
+        "status": "source",
+        "usage": "Existing commercial-tier card fill. Not text-safe on white (2.06:1)."
+      },
+      "tier-full-package": {
+        "hex": "#403472",
+        "rgb": [
+          64,
+          52,
+          114
+        ],
+        "source": "_static/my_theme.css .nuitka-offer-full-package",
+        "status": "source",
+        "usage": "Full-package tier card."
+      },
+      "tier-sponsor": {
+        "hex": "#B45F06",
+        "rgb": [
+          180,
+          95,
+          6
+        ],
+        "source": "_static/my_theme.css .nuitka-offer-sponsor",
+        "status": "source",
+        "usage": "Sponsor tier; anchor for the commercial metal ramp (4.58:1 on white)."
+      },
+      "tier-priority": {
+        "hex": "#007DD6",
+        "rgb": [
+          0,
+          125,
+          214
+        ],
+        "source": "_static/my_theme.css .nuitka-offer-priority",
+        "status": "source",
+        "usage": "Priority tier card."
+      },
+      "nuitka-commercial-bronze": {
+        "hex": "#8C5A1B",
+        "rgb": [
+          140,
+          90,
+          27
+        ],
+        "source": "approved derivation from #B45F06",
+        "status": "approved",
+        "usage": "Deep metal shadow, pill outline, lower gradient stop."
+      },
+      "nuitka-commercial-gold": {
+        "hex": "#D99A2B",
+        "rgb": [
+          217,
+          154,
+          43
+        ],
+        "source": "approved derivation from #B45F06 and #FFD43B",
+        "status": "approved",
+        "usage": "Primary metallic amber. Large text and graphic accents on dark (6.88:1 on #1F1D1D)."
+      },
+      "nuitka-commercial-champagne": {
+        "hex": "#F7D98B",
+        "rgb": [
+          247,
+          217,
+          139
+        ],
+        "source": "approved derivation from #FFD43B and #FFE873",
+        "status": "approved",
+        "usage": "Specular highlight in the commercial metal ramp."
+      },
+      "nuitka-commercial-ink": {
+        "hex": "#2A1A08",
+        "rgb": [
+          42,
+          26,
+          8
+        ],
+        "source": "approved derivation from #8C5A1B",
+        "status": "approved",
+        "usage": "Text and fine detail placed on champagne or gold fills."
+      }
+    },
+
+    "actionAndCi": {
+      "nuitka-ci": {
+        "hex": "#00916E",
+        "rgb": [
+          0,
+          145,
+          110
+        ],
+        "source": "official brand secondary green",
+        "status": "source",
+        "usage": "CI/Actions badge primary."
+      },
+      "nuitka-watch": {
+        "hex": "#2A3990",
+        "rgb": [
+          42,
+          57,
+          144
+        ],
+        "source": "official brand secondary dark blue",
+        "status": "source",
+        "usage": "Watch/benchmarking badge primary."
+      },
+      "nuitka-docs": {
+        "hex": "#599DD2",
+        "rgb": [
+          89,
+          157,
+          210
+        ],
+        "source": "official brand primary blue",
+        "status": "source",
+        "usage": "Documentation section badge primary."
+      },
+      "nuitka-tooling": {
+        "hex": "#1C5E89",
+        "rgb": [
+          28,
+          94,
+          137
+        ],
+        "source": "_static/my_theme.css accessible link blue",
+        "status": "source",
+        "usage": "Tooling badge text and outline; safe on white."
+      }
+    }
+  },
+
+  "gradients": {
+    "_conventions": {
+      "linearUnits": "objectBoundingBox",
+      "radialUnits": "objectBoundingBox",
+      "angleDefinition": "CSS-style clockwise angle in degrees: 0 = to top, 90 = to right, 135 = to bottom-right, 180 = to bottom.",
+      "vectorcraftAngleDefinition": "VectorCraft measures linear gradients counter-clockwise from left-to-right (0 = left to right). Convert a CSS angle with (90 - cssAngle) mod 360. Example: CSS 135 becomes VectorCraft 315.",
+      "stopOffsets": "0.0 to 1.0",
+      "hexAlpha": "All stops are opaque unless opacity is explicitly given. VectorCraft paint colours do not accept #rrggbbaa; use the opacity field."
+    },
+    "logo-blue": {
+      "type": "linear",
+      "angle": 135,
+      "vectorcraftAngle": 315,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#5A9FD4"
+        },
+        {
+          "offset": 1.0,
+          "color": "#306998"
+        }
+      ],
+      "usage": "Blue ribbon arms of the Nuitka emblem. Preserve the 135-degree light-to-dark direction."
+    },
+    "logo-yellow": {
+      "type": "linear",
+      "angle": 135,
+      "vectorcraftAngle": 315,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#FFD43B"
+        },
+        {
+          "offset": 1.0,
+          "color": "#FFE873"
+        }
+      ],
+      "usage": "Yellow ribbon arms of the Nuitka emblem. Bright end faces the upper-left light source."
+    },
+    "logo-grey": {
+      "type": "linear",
+      "angle": 180,
+      "vectorcraftAngle": 270,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#DBDBDB"
+        },
+        {
+          "offset": 1.0,
+          "color": "#ADADAD"
+        }
+      ],
+      "usage": "Rounded-square emblem substrate; light at the top, darker at the bottom."
+    },
+    "logo-grey-dark": {
+      "type": "linear",
+      "angle": 180,
+      "vectorcraftAngle": 270,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#4A4545"
+        },
+        {
+          "offset": 1.0,
+          "color": "#2A2727"
+        }
+      ],
+      "status": "provisional",
+      "todoId": "TODO-001",
+      "usage": "Review-only. Dark-mode replacement for the grey emblem substrate; cannot ship until a dark theme exists."
+    },
+    "nuitka-signature": {
+      "type": "linear",
+      "angle": 120,
+      "vectorcraftAngle": 330,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#2A3990"
+        },
+        {
+          "offset": 0.55,
+          "color": "#599DD2"
+        },
+        {
+          "offset": 1.0,
+          "color": "#7FC4EC"
+        }
+      ],
+      "usage": "Hero banner field, documentation header bands, large call-to-action panels."
+    },
+    "nuitka-signature-deep": {
+      "type": "linear",
+      "angle": 135,
+      "vectorcraftAngle": 315,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#1F1D1D"
+        },
+        {
+          "offset": 0.45,
+          "color": "#232A44"
+        },
+        {
+          "offset": 0.78,
+          "color": "#2A3990"
+        },
+        {
+          "offset": 1.0,
+          "color": "#599DD2"
+        }
+      ],
+      "usage": "Dark hero banners and OpenGraph artboards that need a premium, high-contrast field."
+    },
+    "hero-radial-glow": {
+      "type": "radial",
+      "cx": 0.5,
+      "cy": 0.15,
+      "r": 0.75,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#FFFFFF",
+          "opacity": 0.16
+        },
+        {
+          "offset": 0.55,
+          "color": "#FFFFFF",
+          "opacity": 0.05
+        },
+        {
+          "offset": 1.0,
+          "color": "#FFFFFF",
+          "opacity": 0.0
+        }
+      ],
+      "usage": "Optional vignette/glow layered over signature gradients. Never use to lighten text contrast."
+    },
+    "commercial-metal": {
+      "type": "linear",
+      "angle": 135,
+      "vectorcraftAngle": 315,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#6E3F0A"
+        },
+        {
+          "offset": 0.28,
+          "color": "#8C5A1B"
+        },
+        {
+          "offset": 0.52,
+          "color": "#D99A2B"
+        },
+        {
+          "offset": 0.72,
+          "color": "#F7D98B"
+        },
+        {
+          "offset": 0.88,
+          "color": "#E3B04B"
+        },
+        {
+          "offset": 1.0,
+          "color": "#B9791F"
+        }
+      ],
+      "status": "approved",
+      "usage": "Approved commercial tier frame, pill fill, gold outer-arm inlay, and precision geometric accents."
+    },
+    "commercial-metal-radial": {
+      "type": "radial",
+      "cx": 0.5,
+      "cy": 0.0,
+      "r": 0.95,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#FFE8A3"
+        },
+        {
+          "offset": 0.35,
+          "color": "#F7D98B"
+        },
+        {
+          "offset": 0.62,
+          "color": "#D99A2B"
+        },
+        {
+          "offset": 0.82,
+          "color": "#8C5A1B"
+        },
+        {
+          "offset": 1.0,
+          "color": "#6E3F0A"
+        }
+      ],
+      "status": "approved",
+      "usage": "Approved commercial tier highlight behind badges and the COMMERCIAL pill."
+    },
+    "action-ci": {
+      "type": "linear",
+      "angle": 135,
+      "vectorcraftAngle": 315,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#00916E"
+        },
+        {
+          "offset": 1.0,
+          "color": "#2A3990"
+        }
+      ],
+      "usage": "CI/Actions badge and tooling lockups."
+    },
+    "action-watch": {
+      "type": "linear",
+      "angle": 135,
+      "vectorcraftAngle": 315,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#2A3990"
+        },
+        {
+          "offset": 1.0,
+          "color": "#599DD2"
+        }
+      ],
+      "usage": "Watch/benchmarking badge and performance diagrams."
+    },
+    "docs-header": {
+      "type": "linear",
+      "angle": 90,
+      "vectorcraftAngle": 0,
+      "stops": [
+        {
+          "offset": 0.0,
+          "color": "#599DD2"
+        },
+        {
+          "offset": 1.0,
+          "color": "#1C5E89"
+        }
+      ],
+      "usage": "Documentation section header rules and architecture-diagram bands."
+    }
+  },
+
+  "typography": {
+    "body": {
+      "sourceStack": "Lato, proxima-nova, \"Helvetica Neue\", Arial, sans-serif",
+      "buildStack": "ui-sans-serif, proxima-nova, \"Helvetica Neue\", Arial, sans-serif",
+      "rationale": "sphinx_rtd_theme uses Lato; postcss.config.js removes the Lato @font-face and rewrites the family to ui-sans-serif at build time. Artwork aimed at the built site must not assume the webfont is present.",
+      "weight": 400,
+      "lineHeight": 1.5,
+      "usage": "Captions, diagram labels, badge text, body copy."
+    },
+    "headings": {
+      "sourceStack": "Roboto Slab, ff-tisa-web-pro, Georgia, Arial, sans-serif",
+      "buildStack": "Rockwell, \"Rockwell Nova\", \"Roboto Slab\", \"DejaVu Serif\", \"Sitka Small\", serif",
+      "rationale": "sphinx_rtd_theme uses Roboto Slab; postcss.config.js substitutes a Rockwell-first serif stack because the slab webfont is removed.",
+      "weight": 700,
+      "lineHeight": 1.15,
+      "letterSpacing": "-0.01em",
+      "usage": "Hero headlines, OpenGraph headlines, documentation section titles."
+    },
+    "mono": {
+      "sourceStack": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", Courier, monospace",
+      "buildStack": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", Courier, monospace",
+      "rationale": "Sphinx code and literal blocks; no substitution is applied.",
+      "weight": 400,
+      "usage": "Terminals, code snippets, command labels, benchmark readouts."
+    },
+    "wordmark": {
+      "font": "Inter",
+      "style": "SemiBold",
+      "weight": 600,
+      "effectiveSize": 216,
+      "previousEffectiveSize": 228,
+      "tracking": 0,
+      "nToUKerning": "-27 (1/1000 em; equivalent to -3 px at the 112 px sample size)",
+      "sourceFill": "#000000",
+      "legacyFont": "NanumGothic 120 (previous original; not retained during development)",
+      "rationale": "Inter SemiBold 600 is the approved wordmark. It is reduced to 216 effective px (94.7% of the previous 228) so it sits under the emblem height. The N-u pair is tightened by -27/1000 em; the rest of the wordmark keeps tracking 0. Master files keep editable text; every exported standalone SVG must use type.createOutlines.",
+      "fallbackIfRetracing": "Use Inter SemiBold 600 with the documented -27/1000 em N-u kerning. Do not retype the wordmark in another face."
+    },
+    "vectorcraftSubstitutes": {
+      "_note": "Fonts available in the headless VectorCraft 0.24.1 runtime. Use Inter SemiBold 600 for the Nuitka wordmark; NanumGothic is the previous legacy wordmark and must not be used for new assets.",
+      "headings": {
+        "primary": "DejaVu Serif",
+        "alternate": "Source Serif 4",
+        "mapsTo": "Rockwell / Roboto Slab / DejaVu Serif built stack"
+      },
+      "body": {
+        "primary": "Inter",
+        "alternate": "Source Sans 3",
+        "mapsTo": "ui-sans-serif built stack"
+      },
+      "mono": {
+        "primary": "DejaVu Sans Mono",
+        "alternate": "JetBrains Mono",
+        "mapsTo": "SFMono-Regular / Menlo / Consolas / DejaVu Sans Mono stack"
+      },
+      "notAvailable": [
+        "Lato",
+        "Roboto Slab",
+        "Rockwell",
+        "Noto Sans"
+      ]
+    },
+    "sizes": {
+      "ogHeadline": {
+        "min": 64,
+        "max": 96,
+        "unit": "px"
+      },
+      "ogSubhead": {
+        "min": 28,
+        "max": 36,
+        "unit": "px"
+      },
+      "docTitle": {
+        "min": 36,
+        "max": 56,
+        "unit": "px"
+      },
+      "docLabel": {
+        "min": 18,
+        "max": 24,
+        "unit": "px"
+      },
+      "badgeTitle": {
+        "min": 40,
+        "max": 72,
+        "unit": "px"
+      },
+      "badgeKicker": {
+        "min": 12,
+        "max": 16,
+        "unit": "px",
+        "case": "uppercase",
+        "letterSpacing": "0.12em"
+      },
+      "caption": {
+        "min": 14,
+        "max": 18,
+        "unit": "px"
+      }
+    },
+    "rules": {
+      "headlineLineLength": "24-38 characters per line for hero artboards; never more than 42.",
+      "kerning": "Optically kern display headlines. For outlined type, verify pair spacing at 100% and at 25% zoom.",
+      "minimumContrast": "4.5:1 for body and small text; 3.0:1 for large text (>= 24 px regular or >= 18.66 px bold).",
+      "noFauxWeights": "Never apply synthetic bold or oblique. Use the correct face or an outline expansion.",
+      "noDecorativeFonts": "Only the three stacks above plus the wordmark geometry. No script, comic, or novelty faces."
+    }
+  },
+
+  "outlining": {
+    "policy": "Master .vectorcraft files keep editable text. Every standalone SVG intended for an <img> tag, CSS background, favicon, social card, or download must have all text converted to outlines at export time.",
+    "vectorcraftMaster": {
+      "keepTextEditable": true,
+      "command": "type.createOutlines",
+      "applyOn": "export copy only, never on the saved master"
+    },
+    "vectorcraftExport": {
+      "tool": "export",
+      "format": "svg",
+      "outlineText": true,
+      "options": {
+        "styling": "presentation",
+        "responsive": true,
+        "preserveEditing": false
+      }
+    },
+    "verification": [
+      "After export, grep the SVG for '<text' and '<image'; both must be absent for clean standalone assets.",
+      "Confirm every glyph is a <path>, <polygon>, or <use> of vector geometry.",
+      "Run render_preview at max_side 1024 on the artboard before export and visually inspect kerning, alignment, and clipping.",
+      "For raster companions, export from the outlined vector master, never from a screenshot."
+    ],
+    "rasterPolicy": {
+      "allowImageTags": false,
+      "allowEmbeddedRasters": false,
+      "exception": "Only if a manifest entry explicitly sets rasterPolicy: intentional and records the source, licence, and reason. Live effects that would bake a raster <image> must be expanded or removed before SVG export."
+    }
+  },
+
+  "artboards": {
+    "opengraphHero": {
+      "id": "og-hero",
+      "width": 1200,
+      "height": 630,
+      "aspectRatio": "1.9048:1",
+      "safeArea": 64,
+      "background": "nuitka-signature-deep",
+      "defaultFormat": "svg",
+      "rasterCompanions": [
+        {
+          "format": "png",
+          "width": 1200,
+          "height": 630,
+          "suffix": ""
+        },
+        {
+          "format": "png",
+          "width": 2400,
+          "height": 1260,
+          "suffix": "@2x"
+        },
+        {
+          "format": "webp",
+          "width": 1200,
+          "height": 630,
+          "quality": 88
+        }
+      ],
+      "usage": "OpenGraph/Twitter cards, hero banners, release announcements."
+    },
+    "documentationArchitecture": {
+      "id": "docs-architecture",
+      "width": 1000,
+      "height": 560,
+      "aspectRatio": "1.7857:1",
+      "safeArea": 48,
+      "background": "surface-content",
+      "defaultFormat": "svg",
+      "rasterCompanions": [
+        {
+          "format": "png",
+          "width": 2000,
+          "height": 1120,
+          "suffix": "@2x"
+        }
+      ],
+      "usage": "Documentation architecture diagrams, pipeline diagrams, compiler-flow figures."
+    },
+    "productBadge": {
+      "id": "badge-square",
+      "width": 400,
+      "height": 400,
+      "aspectRatio": "1:1",
+      "safeArea": 32,
+      "background": "transparent",
+      "defaultFormat": "svg",
+      "rasterCompanions": [
+        {
+          "format": "png",
+          "width": 400,
+          "height": 400,
+          "suffix": ""
+        },
+        {
+          "format": "png",
+          "width": 800,
+          "height": 800,
+          "suffix": "@2x"
+        }
+      ],
+      "usage": "Feature badges, tooling tiles, GitHub social previews, icon-sized sub-brand marks."
+    },
+    "horizontalLockup": {
+      "id": "lockup-horizontal",
+      "width": 1200,
+      "height": 300,
+      "aspectRatio": "4:1",
+      "safeArea": 40,
+      "background": "transparent",
+      "defaultFormat": "svg",
+      "rasterCompanions": [
+        {
+          "format": "png",
+          "width": 1200,
+          "height": 300,
+          "suffix": ""
+        },
+        {
+          "format": "png",
+          "width": 2400,
+          "height": 600,
+          "suffix": "@2x"
+        }
+      ],
+      "usage": "Horizontal product lockups, GitHub Actions badges, documentation section headers."
+    },
+    "logoHorizontal": {
+      "id": "logo-horizontal",
+      "width": 1200,
+      "height": 260,
+      "aspectRatio": "4.6154:1",
+      "safeArea": 40,
+      "background": "transparent",
+      "defaultFormat": "svg",
+      "rasterCompanions": [
+        {
+          "format": "png",
+          "width": 1200,
+          "height": 260,
+          "suffix": ""
+        },
+        {
+          "format": "png",
+          "width": 2400,
+          "height": 520,
+          "suffix": "@2x"
+        }
+      ],
+      "usage": "Primary horizontal logo lockup. Matches the master 4.93:1 optical proportion with artboard breathing room."
+    },
+    "logoVertical": {
+      "id": "logo-vertical",
+      "width": 640,
+      "height": 760,
+      "aspectRatio": "0.8421:1",
+      "safeArea": 48,
+      "background": "transparent",
+      "defaultFormat": "svg",
+      "rasterCompanions": [
+        {
+          "format": "png",
+          "width": 640,
+          "height": 760,
+          "suffix": ""
+        },
+        {
+          "format": "png",
+          "width": 1280,
+          "height": 1520,
+          "suffix": "@2x"
+        }
+      ],
+      "usage": "Vertical splash, print cover, square-ish placements."
+    },
+    "favicon": {
+      "id": "favicon",
+      "width": 512,
+      "height": 512,
+      "aspectRatio": "1:1",
+      "safeArea": 48,
+      "background": "transparent",
+      "defaultFormat": "svg",
+      "rasterCompanions": [
+        {
+          "format": "png",
+          "width": 512,
+          "height": 512,
+          "suffix": ""
+        },
+        {
+          "format": "png",
+          "width": 180,
+          "height": 180,
+          "suffix": "-180"
+        },
+        {
+          "format": "png",
+          "width": 32,
+          "height": 32,
+          "suffix": "-32"
+        }
+      ],
+      "usage": "favicon.svg and apple-touch-icon derivatives. Keep the emblem centred with 9.4% inset."
+    }
+  },
+
+  "logoGeometry": {
+    "symbol": {
+      "viewBox": "0 0 198.073 198.53",
+      "width": 198.073,
+      "height": 198.53,
+      "ratio": 0.9977,
+      "cornerRadius": 18.216,
+      "cornerRadiusPercentOfWidth": 9.2,
+      "ribbonThickness": 25.52,
+      "ribbonThicknessPercentOfWidth": 12.9,
+      "foldAngle": 45,
+      "geometry": "Rounded square substrate with four interlocking 45-degree ribbon paths in blue and yellow. The negative space forms a geometric N. Blue occupies the upper-left vertical and lower-left inner arm; yellow occupies the upper-right inner arm and lower-left outer arm. Keep the thin grey substrate visible between ribbon arms.",
+      "clearSpace": "0.25 x symbol height on all sides (49.6 px at 198.5 px symbol height).",
+      "minimumDigitalSize": "16 x 16 px for the symbol alone; 120 px wide for the horizontal lockup.",
+      "backgrounds": {
+        "light": "full-colour emblem on surface-content or surface-paper",
+        "dark": "full-colour emblem with logo-grey-dark substrate on surface-dark; or monochrome text-on-dark",
+        "monochromeLight": "knockout treatment: #1F1D1D substrate, #FCFCFC ribbon N, #1F1D1D wordmark",
+        "monochromeDark": "knockout treatment: #FCFCFC substrate, #1F1D1D ribbon N, #FCFCFC wordmark",
+        "monochromeRule": "The implemented monochrome assets are two-tone knockouts, not single-ink silhouettes. The emblem substrate and the ribbon N share two inks so the negative-space N remains legible; the wordmark uses the substrate ink."
+      }
+    },
+    "horizontalLockup": {
+      "masterSize": "478.2 x 96.991",
+      "ratio": 4.93,
+      "symbolHeight": 92.475,
+      "wordmarkBaseline": 91.172,
+      "wordmarkStartX": 101.735,
+      "gap": "9.3 px at master size (9.6% of symbol width)",
+      "wordmarkFont": "Inter SemiBold 600, effective 216 px; N-u kerning -27/1000 em",
+      "wordmarkInk": "#000000",
+      "rule": "Wordmark cap height sits under the symbol height; the -3 px N-u tightening is applied as -27/1000 em so it scales with the lockup."
+    },
+    "verticalLockup": {
+      "masterSize": "340.684 x 318.732",
+      "ratio": 1.069,
+      "symbolSize": 198.073,
+      "gap": "approx. 24 px between symbol bottom and wordmark cap",
+      "wordmarkFont": "Inter SemiBold 600; N-u kerning -27/1000 em",
+      "wordmarkAlignment": "centred beneath the emblem"
+    }
+  },
+
+  "subBrands": {
+    "commercial": {
+      "status": "approved",
+      "delivery": "approved",
+      "mark": "Core emblem with the two large outer N arms in the approved commercial metal gradient; the two inner arms stay brand blue/yellow. A precision geometric frame carries the tier signal without changing the wordmark.",
+      "tierIndicator": "A horizontal pill reading COMMERCIAL, uppercase, 0.12em tracking, body bold, height 28-36 px at 1200 px lockup width.",
+      "frame": "1.5 px outer rule in commercial-bronze on light, 8 px radius, 12 px inset; commercial-metal on dark. No bevels or drop shadows that would rasterize.",
+      "pairing": "Emblem + wordmark retains the core proportion; the bronze rule and gold pill sit to the right, separated by a 24 px rule segment.",
+      "backgrounds": "Default light variant: surface-content with a bronze frame/divider and an approved gold pill. A dark-surface variant is deferred to TODO-001; on dark, use commercial-metal plus champagne highlights. Never place gold text on white without commercial-ink or a bronze outline.",
+      "forbidden": "No crowns, laurels, shields, or faux-3D gloss. The tier signal must read as engineering precision, not luxury clip-art."
+    },
+    "ci": {
+      "mark": "Emblem inside a squared terminal-frame, with a chevron prompt glyph.",
+      "label": "CI",
+      "gradient": "action-ci",
+      "usage": "GitHub Actions, build status, pipeline badges."
+    },
+    "watch": {
+      "mark": "Emblem with a subtle benchmark grid / stopwatch tick ring.",
+      "label": "WATCH",
+      "gradient": "action-watch",
+      "usage": "Nuitka-Watch, benchmarking, performance dashboards."
+    },
+    "docs": {
+      "mark": "Emblem with an open documentation bracket frame.",
+      "label": "DOCS",
+      "gradient": "docs-header",
+      "usage": "Documentation section headers and manual callouts."
+    }
+  },
+
+  "naming": {
+    "artSourceRoot": "_art/vectorcraft/",
+    "masterSources": "_art/vectorcraft/src/{asset}.vectorcraft",
+    "manifests": "_art/vectorcraft/manifests/brand-assets.yaml",
+    "svgOutput": "_static/brand/{asset}-{theme}.svg",
+    "pngOutput": "_static/brand/{asset}-{theme}{suffix}.png",
+    "webpOutput": "_static/brand/{asset}-{theme}.webp",
+    "rules": [
+      "Lowercase kebab-case only.",
+      "Theme suffixes: -light, -dark, -mono, -mono-dark. Omit -light for the default light asset when the asset has only one variant.",
+      "Never overwrite the legacy files in images/svg or Nuitka-develop/doc/Logo; new work lives under _static/brand/.",
+      "Do not add ad-hoc hex colours to filenames; encode semantic variant names instead.",
+      "Never copy _art/ into _static/. Export or post-process first, then write only the approved derivative.",
+      "Review-only variants use the -review suffix and stay outside _static/ until their TODO is closed."
+    ]
+  },
+
+  "exportPolicy": {
+    "svg": {
+      "outlineText": true,
+      "preserveEditing": false,
+      "responsive": true,
+      "styling": "presentation",
+      "allowedElements": [
+        "svg",
+        "g",
+        "defs",
+        "linearGradient",
+        "radialGradient",
+        "stop",
+        "path",
+        "rect",
+        "circle",
+        "ellipse",
+        "polygon",
+        "polyline",
+        "line",
+        "clipPath",
+        "mask",
+        "use",
+        "symbol",
+        "title",
+        "desc"
+      ],
+      "forbiddenElements": [
+        "text",
+        "tspan",
+        "image",
+        "foreignObject"
+      ],
+      "maxFileSizeKB": 512
+    },
+    "png": {
+      "background": "white for OG cards; transparent for logos and badges",
+      "scale": 1,
+      "ppi": 72,
+      "notes": "Use 2x companions for retina. Never upscale an exported raster."
+    },
+    "webp": {
+      "quality": 88,
+      "background": "white for OG cards"
+    },
+    "documentExportSettings": {
+      "preset": "nuitka-opengraph",
+      "artboard": "og-hero",
+      "formats": [
+        "png",
+        "webp"
+      ],
+      "width": 1200,
+      "height": 630,
+      "useArtboards": true,
+      "background": "white",
+      "intent": "Produce deterministic OpenGraph raster companions alongside the outlined SVG."
+    }
+  },
+
+  "accessibility": {
+    "status": "todo",
+    "todoId": "TODO-003",
+    "target": "WCAG 2.2 AA",
+    "contrast": {
+      "textOnLight": "Use text-link #1C5E89 or text-primary #404040. Do not set body text in #599DD2 (2.93:1 on white) or #78C933 (2.06:1 on white).",
+      "textOnDark": "Use text-on-dark #FCFCFC or text-muted-on-dark #B3B3B3. Use nuitka-primary-on-dark #7AB8E4 for blue text.",
+      "largeTextOnly": "#599DD2, #00916E, #D99A2B are acceptable for display type at >= 24 px regular or >= 18.66 px bold, not for captions.",
+      "goldOnLight": "Place commercial gold on dark ink or a bronze outline; never thin gold text directly on white."
+    },
+    "remediation": [
+      "Audit the current site for small text set directly in brand blue #599DD2 (2.93:1), commercial green #78C933 (2.06:1), or brand green #00916E (3.88:1). Replace with text-link #1C5E89, text-primary #404040, or a darker green token.",
+      "Keep brand fills for graphics, large display type, and non-text accents only.",
+      "Add automated contrast checks for generated artwork and a manual check for every new _static/brand export.",
+      "Re-run the audit when the dark theme or the commercial palette is approved.",
+      "Do not treat the current artwork tokens as proof that the whole website is WCAG 2.2 AA compliant; this is an open TODO."
+    ],
+    "motion": "Artwork is static. Do not add animated SVG, SMIL, or scripted effects.",
+    "altText": "Every manifest entry must carry an alt text written for screen readers; decorative badges use empty alt text plus an adjacent visible label."
+  },
+
+  "todoIndex": "_art/vectorcraft/TODO.md"
+}

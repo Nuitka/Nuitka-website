@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "vectorcraft": {
+      "command": "vectorcraft-cli",
+      "args": [
+        "mcp",
+        "--headless",
+        "--automation-read-root",
+        "/home/hayen/repos/Nuitka-Website",
+        "--automation-write-root",
+        "/home/hayen/repos/Nuitka-Website/_art/vectorcraft",
+        "--automation-write-root",
+        "/home/hayen/repos/Nuitka-Website/_static"
+      ]
+    }
+  }
+}

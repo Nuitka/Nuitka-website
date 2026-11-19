@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "vectorcraft": {
+        "type": "local",
+        "command": [
+          "vectorcraft-cli",
+          "mcp",
+          "--headless",
+          "--automation-read-root",
+          ".",
+          "--automation-write-root",
+          "_art/vectorcraft",
+          "--automation-write-root",
+          "_static"
+        ],
+        "cwd": "."
+      }
+    }
+  }
+}
