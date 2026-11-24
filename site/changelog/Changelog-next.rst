@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc9**.
+It currently covers changes up to version **4.4rc10**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -454,7 +454,8 @@ Bug Fixes
    chained when throwing, and the caller state restored afterwards.
    Saved exceptions are restored and cleared when yielding outside a
    handler on Python up to 3.6, and ``yield from`` preserves the handler
-   state across delegation.
+   state across delegation and forwards sent values to delegated
+   generators.
 
    .. code:: python
 
@@ -475,6 +476,116 @@ Bug Fixes
 
       # 4.4rc8: None on Python 3.9+ (wrong)
       # 4.4rc9: KeyError('handled')
+
+-  Fix, calls to C functions using ``METH_FASTCALL``, with or without
+   ``METH_KEYWORDS``, dispatched with the wrong argument counts and
+   tuple usage on some Python versions. The fast call variants are now
+   selected by exact flags, and missing error checks and reference
+   handling for method descriptors, ``__init__`` results, and called
+   objects were added, avoiding leaks on rare errors.
+
+-  Fix, the ``ascii`` specialization used the ``repr`` parameter spec,
+   and the ``issubclass`` specialization used the ``isinstance`` spec,
+   so argument handling and errors could be wrong. Each now uses its own
+   spec.
+
+-  Fix, async methods with class-private names were not mangled, because
+   the source or bytecode function builder received the unmangled name,
+   so the method was bound under its source name. The mangled binding
+   name is now passed for normal and async functions, while the
+   function's ``__name__`` stays unmangled like CPython.
+
+-  Fix, the DLL subdirectory search did not normalize the search root
+   and parent candidates, so a path with a trailing slash could make the
+   walk up to the root loop endlessly. The paths are now normalized and
+   termination is asserted.
+
+-  Fix, slice handling had several issues: a step of 1 was optimized
+   away although it is observable in the resulting slice, constant
+   ``None`` bounds were treated as values, and integer constants were
+   not distinguished from other small number constants. Only a ``None``
+   step is removed now, ``None`` bounds are unbounded, and integer
+   constants use their index value.
+
+-  Fix, the exact frozenset shape mixin overrode the list shape
+   predicate instead of the frozenset one, so frozenset exact shapes
+   were misreported. It now overrides ``hasShapeFrozensetExact``.
+
+-  Fix, ``close()`` on generators and coroutines returned a boolean
+   internally, so compiled frames could not distinguish success from an
+   exception or release the close result. The close helpers now return
+   the result object, and Python 3.13+ returns the value of a
+   ``StopIteration`` raised while handling ``GeneratorExit``.
+
+-  Fix, runtime helpers had several garbage collection and reference
+   issues: function objects did not visit their defaults, keyword
+   defaults, annotations, type parameters, and annotate functions; type
+   parameters were not cloned; function table offset bounds and code
+   object description fields were wrong; and coroutine origin frames,
+   frozen module detection, and loaded extension module references were
+   handled incorrectly. The traversal, cloning, bounds, descriptions,
+   frame counting, detection, and references are now correct.
+
+-  Fix, statement code generation replaced the current source reference
+   without restoring it, and exception normalization used the statement
+   source reference instead of the exception type's. The previous
+   reference is now restored in a ``finally`` block, and exception
+   normalization uses the exception type's reference.
+
+-  Fix, locals dictionary deletions did not apply tolerated deletions
+   correctly, and synchronization did not release the locals mapping.
+   Deletions now clear errors when tolerated and raise the proper
+   ``NameError`` otherwise, the mapping is released after
+   synchronization, and the closure check for ``exec`` uses the correct
+   Python version.
+
+-  Fix, attaching ``name`` and ``path`` attributes to ``ImportError``
+   and ``AttributeError`` overwrote existing references without
+   releasing them, and used the outer temporary instead of the actual
+   exception object. ``Py_XSETREF`` and the actual exception value name
+   are now used.
+
+-  Fix, dual-typed ``int``/``long`` values had multiple bugs, including
+   missing truth checks and assignment conversions, incorrect reference
+   handling for in-place assignments, and wrong object value accesses.
+   Truth checks and conversions were added, references are now released
+   and taken correctly, and exception checks use the validity field.
+
+-  Fix, range and xrange element value predictions used off-by-one index
+   bounds, mishandled a zero step, estimated lengths incorrectly for
+   negative steps, and checked the upper bound in the wrong direction.
+   The bounds, length estimates, and direction checks were corrected.
+
+-  Fix, constant dictionary item lookups used the item node's own
+   constant instead of the dictionary argument, so the wrong object was
+   indexed, and ``dict.get`` extracted side effects from a nonexistent
+   ``defaults`` child instead of the default node. Both now use the
+   correct operands.
+
+-  Fix, ``importlib.metadata`` integration reported found distributions
+   as missing, and the standard and backport entry point value
+   references used each other's base classes. Found distributions are
+   now successful, and each implementation uses its own base classes.
+
+-  Fix, ignored directory and filename matching was case-insensitive in
+   some places but not others, and single suffix strings could be
+   treated as iterables of characters. The matching is now shared and
+   normalizes both sides.
+
+-  Fix, a class whose name consisted only of underscores produced an
+   empty mangling prefix, so private names were mangled differently.
+   Such classes now leave private names unmangled, matching CPython.
+
+-  Fix, ``NuitkaCalledProcessError`` did not initialize its base class,
+   so the exit code and command were not stored, and missing optional
+   tools returned bytes when text was requested and vice versa. The base
+   initializer is now called, and the empty result matches the requested
+   text or bytes decoding.
+
+-  Fix, module version comparison did not pad detected versions with
+   zeros and kept comparing after a detected part was greater, so usable
+   Python installations could be rejected. Detected versions are now
+   padded, and comparison stops when a part is greater.
 
 -  **Python 3.14:** Fix, exception messages that name the type of a
    mistyped object used only the type name, while CPython 3.14 uses the
@@ -613,6 +724,28 @@ Bug Fixes
    still called them bypassed Nuitka's replacements. The macros are now
    redirected to the Nuitka versions where CPython uses this signature.
 
+-  **Python 2:** Fix, the ``long`` specialization used the ``int``
+   parameter spec and an ``int`` constant, and the comparison helpers
+   converted the left ``int`` operand instead of the right one. It now
+   uses the ``long`` spec and constant, and the correct operand is
+   converted.
+
+-  **Python 2:** Fix, hashing of ``long`` values did not convert them to
+   text, and booleans were not handled at all, so cache key generation
+   could fail. ``long`` values are now converted to text, and booleans
+   are hashed distinctly.
+
+-  **Python 3.13:** Fix, frame clearing and GC traversal treated locals
+   as owned even when the frame's locals pointer did not point at its
+   own storage, so references from unowned locals could be traversed and
+   released. Ownership is now checked before releasing or traversing
+   locals.
+
+-  **Python 3.14+:** Fix, writes of non-exact integers to dual-typed
+   locals in the frame locals proxy were accepted, and the previous
+   value was released before taking the new reference. Such writes now
+   raise ``RuntimeError``, and the new reference is taken first.
+
 -  **Standalone:** Fix, symlinks to shared libraries, e.g. versioned
    aliases like ``libfoo.so`` pointing to ``libfoo.so.1.2``, were copied
    as separate regular files, which could load duplicate library state.
@@ -703,6 +836,17 @@ Bug Fixes
    described the option as including Qt translations, although it
    excludes them. The help text now describes the exclusion.
 
+-  **Plugins:** Fix, conflict handling treated two negative dependency
+   or missing DLL decisions as conflicting instead of only an opposite
+   decision, and short option conflicts were detected by testing the
+   whole short option list rather than membership. Conflicting decisions
+   now require opposite values, short options are compared correctly,
+   and unhandled plugin option conflicts are reported.
+
+-  **Plugins:** Fix, plugin conditions for ``arch_x86``, ``arch_amd64``,
+   and ``arch_arm64`` only recognized one spelling each. They now accept
+   common aliases such as ``i386``/``i686``, ``amd64``, and ``aarch64``.
+
 -  **Windows:** Fix, removing a directory tree with links on Python
    before 3.8 followed junctions and symlinks and deleted the contents
    of their target directories instead of only the links, which could
@@ -742,6 +886,48 @@ Bug Fixes
    lose or garble non-ASCII system messages. Wide character
    ``FormatMessageW`` is now used, with unsigned error codes and an
    unknown-message fallback.
+
+-  **Windows:** Fix, Windows resource reading used missing ctypes
+   signatures and did not always free loaded libraries, and version
+   resources used the wrong structure version, 16-bit header fields,
+   string lengths, and padding. The signatures and resource names are
+   now correct, libraries are freed, and version info fields are written
+   correctly.
+
+-  **Windows:** Fix, clcache released its mutex even when it was not
+   acquired, did not capture and print compiler output consistently when
+   ``CLCACHE_DISABLE`` was set, and modified the caller environment. The
+   mutex is only released when acquired, output is captured and printed
+   consistently, and the environment is copied before modification.
+
+-  **Windows:** Fix, the NSIS installer embedded the whole icon group
+   and rejected non-ICO images, so ``--windows-icon-from-ico`` with a
+   PNG or an icon index produced a broken installer. Non-ICO icons are
+   now converted to ICO, and the icon index is stripped because NSIS
+   cannot apply it.
+
+-  **macOS:** Fix, DMG creation converted the source icon again instead
+   of reusing the app bundle's actual ``.icns`` file, and an app bundle
+   without external files was passed directly to ``create-dmg``, which
+   flattened the bundle into the volume root. The bundle icon is now
+   remembered and reused for the volume icon, and the bundle and
+   external files are staged so the bundle stays intact.
+
+-  **macOS:** Fix, the ``.dylibs`` directory next to a package was only
+   added when the package directory existed, not the ``.dylibs``
+   directory itself, and an unsupported DLL configuration did not stop
+   after reporting it. The actual ``.dylibs`` directory is now checked,
+   and the unsupported configuration returns immediately.
+
+-  **macOS:** Fix, dependencies that referenced a library with an ABI
+   suffix were resolved with the specific suffix slice instead of the
+   ABI suffix, so the actual extension module file was not found and
+   left unresolved. The correct suffix is now replaced.
+
+-  **Linux:** Fix, an explicitly given Linux installer output filename
+   had its extension changed to ``.AppImage`` again, so a custom name
+   could be altered. The given filename is now used as-is, and only the
+   default output gets the ``.AppImage`` extension.
 
 -  **Compatibility:** Fix, a relative import whose level exceeded the
    package depth was resolved to a parent package that was not there,
@@ -931,6 +1117,13 @@ Bug Fixes
       # 4.4rc6: the string could be released before the addition
       # 4.4rc7: the value stays alive until the expression is done
 
+-  **Compatibility:** Fix, slices were always considered unhashable,
+   although Python 3.12+ slices are hashable when their components are.
+   Slice hashability now follows the components, ranges, unions, generic
+   aliases, and anonymous values are handled in constant hashability
+   checks, and the bitwise, matrix multiplication, and bytearray modulo
+   shape tables were corrected.
+
 -  **Debugging:** Fix, on Windows, the PDB file of an unstripped target
    was left in the build directory after moving the executable, so it
    was lost. It is now moved next to the final binary, and the ``.pdb``
@@ -991,6 +1184,22 @@ Bug Fixes
    generated code for the ``c23_embed`` and ``incbin`` resource modes
    now includes a checksum of the blob, so caches notice the change.
 
+-  **Scons:** Fix, unexpected Python exceptions in Scons build actions
+   were converted to build errors without their traceback, so only the
+   message was shown. The traceback is now passed through.
+
+-  **Scons:** Fix, clcache accepted cache entries with missing or
+   zero-sized object files, which caused linker errors, and only checked
+   that the object file existed after compilation. Unusable entries are
+   now removed and treated as misses, and only successful compilations
+   with a usable object file are cached.
+
+-  **Scons:** Fix, compiler command lines in ``CC`` and ``CXX`` were
+   treated as a single path, so options were lost and unquoted Windows
+   paths with spaces failed. The command line is now split into compiler
+   path and options, options are preserved when injecting ``ccache``,
+   and compiler detection uses the split path.
+
 -  **UI:** Fix, conflicting data file destination paths were only
    detected for exact path matches, so non-normalized paths could fail
    later at run time. Conflicts now use normalized paths and
@@ -1007,6 +1216,18 @@ Bug Fixes
 -  **UI:** Fix, the error message for a debugger that was not found in
    ``PATH`` was missing the debugger name, and the module parameter
    error had a stray quote. Both messages are now formatted correctly.
+
+-  **UI:** Fix, path checks used manual decisions and did not reject
+   paths that were only a drive or a root without a drive. Path validity
+   decisions now carry a reason and are used for legal path errors and
+   DLL directory scans.
+
+-  **UI:** Fix, user input paths from command-line options and
+   environment variables were not normalized consistently, and ``~``
+   expansion on Windows could treat ``~1.txt`` as a user home. Paths are
+   now normalized at the option boundaries, including data files, icons,
+   installer outputs, container paths, and external tools, and Windows
+   only expands the plain ``~`` shorthand.
 
 -  **Reports:** Sensitive option values are now redacted in compilation
    reports and container command output by matching option name
@@ -1032,6 +1253,30 @@ Bug Fixes
    built. The known ``index``, ``managed``, and ``sources`` keys are now
    ignored, and the warning for unknown keys was reworded.
 
+-  **Distributions:** Fix, distribution metadata handling now tolerates
+   missing metadata and falls back to the ``.dist-info`` directory name
+   for Debian packages, only logs a missing distribution warning when
+   the lookup was unsuccessful, and detects the vendored
+   ``setuptools/_vendor`` path.
+
+-  **Targets:** Fix, WASI used 15-bit Python digits instead of 30-bit, C
+   ``long`` limits were calculated with 7 bits per byte instead of 8,
+   and target execution commands were constructed incorrectly. WASI now
+   uses 30-bit digits and runs through Wasmtime, and C long limits and
+   target run commands are correct.
+
+-  **Multidist:** Fix, multidist basename detection stripped any
+   trailing characters matching ``.py``/``.exe``/``.bin`` instead of
+   actual extensions, did not normalize case for matching, and inserted
+   module names and basenames without quoting. It now strips only real
+   extensions, compares normalized names, and uses ``repr`` for
+   generated code.
+
+-  **Distutils:** Fix, the check that rejects ``--project`` together
+   with ``--main`` did not recognize ``--module`` and ``--mode=package``
+   as module mode, so the combination could pass. Both forms are now
+   treated as module mode.
+
 -  **Quality:** Fix, the stderr filter for tool calls treated the
    presence of unfiltered error lines as a successful filtered run, so a
    failing tool could be reported as success, while output that was
@@ -1051,9 +1296,17 @@ Bug Fixes
    free-threaded CPython code, which is GCC bug 105585. The warning is
    now disabled for GCC builds of such code, unless warnings are errors.
 
+-  **NoGIL:** Fix, Scons is not free-threading safe and gave sporadic
+   errors during parallel builds with free-threaded Python.
+   ``PYTHON_GIL=1`` is now set for the build tool only.
+
 -  **MSYS2:** Fix, the runner created for entry points used a
    non-normalized path, which could produce mixed path separators. The
    generated runner filename now uses ``getNormalizedPathJoin``.
+
+-  **MSYS2:** Fix, MSYS2 package detection checked for Anaconda Python
+   instead of MSYS2 and POSIX Windows Python, so MSYS2 packages were not
+   detected there. The check now uses the MSYS2 flavors.
 
 Package Support
 ===============
@@ -1133,6 +1386,10 @@ Package Support
    rpaths, and version symlinks. Removed the PyQt6 unsupported check and
    filtered non-DLL Qt plugin files from wheels.
 
+-  **Standalone:** Fixed the ``vLLM`` lazy-loader mapping to track
+   submodule attributes by submodule name with the attribute names as
+   values, so lazy-loaded attributes are included correctly.
+
 New Features
 ============
 
@@ -1144,8 +1401,9 @@ New Features
 -  **Python 3.16:** Added experimental support for Python 3.16, which is
    now partially supported. Initialization and opcode handling are
    covered, the ``site`` and ``verbose`` flags use the new configuration
-   API, and the new ``_Py_LATIN1_CHR`` dangerous macro is handled. With
-   3.16a2 on Linux, most things work.
+   API, the new ``_Py_LATIN1_CHR`` dangerous macro is handled, and
+   ``python3.16`` shebangs are recognized. With 3.16a2 on Linux, most
+   things work.
 
 -  **Python 3.15+:** Added support for module export hooks, where an
    extension module provides a ``PyModExport_<name>`` or
@@ -1394,7 +1652,8 @@ Optimization
 -  **Code Generation:** Cleanup code for newly created locals
    dictionaries now uses the scoped ``withCleanupFinally`` helper, so
    the dictionary is released by the local exception handler instead of
-   being kept in the outer cleanup scope.
+   being kept in the outer cleanup scope, and the created dictionary
+   variable is used consistently when the dictionary already exists.
 
 -  **Subscripts:** Constant subscripts of tuples and tuple subclasses,
    e.g. named tuples, now use a direct table access fast path, with
@@ -1592,6 +1851,28 @@ Optimization
    unstripped, and ELF files whose load segments would no longer be
    aligned after stripping are restored to the unstripped copy.
 
+-  **Optimization:** Specialized attribute calls now compute the
+   replacement expression immediately with ``computedExpressionResult``,
+   unused ``str is bytes`` branches were removed, and a bug that
+   reported too many generated base mixin aliases due to incorrect name
+   matching was corrected.
+
+-  **Optimization:** Added a dedicated ``delattr`` node and specialized
+   ``getattr``, ``setattr``, ``delattr``, and ``hasattr`` with constant
+   attribute names. CPython 3.11+ error message details for non-string
+   attribute names are reported, constant-name ``setattr``/``delattr``
+   calls are reduced to attribute statements when the result is unused,
+   and compile-time constant type helpers were added.
+
+-  **Optimization:** Exact type shapes are now marked hashable, and the
+   default ``hasShapeTypeExact`` predicate was added, so type objects
+   can use the hashable fast paths.
+
+-  **Windows:** The onefile splash screen is now implemented in C
+   instead of C++, so onefile builds no longer require a C++ compiler
+   for it, and the unused ``Shlwapi`` library was dropped from the link
+   libraries.
+
 -  **Anti-Bloat:** Removed the ``_json`` avoidance rules for
    ``json.decoder``, ``json.encoder``, and ``json.scanner``, since the
    fallback pure Python implementation can be much slower and the
@@ -1637,6 +1918,18 @@ Anti-Bloat
 -  **Packages:** Replaced the ``pydoc_data`` module docs import in
    ``pydoc`` with an ``ImportError`` on Python 3.13 and later, removing
    the module documentation data used by the doc locator.
+
+-  **Packages:** Avoided the macOS, Windows, and OpenSSL-specific
+   implementations of ``truststore`` on platforms where they are not
+   used.
+
+-  **Packages:** Avoided following ``asyncio`` from
+   ``typing_extensions`` before Python 3.12, where it is only used for
+   deprecated coroutine wrappers.
+
+-  **Packages:** Fixed the ``zope.interface`` anti-bloat rules for its
+   test decorators, which replaced the decorated function with one
+   returning ``None``. The decorators now keep the decorated function.
 
 Organizational
 ==============
@@ -1784,6 +2077,15 @@ Organizational
    ``--not-installed-is-no-error`` options in the PyLint and Pyright
    checkers, which described them as insisting on the tools being
    installed.
+
+-  **Quality:** ``codespell`` now ignores third-party ``inline_copy``
+   files, and no matching files are reported as an informational message
+   instead of an error.
+
+-  **Watch:** The watch tool can now automatically accept plugin
+   influence records, removed modules and distributions, removed search
+   paths, and removed ``Pipfile.lock`` packages, and the new
+   ``--accept-all`` option enables all automatic acceptance options.
 
 Tests
 =====
@@ -1958,6 +2260,21 @@ Cleanups
    maps its ``repr`` argument to the ``repr_value`` child.
 
 -  Removed the duplicate Python2 ``bytes.decode`` spec.
+
+-  Further cleaned up comments and docstrings across optimization, tree,
+   specification, and finalization modules, including the locals
+   dictionary construction code and the slice shape mixin description.
+
+-  Used the compile-time constant type accessor for unicode key checks
+   and the shared ``EllipsisType`` for pickle dispatch.
+
+-  The try/finally node builders now assert the Python versions they are
+   used for, and the Python 3 path calls the common builder directly
+   instead of going through the Python 2-only wrapper.
+
+-  Future imports and the future spec are now restored and cleared in a
+   ``finally`` block after building a module, and other ``RuntimeError``
+   exceptions are re-raised instead of being swallowed.
 
 Summary
 =======
