@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc12**.
+It currently covers changes up to version **4.4rc13**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -707,6 +707,18 @@ Bug Fixes
    The caches are separate, the requested file is used, and ``__name__``
    requires a string.
 
+-  Fix, docstring removal replaced any first ``Constant`` body
+   expression with an empty string, including ``None``. It now only
+   clears string constants, leaving other constants untouched for
+   compatibility.
+
+-  Fix, boolean assignments did not release the value used, and boolean
+   and cell targets overwrote their old reference. In-place operations
+   also lost ownership for module variables and cleanup temporaries. Old
+   values are now released before replacement, boolean and cell targets
+   use ``Py_NewRef_IMMORTAL``, and in-place operands keep correct
+   ownership.
+
 -  **Python 3.14:** Fix, exception messages that name the type of a
    mistyped object used only the type name, while CPython 3.14 uses the
    fully qualified name. The complaint helpers now use
@@ -1009,6 +1021,38 @@ Bug Fixes
    future flag. It is now only enabled when requested and remains
    available in code object flags.
 
+-  **Python 3.12+:** Fix, constants were classified as immortal merely
+   by being immutable, including the GC-tracked ``ExceptionGroup`` heap
+   type, and ``sys.version_info`` was treated as immortal. Constants are
+   now tracked as guaranteed immortal, known mutable, or unknown, and
+   generic constant returns only use constants that are certainly
+   immortal.
+
+-  **Python 3.12+:** Fix, the caught exception type extracted the
+   exception instance instead of its type. It now uses
+   ``Py_TYPE(exception_value)``, matching CPython's exception state.
+
+-  **Python 3.7+:** Fix, class subscription used separate constant and
+   runtime paths, so ``__class_getitem__`` set to ``None``,
+   non-callables, descriptors, and metaclass attribute errors behaved
+   differently. Both paths now share one helper with version-appropriate
+   errors.
+
+-  **Python 3.5+:** Fix, assigning to ``cr_frame`` raised the generator
+   attribute message ``gi_frame is not writable``. It now names
+   ``cr_frame``.
+
+-  **Python 2:** Fix, list extension used the Python 3 length hint API
+   and mishandled failing hints. It now uses the Python 2 private API,
+   reports a missing exception as ``SystemError``, and only resizes for
+   positive hints.
+
+-  **Python 3.12+:** Fix, ``TypeAliasType`` instances created in
+   compiled code got the wrong ``__module__``, because ``typing``
+   derives it from the caller frame's function object. Compiled caller
+   frames now get a temporary function object, and ``TypeAliasType`` is
+   included in the patched typing types.
+
 -  **Standalone:** Fix, symlinks to shared libraries, e.g. versioned
    aliases like ``libfoo.so`` pointing to ``libfoo.so.1.2``, were copied
    as separate regular files, which could load duplicate library state.
@@ -1068,7 +1112,18 @@ Bug Fixes
 -  **Standalone:** Fix, a reentrant fixed import during extension module
    initialization saw the loader placeholder instead of the real module
    in ``sys.modules``. Reentrant imports of the owning thread now use
-   the real module.
+   the real module. Internal loader modules stay registered when their
+   execution fails, so reentrant imports can still find them.
+
+-  **Standalone:** Fix, the ``ldd`` cache was keyed only by DLL name
+   even though results depend on the package and original directory, and
+   dependency cycles could recurse endlessly. The cache key now includes
+   package and directory, visited DLLs are tracked, and the Python
+   executable is resolved with ``os.path.realpath()``.
+
+-  **Standalone:** Fix, storing the JIT source dictionary in the
+   builtins module leaked the dictionary reference. It is now released
+   after storing, and the assignment is checked in debug mode.
 
 -  **Plugins:** Fix, the onefile compression warning of the ``upx``
    plugin checked the ``isOnefileMode`` function object instead of
@@ -1239,6 +1294,29 @@ Bug Fixes
    conda base prefix is now detected through the system prefix, and
    ``Library/bin`` is included for DLL scanning.
 
+-  **Windows:** Fix, executing a compiled binary with ``--run`` used a
+   bare name, which Windows does not search in the current directory
+   when ``NoDefaultCurrentDirectoryInExePath`` is set. Bare names now
+   get an explicit current-directory prefix.
+
+-  **Windows:** Fix, generated launch scripts quoted ``set`` assignments
+   incorrectly, and batch files with arguments or parentheses were not
+   executed reliably. ``set`` values are now quoted, bare batch paths
+   get an explicit current-directory prefix, and batch files run through
+   ``cmd.exe /d /s /c`` with an outer quoted command.
+
+-  **Windows:** Fix, path comparisons relied on ``os.path.normcase``,
+   which is a no-op on macOS and MSYS2 POSIX Python despite
+   case-insensitive file systems, and import scanning used a separate
+   case-sensitivity decision. Added ``isCaseInsensitiveOS()`` and
+   normalized casing for comparisons and import scans.
+
+-  **Windows:** Fix, drive path restoration could turn a UNC path into a
+   drive path when the share root was only a name prefix, and drive
+   roots without trailing separators were mishandled. Restoration now
+   checks the share root as an actual prefix, and drive splitting uses
+   ``ntpath`` for MSYS2 compatibility.
+
 -  **macOS:** Fix, DMG creation converted the source icon again instead
    of reusing the app bundle's actual ``.icns`` file, and an app bundle
    without external files was passed directly to ``create-dmg``, which
@@ -1260,6 +1338,22 @@ Bug Fixes
 -  **macOS:** Fix, the generated console mode wrapper script started
    with an unwanted blank line. The template now uses a backslash line
    continuation.
+
+-  **macOS:** Fix, architecture-specific versioned dylibs such as
+   ``libgcc_s_x86_64.1.dylib`` were not detected, because only the
+   version suffix was considered. Architecture-suffixed variants are now
+   checked before the version suffix.
+
+-  **macOS:** Fix, accepted missing macOS dependencies were handled by
+   raising and catching ``NuitkaForbiddenDLLEncounter``. Accepted
+   dependencies are now skipped directly, while Qt plugin private
+   dependencies are still excluded.
+
+-  **macOS:** Fix, DLL detection cached results without the package
+   rpath state, later binary fixups could get a different result than
+   the copy step, and package rpaths were keyed by string. The cache key
+   includes the rpath snapshot, the first result is reused for fixups,
+   and rpaths are keyed by ``ModuleName``.
 
 -  **Linux:** Fix, an explicitly given Linux installer output filename
    had its extension changed to ``.AppImage`` again, so a custom name
@@ -1496,10 +1590,26 @@ Bug Fixes
    were corrected, and ``not`` now leaves non-bool results to runtime
    truth testing.
 
+-  **Compatibility:** Fix, star argument iterability checks looked up
+   ``__iter__`` and ``__getitem__`` attributes, which a custom
+   ``__getattribute__`` could hide. The checks now inspect type slots,
+   so iterable objects remain iterable.
+
 -  **Debugging:** Fix, on Windows, the PDB file of an unstripped target
    was left in the build directory after moving the executable, so it
    was lost. It is now moved next to the final binary, and the ``.pdb``
    suffix is cleaned up with the other intermediate files.
+
+-  **Debugging:** Fix, the mapping length helper asserted that
+   ``mp_length()`` did not raise or return a negative value, hiding the
+   original error. Raising and negative results now propagate, so
+   ``len()`` and iteration report the real exception.
+
+-  **Debugging:** Fix, debug checks for compiled types compared
+   ``tp_subclasses`` against the wrong base field, a ``type_params``
+   setter checked ``self`` twice, and frame debug output used the
+   compiled frame printer. The assertions and setter now check the right
+   values.
 
 -  **Cache:** Fix, the bytecode cache did not restore whether a module
    usage source reference was internal, so warm-cache compilation
@@ -1514,6 +1624,15 @@ Bug Fixes
 -  **Onefile:** Fix, the splash screen was only shown when the payload
    was compressed, although the option is independent of compression. It
    is now shown whenever it is enabled.
+
+-  **Onefile:** Fix, payload file sizes were truncated to 32 bits on
+   Windows, and checksums could not handle files larger than 32-bit
+   sizes. Added ``calcCRC32With64BitSize()``, used ``GetFileSizeEx()``,
+   and handled zero-sized files without failing memory mapping.
+
+-  **Onefile:** Fix, the Posix child wait loop converted milliseconds to
+   nanoseconds with ``* 1000``, so grace timeouts expired a thousand
+   times too early. It now uses ``* 1000000L``.
 
 -  **Scons:** Fix, the exit code of a Scons build did not distinguish
    signal termination, because ``os.WEXITSTATUS`` was used
@@ -1594,6 +1713,12 @@ Bug Fixes
    ``CLCACHE_MEMCACHED`` warning was emitted during ccache setup. The
    guesses point at ``ccache`` binaries, only files are accepted, and
    the warning moved into clcache setup.
+
+-  **Scons:** Fix, SCons options, environment variables, build
+   definitions, no-deployment flags, plugin preprocessor symbols,
+   include directories, and link inputs were emitted in nondeterministic
+   order. They are now sorted, and plugin APIs are asserted not to
+   return sets.
 
 -  **UI:** Fix, conflicting data file destination paths were only
    detected for exact path matches, so non-normalized paths could fail
@@ -1718,6 +1843,13 @@ Bug Fixes
    ``_PyObject_IsUniquelyReferenced`` with a fallback for Python before
    3.13.4.
 
+-  **NoGIL:** Fix, module and builtin dictionary lookups returned
+   borrowed references in free-threaded builds, while concurrent
+   mutation could invalidate them, and builtin caches were updated
+   without atomics. The lookups now return owned references using
+   critical sections, builtin caches use atomic operations, and unlocked
+   static caches are avoided.
+
 -  **MSYS2:** Fix, the runner created for entry points used a
    non-normalized path, which could produce mixed path separators. The
    generated runner filename now uses ``getNormalizedPathJoin``.
@@ -1811,6 +1943,9 @@ Package Support
 -  **Standalone:** Added the ``torchvision.extension._C_stable``
    implicit dependency, since it is a DLL named like an extension
    module.
+
+-  **Standalone:** Removed the unnecessary ``pyarrow._*`` implicit
+   imports for ``dask.dataframe``.
 
 New Features
 ============
@@ -2063,6 +2198,10 @@ New Features
    patterns, paths, choices, packages, directories, and plugin options,
    and no longer shows metavars for boolean flags. Always-enabled
    package-support plugin options are also shown in the default help.
+
+-  **macOS:** PySide6 applications in app-bundle mode now load the
+   bundle icon into ``QApplication``, using the icon filename for the
+   plist. A standalone macOS test covers the icon.
 
 Optimization
 ============
@@ -2383,7 +2522,10 @@ Optimization
 -  **Optimization:** Added a hard import node for
    ``pkgutil.iter_modules`` that enumerates package children through the
    loader directly and falls back to ``pkgutil`` for regular paths.
-   Internal loader modules stay out of the ``sys.path`` hook.
+   Internal loader modules stay out of the ``sys.path`` hook. The
+   replacement now enumerates Nuitka packages from the loader entry
+   table directly, uses ``pkgutil.get_importer`` for regular paths, and
+   handles ``None`` and path lists like CPython.
 
 -  **Optimization:** Dictionary item lookups now use the cached string
    hash and the concrete string hash slot for exact string and unicode
@@ -2405,6 +2547,37 @@ Optimization
    string argument and drop preceding relative paths once an absolute
    path is seen. The remaining calls use the generic C API code
    generation.
+
+-  **Optimization:** Added ``Nuitka_Object_IsSubclass()`` with fast type
+   and Python 2 old-style class paths, falling back to abstract subclass
+   checks. It is used for exception matching, ``issubclass``, and
+   unbound methods, and ``__subclasscheck__`` is in the default constant
+   population.
+
+-  **Optimization:** Unpacking checks now use the iterated value
+   directly for too-many-values checks, with ``UNPACK_ITERATED_CHECK``
+   and ``LOOKUP_SUBSCRIPT_CONST_FOR_UNPACK``. Iterator shapes and direct
+   subscript unpacking were improved, including version-specific
+   too-short and too-many error messages.
+
+-  **Optimization:** Added tri-state ``any()`` folding for generic,
+   list/tuple, and range iteration handles. Exact string, bytes,
+   bytearray, and range shapes are now treated as non-raising for
+   ``all()`` and ``any()``.
+
+-  **Optimization:** Function inlining is now scheduled as delayed work
+   instead of mutating the tree during trace collection, and call
+   details are derived from the call node.
+
+-  **Optimization:** Exposed ``LOOKUP_SPECIAL_NO_ERROR()`` from the
+   attribute helpers for reuse, avoiding duplicate special lookup code.
+
+-  **Optimization:** Added ``Nuitka_PyObject_LengthHint()`` with the
+   CPython semantics, avoiding a C-API call for length hints.
+
+-  **Optimization:** Added ``Nuitka_PySequence_Check()`` implementing
+   CPython's sequence check without a shared library call, used for
+   iteration, exception group notes, and in-place sequence additions.
 
 Anti-Bloat
 ==========
@@ -2478,6 +2651,10 @@ Anti-Bloat
    ``dask.distributed`` from ``fsspec``, ``joblib``, and ``xarray``,
    with helpful errors when their optional Dask transaction or backend
    is used without ``distributed``.
+
+-  **Anti-Bloat:** Fixed the ``_distutils_hack`` replacement typo
+   ``Mone`` to ``None``, so the distutils warning function is actually
+   disabled.
 
 Organizational
 ==============
@@ -2674,6 +2851,14 @@ Organizational
    replacement-hook comments, while still removing debug prints and dead
    code.
 
+-  **Project:** Clarified that every file in ``.agents/rules/`` must be
+   read and the list updated when rules change, and that skills are
+   referenced by name rather than path.
+
+-  **Quality:** The ``clangd`` checker now includes ``nuitka/plugins``
+   by default and skips Windows-only sources by folder, prefix, or
+   suffix on other platforms.
+
 Tests
 =====
 
@@ -2773,6 +2958,21 @@ Tests
 
 -  Added coverage for attribute access on a walrus target used on the
    right side of a boolean operation.
+
+-  Test discovery now detects macOS-only tests by suffix as well as
+   prefix, and output comparison normalizes Windows 8.3 short paths in
+   tracebacks and import output.
+
+-  The CPython comparison now runs ``.cmd`` wrappers on Windows and
+   ``.sh`` wrappers elsewhere when present, prefixes bare names, and
+   removes the wrapper files afterwards.
+
+-  Output comparison now normalizes ``cannot import name`` paths
+   independently of the exception class.
+
+-  Output comparison now normalizes escaped Windows paths in
+   ``WarningMessage`` reprs and the variable ``[N chars]`` truncation
+   count.
 
 Cleanups
 ========
@@ -2932,6 +3132,32 @@ Cleanups
    ``variables`` and ``constants`` sections, since those are always
    defined and lazily evaluated elsewhere. The schema, formatter, and
    nanny plugin were updated.
+
+-  Removed disabled abort checks and an unused manual long-zero
+   stripping helper, simplified a debug variable-merge assertion, and
+   corrected the YAML inline-copy docstring.
+
+-  The Python 2 ``execfile`` optimization now uses
+   ``makeExpressionBuiltinsOpenCall()`` with all optional arguments
+   instead of constructing the open call node directly.
+
+-  **Plugins:** Missing DLL checks now return a ``MissingDLLDecision``
+   with tri-state ``decideAbstain()`` and optional reasons for
+   ``decideYes()``, instead of a bare tuple.
+
+-  Node classes now validate cloning interfaces: ``named_children``
+   requires ``getCloneArgs()``, ``node_attributes`` requires
+   ``getDetails()``, and required non-child parameters need details.
+   Function and module cloning details were filled in, and unused
+   ``makeCloneShallow()`` was removed.
+
+-  Removed the duplicate module-level ``redactCommandLineArg`` helper
+   and import it from the hooks module instead.
+
+-  **Quality:** Generated IDE-only include blocks now keep dependent
+   includes after the prelude, a missing iterator include and the
+   ``FLY002`` ignore were added, and ``MAKE_LIST`` preallocation is
+   documented.
 
 Summary
 =======
