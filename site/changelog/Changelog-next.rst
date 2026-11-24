@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc3**.
+It currently covers changes up to version **4.4rc4**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -360,6 +360,16 @@ Bug Fixes
    replacements were still pending, so the decision was based on an
    untraced state. It now waits for the next pass when any node changed.
 
+-  Fix, the frame locals proxy did not hash the lookup key before
+   comparing variable names, so unhashable keys did not raise
+   ``TypeError``. The key is now hashed up front, and names with
+   different hashes are skipped.
+
+-  Fix, the temporary path template expansion formatted
+   ``timeval.tv_sec`` with ``%ld``, which is too narrow where ``time_t``
+   is wider than C ``long``, e.g. for the WASI target. It now uses
+   ``%lld`` with a cast.
+
 -  **Python 3.14:** Fix, exception messages that name the type of a
    mistyped object used only the type name, while CPython 3.14 uses the
    fully qualified name. The complaint helpers now use
@@ -371,6 +381,56 @@ Bug Fixes
    supported. The conversions are now mapped to the
    ``_PyInterpolation_Build`` codes, including format specifications and
    nested specifications.
+
+-  **Python 3.14+:** Fix, template strings and interpolations were
+   generated without ``withObjectCodeTemporaryAssignment``, so they did
+   not work in boolean contexts and unused ones were not safely
+   discarded. They now use the regular temporary assignment and cleanup.
+
+-  **Python 3.4-3.7:** Fix, standalone mode did not provide a loader
+   entry for ``multiprocessing.semaphore_tracker``, which these versions
+   spawn instead of ``multiprocessing.resource_tracker``, so the tracker
+   process could not start. The entry is now registered and used when
+   the tracker module name matches.
+
+-  **Python 3.4-3.7:** Fix, ``chr()`` used the Python 3.8+ argument
+   conversion, so values outside the C ``int`` range gave the wrong
+   errors there. It now converts to a C ``long`` first and reports
+   ``OverflowError`` with CPython's messages for values above or below
+   the C ``int`` range.
+
+-  **Python 2:** Fix, ``chr()`` rejected float values on Python 2.6,
+   where CPython truncates them. It now truncates them on 2.6, while 2.7
+   continues to reject them.
+
+-  **Python 3.10+:** Fix, the implicit ``staticmethod`` wrapping of
+   ``__new__`` was applied only on Python 2, so compiled ``__new__``
+   functions in class bodies were not treated like CPython's. It is now
+   applied on Python 3.10 and later too, but not before 3.10, where
+   ``staticmethod`` objects are not callable and ``enum`` calls
+   ``__new__`` from the class namespace directly.
+
+-  **Python 3.11:** Fix, invalid ``return``, ``break``, and ``continue``
+   statements in ``except*`` blocks were not rejected, so invalid code
+   compiled. They now raise CPython's ``SyntaxError`` when they escape
+   the block, while nested functions, classes, and loops remain allowed.
+
+-  **Python 3.12:** Fix, the ``long`` update helpers used
+   ``Py_ABS(Py_SIZE())`` as the digit count, which no longer matches the
+   digit count on Python 3.12, where it is packed into the object tag.
+   They now use ``Nuitka_LongGetDigitSize``.
+
+-  **Python 3.12+:** Fix, type aliases declared in nested generic
+   functions could not be created, because the alias node used a
+   variable reference for its name and claimed it could not raise. The
+   written name is now passed as a constant and child expressions are
+   evaluated for exceptions.
+
+-  **Python 3.12.0:** Fix, a generator or coroutine closed before it was
+   started was reported as closed by ``inspect.getgeneratorstate()`` and
+   ``inspect.getcoroutinestate()``, while CPython 3.12.0 fails to clear
+   the frame and reports it as created. The closed-before-start state is
+   now tracked and reported like CPython.
 
 -  **Standalone:** Fix, symlinks to shared libraries, e.g. versioned
    aliases like ``libfoo.so`` pointing to ``libfoo.so.1.2``, were copied
@@ -413,6 +473,11 @@ Bug Fixes
    ``MS_WIN64``. The flags now match the MSVC ABI, and function pointer
    casts use unions to avoid debug build warnings.
 
+-  **Windows:** Fix, ``getFileMode`` returned 0 for missing files, while
+   the POSIX implementation returns -1, so callers such as
+   ``isExecutableFile`` could treat a missing file as existing. It now
+   checks ``GetFileAttributesW`` and returns -1 for invalid attributes.
+
 -  **Compatibility:** Fix, a relative import whose level exceeded the
    package depth was resolved to a parent package that was not there,
    instead of giving a not found result. It now stops at the top-level
@@ -427,6 +492,110 @@ Bug Fixes
    raise the same ``SyntaxError`` as the corresponding Python version,
    with its version-specific exceptions respected.
 
+-  **Compatibility:** Fix, ``list.insert`` considered non-constant index
+   values unable to raise and constant ones able to raise, which is the
+   reverse of the actual behavior, so a ``float`` or ``None`` index went
+   unchecked and later gave a ``SystemError``, and its ``TypeError``
+   message lacked "object". Before Python 3.10, a ``float`` index now
+   gives the argument parsing error like CPython. The ``insert``
+   operation now raises ``OverflowError`` for index values too large for
+   ``Py_ssize_t``, ``list.index`` clamps start and stop values like
+   CPython, and ``__index__`` errors other than ``TypeError`` propagate.
+
+-  **Compatibility:** Fix, more number operation corner cases, including
+   in-place ``float **= nan`` returning the right operand without taking
+   a reference, so objects still in use could be freed, ``2.0 ** inf``
+   and ``0.0 ** -inf`` giving ``0.0`` instead of ``inf``, float floor
+   division with a negative divisor using the dividend sign, and Python3
+   float power with a negative base and fractional exponent raising
+   ``ValueError`` instead of giving a complex result. Python2 in-place
+   complex power now delegates to ``PyNumber_InPlacePower``, which
+   handles the coercion that the generic helper path did not. Sequence
+   repeat factors at the ``Py_ssize_t`` boundaries are now handled, and
+   the type shapes of power operations include the possible results and
+   exceptions.
+
+   .. code:: python
+
+      print(2.0 ** float("inf"))
+      print(0.0 ** -float("inf"))
+      print(1.0 // -2.5)
+      print((-1.0) ** 0.5)
+
+      # 4.3: 0.0, 0.0, -0.0, ValueError
+      # 4.4: inf, inf, -1.0, (6.123233995736766e-17+1j)
+
+-  **Compatibility:** Fix, type shapes disagreed with CPython for some
+   operations: ``bytes + bytearray`` was considered ``bytearray``
+   instead of ``bytes``, ``type < type`` on Python3 was considered
+   unable to raise although metaclasses can overload it, ``int()``,
+   ``long()``, and ``float()`` of ``bytearray`` were rejected as
+   impossible at compile time, and ``None | type`` on Python 3.10+ was
+   rejected instead of producing a ``types.UnionType``.
+
+-  **Compatibility:** Fix, compilation of some ``enumerate`` and ``zip``
+   calls failed because calls known not to raise still jumped to an
+   exception exit the function did not have. ``needs_check`` is now
+   passed from ``mayRaiseException``, ``enumerate`` start values and
+   ``zip`` strict truth checks are considered potentially raising, and
+   ``mayRaiseExceptionIndex`` and ``mayRaiseExceptionIter`` shape
+   methods were added.
+
+-  **Compatibility:** Fix, ``next`` with a default value crashed for
+   values that are not iterators. It now checks ``HAS_ITERNEXT`` and
+   raises CPython's ``TypeError``, and uses the optimized iterator path
+   when the value is known to be an iterator.
+
+-  **Compatibility:** Fix, the keyword argument specs of some built-in
+   methods were wrong: ``dict.get``, ``pop``, ``setdefault``,
+   ``fromkeys``, and Python2 ``has_key`` accepted keyword arguments that
+   CPython rejects, while ``str.replace`` on Python 3.13+ now allows
+   ``count`` as a keyword, and ``bytes.translate`` on Python 3.6+ allows
+   ``delete`` as a keyword, with the other arguments remaining
+   positional-only. The positional-only argument error in ``matchCall``
+   now gives CPython's "takes at least N positional arguments" message.
+
+-  **Compatibility:** Fix, truth checks of comparison results converted
+   ``CHECK_IF_TRUE`` to ``nuitka_bool`` with a ternary, so an exception
+   raised by ``__bool__`` was silently turned into false.
+   ``CHECK_IF_TRUE_NBOOL`` now preserves the exception indicator, and
+   the comparison and binary operation helpers use it, so e.g. a
+   comparison yielding an object whose ``__bool__`` raises now
+   propagates the exception.
+
+   .. code:: python
+
+      class BadBool:
+          def __bool__(self):
+              raise ValueError("no truth value")
+
+
+      class Comparable:
+          def __eq__(self, other):
+              return BadBool()
+
+
+      [Comparable()] == [Comparable()]  # now raises ValueError
+
+-  **Compatibility:** Fix, when a module replaced itself in
+   ``sys.modules`` while executing, the loader used the replacement for
+   the load state too, so compiled code's frame globals became the
+   replacement, which may lack ``__builtins__``. The executed module is
+   now kept in the load state, and only the importer receives the
+   replacement.
+
+-  **Compatibility:** Fix, class base ``__mro_entries__`` results were
+   extended directly, so a non-tuple result was accepted or failed
+   differently. The result is now stored in a temporary and checked to
+   be a tuple in full compat mode, raising ``TypeError`` like CPython.
+
+-  **Compatibility:** Fix, ``super()`` with deleted implicit arguments
+   compiled a reference to a variable without a value instead of raising
+   CPython's ``RuntimeError``, e.g. "super(): empty __class__ cell" or
+   "super(): arg[0] deleted". These errors are now raised when the
+   traces show the arguments are unset, and full compat mode also
+   observes a dynamically shadowed ``super`` in the module namespace.
+
 -  **Debugging:** Fix, on Windows, the PDB file of an unstripped target
    was left in the build directory after moving the executable, so it
    was lost. It is now moved next to the final binary, and the ``.pdb``
@@ -437,6 +606,11 @@ Bug Fixes
    reports could differ from cold-cache ones. The cache format now
    stores and restores that flag.
 
+-  **Onefile:** Fix, the compressed payload body size was written in
+   little-endian, while the C bootstrap reads it with a direct
+   ``memcpy``, so compressed onefile payloads were broken on big-endian
+   systems. The size is now written in native endianness.
+
 -  **Scons:** Fix, the exit code of a Scons build did not distinguish
    signal termination, because ``os.WEXITSTATUS`` was used
    unconditionally. Signal exits now report the negative signal number.
@@ -444,6 +618,11 @@ Bug Fixes
 -  **Scons:** Fix, MSVC builds with Python 2.6 headers warned about
    C4273 from the declarations of ``acosh``, ``asinh``, ``atanh``, and
    ``log1p``. That warning is now disabled for this combination.
+
+-  **Scons:** Fix, the ``-Wc23-extensions`` diagnostic pragma was
+   emitted for all resource modes and all Clang versions, so older Clang
+   could fail on the unknown warning group. It is now emitted only for
+   the ``#embed`` resource mode and Clang 19 or later.
 
 -  **UI:** Fix, conflicting data file destination paths were only
    detected for exact path matches, so non-normalized paths could fail
@@ -568,6 +747,48 @@ New Features
    ``--progress-bar=barflow``. It is not selected by ``auto``, which
    still prefers ``tqdm`` and then ``rich``.
 
+-  **Targets:** Added the experimental ``nuitka.targets`` package with
+   ABI specifications for the native platform, ``wasm32-wasi``, and
+   ``i686-w64-mingw32``, carrying C ``long`` and ``long long`` sizes,
+   pointer size, binary format, RPATH usage, and Python digit limits.
+   ``--target`` now defaults to ``native`` and accepts aliases such as
+   ``wasi``, ``wasm32-wasip1``, ``win32``, and ``windows-x86``, and
+   unknown targets are rejected. Code generation takes C type limits
+   from the selected target instead of the running Python.
+
+-  **WASI:** Added experimental cross compilation and runtime support
+   for ``--target=wasm32-wasi``. It uses Clang mode with WASI SDK 20,
+   downloaded and cached unless ``--wasi-sdk-path`` is given, and a WASI
+   CPython prefix, downloaded and cached unless ``--wasi-python-prefix``
+   is given. Binaries get the ``.wasm`` extension and are run through
+   Wasmtime 50, with DLL detection and extension module loading skipped
+   for the target.
+
+-  **Win32:** Added the experimental ``i686-w64-mingw32`` cross target.
+   ``--win32-python-exe`` starts the 32-bit Windows Python as a broker
+   to query its prefix, include path, DLL, and static library,
+   translating paths with ``wslpath``, ``winepath``, or relative to the
+   executable. Produced binaries are run directly on Windows and WSL,
+   and through Wine on other hosts. Non-Windows hosts require ``--zig``.
+
+-  **Targets:** Compile-time evaluation now runs in the target Python
+   through a framed JSON broker. Hard import constants,
+   ``sys.version_info`` values, and ``importlib`` package discovery use
+   the target, so version-dependent constants and module availability
+   follow the target rather than the host. Targets without DLL support,
+   such as WASI, skip DLL detection entirely.
+
+-  **No-GIL:** Added experimental support for compiling and running with
+   free-threaded Python builds. Compiled types use per-free-list locks,
+   list operations use critical sections, dictionary helpers have
+   borrowed and new-reference variants for free-threaded builds, frame
+   caches are thread safe, and pending calls are processed at thread
+   checkpoints. Testing is ongoing, with Python 3.13t best covered so
+   far.
+
+-  **UI:** The recommended Python version for commercial usage was
+   bumped to 3.13.
+
 Optimization
 ============
 
@@ -626,6 +847,59 @@ Optimization
    including ``CHECK_AND_CLEAR_ATTRIBUTE_ERROR_OCCURRED`` and
    ``CHECK_AND_CLEAR_TYPE_ERROR_OCCURRED``, reducing temporary exception
    handling in generated code.
+
+-  **C API:** All direct CPython dictionary access in Nuitka-owned code
+   now goes through the ``DICT_`` helpers implemented directly on the
+   ``PyDictObject`` state, so dictionaries can still be freely passed
+   between Nuitka and CPython. Added ``DICT_SET_ITEM_STRING``,
+   ``DICT_REMOVE_ITEM_STRING``, ``DICT_GET_ITEM_STRING``,
+   ``DICT_UPDATE_FROM``, and ``DICT_UPDATE_FROM_SEQ``, replacing
+   ``PyDict_SetItem``, ``PyDict_DelItem``, ``PyDict_GetItemString``,
+   ``PyDict_Merge``, ``PyDict_MergeFromSeq2``, and ``PyDict_Update`` in
+   the loader, exception state handling, built-ins, attributes, keyword
+   arguments, frame locals, and deepcopy.
+
+-  **C API:** Used ``CHECK_IF_TRUE`` for truth checks and
+   ``RICH_COMPARE_*_NBOOL_*`` for comparisons, compared with ``Py_None``
+   directly since ``Py_IsNone`` is not available on all supported Python
+   versions, and used ``Nuitka_PyLong_AsLongAndOverflow`` in
+   ``sys._getframemodulename``, avoiding calls into the Python C-API
+   implementation.
+
+-  **C API:** Added ``Nuitka_PyLong_AsSsize_t``,
+   ``Nuitka_PyLong_AsSsize_tAndOverflow``, and
+   ``Nuitka_Number_AsSsize_t``, replacing the Python C-API equivalents
+   in slicing, subscripting, list indexing, and ``int`` construction,
+   with the version-specific overflow and type error messages preserved.
+
+-  **Strings:** Added specialized operation nodes for the ``casefold``,
+   ``isascii``, ``isdecimal``, ``isidentifier``, ``isnumeric``, and
+   ``isprintable`` methods of ``str``, so calls to them compile to
+   direct helpers instead of generic method calls.
+
+-  **Variables:** Added ``getUnboundLocalErrorMessage``, which uses the
+   short message unless full compat mode is enabled, avoiding the
+   code-object based message construction. Frame-less outline code such
+   as comprehensions now generates ``Nuitka_FormatUnboundLocalError``
+   instead of asserting that a frame based error is available.
+
+-  **Trace Collections:** Trace collection merging now copies the first
+   collection's dictionary and uses lists instead of sets for the
+   normally small version collections, avoiding generator and set
+   objects and speeding up compilation by about 5%.
+
+-  **Frame Caching:** Compiled frame caches now use a
+   ``Nuitka_FrameCacheHandle`` with an in-use flag, falling back to an
+   uncached frame when another call owns the cache. Idle cached frames
+   drop their hidden locals and are untracked by the garbage collector,
+   and ownership is tracked for normal returns, exception exits, and
+   generator frames.
+
+-  **Scons:** Scons builds now use a generated
+   ``source_files_index.txt`` created after generated sources are
+   complete, instead of scanning source directories, so the backend,
+   offsets, and onefile builds use the precise list of generated files
+   and avoid directory scans.
 
 Anti-Bloat
 ==========
@@ -712,6 +986,34 @@ Organizational
    Build directories are removed after execution via
    ``--remove-output``.
 
+-  **Quality:** Updated all tools to the latest versions, including
+   ``black`` 26.10.1, ``isort`` 9.0.2, ``yamllint`` 1.38.0,
+   ``clang-format`` 23.1.3, ``codespell`` 2.4.3, ``pylint`` 4.1.3, and
+   ``astroid`` 4.3.4, and split the ``jsonschema`` and ``tomli``
+   requirements by Python version.
+
+-  **Actions:** Updated the GitHub Actions to ``actions/checkout@v7``,
+   ``actions/setup-python@v7``, and ``actions/upload-artifact@v7`` for
+   Node.js 24 support, and replaced ``ilammy/msvc-dev-cmd`` with
+   ``TheMrMilchmann/setup-msvc-dev@v4``.
+
+-  **Quality:** PyLint is now used from the global environment when the
+   installed versions of ``pylint`` and ``astroid`` match the required
+   ones, without prompting for downloads. The existing private pip space
+   is consulted even without download permission, and a missing PyLint
+   is now an error instead of a silent success.
+
+-  **RPM:** Fix, the spec file conditions for Fedora and RHEL Python2
+   packages were also true on openSUSE 16, where the Fedora and RHEL
+   macros are unset. The conditions are now guarded so they only apply
+   when ``suse_version`` is below 1600.
+
+-  **Quality:** Consolidated the MSVC warning flags so ``/W4``, the
+   intentional-construct suppressions, and ``/WX`` are applied as a set
+   when C compiler warnings are made errors in debug mode, and
+   ``-Wno-unused-but-set-variable`` is selected by compiler mode and
+   version.
+
 Tests
 =====
 
@@ -748,6 +1050,24 @@ Tests
 -  Extended the power operator tests with a literal base to cover
    underflow and subnormal results at run time.
 
+-  Tests now honor ``--mode=standalone`` and ``--mode=onefile`` from
+   ``NUITKA_EXTRA_OPTIONS``, removing them before passing options to
+   Nuitka, so test setups can select the compilation mode without
+   duplicating it.
+
+-  Added ``nuitka.tools.testing.Coverage`` with shared coverage command
+   wrapping and publishing. Coverage data in SQLite format is now
+   normalized in the database, and the CPython comparison, optimization
+   tests, and test runner use the helper.
+
+-  The test runners now report whether the tested Python has the GIL
+   enabled, so free-threaded interpreters are distinguishable in
+   outputs.
+
+-  Output comparisons now allow process ID differences in test support
+   temporary names, matching the normalization already done for ``/tmp``
+   and Windows temp files.
+
 Cleanups
 ========
 
@@ -773,6 +1093,29 @@ Cleanups
 
 -  **LSP:** Added missing includes and configured ``.c`` and ``.h``
    files as C in clangd, reducing spurious diagnostics.
+
+-  Removed the unused ``DICT_GET_ITEM_WITH_HASH_ERROR0`` and
+   ``MODULE_NAME0`` helpers, converting their remaining callers to the
+   new-reference variants and updating the Developer Manual mapping
+   table.
+
+-  Added ``getPathWithForwardSlashes`` and use it for git paths, IDE
+   configuration, and adapted Python header filenames, avoiding
+   replacement of backslashes that are valid filename characters on
+   MSYS2 flavor.
+
+-  Added ``NUITKA_UNREFERENCED_PARAMETER`` macro for intentionally
+   unused C parameters and marked the onefile fatal error helpers and
+   the corruption abort helpers as non-returning with
+   ``NUITKA_NO_RETURN``, dropping unreachable returns.
+
+-  The ``PYTHONPATH`` separator in ``callExecPython`` now uses
+   ``getEnvironmentPathAdded``, so the platform path separator is used
+   on Windows too.
+
+-  **Python 2.6:** Added ``_PyObject_GC_IS_TRACKED`` and
+   ``_PyObject_GC_MAY_BE_TRACKED`` equivalents, so GC tracking code no
+   longer needs version-specific dummy checks.
 
 Summary
 =======
