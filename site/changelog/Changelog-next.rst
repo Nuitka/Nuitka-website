@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc5**.
+It currently covers changes up to version **4.4rc6**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -370,6 +370,30 @@ Bug Fixes
    is wider than C ``long``, e.g. for the WASI target. It now uses
    ``%lld`` with a cast.
 
+-  Fix, assigning ``__file__`` or other module constants to a local
+   variable could crash the optimization in standalone mode, since the
+   specialized variable assignment still expected a variable reference
+   after constant folding, e.g. where ``__file__`` becomes a path
+   relative to the program directory. Such assignments are now converted
+   to generic assignments, and the self-assignment checks verify the
+   source is a variable reference first.
+
+-  Fix, the set display optimization treated any constant element as
+   hashable, so a constant set literal containing an unhashable
+   constant, e.g. an empty list, was created at compile time instead of
+   raising ``TypeError`` at run time. Constant set creation now requires
+   known hashable elements, iteration prediction for single element sets
+   only applies to hashable ones, and set creation error exits release
+   the created set, so it can be used in boolean conditions.
+
+-  Fix, deferred releases of pinned references were emitted at the end
+   of the code scope instead of with the owning reference, and were not
+   handled on error exits, so the custom release could happen too late
+   or not at all. They are now emitted by the regular release code when
+   the owning reference is dropped, and by error exit code for values
+   still owned when an error occurs, with the scope end emission removed
+   from sub-collectors.
+
 -  **Python 3.14:** Fix, exception messages that name the type of a
    mistyped object used only the type name, while CPython 3.14 uses the
    fully qualified name. The complaint helpers now use
@@ -453,6 +477,36 @@ Bug Fixes
    keywords use the CPython call helper in full compat mode so errors
    name ``__build_class__``.
 
+-  **Python 3.12+:** Fix, ``importlib.resources.files`` used ``package``
+   as its only argument name, while Python 3.12 renamed it to ``anchor``
+   and kept a wrapper accepting ``package`` only until Python 3.15, so
+   keyword calls were rejected or attributed to the wrong argument. The
+   3.12 to 3.14 variant now accepts both names, the 3.15 variant only
+   ``anchor``, and the generated version criteria were tightened.
+
+-  **Python 3.12+:** Fix, type variable constraints were passed as the
+   bound, so a constrained type variable had the tuple of constraints as
+   its ``__bound__`` and no ``__constraints__``. Constraints are now
+   passed separately when creating the type variable, with tests for
+   function and class constraints, forward references, and lazy
+   evaluation.
+
+-  **Python 3.12+:** Fix, type alias, type variable, and deferred
+   annotation scopes nested in class bodies resolved names against
+   module globals rather than the class namespace, so forward references
+   and class attributes shadowed at module level gave wrong results.
+   Names are now looked up in the class namespace first with module
+   globals as fallback, capturing the namespace before the class body
+   runs and using the created class dictionary afterwards, with the
+   prepared namespace as fallback when a metaclass returns a non-class.
+
+-  **Python 3.14+:** Fix, the forkserver launcher kept its own ``-c``
+   invocation in ``sys.argv``, and when no main path was passed the
+   forked children executed the main module again. The parent process
+   arguments are now passed through, the launcher options are removed
+   from ``sys.argv``, and ``__parents_main__`` is pre-loaded as
+   ``__main__`` when no main path is given.
+
 -  **Standalone:** Fix, symlinks to shared libraries, e.g. versioned
    aliases like ``libfoo.so`` pointing to ``libfoo.so.1.2``, were copied
    as separate regular files, which could load duplicate library state.
@@ -469,6 +523,23 @@ Bug Fixes
    ``sitecustomize`` module that writes each record immediately, so
    records from worker processes survive even when they are killed, and
    conflicting records for a module are reported as an error.
+
+-  **Plugins:** Fix, the ``PyQt5`` and ``PyQt6`` slot decorators forced
+   slot methods to remain uncompiled, and the PyQt5 plugin only applied
+   in standalone mode, so decorated slots were not real Python methods
+   and signal connections, disconnections, and ``QTimer.singleShot``
+   could reject them or not track the receiver lifetime. Slots are now
+   compiled, with runtime wrappers that expose decorated methods as real
+   Python methods and convert compiled methods for signal
+   ``connect``/``disconnect`` and timers while preserving receiver
+   lifetime tracking. Accelerated builds get the support too.
+
+-  **Plugins:** Fix, plugin decisions for docstrings and assertions were
+   only applied through the global Python flags when building trees and
+   resolving ``__debug__``, so per-module anti-bloat configuration for
+   docstrings and assertions had no effect there. The module's decisions
+   are now used when extracting docstrings and creating builtin
+   references, and standard library modules always drop docstrings.
 
 -  **Windows:** Fix, removing a directory tree with links on Python
    before 3.8 followed junctions and symlinks and deleted the contents
@@ -498,6 +569,11 @@ Bug Fixes
    the POSIX implementation returns -1, so callers such as
    ``isExecutableFile`` could treat a missing file as existing. It now
    checks ``GetFileAttributesW`` and returns -1 for invalid attributes.
+
+-  **Windows:** Fix, the standalone loader used ``.pyd`` as the filename
+   suffix for extension modules, so extension modules of debug Python
+   builds, which use ``_d.pyd``, could not be found. The suffix now
+   matches the freezer and uses ``_d.pyd`` for debug builds.
 
 -  **Compatibility:** Fix, a relative import whose level exceeded the
    package depth was resolved to a parent package that was not there,
@@ -622,6 +698,20 @@ Bug Fixes
    raised by ``del`` reported the line of the previous statement. The
    line number is now updated first.
 
+-  **Compatibility:** Fix, resuming a generator did not check for
+   pending calls and signals, so a ``KeyboardInterrupt`` was delivered
+   later in the caller instead of at the ``yield`` expression like
+   CPython's ``RESUME`` instruction. The check now happens when the
+   generator is resumed, excluding ``throw`` into the generator, which
+   already has an exception set.
+
+-  **Compatibility:** Fix, ``eval``, ``exec``, and ``execfile``
+   evaluated the globals and locals arguments before the source code or
+   filename, so function calls and other side effects in expressions
+   like ``eval(source(), globals())`` happened out of order. The source
+   is now stored in a temporary variable first, preserving CPython's
+   evaluation order.
+
 -  **Debugging:** Fix, on Windows, the PDB file of an unstripped target
    was left in the build directory after moving the executable, so it
    was lost. It is now moved next to the final binary, and the ``.pdb``
@@ -650,6 +740,12 @@ Bug Fixes
    could fail on the unknown warning group. It is now emitted only for
    the ``#embed`` resource mode and Clang 19 or later.
 
+-  **Scons:** Fix, constant blob filenames in generated code used
+   backslashes, and the MinGW symbol name got a leading underscore on
+   all architectures, so 64-bit MinGW builds could fail to link the
+   blobs. Forward slashes are now used for the paths, and the underscore
+   is only added for 32-bit x86.
+
 -  **UI:** Fix, conflicting data file destination paths were only
    detected for exact path matches, so non-normalized paths could fail
    later at run time. Conflicts now use normalized paths and
@@ -662,6 +758,11 @@ Bug Fixes
    instead, and the separate ``assume_yes_for_downloads`` and
    ``download_ok`` flags were merged into one download mode of ``no``,
    ``ask``, or ``yes``.
+
+-  **Reports:** Sensitive option values are now redacted in compilation
+   reports and container command output by matching option name
+   patterns, including abbreviated long options, with default patterns
+   for ``password``, ``salt``, and ``secret`` options.
 
 -  **MSYS2:** Fix, the runner created for entry points used a
    non-normalized path, which could produce mixed path separators. The
@@ -853,6 +954,17 @@ New Features
    Python3-only files, so Python3 compilations no longer load the
    Python2-only parts.
 
+-  **Python 3.15+:** Added support for the ``sentinel`` built-in,
+   including the correct ``__module__`` value for sentinels created in
+   compiled code, type shape and attribute knowledge, and PGO type
+   checks.
+
+-  **Module:** Added ``--module-force-namespace``, which requires a
+   compiled module to be loaded below the given namespace, with an empty
+   namespace requiring top-level loading. This makes ``__name__`` and
+   ``__package__`` compile time constants and allows more optimization
+   in module mode.
+
 Optimization
 ============
 
@@ -987,6 +1099,62 @@ Optimization
    offsets, and onefile builds use the precise list of generated files
    and avoid directory scans.
 
+-  **Trace Collections:** ``mustHaveValue`` queries now pass a per-query
+   context that caches loop dependent merge results, so shared trace
+   subgraphs are not revisited exponentially. Results that depended on a
+   loop recursion assumption are discarded when the assumption no longer
+   applies.
+
+-  **Dictionaries:** Dictionary mutation helpers now pass the thread
+   state through, so watcher callbacks and free-threaded operations can
+   use it. Added hash and equality supplied lookups for cache
+   dictionaries and free-threaded set and delete implementations, and
+   preserved watcher bits in version tags.
+
+-  **Dictionaries:** Added ``MAKE_DICT_FROM_KWARGS`` and used it in the
+   generated call helpers, replacing the repeated private
+   ``_PyDict_NewPresized`` and set loop for keyword arguments.
+
+-  **Dictionaries:** Added ``MAKE_DICT_PRESIZED`` and a unicode-only
+   variant, so dictionaries with constant string keys use a compact keys
+   object, and used the unicode variants at C call sites with known
+   string keys. The keyword argument dictionary is pre-sized and uses
+   the unicode-only keys object.
+
+-  **Dictionaries:** Added untracked set variants that skip garbage
+   collection tracking and watcher notifications for Nuitka-owned
+   dictionaries, and used them for dictionary creations and constant
+   caches, also using value reference ownership transfer.
+
+-  **Dictionaries:** Added constant blob tags for empty dictionaries and
+   for dictionaries and frozendicts with unicode-only keys, and the blob
+   decoder now uses the pre-sized dictionary helpers.
+
+-  **Dictionaries:** Dictionary and frozendict copies now use the
+   pre-sized dictionary helpers, with the unicode-only keys variant when
+   possible.
+
+-  **Optimization:** Tuple and dictionary untracking is now implemented
+   locally instead of using private CPython garbage collection API
+   calls, making garbage collection of containers faster.
+
+-  **Optimization:** Added ``LIST_DEL_SLICE`` for exact list slice
+   deletion, with the same index clamping as ``PyList_SetSlice`` and
+   deferred reference releases, and used it for ``sys.path`` and joblib
+   argument cleanup in the main program.
+
+-  **Imports:** Added dedicated nodes for ``sys.modules`` lookups,
+   ``get``, ``pop``, assignment, and deletion, using the loader entry as
+   the source of truth for included modules. ``importlib.reload`` is
+   supported for private modules, which are kept out of ``sys.modules``
+   and marked in the compilation report.
+
+-  **Standalone:** Copied ELF and Mach-O shared libraries and extension
+   modules are now stripped of symbols unless ``--unstripped`` or a
+   debug or runtime trace mode requires them, reducing the size of
+   standalone distributions. Known ``strip`` failures leave the file
+   unstripped instead of aborting.
+
 Anti-Bloat
 ==========
 
@@ -1009,6 +1177,10 @@ Anti-Bloat
    ``TORCH_COMPILE_DISABLE`` for vLLM serving, worked around empty
    ``entry_points()`` truth values, and replaced the forked subprocess
    model inspection in ``vllm.model_executor``.
+
+-  **Telethon:** Disabled docstrings for ``telethon`` and avoided
+   following its optional ``PIL`` dependency in
+   ``telethon.client.uploads``, which is only used for image thumbnails.
 
 Organizational
 ==============
@@ -1100,6 +1272,27 @@ Organizational
    ``-Wno-unused-but-set-variable`` is selected by compiler mode and
    version.
 
+-  **Debian:** Added ``python-atomicwrites`` to the build and runtime
+   dependencies where ``base-files`` does not provide it, and moved the
+   source copy and permission fixup for Debian builds into shared code
+   used by both the regular and the mentors packaging, so permission
+   fixups also apply to mentor builds.
+
+-  **Debian:** The WSL clock is now synchronized before a Debian package
+   build starts, since clock skew breaks builds and package repository
+   signatures.
+
+-  **Quality:** ``codespell`` now accepts the git arguments of the other
+   quality tools and uses the git paths by default, and shell pattern
+   expansion is shared through ``resolveShellPatternsToFilenames``.
+
+-  **Quality:** The ``-Wcast-function-type-strict`` suppression is now
+   only used where the compiler actually supports the warning instead of
+   for all Clang versions, avoiding warnings on older Clang.
+
+-  **Quality:** Pyright now targets Python 3.15 and ignores vendored
+   ``inline_copy`` code.
+
 Tests
 =====
 
@@ -1174,6 +1367,11 @@ Tests
    concurrency harness that links the dictionary helpers and drives
    shared dictionaries from native threads.
 
+-  The package test runner now falls back to ``__init__.py`` for project
+   options when a package directory has no ``__main__.py``, uses
+   per-test ``--mode=module`` project options, and the top level
+   attributes entry point is now actually tested.
+
 Cleanups
 ========
 
@@ -1227,6 +1425,11 @@ Cleanups
    moved into ``nuitka/__init__.py``, so all tools importing Nuitka
    modules get them automatically, and the ``withNoSyntaxWarning``
    helper was removed.
+
+-  Child processes now receive an explicit copy of the environment with
+   added paths, using ``getEnvironmentWithPathAdded``,
+   ``getPrivatePipSitePackagesEnvironment``, and ``getExecutablePath``
+   with ``extra_dir``, instead of temporarily modifying ``os.environ``.
 
 Summary
 =======
