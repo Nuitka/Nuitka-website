@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc8**.
+It currently covers changes up to version **4.4rc9**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -428,6 +428,54 @@ Bug Fixes
    message and sleep now only happen when another attempt remains, and
    the final failure is reported immediately.
 
+-  Fix, ``set`` construction and set displays leaked the partially built
+   set when an element expression raised through a nested cleanup block,
+   e.g. for ``s = {1, [1, h()]}``. The set now has a local exception
+   target and is released before jumping to the enclosing handler.
+
+-  Fix, plugin-provided package extra scan paths were applied to
+   subpackages using the parent package directory, so imports could be
+   scanned from the wrong location. They now use the candidate directory
+   of each subpackage, are only considered when it exists, and missing
+   import warnings name the actual import source instead of the
+   importing module.
+
+-  Fix, ``StopIteration`` and ``StopAsyncIteration`` subclasses raised
+   by generators, coroutines, and async generators were not converted to
+   ``RuntimeError``, since the code compared the exception type pointer
+   instead of matching the exception. Exception matching is now used, so
+   subclasses are converted too.
+
+-  Fix, the handled exception state was not kept in generator,
+   coroutine, and async generator objects while they ran, so
+   ``sys.exc_info()`` and implicit chaining were wrong, and throwing
+   into a suspended object on Python 3.9+ did not chain to its handled
+   exception. The handled state is now kept in the object while it runs,
+   chained when throwing, and the caller state restored afterwards.
+   Saved exceptions are restored and cleared when yielding outside a
+   handler on Python up to 3.6, and ``yield from`` preserves the handler
+   state across delegation.
+
+   .. code:: python
+
+      def gen():
+          try:
+              raise KeyError("handled")
+          except KeyError:
+              yield
+
+
+      generator = gen()
+      next(generator)
+
+      try:
+          generator.throw(ValueError("thrown"))
+      except ValueError as exception:
+          print(exception.__context__)
+
+      # 4.4rc8: None on Python 3.9+ (wrong)
+      # 4.4rc9: KeyError('handled')
+
 -  **Python 3.14:** Fix, exception messages that name the type of a
    mistyped object used only the type name, while CPython 3.14 uses the
    fully qualified name. The complaint helpers now use
@@ -554,6 +602,17 @@ Bug Fixes
    locals from compiled frames, installed after global constants and
    before module constants, with tests for indirect calls.
 
+-  **Python 3.10+:** Fix, class patterns looked up each keyword
+   attribute twice, because a separate existence check ran before
+   ``MATCH_CLASS_ARGS``, which already checks keyword attributes and
+   returns ``None`` when one is missing. The redundant lookup was
+   removed.
+
+-  **Python 3.14:** Fix, CPython 3.14 gives ``_PyObject_GC_TRACK`` and
+   ``_PyObject_GC_UNTRACK`` file and line arguments, so headers that
+   still called them bypassed Nuitka's replacements. The macros are now
+   redirected to the Nuitka versions where CPython uses this signature.
+
 -  **Standalone:** Fix, symlinks to shared libraries, e.g. versioned
    aliases like ``libfoo.so`` pointing to ``libfoo.so.1.2``, were copied
    as separate regular files, which could load duplicate library state.
@@ -639,6 +698,10 @@ Bug Fixes
 -  **Plugins:** Fix, preprocessor symbols were cached globally across
    onefile and backend builds, although plugins can provide different
    symbols for each. The cache is now keyed by the build kind.
+
+-  **Plugins:** Fix, the help text of ``--noinclude-qt-translations``
+   described the option as including Qt translations, although it
+   excludes them. The help text now describes the exclusion.
 
 -  **Windows:** Fix, removing a directory tree with links on Python
    before 3.8 followed junctions and symlinks and deleted the contents
@@ -857,7 +920,8 @@ Bug Fixes
    before the expression used it. Borrowed references are now tracked
    and a reference is taken before such writes, with the C type property
    ``holdsObjectReference`` handling dual and non-reference-counted
-   types.
+   types. Tracking now also covers slices, operations, call arguments,
+   and dictionary keys.
 
    .. code:: python
 
@@ -910,8 +974,9 @@ Bug Fixes
    in characters that map to ``_``, e.g. ``a.b`` and ``a_b``, could
    collide. Blob symbol bases are now restricted to ASCII letters,
    digits, and underscores, adding a hash of the source filename where
-   needed to make them unique, and the ``#embed`` path is relative to
-   the generated file rather than the working directory.
+   needed to make them unique, and their readable part is limited to
+   keep blob filenames within Windows path limits. The ``#embed`` path
+   is relative to the generated file rather than the working directory.
 
 -  **Scons:** Fix, interrupting a build left compiler processes running
    and spawn threads blocked on their output pipes, and hanging child
@@ -919,6 +984,12 @@ Bug Fixes
    threads and kill the compiler process family, with process tree
    termination on Windows, and process communication and import
    detection have timeouts.
+
+-  **Scons:** Fix, external C caching tools such as ``ccache`` could
+   reuse a compiled object when the contents of an embedded constant
+   blob changed, since the generated C code itself did not change. The
+   generated code for the ``c23_embed`` and ``incbin`` resource modes
+   now includes a checksum of the blob, so caches notice the change.
 
 -  **UI:** Fix, conflicting data file destination paths were only
    detected for exact path matches, so non-normalized paths could fail
@@ -932,6 +1003,10 @@ Bug Fixes
    instead, and the separate ``assume_yes_for_downloads`` and
    ``download_ok`` flags were merged into one download mode of ``no``,
    ``ask``, or ``yes``.
+
+-  **UI:** Fix, the error message for a debugger that was not found in
+   ``PATH`` was missing the debugger name, and the module parameter
+   error had a stray quote. Both messages are now formatted correctly.
 
 -  **Reports:** Sensitive option values are now redacted in compilation
    reports and container command output by matching option name
@@ -970,6 +1045,11 @@ Bug Fixes
    read from the report and compared with the selected interpreter, and
    existing Pipenv virtualenvs are checked and recreated when their
    Python version differs.
+
+-  **NoGIL:** Fix, GCC warned about ``stringop-overflow`` in the NULL
+   branch it creates for atomic reference count operations in
+   free-threaded CPython code, which is GCC bug 105585. The warning is
+   now disabled for GCC builds of such code, unless warnings are errors.
 
 -  **MSYS2:** Fix, the runner created for entry points used a
    non-normalized path, which could produce mixed path separators. The
@@ -1055,6 +1135,17 @@ Package Support
 
 New Features
 ============
+
+-  **Python 3.15:** Pronounced Python 3.15 as officially supported. The
+   recommended working version and the recommendation for commercial
+   usage remain Python 3.13 until the bloat from deferred annotations is
+   under better control.
+
+-  **Python 3.16:** Added experimental support for Python 3.16, which is
+   now partially supported. Initialization and opcode handling are
+   covered, the ``site`` and ``verbose`` flags use the new configuration
+   API, and the new ``_Py_LATIN1_CHR`` dangerous macro is handled. With
+   3.16a2 on Linux, most things work.
 
 -  **Python 3.15+:** Added support for module export hooks, where an
    extension module provides a ``PyModExport_<name>`` or
@@ -1197,7 +1288,8 @@ New Features
    ``--container-requirements`` and ``--container-wheels-dir`` to
    install packages before compiling. Project requirements and options
    are now checked against the container environment, with project
-   parsing deferred to the in-container Nuitka.
+   parsing deferred to the in-container Nuitka. A CentOS Stream 8
+   container definition is also included.
 
 -  **Plugins:** Added ``--gi-version`` to select the version of a
    GObject Introspection namespace when multiple versions are installed.
@@ -1246,6 +1338,10 @@ New Features
    numbers for bytecode functions, and registered Triton, CuTe, and CUDA
    tile decorators for source inclusion.
 
+-  **Plugins:** Added support for plugins that replaced other plugins to
+   recognize the name they were enabled with, before renames are
+   applied, through ``getPluginsEnabledUnrenamed``.
+
 Optimization
 ============
 
@@ -1291,6 +1387,15 @@ Optimization
    function, and class bodies are no longer assumed to be able to
    recurse, avoiding unnecessary frame handling.
 
+-  **Code Generation:** The cleanup exception handler is now an
+   always-false conditional block rather than a ``goto`` and label,
+   removing an unnecessary jump from the normal path of generated code.
+
+-  **Code Generation:** Cleanup code for newly created locals
+   dictionaries now uses the scoped ``withCleanupFinally`` helper, so
+   the dictionary is released by the local exception handler instead of
+   being kept in the outer cleanup scope.
+
 -  **Subscripts:** Constant subscripts of tuples and tuple subclasses,
    e.g. named tuples, now use a direct table access fast path, with
    ``IndexError`` messages matching tuples.
@@ -1333,6 +1438,21 @@ Optimization
    ``sys._getframemodulename``, avoiding calls into the Python C-API
    implementation.
 
+-  **Optimization:** Fetched exception checks now carry the unlikely
+   branch hint, so the C compiler does not treat error exits with the
+   same weight as the normal path.
+
+-  **Python 3.10+:** Added a dedicated ``NameError`` creation node, so
+   manually created exceptions support the keyword-only ``name``
+   argument and carry the ``name`` attribute.
+
+-  **Optimization:** Type lookups on Python 3.11 to 3.15 now read
+   CPython's per-interpreter lookup cache directly, avoiding a call into
+   the Python DLL on Windows, while free-threaded builds and Python 3.16
+   keep using ``_PyType_Lookup``. This reduces ``with`` statement
+   overhead by about 15%, since its ``__enter__`` and ``__exit__``
+   lookups commonly hit the cache.
+
 -  **Optimization:** Added ``Nuitka_PyLong_AsSsize_t``,
    ``Nuitka_PyLong_AsSsize_tAndOverflow``, and
    ``Nuitka_Number_AsSsize_t``, replacing the Python C-API equivalents
@@ -1349,6 +1469,19 @@ Optimization
    code-object based message construction. Frame-less outline code such
    as comprehensions now generates ``Nuitka_FormatUnboundLocalError``
    instead of asserting that a frame based error is available.
+
+-  **Variables:** Module variable reads now use specialized checked,
+   checked-global, and infallible accessors, with the error handling
+   moved into the accessor. This reduces branches and temporaries, and
+   lets the C compiler inline an accessor that is used once without
+   forcing inline code at every use.
+
+-  **Variables:** Added an infallible module variable accessor variant
+   for the experimental ``no-module-globals-deleted`` mode. Escaped
+   module variables that are still known to be assigned are tracked in
+   value traces, so reads after an escape can use the infallible
+   accessor, and non-deployment builds check for an unexpectedly deleted
+   global and exit with an error instead of returning ``NULL``.
 
 -  **Trace Collections:** Trace collection merging now copies the first
    collection's dictionary and uses lists instead of sets for the
@@ -1422,6 +1555,20 @@ Optimization
 -  **Dictionaries:** Dictionary and frozendict copies now use the
    pre-sized dictionary helpers, with the unicode-only keys variant when
    possible.
+
+-  **Dictionaries:** Added infallible variants of the dictionary item
+   insertion helpers for keys known to be hashable, and used them during
+   dictionary creation to skip result checks and error exits. This
+   generates more compact code with less local churn for the C compiler,
+   reducing the generated C code size for large dictionaries.
+
+-  **Dictionaries:** Extended the infallible dictionary item insertion
+   helpers to dictionary copying, locals, module registration, deep
+   copy, and frame locals. ``Nuitka_SetModule`` and
+   ``Nuitka_SetModuleString`` now return void. Generated dictionary
+   update and set code, and locals assignment for known dictionary
+   shapes, use the infallible variants too, adding checks to previously
+   unchecked locations.
 
 -  **Optimization:** Tuple and dictionary untracking is now implemented
    locally instead of using private CPython garbage collection API
@@ -1622,6 +1769,22 @@ Organizational
    generated independently of compiler detection and no longer defines
    the unused Windows ``UNICODE`` macros.
 
+-  **Project:** Expanded the agent rules and Developer Manual with
+   architecture, planning, comment and docstring conventions, Python 2
+   compatibility, and verification guidance, and updated the OpenCode
+   watcher configuration to ignore test copies, build artifacts, caches,
+   and virtual environments.
+
+-  **Quality:** Added Windows ``.cmd`` launchers for the quality and
+   code generation scripts, which locate Python through ``PATH`` or the
+   VS Code alias file, and the ruff checker now accepts explicit paths
+   or defaults to ``nuitka/``.
+
+-  **UI:** Corrected the inverted help text of the
+   ``--not-installed-is-no-error`` options in the PyLint and Pyright
+   checkers, which described them as insisting on the tools being
+   installed.
+
 Tests
 =====
 
@@ -1779,6 +1942,22 @@ Cleanups
 -  Built-in type method helper generation now uses versioned parameter
    specs collected in ``Common``, with version specific conditions in C
    and version specific specs in the attribute node templates.
+
+-  Cleaned up comments and docstrings across the runtime, freezer,
+   installer, option, target, tool, and utility modules, in build and
+   code generation code, in AST and optimization code, and in the plugin
+   hook documentation, removing code narration, stale comments, and
+   restatements of the code.
+
+-  Generated classes and helpers no longer emit ``Generated from ...``
+   boilerplate or duplicated method docstrings, and TODOs are kept in
+   the templates instead of being generated into the code.
+
+-  Builtin keyword-only arguments are now passed as keywords to
+   optimized builtin node constructors, and the ``sentinel`` extractor
+   maps its ``repr`` argument to the ``repr_value`` child.
+
+-  Removed the duplicate Python2 ``bytes.decode`` spec.
 
 Summary
 =======
