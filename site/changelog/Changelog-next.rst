@@ -321,6 +321,30 @@ Bug Fixes
    before waiting, retries interrupted sleeps, and restores ``errno``.
    (Fixed in 4.3.3 already.)
 
+-  Fix, cloning a ``reversed()`` call node passed its child as
+   ``object`` instead of ``object_arg``, which the node constructor does
+   not accept, so cloning such a node, e.g. in tuple assignments using
+   ``reversed()``, could crash the compiler. The clone arguments now use
+   the constructor parameter names. (Fixed in 4.3.4 already.)
+
+-  **macOS:** Fix, app bundles in forced console mode used the regular
+   executable name in their ``Info.plist``, so the launcher script was
+   not identified correctly. The executable name now gets a ``.sh``
+   suffix in that mode. (Fixed in 4.3.5 already.)
+
+-  **Compatibility:** Fix, comparison chains evaluated the right operand
+   before the left one, so function calls and other side effects in
+   expressions like ``a() < b() < c()`` happened out of order. The left
+   operand is now stored in a temporary first, and each comparison uses
+   its own temporary, preserving left-to-right evaluation and
+   short-circuiting. (Fixed in 4.3.5 already.)
+
+-  **Compatibility:** Fix, ``os.path.isdir`` used ``path`` as its
+   argument name, while CPython uses ``s``, so calls with the keyword,
+   e.g. ``os.path.isdir(s=...)``, failed. The keyword name is now ``s``,
+   and the argument remains positional-only on Windows before Python
+   3.8. (Fixed in 4.3.5 already.)
+
 Package Support
 ===============
 
@@ -328,6 +352,16 @@ Package Support
    ``psycopg_c._psycopg`` extension module, like it already existed for
    ``psycopg_binary._psycopg``, so its dynamically imported UUID module
    is included. (Added in 4.3.2 already.)
+
+-  **Standalone:** Added ``pyodbc`` to the modules that package system
+   DLLs on macOS, so the dynamic library dependencies of its extension
+   module are included. (Added in 4.3.4 already.)
+
+-  **Standalone:** Added missing implicit imports for
+   ``urllib3.contrib.resolver.factories`` and
+   ``urllib3.contrib.resolver._async.factories``, so the resolver
+   implementations that these factories load dynamically are included in
+   standalone builds. (Added in 4.3.4 already.)
 
 New Features
 ============
@@ -347,6 +381,17 @@ New Features
    list of systems where only standalone mode was supported. (Added in
    4.3.2 already.)
 
+-  **Python 3.14:** Remote debugging via PEP 768 is now disabled in
+   compiled programs, so another process cannot attach through
+   ``sys.remote_exec`` and execute code in them. The new
+   ``--devel-remote-debug`` option keeps the interface enabled for
+   development. (Added in 4.3.5 already.)
+
+-  **Plugins:** Added the ``onFinalResultFinished`` hook, which runs
+   after all ``onFinalResult`` modifications, so plugins can inspect the
+   final binary, e.g. to calculate its checksum. (Added in 4.3.5
+   already.)
+
 Optimization
 ============
 
@@ -355,6 +400,17 @@ Optimization
    description no longer changes the shared ``__constants.h`` header and
    thereby avoids rebuilding unrelated modules. (Added in 4.3.1
    already.)
+
+-  **Scons:** Fix, the LTO job count was part of the C compilation
+   flags, so the number of CPUs became part of the ``ccache`` key and
+   made caching less successful. C compilation now uses plain ``-flto``,
+   while the job count remains in the linker flags where parallel LTO
+   matters. (Fixed in 4.3.5 already.)
+
+-  **Scons**: Constant blob symbols are now marked with hidden
+   visibility on ELF, since they are only referenced directly and were
+   otherwise exported with ``-export-dynamic`` for no reason. (Added in
+   4.3.5 already.)
 
 Anti-Bloat
 ==========
@@ -393,6 +449,11 @@ Tests
    which also makes the tracing substantially faster by not scanning
    ``PATH``, and the GitHub Actions workarounds for modules found there
    are no longer needed. (Fixed in 4.3.2 already.)
+
+-  Ignored GCC LTO ``make`` warnings about files with modification times
+   in the future in output comparisons, since they are caused by clock
+   skew in the environment and are not relevant to the test result.
+   (Fixed in 4.3.5 already.)
 
 Cleanups
 ========
