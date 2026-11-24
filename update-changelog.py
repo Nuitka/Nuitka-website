@@ -69,8 +69,8 @@ class ChangelogGenerator:
             "log",
             "-p",
             "--format=COMMIT:%H",
-            "-S",
-            version_string,
+            "-G",
+            f"^Nuitka V{re.escape(version_string)}$",
             "nuitka/Version.py",
         ]
 
@@ -79,10 +79,11 @@ class ChangelogGenerator:
             return None
 
         current_commit = None
+        version_line = f"Nuitka V{version_string}"
         for line in output.splitlines():
             if line.startswith("COMMIT:"):
                 current_commit = line.split(":", 1)[1]
-            elif line.startswith("+") and version_string in line:
+            elif line.startswith("+") and line[1:].strip() == version_line:
                 return current_commit
 
         return None
