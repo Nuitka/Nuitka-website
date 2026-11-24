@@ -684,6 +684,10 @@ Bug Fixes
    effects. Preceding pairs, the key, and its value are now evaluated in
    source order before the error is raised.
 
+   .. code:: python
+
+      {[]: 1}  # TypeError: unhashable type: 'list'
+
 -  Fix, the three-argument ``type()`` call always set ``__module__``
    from the compile-time module name after class creation, overriding
    the frame globals or metaclass behavior. ``type_new`` now resolves it
@@ -920,12 +924,6 @@ Bug Fixes
    range length and indexed values were simulated by iteration. They are
    now computed directly, with side-effecting bounds preserved.
 
--  **Python 3.14:** Fix, generated annotation source did not track
-   operator precedence, so nested expressions could be emitted without
-   required parentheses. Slices, dict annotations, generic aliases,
-   numeric attribute lookups, and comparisons are now parenthesized
-   correctly.
-
 -  **Python 3.13+:** Fix, class code objects and ``__firstlineno__``
    used the class line instead of the first decorator line, so they now
    match CPython.
@@ -998,13 +996,6 @@ Bug Fixes
    ``TypeVarTuple`` unpacking, and passed through type aliases and
    runtime type parameter objects.
 
--  **Python 3.14+:** Fix, annotate code objects used the generated
-   function identifier as filename and kept their own line numbers, and
-   generated annotate source did not support ``raise`` with values,
-   causes, or Python 2 tracebacks. Filenames and first line numbers,
-   including those of nested code objects, are now patched to the
-   annotated function, and the raise forms are generated.
-
 -  **Python 3.15:** Fix, ``bytes.replace`` did not mark ``old`` and
    ``new`` as positional-only starting with Python 3.15. The specs now
    match, and calls with those keywords are rejected.
@@ -1015,11 +1006,6 @@ Bug Fixes
    not support the Python 3.15 ``DictComp(key=..., value=None)``
    representation for ``**`` in comprehensions. A dedicated unpack path
    now emits version-appropriate messages and handles both forms.
-
--  **Python 3.16:** Fix, ``CO_FUTURE_ANNOTATIONS`` was treated as
-   enabled by default on Python 3.16 and was not emitted as an explicit
-   future flag. It is now only enabled when requested and remains
-   available in code object flags.
 
 -  **Python 3.12+:** Fix, constants were classified as immortal merely
    by being immutable, including the GC-tracked ``ExceptionGroup`` heap
@@ -1038,6 +1024,13 @@ Bug Fixes
    differently. Both paths now share one helper with version-appropriate
    errors.
 
+   .. code:: python
+
+      class C:
+          __class_getitem__ = None
+
+      C[int]  # Python 3.11+: TypeError: type 'C' is not subscriptable
+
 -  **Python 3.5+:** Fix, assigning to ``cr_frame`` raised the generator
    attribute message ``gi_frame is not writable``. It now names
    ``cr_frame``.
@@ -1052,6 +1045,13 @@ Bug Fixes
    derives it from the caller frame's function object. Compiled caller
    frames now get a temporary function object, and ``TypeAliasType`` is
    included in the patched typing types.
+
+   .. code:: python
+
+      from typing import TypeAliasType
+
+      Alias = TypeAliasType("Alias", int)
+      print(Alias.__module__)  # the module that defines Alias
 
 -  **Standalone:** Fix, symlinks to shared libraries, e.g. versioned
    aliases like ``libfoo.so`` pointing to ``libfoo.so.1.2``, were copied
@@ -1090,17 +1090,6 @@ Bug Fixes
    non-Windows started its backwards directory scan at the terminating
    NUL byte instead of the last character, so the value expanded
    incorrectly. The scan now starts one character earlier.
-
--  **Standalone:** Fix, stripping binaries or changing their RPATHs
-   dropped zip archives appended to them, so libraries with embedded
-   Tcl/Tk data stopped working. The appended zip overlay is now
-   preserved while modifying the binary.
-
--  **Standalone:** Fix, ``pkgutil.iter_modules`` on the loader included
-   internal trigger and protection helper modules and did not propagate
-   allocation errors when applying a prefix. Internal modules are
-   excluded, prefix concatenation uses ``UNICODE_CONCAT``, and
-   allocation errors propagate.
 
 -  **Standalone:** Fix, scanning a package path for extension modules
    did not handle missing parent modules or ``__path__``, leaked the
@@ -1595,6 +1584,19 @@ Bug Fixes
    ``__getattribute__`` could hide. The checks now inspect type slots,
    so iterable objects remain iterable.
 
+   .. code:: python
+
+      class HiddenIter:
+          def __iter__(self):
+              return iter((1, 2))
+
+          def __getattribute__(self, name):
+              if name == "__iter__":
+                  raise AttributeError(name)
+              return object.__getattribute__(self, name)
+
+      print([*HiddenIter()])  # [1, 2]
+
 -  **Debugging:** Fix, on Windows, the PDB file of an unstripped target
    was left in the build directory after moving the executable, so it
    was lost. It is now moved next to the final binary, and the ``.pdb``
@@ -1604,6 +1606,14 @@ Bug Fixes
    ``mp_length()`` did not raise or return a negative value, hiding the
    original error. Raising and negative results now propagate, so
    ``len()`` and iteration report the real exception.
+
+   .. code:: python
+
+      class BadLen(dict):
+          def __len__(self):
+              return -1
+
+      len(BadLen())  # ValueError: __len__() should return >= 0
 
 -  **Debugging:** Fix, debug checks for compiled types compared
    ``tp_subclasses`` against the wrong base field, a ``type_params``
@@ -1615,11 +1625,6 @@ Bug Fixes
    usage source reference was internal, so warm-cache compilation
    reports could differ from cold-cache ones. The cache format now
    stores and restores that flag.
-
--  **Onefile:** Fix, the compressed payload body size was written in
-   little-endian, while the C bootstrap reads it with a direct
-   ``memcpy``, so compressed onefile payloads were broken on big-endian
-   systems. The size is now written in native endianness.
 
 -  **Onefile:** Fix, the splash screen was only shown when the payload
    was compressed, although the option is independent of compression. It
@@ -1714,7 +1719,7 @@ Bug Fixes
    guesses point at ``ccache`` binaries, only files are accepted, and
    the warning moved into clcache setup.
 
--  **Scons:** Fix, SCons options, environment variables, build
+-  **Scons:** Fix, Scons options, environment variables, build
    definitions, no-deployment flags, plugin preprocessor symbols,
    include directories, and link inputs were emitted in nondeterministic
    order. They are now sorted, and plugin APIs are asserted not to
@@ -1795,12 +1800,6 @@ Bug Fixes
    for Debian packages, only logs a missing distribution warning when
    the lookup was unsuccessful, and detects the vendored
    ``setuptools/_vendor`` path.
-
--  **Targets:** Fix, WASI used 15-bit Python digits instead of 30-bit, C
-   ``long`` limits were calculated with 7 bits per byte instead of 8,
-   and target execution commands were constructed incorrectly. WASI now
-   uses 30-bit digits and runs through Wasmtime, and C long limits and
-   target run commands are correct.
 
 -  **Multidist:** Fix, multidist basename detection stripped any
    trailing characters matching ``.py``/``.exe``/``.bin`` instead of
@@ -1996,7 +1995,9 @@ New Features
    source with ``--enable-zipfs``, so Tkinter can use the DLL overlay
    path and standalone distributions no longer need the many separate
    Tcl/Tk data files. Downloads are shared between Python and Tcl/Tk,
-   and installation works for non-writable prefixes.
+   and installation works for non-writable prefixes. The appended zip
+   overlay is preserved when binaries are stripped or their RPATHs are
+   changed.
 
 -  **Plugins:** Added the ``onFinalResultFinished`` hook, which runs
    after all ``onFinalResult`` modifications, so plugins can inspect the
@@ -2006,7 +2007,7 @@ New Features
 -  **Onefile:** Added an ``overlay`` resource mode, which attaches the
    onefile payload to the end of the executable instead of embedding it
    as a constant blob. It is used automatically on Windows when the
-   payload would exceed the PE file size limit The bootstrap maps its
+   payload would exceed the PE file size limit. The bootstrap maps its
    own executable, uses the certificate table when the file is signed to
    find the payload end, and unpacks from there. Currently only Windows
    onefile mode supports this, as other OSes don't encounter these
@@ -2073,7 +2074,7 @@ New Features
    follow the target rather than the host. Targets without DLL support,
    such as WASI, skip DLL detection entirely.
 
--  **No-GIL:** Added experimental support for compiling and running with
+-  **NoGIL:** Added experimental support for compiling and running with
    free-threaded Python builds. Compiled types use per-free-list locks,
    list operations use critical sections, dictionary helpers have
    borrowed and new-reference variants for free-threaded builds, frame
@@ -2218,7 +2219,7 @@ Optimization
    while the job count remains in the linker flags where parallel LTO
    matters. (Fixed in 4.3.5 already.)
 
--  **Scons**: Constant blob symbols are now marked with hidden
+-  **Scons:** Constant blob symbols are now marked with hidden
    visibility on ELF, since they are only referenced directly and were
    otherwise exported with ``-export-dynamic`` for no reason. (Added in
    4.3.5 already.)
@@ -2242,11 +2243,6 @@ Optimization
    dict mappings, e.g. ``__class__`` after its ``super`` usage
    disappears, reducing unbound-local error handling and locals dict
    overhead.
-
--  **Code Generation:** Annotate functions that can be re-entered now
-   share a cached code object instead of unmarshalling it for each
-   function, and class bodies are no longer assumed to be able to
-   recurse, avoiding unnecessary frame handling.
 
 -  **Code Generation:** The cleanup exception handler is now an
    always-false conditional block rather than a ``goto`` and label,
@@ -2494,11 +2490,6 @@ Optimization
    and ``named_children``, and dead slots were removed, reducing memory
    use and preventing inconsistencies.
 
--  **Anti-Bloat:** Removed the ``_json`` avoidance rules for
-   ``json.decoder``, ``json.encoder``, and ``json.scanner``, since the
-   fallback pure Python implementation can be much slower and the
-   performance loss would not be discovered by users.
-
 -  **Optimization:** Module trees are now frozen before code generation,
    and the GC thresholds are raised for large compilations, so
    per-module objects are collected before repeated full collections.
@@ -2520,12 +2511,17 @@ Optimization
    for every lookup.
 
 -  **Optimization:** Added a hard import node for
-   ``pkgutil.iter_modules`` that enumerates package children through the
-   loader directly and falls back to ``pkgutil`` for regular paths.
-   Internal loader modules stay out of the ``sys.path`` hook. The
-   replacement now enumerates Nuitka packages from the loader entry
-   table directly, uses ``pkgutil.get_importer`` for regular paths, and
-   handles ``None`` and path lists like CPython.
+   ``pkgutil.iter_modules`` that enumerates compiled packages from the
+   loader entry table directly, and uses ``pkgutil.get_importer`` for
+   regular paths. Internal loader modules stay out of the ``sys.path``
+   hook.
+
+   .. code:: python
+
+      import pkgutil
+      import some_package
+
+      list(pkgutil.iter_modules(some_package.__path__))
 
 -  **Optimization:** Dictionary item lookups now use the cached string
    hash and the concrete string hash slot for exact string and unicode
@@ -2559,6 +2555,18 @@ Optimization
    and ``LOOKUP_SUBSCRIPT_CONST_FOR_UNPACK``. Iterator shapes and direct
    subscript unpacking were improved, including version-specific
    too-short and too-many error messages.
+
+   .. code:: python
+
+      try:
+          a, b = [1, 2, 3]
+      except ValueError as e:
+          print(e)  # too many values to unpack (expected 2)
+
+      try:
+          a, b = [1]
+      except ValueError as e:
+          print(e)  # not enough values to unpack (expected 2, got 1)
 
 -  **Optimization:** Added tri-state ``any()`` folding for generic,
    list/tuple, and range iteration handles. Exact string, bytes,
@@ -2651,6 +2659,11 @@ Anti-Bloat
    ``dask.distributed`` from ``fsspec``, ``joblib``, and ``xarray``,
    with helpful errors when their optional Dask transaction or backend
    is used without ``distributed``.
+
+-  **Packages:** Removed the ``_json`` avoidance rules for
+   ``json.decoder``, ``json.encoder``, and ``json.scanner``, since the
+   fallback pure Python implementation can be much slower and the
+   performance loss would not be discovered by users.
 
 -  **Anti-Bloat:** Fixed the ``_distutils_hack`` replacement typo
    ``Mone`` to ``None``, so the distutils warning function is actually
@@ -2981,12 +2994,6 @@ Cleanups
    ``getCodeObjectHandle`` methods; code generation now calls
    ``getCodeObjectAccessCode`` directly.
 
--  **WASI:** Type slots now use the ``PyObject *self`` signatures that
-   CPython expects, and method table calls use
-   ``Nuitka_PyCFunctionUnion`` with the actual function signatures.
-   ``-Wcast-function-type`` is enabled for GCC, Clang, and Zig, so
-   incompatible function casts are detected earlier.
-
 -  Moved the Python installation prefix helpers from ``PythonVersions``
    into the new ``PythonPrefixes`` module, removing cyclic dependencies.
 
@@ -3078,7 +3085,8 @@ Cleanups
    exceptions are re-raised instead of being swallowed.
 
 -  Removed restating comments and replaced stale or overly long
-   docstrings with concise descriptions of non-obvious contracts.
+   docstrings with concise descriptions of non-obvious contracts across
+   the build system, C runtime, and code generation.
 
 -  Parameter specs now validate that argument names are tuples or lists
    of strings, and the ``splitlines`` specs were corrected to pass
@@ -3110,10 +3118,6 @@ Cleanups
    consistently gate all their uses, and the manual vectorcall fallback
    was removed.
 
--  Trimmed restating comments and stale docstrings across the build
-   system, C runtime, and code generation, replacing them with concise
-   descriptions of non-obvious contracts.
-
 -  Enabled additional ``ruff`` checks for boolean simplification,
    collection construction, dictionary iteration, string prefixes, and
    static string splitting, and applied the mechanical fixes.
@@ -3123,8 +3127,7 @@ Cleanups
    missing ``compiled_module.h`` header for IDE parsing of the module
    object layout.
 
--  Added the Python 3.16 suffix mapping for specialized built-in specs
-   and removed dead clcache code.
+-  Removed dead clcache code.
 
 -  **Plugins:** YAML configuration helpers now return ``YamlConfigItem``
    and ``YamlConfigKeyValue`` named tuples, the ``options`` section uses
