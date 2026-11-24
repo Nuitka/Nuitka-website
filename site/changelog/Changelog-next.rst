@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc7**.
+It currently covers changes up to version **4.4rc8**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -422,6 +422,11 @@ Bug Fixes
 -  Fix, a file lock acquired through ``withFileLock`` was released only
    after the ``yield``, so an exception left it held. The release now
    happens in a ``finally`` block.
+
+-  Fix, the retry decorator reported and slept after the final attempt,
+   so a final failure was delayed by another retry interval. The retry
+   message and sleep now only happen when another attempt remains, and
+   the final failure is reported immediately.
 
 -  **Python 3.14:** Fix, exception messages that name the type of a
    mistyped object used only the type name, while CPython 3.14 uses the
@@ -903,8 +908,10 @@ Bug Fixes
 -  **Scons:** Fix, in the ``linker`` resource mode, blob paths were
    turned into linker symbol names, so modules whose names differed only
    in characters that map to ``_``, e.g. ``a.b`` and ``a_b``, could
-   collide. The path given to the linker now gets an extra ``.`` element
-   to derive a unique symbol name, while still naming the same file.
+   collide. Blob symbol bases are now restricted to ASCII letters,
+   digits, and underscores, adding a hash of the source filename where
+   needed to make them unique, and the ``#embed`` path is relative to
+   the generated file rather than the working directory.
 
 -  **Scons:** Fix, interrupting a build left compiler processes running
    and spawn threads blocked on their output pipes, and hanging child
@@ -937,6 +944,14 @@ Bug Fixes
    replaced as well, and only actual compiled modules get source code
    assigned.
 
+-  **PGO:** Fix, cached modules demoted to bytecode were compiled
+   without the module facts needed for plugin decisions, so docstring
+   removal and the package flag passed to the frozen module bytecode
+   hook could be wrong. The module name, package status, and docstring
+   decision are now passed explicitly, with docstring decisions
+   available by module name and filename for modules not in the registry
+   yet.
+
 -  **Project:** Fix, unknown ``[tool.uv]`` config keys always produced a
    warning, including known keys that do not affect how the project is
    built. The known ``index``, ``managed``, and ``sources`` keys are now
@@ -948,6 +963,13 @@ Bug Fixes
    entirely benign kept the failure. It now returns success only when
    there was output and all of it was filtered as benign, and leaves the
    exit code in effect otherwise.
+
+-  **Watch:** Fix, the watch tool did not recompile a case when the
+   selected Python installation version changed, since the compilation
+   report's Python version was not considered. The Python version is now
+   read from the report and compared with the selected interpreter, and
+   existing Pipenv virtualenvs are checked and recreated when their
+   Python version differs.
 
 -  **MSYS2:** Fix, the runner created for entry points used a
    non-normalized path, which could produce mixed path separators. The
@@ -1177,6 +1199,12 @@ New Features
    are now checked against the container environment, with project
    parsing deferred to the in-container Nuitka.
 
+-  **Plugins:** Added ``--gi-version`` to select the version of a
+   GObject Introspection namespace when multiple versions are installed.
+   Versions are propagated from parent namespaces and dependencies, and
+   used for typelib data files, dependencies, and platform specific
+   namespace imports.
+
 -  **UI:** ``--lto=auto`` now detects ``-flto`` and ``-fno-lto`` flags
    in ``CFLAGS``, ``CCFLAGS``, ``CXXFLAGS``, and ``LDFLAGS``, and
    resolves accordingly. Conflicting flags in the environment, or
@@ -1202,12 +1230,14 @@ New Features
    inclusion, and added the ``tiktoken`` data file download and cache
    environment setup.
 
--  **Plugins:** Added the ``cute-dsl`` plugin, which keeps functions
-   decorated with ``cutlass.cute.jit`` and ``cutlass.cute.kernel``
-   uncompiled since the CuTe DSL rewrites their ``__code__``. Decorator
-   matching now uses fully qualified names resolved through import
-   statements, so aliases like ``from numba import jit`` are recognized,
-   and Numba nested functions now work too.
+-  **Plugins:** Added CuTe DSL support to the ``numba`` plugin, keeping
+   functions decorated with ``cutlass.cute.jit`` and
+   ``cutlass.cute.kernel`` uncompiled since the CuTe DSL rewrites their
+   ``__code__``. Decorator matching now uses fully qualified names
+   resolved through import statements, so aliases like ``from numba
+   import jit`` are recognized, and Numba nested functions now work too.
+   The JIT disable reason now distinguishes an explicit
+   ``--numba-enable-jit=no`` from the standalone default.
 
 -  **Plugins:** Replaced the uncompiled decorator name hook with JIT
    decorator registrations that can request bytecode or run a callback
@@ -1266,9 +1296,12 @@ Optimization
    ``IndexError`` messages matching tuples.
 
 -  **Hard Imports:** Added hard import nodes for ``os.path.join``,
-   ``importlib.resources.open_binary`` and ``open_text``, and
-   runtime-relative paths, plus a vectorcall-based
-   ``CALL_FUNCTION_WITH_ARGS`` helper used by ``print`` and ``zip``.
+   ``importlib.resources.open_binary`` and ``open_text``, their
+   ``importlib_resources`` backport variants, and runtime-relative
+   paths, plus a vectorcall-based ``CALL_FUNCTION_WITH_ARGS`` helper
+   used by ``print`` and ``zip``. The generated resource calls use the
+   module of the recognized call, so the backport variants import from
+   ``importlib_resources``.
 
 -  **Optimization:** More C-API calls were replaced with Nuitka helpers,
    including ``CHECK_AND_CLEAR_ATTRIBUTE_ERROR_OCCURRED`` and
@@ -1355,6 +1388,11 @@ Optimization
    subgraphs are not revisited exponentially. Results that depended on a
    loop recursion assumption are discarded when the assumption no longer
    applies.
+
+-  **Trace Collections:** ``isUnchangedResumeTrace`` queries now cache
+   their answers per query, so shared merge traces are not traversed
+   repeatedly. The trace graph does not change during a query, so the
+   cached answers stay valid.
 
 -  **Dictionaries:** Dictionary mutation helpers now pass the thread
    state through, so watcher callbacks and free-threaded operations can
@@ -1443,6 +1481,15 @@ Anti-Bloat
    applied when the ``dill-compat`` plugin is not enabled, the
    ``datasets`` serialization check is a warning instead of an error,
    and the ``sglang`` datasets removal only applies to direct imports.
+
+-  **Packages:** Replaced the CLI entry point import of ``httpx`` and
+   ``httpx2`` with an ``ImportError`` and avoided following their
+   ``_main`` modules, since the command line support pulls in ``click``,
+   ``rich``, and ``pygments`` unnecessarily.
+
+-  **Packages:** Replaced the ``pydoc_data`` module docs import in
+   ``pydoc`` with an ``ImportError`` on Python 3.13 and later, removing
+   the module documentation data used by the doc locator.
 
 Organizational
 ==============

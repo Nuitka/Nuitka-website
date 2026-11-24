@@ -1,14 +1,28 @@
 #!/usr/bin/env python3
 
+"""Generate the changelog update prompt for a Nuitka release.
+
+The script inspects the Nuitka git history for commits since the last
+documented version, filters out release and trivial commits, and prints a
+prompt that describes how to fold the remaining changes into
+``site/changelog/Changelog-next.rst``.
+"""
+
 import argparse
 import os
 import re
 import subprocess
 import sys
 from contextlib import redirect_stdout
-from typing import List, Optional
+from typing import List, Optional, Set, Tuple
 
+from packaging.version import InvalidVersion, Version
 from packaging.version import parse as parse_version
+
+
+def is_hotfix_format(version: str) -> bool:
+    """Return whether the version is a hotfix release such as ``4.1.3``."""
+    return bool(re.match(r"^\d+\.\d+\.\d+$", version))
 
 
 class ChangelogGenerator:
@@ -94,9 +108,6 @@ class ChangelogGenerator:
             ["git", "describe", "--tags", "--abbrev=0", commit_hash]
         )
 
-    def is_hotfix_format(self, version: str) -> bool:
-        return bool(re.match(r"^\d+\.\d+\.\d+$", version))
-
     def _refExists(self, ref: str) -> bool:
         """Check if a git reference resolves to a commit."""
         try:
@@ -139,10 +150,13 @@ class ChangelogGenerator:
                 end_ref = self.find_commit_for_version(self.target_version)
                 if not end_ref:
                     sys.exit(
-                        f"Error: Neither tag '{self.target_version}' nor branch '{hotfix_branch}' exists in '{self.repo_dir}'."
+                        f"Error: Neither tag '{self.target_version}' nor branch "
+                        f"'{hotfix_branch}' exists in '{self.repo_dir}'."
                     )
                 print(
-                    f"Tag '{self.target_version}' and branch '{hotfix_branch}' are missing, using commit {end_ref} that set the version instead."
+                    f"Tag '{self.target_version}' and branch '{hotfix_branch}' "
+                    f"are missing, using commit {end_ref} that set the version "
+                    "instead."
                 )
 
         return f"{previous_version}..{end_ref}"
@@ -200,9 +214,99 @@ class ChangelogGenerator:
             return []
         return ("\n" + output).split(f"\n{self.delimiter}\n")
 
+    @staticmethod
+    def _parseCommitBlock(commit_block: str) -> Optional[Tuple[str, str, str]]:
+        """Split a raw commit block into hash, subject line, and body."""
+        if not commit_block.strip():
+            return None
+
+        lines = commit_block.splitlines()
+        if not lines:
+            return None
+
+        commit_hash = lines[0].strip()
+        subject_line = lines[1].strip() if len(lines) > 1 else ""
+        body = "\n".join(lines[2:]).strip() if len(lines) > 2 else ""
+
+        if not subject_line:
+            return None
+
+        return commit_hash, subject_line, body
+
+    @staticmethod
+    def _shouldSkipSubject(subject_line: str) -> bool:
+        """Return whether a commit subject is irrelevant for the changelog."""
+        if subject_line in (
+            "New hotfix release.",
+            "New pre-release.",
+            "New stable release.",
+            "New release cycle.",
+        ):
+            return True
+
+        lower_subject = subject_line.lower()
+        return "minor cleanup" in lower_subject or "minor spelling" in lower_subject
+
+    def _makeFixupAction(
+        self,
+        subject_line: str,
+        body: str,
+        commit_hash: str,
+        is_hotfix: bool,
+        current_version_obj: Optional[Version],
+    ) -> Optional[str]:
+        """Build the prompt text for a fixup commit, if it is relevant."""
+        original_subject = subject_line[len("fixup! ") :].strip()
+        original_hash = self._runGitCommand(
+            [
+                "git",
+                "log",
+                "--all",
+                "--grep",
+                f"^{re.escape(original_subject)}$",
+                "--format=%H",
+                "-1",
+            ]
+        )
+
+        if not original_hash:
+            return None
+
+        original_version_str = self.getCommitVersion(original_hash)
+
+        # In hotfix mode, exclude fixups whose original commit is already
+        # part of this hotfix version. In develop mode, include everything.
+        if is_hotfix and current_version_obj and original_version_str:
+            try:
+                if parse_version(original_version_str) >= current_version_obj:
+                    return None
+            except InvalidVersion:
+                pass
+
+        return f"""Fixup for '{original_subject}' (from version {original_version_str}) is in this update.
+Consider adding its details.
+Fixup commit details ({commit_hash}):
+---
+{subject_line}
+
+{body}
+---"""
+
+    @staticmethod
+    def _makeCommitAction(subject_line: str, body: str, commit_hash: str) -> str:
+        """Build the prompt text for a regular commit."""
+        return f"""Non-fixup commit '{subject_line}' is in this update.
+Consider adding its details.
+Commit details ({commit_hash}):
+---
+{subject_line}
+
+{body}
+---"""
+
     def processCommits(self) -> List[str]:
         # Determine mode
-        is_hotfix = self.target_version and self.is_hotfix_format(self.target_version)
+        is_hotfix = bool(self.target_version and is_hotfix_format(self.target_version))
 
         if is_hotfix:
             git_range = self.getHotfixRange()
@@ -223,33 +327,18 @@ class ChangelogGenerator:
             print("No commits found in the specified range.")
             return []
 
-        actions_to_take = []
-        seen_subjects = set()
+        actions_to_take: List[str] = []
+        seen_subjects: Set[str] = set()
         # Only parse version if it is a hotfix X.Y.Z
         current_version_obj = parse_version(self.target_version) if is_hotfix else None
 
         for commit_block in raw_commits:
-            if not commit_block.strip():
+            parsed = self._parseCommitBlock(commit_block)
+            if parsed is None:
                 continue
 
-            lines = commit_block.splitlines()
-            if not lines:
-                continue
+            commit_hash, subject_line, body = parsed
 
-            commit_hash = lines[0].strip()
-            subject_line = lines[1].strip() if len(lines) > 1 else ""
-            body = "\n".join(lines[2:]).strip() if len(lines) > 2 else ""
-
-            if not subject_line:
-                continue
-
-            if subject_line in (
-                "New hotfix release.",
-                "New pre-release.",
-                "New stable release.",
-                "New release cycle.",
-            ):
-                continue
             if subject_line in seen_subjects:
                 # The same change can appear multiple times in a range, e.g.
                 # via a hotfix branch and its merge into develop, keep only
@@ -257,66 +346,28 @@ class ChangelogGenerator:
                 continue
             seen_subjects.add(subject_line)
 
-            lower_subject = subject_line.lower()
-            if "minor cleanup" in lower_subject or "minor spelling" in lower_subject:
+            if self._shouldSkipSubject(subject_line):
                 continue
 
-            # Handle fixups
             if subject_line.startswith("fixup! "):
-                original_subject = subject_line[len("fixup! ") :].strip()
-                original_hash = self._runGitCommand(
-                    [
-                        "git",
-                        "log",
-                        "--all",
-                        "--grep",
-                        f"^{re.escape(original_subject)}$",
-                        "--format=%H",
-                        "-1",
-                    ]
+                action = self._makeFixupAction(
+                    subject_line,
+                    body,
+                    commit_hash,
+                    is_hotfix,
+                    current_version_obj,
                 )
-
-                if original_hash:
-                    original_version_str = self.getCommitVersion(original_hash)
-
-                    include_fixup = True
-                    # In hotfix mode, exclude checks. In develop mode, we essentially include everything in range.
-                    if is_hotfix and current_version_obj and original_version_str:
-                        try:
-                            if (
-                                parse_version(original_version_str)
-                                >= current_version_obj
-                            ):
-                                include_fixup = False
-                        except:
-                            pass
-
-                    if include_fixup:
-                        action = f"""Fixup for '{original_subject}' (from version {original_version_str}) is in this update.
-Consider adding its details.
-Fixup commit details ({commit_hash}):
----
-{subject_line}
-
-{body}
----"""
-                        actions_to_take.append(action)
             else:
-                action = f"""Non-fixup commit '{subject_line}' is in this update.
-Consider adding its details.
-Commit details ({commit_hash}):
----
-{subject_line}
+                action = self._makeCommitAction(subject_line, body, commit_hash)
 
-{body}
----"""
+            if action:
                 actions_to_take.append(action)
 
         return actions_to_take
 
     def generate(self):
         actions = self.processCommits()
-        is_hotfix = self.target_version and self.is_hotfix_format(self.target_version)
+        is_hotfix = bool(self.target_version and is_hotfix_format(self.target_version))
 
         if actions:
             print(f"\n--- Found {len(actions)} relevant commits, preparing prompt ---")
@@ -434,7 +485,11 @@ def main():
         "version",
         metavar="VERSION",
         type=str,
-        help="The version to process. Hotfix format 'X.Y.Z' (e.g. 4.1.3), final format 'X.Y' (e.g. 4.2), or pre-release format 'X.YrcN' (e.g. 4.2rc3).",
+        help=(
+            "The version to process. Hotfix format 'X.Y.Z' (e.g. 4.1.3), "
+            "final format 'X.Y' (e.g. 4.2), or pre-release format 'X.YrcN' "
+            "(e.g. 4.2rc3)."
+        ),
     )
     parser.add_argument(
         "--nuitka-repo",
