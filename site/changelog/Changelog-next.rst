@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc6**.
+It currently covers changes up to version **4.4rc7**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -394,6 +394,35 @@ Bug Fixes
    still owned when an error occurs, with the scope end emission removed
    from sub-collectors.
 
+-  Fix, the loader built the containing package name in a fixed size
+   buffer without checking the length, so a module name longer than the
+   buffer could overflow it. Longer names are now rejected before
+   copying, matching the entry name comparison that already rejected
+   them.
+
+-  Fix, the safe string helpers did not reserve room for the terminating
+   NUL when appending wide strings, and copying wide strings checked the
+   buffer while writing instead of checking the source length up front.
+   Appending now requires room for two characters, and copying verifies
+   the source length first.
+
+-  Fix, cloning function bodies together with an enclosing outline scope
+   did not translate their closure and taken variables, so cloned
+   generator, lambda, and comprehension bodies could reference variables
+   of the original scope. Closure variables and taken variables are now
+   translated, with tests for generator and lambda closures in list
+   contractions and cloned ``finally`` blocks.
+
+-  Fix, error path checks compared unicode filenames and messages with
+   ``strcmp`` on a temporary UTF-8 encoding, which could fail while
+   handling another exception. Added
+   ``Nuitka_Unicode_CompareWithASCIIString``, which compares ASCII text
+   without encoding or raising, and used it for these checks.
+
+-  Fix, a file lock acquired through ``withFileLock`` was released only
+   after the ``yield``, so an exception left it held. The release now
+   happens in a ``finally`` block.
+
 -  **Python 3.14:** Fix, exception messages that name the type of a
    mistyped object used only the type name, while CPython 3.14 uses the
    fully qualified name. The complaint helpers now use
@@ -507,11 +536,55 @@ Bug Fixes
    from ``sys.argv``, and ``__parents_main__`` is pre-loaded as
    ``__main__`` when no main path is given.
 
+-  **Python 2:** Fix, ``str.translate`` and ``unicode.translate`` did
+   not accept the optional ``delete`` argument, since the specialized
+   nodes used a single argument spec for all versions. The specs are now
+   split by Python version, and the Python 2 variant passes the
+   ``delete`` argument.
+
+-  **Python 3.13+:** Fix, the built-in ``eval``, ``exec``, ``locals``,
+   ``vars``, and ``dir`` used CPython's frame locals proxy, which
+   requires an exact frame object and fails for compiled frames. The
+   builtins are now replaced with versions that supply globals and
+   locals from compiled frames, installed after global constants and
+   before module constants, with tests for indirect calls.
+
 -  **Standalone:** Fix, symlinks to shared libraries, e.g. versioned
    aliases like ``libfoo.so`` pointing to ``libfoo.so.1.2``, were copied
    as separate regular files, which could load duplicate library state.
    Symlinks are now preserved, with their targets copied first, and
    macOS binary path fixing is skipped for the link itself.
+
+-  **Standalone:** Fix, the loader's ``find_spec`` raised the excluded
+   module import error instead of returning ``None``, so availability
+   probes like ``importlib.util.find_spec`` did not behave like for
+   missing modules. It now returns ``None`` for excluded modules, and
+   only the actual import attempt raises.
+
+-  **Standalone:** Fix, when DLLs with the same name were found in
+   different locations, the first one won regardless of whether it came
+   from the Python installation or the system. DLL paths are now
+   classified as inside, VC redist, or system, and copies from the
+   Python installation and program directories are preferred over system
+   ones.
+
+-  **Standalone:** Fix, Python allocators were captured before
+   interpreter initialization, so allocator settings from the
+   environment were not respected, and hook allocator contexts were
+   cached after they became invalid. The allocators are now captured
+   after initialization, hook allocators are routed through the Python
+   API, and standalone mode ignores ``PYTHONMALLOC``,
+   ``PYTHONTRACEMALLOC``, ``PYTHONDEVMODE``, and ``PYTHON_GIL`` from the
+   environment.
+
+-  **Standalone:** Fix, a failing ``ldd`` call was ignored and
+   dependency detection continued with incomplete output. The exit code
+   is now checked and the error output reported.
+
+-  **Standalone:** Fix, the ``{PROGRAM_DIR}`` template expansion on
+   non-Windows started its backwards directory scan at the terminating
+   NUL byte instead of the last character, so the value expanded
+   incorrectly. The scan now starts one character earlier.
 
 -  **Plugins:** Fix, the onefile compression warning of the ``upx``
    plugin checked the ``isOnefileMode`` function object instead of
@@ -540,6 +613,27 @@ Bug Fixes
    docstrings and assertions had no effect there. The module's decisions
    are now used when extracting docstrings and creating builtin
    references, and standard library modules always drop docstrings.
+
+-  **Plugins:** Fix, DLL configuration entries with a ``relative_to``
+   module or relative destination paths failed when that module was not
+   available, instead of being ignored. Missing modules are now
+   tolerated when resolving destination paths, and no entry is created
+   then.
+
+-  **Plugins:** Fix, a plugin decision of ``never`` for recompiling
+   extension modules could be overridden by later plugin decisions or
+   the command line source preference. It is now cached and returned
+   immediately.
+
+-  **Plugins:** Fix, the ``gi`` plugin only patched one quote style of
+   PyGObject's ``DynamicImporter`` setup, and included platform specific
+   ``Gio``/``GLib`` typelib files without their generated virtual module
+   imports. Both quote styles are now patched, and the platform
+   namespaces are included through the virtual module imports.
+
+-  **Plugins:** Fix, preprocessor symbols were cached globally across
+   onefile and backend builds, although plugins can provide different
+   symbols for each. The cache is now keyed by the build kind.
 
 -  **Windows:** Fix, removing a directory tree with links on Python
    before 3.8 followed junctions and symlinks and deleted the contents
@@ -574,6 +668,12 @@ Bug Fixes
    suffix for extension modules, so extension modules of debug Python
    builds, which use ``_d.pyd``, could not be found. The suffix now
    matches the freezer and uses ``_d.pyd`` for debug builds.
+
+-  **Windows:** Fix, Windows error messages used the ANSI
+   ``FormatMessage`` and formatted error codes as signed, which could
+   lose or garble non-ASCII system messages. Wide character
+   ``FormatMessageW`` is now used, with unsigned error codes and an
+   unknown-message fallback.
 
 -  **Compatibility:** Fix, a relative import whose level exceeded the
    package depth was resolved to a parent package that was not there,
@@ -712,6 +812,56 @@ Bug Fixes
    is now stored in a temporary variable first, preserving CPython's
    evaluation order.
 
+-  **Compatibility:** Fix, modules demoted to bytecode used their
+   original filename when the file reference mode was not ``original``,
+   so tracebacks and code objects did not match the requested file
+   reference choice. The runtime filename is now used for demoted
+   modules in those modes.
+
+-  **Compatibility:** Fix, a class dictionary could be propagated to a
+   temporary variable while a locals reference in a conditional branch
+   was still undecided, so the class namespace was no longer available
+   at run time. The propagation is now prevented for such references,
+   and branch trace collection updates mark escaped locals.
+
+-  **Compatibility:** Fix, class body lookups could not distinguish
+   class namespace names from enclosing function locals when the locals
+   were assigned later in the function, because the bindings were only
+   known after visiting the assignments. Names bound by assignments and
+   deletions are now registered while building the tree, with
+   ``nonlocal`` declarations checked before they are consumed, and
+   function variable assignment prefers provided variables over taken
+   ones.
+
+-  **Compatibility:** Fix, on non-Windows systems a closed standard
+   input was replaced with ``/dev/null``, while CPython leaves
+   ``sys.stdin`` as ``None`` when file descriptor 0 is closed. The
+   replacement is now skipped for ``stdin`` on POSIX, preserving child
+   process behavior that e.g. multiprocessing relies on.
+
+-  **Compatibility:** Fix, built-in parameter specs could not express a
+   Python visible keyword that differs from the internal argument name,
+   so ``os.path.isdir`` on Windows with Python 3.12.0 rejected its
+   ``path`` keyword, while that version used it before the rename to
+   ``s``. Keyword aliases are now supported for built-in specs, and the
+   alias is used for the platform dependent argument name.
+
+-  **Compatibility:** Fix, a value read from a variable could be used as
+   a borrowed reference while generating an expression, and a later
+   write to the same variable, e.g. by a walrus assignment, released it
+   before the expression used it. Borrowed references are now tracked
+   and a reference is taken before such writes, with the C type property
+   ``holdsObjectReference`` handling dual and non-reference-counted
+   types.
+
+   .. code:: python
+
+      value = "".join(["a"] * 1000)
+      other = value + (value := "b")
+
+      # 4.4rc6: the string could be released before the addition
+      # 4.4rc7: the value stays alive until the expression is done
+
 -  **Debugging:** Fix, on Windows, the PDB file of an unstripped target
    was left in the build directory after moving the executable, so it
    was lost. It is now moved next to the final binary, and the ``.pdb``
@@ -726,6 +876,10 @@ Bug Fixes
    little-endian, while the C bootstrap reads it with a direct
    ``memcpy``, so compressed onefile payloads were broken on big-endian
    systems. The size is now written in native endianness.
+
+-  **Onefile:** Fix, the splash screen was only shown when the payload
+   was compressed, although the option is independent of compression. It
+   is now shown whenever it is enabled.
 
 -  **Scons:** Fix, the exit code of a Scons build did not distinguish
    signal termination, because ``os.WEXITSTATUS`` was used
@@ -746,6 +900,19 @@ Bug Fixes
    blobs. Forward slashes are now used for the paths, and the underscore
    is only added for 32-bit x86.
 
+-  **Scons:** Fix, in the ``linker`` resource mode, blob paths were
+   turned into linker symbol names, so modules whose names differed only
+   in characters that map to ``_``, e.g. ``a.b`` and ``a_b``, could
+   collide. The path given to the linker now gets an extra ``.`` element
+   to derive a unique symbol name, while still naming the same file.
+
+-  **Scons:** Fix, interrupting a build left compiler processes running
+   and spawn threads blocked on their output pipes, and hanging child
+   processes could block indefinitely. Interrupts now stop the spawn
+   threads and kill the compiler process family, with process tree
+   termination on Windows, and process communication and import
+   detection have timeouts.
+
 -  **UI:** Fix, conflicting data file destination paths were only
    detected for exact path matches, so non-normalized paths could fail
    later at run time. Conflicts now use normalized paths and
@@ -763,6 +930,24 @@ Bug Fixes
    reports and container command output by matching option name
    patterns, including abbreviated long options, with default patterns
    for ``password``, ``salt``, and ``secret`` options.
+
+-  **PGO:** Fix, demoting unused modules to bytecode crashed when a
+   plugin provided fake modules for them, since only trigger modules
+   were replaced in the plugin module tables. Fake modules are now
+   replaced as well, and only actual compiled modules get source code
+   assigned.
+
+-  **Project:** Fix, unknown ``[tool.uv]`` config keys always produced a
+   warning, including known keys that do not affect how the project is
+   built. The known ``index``, ``managed``, and ``sources`` keys are now
+   ignored, and the warning for unknown keys was reworded.
+
+-  **Quality:** Fix, the stderr filter for tool calls treated the
+   presence of unfiltered error lines as a successful filtered run, so a
+   failing tool could be reported as success, while output that was
+   entirely benign kept the failure. It now returns success only when
+   there was output and all of it was filtered as benign, and leaves the
+   exit code in effect otherwise.
 
 -  **MSYS2:** Fix, the runner created for entry points used a
    non-normalized path, which could produce mixed path separators. The
@@ -825,6 +1010,26 @@ Package Support
    in standalone mode, where compiled functions have no file backing.
    The new ``--numba-enable-jit`` option controls the JIT, defaulting to
    ``no`` in standalone mode and ``yes`` otherwise.
+
+-  **Standalone:** Added the missing implicit import for
+   ``pydantic.type_adapter``.
+
+-  **Standalone:** Added CUDA 13 and NVVM library paths for ``nvidia``,
+   the runtime version library for ``cutlass``, package configuration
+   for ``humming``, and data files for ``flashinfer``, ``sglang``,
+   ``torch``, and ``vllm``.
+
+-  **Standalone:** Platform backends of ``pywebview`` are now included
+   by default and only backends unusable on the current platform are
+   excluded, so new backends work without a Nuitka change. Added the
+   .NET 4.6.2 webview DLLs and updated the EdgeChromium native path
+   workaround.
+
+-  **macOS:** Added PyQt6 support, including Qt library and translation
+   target paths, framework detection, WebEngine process paths, and
+   framework bundle normalization with Mach-O checks, helper executable
+   rpaths, and version symlinks. Removed the PyQt6 unsupported check and
+   filtered non-DLL Qt plugin files from wheels.
 
 New Features
 ============
@@ -964,6 +1169,52 @@ New Features
    namespace requiring top-level loading. This makes ``__name__`` and
    ``__package__`` compile time constants and allows more optimization
    in module mode.
+
+-  **Container:** Added ``--container-python-version`` to build and use
+   a different Python inside the container, plus
+   ``--container-requirements`` and ``--container-wheels-dir`` to
+   install packages before compiling. Project requirements and options
+   are now checked against the container environment, with project
+   parsing deferred to the in-container Nuitka.
+
+-  **UI:** ``--lto=auto`` now detects ``-flto`` and ``-fno-lto`` flags
+   in ``CFLAGS``, ``CCFLAGS``, ``CXXFLAGS``, and ``LDFLAGS``, and
+   resolves accordingly. Conflicting flags in the environment, or
+   conflicts with an explicit ``--lto=yes`` or ``--lto=no``, are now
+   errors.
+
+-  **UI:** Added the ``no_unraisable`` Python flag, which compiles out
+   Nuitka's own unraisable exception writes on all versions and ignores
+   CPython internal unraisable writes on Python 3.8 and later.
+
+-  **PGO:** Added standalone and app-dist profiling support. The
+   distribution is prepared before the profiling run and reset before
+   the final compilation pass, and MSVC PGD/PGC files are kept in the
+   build directory.
+
+-  **Plugins:** Added a ``plugin_priority`` attribute to request that a
+   plugin is called later, e.g. for signing after compression. Active
+   plugins are sorted stably by it, keeping the standard and user plugin
+   order for equal priorities.
+
+-  **Plugins:** Added a ``downloads`` section to the Nuitka Package
+   Configuration, which downloads files into the Nuitka cache for
+   inclusion, and added the ``tiktoken`` data file download and cache
+   environment setup.
+
+-  **Plugins:** Added the ``cute-dsl`` plugin, which keeps functions
+   decorated with ``cutlass.cute.jit`` and ``cutlass.cute.kernel``
+   uncompiled since the CuTe DSL rewrites their ``__code__``. Decorator
+   matching now uses fully qualified names resolved through import
+   statements, so aliases like ``from numba import jit`` are recognized,
+   and Numba nested functions now work too.
+
+-  **Plugins:** Replaced the uncompiled decorator name hook with JIT
+   decorator registrations that can request bytecode or run a callback
+   with the decorated function's source range. Added ``AstUnparsing``
+   for Python versions without ``ast.unparse``, preserved source line
+   numbers for bytecode functions, and registered Triton, CuTe, and CUDA
+   tile decorators for source inclusion.
 
 Optimization
 ============
@@ -1153,7 +1404,13 @@ Optimization
    modules are now stripped of symbols unless ``--unstripped`` or a
    debug or runtime trace mode requires them, reducing the size of
    standalone distributions. Known ``strip`` failures leave the file
-   unstripped instead of aborting.
+   unstripped, and ELF files whose load segments would no longer be
+   aligned after stripping are restored to the unstripped copy.
+
+-  **Anti-Bloat:** Removed the ``_json`` avoidance rules for
+   ``json.decoder``, ``json.encoder``, and ``json.scanner``, since the
+   fallback pure Python implementation can be much slower and the
+   performance loss would not be discovered by users.
 
 Anti-Bloat
 ==========
@@ -1181,6 +1438,11 @@ Anti-Bloat
 -  **Telethon:** Disabled docstrings for ``telethon`` and avoided
    following its optional ``PIL`` dependency in
    ``telethon.client.uploads``, which is only used for image thumbnails.
+
+-  **Dill:** ``dill`` removals for ``depyf`` and ``torch`` are now only
+   applied when the ``dill-compat`` plugin is not enabled, the
+   ``datasets`` serialization check is a warning instead of an error,
+   and the ``sglang`` datasets removal only applies to direct imports.
 
 Organizational
 ==============
@@ -1293,6 +1555,26 @@ Organizational
 -  **Quality:** Pyright now targets Python 3.15 and ignores vendored
    ``inline_copy`` code.
 
+-  **Actions:** The testing workflow now uses ``actions/setup-python``
+   for Python 3.15 on Linux too, and includes Python 3.15 in the macOS,
+   Windows, and Windows ARM matrices.
+
+-  **Release:** The OSC upload now runs the documentation linting
+   through the repository tool with download support, and builds the
+   source distribution in its virtualenv, so it no longer depends on the
+   system installation. The RPM source archive name now uses the
+   lowercase ``nuitka`` prefix.
+
+-  **Quality:** The VS Code, Zed, and Ruff configurations now exclude
+   and ignore the ``tests`` directory, instead of only the CPython test
+   copies.
+
+-  **Quality:** The clangd checker now uses the private pip space
+   binary, disables background indexing, has a check timeout, and
+   reports internal clangd failures. The ``.clangd`` configuration is
+   generated independently of compiler detection and no longer defines
+   the unused Windows ``UNICODE`` macros.
+
 Tests
 =====
 
@@ -1372,6 +1654,13 @@ Tests
    per-test ``--mode=module`` project options, and the top level
    attributes entry point is now actually tested.
 
+-  The PGO test runner now recognizes ``--mode=app-dist`` and locates
+   the binary from the compilation report, and a standalone data files
+   PGO test was added.
+
+-  The PyQt6 tests now use app distribution mode, the macOS skip was
+   removed, and a Qt WebEngine frameworks regression test was added.
+
 Cleanups
 ========
 
@@ -1430,6 +1719,19 @@ Cleanups
    added paths, using ``getEnvironmentWithPathAdded``,
    ``getPrivatePipSitePackagesEnvironment``, and ``getExecutablePath``
    with ``extra_dir``, instead of temporarily modifying ``os.environ``.
+
+-  Moved the experimental feature indications into
+   ``nuitka.options.Experimental``, a low-level module without
+   dependencies, avoiding import cycles with distribution and execution
+   helpers.
+
+-  Removed the ``no-iterator-optimization`` experimental flag, which was
+   never needed to disable the indexable iterator unpacking
+   optimization.
+
+-  Built-in type method helper generation now uses versioned parameter
+   specs collected in ``Common``, with version specific conditions in C
+   and version specific specs in the attribute node templates.
 
 Summary
 =======
