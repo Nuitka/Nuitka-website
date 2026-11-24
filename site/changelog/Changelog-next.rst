@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc2**.
+It currently covers changes up to version **4.4rc3**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -350,11 +350,33 @@ Bug Fixes
    e.g. in unpacking assignments that use ``locals()``. The scope is now
    included.
 
+-  Fix, in-place updates of module variables stored in the module
+   dictionary did not keep the previous value alive during the
+   operation, so it could be released while still in use, leaving a
+   dangling reference. The operation now holds a new reference to the
+   value until the update is complete.
+
+-  Fix, the frame scope could be reduced during optimization while node
+   replacements were still pending, so the decision was based on an
+   untraced state. It now waits for the next pass when any node changed.
+
 -  **Python 3.14:** Fix, exception messages that name the type of a
    mistyped object used only the type name, while CPython 3.14 uses the
    fully qualified name. The complaint helpers now use
    ``Nuitka_PyType_GetFullyQualifiedName``, which includes the module
    for heap types outside ``builtins`` and ``__main__``.
+
+-  **Python 3.14+:** Fix, template string interpolations asserted that
+   no conversion was present, so ``!r``, ``!s``, and ``!a`` were not
+   supported. The conversions are now mapped to the
+   ``_PyInterpolation_Build`` codes, including format specifications and
+   nested specifications.
+
+-  **Standalone:** Fix, symlinks to shared libraries, e.g. versioned
+   aliases like ``libfoo.so`` pointing to ``libfoo.so.1.2``, were copied
+   as separate regular files, which could load duplicate library state.
+   Symlinks are now preserved, with their targets copied first, and
+   macOS binary path fixing is skipped for the link itself.
 
 -  **Plugins:** Fix, the onefile compression warning of the ``upx``
    plugin checked the ``isOnefileMode`` function object instead of
@@ -380,6 +402,17 @@ Bug Fixes
    prefix were used. The directory of the system prefix executable is
    now included as well.
 
+-  **Windows:** Fix, some Python installations failed in accelerated
+   mode when the Python DLL was only found through the system search
+   path, because extension modules could not be located. The exact
+   ``sys.path`` is now passed in ``NUITKA_PYTHONPATH`` for execution
+   when no launcher script is created.
+
+-  **Windows:** Fix, MinGW64 and Zig builds for 64-bit Python before 3.8
+   used the wrong ``long double`` ABI, and before 3.12 missed
+   ``MS_WIN64``. The flags now match the MSVC ABI, and function pointer
+   casts use unions to avoid debug build warnings.
+
 -  **Compatibility:** Fix, a relative import whose level exceeded the
    package depth was resolved to a parent package that was not there,
    instead of giving a not found result. It now stops at the top-level
@@ -387,10 +420,36 @@ Bug Fixes
    module, where the runtime parent package is not known at compile
    time.
 
+-  **Compatibility:** Fix, assignments and deletions of ``__debug__``
+   were not diagnosed as ``SyntaxError`` in all places, e.g. in named
+   expressions, imports, function arguments, class keywords, type
+   aliases, pattern matching, and function and class names. They now
+   raise the same ``SyntaxError`` as the corresponding Python version,
+   with its version-specific exceptions respected.
+
 -  **Debugging:** Fix, on Windows, the PDB file of an unstripped target
    was left in the build directory after moving the executable, so it
    was lost. It is now moved next to the final binary, and the ``.pdb``
    suffix is cleaned up with the other intermediate files.
+
+-  **Cache:** Fix, the bytecode cache did not restore whether a module
+   usage source reference was internal, so warm-cache compilation
+   reports could differ from cold-cache ones. The cache format now
+   stores and restores that flag.
+
+-  **Scons:** Fix, the exit code of a Scons build did not distinguish
+   signal termination, because ``os.WEXITSTATUS`` was used
+   unconditionally. Signal exits now report the negative signal number.
+
+-  **Scons:** Fix, MSVC builds with Python 2.6 headers warned about
+   C4273 from the declarations of ``acosh``, ``asinh``, ``atanh``, and
+   ``log1p``. That warning is now disabled for this combination.
+
+-  **UI:** Fix, conflicting data file destination paths were only
+   detected for exact path matches, so non-normalized paths could fail
+   later at run time. Conflicts now use normalized paths and
+   case-insensitive comparison on such file systems, with an error that
+   names the reason.
 
 -  **MSYS2:** Fix, the runner created for entry points used a
    non-normalized path, which could produce mixed path separators. The
@@ -418,6 +477,14 @@ Package Support
    data files for ``flashinfer``, ``cuda.tile``, and the ``templates``
    directories of ``torch._inductor.kernel`` and its ``flex`` variant,
    plus the ``tvm_ffi`` include directory and ``libtvm_ffi`` DLLs.
+
+-  **Standalone:** Extended ``vLLM`` and added ``SGLang`` support,
+   including the CUDA, NCCL, and NVSHMEM binding layers, ``cutlass``,
+   and kernel packages such as ``flash_attn``, ``flashinfer``,
+   ``sgl_kernel``, ``triton_kernels``, ``deep_ep``, ``deep_gemm``,
+   ``quack``, ``xgrammar``, and ``kernels``, with their metadata, data
+   files, CUDA and Triton kernel sources, and ``*.jinja`` chat
+   templates.
 
 -  **Standalone:** Added support for the ``triton`` package, including
    implicit imports for its backends, data files for the AMD and NVIDIA
@@ -477,6 +544,14 @@ New Features
    onefile mode supports this, as other OSes don't encounter these
    limits.
 
+-  **Onefile:** Enhanced payload caching. The payload now starts with a
+   table of contents containing checksums, sizes, and symlink and
+   executable flags, so unpacked files can be validated without
+   decompressing the payload. The CRC32 is encoded in the file
+   modification time, and the deprecated ``--onefile-as-archive`` option
+   is now a no-op and hidden, with the separate compression cache and
+   its ``--disable-cache=compression`` name removed.
+
 -  **Plugins:** The ``source-inclusion`` plugin now supports module
    mode. Since there is no unique main program,
    ``--source-inclusion-main`` names a program that exercises the
@@ -484,6 +559,14 @@ New Features
    top-level module body. The ``dash`` package configuration now warns
    when ``dash.long_callback`` uses ``inspect.getsource()`` for caching
    and recommends the plugin and option.
+
+-  **macOS:** Added support for C backtraces with
+   ``--experimental=dump-c-tracebacks``, including Mach-O symbol lookup
+   and signal-context unwinding on x86_64, i386, and ARM64.
+
+-  **UI:** Added a ``barflow`` progress bar backend, selectable with
+   ``--progress-bar=barflow``. It is not selected by ``auto``, which
+   still prefers ``tqdm`` and then ``rich``.
 
 Optimization
 ============
@@ -511,6 +594,39 @@ Optimization
    keeps compiler command lines identical across machines, allowing
    ``ccache`` results to be shared and builds to be more reproducible.
 
+-  **Imports:** Compiled modules and startup modules such as the main
+   module, ``__parents_main__``, multiprocessing, joblib, and anyio
+   helpers now load through their loader entries directly.
+   ``ModuleSpec`` values carry a loader instance, module directory and
+   file values use the runtime module name when available, and repeated
+   ``findEntry`` lookups and extra C-API calls during startup are
+   avoided.
+
+-  **Variables:** Value traces now detect more local variables as
+   definitely initialized, and unused variables are removed from local
+   dict mappings, e.g. ``__class__`` after its ``super`` usage
+   disappears, reducing unbound-local error handling and locals dict
+   overhead.
+
+-  **Code Generation:** Annotate functions that can be re-entered now
+   share a cached code object instead of unmarshalling it for each
+   function, and class bodies are no longer assumed to be able to
+   recurse, avoiding unnecessary frame handling.
+
+-  **Subscripts:** Constant subscripts of tuples and tuple subclasses,
+   e.g. named tuples, now use a direct table access fast path, with
+   ``IndexError`` messages matching tuples.
+
+-  **Hard Imports:** Added hard import nodes for ``os.path.join``,
+   ``importlib.resources.open_binary`` and ``open_text``, and
+   runtime-relative paths, plus a vectorcall-based
+   ``CALL_FUNCTION_WITH_ARGS`` helper used by ``print`` and ``zip``.
+
+-  **C API:** More C-API calls were replaced with Nuitka helpers,
+   including ``CHECK_AND_CLEAR_ATTRIBUTE_ERROR_OCCURRED`` and
+   ``CHECK_AND_CLEAR_TYPE_ERROR_OCCURRED``, reducing temporary exception
+   handling in generated code.
+
 Anti-Bloat
 ==========
 
@@ -524,6 +640,15 @@ Anti-Bloat
 
 -  **Triton:** Replaced the ``triton_key`` computation with the value of
    the build environment.
+
+-  **Packages:** Allowed ``setuptools`` where Triton kernels and
+   in-place extension builds require it, and dropped ``tilelang`` and
+   heavy test-only ``torch`` modules from serving builds.
+
+-  **Packages:** Avoid docstring dependencies and set
+   ``TORCH_COMPILE_DISABLE`` for vLLM serving, worked around empty
+   ``entry_points()`` truth values, and replaced the forked subprocess
+   model inspection in ``vllm.model_executor``.
 
 Organizational
 ==============
@@ -539,6 +664,11 @@ Organizational
 -  **Docs:** Documented Clang as the default compiler on OpenBSD in the
    Developer Manual, matching the compiler settings that already forced
    it there. (Fixed in 4.3.2 already.)
+
+-  **Docs:** Expanded the Developer Manual's CPython API to Nuitka
+   helper mapping table with more helpers, ownership and precondition
+   details, generated helper families, and version-specific internals
+   for 3.13 and 3.14.
 
 -  **Actions:** Fix, the retry for the initial compilation that
    downloads compilers was only done on macOS, so transient runner
@@ -559,6 +689,13 @@ Organizational
    ``spell-checker: ignore`` word lists, merging consecutive plain lines
    up to the line length.
 
+-  **Quality:** Private pip tools now fall back to the private pip space
+   when an installed package raises any exception during import, not
+   only ``ImportError``. When the private space contains both
+   ``site-packages`` and ``dist-packages`` layouts, the layout of the
+   Python that runs pip, and the one a tool binary belongs to, are
+   preferred on ``PYTHONPATH``.
+
 -  **Debugging:** GCC and Clang builds now enable ``-Wshadow``, so
    accidental variable shadowing is detected during regular builds
    instead of only in later MSVC CI runs.
@@ -569,6 +706,11 @@ Organizational
 
 -  **Watch:** The watch tool now passes ``--update-check=never`` to
    Nuitka, avoiding update check noise for its test compilations.
+
+-  **Watch:** The watch tool now records the case version and case file
+   hash in its reports, so a changed version triggers recompilation.
+   Build directories are removed after execution via
+   ``--remove-output``.
 
 Tests
 =====
@@ -603,6 +745,9 @@ Tests
    ``annotationlib.Format.FORWARDREF`` calls on class and method
    ``__annotate__`` functions.
 
+-  Extended the power operator tests with a literal base to cover
+   underflow and subnormal results at run time.
+
 Cleanups
 ========
 
@@ -618,6 +763,16 @@ Cleanups
 
 -  Moved the Python installation prefix helpers from ``PythonVersions``
    into the new ``PythonPrefixes`` module, removing cyclic dependencies.
+
+-  **Progress:** Progress bars now use a ``withProgressBar`` context
+   manager for C source generation, DLL copying, and DLL detection,
+   ensuring they are closed on errors.
+
+-  Removed the fallback for unbound local errors without a frame, which
+   is no longer reachable and now asserts instead.
+
+-  **LSP:** Added missing includes and configured ``.c`` and ``.h``
+   files as C in clangd, reducing spurious diagnostics.
 
 Summary
 =======
