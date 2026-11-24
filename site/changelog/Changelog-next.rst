@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc1**.
+It currently covers changes up to version **4.4rc2**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -345,6 +345,57 @@ Bug Fixes
    and the argument remains positional-only on Windows before Python
    3.8. (Fixed in 4.3.5 already.)
 
+-  Fix, the ``locals()`` expression node did not include its locals
+   scope in ``getDetails``, so cloning or displaying the node failed,
+   e.g. in unpacking assignments that use ``locals()``. The scope is now
+   included.
+
+-  **Python 3.14:** Fix, exception messages that name the type of a
+   mistyped object used only the type name, while CPython 3.14 uses the
+   fully qualified name. The complaint helpers now use
+   ``Nuitka_PyType_GetFullyQualifiedName``, which includes the module
+   for heap types outside ``builtins`` and ``__main__``.
+
+-  **Plugins:** Fix, the onefile compression warning of the ``upx``
+   plugin checked the ``isOnefileMode`` function object instead of
+   calling it, so the warning was never effective. The check now calls
+   it.
+
+-  **Plugins:** Fix, the ``source-inclusion`` probe did not record
+   source files loaded by child processes. It now injects a generated
+   ``sitecustomize`` module that writes each record immediately, so
+   records from worker processes survive even when they are killed, and
+   conflicting records for a module are reported as an error.
+
+-  **Windows:** Fix, removing a directory tree with links on Python
+   before 3.8 followed junctions and symlinks and deleted the contents
+   of their target directories instead of only the links, which could
+   lose unrelated files, e.g. of the Python installation. Links are now
+   never followed, and a link given to ``removeDirectory`` itself is
+   removed safely too.
+
+-  **Windows:** Fix, for virtual environments of uninstalled self
+   compiled Python, the DLLs next to the base executable were not
+   scanned, since only the ``sys.executable`` directory and the system
+   prefix were used. The directory of the system prefix executable is
+   now included as well.
+
+-  **Compatibility:** Fix, a relative import whose level exceeded the
+   package depth was resolved to a parent package that was not there,
+   instead of giving a not found result. It now stops at the top-level
+   package, and this also applies when a package is compiled as a
+   module, where the runtime parent package is not known at compile
+   time.
+
+-  **Debugging:** Fix, on Windows, the PDB file of an unstripped target
+   was left in the build directory after moving the executable, so it
+   was lost. It is now moved next to the final binary, and the ``.pdb``
+   suffix is cleaned up with the other intermediate files.
+
+-  **MSYS2:** Fix, the runner created for entry points used a
+   non-normalized path, which could produce mixed path separators. The
+   generated runner filename now uses ``getNormalizedPathJoin``.
+
 Package Support
 ===============
 
@@ -362,6 +413,31 @@ Package Support
    ``urllib3.contrib.resolver._async.factories``, so the resolver
    implementations that these factories load dynamically are included in
    standalone builds. (Added in 4.3.4 already.)
+
+-  **Standalone:** Added support for the ``vLLM`` package, including
+   data files for ``flashinfer``, ``cuda.tile``, and the ``templates``
+   directories of ``torch._inductor.kernel`` and its ``flex`` variant,
+   plus the ``tvm_ffi`` include directory and ``libtvm_ffi`` DLLs.
+
+-  **Standalone:** Added support for the ``triton`` package, including
+   implicit imports for its backends, data files for the AMD and NVIDIA
+   backends and their ``driver.c``, Python headers for in-place C
+   compilation, and a replacement for ``triton_key`` with the value of
+   the build environment. The ``cuda_utils`` module is not covered yet.
+
+-  **Standalone:** Avoided including the Qt plugins and fonts of
+   non-headless ``opencv-python`` when a Qt binding plugin is enabled,
+   since they conflict with the binding's own Qt libraries, and added a
+   warning recommending ``opencv-python-headless`` instead.
+
+-  **Plugins:** Added a ``numba`` plugin. It compiles the modules of the
+   ``numba`` package to bytecode, since Numba JITs functions of its own
+   package even when the JIT is disabled, and leaves functions using the
+   common Numba JIT decorators uncompiled when the JIT is enabled, plus
+   ``stencil`` decorated functions always. The on-disk cache is disabled
+   in standalone mode, where compiled functions have no file backing.
+   The new ``--numba-enable-jit`` option controls the JIT, defaulting to
+   ``no`` in standalone mode and ``yes`` otherwise.
 
 New Features
 ============
@@ -392,6 +468,23 @@ New Features
    final binary, e.g. to calculate its checksum. (Added in 4.3.5
    already.)
 
+-  **Onefile:** Added an ``overlay`` resource mode, which attaches the
+   onefile payload to the end of the executable instead of embedding it
+   as a constant blob. It is used automatically on Windows when the
+   payload would exceed the PE file size limit The bootstrap maps its
+   own executable, uses the certificate table when the file is signed to
+   find the payload end, and unpacks from there. Currently only Windows
+   onefile mode supports this, as other OSes don't encounter these
+   limits.
+
+-  **Plugins:** The ``source-inclusion`` plugin now supports module
+   mode. Since there is no unique main program,
+   ``--source-inclusion-main`` names a program that exercises the
+   compiled module, and the recorded source hook is installed before the
+   top-level module body. The ``dash`` package configuration now warns
+   when ``dash.long_callback`` uses ``inspect.getsource()`` for caching
+   and recommends the plugin and option.
+
 Optimization
 ============
 
@@ -412,10 +505,25 @@ Optimization
    otherwise exported with ``-export-dynamic`` for no reason. (Added in
    4.3.5 already.)
 
+-  **Scons:** Include paths below the Nuitka and Python installations
+   are now replaced with build directory local symbolic links of stable
+   names, and paths outside these roots get stable derived names. This
+   keeps compiler command lines identical across machines, allowing
+   ``ccache`` results to be shared and builds to be more reproducible.
+
 Anti-Bloat
 ==========
 
--  None yet.
+-  **Packages:** Avoided following ``z3`` from ``tilelang`` and from
+   ``torch.fx.experimental``, where it is only checked for being
+   installed, or used for debug translation validation that serving does
+   not need.
+
+-  **Packages:** Avoided ``cython`` usage in ``zmq.backend.cython._zmq``
+   when ``setuptools`` is not used.
+
+-  **Triton:** Replaced the ``triton_key`` computation with the value of
+   the build environment.
 
 Organizational
 ==============
@@ -438,6 +546,30 @@ Organizational
    operating systems, and the produced files are cleaned up before each
    attempt. (Fixed in 4.3.3 already.)
 
+-  **UI:** Error and warning messages now name the actual compilation
+   mode, e.g. ``app`` or ``onefile``, instead of saying ``standalone``
+   as the problematic part of the mode. Or package rather than module
+   mode.
+
+-  **Quality:** The pre-push hook now also runs ``codespell`` on changed
+   Python, C, RST, text, template, and Markdown files unless disabled at
+   install time.
+
+-  **Quality:** ``autoformat`` now sorts, de-duplicates, and fills
+   ``spell-checker: ignore`` word lists, merging consecutive plain lines
+   up to the line length.
+
+-  **Debugging:** GCC and Clang builds now enable ``-Wshadow``, so
+   accidental variable shadowing is detected during regular builds
+   instead of only in later MSVC CI runs.
+
+-  **Zed:** The editor configuration now excludes generated and build
+   artifacts from file scanning and restricts basedpyright diagnostics
+   to open Python files.
+
+-  **Watch:** The watch tool now passes ``--update-check=never`` to
+   Nuitka, avoiding update check noise for its test compilations.
+
 Tests
 =====
 
@@ -455,10 +587,37 @@ Tests
    skew in the environment and are not relevant to the test result.
    (Fixed in 4.3.5 already.)
 
+-  The test runner now records the current test and marks it as failed
+   when an error is reported through the runner code separately, so such
+   failures are no longer missed.
+
+-  Windows-only tests are now recognized by their ``Win`` or
+   ``windows_`` name prefix and skipped on other systems, instead of
+   listing every such test explicitly.
+
+-  Extended the nested namespace package tests to cover
+   ``pkgutil.iter_modules`` and ``pkgutil.walk_packages`` on compiled
+   packages inside namespace packages.
+
+-  Extended the Python 3.14 annotation tests to cover
+   ``annotationlib.Format.FORWARDREF`` calls on class and method
+   ``__annotate__`` functions.
+
 Cleanups
 ========
 
--  None yet.
+-  Removed the obsolete ``CodeObjectsMixin`` and its
+   ``getCodeObjectHandle`` methods; code generation now calls
+   ``getCodeObjectAccessCode`` directly.
+
+-  **WASI:** Type slots now use the ``PyObject *self`` signatures that
+   CPython expects, and method table calls use
+   ``Nuitka_PyCFunctionUnion`` with the actual function signatures.
+   ``-Wcast-function-type`` is enabled for GCC, Clang, and Zig, so
+   incompatible function casts are detected earlier.
+
+-  Moved the Python installation prefix helpers from ``PythonVersions``
+   into the new ``PythonPrefixes`` module, removing cyclic dependencies.
 
 Summary
 =======
