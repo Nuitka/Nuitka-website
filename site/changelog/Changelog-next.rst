@@ -11,7 +11,7 @@ This document outlines the changes for the upcoming **Nuitka**
 includes details on hot-fixes applied to the current stable release,
 |NUITKA_VERSION|.
 
-It currently covers changes up to version **4.4rc4**.
+It currently covers changes up to version **4.4rc5**.
 
 **************************************************
  **Nuitka** Release |NUITKA_VERSION_NEXT| (Draft)
@@ -432,6 +432,27 @@ Bug Fixes
    the frame and reports it as created. The closed-before-start state is
    now tracked and reported like CPython.
 
+-  **Python 3.11+:** Fix, ``except*`` re-raise detection compared the
+   contained leaf exceptions, so re-raising a leaf exception and raising
+   a new group that reused the same leaf were treated the same. The
+   exception notes, traceback, cause, and context are now compared like
+   CPython to distinguish actual re-raises.
+
+-  **Python 3.15+:** Fix, ``async`` and ``await`` errors now use the
+   Python 3.15 message formats, with fully qualified type names for
+   ``__await__`` returning a coroutine or a non-iterator, and for
+   awaiting a non-awaitable object, using the new
+   ``SET_CURRENT_EXCEPTION_TYPE_COMPLAINT_QUALIFIED2`` helper, while
+   keeping the Python 3.14 full compat and truncated type name handling.
+
+-  **Python 3.15+:** Fix, call and class keyword argument errors now
+   match Python 3.15. Calls with positional arguments use the generic
+   "Value after * must be an iterable, not ..." message for the value
+   after ``*``, non-string keyword names are reported after all mappings
+   are merged so duplicate keyword errors take precedence, and class
+   keywords use the CPython call helper in full compat mode so errors
+   name ``__build_class__``.
+
 -  **Standalone:** Fix, symlinks to shared libraries, e.g. versioned
    aliases like ``libfoo.so`` pointing to ``libfoo.so.1.2``, were copied
    as separate regular files, which could load duplicate library state.
@@ -596,6 +617,11 @@ Bug Fixes
    traces show the arguments are unset, and full compat mode also
    observes a dynamically shadowed ``super`` in the module namespace.
 
+-  **Compatibility:** Fix, variable deletions in full compat mode did
+   not update the line number before generating the deletion, so errors
+   raised by ``del`` reported the line of the previous statement. The
+   line number is now updated first.
+
 -  **Debugging:** Fix, on Windows, the PDB file of an unstripped target
    was left in the build directory after moving the executable, so it
    was lost. It is now moved next to the final binary, and the ``.pdb``
@@ -629,6 +655,13 @@ Bug Fixes
    later at run time. Conflicts now use normalized paths and
    case-insensitive comparison on such file systems, with an error that
    names the reason.
+
+-  **UI:** Fix, ``--version`` required a usable C compiler and could
+   give an error message or attempt downloads. It now uses a download
+   mode of ``no`` and reports ``Version C compiler: not found.``
+   instead, and the separate ``assume_yes_for_downloads`` and
+   ``download_ok`` flags were merged into one download mode of ``no``,
+   ``ask``, or ``yes``.
 
 -  **MSYS2:** Fix, the runner created for entry points used a
    non-normalized path, which could produce mixed path separators. The
@@ -675,6 +708,13 @@ Package Support
    non-headless ``opencv-python`` when a Qt binding plugin is enabled,
    since they conflict with the binding's own Qt libraries, and added a
    warning recommending ``opencv-python-headless`` instead.
+
+-  **Standalone:** Added support for newer ``astropy`` versions. PLY
+   parser construction methods now request frame locals through the new
+   ``frame_locals`` configuration, generated lexer and parser tables are
+   included as implicit imports and no longer written into the compiled
+   program's directory, IERS data files are included, and the constants
+   data modules use wildcard imports.
 
 -  **Plugins:** Added a ``numba`` plugin. It compiles the modules of the
    ``numba`` package to bytecode, since Numba JITs functions of its own
@@ -789,6 +829,30 @@ New Features
 -  **UI:** The recommended Python version for commercial usage was
    bumped to 3.13.
 
+-  **Debugging:** Added ``--debug-thread-sanitizer`` for GCC and Clang
+   on Linux and macOS, passing ``-fsanitize=thread`` to the compiler and
+   linker and keeping debug information. It cannot be combined with
+   ``--debug-address-sanitizer`` and is not available on Windows. For
+   compiled extension modules, the host program must preload the
+   ThreadSanitizer runtime, e.g. via ``LD_PRELOAD`` on Linux or
+   ``DYLD_INSERT_LIBRARIES`` on macOS.
+
+-  **Plugins:** Added a ``frame_locals`` anti-bloat configuration item
+   and ``decideNeedsFrameLocalsProxy`` plugin hook, which decide per
+   function or class whether a frame locals proxy is needed, using
+   qualified name patterns. The locals struct is still only published in
+   the frame when required, keeping the normal case faster and more
+   compact. Added a ``QualifiedName`` base class so function and class
+   qualified names can be matched like module names.
+
+-  **Plugins:** Added a non-deployment handler for ``pickle`` that turns
+   an ``ImportError`` raised while loading pickle data into a
+   ``RuntimeError`` naming the missing module and recommending
+   ``--include-module`` for it. The standard library package
+   configuration was also split into shared, Python2-only, and
+   Python3-only files, so Python3 compilations no longer load the
+   Python2-only parts.
+
 Optimization
 ============
 
@@ -843,30 +907,37 @@ Optimization
    runtime-relative paths, plus a vectorcall-based
    ``CALL_FUNCTION_WITH_ARGS`` helper used by ``print`` and ``zip``.
 
--  **C API:** More C-API calls were replaced with Nuitka helpers,
+-  **Optimization:** More C-API calls were replaced with Nuitka helpers,
    including ``CHECK_AND_CLEAR_ATTRIBUTE_ERROR_OCCURRED`` and
    ``CHECK_AND_CLEAR_TYPE_ERROR_OCCURRED``, reducing temporary exception
    handling in generated code.
 
--  **C API:** All direct CPython dictionary access in Nuitka-owned code
-   now goes through the ``DICT_`` helpers implemented directly on the
-   ``PyDictObject`` state, so dictionaries can still be freely passed
-   between Nuitka and CPython. Added ``DICT_SET_ITEM_STRING``,
-   ``DICT_REMOVE_ITEM_STRING``, ``DICT_GET_ITEM_STRING``,
-   ``DICT_UPDATE_FROM``, and ``DICT_UPDATE_FROM_SEQ``, replacing
-   ``PyDict_SetItem``, ``PyDict_DelItem``, ``PyDict_GetItemString``,
-   ``PyDict_Merge``, ``PyDict_MergeFromSeq2``, and ``PyDict_Update`` in
-   the loader, exception state handling, built-ins, attributes, keyword
-   arguments, frame locals, and deepcopy.
+-  **Optimization:** All direct CPython dictionary access in
+   Nuitka-owned code now goes through the ``DICT_`` helpers implemented
+   directly on the ``PyDictObject`` state, so dictionaries can still be
+   freely passed between Nuitka and CPython. Added
+   ``DICT_SET_ITEM_STRING``, ``DICT_REMOVE_ITEM_STRING``,
+   ``DICT_GET_ITEM_STRING``, ``DICT_UPDATE_FROM``, and
+   ``DICT_UPDATE_FROM_SEQ``, replacing ``PyDict_SetItem``,
+   ``PyDict_DelItem``, ``PyDict_GetItemString``, ``PyDict_Merge``,
+   ``PyDict_MergeFromSeq2``, and ``PyDict_Update`` in the loader,
+   exception state handling, built-ins, attributes, keyword arguments,
+   frame locals, and deepcopy.
 
--  **C API:** Used ``CHECK_IF_TRUE`` for truth checks and
+-  **Optimization:** Added dictionary set implementations without Python
+   C-API calls for all supported versions, generated from a template and
+   using dedicated lookup functions instead of the CPython lookup
+   function pointers. Added ``DICT_SET_ITEM1``, which consumes the value
+   reference on success and failure.
+
+-  **Optimization:** Used ``CHECK_IF_TRUE`` for truth checks and
    ``RICH_COMPARE_*_NBOOL_*`` for comparisons, compared with ``Py_None``
    directly since ``Py_IsNone`` is not available on all supported Python
    versions, and used ``Nuitka_PyLong_AsLongAndOverflow`` in
    ``sys._getframemodulename``, avoiding calls into the Python C-API
    implementation.
 
--  **C API:** Added ``Nuitka_PyLong_AsSsize_t``,
+-  **Optimization:** Added ``Nuitka_PyLong_AsSsize_t``,
    ``Nuitka_PyLong_AsSsize_tAndOverflow``, and
    ``Nuitka_Number_AsSsize_t``, replacing the Python C-API equivalents
    in slicing, subscripting, list indexing, and ``int`` construction,
@@ -887,6 +958,21 @@ Optimization
    collection's dictionary and uses lists instead of sets for the
    normally small version collections, avoiding generator and set
    objects and speeding up compilation by about 5%.
+
+-  **Trace Collections:** Merge trace flattening and deduplication moved
+   to the collection layer and only happens when a nested merge is
+   present, with a direct two-trace merge path. The loop dependency and
+   cached must-have-value state of merge traces are now a single state
+   field, and single-predecessor behavior moved into a mixin, reducing
+   per-merge memory use and speeding up decisions.
+
+-  **Trace Collections:** The value trace implementation moved to
+   ``nuitka.optimizations.value_traces``, with generated
+   ``ValueTraceMerge2`` through ``ValueTraceMerge6`` classes that use
+   direct trace slots and unrolled hot methods. Nested merges are
+   flattened through dedicated helpers, and two-trace merges are
+   special-cased, saving memory and avoiding loops for the common merge
+   sizes.
 
 -  **Frame Caching:** Compiled frame caches now use a
    ``Nuitka_FrameCacheHandle`` with an in-use flag, falling back to an
@@ -1068,6 +1154,26 @@ Tests
    temporary names, matching the normalization already done for ``/tmp``
    and Windows temp files.
 
+-  The CPython results cache is now written to a temporary file and
+   moved into place atomically, so a crash cannot leave a truncated
+   cache file. Damaged cache files are reported and the results
+   recalculated.
+
+-  Reference count checks now use the object based count for
+   free-threaded builds before Python 3.14, where deferred reference
+   counting makes ``sys.gettotalrefcount()`` unreliable, while debug
+   builds with the GIL and Python 3.14+ free-threaded builds keep the
+   faster total count.
+
+-  Output comparisons now strip the CPython 3.15 hint about site
+   initialization being disabled from import errors, since Nuitka's
+   subinterpreters inherit the delayed site import state.
+
+-  Extended the dictionary structure tests with same-value update checks
+   and C helper operations through a test plugin, and added a standalone
+   concurrency harness that links the dictionary helpers and drives
+   shared dictionaries from native threads.
+
 Cleanups
 ========
 
@@ -1116,6 +1222,11 @@ Cleanups
 -  **Python 2.6:** Added ``_PyObject_GC_IS_TRACKED`` and
    ``_PyObject_GC_MAY_BE_TRACKED`` equivalents, so GC tracking code no
    longer needs version-specific dummy checks.
+
+-  Warning filters for ``DeprecationWarning`` and ``SyntaxWarning``
+   moved into ``nuitka/__init__.py``, so all tools importing Nuitka
+   modules get them automatically, and the ``withNoSyntaxWarning``
+   helper was removed.
 
 Summary
 =======
