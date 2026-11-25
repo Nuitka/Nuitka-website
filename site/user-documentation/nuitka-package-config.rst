@@ -97,21 +97,21 @@ Data Files
 .. code:: yaml
 
    data-files:
-     dest_path: '.' # default, relative to package directory, normally not needed
-     dirs:
-       - 'dir1'
+     - dest_path: '.' # default, relative to package directory, normally not needed
+     - dirs:
+         - 'dir1'
 
-     patterns:
-       - 'file1'
-       - '*.dat'
+     - patterns:
+         - 'file1'
+         - '*.dat'
 
-     empty_dirs:
-       - 'empty_dir'
+     - empty_dirs:
+         - 'empty_dir'
 
-     empty_dir_structures:
-       - 'empty_dir_structure'
+     - empty_dir_structures:
+         - 'empty_dir_structure'
 
-     when: 'win32'
+     - when: 'win32'
 
 If a module needs data files, you can get Nuitka to copy them into the
 output with the following features.
@@ -142,8 +142,8 @@ folder and lives inside the package directory.
 
    - module-name: 'customtkinter'
      data-files:
-        dirs:
-          - 'assets'
+        - dirs:
+            - 'assets'
 
 .. note::
 
@@ -161,8 +161,8 @@ This example includes a complete folder with data files in a package.
 
    - module-name: 'tkinterweb'
      data-files:
-       dirs:
-         - 'tkhtml'
+       - dirs:
+           - 'tkhtml'
 
 .. note::
 
@@ -180,8 +180,8 @@ package.
 
    - module-name: 'Crypto.Util._raw_api'
      data-files:
-       empty_dirs:
-         - '.'
+       - empty_dirs:
+           - '.'
 
 .. note::
 
